@@ -31,10 +31,11 @@
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This program is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>winbindd</command> is a daemon that provides 
 	a service for the Name Service Switch capability that is present 
@@ -113,7 +114,7 @@ hosts:		files wins
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
@@ -177,7 +178,7 @@ hosts:		files wins
 
 
 <refsect1>
-	<title>NAME AND ID RESOLUTION</title>
+	<title>NAMENS- UND ID-AUFLÖSUNG</title>
 
 	<para>Users and groups on a Windows NT server are assigned 
 	a relative id (rid) which is unique for the domain when the 
@@ -203,7 +204,7 @@ hosts:		files wins
 
 
 <refsect1>
-	<title>CONFIGURATION</title>
+	<title>KONFIGURATION</title>
 
 	<para>Configuration of the <command>winbindd</command> daemon 
 	is done through configuration parameters in the <citerefentry>
@@ -235,7 +236,7 @@ hosts:		files wins
 
 
 <refsect1>
-	<title>EXAMPLE SETUP</title>
+	<title>BEISPIEL-SETUP</title>
 
 	<para>To setup winbindd for user and group lookups plus 
 	authentication from a domain controller use something like the 
@@ -310,7 +311,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 
 
 <refsect1>
-	<title>NOTES</title>
+	<title>BEMERKUNGEN</title>
 
 	<para>The following notes are useful when configuring and 
 	running <command>winbindd</command>: </para>
@@ -338,7 +339,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 
 
 <refsect1>
-	<title>SIGNALS</title>
+	<title>SIGNALE</title>
 
 	<para>The following signals can be used to manipulate the 
 	<command>winbindd</command> daemon. </para>
@@ -368,7 +369,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 </refsect1>
 
 <refsect1>
-	<title>FILES</title>
+	<title>DATEIEN</title>
 
 	<variablelist>
 		<varlistentry>
@@ -434,7 +435,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	
 	<para><filename>nsswitch.conf(5)</filename>, <citerefentry>
 	<refentrytitle>samba</refentrytitle>
