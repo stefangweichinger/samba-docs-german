@@ -4,7 +4,7 @@
 
 <chapterinfo>
 	&author.jht;
-	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Anleitung zur MS Windows Netzwerkkonfiguration</title>

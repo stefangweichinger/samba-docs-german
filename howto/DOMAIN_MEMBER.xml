@@ -8,7 +8,7 @@
 	&author.tridge;
 	&author.jelmer;
 	<author>&person.gd;<contrib>LDAP updates</contrib></author>
-	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Domänen-Mitgliedschaft</title>
