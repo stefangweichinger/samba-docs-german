@@ -318,7 +318,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 	</sect3>
 
 	<sect3>
-	<title>>Die Installation der erforderlichen Packages für Red Hat Linux</title>
+	<title>Die Installation der erforderlichen Packages für Red Hat Linux</title>
 
 	<para>Auf Red Hat Linux bedeutet das, daß Sie zumindest das brauchen: </para>
 	<para>
