@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbcontrol</refname>
-	<refpurpose>send messages to smbd, nmbd or winbindd processes</refpurpose>
+	<refpurpose>sendet Nachrichten an smbd-, nmbd- oder winbindd-Prozesse</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,67 +25,74 @@
 	
 	<cmdsynopsis>
 		<command>smbcontrol</command>
-		<arg>destination</arg>
-		<arg>message-type</arg>
-		<arg>parameter</arg>
+		<arg>Ziel</arg>
+		<arg>Nachrichten-Typ</arg>
+		<arg>Parameter</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbcontrol</command> is a very small program, which 
-	sends messages to a <citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>, a <citerefentry><refentrytitle>nmbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>, or a <citerefentry><refentrytitle>winbindd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry> daemon running on the system.</para>
+	<para><command>smbcontrol</command> ist ein sehr kleines Programm, 
+	das Nachrichten an einen im System laufenden 
+	<citerefentry><refentrytitle>smbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry>-, einen
+	<citerefentry><refentrytitle>nmbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry>- oder einen
+	<citerefentry><refentrytitle>winbindd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry>-Daemon sendet.</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		&stdarg.help;
 		&stdarg.configfile;
+
 		<varlistentry>
 		<term>-i</term>
-		<listitem><para>Run interactively. Individual commands 
-		of the form destination message-type parameters can be entered 
-		on STDIN. An empty command line or a "q" will quit the 
-		program.</para></listitem>
+		<listitem><para>Läuft interaktiv. Individuelle Befehle der Form 
+		Ziel Nachrichten-Typ Parameter können auf der Standardeingabe  
+		eingegeben werden. Eine leere Befehlszeile oder ein "q" beendet
+		das Programm.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>destination</term>
-		<listitem><para>One of <parameter>nmbd</parameter>, <parameter>smbd</parameter> or a process ID.</para>
+		<term>Ziel</term>
+		<listitem><para>Entweder <parameter>nmbd</parameter>,
+		<parameter>smbd</parameter> oder eine Prozess-ID.</para>
 
-		<para>The <parameter>smbd</parameter> destination causes the 
-		message to "broadcast" to all smbd daemons.</para>
+		<para>Das Ziel <parameter>smbd</parameter> bewirkt, dass die
+		Nachricht in einem "Broadcast" an alle smbd-Daemons gesendet
+		wird.</para>
 
-		<para>The <parameter>nmbd</parameter> destination causes the 
-		message to be sent to the nmbd daemon specified in the 
-		<filename>nmbd.pid</filename> file.</para>
+		<para>Das Ziel <parameter>smbd</parameter> bewirkt, dass die 
+		Nachricht an den nmbd-Daemon gesendet wird, der in der Datei 
+		<filename>nmbd.pid</filename> angegeben ist.</para>
 
-		<para>If a single process ID is given, the message is sent 
-		to only that process.</para></listitem>
+		<para>Falls eine einzelne Prozess-ID angegeben wird, wird die
+		Nachricht nur an diesen Prozess gesendet.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>message-type</term>
-		<listitem><para>Type of message to send. See 
-		the section <constant>MESSAGE-TYPES</constant> for details.
+		<term>Nachrichten-Typ</term>
+		<listitem><para>Typ der zu sendenden Nachricht. Siehe den 
+		Abschnitt <constant>NACHRICHTEN-TYPEN</constant> für Details.
 		</para></listitem></varlistentry>
 		
 
-	
 		<varlistentry>
-		<term>parameters</term>
-		<listitem><para>any parameters required for the message-type</para>
+		<term>Parameter</term>
+		<listitem><para>irgendwelche für den Nachrichten-Typ benötigte
+		Parameter.</para>
 		</listitem>
 		</varlistentry>
 	</variablelist>
@@ -93,170 +100,188 @@
 </refsect1>
 
 <refsect1>
-	<title>MESSAGE-TYPES</title>
+	<title>NACHRICHTEN-TYPEN</title>
 
-	<para>Available message types are:</para>
+	<para>Verfügbare Nachrichten-Typen sind:</para>
 
 	<variablelist>
 	<varlistentry><term>close-share</term>
-	<listitem><para>Order smbd to close the client 
-	connections to the named share. Note that this doesn't affect client 
-	connections to any other shares. This message-type takes an argument of the
-	share name for which client connections will be closed, or the
-	"*" character which will close all currently open shares.
-	This may be useful if you made changes to the access controls on the share.
-	This message can only be sent to <constant>smbd</constant>.</para>
+	<listitem><para>Weist smbd an, die Client-Verbindungen zur genannten 
+	Freigabe zu schließen. Man beachte, dass dies keinen Einfluss auf 
+	Client-Verbindungen zu anderen Freigaben hat. Dieser Nachrichten-Typ 
+	erwartet als Argument den Namen der Freigabe, für die die 
+	Client-Verbindungen geschlossen werden, oder das Zeichen "*", mit dem
+	alle gerade geöffneten Freigaben geschlossen werden. Das mag dann hilfreich
+	sein, wenn Sie Änderungen an den Access Controls der Freigabe vorgenommen
+	haben. Diese Nachricht kann nur an <constant>smbd</constant> gesendet
+	werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>debug</term>
-	<listitem><para>Set debug level to the value specified by the 
-	parameter. This can be sent to any of the destinations.</para>
+	<listitem><para>Setzt die Debug-Ebene auf den vom Parameter angegebenen
+	Wert. Dies kann an alle möglichen Ziele gesendet werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>force-election</term>
-	<listitem><para>This message causes the <command>nmbd</command> daemon to 
-	force a new browse master election. </para>
+	<listitem><para>Diese Nachricht bewirkt, dass der 
+	<command>nmbd</command>-Daemon 
+	einen neuen Browse Master auswählt.???</para>
 	</listitem></varlistentry>
 
 	<varlistentry>
 	<term>ping</term>
 	<listitem><para>
-	Send specified number of "ping" messages and 
-	wait for the same number of  reply "pong" messages. This can be sent to 
-	any of the destinations.</para>
+	Sendet die angegebene Anzahl von "ping"-Nachrichten und wartet auf die 
+	gleiche Anzahl von "pong"-Nachrichten. Dies kann an alle möglichen Ziele 
+	gesendet werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>profile</term>
-	<listitem><para>Change profile settings of a daemon, based on the 
-	parameter. The parameter can be "on" to turn on profile stats 
-	collection, "off" to turn off profile stats collection, "count"
-	to enable only collection of count stats (time stats are 
-	disabled), and "flush" to zero the current profile stats. This can 
-	be sent to any smbd or nmbd destinations.</para>
+	<listitem><para>Ändert die Profil-Einstellungen eines Daemons, basierend 
+	auf dem Parameter. Der Parameter kann "on" oder "off" sein, um das Sammeln
+	von Profilstatistiken ein- bzw- auszuschalten, "count", um nur das Sammeln
+	von Zählstatistiken zu ermöglichen (Zeitstatistiken sind nicht möglich),
+	und "flush", um die aktuellen Profilstatistiken auf Null zurückzusetzen.
+	Dies kann an beliebige smbd- oder nmbd-Ziele gesendet werden.</para>
 	</listitem></varlistentry>
 
 	<varlistentry>
 	<term>debuglevel</term>
 	<listitem><para>
-	Request debuglevel of a certain daemon and write it to stdout. This 
-	can be sent to any of the destinations.</para>
+	Erfragt die Debug-Ebene eines bestimmten Daemons und schreibt sie auf
+	die Standardausgabe aus. Dies kann an alle möglichen Ziele 
+	gesendet werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>profilelevel</term>
 	<listitem><para>
-	Request profilelevel of a certain daemon and write it to stdout. 
-	This can be sent to any smbd or nmbd destinations.</para>
+	Erfragt die Profil-Ebene eines bestimmten Daemons und schreibt sie auf
+	die Standardausgabe aus. Dies kann an beliebige smbd- oder nmbd-Ziele
+	gesendet werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>printnotify</term>
 	<listitem><para>
-	Order smbd to send a printer notify message to any Windows NT clients 
-	connected to a printer. This message-type takes the following arguments:
+	Weist smbd an, eine Druckerbenachrichtigung an irgendwelche Windows 
+	NT-Clients zu schicken, die mit einem Drucker verbunden sind. 
+	Dieser Nachrichten-Typ erwartet die folgenden Argumente:
 	</para>
 	
 	<variablelist>
 
 	    <varlistentry>
 	    <term>queuepause printername</term>
-	    <listitem><para>Send a queue pause change notify
-	    message to the printer specified.</para></listitem>
+	    <listitem><para>Sendet eine Nachricht queue pause change notify
+	    an den angegebenen Drucker.</para></listitem>
  	    </varlistentry>
 
 	    <varlistentry>
 	    <term>queueresume printername</term>
-	    <listitem><para>Send a queue resume change notify
-	    message for the printer specified.</para></listitem>
+	    <listitem><para>Sendet eine Nachricht queue resume change notify
+	    für den angegebenen Drucker.</para></listitem>
  	    </varlistentry>
 
-		<varlistentry>
+	    <varlistentry>
 	    <term>jobpause printername unixjobid</term>
-	    <listitem><para>Send a job pause change notify
-	    message for the printer and unix jobid
-	    specified.</para></listitem> 
+	    <listitem><para>Sendet eine Nachricht job pause change notify
+	    für den angegebenen Drucker und die angegebene unix jobid.
+	    </para></listitem> 
  	    </varlistentry>
 
 	    <varlistentry>
 	    <term>jobresume printername unixjobid</term>
-	    <listitem><para>Send a job resume change notify
-	    message for the printer and unix jobid
-	    specified.</para></listitem>  
+	    <listitem><para>Sendet eine Nachricht job resume change notify
+	    für den angegebenen Drucker und die angegebene unix jobid.
+	    </para></listitem>  
 	    </varlistentry>
 
 	    <varlistentry>
 	    <term>jobdelete printername unixjobid</term>
-	    <listitem><para>Send a job delete change notify
-	    message for the printer and unix jobid
-	    specified.</para></listitem> 
+	    <listitem><para>Sendet eine Nachricht job delete change notify
+	    für den angegebenen Drucker und die angegebene unix jobid.
+	    </para></listitem> 
 	    </varlistentry>
 	</variablelist>
 
 	<para>
-	Note that this message only sends notification that an
-	event has occured.  It doesn't actually cause the
-	event to happen.
+	Man beachte, dass diese Nachricht nur eine Benachrichtigung darüber
+	sendet, dass ein Ereignis eingetreten ist. Sie bewirkt nicht selbst,
+	dass das Ereignis eintritt.
 	</para>
 
-	<para>This message can only be sent to <constant>smbd</constant>. </para>
+	<para>Diese Nachricht kann nur an <constant>smbd</constant> gesendet 
+	werden.</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>samsync</term>
-	<listitem><para>Order smbd to synchronise sam database from PDC (being BDC). Can only be sent to <constant>smbd</constant>. </para>
-	<note><para>Not working at the moment</para></note>
+	<listitem><para>Weist smbd an, die SAM-Datenbank von PDC zu 
+	snychronisieren (being BDC)???. 
+	Kann nur an <constant>smbd</constant> gesendet werden.</para>
+	<note><para>Funktioniert im Moment nicht.</para></note>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>samrepl</term>
-	<listitem><para>Send sam replication message, with specified serial. Can only be sent to <constant>smbd</constant>. Should not be used manually.</para></listitem>
+	<listitem><para>Sendet SAM-Replikationsnachricht mit angegebener
+	Seriennummer???. Kann nur an <constant>smbd</constant> gesendet werden.
+	Sollte nicht manuell benutzt werden.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>dmalloc-mark</term>
-	<listitem><para>Set a mark for dmalloc. Can be sent to both smbd and nmbd. Only available if samba is built with dmalloc support. </para></listitem>
+	<listitem><para>Setzt eine Marke für dmalloc. Kann sowohl an smbd wie 
+	auch an nmbd gesendet werden. Nur dann verfügbar, falls Samba mit 
+	Unterstützung für dmalloc kompiliert wurde.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>dmalloc-log-changed</term>
 	<listitem><para>
-	Dump the pointers that have changed since the mark set by dmalloc-mark. 
-	Can be sent to both smbd and nmbd. Only available if samba is built with dmalloc support. </para></listitem>
+	Gibt die Pointer aus, die sich verändert haben, seitdem die Marke mit
+	dmalloc-mark gesetzt wurde. Kann sowohl an smbd wie auch an nmbd gesendet
+	werden. Nur dann verfügbar, falls Samba mit Unterstützung für dmalloc
+	kompiliert wurde.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>shutdown</term>
-	<listitem><para>Shut down specified daemon. Can be sent to both smbd and nmbd.</para></listitem>
+	<listitem><para>Fährt den angegebenen Daemon herunter. Kann an smbd 
+	und an nmbd gesendet werden.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>pool-usage</term>
-	<listitem><para>Print a human-readable description of all 
-	talloc(pool) memory usage by the specified daemon/process. Available 
-	for both smbd and nmbd.</para></listitem>
+	<listitem><para>Gibt eine für Menschen lesbare Beschreibung aller 
+	Speicherzugriffe mit talloc(pool) durch den angegebenen Daemon/Prozess.
+	Verfügbar für smbd und nmbd.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>drvupgrade</term>
-	<listitem><para>Force clients of printers using specified driver 
-	to update their local version of the driver. Can only be 
-	sent to smbd.</para></listitem>
+	<listitem><para>Zwingt die Clients von Druckern, die den angegebenen 
+	Treiber benutzen, ihre lokale Version des Treibers aufzurüsten. 
+	Kann nur an smbd gesendet werden.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>reload-config</term>
-	<listitem><para>Force daemon to reload smb.conf configuration file. Can be sent
-	to <constant>smbd</constant>, <constant>nmbd</constant>, or <constant>winbindd</constant>.
+	<listitem><para>Zwingt den Daemon dazu, die Konfiguraionsdatei 
+	smb.conf neu zu laden. Kann an <constant>smbd</constant>, 
+	<constant>nmbd</constant> oder <constant>winbindd</constant> gesendet
+	werden.
 	</para></listitem>
 	</varlistentry>
 
@@ -271,7 +296,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>nmbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>.</para>
