@@ -13,8 +13,8 @@
 
 <refnamediv>
 	<refname>nmbd</refname>
-	<refpurpose>NetBIOS-Nameserver zur Bereitstellung von NetBIOS 
-	über IP-Namensdiensten für Clients</refpurpose>
+	<refpurpose>NetBIOS-Nameserver zur Bereitstellung von NetBIOS-über-IP-Namensdiensten 
+	für Clients</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -43,7 +43,7 @@
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>nmbd</command> ist ein Server, der Anfragen zu
-	NetBIOS über IP-Namensdiensten verstehen und beantworten kann, wie  
+	NetBIOS-über-IP-Namensdiensten verstehen und beantworten kann, wie  
 	sie von SMB/CIFS-Clients produziert werden, z.B. Windows 95/98/ME, 
 	Windows NT, Windows 2000, Windows XP und LanManager-Clients. Er
 	nimmt auch an den Browsing-Protokollen teil, die in Windows die
@@ -51,7 +51,7 @@
 
 	<para>Wenn SMB/CIFS-Clients hochgefahren werden, möchten sie evtl.
 	einen SMB/CIFS-Server ausfindig machen, d.h. sie wollen wissen,
-	welche IP-Nummer ein bestimmter Host benutzt.</para>
+	welche IP-Adresse ein bestimmter Host benutzt.</para>
 
 	<para>Neben weiteren Diensten wird <command>nmbd</command> auf 
 	solche Anfragen warten, und wenn sein eigener NetBIOS-Name angegeben
@@ -88,7 +88,7 @@
 		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass 
 		<command>nmbd</command> als Daemon arbeitet. Das heisst, er
 		koppelt sich selbst ab, und läuft im Hintergrund weiter, wo
-		er Anfragen auf dem entsprechenden Port auffängt. 
+		er Anfragen auf dem entsprechenden Port empfängt. 
 		<command>nmbd</command> arbeitet standardmäßig als Daemon,
 		wenn er von der Kommandozeile gestartet wird. 
 		nmbd kann auch vom Meta-Daemon <command>inetd</command> 
@@ -136,7 +136,7 @@
 		<varlistentry>
 		<term>-H &lt;Dateiname&gt;</term>
 		<listitem><para>NetBIOS lmhosts-Datei. Die lmhosts-Datei ist 
-		eine Liste von NetBIOS-Namen auf IP-Adressen, die vom 
+		eine Liste von Zuordnungen "NetBIOS-Namen auf IP-Adressen", die vom 
 		nmbd-Server geladen wird und über den Namensauflösungsmechanismus 
 		<smbconfoption><name>name resolve order</name></smbconfoption>,
 		der in <citerefentry><refentrytitle>smb.conf</refentrytitle>
@@ -261,7 +261,7 @@
 	(oder im Verzeichnis <filename>var/locks</filename>, das dort 
 	konfiguriert ist, wo auch für Samba konfiguriert wurde, wo es installiert
 	wird). Dabei schreibt <command>nmbd</command> auch seine Server-Datenbank
-	in die Datei <filename>log.nmb</filename>.</para>
+	in die Datei <filename>log.nmbd</filename>.</para>
 
 	<para>Die Debug-Log-Ebene von nmbd kann mit
 	<citerefentry><refentrytitle>smbcontrol</refentrytitle>
