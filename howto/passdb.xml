@@ -1761,7 +1761,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			Oder `identifier:workstations column' auf:
 			<command>NULL</command></para>
 
-			<para>Lesen Sie die MySQL Dokumentation für mehr Infos zu den Sprachkonstrukten.<para>
+			<para>Lesen Sie die MySQL Dokumentation für mehr Infos zu den Sprachkonstrukten.</para>
 
 		</sect3>
 	</sect2>
@@ -1801,7 +1801,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		<para><quote>Ich habe Samba installiert, aber jetzt kann ich mich mit meinem UNIX-Konto nicht anmelden! </quote></para>
 
 		<para>Stellen Sie sicher, daß Ihr Benutzer zum aktuellen Samba <smbconfoption><name>passdb backend</name></smbconfoption> hinzugefügt wurde.
-		Lesen Sie dazu den Abschnitt <link linkend="acctmgmttools">Account Management Tools</link>.</para>
+		Lesen Sie dazu den Abschnitt <link linkend="acctmgmttools">Werkzeuge zur Verwaltung von Konten</link>.</para>
 
 	</sect2>
 
