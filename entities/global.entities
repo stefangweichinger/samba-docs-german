@@ -295,7 +295,7 @@ kritische Fehler und ernstzunehmende Warnungen geloggt. Ebene 1 ist eine
 vernünftige Ebene beim alltäglichen Betrieb - dabei wird eine kleine 
 Informationsmenge über die ausgeführten Operationen erzeugt.</para>
 
-<para>Die Ebenen über 1 hinaus erzeugen beachtliche mengen von Logdaten, 
+<para>Die Ebenen höher als 1 erzeugen beachtliche Mengen von Logdaten, 
 und sollten nur bei der Suche nach Problemen verwendet werden. Die Ebenenen 
 größer als 3 sind nur für Entwickler gedacht und erzeugen RIESIGE Mengen
 an Logdaten, von denen die meisten extrem kryptisch sind.</para>
