@@ -111,7 +111,7 @@ Dieser Wert beträgt standardmässig 65536 bytes (das Maximum), aber es ist möglic
 <title>Log Level</title>
 
 <para>
-Wird der log level (auch als <smbconfoption><name>debug level</name></smbconfoption> bekannt) auf Werte grösser als 2 gesetzt, resultiert dies meist in einem starken Performance-Einbruch. Dies ist darin begründet, daß der Server nach jeder Operation das logfile "flushed".
+Wird der log level (auch als <smbconfoption><name>debug level</name></smbconfoption> bekannt) auf Werte grösser als 2 gesetzt, resultiert dies meist in einem starken Performance-Einbruch. Dies ist darin begründet, daß der Server nach jeder Operation das logfile <quote>flushed</quote>.
 </para>
 </sect1>
 
@@ -149,7 +149,7 @@ Einige Maschinen arbeiten mit <smbconfoption><name>write raw</name></smbconfopti
 <title>Slow Logins</title>
 
 <para>
-"Slow logins" hängen so gut wie immer mit der Zeit zusammen, die benötigt wird, um das Passwort zu überprüfen. Das Verwenden des niedrigstmöglichen <smbconfoption><name>password level</name></smbconfoption> wird dies verbessern.
+<quote>Slow logins</quote> hängen so gut wie immer mit der Zeit zusammen, die benötigt wird, um das Passwort zu überprüfen. Das Verwenden des niedrigstmöglichen <smbconfoption><name>password level</name></smbconfoption> wird dies verbessern.
 </para>
 
 </sect1>
@@ -223,7 +223,7 @@ Es stellte sich heraus, daß das Drucker-Überwachungs-Programm, das auf den Windo
 </para>
 
 <para>
-Das Stoppen dieses Überwachungs-Programms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes liess die Geschwindigkeit wieder stark abfallen. Der Drucker war ein Canon lbp810 und der betreffende task hiess so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungs-Software zeigte einen "Druck wird ausgeführt"-Dialog auf dem Windows-Client.
+Das Stoppen dieses Überwachungs-Programms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes liess die Geschwindigkeit wieder stark abfallen. Der Drucker war ein Canon lbp810 und der betreffende task hiess so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungs-Software zeigte einen <quote>Druck wird ausgeführt</quote>-Dialog auf dem Windows-Client.
 </para>
 
 <para>

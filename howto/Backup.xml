@@ -81,7 +81,7 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 	</para>
 
 	<para>
-	Haupteigenschaften sind das "Pooling" identischer Dateien (grosse Ersparnisse an 
+	Haupteigenschaften sind das <quote>Pooling</quote> identischer Dateien (grosse Ersparnisse an 
 	Plattenplatz am Server), Kompression, und eine umfassende CGI-Oberfläche, die es
 	Benutzern erlaubt, in Backups zu suchen und Dateien wiederherzustellen.
 	</para>
@@ -106,7 +106,7 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 	<command>rcp</command> verwendet werden.</para>
 
 
-	<para>Das rsync "remote-update"-Protokoll erlaubt es dem Programm, nur die Unterschiede
+	<para>Das rsync <quote>remote-update</quote>-Protokoll erlaubt es dem Programm, nur die Unterschiede
 	zwischen zwei Dateibeständen über das Netzwerk transportieren zu müssen, unter Verwendung
 	eines effizienten Prüfsummen-Such-Algorithmus, der in dem technischen Report beschrieben wird,
 	der im rsync-Package enthalten ist.</para>

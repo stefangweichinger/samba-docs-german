@@ -163,7 +163,7 @@ den Package-Namen.
 	</para>
 
 	<para>
-	Der Nachteil der ungepackten Bäume ist, daß sie kein automatisches "Merge" von lokalen
+	Der Nachteil der ungepackten Bäume ist, daß sie kein automatisches <quote>Merge</quote> von lokalen
 	Änderungen zulassen, wie es CVS tut. <command>rsync</command>-Zugriff ist das praktischste
 	Verfahren bei einer frischen Installation.
 	</para>
@@ -228,7 +228,7 @@ werden. Ein Beispiel für etwas, das Sie nicht sehen wollen:
 
 	<para>
 <indexterm><primary>configure</primary></indexterm>
-Um die Binärdateien mittels "build" zu erhalten, führen Sie zuerst das Programm 
+Um die Binärdateien mittels <quote>build</quote> zu erhalten, führen Sie zuerst das Programm 
 <userinput>./configure</userinput> im Quellverzeichnis aus. Dies sollte Samba automatisch für Ihr
 Betriebssystem konfigurieren. Sollten Sie darüber hinausgehende Wünsche haben, dann können Sie
 folgendes tun:</para>
@@ -365,7 +365,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 
 	<para>
 	<indexterm><primary>inetd</primary></indexterm>
-	Sie müssen sich entscheiden, &smbd; und &nmbd; entweder als "daemons" oder
+	Sie müssen sich entscheiden, &smbd; und &nmbd; entweder als <quote>daemons</quote> oder
 	mittels <application>inetd</application> zu starten. Versuchen Sie nicht, beides zu tun!
 	Sie können sie entweder in <filename>inetd.conf</filename> eintragen und bei Bedarf
 	von <application>inetd</application> oder <application>xinetd</application> starten lassen,

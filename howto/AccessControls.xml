@@ -236,7 +236,7 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 			<indexterm><primary>Dateinamenskonvention</primary></indexterm>
 		MS Windows kennt keine Dateien, deren Namen mit einem Punkt beginnt
 		(<constant>.</constant>).
-		In UNIX werden solche Dateien häufig in den "Home"-Verzeichnissen
+		In UNIX werden solche Dateien häufig in den <quote>Home</quote>-Verzeichnissen
 		(Heimatverzeichnissen) von Benutzern gefunden.
 		Punktdateien(<constant>.</constant>) sind typischerweise
 		Start- oder Konfigurationsdateien für UNIX-Programme.
@@ -331,7 +331,7 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 
 	<para>
 	Die Reihen oben repräsentieren (von rechts nach links): Berechtigung, Anzahl der
-	"harten" Links einer Datei, Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
+	<quote>harten</quote> Links einer Datei, Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
 	</para>
 
 	<para>

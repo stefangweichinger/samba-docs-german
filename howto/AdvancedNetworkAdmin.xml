@@ -23,7 +23,7 @@ gut wahr- und angenommenen am besten durch die <emphasis>Kleinigkeiten</emphasis
 gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle jeder
 Netzwerklösung ist die Fähigkeit, per Fernzugriff MS Windows Workstations zu warten,
 über das Netz auf den Samba-Server zugreifen zu können, angepasste Anmelde-Skripts zur
-Verfügung zu stellen, genauso wie andere "Hausarbeiten", die helfen, einen verlässlicheren
+Verfügung zu stellen, genauso wie andere <quote>Hausarbeiten</quote>, die helfen, einen verlässlicheren
 Netzwerk-Betrieb zu erreichen.
 </para>
 
@@ -124,7 +124,7 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 	<para>
-	Ich konnte ihre (öffentliche) RedHat-Maschine in Italien "testfahren", über eine
+	Ich konnte ihre (öffentliche) RedHat-Maschine in Italien <quote>testfahren</quote>, über eine
 	belastete Internet-Verbindung, mit aktivierten Thumbnails im KDE Konqueror, welcher
 	unverzüglich auf <quote>mouse-over</quote> ansprang. Von innerhalb dieser (remote X)
 	Sitzung startete ich eine rdesktop-Sitzung auf eine weitere Windows XP Maschine.
@@ -218,7 +218,7 @@ beste Lösung für Ihr Netzwerk ist.
 </sect1>
 
 <sect1>
-<title>"Magie" von Netzwerk-Anmelde-Skripten</title>
+<title><quote>Magie</quote> von Netzwerk-Anmelde-Skripten</title>
 
 <para>
 Es gibt mehrere Möglichkeiten, um eine angepasste Konfiguration der Netzwerk-Start-Umgebung zu schaffen.

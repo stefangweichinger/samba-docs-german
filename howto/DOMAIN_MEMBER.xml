@@ -58,7 +58,7 @@ oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorte
 
 	<listitem><para>
 	Zugriffsrechte von Domänen-Benutzern und Datei-Benutzer/Zugriffs-Kontrollen
-	können über die einzelne "Domain Security Account Manager" (SAM) Datenbank
+	können über die einzelne <quote>Domain Security Account Manager</quote> (SAM) Datenbank
 	gesetzt werden (arbeitet genauso mit Domänen-Mitglieds-Serveren wie auch mit
 	MS-Windows-Workstations, die Domänen-Mitglieder sind).
 	</para></listitem>
@@ -103,14 +103,14 @@ Domänen-Controller mißbraucht, um Zugriff auf eine Domänen-Mitglieds-Workstation
 </para>
 
 <para>
-Das Passwort eines Maschinen-Vertrauens-Kontos fungiert als "gemeinsames Geheimnis" für
+Das Passwort eines Maschinen-Vertrauens-Kontos fungiert als <quote>gemeinsames Geheimnis</quote> für
 sichere Kommunikation mit dem Domänen-Controller. Dies ist ein Sicherheits-Feature, um eine
 nicht authorisierte Maschine mit dem selben NetBIOS-Namen davon abzuhalten, sich der Domäne
 anzuschliessen und Zugriff auf Benutzer/Gruppen-Konten der Domäne zu erhalten.
 Windows NT/200x/XP Professional-Clients nutzen Maschinen-Vertrauens-Konten, aber
 Windows 9x/Me/XP Home Clients tun das nicht. Daher ist ein Windows 9x/Me/XP Home Client nie
 ein vollwertiges Domänen-Mitglied, da er kein Maschinen-Vertrauens-Konto besitzt, und daher
-kein "gemeinsames Geheimnis" mit dem Domänen-Controller teilt.
+kein <quote>gemeinsames Geheimnis</quote> mit dem Domänen-Controller teilt.
 </para>
 
 <para>
@@ -338,7 +338,7 @@ Starten Sie <command>srvmgr.exe</command> (Server Manager für Domänen) und folge
 </sect2>
 
 <sect2>
-<title>"On-the-Fly" Anlegen von Maschinen-Konten</title>
+<title><quote>On-the-Fly</quote> Anlegen von Maschinen-Konten</title>
 
 <para>
 Die zweite (und empfohlene) Art, Maschinenkonten anzulegen, ist, es einfach dem Samba-Server zu
@@ -347,7 +347,7 @@ erlauben, diese Konten bei Bedarf anzulegen, wenn der Client der Domäne angeschl
 
 <para>Da jedes Maschinen-Vertrauens-Konto unter Samba ein zugehöriges UNIX-Konto benötigt,
 wird üblicherweise eine Methode zum automatischen Anlegen eines UNIX-Kontos bereitgestellt;
-dies erfordert die Konfiguration der Option "add machine script" in der Datei &smb.conf;.
+dies erfordert die Konfiguration der Option <quote>add machine script</quote> in der Datei &smb.conf;.
 Diese Methode ist jedoch nicht erforderlich, die benötigten UNIX-Konten können auch händisch
 angelegt werden.
 </para>
@@ -379,7 +379,7 @@ zu machen, ist abhängig von der Version von Windows.
 	<title>Windows 200x/XP Professional Client</title>
 
 	<para>
-	Wenn der Benutzer den Client dazu "erwählt", ein Domänen-Mitglied zu werden, fragt
+	Wenn der Benutzer den Client dazu <quote>erwählt</quote>, ein Domänen-Mitglied zu werden, fragt
 	Windows 200x nach einer Konto/Passwort-Kombination, die dazu berechtigt ist, Maschinen-Konten
 	in der Domäne anzulegen. Ein Samba-Administrator-Konto (also ein Samba-Konto, das
 	<constant>root</constant>-Rechte auf dem Samba-Server hat) muß hier verwendet werden;
@@ -399,11 +399,11 @@ zu machen, ist abhängig von der Version von Windows.
 	<constant>root</constant> zugehörigen Eintrag in der 
 	vom Parameter
 	<smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption> 
-	in der Datei &smb.conf; bezeichneten Datei "gemappt".
+	in der Datei &smb.conf; bezeichneten Datei <quote>gemappt</quote>.
 	</para>
 
 	<para>
-	Der "Session-Key" des Samba-Administrator-Kontos fungiert als Verschlüsselungs-Schlüssel
+	Der <quote>Session-Key</quote> des Samba-Administrator-Kontos fungiert als Verschlüsselungs-Schlüssel
 	zum Setzen des Passworts für das Maschinen-Vertrauens-Konto. Das Maschinen-Vertrauens-Konto
 	wird on-the-fly angelegt, oder aktualisiert, falls es bereits existiert.
 	</para>
@@ -414,7 +414,7 @@ zu machen, ist abhängig von der Version von Windows.
 
 	<para>
 	Wenn das Maschinen-Vertrauens-Konto manuell angelegt wurde, geben Sie im Menu
-	"Identification Changes" den Domänen-Namen an, aber aktivieren Sie NICHT die Box
+	<quote>Identification Changes</quote> den Domänen-Namen an, aber aktivieren Sie NICHT die Box
 	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird
 	das bereits existierende Maschinen-Vertrauens-Konto verwendet, um die Maschine der
 	Domäne anzuschliessen.
@@ -422,7 +422,7 @@ zu machen, ist abhängig von der Version von Windows.
 
 	<para>
 	Wenn das Maschinen-Vertrauens-Konto on-the-fly angelegt werden soll, geben Sie im Menu
-	"Identification Changes" den Domänen-Namen an, und aktivieren die Box
+	<quote>Identification Changes</quote> den Domänen-Namen an, und aktivieren die Box
 	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird der Anschluß
 	an die Domäne wie oben fortgesetzt, wie oben für Windows 2000 beschrieben (d.h., Sie müssen
 	ein Samba-Administrator-Konto angeben, wenn danach verlangt wird).
