@@ -234,8 +234,8 @@ Wenn Sie eine Nachricht an eine der Listen senden, beachten Sie bitte folgende R
 	</para></listitem>
 
 	<listitem><para>
-	Wenn Sie Samba via CVS bezogen haben, erwähnen Sie bitte zusätzlich zur Version das
-	Datum, an dem Sie zuletzt ein "cvs checkout" durchgeführt haben.
+	Wenn Sie Samba via SVN (Subversion) bezogen haben, erwähnen Sie bitte zusätzlich zur Version das
+	Datum, an dem Sie zuletzt ein "svn checkout" durchgeführt haben.
 	</para></listitem>
 
 	<listitem><para> 
@@ -253,7 +253,7 @@ Wenn Sie eine Nachricht an eine der Listen senden, beachten Sie bitte folgende R
 
 	<listitem><para>
 	Vermeiden Sie "cross-posting". Finden Sie heraus, welche die beste Liste für Ihre
-	Fragen ist und sehen Sie, was passiert. Posten Sie nicht auf samba-ntdom UND samba-technical.
+	Fragen ist und sehen Sie, was passiert. Posten Sie nicht in den Listen samba UND samba-technical.
 	Viele der Leute, die in diesen Listen aktiv sind, haben mehrere Listen abonniert, und
 	sind verärgert darübere, dieselbe Nachricht zweimal oder noch öfter zu sehen.
 	Oft wird jemand eine Nachricht sehen, sich denken, daß diese besser in einer anderen
