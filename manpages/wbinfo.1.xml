@@ -93,7 +93,8 @@
 		<term>--domain Name</term>
 		<listitem><para>Dieser Parameter setzt die Domäne, auf der die
 		angegebenen Operationen ausgeführt werden. 
-		If special domain name '.' is used to represent the current domain to which whinbindd belongs.??? 
+		Wenn der spezielle Domänen-Name '.' verwendet wird, repräsentiert dies die Domäne, der
+		winbindd gerade angehört.		
 		Momentan wird dieser Parameter nur von den Optionen  
 		<option>--sequence</option>, <option>-u</option> und 
 		<option>-g</option> beachtet.
@@ -106,7 +107,7 @@
 		verfügbaren Gruppen auf, in denen der 
 		<citerefentry><refentrytitle>samba</refentrytitle>
 		<manvolnum>7</manvolnum></citerefentry>-Daemon operiert. 
-		Die Gruppen aller Trusted-Domänen??? werden ebenfalls aufgelistet. 
+		Die Gruppen aller Vertrauens-Domänen werden ebenfalls aufgelistet. 
 		Man beachte, dass diese Operation keine Gruppen-IDs an irgendwelche
 		Gruppen vergibt, die 
 		<citerefentry><refentrytitle>winbindd</refentrytitle>
@@ -140,7 +141,11 @@
 
 		<varlistentry>
 		<term>-m</term>
-		<listitem><para>Produce a list of domains trusted b the Windows NT server <citerefentry><refentrytitle>winbindd</refentrytitle><manvolnum>8</manvolnum></citerefentry> contacts when resolving names.???
+		<listitem><para>
+		Gibt eine Liste der Domänen zurück, die in einem Vertrauensverhältnis zum Windows NT Server
+		stehen, und die von 
+		<citerefentry><refentrytitle>winbindd</refentrytitle><manvolnum>8</manvolnum></citerefentry>
+		bei der Namensauflösung kontaktiert werden.
 		Nicht enthalten ist darin die Windows NT-Domäne, für die der Server 
 		einen Primären Domänen-Controller darstellt.
 		</para></listitem>
@@ -214,7 +219,7 @@
 		winbindd bei der Einrichtung einer Sitzung mit dem Domänen-Controller
 		benutzt werden. Dadurch kann winbindd in einer Windows 2000-Domäne
 		mit eingeschaltetem "Restrict Anonymous" arbeiten 
-		(a.k.a. Permissions compatiable with Windows 2000 servers only)???.
+		(a.k.a. <quote>Permissions compatible with Windows 2000 servers only</quote>).
 		</para></listitem>
 		</varlistentry>
 
@@ -235,7 +240,7 @@
 
 		<varlistentry>
 		<term>-t</term>
-		<listitem><para>Überprüft, dass das Workstation-Trust-Konto???
+		<listitem><para>Überprüft, dass das Workstation-Vertrauens-Konto
 		funktioniert, das erzeugt wird, wenn der Samba-Server zur
 		Windows NT-Domäne hinzugefügt wird.</para></listitem>
 		</varlistentry>
@@ -246,7 +251,7 @@
 		in der Windows NT-Domäne auf, in denen der
 		<citerefentry><refentrytitle>winbindd</refentrytitle>
 		<manvolnum>8</manvolnum></citerefentry>_Daemon arbeitet. 
-		Benutzer in allen Trusted-Domänen??? werden ebenfalls aufgelistet. 
+		Benutzer in allen vertrauten Domänen werden ebenfalls aufgelistet. 
 		Beachten Sie, dass diese Operation keine Benutzer-IDs an Benutzer
 		zuweist, die 
 		<citerefentry><refentrytitle>winbindd</refentrytitle>
