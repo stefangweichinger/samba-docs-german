@@ -19,8 +19,6 @@
 	</author>
 
 	<author>&person.jelmer;<contrib>drawings</contrib></author>
-	<pubdate> (27 Jan 2004) </pubdate>
-        <author>&person.reiss;<contrib>Deutsche Übersetzung</contrib></author>
         <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
@@ -338,119 +336,114 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<para>
 	<indexterm><primary>spooling-only</primary></indexterm>
 	<indexterm><primary>"raw" printing</primary></indexterm>
-	Most traditionally configured UNIX print servers acting on behalf of
-	Samba's Windows clients represented a really simple setup. Their only
-	task was to manage the <quote>raw</quote> spooling of all jobs handed to them by
-	Samba. This approach meant that the Windows clients were expected to
-	prepare the print job file that its ready to be sent to the printing
-	device. Here a native (vendor-supplied) Windows printer driver needs to
-	be installed on each and every client for the target device.
+	Die meisten traditionell konfigurierten UNIX-Druck-Server, die für Samba's Windows clients
+	arbeiten, zeigen ein wirklich simples Setup. Ihre einzige Aufgabe war die Verwaltung des
+	<quote>raw spooling</quote> aller Jobs, die ihnen von Samba übergeben wurde. Dieser Ansatz bedeutete,
+	daß von den Windows Clients erwartet wurde, daß sie die Druckauftrags-Datei so vorbereiten, daß
+	diese bereit zum Versenden an das Drucker-Gerät ist. Hier muß ein nativer (vom Hersteller
+	bereitgestellter) Windows Druckertreiber für das Zielgerät auf jedem einzelnen Client installiert werden.
 	</para>
 
 	<para>
-	It is possible to configure CUPS, Samba and your Windows clients in the
-	same traditional and simple way. When CUPS printers are configured
-	for RAW print-through mode operation, it is the responsibility of the
-	Samba client to fully render the print job (file). The file must be
-	sent in a format that is suitable for direct delivery to the
-	printer. Clients need to run the vendor-provided drivers to do
-	this. In this case, CUPS will not do any print file format conversion
-	work.
+	Es ist möglich, CUPS, Samba und Ihre Windows Clients in derselben traditionellen und simplen Art zu
+	konfigurieren. Wenn CUPS-Drucker für RAW-print-through Betriebsart konfiguriert sind, ist es die
+	Verantwortung des Samba-Clients, den Druckauftrag (die Datei) vollständig wiederzugeben. Die Datei muß in
+	einem Format gesendet werden, die passend für die direkte Weitergabe an den Drucker ist. Clients müssen
+	dafür die vom Hersteller bereitgestellten Treiber verwenden, CUPS wird keinerlei Format-Wandlung
+	durchführen.
 	</para>
 
 	<para>
-	The easiest printing configuration possible is to use raw print-through.
-	This is achieved by installation of the printer as if it was physically
-	attached to the Windows client. You then redirect output to a raw network
-	print queue. The following procedure may be followed to achieve this:
+	Die einfachste mögliche Druck-Konfiguration ist die Verwendung von "raw print-through".	
+	Dies wird dadurch erreicht, daß der Drucker so installiert wird, als ob er physisch an den
+	Windows client angeschlossen wäre. Sie leiten dann die Ausgabe auf eine raw-Netzwerk-Druck-Warteschlange
+	um. Folgender Ablauf erzielt dies:
 	</para>
 
 	<procedure>
 		<step><para>
-		Edit <filename>/etc/cups/mime.types</filename> to uncomment the line
-		near the end of the file that has:
+		Editieren Sie <filename>/etc/cups/mime.types</filename>, um die Zeile nahe dem Dateiende
+		auszukommentieren, die dies enthält:
 <screen>
 #application/octet-...
 </screen>
 		</para></step>
 
 		<step><para>
-		Do the same for the file <filename>/etc/cups/mime.convs</filename>.
+		Machen Sie dasselbe mit der Datei <filename>/etc/cups/mime.convs</filename>.
 		</para></step>
 
 		<step><para>
-		Add a raw printer using the Web interface. Point your browser at
-		<constant>http://localhost:631</constant>. Enter Administration, add
-		the printer following the prompts. Do not install any drivers for it.
-		Choose Raw. Choose queue name <constant>Raw Queue</constant>.
-		</para></step>
+		Fügen Sie mittels Web interface einen raw-Drucker hinzu. Gehen Sie mit Ihrem Browser auf
+		<constant>http://localhost:631</constant>. Klicken Sie auf Administration und fügen Sie den
+		Drucker gemäß der Aufforderungen hinzu. Installieren Sie keine Treiber dafür. Wählen Sie Raw.
+		Wählen Sie den Queue-Namen <constant>Raw Queue</constant>.
+                </para></step>
 
 		<step><para>
-		In the &smb.conf; file <constant>[printers]</constant> section add
+		Im Abschnitt <constant>[printers]</constant> der Datei &smb.conf; fügen Sie hinzu:
 		<smbconfoption><name>use client driver</name><value>Yes</value></smbconfoption>,
-		and in the <constant>[global]</constant> section add
+		und im Abschnitt <constant>[global]</constant>:
 		<smbconfoption><name>printing</name><value>CUPS</value></smbconfoption>, plus
 		<smbconfoption><name>printcap</name><value>CUPS</value></smbconfoption>.
 		</para></step>
 
 		<step><para>
-		Install the printer as if it is a local printer. i.e.: Printing to <constant>LPT1:</constant>.
-		</para></step>
+		Installieren Sie den Drucker, als ob er ein lokaler Drucker wäre. Z.B.:
+		Drucken auf <constant>LPT1:</constant>.
+                </para></step>
 
 		<step><para>
-		Edit the configuration under the <guimenu>Detail</guimenu> tab, create a
-		<constant>local port</constant> that points to the raw printer queue that
-		you have configured above. Example: <constant>\\server\raw_q</constant>.
-		Here, the name <constant>raw_q</constant> is the name you gave the print
-		queue in the CUPS environment.
+		Editieren Sie die Konfiguration im Tab <guimenu>Detail</guimenu>, legen Sie einen
+		<constant>local port</constant> an, der auf die raw-Druck-Queue zeigt, die Sie oben
+		angelegt haben. Beispiel: <constant>\\server\raw_q</constant>.
+		Hier ist <constant>raw_q</constant> der Name, den Sie der Drucker-Warteschlange in der
+		CUPS-Umgebung gegeben haben.
 		</para></step>
 	</procedure>
 
 	</sect2>
 
 	<sect2>
-	<title>Installation of Windows Client Drivers</title>
+	<title>Installation von Windows Client Treibern</title>
 
 	<para>
-	The printer drivers on the Windows clients may be installed
-	in two functionally different ways:
+	Die Druckertreiber auf den Windows Clients können auf zwei funktional verschiedene Arten 
+	installiert werden:
 	</para>
 
 	<itemizedlist>
-	<listitem><para>Manually install the drivers locally on each client,
-	one by one; this yields the old <emphasis>LanMan</emphasis> style
-	printing and uses a <filename>\\sambaserver\printershare</filename>
-	type of connection.</para></listitem>
+	<listitem><para>Manuelles Installieren der Treiber, lokal auf jedem Client, einer nach dem anderen;
+	dies ergibt Drucken im alten <emphasis>LanMan</emphasis>-Stil und verwendet eine Verbindung vom Typ
+	<filename>\\sambaserver\druckerfreigabe</filename>.
+	</para></listitem>
 
 
 	<listitem><para>
 	<indexterm><primary>point 'n' print</primary></indexterm>
-			Deposit and prepare the drivers (for later download) on
-			the print server (Samba); this enables the clients to use
-	<quote>Point'n'Print</quote> to get drivers semi-automatically installed the
-	first time they access the printer; with this method NT/200x/XP
-	clients use the <emphasis>SPOOLSS/MS-RPC</emphasis>
-	type printing calls.</para></listitem>
-	</itemizedlist>
+	Ablegen und Vorbereiten der Treiber (für den späteren Download) auf dem Druckserver (Samba); dies
+	befähigt die Clients, <quote>Point'n'Print</quote> zu verwenden, um Treiber semi-automatisch
+	installiert zu bekommen, wenn sie das erste Mal auf den Drucker zugreifen; bei dieser Methode verwenden
+	NT/200x/XP-Clients Druckaufrufe vom Typ <emphasis>SPOOLSS/MS-RPC</emphasis>.</para></listitem>
+        </itemizedlist>
 
 	<para>
-	The second method is recommended for use over the first.
+	Die zweite Methode wird zur Verwendung empfohlen.
 	</para>
 	</sect2>
 
 	<sect2 id="cups-raw">
-	<title>Explicitly Enable <quote>raw</quote> Printing for <emphasis>application/octet-stream</emphasis></title>
+	<title>Explizites Aktivieren von <quote>raw</quote>-Druck für <emphasis>application/octet-stream</emphasis></title>
 
 
 	<para>
 	<indexterm><primary>application/octet-stream</primary></indexterm>
 	<indexterm><primary>raw printing</primary></indexterm>
 	<indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
-	If you use the first option (drivers are installed on the client
-	side), there is one setting to take care of: CUPS needs to be told
-	that it should allow <quote>raw</quote> printing of deliberate (binary) file
-	formats. The CUPS files that need to be correctly set for RAW mode
-	printers to work are:
+	Wenn Sie die erste Variante verwenden (Treiber werden auf Client-Seite installiert), ist dies eine
+	Einstellung, die sie beachten müssen: CUPS muß mitgeteilt werden, daß es <quote>raw</quote>-Druck von
+	Binär-Dateiformaten erlauben soll. Die CUPS-Dateien, die korrekt für RAW-Modus-Drucker gesetzt sein
+	müssen, sind:	
 	</para>
 
 	<itemizedlist>
@@ -459,10 +452,9 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	</itemizedlist>
 
 	<para>
-	Both contain entries (at the end of the respective files) which must
-	be uncommented to allow RAW mode operation.
-	In <filename>/etc/cups/mime.types</filename>, make sure this line is
-	present:
+	Beide enthalten Einträge (am Ende der jeweiligen Datei), die auskommentiert werden müssen, um
+	RAW-Modus-Betrieb zu erlauben. In <filename>/etc/cups/mime.types</filename> muß diese Zeile vorhanden
+	sein:
 
 	<filterline>
 	 application/octet-stream
@@ -471,8 +463,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>/etc/cups/mime.convs</primary></indexterm>
 	<indexterm><primary>/etc/cups/mime.types</primary></indexterm>
 
-	In <filename>/etc/cups/mime.convs</filename>,
-	have this line:
+	In <filename>/etc/cups/mime.convs</filename> müssen Sie diese Zeile haben:
 
 	<indexterm><primary>application/vnd.cups-raw</primary></indexterm>
 
@@ -480,137 +471,134 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 		application/octet-stream   application/vnd.cups-raw   0   - 
 	</filterline>
 
-	If these two files are not set up correctly for raw Windows client
-	printing, you may encounter the dreaded <computeroutput>Unable to
-	convert file 0</computeroutput> in your CUPS error_log file. 
+	Wenn diese beiden Dateien nicht korrekt für RAW-Windows-CLient-Druck konfiguriert sind, kann es sein, daß
+	Sie die gefürchtete Meldung <computeroutput>Unable to
+        convert file 0</computeroutput> in Ihrer CUPS error_log Datei vorfinden.
 	</para>
 
-	<note><para>Editing the <filename>mime.convs</filename> and the
-	<filename>mime.types</filename> file does not
-	<emphasis>enforce</emphasis> <quote>raw</quote> printing, it only
-	<emphasis>allows</emphasis> it.
+	<note><para>Das Editieren von <filename>mime.convs</filename> und
+	<filename>mime.types</filename>
+	<emphasis>erwingt</emphasis> den <quote>raw</quote>-Druck nicht, es
+	<emphasis>erlaubt</emphasis> ihn nur.
 	</para></note>
 
-	<formalpara><title>Background</title>
+	<formalpara><title>Hintergrund</title>
 
 
 	<para>
 	<indexterm><primary>application/octet-stream</primary></indexterm>
-	CUPS being a more security-aware printing system than traditional ones
-	does not by default allow a user to send deliberate (possibly binary)
-	data to printing devices. This could be easily abused to launch a
-	<quote>Denial of Service</quote> attack on your printer(s), causing at least
-	the loss of a lot of paper and ink. <quote>Unknown</quote> data are tagged by CUPS
-	as <parameter>MIME type: application/octet-stream</parameter> and not
-	allowed to go to the printer. By default, you can only send other
-	(known) MIME types <quote>raw</quote>. Sending data <quote>raw</quote> means that CUPS does not
-	try to convert them and passes them to the printer untouched (see the next
-	chapter for even more background explanations).
+	Da CUPS ein mehr sicherheitsbewußtes Drucksystem ist als die traditionellen Systeme, erlaubt es
+	in der Voreinstellung nicht, daß ein Benutzer beliebige (möglicherweise binäre) Daten an
+	Druck-Geräte sendet. Dies könnte leicht dazu benutzt werden, um einen
+	<quote>Denial of Service</quote>-Angriff auf Ihre(n) Drucker zu starten, was zumindest den Verlust von
+	einer Menge Papier und Tinte nach sich ziehen würde. <quote>Unbekannte</quote> Daten werden von CUPS
+	als <parameter>MIME type: application/octet-stream</parameter> gekennzeichnet, und es wird ihnen nicht
+	erlaubt, zum Drucker zu gelangen. In der Voreinstellung können Sie nur andere (bekannte) MIME-Typen
+	 <quote>raw</quote> senden. Das <quote>raw</quote>-Senden von Daten bedeutet, daß CUPS nicht versucht,
+	die Daten zu konvertieren und sie einfach unangetastet an den Drucker weiterleitet (sehen Sie das nächste
+	Kapitel für noch mehr Hintergrund-Erklärungen dazu). 
 	</para>
 	</formalpara>
 
 	<para>
-	This is all you need to know to get the CUPS/Samba combo printing
-	<quote>raw</quote> files prepared by Windows clients, which have vendor drivers
-	locally installed. If you are not interested in background information about
-	more advanced CUPS/Samba printing, simply skip the remaining sections
-	of this chapter.
+	Dies ist alles, was Sie darüber wissen müssen, um die CUPS/Samba-Combo zum <quote>raw</quote>-Druck
+	der von Windows-Clients, die Herstellertreiber lokal installiert haben, vorbereiteten Dateien 
+	zu bringen. Wenn Sie nicht an Hintergrund-Informationen zu erweitertem CUPS/Samba-Druck interessiert
+	sind, überspringen Sie einfach die restlichen Abschnitte dieses Kapitels.
 	</para>
 	</sect2>
 
 	<sect2>
-	<title>Driver Upload Methods</title>
+	<title>Die Methoden, um Treiber auf den Server zu laden</title>
 
 	<para>
-	This section describes three familiar methods, plus one new one, by which
-	printer drivers may be uploaded.
+	Dieser Abschnitt beschreibt drei übliche Methoden, zuzüglich einer neuen, mit denen Druckertreiber
+	auf den Server geladen werden können ("Upload").
 	</para>
 
 	<para>
 	<indexterm><primary>point 'n' print</primary></indexterm>
-	If you want to use the MS-RPC type printing, you must upload the
-	drivers onto the Samba server first (<smbconfsection>[print$]</smbconfsection>
-	share). For a discussion on how to deposit printer drivers on the
-	Samba host (so the Windows clients can download and use them via
-	<quote>Point'n'Print</quote>), please refer to the previous chapter of this
-	HOWTO Collection. There you will find a description or reference to
-	three methods of preparing the client drivers on the Samba server:
+	Wenn Sie Druck vom Typ MS-RPC verwenden wollen, müssen Sie die Treiber zuerst auf den Samba-Server
+	hochladen (Freigabe <smbconfsection>[print$]</smbconfsection>). Für die Behandlung des Themas, wie
+	man Druckertreiber auf dem Samba-Host ablegt (damit die Windows-Clients diese via
+	<quote>Point'n'Print</quote> herunterladen und verwenden können, lesen Sie bitte das vorhergehende
+	Kapitel dieser HOWTO-Sammlung. Dort finden Sie Beschreibungen und Referenzen zu drei Methoden, um
+	Druckertreiber auf dem Samba-Server vorzubereiten:
 	</para>
 	<itemizedlist>
 		<listitem><para>
-	<indexterm><primary>add printer wizard</primary></indexterm>
-				The GUI, <quote>Add Printer Wizard</quote>
-	<emphasis>upload-from-a-Windows-client</emphasis>
-	method.</para></listitem>
+	<indexterm><primary>Druckerinstallations-Assistent</primary></indexterm>
+				Die GUI, <quote>Druckerinstallations-Assistent</quote>
+	<emphasis>upload-von-einem-Windows-Client</emphasis> Methode.</para></listitem>
 
-	<listitem><para>The command line, <quote>smbclient/rpcclient</quote>
-	upload-from-a-UNIX-workstation method.</para></listitem>
+	<listitem><para>Die Befehlszeilen, <quote>smbclient/rpcclient</quote>
+	upload-von-einer-UNIX-Workstation Methode.</para></listitem>
 
 
 	<listitem><para>
 	<indexterm><primary>imprints</primary></indexterm>
-			The Imprints Toolset
-	method.</para></listitem>
+			Die Imprints Toolset Methode.</para></listitem>
 	</itemizedlist>
 
 	<para>
-	These three methods apply to CUPS all the same. A new and more
-	convenient way to load the Windows drivers into Samba is provided
-	if you use CUPS:
+	Diese drei Methoden können genauso auf CUPS angewendet werden. Ein neuer und praktischerer Weg, um
+	Windows-Treiber in Samba zu laden, steht zur Verfügung, wenn Sie CUPS verwenden:
 	</para>
 
 
 	<itemizedlist>
 		<listitem><para>
 	<indexterm><primary>cupsaddsmb</primary></indexterm>
-				the <parameter>cupsaddsmb</parameter>
-	utility.</para></listitem>
+				Das <parameter>cupsaddsmb</parameter> Werkzeug.</para></listitem>
 	</itemizedlist>
 
 	<para>
-	<command>cupsaddsmb</command> is discussed in much detail further below. But we first
-	explore the CUPS filtering system and compare the Windows and UNIX printing architectures.
+	<command>cupsaddsmb</command> wird weiter unten im Detail behandelt. Zuerst erkunden wir aber das
+	CUPS-Filter-System und vergleichen die Windows- und UNIX-Druck-Architektur.
 	</para>
 	</sect2>
 </sect1>
 
 <sect1>
-	<title>Advanced Intelligent Printing with PostScript Driver Download</title>
+	<title>Erweitertes intelligentes Drucken mit Download von Postscript-Treibern</title>
 
 
 	<para>
 	<indexterm><primary>PostScript</primary><seealso>Ghostscript</seealso></indexterm>
-	We now know
-	how to set up a <quote>dump</quote> printserver, that is, a server which is spooling
-	print-jobs <quote>raw</quote>, leaving the print data untouched.
+	Wir wissen nun, wie man einen <quote>dump</quote>-Druckserver aufsetzt, das ist ein Server, der
+	Druckaufträge <quote>raw</quote> verwaltet, also die Druckdaten unberührt läßt.
 	</para>
 
 	<para>
-	Possibly you need to setup CUPS in a smarter way. The reasons could
-	be manifold:
+	Möglicherweise müssen Sie CUPS auf eine	intelligentere Art installieren. Die Gründe können mannigfaltig
+	sein:
 	</para>
 
 	<itemizedlist>
-	<listitem><para>Maybe your boss wants to get monthly statistics: Which
-	printer did how many pages? What was the average data size of a job?
-	What was the average print run per day? What are the typical hourly
-	peaks in printing? Which department prints how much?</para></listitem>
+	<listitem><para>
+	Vielleicht will Ihr Chef monatliche Statistiken: Welcher Drucker hat wieviele Seiten gedruckt?
+	Was war die durchschnittliche Grösse eines Druckauftrags? Wieviele Druckaufträge gab es im Durchschnitt
+	pro Tag? Welche Abteilung druckt wieviel?</para></listitem>
 
-	<listitem><para>Maybe you are asked to setup a print quota system:
-	Users should not be able to print more jobs, once they have surpassed
-	a given limit per period.</para></listitem>
+	<listitem><para>
+	Vielleicht sollen Sie ein Druck-Quota-System aufbauen: Benutzer sollten nicht mehr drucken können, als
+	ein vorgeschriebenes Limit pro Periode.</para></listitem>
 
-	<listitem><para>Maybe your previous network printing setup is a mess
-	and must be re-organized from a clean beginning.</para></listitem>
+	<listitem><para>
+	Vielleicht ist Ihr Netzwerkdruck-Setup ein komplettes Durcheinander und muß von Grund auf
+	reorganisiert werden.</para></listitem>
 
-	<listitem><para>Maybe you have experiencing too many <quote>blue screens</quote>
-	originating from poorly debugged printer drivers running in NT <quote>kernel mode</quote>?</para></listitem>
+	<listitem><para>
+	Vielleicht haben Sie bereits zu viele <quote>blue screens</quote> gesehen, die von Druckertreibern
+	herrühren, die unvollständig "debugged" wurden und in NT 
+	<quote>kernel mode</quote> laufen?</para></listitem> 
+	
 	</itemizedlist>
 
 	<para>
-	These goals cannot be achieved by a raw print server. To build a
-	server meeting these requirements, you'll first need to learn about
-	how CUPS works and how you can enable its features.
+	Diese Ziele können nicht mit einem RAW-Druckserver erreicht werden. Um einen Server aufzubauen, der
+	diesen Anforderungen entspricht, müssen Sie zuerst lernen, wie CUPS arbeitet, und wie Sie seine
+	Features aktivieren.
 	</para>
 
 	<para>
