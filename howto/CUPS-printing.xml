@@ -1632,30 +1632,30 @@ breitere Druckränder erhalten, als Ihr spezielles Modell unterstützt. Sehen Sie
 		<colspec align="justify" width="1*"/>
 		<thead><row><entry>PPD Datei</entry><entry>Drucker-Typ</entry></row></thead>
 		<tbody>
-		<row><entry>deskjet.ppd</entry><entry>older HP inkjet printers and compatible</entry></row>
+		<row><entry>deskjet.ppd</entry><entry>ältere HP Inkjet Drucker und Kompatible</entry></row>
 
-		<row><entry>deskjet2.ppd</entry> <entry>newer HP inkjet printers and compatible </entry> </row>
+		<row><entry>deskjet2.ppd</entry> <entry>neuere HP Inkjet Drucker und Kompatible</entry> </row>
 
-		<row><entry>dymo.ppd</entry> <entry>label printers </entry> </row>
+		<row><entry>dymo.ppd</entry> <entry>Label-Drucker</entry> </row>
 
-		<row><entry>epson9.ppd</entry> <entry>Epson 24pin impact printers and compatible </entry> </row>
+		<row><entry>epson9.ppd</entry> <entry>Epson 9pin Nadeldrucker und Kompatible</entry> </row>
 
-		<row><entry>epson24.ppd</entry> <entry>Epson 24pin impact printers and compatible </entry> </row>
+		<row><entry>epson24.ppd</entry> <entry>Epson 24pin Nadeldrucker und Kompatible</entry> </row>
 
-		<row><entry>okidata9.ppd</entry> <entry>Okidata 9pin impact printers and compatible </entry> </row>
+		<row><entry>okidata9.ppd</entry> <entry>Okidata 9pin Nadeldrucker und Kompatible</entry> </row>
 
-		<row><entry>okidat24.ppd</entry> <entry>Okidata 24pin impact printers and compatible </entry> </row>
+		<row><entry>okidat24.ppd</entry> <entry>Okidata 24pin Nadeldrucker und Kompatible</entry> </row>
 
-		<row><entry>stcolor.ppd</entry> <entry>older Epson Stylus Color printers </entry> </row>
+		<row><entry>stcolor.ppd</entry> <entry>ältere Epson Stylus Color Drucker</entry> </row>
 
-		<row><entry>stcolor2.ppd</entry> <entry>newer Epson Stylus Color printers </entry> </row>
+		<row><entry>stcolor2.ppd</entry> <entry>neuere Epson Stylus Color Drucker</entry> </row>
 
-		<row><entry>stphoto.ppd</entry> <entry>older Epson Stylus Photo printers </entry> </row>
+		<row><entry>stphoto.ppd</entry> <entry>ältere Epson Stylus Photo Drucker</entry> </row>
 
-		<row><entry>stphoto2.ppd</entry> <entry>newer Epson Stylus Photo printers </entry> </row>
+		<row><entry>stphoto2.ppd</entry> <entry>neuere Epson Stylus Photo Drucker</entry> </row>
 
-		<row><entry>laserjet.ppd</entry> <entry>all PCL printers. Further below is a discussion
-			of several other driver/PPD-packages suitable for use with CUPS. </entry> </row>
+		<row><entry>laserjet.ppd</entry> <entry>alle PCL Drucker. Weiter unten finden Sie mehr über
+		einige andere Treiber/PPD-Pakete, die für die Verwendung mit CUPS geeignet sind.</entry> </row>
 
 		</tbody>
 	</tgroup>
@@ -1664,178 +1664,157 @@ breitere Druckränder erhalten, als Ihr spezielles Modell unterstützt. Sehen Sie
 </sect2>
 
 <sect2>
-<title><emphasis>cupsomatic/foomatic-rip</emphasis> Versus <emphasis>native CUPS</emphasis> Printing</title>
+<title><emphasis>cupsomatic/foomatic-rip</emphasis> versus <emphasis>nativer CUPS</emphasis>-Druck</title>
 
 
 <para>
 <indexterm><primary>cupsomatic</primary></indexterm>
 <indexterm><primary>foomatic-rip</primary></indexterm>
-Native CUPS rasterization works in two steps:
+Natives CUPS-Rastern arbeitet in zwei Schritten:
 </para>
 
 <itemizedlist>
 <listitem><para>
-First is the <parameter>pstoraster</parameter> step. It uses the special CUPS
+Zuerst kommt der Schritt <parameter>pstoraster</parameter>. Dies verwendet das spezielle CUPS-device
 <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm>
-device from ESP Ghostscript 7.05.x as its tool.
+aus ESP Ghostscript 7.05.x als Werkzeug.
 </para></listitem>
 
 <listitem><para>
-Second comes the <parameter>rasterdriver</parameter> step. It uses various
-device-specific filters; there are several vendors who provide good
-quality filters for this step. Some are free software, some are
-shareware/non-free and some are proprietary.</para></listitem>
+Als zweites kommt der Schritt <parameter>rasterdriver</parameter>. Er verwendet geräte-spezifische Filter; es
+gibt einige Hersteller, die Filter guter Qualität für diesen Schritt zur Verfügung stellen. Manche sind freie 
+Software, andere Shareware/nicht-frei, manche proprietär.</para></listitem>
 </itemizedlist>
 
 <para>
-Often this produces better quality (and has several more
-advantages) than other methods.
+Oft erzeugt dies bessere Qualität (und hat einige Vorteile mehr) als andere Methoden.
 </para>
 
 <para>
-	<image id="cupsomatic-dia"><imagedescription>cupsomatic/foomatic Processing versus Native CUPS.</imagedescription>
+	<image id="cupsomatic-dia"><imagedescription>cupsomatic/foomatic Verarbeitung versus nativem CUPS.</imagedescription>
 		<imagefile>10small</imagefile>
 	</image>
 </para>
 
 <para>
-One other method is the <parameter>cupsomatic/foomatic-rip</parameter>
-way. Note that <parameter>cupsomatic</parameter> is <emphasis>not</emphasis> made by the CUPS
-developers. It is an independent contribution to printing development,
-made by people from Linuxprinting.org <footnote>see also <ulink
-	noescape="1" url="http://www.cups.org/cups-help.html">http://www.cups.org/cups-help.html</ulink></footnote>.
-<parameter>cupsomatic</parameter> is no longer developed and maintained and is no longer
-supported. It has now been replaced by
-<parameter>foomatic-rip</parameter>. <parameter>foomatic-rip</parameter> is a complete re-write
-of the old <parameter>cupsomatic</parameter> idea, but very much improved and generalized to
-other (non-CUPS) spoolers. An upgrade to foomatic-rip is strongly
-advised, especially if you are upgrading to a recent version of CUPS,
-too.
+Eine andere Methode ist der Weg über <parameter>cupsomatic/foomatic-rip</parameter>. Beachten Sie, daß
+<parameter>cupsomatic</parameter> <emphasis>nicht</emphasis> von den CUPS-Leuten geschrieben wird. Dies ist ein
+unabhängiger Beitrag zur Entwicklung des Druckens von den Leuten von Linuxprinting.org <footnote>sehen Sie auch
+<ulink noescape="1" url="http://www.cups.org/cups-help.html">http://www.cups.org/cups-help.html</ulink></footnote>.
+<parameter>cupsomatic</parameter> wird nicht mehr entwickelt, gewartet oder unterstützt. Es wurde ersetzt durch
+<parameter>foomatic-rip</parameter>. <parameter>foomatic-rip</parameter> ist eine komplette Neufassung der alten
+Idee von <parameter>cupsomatic</parameter>, aber sehr stark verbessert und generalisiert, um andere (Nicht-CUPS)
+Spooler zu unterstützen. Ein Upgrade auf foomatic-rip ist wärmstens empfohlen, besonders wenn Sie auf eine
+aktuelle Version von CUPS aktualisieren.
 </para>
 
 <para>
 	<indexterm><primary>cupsomatic</primary></indexterm>
 	<indexterm><primary>foomatic</primary></indexterm>
-Both the <parameter>cupsomatic</parameter> (old) and the <parameter>foomatic-rip</parameter> (new) methods from
-Linuxprinting.org use the traditional Ghostscript print file
-processing, doing everything in a single step. It therefore relies on
-all the other devices built into Ghostscript. The quality is as
-good (or bad) as Ghostscript rendering is in other spoolers. The
-advantage is that this method supports many printer models not
-supported (yet) by the more modern CUPS method.
+Sowohl die Methode <parameter>cupsomatic</parameter> (alt) und die Methode <parameter>foomatic-rip</parameter> 
+(neu) von Linuxprinting.org verwenden die traditionelle Ghostscript-Verarbeitung von Druckdateien, die alles
+in einem Schritt erledigt. Dies hängt davon ab, daß all die anderen Geräte bereits in Ghostscript eingebaut
+sind. Die Qualität ist so gut (oder schlecht), wie Ghostscript-Darstellung in anderen Spoolern ist. Der
+Vorteil ist, daß diese Methode viele Drucker-Modelle unterstützt, die (noch) nicht von der moderneren 
+CUPS-Methode unterstützt werden.
 </para>
 
 <para>
-Of course, you can use both methods side by side on one system (and
-even for one printer, if you set up different queues) and find out
-which works best for you.
+Natürlich können Sie beide Methoden nebeneinander auf einem System einsetzen (und sogar auf einem Drucker, wenn
+Sie verschiedene Queues installieren) und herausfinden, welche am Besten für Sie funktioniert.
 </para>
 
 <para>
-<parameter>cupsomatic</parameter> kidnaps the printfile after the
-<parameter>application/vnd.cups-postscript</parameter> stage and
-deviates it through the CUPS-external, system-wide Ghostscript
-installation. Therefore the printfile bypasses the <parameter>pstoraster</parameter> filter
-(and also bypasses the CUPS-raster-drivers
-<parameter>rastertosomething</parameter>). After Ghostscript finished its rasterization,
-<parameter>cupsomatic</parameter> hands the rendered file directly to the CUPS backend. The
-flowchart in <link linkend="cupsomatic-dia">cupsomatic/foomatic processing versus Native CUPS</link> illustrates the difference between native CUPS
-rendering and the <parameter>Foomatic/cupsomatic</parameter> method.
+<parameter>cupsomatic</parameter> "kidnappt" die Druckdatei nach der Stufe
+<parameter>application/vnd.cups-postscript</parameter> und lenkt es um durch die CUPS-externe, systemweite
+Ghostscript-Installation. Daher umgeht die Druckdatei den Filter <parameter>pstoraster</parameter> (und umgeht
+auch die CUPS-Raster-Treiber <parameter>rastertosomething</parameter>). Nachdem Ghostscript sein Rastern beendet
+hat, übergibt <parameter>cupsomatic</parameter> die dargestellte Datei direkt an das CUPS-Backend. Das 
+Flußdiagramm in <link linkend="cupsomatic-dia">cupsomatic/foomatic Verarbeitung versus Nativem CUPS</link>
+illustriert den Unterschied zwischen nativer CUPS-Darstellung und der 
+<parameter>Foomatic/cupsomatic</parameter>-Methode.
 </para>
 </sect2>
 
 <sect2>
-<title>Examples for Filtering Chains</title>
+<title>Beispiele für Filterketten</title>
 
 <para>
-Here are a few examples of commonly occurring filtering chains to
-illustrate the workings of CUPS.
+Hier ein paar Beispiele für gängige Filterketten, um die Funktion von CUPS zu illustrieren.
 </para>
 
 <para>
-Assume you want to print a PDF file to an HP JetDirect-connected
-PostScript printer, but you want to print the pages 3-5, 7, 11-13
-only, and you want to print them <quote>two-up</quote> and <quote>duplex</quote>:
-</para>
-
-<itemizedlist>
-<listitem><para>Your print options (page selection as required, two-up,
-duplex) are passed to CUPS on the command line.</para></listitem>
-
-<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
-<parameter>application/pdf</parameter>.</para></listitem>
-
-<listitem><para>The file therefore must first pass the
-<parameter>pdftops</parameter> pre-filter, which produces PostScript
-MIME type <parameter>application/postscript</parameter> (a preview here
-would still show all pages of the original PDF).</para></listitem>
-
-<listitem><para>The file then passes the <parameter>pstops</parameter>
-filter that applies the command line options: it selects the pages
-2-5, 7 and 11-13, creates an imposed layout <quote>2 pages on 1 sheet</quote> and
-inserts the correct <quote>duplex</quote> command (as defined in the printer's
-PPD) into the new PostScript file; the file is now of PostScript MIME
-type
-<parameter>application/vnd.cups-postscript</parameter>.</para></listitem>
-
-<listitem><para>The file goes to the <parameter>socket</parameter>
-backend, which transfers the job to the printers.</para></listitem>
-</itemizedlist>
-
-<para>
-	The resulting filter chain, therefore, is as drawn in <link linkend="pdftosocket">PDF to socket chain</link>.
-	<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>PDF to socket chain.</imagedescription></image>
-</para>
-
-
-<para>
-Assume you want to print the same filter to an USB-connected
-Epson Stylus Photo printer installed with the CUPS
-<filename>stphoto2.ppd</filename>. The first few filtering stages
-are nearly the same:
+Nehmen wir an, Sie wollen eine PDF-Datei auf einem per HP JetDirect angeschlossenen PostScript-Drucker drucken,
+aber Sie wollen nur die Seiten 3-5, 7, 11-13 drucken, und das mit <quote>two-up</quote> und <quote>Duplex</quote>:
 </para>
 
 <itemizedlist>
-<listitem><para>Your print options (page selection as required, two-up,
-duplex) are passed to CUPS on the command-line.</para></listitem>
+<listitem><para>Ihre Druck-Optionen (Seitenauswahl, two-up, Duplex) werden an CUPS per Befehlszeile
+weitergegeben.</para></listitem>
 
-<listitem><para>The (complete) PDF file is sent to CUPS and auto-typed as
-<parameter>application/pdf</parameter>.</para></listitem>
+<listitem><para>Die (komplette) PDF-Datei wird an CUPS gesendet und automatisch als
+<parameter>application/pdf</parameter> typisiert.</para></listitem>
 
-<listitem><para>The file must first pass the
-<parameter>pdftops</parameter> pre-filter, which produces PostScript
-MIME type <parameter>application/postscript</parameter> (a preview here
-would still show all pages of the original PDF).</para></listitem>
+<listitem><para>Die Datei muß daher zuerst den Vorfilter <parameter>pdftops</parameter> passieren,
+der den PostScript MIME-Typ <parameter>application/postscript</parameter> erzeugt (eine Vorschau an dieser
+Stelle würde immer noch alle Seiten des originalen PDFs zeigen).</para></listitem>
 
-<listitem><para>The file then passes the <quote>pstops</quote> filter that applies
-the command-line options: it selects the pages 2-5, 7 and 11-13,
-creates an imposed layout <quote>two pages on one sheet</quote> and inserts the
-correct <quote>duplex</quote> command... (Oops &smbmdash; this printer and PPD
-do not support duplex printing at all &smbmdash; so this option will
-be ignored) into the new PostScript file; the file is now of PostScript
-MIME type 
+<listitem><para>Die Datei passiert sodann den Filter <parameter>pstops</parameter>, der die 
+Befehlszeilen-Optionen anwendet: er wählt die Seiten 3-5, 7, und 11-13, legt ein Layout mit
+<quote>2 Seiten pro Blatt</quote> an, und fügt den korrekten Befehl für <quote>Duplex</quote> (wie
+im PPD des Druckers definiert) in die PostScript-Datei ein; die Datei ist jetzt vom PostScript MIME-Typ
 <parameter>application/vnd.cups-postscript</parameter>.</para></listitem>
 
-<listitem><para>The file then passes the
-		<!--FIXME-->
-<parameter>pstoraster</parameter> stage and becomes MIME type
-<parameter>application/
-cups-raster</parameter>.</para></listitem>
-
-<listitem><para>Finally, the <parameter>rastertoepson</parameter> filter
-does its work (as indicated in the printer's PPD), creating the
-printer-specific raster data and embedding any user-selected
-print-options into the print data stream.</para></listitem>
-
-<listitem><para>The file goes to the <parameter>usb</parameter> backend,
-which transfers the job to the printers.</para></listitem>
+<listitem><para>Die Datei geht jetzt ans <parameter>socket</parameter>-Backend, das den Auftrag an die
+Drucker weiterleitet.</para></listitem>
 </itemizedlist>
 
 <para>
-The resulting filter chain therefore is as drawn in <link linkend="pdftoepsonusb">this figure</link>.
+Die daraus resultierende Filterkette ist in <link linkend="pdftosocket">Filterkette PDF auf socket</link>
+dargestellt.
+<image id="pdftosocket"><imagefile>pdftosocket</imagefile><imagedescription>Filterkette PDF auf socket</imagedescription></image>
 </para>
 
-<image id="pdftoepsonusb"><imagefile>pdftoepsonusb</imagefile><imagedescription>PDF to USB chain.</imagedescription></image>
+<para>
+Nehmen wir an, Sie wollen aus dem selben Filter auf einen an USB angeschlossenen Epson Stylus Photo 
+Drucker drucken, der mittels dem CUPS-PPD <filename>stphoto2.ppd</filename> installiert wurde. Die
+ersten paar Filter-Stufen sind fast die selben:
+</para>
+
+<itemizedlist>
+<listitem><para>Ihre Druck-Optionen (Seitenauswahl, two-up, Duplex) werden an CUPS per Befehlszeile
+weitergegeben.</para></listitem>
+
+<listitem><para>Die (komplette) PDF-Datei wird an CUPS gesendet und automatisch als
+<parameter>application/pdf</parameter> typisiert.</para></listitem>
+
+<listitem><para>Die Datei muß daher zuerst den Vorfilter <parameter>pdftops</parameter> passieren,
+der den PostScript MIME-Typ <parameter>application/postscript</parameter> erzeugt (eine Vorschau an dieser
+Stelle würde immer noch alle Seiten des originalen PDFs zeigen).</para></listitem>
+
+<listitem><para>Die Datei passiert sodann den Filter <parameter>pstops</parameter>, der die
+Befehlszeilen-Optionen anwendet: er wählt die Seiten 3-5, 7, und 11-13, legt ein Layout mit
+<quote>2 Seiten pro Blatt</quote> an, und fügt den korrekten Befehl für <quote>Duplex</quote> ...
+(Oops &smbmdash; dieser Drucker und diese PPD unterstützen gar keinen Duplex-Druck &smbmdash; also wird
+diese Option ignoriert) in die PostScript-Datei ein; die Datei ist jetzt vom PostScript MIME-Typ
+<parameter>application/vnd.cups-postscript</parameter>.</para></listitem>
+
+<listitem><para>Die Datei passiert jetzt die Filter-Stufe <parameter>pstoraster</parameter> und wird
+zum MIME-Typ <parameter>application/cups-raster</parameter>.</para></listitem>
+
+<listitem><para>Zuletzt tut der Filter <parameter>rastertoepson</parameter> seine Arbeit (wie in der PPD
+des Druckers angezeigt), legt die drucker-spezifischen Rasterdaten an, und bettet alle vom Benutzer
+gewählten Druck-Optionen in die Druckdaten ein.</para></listitem>
+
+<listitem><para>Die Datei geht an das Backend <parameter>usb</parameter>, das es an die Drucker 
+weiterleitet.</para></listitem>
+</itemizedlist>
+
+<para>
+Die daraus resultierende Filterkette ist in <link linkend="pdftoepsonusb">diesem Bild</link> dargestellt.
+</para>
+
+<image id="pdftoepsonusb"><imagefile>pdftoepsonusb</imagefile><imagedescription>Filterkette PDF auf USB.</imagedescription></image>
 </sect2>
 
 <sect2>
