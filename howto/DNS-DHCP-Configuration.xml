@@ -24,9 +24,9 @@ einfach an eine Netzwerk-Buchse anstecken zu können, und <quote>es funktioniert 
 </para>
 
 <para>
-UNIX Administratoren haben ein Argument. 
+UNIX Administratoren haben ein gutes Argument. 
 Vieles aus der normativen Praxis in der MS Windows Welt grenzt im besten Fall an schlechte
-Gwohnheiten aus der Sicht der Sicherheit. MS Windows Netzwerk-Protokolle erlauben es Workstations,
+Gewohnheiten aus der Sicht der Sicherheit. MS Windows Netzwerk-Protokolle erlauben es Workstations,
 sich willkürlich an einem Netzwerk anzumelden. Windows 2000 Active Directory registriert Einträge
 im DNS-Namensraum, die UNIX-Administratoren nur so erstaunen. Willkommen in der neuen Welt!
 </para>
@@ -44,12 +44,12 @@ Entsprechungen in den Microsoft Windows 2000 Server Produkten sind.
 Der Zweck dieses Kapitels ist nicht mehr, als ein funktionierendes Beispiel für
 Konfigurations-Dateien anzubieten, sowohl für DNS- als auch für DHCP-Server.
 Die verwendeten Beispiele passen zu Konfigurations-Beispielen, die in anderen Bereichen
-dieses Buchs angeführt werden.
+dieses Dokuments angeführt werden.
 </para>
 
 <para>
 Dieses Kapitel stellt ausdrücklich kein Tutorial dar, weiters soll es keine Referenz zu DNS und DHCP
-sein, da dies weit über den Horizont und die Zielsetzung dieses Buchs hinausgeht. Jeder, der
+sein, da dies weit über den Horizont und die Zielsetzung dieses Dokuments hinausgeht. Jeder, der
 detailliertere Materialien zu DNS oder DHCP braucht, sollte die ISC-Website auf
 <ulink noescape="1" url="http://www.isc.org">http://www.isc.org</ulink> besuchen. Jene, die eher
 gedruckten Text bevorzugen, könnten Interesse an den O'Reilly-Publikationen zu diesen Themen finden.
@@ -67,14 +67,14 @@ aufgelöst. Windows Netzwerk-Technologie versucht sehr stark, die Komplexitäten v
 vermeiden, aber leider hat DNS gewonnen.
 <indexterm><primary>WINS</primary></indexterm>
 Die Alternative zu DNS, das Windows Internet Name Service (WINS), ein Artefakt aus der Zeit, in der
-NetBIOS-Netzwerke über TCP/IP-Protokolle betrieben wurden, hat Skalierungs-Probleme ebenso
-aufgezeigt, wie auch einen flachen, nicht-hierarchischen Namensraum, der unverwaltbar wurde, als
+NetBIOS-Netzwerke über TCP/IP-Protokoll betrieben wurden, hat ebenso Skalierungs-Probleme, 
+wie auch einen flachen, nicht-hierarchischen Namensraum, der unverwaltbar wurde, als
 die Größe und Komplexität der Informations-Technologie-Netzwerke wuchs.
 </para>
 
 <para>
 WINS ist eine Microsoft Implementation des RFC1001/1002 NetBIOS Name Service (NBNS).
-Es erlaubt NetBIOS-Clients (wie Microsoft Windows Maschinen), einen willkürlichen Maschinen-Namen
+Es erlaubt NetBIOS-Clients (wie Microsoft Windows Maschinen), einen willkürlichen Maschinen-Namen,
 den der Administrator oder Benutzer gewählt hat, gemeinsam mit der
 zugewiesenen IP-Adresse zu registrieren. Durch die Verwendung von WINS können Netzwerk-Client-Maschinen
 Maschinen-Namen auf ihre IP-Adressen auflösen.
@@ -295,7 +295,7 @@ $ORIGIN 1.168.192.in-addr.arpa.
 	<title>DHCP-Server</title>
 
 	<para>
-	Folgende Datei wir mit dem ISC DHCP Server version 3 verwendet.
+	Folgende Datei wird mit dem ISC DHCP Server version 3 verwendet.
 	Die Datei liegt in <filename>/etc/dhcpd.conf</filename>:
 	</para>
 
@@ -330,7 +330,7 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
 	Im obigen Beispiel werden IP-Adressen zwischen 192.168.1.1 und 192.168.1.59 für
 	fixe (üblicherweise als <constant>hard-wired</constant> bezeichnet) IP-Adressen reserviert.
 	Die Adressen zwischen 192.168.1.60 und 192.168.1.254 werden für dynamische Verwendung
-	belegt.
+	bereitgestellt.
 	</para>
 
 	</sect2>
