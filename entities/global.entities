@@ -22,7 +22,7 @@
 <!ENTITY person.jelmer '
 <firstname>Jelmer</firstname><othername>R.</othername><surname>Vernooij</surname><othername>R.</othername>
 <affiliation>
-	<orgname>The Samba Team</orgname>
+	<orgname>Samba Team</orgname>
 	<address><email>jelmer@samba.org</email></address>
 </affiliation>'>
 
@@ -160,7 +160,8 @@
 </author>'>
 
 <!ENTITY person.sgw '
-<firstname>Stefan</firstname><othername>G.</othername><surname>Weichinger</surname><othername></othername>
+<firstname>Stefan</firstname><othername>G.</othername>
+<surname>Weichinger</surname><othername></othername>
 <affiliation>
         <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>monitor@oops.co.at</email></address>
