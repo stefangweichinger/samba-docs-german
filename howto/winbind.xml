@@ -36,7 +36,8 @@
 	<title>Eigenschaften und Vorzüge</title>
 
 	<para>
-	Die Integration von UNIX und Microsoft Windows NT durch eine einheitliche Anmeldung galt
+	Die Integration von UNIX und Microsoft Windows NT durch eine einheitliche Anmeldung 
+	(<quote>unified logon</quote>) galt
 	lange Zeit als <quote>heiliger Gral</quote> in heterogenen EDV-Umgebungen.
 	</para>
 
@@ -103,227 +104,207 @@ FIXME ---
 <sect1>
 	<title>Einführung</title>
 	
-	<para>It is well known that UNIX and Microsoft Windows NT have 
-	different models for representing user and group information and 
-	use different technologies for implementing them. This fact has 
-	made it difficult to integrate the two systems in a satisfactory 
-	manner.</para>
+	<para>Es ist wohl bekannt, daß UNIX und Windows NT verschiedene Modelle zur Repräsentation von
+	Benutzer- und Gruppen-Information haben, und verschiedene Technologien nutzen, um diese zu 
+	implementieren. Diese Tatsache macht es schwierig, die beiden Systeme auf befriedigende Weise zu
+	integrieren.
+	</para>
 	
-	<para>One common solution in use today has been to create 
-	identically named user accounts on both the UNIX and Windows systems 
-	and use the Samba suite of programs to provide file and print services 
-	between the two. This solution is far from perfect, however, as 
-	adding and deleting users on both sets of machines becomes a chore 
-	and two sets of passwords are required &smbmdash; both of which
-	can lead to synchronization problems between the UNIX and Windows 
-	systems and confusion for users.</para>
+	<para>Eine gängige Lösung ist es, identisch benannte Benutzerkonten sowohl im Windows- wie auch im
+	UNIX-System anzulegen, und die Samba-Suite dafür zu nutzen, Datei- und Druckdienste zwischen den beiden
+	Systemen anzubieten. Diese Lösung ist jedoch weit davon entfernt, perfekt zu sein, da das 
+	Hinzufügen und Löschen von Benutzern auf beiden Gruppen von Maschinen zur lästigen Pflicht wird, und
+	zwei Sätze Passwörter benötigt werden &smbmdash; beides führt zu Synchronisations-Problemen zwischen
+	Windows und UNIX, und zur Verwirrung der Benutzer.</para>
 	
-	<para>We divide the unified logon problem for UNIX machines into 
-	three smaller problems:</para>
+	<para>Wir trennen das Problem der einheitlichen Anmeldung für UNIX-Maschinen in drei kleinere Probleme:
+	</para>
 	
 	<itemizedlist>
-		<listitem><para>Obtaining Windows NT user and group information.
+		<listitem><para>Das Beziehen von Windows NT Benutzer- und Gruppen-Information.
 		</para></listitem>
 		
-		<listitem><para>Authenticating Windows NT users.
+		<listitem><para>Die Authentifikation von Windows NT Benutzern.
 		</para></listitem>
 		
-		<listitem><para>Password changing for Windows NT users.
+		<listitem><para>Das Ändern von Passwörtern der Windows NT Benutzer.
 		</para></listitem>
 	</itemizedlist>
 
 
-	<para>Ideally, a prospective solution to the unified logon problem 
-	would satisfy all the above components without duplication of 
-	information on the UNIX machines and without creating additional 
-	tasks for the system administrator when maintaining users and 
-	groups on either system. The Winbind system provides a simple 
-	and elegant solution to all three components of the unified logon 
-	problem.</para>
+	<para>Im Idealfall würde eine weitblickende Lösung des <quote>unified logon</quote>-Problems alle
+	oben genannten Teilprobleme ohne Duplikation von Informationen auf den UNIX-Systemen lösen, und ohne
+	zusätzliche Arbeiten für den System-Administrator zu verursachen, wenn er Benutzer und Gruppen auf
+	den einzelnen Systemen administriert. Das Winbind-System bietet eine einfache und elegante Lösung
+	für alle drei Teile des <quote>unified logon</quote>-Problems an.
+	</para>
 </sect1>
 
 
 <sect1>
-	<title>What Winbind Provides</title>
+	<title>Was Winbind anbietet</title>
 
-	<para>Winbind unifies UNIX and Windows NT account management by 
-	allowing a UNIX box to become a full member of an NT domain. Once 
-	this is done the UNIX box will see NT users and groups as if 
-	they were <quote>native</quote> UNIX users and groups, allowing the NT domain 
-	to be used in much the same manner that NIS+ is used within 
-	UNIX-only environments.</para>
+	<para>Winbind vereint UNIX und Windows NT Konten-Verwaltung, indem es einer UNIX-Box erlaubt,
+	ein vollwertiges Mitglied einer NT-Domäne zu werden. Sobald dies erfolgt ist, sieht die UNIX-Box
+	die NT-Benutzer und -Gruppen als ob sie <quote>native</quote> UNIX-Benutzer und -Gruppen wären,
+	was die Benutzung der NT-Domäne in fast derselben Art erlaubt, wie NIS+ in reinen UNIX-Umgebungen
+	verwendet wird.</para>
 	
-	<para>The end result is that whenever any 
-	program on the UNIX machine asks the operating system to lookup 
-	a user or group name, the query will be resolved by asking the 
-	NT Domain Controller for the specified domain to do the lookup.
-	Because Winbind hooks into the operating system at a low level 
-	(via the NSS name resolution modules in the C library), this 
-	redirection to the NT Domain Controller is completely 
-	transparent.</para>
+	<para>Das Endergebnis ist, daß wann immer ein Programm auf der UNIX-Maschine das Betriebssystem
+	nach einem Benutzer- oder Gruppen-Namen fragt, die Anfrage an den NT-Domänen-Controller weitergegeben
+	wird, der diese Namensabfrage durchführt. Weil Winbind sich auf einem sehr tiefgreifenden Level
+	ins Betriebssystem einhängt (via der NSS-Namensauflösungs-Module in der C-Library), ist diese
+	Umleitung zum NT-Domänen-Controller völlig transparent.</para>
 	
-	<para>Users on the UNIX machine can then use NT user and group 
-	names as they would <quote>native</quote> UNIX names. They can chown files 
-	so they are owned by NT domain users or even login to the 
-	UNIX machine and run a UNIX X-Window session as a domain user.</para>
-	
-	<para>The only obvious indication that Winbind is being used is 
-	that user and group names take the form <constant>DOMAIN\user</constant> and 
-	<constant>DOMAIN\group</constant>. This is necessary as it allows Winbind to determine 
-	that redirection to a Domain Controller is wanted for a particular 
-	lookup and which trusted domain is being referenced.</para>
-	
-	<para>Additionally, Winbind provides an authentication service 
-	that hooks into the Pluggable Authentication Modules (PAM) system 
-	to provide authentication via an NT domain to any PAM-enabled 
-	applications. This capability solves the problem of synchronizing 
-	passwords between systems since all passwords are stored in a single 
-	location (on the Domain Controller).</para>
-	
+	<para>Die Benutzer auf der UNIX-Maschine können dann NT-Benutzer- und NT-Gruppen-Namen 
+	so verwenden, als ob sie <quote>native</quote> UNIX-Namen wären. Sie können mittels chown
+	Eigentümer von Dateien werden, so daß die Dateien NT-Domänen-Benutzern gehören, oder sich sogar
+	auf einer UNIX-Maschine anmelden und eine UNIX-X-Window-Session als Domänen-Benutzer ausführen.</para>
+
+	<para>Das einzige sichtbare Anzeichen, daß Winbind verwendet wird, ist, daß Benutzer- und Gruppen-Namen
+	die Form <constant>DOMÄNE\benutzer</constant> und <constant>DOMÄNE\gruppe</constant> annehmen. Das ist
+	notwendig, da dies Winbind erlaubt, zu erkennen, wenn eine Umleitung zum Domänen-Controller
+	erforderlich ist, und auf welche Domäne sich diese Anfrage bezieht.</para>
+
+	<para>Zusätzlich bietet Winbind einen Authentifikations-Dienst, der sich ins PAM-System
+	(Pluggable Authentication Modules) einhängt, um die Authentifikation via einer NT-Domäne allen
+	PAM-fähigen Applikationen anzubieten. Diese Fähigkeit löst das Problem der Synchronisation von 
+	Passwörtern zwischen Systemen, da alle Passwörter an einem Platz allein gespeichert werden - am
+	Domänen-Controller.</para>
+
 	<sect2>
-		<title>Target Uses</title>
+		<title>Zielgruppen</title>
 		
-		<para>Winbind is targeted at organizations that have an 
-		existing NT-based domain infrastructure into which they wish 
-		to put UNIX workstations or servers. Winbind will allow these 
-		organizations to deploy UNIX workstations without having to 
-		maintain a separate account infrastructure. This greatly 
-		simplifies the administrative overhead of deploying UNIX 
-		workstations into an NT-based organization.</para>
-		
-		<para>Another interesting way in which we expect Winbind to 
-		be used is as a central part of UNIX-based appliances. Appliances 
-		that provide file and print services to Microsoft-based networks 
-		will be able to use Winbind to provide seamless integration of 
-		the appliance into the domain.</para>
+		<para>Winbind zielt auf Organisationen ab, die eine existierende, auf NT-Domänen
+		basierende Infrastruktur haben, in die sie UNIX-Maschinen integrieren wollen. Winbind
+		erlaubt diesen Organisationen, UNIX-Maschinen einzusetzen, ohne eine separate Struktur
+		für deren Konten aufrechterhalten zu müssen. Dies vereinfacht den administrativen Overhead
+		der Integration von UNIX in einer NT-basierenden Organisation.</para>
+
+                <para>Eine weitere interessante Art, in der wir erwarten, daß Winbind eingesetzt wird, ist
+		als zentraler Teil von UNIX-basierenden Geräten. Solche Geräte, die Datei- und Druck-Dienste für
+		MS-basierende Netzwerke anbieten, können Winbind einsetzen, um nahtlose Integration in die
+		Domäne zu erreichen</para>
 	</sect2>
 </sect1>
 
 
 
 <sect1>
-	<title>How Winbind Works</title>
+	<title>Wie Winbind arbeitet</title>
 	
-	<para>The Winbind system is designed around a client/server 
-	architecture. A long running <command>winbindd</command> daemon 
-	listens on a UNIX domain socket waiting for requests
-	to arrive. These requests are generated by the NSS and PAM 
-	clients and is processed sequentially.</para>
-	
-	<para>The technologies used to implement Winbind are described 
-	in detail below.</para>
-	
+	<para>Das Winbind-System ist rund um eine Client-Server-Architektur entworfen. 
+	Ein <command>winbindd</command>-Daemon mit langer Laufzeit hört auf einem UNIX-Domänen-Socket auf 
+	ankommende Anfrage. Diese Anfragen (<quote>Requests</quote>) werden von den NSS- und PAM-Clients
+	generiert und sequentiell verarbeitet.</para>
+
+        <para>Die Technologien, die zur Implementation von Winbind verwendet werden, werden nachfolgend
+	im Detail beschrieben.</para>
+
 	<sect2>
 		<title>Microsoft Remote Procedure Calls</title>
 		
-		<para>Over the last few years, efforts have been underway 
-		by various Samba Team members to decode various aspects of 
-		the Microsoft Remote Procedure Call (MSRPC) system. This 
-		system is used for most network-related operations between 
-		Windows NT machines including remote management, user authentication
-		and print spooling. Although initially this work was done 
-		to aid the implementation of Primary Domain Controller (PDC) 
-		functionality in Samba, it has also yielded a body of code that 
-		can be used for other purposes.</para>
-		
-		<para>Winbind uses various MSRPC calls to enumerate domain users 
-		and groups and to obtain detailed information about individual 
-		users or groups. Other MSRPC calls can be used to authenticate 
-		NT domain users and to change user passwords. By directly querying 
-		a Windows PDC for user and group information, Winbind maps the 
-		NT account information onto UNIX user and group names.</para>
+		<para>In den letzten paar Jahren wurden von verschiedenen Samba-Team-Mitgliedern
+		Anstrengungen unternommen, die verschiedenen Aspekte des Systems
+		<quote>Microsoft Remote Procedure Call</quote> (MSRPC) zu entschlüsseln.
+		Dieses System wird für die meisten netzwerkbasierenden Operationen zwischen
+		Windows-NT-Maschinen verwendet, inklusive Fernwartung, Benutzer-Authentifikation und
+		Druck-Spooling. Obwohl diese Arbeit ursprünglich zur Unterstützung der 
+		Primär-Domänen-Controller-Funktionalitäten (PDC) in Samba getan wurde, hat sie auch eine
+		Menge Code hervorgebracht, die für andere Zwecke eingesetzt werden kann.</para>
+			
+		<para>Winbind verwendet verschiedene MSRPC-Aufrufe, um Domänen-Benutzer und -Gruppen
+		aufzuzählen, und detaillierte Informationen über einzelne Benutzer oder Gruppen zu
+		beziehen. Andere MSRPC-Aufrufe können zur Authentifikation von NT-Domänen-Benutzern verwendet 
+		werden und zum Ändern von Benutzer-Passwörtern. Durch direktes Abfragen eines Windows-PDCs
+		stellt Winbind die Zuordnung von NT-Konteninformation auf UNIX-Benutzer- und Gruppen-Namen her.
+		</para>
 	</sect2>
 	
 	<sect2>
-		<title>Microsoft Active Directory Services</title>
+		<title>Microsoft Active Directory</title>
 
 		<para>
-                Since late 2001, Samba has gained the ability to
-                interact with Microsoft Windows 2000 using its <quote>Native
-                Mode</quote> protocols, rather than the NT4 RPC services.
-                Using LDAP and Kerberos, a Domain Member running
-                Winbind can enumerate users and groups in exactly the
-                same way as a Windows 200x client would, and in so doing
-                provide a much more efficient and effective Winbind implementation. 
+		Seit dem späten 2001 hat Samba die Fähigkeiten, mit Microsoft Windows 2000 über dessen
+		<quote>Native Mode</quote> Protokolle zusammenzuarbeiten, anstatt mittels der NT4 RPC Dienste.
+		Unter Verwendung von LDAP und Kerberos kann ein Domänen-Mitglied, das Winbind ausführt,
+		Benutzer und Gruppen genau in derselben Art aufzählen wie es ein Windows 200x Client würde,
+		und schafft damit eine viel effizientere und effektivere Winbind-Implementation.                
                 </para>
 	</sect2>
 	
 	<sect2>
 		<title>Name Service Switch</title>
 		
-		<para>The Name Service Switch, or NSS, is a feature that is 
-		present in many UNIX operating systems. It allows system 
-		information such as hostnames, mail aliases and user information 
-		to be resolved from different sources. For example, a standalone 
-		UNIX workstation may resolve system information from a series of 
-		flat files stored on the local filesystem. A networked workstation 
-		may first attempt to resolve system information from local files, 
-		and then consult an NIS database for user information or a DNS server 
-		for hostname information.</para>
-		
-		<para>The NSS application programming interface allows Winbind 
-		to present itself as a source of system information when 
-		resolving UNIX usernames and groups. Winbind uses this interface, 
-		and information obtained from a Windows NT server using MSRPC 
-		calls to provide a new source of account enumeration. Using standard 
-		UNIX library calls, one can enumerate the users and groups on
-		a UNIX machine running Winbind and see all users and groups in 
-		a NT domain plus any trusted domain as though they were local 
-		users and groups.</para>
-		
-		<para>The primary control file for NSS is 
+		<para>Der Name Service Switch, oder NSS, ist eine Funktionalität, die in vielen 
+		UNIX-Betriebssystemen vorhanden ist. Es erlaubt das Auflösen von System-Information, wie
+		Hostnamen, Mail-Aliases oder Benutzerinformationen, unter Verwendung verschiedener Quellen.
+		Zum Beispiel kann eine Standalone-UNIX-Workstation ihre Systeminformationen aus einer Reihe
+		von einfachen Dateien im lokale Dateisystem beziehen. Eine vernetzte Workstation könnte zuerst
+		versuchen, die Systeminformationen aus den lokalen Dateien zu beziehen, dann eine NIS-Datenbank
+		oder einen DNS-Server nach Informationen zu Hostnamen befragen.</para>
+
+                <para>Das NSS Applikations-Programmier-Interface erlaubt es Winbind, sich selbst als Quelle für
+		Systeminformationen anzubieten, wenn UNIX-Benutzer- und Gruppen-Namen aufgelöst werden sollen.
+		Winbind verwendet dieses Interface und Informationen, die mittels MSRPC-Aufrufen von einem
+		Windows NT Server bezogen wurden, um eine neue Informationsquelle zur Verfügung zu stellen.
+		Unter Verwendung von Standard-UNIX-Bibliotheks-Aufrufen kann man die Benutzer und Gruppen
+		auf einer UNIX-Maschine, die Winbind ausführt, auflisten, und alle Benutzer und Gruppen in
+		einer NT-Domäne sehen, plus diejenigen jeglicher Vertrauens-Domäne, als ob sie lokale
+		Benutzer und Gruppen wären.</para>
+
+                <para>Die primäre Steuerdatei für NSS ist
 		<filename>/etc/nsswitch.conf</filename>. 
-		When a UNIX application makes a request to do a lookup, 
-		the C library looks in <filename>/etc/nsswitch.conf</filename> 
-		for a line that matches the service type being requested, for 
-		example the <quote>passwd</quote> service type is used when user or group names 
-		are looked up. This config line specifies which implementations 
-		of that service should be tried and in what order. If the passwd 
-		config line is:</para>
+		Wenn eine UNIX-Applikation eine Anfrage stellt, durchsucht die C-Library 
+		<filename>/etc/nsswitch.conf</filename> nach einer Zeile, die dem erfragten Dienst entspricht,
+		z.B. dem Dienst <quote>passwd</quote>, der verwendet wird, wenn nach Benutzer- oder Gruppen-Namen
+		gesucht wird. Diese Konfigurations-Zeile gibt an, welche Implementation dieses Diensts
+		versucht werden soll, und in welcher Reihenfolge. Wenn die Zeile lautet:</para>
 
 		<para><screen>
 		passwd: files example
 		</screen></para>
 
-		<para>then the C library will first load a module called 
-		<filename>/lib/libnss_files.so</filename> followed by
-		the module <filename>/lib/libnss_example.so</filename>. The 
-		C library will dynamically load each of these modules in turn 
-		and call resolver functions within the modules to try to resolve 
-		the request. Once the request is resolved, the C library returns the
-		result to the application.</para>
+		<para>dann wird die C-Library zuerst ein Modul namens
+		<filename>/lib/libnss_files.so</filename> laden, gefolgt vom Modul
+		<filename>/lib/libnss_example.so</filename>. Die C-Library wird dynamisch jedes dieser Module
+		der Reihe nach laden und die Auflösungs-Funktionen innerhalb jeden Moduls ausführen, um zu 
+		versuchen, die Anfrage aufzulösen. Sobald dies geschehen ist, gibt die C-Library das Ergebnis
+		an die Anwendung zurück.</para>
 		
-		<para>This NSS interface provides an easy way for Winbind 
-		to hook into the operating system. All that needs to be done 
-		is to put <filename>libnss_winbind.so</filename> in <filename>/lib/</filename> 
-		then add <quote>winbind</quote> into <filename>/etc/nsswitch.conf</filename> at 
-		the appropriate place. The C library will then call Winbind to 
-		resolve user and group names.</para>
+		<para>Dieses NSS-Interface bietet eine einfache Möglichkeit, Winbind in das Betriebssystem
+		einzuhängen. Alles, was getan werden muß, ist <filename>libnss_winbind.so</filename> in 
+		<filename>/lib/</filename> zu plazieren, dann <quote>winbind</quote> an der richtigen
+		Stelle in <filename>/etc/nsswitch.conf</filename> hinzuzufügen. Die C-Library wird dann
+		Winbind zur Namensauflösung aufrufen.</para>
 	</sect2>
 	
 	<sect2>
 		<title>Pluggable Authentication Modules</title>
 		
-		<para>Pluggable Authentication Modules, also known as PAM, 
-		is a system for abstracting authentication and authorization 
-		technologies. With a PAM module it is possible to specify different 
-		authentication methods for different system applications without 
-		having to recompile these applications. PAM is also useful
-		for implementing a particular policy for authorization. For example, 
-		a system administrator may only allow console logins from users 
-		stored in the local password file but only allow users resolved from 
-		a NIS database to log in over the network.</para>
-		
-		<para>Winbind uses the authentication management and password 
-		management PAM interface to integrate Windows NT users into a 
-		UNIX system. This allows Windows NT users to log in to a UNIX 
-		machine and be authenticated against a suitable Primary Domain 
-		Controller. These users can also change their passwords and have 
-		this change take effect directly on the Primary Domain Controller.
-		</para>
-		
-		<para>PAM is configured by providing control files in the directory 
-		<filename>/etc/pam.d/</filename> for each of the services that 
+		<para>Pluggable Authentication Modules, auch als PAM bekannt, 
+		sind ein System zum Abstrahieren von Authentifikations- und Authorisations-Technologien.
+		Mit einem PAM-Modul ist es möglich, verschiedene Authentifikations-Methoden für verschiedene
+		Systemanwendungen zu spezifizieren, ohne diese Anwendungen neu kompilieren zu müssen.
+		PAM ist weiters hilfreich beim Implementieren einer speziellen Richtlinie für die
+		Authorisation. Zum Beispiel könnte ein System-Administrator Konsolen-Logins nur den Benutzern
+		erlauben, die in der lokalen Passwort-Datei gespeichert sind, und Netzwerk-Logins nur Benutzern,
+		die in einer NIS-Datenbank gespeichert sind.</para>
+
+                <para>Winbind nutzt das Authentifikations-Management- und Passwort-Management-PAM-Interface, um
+		Windows-NT-Benutzer in ein UNIX-System zu integrieren. Das erlaubt es Windows-NT-Benutzern, sich
+		an einer UNIX-Maschine anzumelden, und gegen einen passenden PDC authentifiziert zu werden. Diese
+		Benutzer können außerdem ihre Passwörter ändern, und diese Veränderung findet direkt auf dem PDC
+		statt.</para>
+
+                <para>
+		PAM wird über die Bereitstellung von Steuerdateien im Verzeichnis	
+		<filename>/etc/pam.d/</filename> gesteuert. für jeden Dienst, der Authentifikation
+                benötigt. Wenn eine Authentifikations-Anfrage von einer Anwendung gestellt wird, 
+
+
+
+ for each of the services that 
 		require authentication. When an authentication request is made 
 		by an application, the PAM code in the C library looks up this
 		control file to determine what modules to load to do the 
