@@ -57,7 +57,7 @@ in entsprechende Buchstaben umzuwandeln. (Es gibt unterschiedliche Charsets mit
 deutschen Umlauten, japanischen Zeichen usw.) Der <quote>American 
 Standard Code for Information Interchange</quote> (ASCII) war bis heute das 
 maﬂgebliche Buchstaben-Schema, das von Computern verwendet wurde. ASCII ist ein 
-Charset, das 256 Buchstaben darstellen kann. Die Verwendung dieser 
+Charset, das 128 Buchstaben darstellen kann. Die Verwendung dieser 
 Kodierung bedeutet, dass jeder Buchstabe genau ein Byte groﬂ ist.
 </para>
 
