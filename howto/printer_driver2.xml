@@ -1351,7 +1351,7 @@ Folgende Parameter werden in diesem Freigabeabschnitt oft benötigt:
 		beliebigen Client aus mounten, indem Sie den Befehl
 		<command>net use g:\\sambaserver\print$</command> in einer 
 		DOS-Shell oder den Menüeintrag
-		<guimenu>Connect network drive menu></guimenu>??? im Windows
+		<guimenu>Netzlaufwerk verbinden ...</guimenu> im Windows
 		Explorer verwenden.
 		</para></listitem>
 	</varlistentry>
@@ -1556,14 +1556,17 @@ Das führt zu folgender Fehlermeldung:
 </para>
 
 	<para><errorname>
-	Device settings cannot be displayed. The driver for the specified
+	Die Geräteeinstellungen können nicht angezeigt werden.
+	Der Treiber für den angegebenen Drucker ist nicht installiert.
+	???
+Device settings cannot be displayed. The driver for the specified
 	printer is not installed, only spooler properties will be displayed. 
 	Do you want to install the driver now?
 	</errorname></para>
 
 <para>
-Klicken Sie nicht auf <guibutton>Yes</guibutton>???! Klicken Sie stattdessen
-im Fehlerdialogfeld auf <guibutton>No</guibutton>???.
+Klicken Sie nicht auf <guibutton>Ja</guibutton>! Klicken Sie stattdessen
+im Fehlerdialogfeld auf <guibutton>Nein</guibutton>.
 Erst jetzt erhalten Sie ein Fenster mit den Druckereigenschaften. Von hier aus
 können wir nun überlegen, wie wir dem Drucker einen Treiber zuordnen wollen.
 Dabei haben Sie folgende Möglichkeiten:
@@ -1576,7 +1579,7 @@ Dabei haben Sie folgende Möglichkeiten:
 	</para></listitem>
 
 	<listitem><para>
-	Klicken Sie auf <guibutton>New Driver</guibutton>???, um einen
+	Klicken Sie auf <guibutton>Neuer Treiber ...</guibutton>, um einen
 	neuen Druckertreiber zu installieren (daraufhin wird der APW
 	gestartet).
 	</para></listitem>
@@ -1592,7 +1595,7 @@ eingerichtet ist (wenn Sie daran zweifeln, überprüfen Sie es mit
 <command>smbstatus</command>). Wenn Sie Druckertreiber für andere 
 Betriebssysteme als <application>Windows NT x86</application> installieren
 möchten, müssen Sie im Dialogfeld Druckereigenschaften den Reiter
-<guilabel>Sharing</guilabel>??? verwenden.
+<guilabel>Freigabe</guilabel> verwenden.
 </para>
 
 <para>
@@ -1673,13 +1676,13 @@ wird.)
 <para>
 Eine gute Methode zum Aufspüren der Treiberdateien besteht darin, aus dem
 Dialogfeld <guilabel>Eigenschaften</guilabel> des Treibers 
-(Reiter <guilabel>General</guilabel>)
+(Reiter <guilabel>Allgemein</guilabel>)
 eine Testseite auszudrucken. Wenn Sie dann in der Druckausgabe nach
 der Liste der Treiberdateien suchen, werden Sie feststellen, dass 
 Windows (und Samba) folgende Dateien verwenden:
-??? <guilabel>Driver File</guilabel>, <guilabel>Data File</guilabel>, 
-<guilabel>Config File</guilabel>, <guilabel>Help File</guilabel> und 
-(optional) die <guilabel>Dependent Driver Files</guilabel>
+<guilabel>Treiberdatei</guilabel>, <guilabel>Datendatei</guilabel>, 
+<guilabel>Konfig.-Datei</guilabel>, <guilabel>Hilfedatei</guilabel> und 
+(optional) die <guilabel>Abhängige Treiberdateien</guilabel>
 (bei Windows NT kann das leicht anders sein). 
 Für die weiteren Schritte müssen Sie sich alle Dateinamen notieren.
 </para>
@@ -2439,13 +2442,13 @@ von Windows NT/200x/XP auf einem Window-Client benutzen:
 
 	<step><para>
 	Klicken Sie den Reiter <guilabel>Erweitert</guilabel>, dann auf
-	<guibutton>Printing Defaults</guibutton>???.
+	<guibutton>Standardwerte</guibutton>.
 	</para></step>
 
 	<step><para>
 	Ändern Sie die Seiteneinstellungen für 
-	<guimenuitem>Portrait</guimenuitem>??? auf 
-	<guimenuitem>Landscape</guimenuitem>??? (und zurück).
+	<guimenuitem>Hochformat</guimenuitem> auf 
+	<guimenuitem>Querformat</guimenuitem> (und zurück).
 	</para></step>
 
 	<step><para>
@@ -2564,7 +2567,7 @@ um sich als root mit einem Samba-Drucker zu verbinden:
 
 <para>
 Sie werden nun nach dem Samba-Passwort von root gefragt. Geben Sie es ein, warten
-Sie einige Sekunden, klicken Sie auf <guibutton>Printing Defaults</guibutton>???
+Sie einige Sekunden, klicken Sie auf <guibutton>Standardwerte</guibutton>
 und fahren Sie fort mit der Einstellung der Standardoptionen für Druckaufträge,
 die von allen Clients benutzt werden sollen. Alternativ zu root können Sie ein 
 anderes Mitglied von <smbconfoption><name>printer admin</name></smbconfoption> 
@@ -2624,15 +2627,13 @@ alle Benutzer zu machen, müssen Sie Administrator oder Print Administrator
 sein. Auf folgende Weise kann ich es unter XP Professional reproduzieren:
 </para>
 
-In der folgenden Liste werden Punkte nach den Buchstaben und Ziffern verlangt::::::::: ???
-
 <orderedlist numeration="upperalpha">
 	<listitem><para>Der erste <quote>falsche</quote> Weg:
 	<orderedlist numeration="arabic">
 		<listitem><para>Öffnen Sie den Ordner <guiicon>Drucker</guiicon>.</para></listitem>
 
 		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>remoteprinter on cupshost</emphasis>)??? und
+		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
 		wählen Sie im Kontextmenü <guimenu>Druckereinstellungen...</guimenu>
 		aus.</para></listitem>.
 
@@ -2646,7 +2647,7 @@ In der folgenden Liste werden Punkte nach den Buchstaben und Ziffern verlangt:::
 		<guimenu>Drucker</guimenu>.</para></listitem>
 
 		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>remoteprinter on cupshost</emphasis>)??? und
+		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
 		wählen Sie im Kontextmenü <guimenu>Einstellungen</guimenu>
 		aus.</para></listitem>.
 
@@ -2673,7 +2674,7 @@ In der folgenden Liste werden Punkte nach den Buchstaben und Ziffern verlangt:::
 		als Benutzer mit ausreichenden Rechten angemeldet).</para></listitem>
 
 		<listitem><para>Klicken Sie auf 
-		<guibutton>Printing Defaults</guibutton>???.</para></listitem>
+		<guibutton>Standardwerte</guibutton>.</para></listitem>
 
 		<listitem><para>Klicken Sie auf einem beliebigen der beiden neuen
 		Reiter auf den Knopf <guilabel>Erweitert</guilabel>.</para></listitem>
@@ -2692,7 +2693,7 @@ Aber nur im letzten, zu dem Sie mit den Schritten C.1 bis 6 gelangt sind, werden
 Einstellungen permanent gespeichert und werden daher zu Vorgabewerten bei neuen
 Benutzern. Wenn Sie möchten, dass diese Vorgabewerte für alle Clients gleich sind, 
 müssen Sie diese Schritte als Administrator 
-(<smbconfoption><name>printer admin</name></smbconfoption> in ???) ausführen, bevor
+(<smbconfoption><name>printer admin</name></smbconfoption> in &smb.conf;) ausführen, bevor
 ein Client den Treiber herunterlädt (später können die Clients ihre eigenen 
 benutzerspezifischen Vorgabewerte mit Hilfe der obigen Prozeduren A oder B 
 einstellen). Windows 200x/XP erlaubt benutzerspezifische Vorgabewerte und solche,
@@ -2722,7 +2723,7 @@ rundll32 printui.dll,PrintUIEntry /p /t3 /n\\<replaceable>SAMBA-SERVER</replacea
 </userinput></para>
 
 <para>
-Um den Reiter mit dem Knopf <guilabel>Printing Defaults</guilabel> ??? zu sehen 
+Um den Reiter mit dem Knopf <guilabel>Standardwerter</guilabel> zu sehen 
 (den Sie benötigen), führen Sie auch diesen Befehl aus:
 </para>
 
@@ -2747,7 +2748,7 @@ Sie die Befehle aus einer DOS-Shell oder mit <guimenu>Start</guimenu> ->
 Während der letzten Entwicklungsphase von Samba ist ein Problem aufgetaucht
 was die Unterstützung beim Herunterladen von Treibern für Hunderte von Druckern
 angeht. Den APW in Windows NT dafür zu benutzen ist, gelinde gesagt, ein wenig
-umständlich. Wenn Sie sich keine RSS-Schmerzen ??? allein von der Klick-Orgie bei der 
+umständlich. Wenn Sie sich keine Schmerzen allein von der Klick-Orgie bei der 
 Druckerinstallation holen möchten, müssen Sie über ein nicht-interaktives Skript
 nachdenken.
 </para>
@@ -2868,7 +2869,7 @@ in Windows NT. Der APW wird nur dann gezeigt, wenn:
 	</userinput></para>
 
 	<para>
-	Klicken Sie auf <guibutton>Printing Preferences</guibutton> ???.
+	Klicken Sie auf <guibutton>Druckereinstellungen</guibutton>.
 	</para></tip></listitem>
 
 	<listitem><para>... enthält die Einstellung
@@ -2911,7 +2912,8 @@ Für den letzten Punkt, einen neuen Drucker hinzufügen, ist mehr Aufwand nötig
 als für die anderen. Um mit dem APW einen Drucker zu einem 
 Samba-Server erfolgreich hinzufügen zu können, muss für  
 <smbconfoption><name>add printer command</name></smbconfoption> ein Wert
-definiert sein. Der Programmhaken ??? muss den Drucker erfolgreich ins 
+definiert sein. Das Programm muss den Drucker mittels eines sogenannten <quote>hooks</quote>
+erfolgreich ins 
 UNIX-Drucksystem einhängen (d.h. in die Dateien 
 <filename>/etc/printcap</filename>, <filename>/etc/cups/printers.conf</filename> 
 oder andere entsprechende Dateien) sowie in &smb.conf; falls nötig.
