@@ -13,14 +13,14 @@
 
 <refnamediv>
 	<refname>smbcquotas</refname>
-	<refpurpose>Set or get QUOTAs of NTFS 5 shares</refpurpose>
+	<refpurpose>Setzt oder fragt QUOTAs von NTFS 5-Freigaben ab</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbcquotas</command>
 		<arg choice="req">//server/share</arg>
-		<arg choice="opt">-u user</arg>
+		<arg choice="opt">-u Benutzer</arg>
 		<arg choice="opt">-L</arg>
 		<arg choice="opt">-F</arg>
 		<arg choice="opt">-S QUOTA_SET_COMMAND</arg>
@@ -28,12 +28,12 @@
 		<arg choice="opt">-t</arg>
 		<arg choice="opt">-v</arg>
 
-		<arg choice="opt">-d debuglevel</arg>
-		<arg choice="opt">-s configfile</arg>
-		<arg choice="opt">-l logdir</arg>
+		<arg choice="opt">-d DebugEbene</arg>
+		<arg choice="opt">-s KonfigDatei</arg>
+		<arg choice="opt">-l LogVerzeichnis</arg>
 		<arg choice="opt">-V</arg>
 
-		<arg choice="opt">-U username</arg>
+		<arg choice="opt">-U Benutzername</arg>
 		<arg choice="opt">-N</arg>
 		<arg choice="opt">-k</arg>
 		<arg choice="opt">-A</arg>
@@ -43,69 +43,73 @@
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>The <command>smbcquotas</command> program manipulates NT Quotas on SMB file shares. </para>
+	<para>Das Programm <command>smbcquotas</command> manipuliert 
+	NT Quotas auf SMB-Dateifreigaben.</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
-	<para>The following options are available to the <command>smbcquotas</command> program. </para>
+	<para>Für das Programm <command>smbcquotas</command> sind folgende
+	Optionen verfügbar.</para>
 
 
 	<variablelist>
 		<varlistentry>
-		<term>-u user</term>
-		<listitem><para> Specifies the user of whom the quotas are get or set.
-		By default the current user's username will be used.</para></listitem>
+		<term>-u Benutzer</term>
+		<listitem><para>Gibt den Benutzer an, dessen Quotas abgefragt
+		oder gesetzt werden. Standardmäßig wird der Benutzername des
+		aktuellen Benutzers verwendet.</para></listitem>
 		</varlistentry>
-		
 		
 		
 		<varlistentry>
 		<term>-L</term>
-		<listitem><para>Lists all quota records of the share.</para></listitem>
+		<listitem><para>Listet alle Quota-Einträge der Freigabe 
+		auf.</para></listitem>
 		</varlistentry>
 
 		
-		
 		<varlistentry>
 		<term>-F</term>
-		<listitem><para>Show the share quota status and default limits.</para></listitem>
+		<listitem><para>Zeigt den Quota-Status der Freigabe und die
+		vorgegebenen Beschränkungen an.</para></listitem>
 		</varlistentry>
-		
 		
 		
 		<varlistentry>
 		<term>-S QUOTA_SET_COMMAND</term>
-		<listitem><para>This command sets/modifies quotas for a user or on the share,
-		depending on the QUOTA_SET_COMMAND parameter which is described later.</para></listitem>
+		<listitem><para>Dieser Befehl setzt/modifiziert Quotas für 
+		einen Benutzer oder auf der Freigabe, je nach Parameter zum 
+		QUOTA_SET_COMMAND, der später beschrieben wird.</para></listitem>
 		</varlistentry>
 
 		
 		<varlistentry>
 		<term>-n</term>
-		<listitem><para>This option displays all QUOTA information in numeric 
-		format.  The default is to convert SIDs to names and QUOTA limits 
-		to a readable string format.</para></listitem>
+		<listitem><para>Diese Option zeigt alle QUOTA-Informationen in 
+		numerischem Format an. Per Voreinstellung werden SIDs in Namen
+		und QUOTA-Beschränkungen in ein lesbares String-Format
+		konvertiert.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-t</term>
-		<listitem><para>
-		Don't actually do anything, only validate the correctness of the arguments.
-		</para></listitem>
+		<listitem><para>Tut eigentlich nichts, außer die Korrektheit der
+		Argumente zu prüfen.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-v</term>
 		<listitem><para>
-		Be verbose.
+		Ist ausführlich.
 		</para></listitem>
 		</varlistentry>
 				
@@ -119,19 +123,21 @@
 <refsect1>
 	<title>QUOTA_SET_COMAND</title>
 
-	<para>The format of an ACL is one or more ACL entries separated by 
-	either commas or newlines.  An ACL entry is one of the following: </para>
+	<para>Das Format einer ACL besteht aus einem oder mehreren ACL-Einträgen
+	getrennt durch Kommas oder Zeilenumbrüche. Ein ACL-Eintrag ist einer von
+	folgenden Möglichkeiten:</para>
 
 	<para>
-	for setting user quotas for the user specified by -u or the current username:
+	zum Setzen von Benutzer-Quotas für den mit -u angegebenen Benutzer oder 
+	den aktuellen Benutzernamen:
 	</para>
 
 	<para><userinput>
-	UQLIM:&lt;username&gt;:&lt;softlimit&gt;/&lt;hardlimit&gt;
+	UQLIM:&lt;Benutzername&gt;:&lt;softlimit&gt;/&lt;hardlimit&gt;
 	</userinput></para>
 
 	<para>
-	for setting the default quotas for a share:
+	zum Setzen der Standard-Quotas für eine Freigabe:
 	</para>
 
 	<para><userinput>
@@ -139,7 +145,7 @@
 	</userinput></para>
 
 	<para>
-	for changing the share quota settings:
+	zum Ändern von Quota-Einstellungen der Freigabe:
 	</para>
 
 	<para><userinput>
@@ -148,17 +154,19 @@
 </refsect1>
 
 <refsect1>
-	<title>EXIT STATUS</title>
+	<title>EXIT-STATUS</title>
 
-	<para>The <command>smbcquotas</command> program sets the exit status
-	depending on the success or otherwise of the operations performed.
-	The exit status may be one of the following values. </para>
+	<para>Das Programm <command>smbcquotas</command> setzt den Exit-Status
+	abhängig vom Ergebnis der ausgeführten Operationen. Der Exit-Status 
+	kann einer der folgenden Werte sein.</para>
 
-	<para>If the operation succeeded, smbcquotas returns an exit
-	status of 0.  If <command>smbcquotas</command> couldn't connect to the specified server,
-	or when there was an error getting or setting the quota(s), an exit status
-	of 1 is returned.  If there was an error parsing any command line
-	arguments, an exit status of 2 is returned. </para>
+	<para>Falls die Operation erfolgreich war, gibt smbcquotas den 
+	Exit-Status 0 zurück. Falls <command>smbcquotas</command> keine 
+	Verbindung zum angegebenen Server herstellen konnte, oder wenn es 
+	einen Fehler beim Abfragen oder Setzen der Quota(s) gab, wird der 
+	Exit-Status 1 zurückgegeben. Wenn es beim Parsen eines Arguments 
+	auf der Kommandozeile einen Fehler gab, wird der Exit-Status 
+	2 zurückgegeben.</para>
 </refsect1>
 
 <refsect1>
