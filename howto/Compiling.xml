@@ -12,13 +12,13 @@
 <title>Wie man Samba kompiliert</title>
 
 <para>
-Der Source-Text von Samba kann auf der <ulink url="http://samba.org/">Samba Website.</ulink>
+Der Source-Text von Samba kann auf der <ulink url="http://samba.org/">Samba Website</ulink>
 bezogen werden. Um eine Entwickler-Version zu beziehen, kann man Samba mittels CVS oder
 <command>rsync</command> herunterladen.
 </para>
 
 <sect1>
-<title>Der Zugriff auf Samba Source Code via CVS</title>
+<title>Der Zugriff auf den Source Code von Samba via CVS</title>
 
 
 <sect2>
@@ -75,7 +75,7 @@ Verwenden Sie die URL:
 <title>Zugriff via CVS</title>
 
 <para>
-Sie können auf den Quelltext auch mittels eines normalen CVS-clients zugreifen.
+Sie können auf den Quelltext auch mittels eines normalen CVS-Clients zugreifen.
 Dies gibt Ihnen mehr Kontrolle darüber, was Sie mit dem Repository tun können,
 und erlaubt Ihnen, ganze Quelltext-Bäume mittels checkout abzuholen, und sie mittels
 normaler CVS-Befehle am Stand zu halten. Dies ist die bevorzugte Variante des Zugriffs,
@@ -87,8 +87,8 @@ Um den letzten CVS-Quelltext herunterzuladen, geben Sie folgende URL in Ihren Br
 <ulink noescape="1" url="http://www.cyclic.com/">http://www.cyclic.com/</ulink>.
 und klicken SIe auf den Link <quote>How to get CVS</quote>. CVS ist freie Software
 unter der GNU GPL (so wie auch Samba). Wir machen Sie darauf aufmerksam, daß es auch
-einige graphische CVS-clients gibt, die eine graphische Oberfläche für die manchmal
-sehr nüchternen CVS-Befehle anbieten. Links zu diesen clients sind auch auf der
+einige graphische CVS-Clients gibt, die eine graphische Oberfläche für die manchmal
+sehr nüchternen CVS-Befehle anbieten. Links zu diesen Clients sind auch auf der
 Cyclic Web site verfügbar.
 </para>
 
@@ -105,7 +105,7 @@ den Package-Namen.
 	<step>
 	<para>
 	Installieren Sie eine aktuelle Version von CVS.
-	Alles was Sie brauchen, ist eine Kopie des CVS-client-Programmes.
+	Alles was Sie brauchen, ist eine Kopie des CVS-Client-Programmes.
 	</para>
 	</step>
 
@@ -181,7 +181,7 @@ den Package-Namen.
 	<parameter>pserver.samba.org</parameter> exportiert auch ungepackte Kopien der meisten Teile des CVS-Baums
 	unter <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">ftp://pserver.samba.org/pub/unpacked</ulink> und auch via anonymem rsync unter 
 	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync://pserver.samba.org/ftp/unpacked/</ulink>. Wir empfehlen, rsync anstatt ftp zu verwenden.
-	Sehen Sie <ulink noescape="1" url="http://rsync.samba.org/">the rsync homepage</ulink> für mehr Informationen zu rsync.
+	Sehen Sie <ulink noescape="1" url="http://rsync.samba.org/">die rsync-homepage</ulink> für mehr Informationen zu rsync.
 	</para>
 
 	<para>
@@ -288,13 +288,13 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 
 	<para>Bitte beachten Sie, daß Sie beim Upgrade von einer vorigen Version
 	möglicherweise wissen wollen, daß dabei die alten Programme umbenannt werden,
-	und zwar durch das Anhängen von <quote>.old</quote>. Sie können dann zur
-	alten Version zurückkehren,</para>
+	und zwar durch das Anhängen von <quote>.old</quote>. Sie können dann mit
+	</para>
 	
 <para><screen>&rootprompt;<userinput>make revert
 </userinput></screen></para>
 	
-	<para>wenn Sie die neue Version als Desaster empfinden!</para>
+	<para>zur alten Version zurückkehren, wenn Sie die neue Version als Desaster empfinden!</para>
 
 	<sect2>
 	<title>Das Kompilieren von Samba mit Active Directory Support</title>
@@ -304,15 +304,15 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 	
 	<itemizedlist>
 	
-	    <listitem><para>Die MIT- oder Heimdal-Kerberos development libraries
+	    <listitem><para>Die MIT- oder Heimdal-Kerberos Entwickler-Bibliotheken
 	    (entweder selbst kompiliert oder aus einem Package).</para></listitem>
 	
-	    <listitem><para>Die OpenLDAP development libraries.</para></listitem>
+	    <listitem><para>Die OpenLDAP Entwickler-Bibliotheken.</para></listitem>
 	    
 	</itemizedlist>
 
-	<para>Wenn Ihre Kerberos libraries an einem vom Standard-Verzeichnis abweichenden Ort liegen,
-		fügen Sie die configure option 
+	<para>Wenn Ihre Kerberos-Bibliotheken an einem vom Standard-Verzeichnis abweichenden Ort liegen,
+		fügen Sie die configure-option 
 		<option>--with-krb5=<replaceable>DIR</replaceable></option> hinzu.</para>
 
 	<para>Nachdem Sie configure ausgeführt haben, prüfen Sie, ob die entstandene Datei
@@ -323,7 +323,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 #define HAVE_LDAP 1
 </programlisting></para>
 
-	<para>Falls dem nicht so ist, hat configure Ihre KRB5 libraries oder LDAP libraries
+	<para>Falls dem nicht so ist, hat configure Ihre KRB5-libraries oder LDAP-libraries
 	nicht gefunden. Konsultieren Sie <filename>config.log</filename>, um den Grund dafür
 	zu finden und zu beheben.</para>
 
@@ -364,7 +364,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 	<title>SuSE Linux Package Erfordernisse</title>
 
 	<para>SuSE Linux installiert Heimdal-Packages, die erforderlich sein könnten, um 
-	Binary-packages erstellen zu können. Sie sollten überprüfen, ob diese development-libraries
+	Binary-Packages erstellen zu können. Sie sollten überprüfen, ob diese Entwickler-Bibliotheken
 	auf Ihrem System installiert wurden.
 	</para>
 
@@ -424,14 +424,13 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		<para>Als nächstes editieren Sie Ihre <filename>/etc/inetd.conf</filename> 
 		und fügen zwei Zeilen wie diese hinzu:</para>
 
-		<para><programlisting>
-		netbios-ssn stream tcp nowait root /usr/local/samba/bin/smbd smbd 
+		<para><programlisting>netbios-ssn stream tcp nowait root /usr/local/samba/bin/smbd smbd
 		netbios-ns dgram udp wait root /usr/local/samba/bin/nmbd nmbd 
 		</programlisting></para>
 
 		<para>Die exakte Syntax von <filename>/etc/inetd.conf</filename> 
-		variiert zwischen UNIX's. Nehmen Sie sich andere Einträge in inetd.conf 
-		zur Vorlage. </para>
+		variiert zwischen den einzelnen UNIX's. Nehmen Sie sich 
+		einfach andere Einträge in der inetd.conf zur Vorlage. </para>
 
 	<para>
 		<indexterm><primary>xinetd</primary></indexterm>
@@ -441,7 +440,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		<note><para>Manche UNIX's haben bereits Einträge wie netbios_ns (beachten Sie
 		den Unterstrich) in <filename>/etc/services</filename>. Sie müssen
 		<filename>/etc/services</filename> oder <filename>/etc/inetd.conf</filename>
-		editieren, um beide konsistent zu erhalten.</para></note>
+		editieren, um beide konsistent zu halten.</para></note>
 
 		<note><para>
 		<indexterm><primary>ifconfig</primary></indexterm>
@@ -462,9 +461,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 		<para>Starten Sie <application>inetd</application> neu, bzw. senden Sie
 		das Signal HUP.</para>
 
-		<screen>
-			&rootprompt;<userinput>killall -HUP inetd</userinput>
-		</screen>
+		<screen>&rootprompt;<userinput>killall -HUP inetd</userinput></screen>
 		
 	</sect2>
 	
@@ -485,11 +482,11 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 
 		<para>Machen sie es ausführbar mittels <command>chmod +x startsmb</command></para>
 
-		<para>Dann können <command>startsmb</command> von Hand starten oder in der Datei
+		<para>Dann können Sie <command>startsmb</command> von Hand starten oder in der Datei
 		<filename>/etc/rc.local</filename>.
                 </para>
 
-		<para>Um die Daemonen zu beenden, senden Sie ein KILL-Signal and die Prozesse
+		<para>Um die Daemonen zu beenden, senden Sie ein KILL-Signal an die Prozesse
 		&nmbd; and &smbd;.</para>
 
 		<note><para>Wenn Sie das init-System in der Art von SVR4 verwenden, wollen Sie
