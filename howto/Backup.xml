@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="Backup">
 <chapterinfo>
 	&author.jht;
@@ -33,7 +34,7 @@ enthält, die simpel, effizient, und, in Kombination, imstande sind, jegliches Er
 <para>
 Eine der Fürsprecher des Windows-Networkings erwiderte, daß sie, wenn sie ein Werkzeug-Set haben
 wollte, eines kaufen würde. Sie stellte heraus, daß ein einzelnes komplexes Werkzeug, das mehr tut,
-als notwendig, dies jedoch mit einem klaren Zweck und Ziel, von jemandem wir ihr bevorzugt wird.
+als notwendig, dies jedoch mit einem klaren Zweck und Ziel, von jemandem wie ihr bevorzugt wird.
 </para>
 
 <para>
@@ -50,7 +51,7 @@ www.allmerchants.com</ulink>.
 </para>
 
 <para>
-Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
+Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 </para>
 
 	<sect2>
@@ -66,7 +67,7 @@ Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 	</para>
 
 	<para>
-	BackupPC ist hoch-performantes Perl-basierendes Package zum Backup von Linux, UNIX oder
+	BackupPC ist ein hoch-performantes Perl-basierendes Package zum Backup von Linux, UNIX oder
 	Windows-PCs oder Laptops auf die Festplatte eines Servers. Es ist hochgradig konfigurierbar,
 	leicht zu installieren und zu warten. SMB (via smbclient),
         <command>tar</command> über <command>rsh/ssh</command> oder <command>rsync/rsyncd</command>
@@ -75,14 +76,14 @@ Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 
 	<para>
 	Angesichts der sinkenden Kosten von Festplatten und RAID-Systemen ist es nunmehr praktisch
-	und kosten-effizient, eine grosse Anzahl von Maschinen auf die lokale Platte eines Servers
+	und kosteneffizient, eine grosse Anzahl von Maschinen auf die lokale Platte eines Servers
 	oder dessen Netzwerk-Laufwerke zu sichern. Dies tut BackupPC.	
 	</para>
 
 	<para>
 	Haupteigenschaften sind das "Pooling" identischer Dateien (grosse Ersparnisse an 
 	Plattenplatz am Server), Kompression, und eine umfassende CGI-Oberfläche, die es
-	Benutzern erlaubt, in Backups zu suchen, und Dateien wiederherzustellen.
+	Benutzern erlaubt, in Backups zu suchen und Dateien wiederherzustellen.
 	</para>
 
 	<para>
@@ -96,62 +97,64 @@ Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 	<sect2>
 	<title>Rsync</title>
 
-	<para><command>rsync</command> is a flexible program for efficiently copying files or
-		directory trees.</para>
+	<para><command>rsync</command> 
+	 ist ein flexibles Programm zum effizienten Kopieren von Dateien und Verzeichnisbäumen.</para>
 
-	<para><command>rsync</command> has many options to select which files will be copied
-	  zand how they are to be transferred. It may be used as an
-	  alternative to <command>ftp, http, scp</command>, or <command>rcp</command>.</para>
+	<para><command>rsync</command>
+	 hat viele Optionen, um auszuwählen, welche Dateien kopiert werden und wie sie übermittelt
+	werden sollen. Es kann als Alternative zu <command>ftp, http, scp</command>, oder
+	<command>rcp</command> verwendet werden.</para>
 
-	<para>The rsync remote-update protocol allows rsync to transfer just
-	  the differences between two sets of files across the network link,
-	  using an efficient checksum-search algorithm described in the
-	  technical report that accompanies the rsync package.</para>
 
-	<para>Some of the additional features of rsync are:</para>
+	<para>Das rsync "remote-update"-Protokoll erlaubt es dem Programm, nur die Unterschiede
+	zwischen zwei Dateibeständen über das Netzwerk transportieren zu müssen, unter Verwendung
+	eines effizienten Prüfsummen-Such-Algorithmus, der in dem technischen Report beschrieben wird,
+	der im rsync-Package enthalten ist.</para>
+
+	<para>Einige der zusätzlichen Features von rsync sind:</para>
 
 	<itemizedlist>
 
 		<listitem>
 		  <para>
-		    Support for copying links, devices, owners, groups, and permissions.
+		Unterstützung für das Kopieren von Links, Geräte-Dateien, Benutzer, Gruppen,
+		und Berechtigungen.		    
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Exclude and exclude-from options are similar to GNU tar.
+		    Exclude- und exclude-from-Optionen ähnlich zu GNU tar.
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    A CVS exclude mode for ignoring the same files that CVS would ignore.
+		Einen CVS-exclude-Modus, um dieselben Dateien zu ignorieren, die auch CVS ignoriert.
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Can use any transparent remote shell, including rsh or ssh.
+		Kann jede transparente remote shell verwenden, inklusive rsh oder ssh.
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Does not require root privileges.
+		Erfordert keine root-Privilegien.		
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Pipelining of file transfers to minimize latency costs.
+		Dateitransfers werden in Pipelines zusammengefasst, um Latenz zu minimieren.
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Support for anonymous or authenticated rsync servers (ideal for
-		    mirroring).
+		Unterstützung für anonyme oder authentifizierte rsync-Server (ideal für das Spiegeln).
 		  </para>
 		</listitem>
 	</itemizedlist>
@@ -159,22 +162,23 @@ Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 	</sect2>
 
 	<sect2>
-	<title>Amanda</title>
+	<title>AMANDA</title>
 
 
 	<para>
-	<indexterm><primary>Amanda</primary></indexterm>
-	Amanda, the Advanced Maryland Automatic Network Disk Archiver, is a backup system that
-	allows the administrator of a LAN to set up a single master backup server to back up
-	multiple hosts to a single large capacity tape drive. Amanda uses native dump and/or
-	GNU tar facilities and can back up a large number of workstations running multiple
-	versions of UNIX. Recent versions can also use Samba to back up Microsoft Windows hosts.
+	<indexterm><primary>AMANDA</primary></indexterm>
+	AMANDA, der Advanced Maryland Automatic Network Disk Archiver, ist ein Backup-System,
+	das es dem Administrator eines LANs erlaubt, einen einzelnen Master-Backup-Server
+	aufzusetzen, um mehrere Hosts auf ein einzelnes Bandlaufwerk grosser Kapazität zu sichern.
+	AMANDA verwendet die nativen Dienste von dump und/oder GNU tar und kann eine grosse Anzahl
+	von Workstations sichern, die unter verschiedenen Versionen von UNIX laufen. Neuere
+	Releases von AMANDA können auch Samba dazu verwenden, Microsoft Windows Hosts zu sichern.
 	</para>
 
 	<para>
-	For more information regarding Amanda, please check the <ulink url="http://www.amanda.org/">
-	www.amanda.org/ site.</ulink>
-	</para>
+	Mehr Informationen zu AMANDA finden Sie auf der Projekt-Seite 
+	<ulink url="http://www.amanda.org/">www.amanda.org.</ulink>
+        </para>	
 
 	</sect2>
 
@@ -184,13 +188,14 @@ Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 	
 	<para>
 	<indexterm><primary>BOBS</primary></indexterm>
-	Browseable Online Backup System (BOBS) is a complete online backup system. Uses large
-	disks for storing backups and lets users browse the files using a Web browser. Handles
-	some special files like AppleDouble and icon files.
+	Browseable Online Backup System (BOBS) ist ein komplettes Online-Backup-System. Es
+	verwendet grosse Platten zum Speichern von Backups, und gestattet es Anwendern, die
+	gesicherten Dateien mittels Web-Browser zu durchsuchen. Es kann auch mit einigen speziellen
+	Dateien umgehen, wie AppleDouble- und icon-Dateien.
 	</para>
 
 	<para>
-	The home page for BOBS is located at <ulink url="http://bobs.sourceforge.net/">
+	Die homepage für BOBS ist <ulink url="http://bobs.sourceforge.net/">
 	bobs.sourceforge.net.</ulink>
 	</para>
 
