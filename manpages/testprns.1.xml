@@ -13,77 +13,67 @@
 
 <refnamediv>
 	<refname>testprns</refname>
-	<refpurpose>check printer name for validity with smbd</refpurpose>
+	<refpurpose>prüft den Druckernamen mit smbd auf Korrektheit</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>testprns</command>
-		<arg choice="req">printername</arg>
-		<arg choice="opt">printcapname</arg>
+		<arg choice="req">Druckername</arg>
+		<arg choice="opt">printcap-Name</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>testprns</command> is a very simple test program 
-	to determine whether a given printer name is valid for use in 
-	a service to be provided by <citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>.</para>
+	<para><command>testprns</command> ist ein sehr einfaches Testprogramm, 
+	das bestimmt, ob ein gegebener Druckername in einem von 
+	<citerefentry><refentrytitle>smbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> anzubietenden Dienst
+	gültig ist.</para>
 
-	<para>"Valid" in this context means "can be found in the 
-	printcap specified". This program is very stupid - so stupid in 
-	fact that it would be wisest to always specify the printcap file 
-	to use. </para>
+	<para>"Gültig" bedeutet in diesem Kontext "kann in dem angegebenen
+	printcap gefunden werden". Dieses Programm ist sehr dumm - in der
+	Tat so dumm, dass es am besten ist, die zu verwendende printcap-Datei 
+	immer anzugeben.</para>
 
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
-		<term>printername</term>
-		<listitem><para>The printer name to validate.</para>
+		<term>Druckername</term>
+		<listitem><para>Der zu überprüfende Druckername.</para>
 		
-		<para>Printer names are taken from the first field in each 
-		record in the printcap file, single printer names and sets 
-		of aliases separated by vertical bars ("|") are recognized. 
-		Note that no validation or checking of the printcap syntax is 
-		done beyond that required to extract the printer name. It may
-		be that the print spooling system is more forgiving or less 
-		forgiving than <command>testprns</command>. However, if 
-		<command>testprns</command> finds the printer then <citerefentry>
-		<refentrytitle>smbd</refentrytitle><manvolnum>8</manvolnum>
-		</citerefentry> should do so as well. </para></listitem>
+		<para>Druckernamen werden aus dem ersten Feld eines jeden Eintrags 
+		der printcap-Datei entnommen, einzelne Druckernamen und durch 
+		vertikale Balken ("|") getrennte Alias-Sätze werden erkannt. 
+		Man beachte, dass keine Überprüfung der printcap-Syntax über das
+		notwendige Maß hinaus erfolgt, um den Druckernamen zu
+		extrahieren. Es kann sein, dass das Drucker-Spooling-System mehr
+		oder weniger tolerant ist als <command>testprns</command>. Wenn 
+		<command>testprns</command> den Drucker aber findet, dann sollte
+		das auch bei <citerefentry><refentrytitle>smbd</refentrytitle>
+		<manvolnum>8</manvolnum></citerefentry> der Fall sein.
+		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>	
-		<term>printcapname</term>
-		<listitem><para>This is the name of the printcap file within
-		which to search for the given printer name. </para>
+		<term>printcap-Name</term>
+		<listitem><para>Dies ist der Name der printcap-Datei, in der
+		nach dem angegebenen Druckernamen gesucht wird.</para>
 
-		<para>If no printcap name is specified <command>testprns
-		</command> will attempt to scan the printcap file name 
-		specified at compile time. </para></listitem>
-		</varlistentry>
-	</variablelist>
-</refsect1>
-
-
-<refsect1>
-	<title>FILES</title>
-
-	<variablelist>
-		<varlistentry>
-		<term><filename>/etc/printcap</filename></term>
-		<listitem><para>This is usually the default printcap 
-		file to scan. See <filename>printcap (5)</filename>. 
+		<para>Wenn kein printcap-Name angegeben wird, versucht
+		<command>testprns</command>, den printcap-Dateinamen zu 
+		scannen, der zum Zeitpunkt der Kompilierung angegeben wurde. 
 		</para></listitem>
 		</varlistentry>
 	</variablelist>
@@ -91,24 +81,37 @@
 
 
 <refsect1>
-	<title>DIAGNOSTICS</title>
+	<title>DATEIEN</title>
 
-	<para>If a printer is found to be valid, the message 
-	"Printer name &lt;printername&gt; is valid" will be 
-	displayed. </para>
+	<variablelist>
+		<varlistentry>
+		<term><filename>/etc/printcap</filename></term>
+		<listitem><para>Dies ist normalerweise die vorgegebene 
+		printcap-Datei, die gescannt wird. Siehe 
+		<filename>printcap (5)</filename>. 
+		</para></listitem>
+		</varlistentry>
+	</variablelist>
+</refsect1>
 
-	<para>If a printer is found to be invalid, the message
-	"Printer name &lt;printername&gt; is not valid" will be 
-	displayed. </para>
 
-	<para>All messages that would normally be logged during
-	operation of the Samba daemons are logged by this program to the 
-	file <filename>test.log</filename> in the current directory. The
-	program runs at debuglevel 3, so quite extensive logging 
-	information is written. The log should be checked carefully 
-	for errors and warnings. </para>
+<refsect1>
+	<title>DIAGNOSEMELDUNGEN</title>
 
-	<para>Other messages are self-explanatory. </para>
+	<para>Wenn ein Drucker als gültig erkannt wird, wird die Meldung 
+	"Printer name &lt;druckername&gt; is valid" angezeigt.</para>
+
+	<para>Wird ein Drucker als ungültig erkannt, wird die Meldung
+	"Printer name &lt;druckername&gt; is not valid" angezeigt.</para>
+
+	<para>Alle Meldungen, die normalerweise von den Samba-Daemons 
+	während ihrer Operation geloggt werden, werden von diesem Programm
+	in der Datei <filename>test.log</filename> im aktuellen Verzeichnis
+	geloggt. Das Programm läuft auf Debug-Ebene 3, d.h. es wird recht
+	viel Log-Information geschrieben. Die Log-Datei sollte aufmerksam
+	nach Fehlern und Warnungen durchsucht werden.</para>
+
+	<para>Die anderen Meldungen sind selbsterklärend.</para>
 </refsect1>
 
 
@@ -120,10 +123,11 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><filename>printcap(5)</filename>, 
 	<citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>smbclient</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry>, 
+	<citerefentry><refentrytitle>smbclient</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry></para>
 </refsect1>
 
