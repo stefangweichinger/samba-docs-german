@@ -1975,44 +1975,37 @@ Jedoch ist etwas Ähnliches mit CUPS möglich. Lesen Sie weiter.
 </sect1>
 
 <sect1>
-<title>Network Printing (Windows Clients &smbmdash; UNIX/Samba Print
-Servers)</title>
+<title>Netzwerk-Druck (Windows Clients &smbmdash; UNIX/Samba Druck-Server)</title>
 
 <para>
-Since UNIX print servers <emphasis>cannot</emphasis> execute the Win32
-program code on their platform, the picture is somewhat
-different. However, this does not limit your options all that
-much. On the contrary, you may have a way here to implement printing
-features that are not possible otherwise.
+Da UNIX Server den Win32 Programm-Code <emphasis>NICHT</emphasis> auf ihrer Plattform ausführen können, ist
+die Sache etwas anders. Dies schränkt jedoch Ihre Möglichkeiten nicht allzu sehr ein. Im Gegenteil, Sie haben
+hier die Möglichkeit, Druckoptionen zu implementieren, die anderswo nicht möglich sind.
 </para>
 
 <sect2>
-<title>From Windows Clients to a CUPS/Samba Print Server</title>
+<title>Von Windows Clients auf einen CUPS/Samba Druck-Server</title>
 
 <para>
-Here is a simple recipe showing how you can take advantage of CUPS'
-powerful features for the benefit of your Windows network printing
-clients:
+Hier ist ein einfaches Rezept, das zeigt, wie Sie Vorteile aus den mächtigen Eigenschaften von CUPS ziehen, zum
+Nutzen Ihrer druckenden Windows Clients:
 </para>
 
 <itemizedlist>
 
-<listitem><para>Let the Windows clients send PostScript to the CUPS
-server.</para></listitem>
+<listitem><para>Lassen Sie die Windows Clients PostScript an den CUPS Server senden.</para></listitem>
 
-<listitem><para>Let the CUPS server render the PostScript into device-specific raster format.</para></listitem>
+<listitem><para>Lassen Sie den CUPS Server das PostScript in ein geräte-spezifisches Format wandeln.</para></listitem>
 </itemizedlist>
 
 <para>
-This requires the clients to use a PostScript driver (even if the
-printer is a non-PostScript model. It also requires that you have a
-driver on the CUPS server.
+Dies erfordert, daß die Clients einen PostScript-Treiber verwenden (sogar wenn der Drucker kein PostScript-Modell
+ist). Es erfordert auch, daß Sie einen Treiber auf dem CUPS-Server haben.
 </para>
 
 <para>
-First, to enable CUPS-based printing through Samba the
-following options should be set in your &smb.conf; file [global]
-section:
+Zuerst, um CUPS-basierendes Drucken per Samba zu aktivieren, sollten folgende Optionen im Abschitt
+[global] Ihrer Datei &smb.conf; gesetzt werden:
 </para>
 
 <smbconfblock>
@@ -2021,59 +2014,55 @@ section:
 </smbconfblock>
 
 <para>
-When these parameters are specified, all manually set print directives
-(like <smbconfoption><name>print command</name></smbconfoption>, or <smbconfoption><name>lppause command</name></smbconfoption>) in &smb.conf; (as well as
-in Samba itself) will be ignored. Instead, Samba will directly
-interface with CUPS through its application program interface (API),
-as long as Samba has been compiled with CUPS library (libcups)
-support. If Samba has not been compiled with CUPS support, and if no
-other print commands are set up, then printing will use the
-<emphasis>System V</emphasis> AT&amp;T command set, with the -oraw
-option automatically passing through (if you want your own defined
-print commands to work with a Samba that has CUPS support compiled in,
-simply use <smbconfoption><name>printing</name><value>sysv</value></smbconfoption>).
+Wenn diese Parameter angegeben werden, werden alle manuell gesetzten Druck-Anweisungen (wie
+<smbconfoption><name>print command</name></smbconfoption> oder 
+<smbconfoption><name>lppause command</name></smbconfoption>) in &smb.conf; (genauso wie in Samba selbst)
+ignoriert. Stattdessen arbeitet Samba direkt mit CUPS zusammen, unter Verwendung dessen 
+"application program interface" (API), sofern Samba mit Unterstützung der CUPS-Bibliothek (libcups) kompiliert
+wurde. Wenn Samba nicht mit CUPS-Unterstützung kompiliert wurde, und wenn keine anderen Druckbefehle gesetzt 
+sind, wird der Druck den <emphasis>System V</emphasis> AT&amp;T Befehlssatz verwenden, mit der automatisch
+gesetzten Option -oraw, womit Druckaufträge einfach weitergegeben werden (wenn Sie Ihre selbstdefinierten
+Druckbefehle mit einem Samba-Server, der CUPS-Unterstützung einkompiliert hat, verwenden wollen, verwenden Sie
+einfach <smbconfoption><name>printing</name><value>sysv</value></smbconfoption>).
 </para>
 
 <para>
-<image><imagedescription>Printing via CUPS/Samba server.</imagedescription>
+<image><imagedescription>Drucken über einen CUPS/Samba Server.</imagedescription>
 	<imagefile>13small</imagefile>
 </image>
 </para>
 </sect2>
 
 <sect2>
-<title>Samba Receiving Job-files and Passing Them to CUPS</title>
+<title>Samba empfängt Aufträge und gibt sie an CUPS weiter</title>
 
 <para>
-Samba <emphasis>must</emphasis> use its own spool directory (it is set
-by a line similar to <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>,
-in the <smbconfsection>[printers]</smbconfsection> or
-<smbconfsection>[printername]</smbconfsection> section of
-&smb.conf;). Samba receives the job in its own
-spool space and passes it into the spool directory of CUPS (the CUPS
-spooling directory is set by the <parameter>RequestRoot</parameter>
-directive, in a line that defaults to <parameter>RequestRoot
-/var/spool/cups</parameter>). CUPS checks the access rights of its
-spool dir and resets it to healthy values with every restart. We have
-seen quite a few people who had used a common spooling space for Samba
-and CUPS, and were struggling for weeks with this <quote>problem.</quote>
+Samba <emphasis>muss</emphasis> sein eigenes Spooling-Verzeichnis verwenden (es wird mit einer Zeile wie
+<smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption> im Abschnitt
+<smbconfsection>[printers]</smbconfsection> oder <smbconfsection>[printername]</smbconfsection> von
+&smb.conf; gesetzt). Samba empfängt den Auftrag in seinem eigenen Spooling-Verzeichnis und gibt ihn weiter ins
+Spooling-Verzeichnis von CUPS (das CUPS-Spooling-Verzeichnis wird gesetzt mittels der Anweisung
+<parameter>RequestRoot</parameter>, in einer Zeile die voreingestellt 
+<parameter>RequestRoot /var/spool/cups</parameter> lautet). CUPS prüft die Zugriffsrechte und setzt diese auf
+vernünftige Werte, bei jedem Neustart. Wir haben schon ziemlich viele Leute gesehen, die ein gemeinsames
+Spooling-Verzeichnis verwendet haben, und wochenlang mit diesem <quote>Problem</quote> zu kämpfen hatten.
 </para>
 
 <para>
-A Windows user authenticates only to Samba (by whatever means is
-configured). If Samba runs on the same host as CUPS, you only need to
-allow <quote>localhost</quote> to print. If they run on different machines, you
-need to make sure the Samba host gets access to printing on CUPS.
+Ein Windows-Benutzer authentifiziert sich nur gegen Samba (mittels dessen, was konfiguriert wurde). Wenn Samba
+auf demselben Host wie CUPS läuft, brauchen Sie nur dem Rechner <quote>localhost</quote> zu erlauben, zu drucken.
+Wenn sie auf verschiedenen Maschinen laufen, müssen Sie sicherstellen, daß der Samba-Host Zugriff auf das Drucken
+auf CUPS hat.
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Network PostScript RIP</title>
+<title>Netzwerk PostScript RIP</title>
 
 <para>
-This section discusses the use of CUPS filters on the server &smbmdash; configuration where
-clients make use of a PostScript driver with CUPS-PPDs.
+Dieser Abschnitt behandelt die Verwendung von CUPS-Filtern auf der Server &smbmdash; Konfiguration, in der
+Clients einen PostScript-Treiber mit CUPS-PPDs verwenden.
 </para>
 
 
@@ -2081,62 +2070,55 @@ clients make use of a PostScript driver with CUPS-PPDs.
 <indexterm><primary>PostScript</primary></indexterm>
 <indexterm><primary>PCL</primary></indexterm>
 <indexterm><primary>PJL</primary></indexterm>
-PPDs can control all print device options. They are usually provided
-by the manufacturer, if you own a PostScript printer, that is. PPD
-files (PostScript Printer Descriptions) are always a component of
-PostScript printer drivers on MS Windows or Apple Mac OS systems. They
-are ASCII files containing user-selectable print options, mapped to
-appropriate PostScript, PCL or PJL commands for the target
-printer. Printer driver GUI dialogs translate these options
-<quote>on-the-fly</quote> into buttons and drop-down lists for the user to select.
+PPDs können alle Optionen des Drucker-Geräts kontrollieren. Sie werden üblicherweise vom Hersteller
+bereitgestellt, wenn Sie einen PostScript-Drucker besitzen. PPD-Dateien ((PostScript Printer Descriptions)
+sind immer Bestandteil der Druckertreiber auf MS Windows oder Apple Mac OS Systemen. Es sind ASCII-Dateien,
+die vom Benutzer wählbare Druckoptionen enthalten, sowie deren Zuweisung auf die enstprechenden PostScript, PCL
+oder PJL Befehle für das Ziel-Gerät. Die GUI-Dialoge der Druckertreiber übersetzen diese Optionen
+<quote>on-the-fly</quote> in Schaltflächen und Auswahllisten, um dem Benutzer eine Auswahl anzubieten.
 </para>
 
 <para>
-CUPS can load, without any conversions, the PPD file from any Windows
-(NT is recommended) PostScript driver and handle the options. There is
-a Web browser interface to the print options (select <ulink
-noescape="1" url="http://localhost:631/printers/">http://localhost:631/printers/</ulink>
-and click on one <guibutton>Configure Printer</guibutton> button to see
-it), or a command line interface (see <command>man lpoptions</command>
-or see if you have <command>lphelp</command> on your system). There are also some
-different GUI front-ends on Linux/UNIX, which can present PPD options
-to users. PPD options are normally meant to be evaluated by the
-PostScript RIP on the real PostScript printer.
+CUPS kann ohne jede Umwandlung PPD-Dateien von jedem Windows-PS-Treiber (NT wird empfohlen) und dessen Optionen
+verarbeiten. Es gibt ein Web-Interface zu den Druck-Optionen (gehen Sie auf
+<ulink noescape="1" url="http://localhost:631/printers/">http://localhost:631/printers/</ulink> und klicken Sie
+auf eine <guibutton>Configure Printer</guibutton>-Schaltfläche) oder ein Befehlszeilen-Interface (sehen Sie dazu
+<command>man lpoptions</command> oder prüfen Sie, ob Sie <command>lphelp</command> auf Ihrem System haben). Es
+gibt auch ein paar verschiedene GUI Front-ends für Linux/UNIX, die PPD-Optionen darstellen können. PPD-Optionen
+sind normalerweise zur Interpretation durch den PostScript RIP auf dem PostScript-Drucker gedacht.
 </para>
 
 <sect2>
-<title>PPDs for Non-PS Printers on UNIX</title>
+<title>PPDs für Nicht-PS-Drucker auf UNIX</title>
 
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-CUPS does not limit itself to <quote>real</quote> PostScript printers in its usage
-of PPDs. The CUPS developers have extended the scope of the PPD
-concept to also describe available device and driver options for
-non-PostScript printers through CUPS-PPDs.
+CUPS beschränkt sich nicht auf <quote>wirkliche</quote> PostScript-Drucker in seiner Verwendung von PPDs. Die 
+CUPS-Entwickler haben die Reichweite des PPD-Konzepts erweitert, um auch verfügbare Geräte- und Treiber-Optionen
+von Nicht-PS-Druckern durch CUPS-PPDs zu beschreiben.
 </para>
 
 <para>
-This is logical, as CUPS includes a fully featured PostScript
-interpreter (RIP). This RIP is based on Ghostscript. It can process
-all received PostScript (and additionally many other file formats)
-from clients. All CUPS-PPDs geared to non-PostScript printers contain
-an additional line, starting with the keyword
-<parameter>*cupsFilter</parameter>. This line tells the CUPS print
-system which printer-specific filter to use for the interpretation of
-the supplied PostScript. Thus CUPS lets all its printers appear as
-PostScript devices to its clients, because it can act as a PostScript
-RIP for those printers, processing the received PostScript code into a
-proper raster print format.
+Dies ist nur logisch, da CUPS einen voll ausgestatteten PostScript Interpreter (RIP) umfaßt. Dieser RIP basiert
+auf Ghostscript. Er kann alles empfangene PostScript (und zusätzlich viele weitere Dateiformate) verarbeiten.
+Alle CUPS-PPDs für Nicht-PS-Drucker enthalten eine zusätzliche Zeile, die mit dem Schlüsselwort
+<parameter>*cupsFilter</parameter> beginnt. Diese Zeile teilt dem CUPS-Druck-Systemmit, welcher 
+drucker-spezifische Filter zur Interpretation der PostScript-Daten verwendet werden soll. Daher läßt CUPS
+alle seine Drucker für die Clients als PostScript-Drucker erscheinen, weil es als PostScript RIP für diese
+Drucker arbeiten kann.
 </para>
 </sect2>
 
 <sect2>
-<title>PPDs for Non-PS Printers on Windows</title>
+<title>PPDs für Nicht-PS-Drucker auf Windows</title>
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-CUPS-PPDs can also be used on Windows-Clients, on top of a
+CUPS-PPDs können auch auf Windows-Clients verwendet werden, 
+
+
+can also be used on Windows-Clients, on top of a
 <quote>core</quote> PostScript driver (now recommended is the "CUPS PostScript
 Driver for Windows NT/200x/XP"; you can also use the Adobe one, with
 limitations). This feature enables CUPS to do a few tricks no other
