@@ -1,0 +1,165 @@
+VL1:
+
+> Seite xxix, "winbind startet nicht": Dies wird mit 3.0.5 repariert sein, auch
+> ohne 'idmap [ug]id' wird der winbind als authentifizierungsproxy zum
+> Domänencontroller laufen.
+
+###
+
+VL2:
+
+> Seite lxi, letzter Abschnitt: Das ist exakt falsch herum. Wenn ich mit
+> "ursprünglicher Modus" mal den "gemischten Modus" annehme, wie es eigentlich
+> heisst, dann ist es genau falsch herum geschrieben. Es ist Samba egal, in
+> welchem Modus die Domäne ist. Selbst im einheitlichen w2k3-Modus kann Samba 2.2
+> auch als 'security = domain' die Domäne betreten. Erst recht Samba 3 mit
+> 'security = ads'.
+
+###
+
+VL3:
+
+> Seite lxii, 4.2.4.1: Das ist missverständlich, der realm muss komplett in
+> Grossbuchstaben stehen. Der password server ist nicht nötig.
+
+(Es war 4.3.4.1)
+
+xml-diff:
+
+ <para><smbconfblock>
+-<smbconfoption><name>realm</name><value>your.kerberos.REALM</value></smbconfoption>
++<smbconfoption><name>realm</name><value>YOUR.KERBEROS.REALM</value></smbconfoption>
+ <smbconfoption><name>security</name><value>ADS</value></smbconfoption>
+-</smbconfblock></para>
+-
+-<para>
+-Folgende Parameter würden benötigt:
+-</para>
+-
+-<para><smbconfblock>
+-<smbconfoption><name>password
+server</name><value>your.kerberos.server</value></smbconfoption>
+ </smbconfblock></para>
+
+###
+
+VL4:
+
+> Seite lxviii: Ich würde *jeden* Verweis auf Samba als AD DC rausnehmen. Das
+> gibt es nicht und hat es nie gegeben. Samba 4 wird das möglicherweise können,
+> aber Samba 3 definitiv nicht.
+
+###
+
+VL5:
+
+VLSD> Seite lxxv, oben: "Group Policy Files" -- das sind korrekt NT
+VLSD> Richtlininendateien. Der Begriff "Group Policy" würde hier verwirren.
+
+
+                 Die NETLOGON-Freigabe spielt eine zentrale Rolle in der
+Unterstützung von Domänen-Anmeldungen
+                 und Domänen-Mitgliedschaft. Diese Freigabe wird von allen
+MS-Domänen-Controllern zur
+                 Verfügung gestellt. Sie wird dazu verwendet, um Anmelde-Skripts
+bereit zu stellen, um
+ -               Group Policy files (wie NTConfig.POL) zu speichern, aber auch, um
+andere gängige
+ +               NT Richtlinien-Dateien (wie NTConfig.POL) zu speichern, aber auch,
+um andere gängige
+                 Werkzeuge zur Verfügung zu stellen, die für den Anmelde-Vorgang
+gebraucht werden.
+                 Dies ist eine essentielle Freigabe auf einem Domänen-Controller.
+
+###
+
+VL6:
+
+VLSD> Seit lxxxvi, vorletzter Abschnitt: Die Bemerkungen zu Zertifikaten und
+VLSD> TLS sind
+VLSD> zwar richtig, ich finde sie aber doch arg aus dem Zusammenhang gerissen. Das
+VLSD> sollte definitiv in einen eigenen Abschnitt (Hmm. Vielleicht kommt der ja
+VLSD> noch.)
+
+###
+
+VL7:
+
+VLSD> Seit lxxxvii, zweiter Abschnitt: Genau für das Problem gibt es den parameter
+VLSD> "ldap replication sleep". Bin nicht ganz sicher, wann der eingeführt wurde,
+VLSD> aber in 3.0.4 ist er definitiv drin.
+
+###
+
+VL8:
+
+VLSD> Seite xc, letzter Satz vor "6.4": Für BDCs ist das idmap backend nicht
+VLSD> gedacht,
+VLSD> der hat seine eigene SAM. Das ist nur für
+VLSD> Domänenmitglieder. Oder alternativ
+VLSD> alle Systeme, die den winbind laufen haben, also auch Domänencontroller, die
+VLSD> einer anderen Domäne vertrauen.
+
+ auf einem BDC macht nur Sinn, wenn ldapsam auf einem PDC eingesetzt wird. Der
+Zweck eines auf LDAP
+ basierenden idmap-Backends ist es, einem Domänen-Mitglied (das kein eigenes
+passdb-Backend hat) die
+ Verwendung von winbindd zu gestatten, um Windows-Netzwerk-Benutzer und -Gruppen
+auf UID/GIDs aufzulösen.
+-Anders gesagt, diese Option ist für die Verwendung auf BDCs und
+Domänen-Mitglieds-Servern gedacht.
++Anders gesagt, diese Option ist für die Verwendung auf Domänen-Mitglieds-Servern
+gedacht.
+
+###
+
+VL9:
+
+VLSD> Seite xci, 6.4.3 zweiter Absatz: Die smbpasswd hat keine Klartextpasswörter,
+VLSD> nur Klartexpasswortäquivalente.
+
+-Da die Datei smbpasswd Passwörter in Klartext enthält, darf sie nicht
+unverschlüsselt
++Da die Datei smbpasswd Klartext-Passwort-Äquivalente enthält, darf sie nicht
+unverschlüsselt
+ übers Netz versandt werden. Die beste Art der smbpasswd-Replikation ist die
+
+###
+
+VL10:
+
+VLSD> xciii, "7.2" erster Absatz: Ein "schurkischer" Benutzer kann nicht mit dem DC
+VLSD> konspirieren. Wenn jedoch der DC anfängt zu konspirieren, dann ist es vorbei.
+VLSD> Das Wort "konspirieren" finde ich etwas missverständlich.
+
+###
+
+VL11:
+
+VLSD> xciii, letzter Satz: Die non-unix Accounts wird es nicht geben.
+
+        Ein entsprechendes UNIX-Konto, meist in <filename>/etc/passwd</filename>
+gespeichert.
+-       Es wird daran gearbeitet, eine vereinfachte Betriebsart zu erlauben, die
+keine
+-       UNIX-Konten erfordert, jedoch wird dies kein Feature der ersten
+Samba-3-Releases sein.
+
+###
+
+VL12:
+
+VLSD> Bilder 11.1 und 11.2: Die sehen ziemlich deplaziert aus.
+
+Entspricht aber dem Original.
+
+###
+
+VL13:
+
+VLSD> Kapitel 16.4.2, "Samba als die vertrauende Domäne": Das ist vermutlich im
+VLSD> Original auch nicht besser, aber dieser Abschnitt ist leider ziemlich
+VLSD> unbrauchbar. Es fehlt der Hinweis leider komplett, dass der winbind auf allen
+VLSD> DC's der vertrauenden Domäne laufen muss und die ID's mit 'idmap backend =
+VLSD> ldap' koordiniert sein müssen.
+
