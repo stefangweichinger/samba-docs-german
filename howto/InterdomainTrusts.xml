@@ -104,20 +104,21 @@ ADS Sicherheits Domänen in einer ähnliche Weise wie mit MS Windows NT4-gleichen 
 </sect1>
 
 <sect1>
-<title>Native MS Windows NT4 Trusts Configuration</title>
+<title>Native MS Windows NT4 Vertrauenstellungen konfigurieren</title>
 
 <para>
-There are two steps to creating an interdomain trust relationship. To effect a two-way trust
-relationship, it is necessary for each domain administrator to create a trust account for the 
-other domain to use in verifying security credentials.
-<indexterm><primary>Interdomain Trusts</primary><secondary>creating</secondary></indexterm>
+Es braucht 2 Schritte um eine interdomain Vertrauensstellung herzustellen. Um eine 2 Wege
+Vertrauensstellung aufzubauen müssen beide Domänenadministratoren einen Trust Account für die
+jeweils andere Domäne anlegen um die Sicherheitsbeschränkungen zu überprüfen.
 </para>
 
 
 <sect2>
-<title>Creating an NT4 Domain Trust</title>
+<title>Eine NT4 Vertrauensstellung aufbauen</title>
 
 <para>
+
+
 For MS Windows NT4, all domain trust relationships are configured using the 
 <application>Domain User Manager</application>. This is done from the Domain User Manager Policies
 entry on the menu bar. From the <guimenu>Policy</guimenu> menu, select
@@ -134,7 +135,7 @@ The password needs to be typed twice (for standard confirmation).
 
 
 <sect2>
-<title>Completing an NT4 Domain Trust</title>
+<title>Eine NT4 Vertrauensstellung fertigstellen</title>
 
 <para>
 <indexterm><primary>Interdomain Trusts</primary><secondary>Completing</secondary></indexterm>
