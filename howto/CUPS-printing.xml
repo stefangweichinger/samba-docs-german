@@ -2253,51 +2253,47 @@ hat:
 </para>
 
 <itemizedlist>
-<listitem><para>It supports a much more accurate page
-accounting.</para></listitem>
+<listitem><para>Er unterstützt ein genauere Seiten-Abrechnung.</para></listitem>
 
-<listitem><para>It supports banner pages, and page labels on all
-printers.</para></listitem>
+<listitem><para>Er unterstützt Banner-Seiten, und Seiten-Labels auf allen Druckern.</para></listitem>
 
-<listitem><para>It supports the setting of a number of job IPP
-attributes (such as job-priority, page-label and
-job-billing).</para></listitem>
+<listitem><para>Er unterstützt das Setzen von einigen IPP-Auftrags-Attributen (wie Auftrags-Priorität,
+Seiten-Label, und Auftrags-Verrechnung).</para></listitem>
 </itemizedlist>
 
 <para>
-However, currently only Windows NT, 2000 and XP are supported by the
-CUPS drivers. You will also need to get the respective part of Adobe driver
-if you need to support Windows 95, 98 and ME clients.
+Derzeit werden jedoch nur Windows NT, 2000 und XP von den CUPS-Treibern unterstützt. Sie brauchen auch die
+entsprechenden Teile des Adobe-Treibers, wenn Sie Windows 95, 98 und ME Clients unterstützen müssen.
 </para>
 </sect2>
 
 <sect2>
-	<title>Prepare Your &smb.conf; for <command>cupsaddsmb</command></title>
+	<title>Bereiten Sie Ihre &smb.conf; für <command>cupsaddsmb</command> vor</title>
 
 <para>
-Prior to running <command>cupsaddsmb</command>, you need the settings in
-&smb.conf; as shown in <link linkend="cupsadd-ex">the next example</link>:
+Vor dem Ausführen von <command>cupsaddsmb</command> müssen Sie die Einstellungen in &smb.conf; wie im
+<link linkend="cupsadd-ex">nächsten Beispiel</link> setzen:
 </para>
 
 <para><smbconfexample id="cupsadd-ex">
-<title>smb.conf for cupsaddsmb usage</title>
+<title>smb.conf für die Verwendung von cupsaddsmb</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>load printers</name><value>yes</value></smbconfoption>
 <smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 <smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
 
 <smbconfsection>[printers]</smbconfsection>
-<smbconfoption><name>comment</name><value>All Printers</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Alle Drucker</value></smbconfoption>
 <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
 <smbconfoption><name>browseable</name><value>no</value></smbconfoption>
 <smbconfoption><name>public</name><value>yes</value></smbconfoption>
-<smbconfcomment>setting depends on your requirements</smbconfcomment>
+<smbconfcomment>Einstellung ist abhängig von Ihren Erfordernissen</smbconfcomment>
 <smbconfoption><name>guest ok</name><value>yes</value></smbconfoption>
 <smbconfoption><name>writable</name><value>no</value></smbconfoption>
 <smbconfoption><name>printable</name><value>yes</value></smbconfoption>
 <smbconfoption><name>printer admin</name><value>root</value></smbconfoption>
  <smbconfsection>[print$]</smbconfsection>
-<smbconfoption><name>comment</name><value>Printer Drivers</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Drucker-Treiber</value></smbconfoption>
 <smbconfoption><name>path</name><value>/etc/samba/drivers</value></smbconfoption>
 <smbconfoption><name>browseable</name><value>yes</value></smbconfoption>
 <smbconfoption><name>guest ok</name><value>no</value></smbconfoption>
@@ -2307,21 +2303,19 @@ Prior to running <command>cupsaddsmb</command>, you need the settings in
 </sect2>
 
 <sect2>
-<title>CUPS <quote>PostScript Driver for Windows NT/200x/XP</quote></title>
+<title>CUPS <quote>PostScript-Treiber für Windows NT/200x/XP</quote></title>
 
 <para>
 <indexterm><primary>PostScript</primary></indexterm>
-CUPS users may get the exact same packages from <ulink
-noescape="1" url="http://www.cups.org/software.html">http://www.cups.org/software.html</ulink>.
-It is a separate package from the CUPS base software files, tagged as
-CUPS 1.1.x Windows NT/200x/XP Printer Driver for Samba
-(tar.gz, 192k). The filename to download is
-<filename>cups-samba-1.1.x.tar.gz</filename>. Upon untar and unzipping,
-it will reveal these files:
+CUPS-Anwender können die genau gleichen Pakete von <ulink
+noescape="1" url="http://www.cups.org/software.html">http://www.cups.org/software.html</ulink> beziehen.
+Dies ist ein separates Paket von CUPS-Software-Dateien, bezeichnet als 
+CUPS 5.0rc3 Windows NT/200x/XP Printer Driver for Samba. Der Dateiname für den Download ist
+<filename>cups-samba-5.0rc3.tar.gz</filename>. Nach dem untar und unzip zeigen sich folgende Dateien:
 </para>
 
 <para><screen>
-&rootprompt;<userinput>tar xvzf cups-samba-1.1.19.tar.gz</userinput>
+&rootprompt;<userinput>tar xvzf cups-samba-5.0rc3.tar.gz</userinput>
 cups-samba.install
 cups-samba.license
 cups-samba.readme
@@ -2332,14 +2326,11 @@ cups-samba.ss
 <para>
 <indexterm><primary>ESP</primary><secondary>meta packager</secondary></indexterm>
 <indexterm><primary>EPM</primary><see>ESP meta packager</see></indexterm>
-These have been packaged with the ESP meta packager software
-EPM. The <filename>*.install</filename> and
-<filename>*.remove</filename> files are simple shell scripts, which
-untars the <filename>*.ss</filename> (the <filename>*.ss</filename> is
-nothing else but a tar-archive, which can be untarred by <quote>tar</quote>
-too). Then it puts the content into
-<filename>/usr/share/cups/drivers/</filename>. This content includes three
-files:
+Diese Dateien wurden mit der ESP-Meta-Packer-Software EPM gepackt. Die Dateien <filename>*.install</filename>
+und <filename>*.remove</filename> sind einfache Shell-Skripts, die die Datei <filename>*.ss</filename> entpacken
+(die Datei <filename>*.ss</filename> ist nichts als ein tar-Archiv, das auch mit <quote>tar</quote> entpackt
+werden kann). Dann kopiert es deren Inhalt in <filename>/usr/share/cups/drivers/</filename>. Dieser Inhalt
+enthält drei Dateien:
 </para>
 
 <para><screen>
@@ -2350,8 +2341,7 @@ cups.hlp
 </screen></para>
 
 <para>
-The <parameter>cups-samba.install</parameter> shell scripts are easy to
-handle:
+Das <parameter>cups-samba.install</parameter> Shell-Skript ist einfach anzuwenden:
 </para>
 
 <para><screen>
@@ -2364,18 +2354,15 @@ Installation is complete.
 </screen></para>
 
 <para>
-The script should automatically put the driver files into the
-<filename>/usr/share/cups/drivers/</filename> directory.
+Das Skript sollte die Treiber-Dateien automatisch ins Verzeichnis <filename>/usr/share/cups/drivers/</filename>
+kopieren.
 </para>
 
 <warning><para>
-Due to a bug, one recent CUPS release puts the
-<filename>cups.hlp</filename> driver file
-into<filename>/usr/share/drivers/</filename> instead of
-<filename>/usr/share/cups/drivers/</filename>. To work around this,
-copy/move the file (after running the
-<command>./cups-samba.install</command> script) manually to the
-correct place.
+Wegen eines Fehlers kopiert eine ältere CUPS-Release die Datei <filename>cups.hlp</filename> ins Verzeichnis
+<filename>/usr/share/drivers/</filename> anstatt in <filename>/usr/share/cups/drivers/</filename>. Um das zu 
+beheben, kopieren/verschieben Sie diese Datei einfach manuell ins richtige Verzeichnis, nachdem Sie das
+Install-Skript ausgeführt haben.
 </para></warning>
 
 <para><screen>
@@ -2385,26 +2372,24 @@ correct place.
 
 <para>
 <indexterm><primary>DDK</primary></indexterm>
-This new CUPS PostScript driver is currently binary-only, but free of
-charge. No complete source code is provided (yet). The reason is that
-it has been developed with the help of the Microsoft Driver
-Developer Kit (DDK) and compiled with Microsoft Visual
-Studio 6. Driver developers are not allowed to distribute the whole of
-the source code as free software. However, CUPS developers released
-the <quote>diff</quote> in source code under the GPL, so anybody with a license of
-Visual Studio and a DDK will be able to compile for him/herself.
+Dieser neue CUPS PostScript-Treiber ist derzeit nur binär verfügbar, aber ohne Kosten. Es wird (noch) kein
+vollständiger Quelltext zur Verfügung gestellt. Der Grund ist, daß er mit Hilfe des Microsoft Driver Developer 
+Kits (DDK) entwickelt und mit Microsoft Visual Studio 6 kompiliert wurde. Die Treiber-Entwickler dürfen nicht
+den gesamten Quelltext als freie Software vertreiben. Die CUPS-Entwickler haben jedoch das <quote>diff</quote>
+unter der GPL veröffentlicht, somit kann jeder mit einer Lizenz für Visual Studio und einem DDK den Treiber
+selbst kompilieren.
 </para>
 </sect2>
 
 <sect2>
-<title>Recognizing Different Driver Files</title>
+<title>Das Erkennen verschiedener Treiber-Dateien</title>
 
 <para>
-The CUPS drivers do not support the older Windows 95/98/Me, but only
-the Windows NT/2000/XP client.
+Die CUPS-Treiber unterstützen die älteren Systeme Windows 95/98/Me nicht, nur die Client-Systeme 
+Windows NT/2000/XP.
 </para>
 
-<para>Windows NT, 2000 and XP are supported by:</para>
+<para>Windows NT, 2000 und XP werden unterstützt von:</para>
 
 <para>
 	<itemizedlist>
@@ -2415,12 +2400,11 @@ the Windows NT/2000/XP client.
 </para>
 
 <para>
-Adobe drivers are available for the older Windows 95/98/Me as well as
-the Windows NT/2000/XP clients. The set of files is different from the
-different platforms.
+Adobe-Treiber sind für die älteren Systeme Windows 95/98/Me genauso verfügbar wie für Windows NT/2000/XP.
+Die Dateien sind für die einzelnen Plattformen verschieden.
 </para>
 
-<para>Windows 95, 98 and ME are supported by:</para>
+<para>Windows 95, 98 und ME werden unterstützt von:</para>
 
 <para>
 	<itemizedlist>
@@ -2433,7 +2417,7 @@ different platforms.
 </itemizedlist>
 </para>
 
-<para>Windows NT, 2000 and XP are supported by:</para>
+<para>Windows NT, 2000 und XP werden unterstützt von:</para>
 
 <para>
 <itemizedlist>
@@ -2445,125 +2429,107 @@ different platforms.
 </para>
 
 <note><para>
-If both the Adobe driver files and the CUPS driver files for the
-support of Windows NT/200x/XP are present in FIXME, the Adobe ones will be ignored
-and the CUPS ones will be used. If you prefer &smbmdash; for whatever reason
-&smbmdash; to use Adobe-only drivers, move away the three CUPS driver files. The
-Windows 9x/Me clients use the Adobe drivers in any case.
+Wenn sowohl die Adobe-Treiber-Dateien wie auch die CUPS-Treiber-Dateien zur Unterstützung von Windows NT/200x/XP
+vorhanden sind, werden die Adobe-Dateien ignoriert und die CUPS-Dateien verwendet. Wenn Sie &smbmdash; aus 
+irgendeinem Grund&smbmdash; nur Adobe-Treiber verwenden wollen, entfernen Sie einfach die drei CUPS-Dateien. Die
+Windows 9x/Me clients verwenden in jedem Fall die Adobe-Treiber.
 </para></note>
 </sect2>
 
 <sect2>
-<title>Acquiring the Adobe Driver Files</title>
+<title>Das Beschaffen der Adobe-Treiber-Dateien</title>
 
 <para>
-Acquiring the Adobe driver files seems to be unexpectedly difficult
-for many users. They are not available on the Adobe Web site as single
-files and the self-extracting and/or self-installing Windows-.exe is
-not easy to locate either. Probably you need to use the included
-native installer and run the installation process on one client
-once. This will install the drivers (and one Generic PostScript
-printer) locally on the client. When they are installed, share the
-Generic PostScript printer. After this, the client's
-<smbconfsection>[print$]</smbconfsection> share holds the Adobe files, from
-where you can get them with smbclient from the CUPS host. 
+Das Beschaffen der Adobe-Treiber-Dateien scheint für viele Anwender unerwartet schwierig zu sein. Sie sind nicht
+als einzelne Dateien auf der Adobe-Website erhältlich und das selbst-entpackende und/oder selbst-installierende
+Windows-.exe ist auch nicht einfach zu finden. Möglicherweise müssen Sie den enthaltenen Installer verwenden
+und die Installation einmal auf einem Client durchführen. Dies installiert die Treiber (und einen generischen
+PostScript-Drucker) lokal auf dem Client. Wenn diese installiert sind, geben Sie den generischen 
+PostScript-Drucker frei. Danach enthält die Freigabe <smbconfsection>[print$]</smbconfsection> des Clients die
+Adobe-Dateien, von wo aus Sie sie mittels smbclient auf den CUPS-Host holen können.
 </para>
 </sect2>
 
 <sect2>
-<title>ESP Print Pro PostScript Driver for Windows NT/200x/XP</title>
-
-
+<title>ESP Print Pro PostScript Treiber für Windows NT/200x/XP</title>
 
 <para>
 <indexterm><primary>ESP</primary><secondary>Print Pro</secondary></indexterm>
-Users of the ESP Print Pro software are able to install their Samba
-drivers package for this purpose with no problem. Retrieve the driver
-files from the normal download area of the ESP Print Pro software
-at <ulink
-	noescape="1" url="http://www.easysw.com/software.html">http://www.easysw.com/software.html</ulink>.
-You need to locate the link labeled <quote>SAMBA</quote> among the
-<guilabel>Download Printer Drivers for ESP Print Pro 4.x</guilabel>
-area and download the package. Once installed, you can prepare any
-driver by simply highlighting the printer in the Printer Manager GUI
-and select <guilabel>Export Driver...</guilabel> from the menu. Of
-course you need to have prepared Samba beforehand to handle the
-driver files; i.e., setup the <smbconfsection>[print$]</smbconfsection>
-share, and so on. The ESP Print Pro package includes the CUPS driver files
-as well as a (licensed) set of Adobe drivers for the Windows 95/98/Me
-client family.
+Die Anwender der Software ESP Print Pro können ihr Samba-Treiber-Paket für diesen Zweck ohne Probleme 
+installieren. Beziehen Sie die Treiber-Dateien aus dem normalen Download-Bereich der ESP Print Pro Software
+unter <ulink noescape="1" url="http://www.easysw.com/software.html">http://www.easysw.com/software.html</ulink>.
+Sie müssen den Link namens <quote>SAMBA</quote> unter 
+<guilabel>Download Printer Drivers for ESP Print Pro 4.x</guilabel> finden, und das Package herunterladen.
+Sobald es instaliert ist, können Sie jeden Treiber vorbereiten, in dem Sie einfach den Drucker im 
+Drucker-Manager-GUI markieren und die Funktion <guilabel>Export Driver...</guilabel> aus dem Menü wählen.
+Natürlich müssen Sie Samba zuerst für den Umgang mit den Treiber-Dateien vorbereitet haben; also die Freigabe
+<smbconfsection>[print$]</smbconfsection> angelegt haben und so weiter. Das Paket ESP Print Pro beinhaltet
+die CUPS-Treiber-Dateien genauso wie ein (lizenziertes) Set von Adobe-Treibern für die Windows 95/98/Me 
+Client-Familie.
 </para>
 </sect2>
 
 <sect2>
-<title>Caveats to be Considered</title>
-
+<title>Vorbehalte, die zu berücksichtigen sind</title>
 
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
-Once you have run the install script (and possibly manually
-moved the <filename>cups.hlp</filename> file to
-<filename>/usr/share/cups/drivers/</filename>), the driver is
-ready to be put into Samba's <smbconfsection>[print$]</smbconfsection> share (which often maps to
-<filename>/etc/samba/drivers/</filename> and contains a subdirectory
-tree with <emphasis>WIN40</emphasis> and
-<emphasis>W32X86</emphasis> branches). You do this by running
-<command>cupsaddsmb</command> (see also <command>man cupsaddsmb</command> for
-CUPS since release 1.1.16).
+Sobald Sie das Install-Skript ausgeführt haben (und eventuell die Datei <filename>cups.hlp</filename> manuell
+nach <filename>/usr/share/cups/drivers/</filename> verschoben haben), ist der Treiber bereit, um in die
+Samba-Freigabe <smbconfsection>[print$]</smbconfsection> gelegt zu werden (welche oft auf das Verzeichnis
+<filename>/etc/samba/drivers/</filename> zeigt und einen Unterverzeichnis-Baum mit den Verzeichnissen
+<emphasis>WIN40</emphasis> und <emphasis>W32X86</emphasis> enthält). Sie tun dies, indem Sie
+<command>cupsaddsmb</command> ausführen (sehen Sie dazu auch <command>man cupsaddsmb</command>, für alle
+CUPS-Releases seit 1.1.16).
 </para>
 
 <tip><para>
 <indexterm><primary>Single Sign On</primary></indexterm>
-You may need to put root into the smbpasswd file by running
-<command>smbpasswd</command>; this is especially important if you
-should run this whole procedure for the first time, and are not
-working in an environment where everything is configured for
-<emphasis>single sign on</emphasis> to a Windows Domain Controller.
+Es kann sein, daß Sie root in die Datei smbpasswd aufnehmen müssen, indem Sie <command>smbpasswd</command>
+ausführen; dies ist besonders wichtig, wenn Sie diese ganze Prozedur zum ersten Mal ausführen, und nicht in 
+einer Umgebung arbeiten, in der alles für <emphasis>single sign on</emphasis> an einem Windows Domänen-Controller
+konfiguriert ist.
 </para></tip>
 
 <para>
-Once the driver files are in the <smbconfsection>[print$]</smbconfsection> share
-and are initialized, they are ready to be downloaded and installed by
-the Windows NT/200x/XP clients.
+Sobald die Treiber-Dateien in der Freigabe <smbconfsection>[print$]</smbconfsection> liegen und initialisiert 
+sind, sind Sie bereit, um von den Windows NT/200x/XP Clients heruntergeladen und installiert zu werden.
 </para>
 
 <note><para>
-Win 9x/Me clients will not work with the CUPS PostScript driver. For
-these you still need to use the <filename>ADOBE*.*</filename>
-drivers as previously stated.
+Win 9x/Me Clients funktionieren nicht mit dem CUPS PostScript Treiber. Für diese Clients brauchen Sie nach wie
+vor die <filename>ADOBE*.*</filename> Treiber, wie oben erwähnt.
 </para></note>
 
 <note>
 <para>
-It is not harmful if you still have the
-<filename>ADOBE*.*</filename> driver files from previous
-installations in the <filename>/usr/share/cups/drivers/</filename>
-directory. The new <command>cupsaddsmb</command> (from 1.1.16) will
-automatically prefer its own drivers if it finds both.
+Es macht nichts, wenn Sie immer noch die <filename>ADOBE*.*</filename> Treiber-Dateien aus älteren Installationen
+im Verzeichnis <filename>/usr/share/cups/drivers/</filename> liegen haben. Das neue <command>cupsaddsmb</command>
+(ab 1.1.16) bevorzugt automatisch die eigenen Treiber, wenn es beide vorfindet.
 </para></note>
 
 <note><para>
 <indexterm><primary>"Printers" folder</primary></indexterm>
-Should your Windows clients have had the old <filename>ADOBE*.*</filename>
-files for the Adobe PostScript driver installed, the download and
-installation of the new CUPS PostScript driver for Windows NT/200x/XP
-will fail at first. You need to wipe the old driver from the clients
-first. It is not enough to <quote>delete</quote> the printer, as the driver files
-will still be kept by the clients and re-used if you try to re-install
-the printer. To really get rid of the Adobe driver files on the
-clients, open the <guilabel>Printers</guilabel> folder (possibly via <guilabel>Start > Settings > Control Panel > Printers</guilabel>),
-right-click on the folder background and select <guimenuitem>Server
-Properties</guimenuitem>. When the new dialog opens, select the
-<guilabel>Drivers</guilabel> tab. On the list select the driver you
-want to delete and click the <guilabel>Delete</guilabel>
-button. This will only work if there is not one single printer left
-that uses that particular driver. You need to <quote>delete</quote> all printers
-using this driver in the <guilabel>Printers</guilabel> folder first. You will need
-Administrator privileges to do this.
+Sollten Ihre Windows-Clients die alten <filename>ADOBE*.*</filename> Treiber-Dateien installiert haben, wird
+der Download des neuen CUPS PostScript Treibers zuerst scheitern. Sie müssen den alten Treiber zuerst von den
+Clients löschen. Es reicht nicht aus, den Drucker zu <quote>löschen</quote>, da die Treiber-Dateien nach wie vor
+von den Clients bereitgestellt und wiederverwendet werden, wenn Sie versuchen, den Drucker neu zu installieren.
+Um die Adobe-Treiber auf den Clients völlig los zu werden, öffnen Sie den Ordner <guilabel>Drucker</guilabel>
+(evtl. via <guilabel>Start > Systemsteuerung > Drucker und Faxgeräte</guilabel>), klicken rechts auf den
+Ordner-Hintergrund und wählen <guimenuitem>Servereigenschaften</guimenuitem>. Wenn sich der neue Dialog öffnet,
+wählen Sie den Reiter <guilabel>Treiber</guilabel>. In der Liste wählen Sie den Treiber, den Sie löschen
+wollen und klicken auf <guilabel>Entfernen</guilabel>. Dies funktioniert nur, wenn kein einziger Drucker mehr
+übrig ist, der diesen Treiber verwendet. Sie müssen zuerst alle Drucker im Ordner <guilabel>Drucker</guilabel>
+<quote>löschen</quote>, die diesen Treiber verwenden. Sie brauchen Administrator-Rechte, um dies zu tun.
 </para></note>
 
 <note><para>
 <indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
+Sobald Sie erfolgreich den CUPS PostScript Treiber auf einen Client geladen haben, können Sie leicht alle Drucker
+auf diesen Treiber umstellen, indem Sie so vorgehen, wie in 
+<link linkend="printing">Classical Printing Support</link> beschrieben. Entweder ändern Sie den Treiber für
+
+
 Once you have successfully downloaded the CUPS PostScript driver to a
 client, you can easily switch all printers to this one by proceeding
 as described in <link linkend="printing">Classical Printing Support</link>. Either change
