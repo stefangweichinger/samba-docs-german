@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>profiles</refname>
-	<refpurpose>A utility to report and change SIDs in registry files
+	<refpurpose>Ein Werkzeug, um SIDs in Registry-Dateien auszugeben und zu ändern
 	</refpurpose>
 </refnamediv>
 
@@ -23,42 +23,44 @@
 		<arg choice="opt">-v</arg>
 		<arg choice="opt">-c SID</arg>
 		<arg choice="opt">-n SID</arg>
-		<arg choice="req">file</arg>
+		<arg choice="req">Datei</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>profiles</command> is a utility that 
-	reports and changes SIDs in windows registry files. It currently only 
-	supports NT.
+	<para><command>profiles</command> ist ein Werkzeug, das SIDs in
+	Windows-Registry-Dateien ausgibt und ändert. Im Moment unterstützt  
+	es nur NT.
 	</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
-		<term>file</term>
-		<listitem><para>Registry file to view or edit.  </para></listitem>
+		<term>Datei</term>
+		<listitem><para>Registry-Datei zum Anschauen oder Editieren.
+		</para></listitem>
 		</varlistentry>
-
 
 		<varlistentry>
 		<term>-v,--verbose</term>
-		<listitem><para>Increases verbosity of messages. 
+		<listitem><para>Gibt Meldungen ausführlicher aus. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-c SID1 -n SID2</term>
-		<listitem><para>Change all occurences of SID1 in <filename>file</filename> by SID2.
+		<listitem><para>Ändert alle Vorkommen von SID1 in 
+		<filename>Datei</filename> durch SID2.
 		</para></listitem>
 		</varlistentry>
 

@@ -13,96 +13,103 @@
 
 <refnamediv>
 	<refname>ntlm_auth</refname>
-	<refpurpose>tool to allow external access to Winbind's NTLM authentication function</refpurpose>
+	<refpurpose>Werkzeug für den externen Zugriff auf 
+die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>ntlm_auth</command>
-		<arg choice="opt">-d debuglevel</arg>
-		<arg choice="opt">-l logdir</arg>
-		<arg choice="opt">-s &lt;smb config file&gt;</arg>
+		<arg choice="opt">-d DebugEbene</arg>
+		<arg choice="opt">-l LogVerz</arg>
+		<arg choice="opt">-s &lt;smb KonfigDatei&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>ntlm_auth</command> is a helper utility that authenticates 
-	users using NT/LM authentication. It returns 0 if the users is authenticated
-	successfully and 1 if access was denied. ntlm_auth uses winbind to access 
-	the user and authentication data for a domain.  This utility 
-	is only indended to be used by other programs (currently squid).
-	</para>
+	<para><command>ntlm_auth</command> ist ein Hilfswerkzeug, das Benutzer 
+	mit einer NT/LM-Authentifikation identifiziert. Es gibt 0 zurück, falls
+	der Benutzer erfolgreich identifiziert wird und 1, falls der Zugriff
+	verweigert wurde. ntlm_auth verwendet winbind für den Zugriff auf die
+	Benutzer- und Authentifikationsdaten für eine Domain. Dieses Werkzeug
+	ist nur dafür gedacht, dass es von anderen Programmen benutzt wird 
+	(im Moment Squid).</para>
 </refsect1>
 
 <refsect1>
-	<title>OPERATIONAL REQUIREMENTS</title>
+	<title>FUNKTIONALE ANFORDERUNGEN</title>
 
     <para>
-    The <citerefentry><refentrytitle>winbindd</refentrytitle>
-    <manvolnum>8</manvolnum></citerefentry> daemon must be operational
-    for many of these commands to function.</para>
+    Der Daemon <citerefentry><refentrytitle>winbindd</refentrytitle>
+    <manvolnum>8</manvolnum></citerefentry> muss laufen, damit
+    viele dieser Befehle funktionieren.</para>
 
-    <para>Some of these commands also require access to the directory 
-    <filename>winbindd_privileged</filename> in
-    <filename>$LOCKDIR</filename>.  This should be done either by running
-    this command as root or providing group access
-    to the <filename>winbindd_privileged</filename> directory.  For
-    security reasons, this directory should not be world-accessable. </para>
+    <para>Manche dieser Befehle benötigen auch einen Zugriff auf das Verzeichnis 
+    <filename>winbindd_privileged</filename> in <filename>$LOCKDIR</filename>.  
+    Dies sollte entweder durch Ausführen dieses Befehls als root oder 
+    durch Ermöglichen des Gruppenzugriffs auf das Verzeichnis
+    <filename>winbindd_privileged</filename> geschehen. Aus Sicherheitsgründen 
+    sollte dieses Verzeichnis nicht für alle Benutzer zugreifbar sein.</para>
 
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 	<varlistentry>
 	<term>--helper-protocol=PROTO</term>
 	<listitem><para>
-	Operate as a stdio-based helper.  Valid helper protocols are:
+	Funktioniert als stdio-basiertes Hilfsprogramm. Gültige Protokolle dafür sind:
         </para> 
         <variablelist>
 	      <varlistentry>
 		<term>squid-2.4-basic</term>
 		<listitem><para>
-                Server-side helper for use with Squid 2.4's basic (plaintext)
-		authentication.  </para>
+                Serverseitiges Hilfsprogramm für den Einsatz mit der einfachen
+		Authentifikation von Squid 2.4 (Klartext).  
+		</para>
                 </listitem>
 		</varlistentry>
+
 	      <varlistentry>
 		<term>squid-2.5-basic</term>
 		<listitem><para>
-                Server-side helper for use with Squid 2.5's basic (plaintext)
-		authentication. </para>
-                </listitem>
+                Serverseitiges Hilfsprogramm für den Einsatz mit der einfachen
+		Authentifikation von Squid 2.5 (Klartext). 
+		</listitem>
 		</varlistentry>
+
 	      <varlistentry>
 		<term>squid-2.5-ntlmssp</term>
 		<listitem><para>
-                Server-side helper for use with Squid 2.5's NTLMSSP 
-		authentication. </para>
-		  <para>Requires access to the directory 
+                Serverseitiges Hilfsprogramm für den Einsatz mit der 
+		NTLMSSP-Authentifikation von Squid 2.5.</para>
+		<para>Benötigt Zugriff auf das Verzeichnis 
                 <filename>winbindd_privileged</filename> in
-		<filename>$LOCKDIR</filename>.  The protocol used is
-		described here: <ulink
+		<filename>$LOCKDIR</filename>. Das verwendete Protokoll wird
+		hier beschrieben: <ulink
 		url="http://devel.squid-cache.org/ntlm/squid_helper_protocol.html">http://devel.squid-cache.org/ntlm/squid_helper_protocol.html</ulink>
                 </para>
                 </listitem>
 	      </varlistentry>
+
 	      <varlistentry>
 		<term>ntlmssp-client-1</term>
 		<listitem><para>
-                Cleint-side helper for use with arbitary external
-		programs that may wish to use Samba's NTLMSSP 
-		authentication knowlege. </para>
-		  <para>This helper is a client, and as such may be run by any
-		user.  The protocol used is
-		effectivly the reverse of the previous protocol.
+                Cleintseitiges Hilfsprogramm für den Einsatz mit beliebigen externen
+		Programmen, die Sambas Fähigkeit zur NTLMSSP-Authentifikation nutzen
+		möchten.</para>
+		<para>Dieses Hilfsprogramm ist ein Client und darf daher von allen
+		Benutzern ausgeführt werden. Das verwendete Protokoll ist im Prinzip
+		die Umkehrung des vorherigen Protokolls.
                 </para>
                 </listitem>
 	      </varlistentry>
@@ -110,25 +117,25 @@
 	      <varlistentry>
 		<term>gss-spnego</term>
 		<listitem><para>
-                Server-side helper that implements GSS-SPNEGO.  This
-		uses a protocol that is almost the same as
-		<command>squid-2.5-ntlmssp</command>, but has some
-		subtle differences that are undocumented outside the
-		source at this stage.
+                Serverseitiges Hilfsprogramm, das GSS-SPNEGO implementiert. Dabei
+		wird ein Protokoll benutzt, das fast identisch ist mit 
+		<command>squid-2.5-ntlmssp</command>, aber einige subtile 
+		Unterschiede dazu aufweist, die im Moment außerhalb der Quellen
+		noch undokumentiert sind.
                 </para>
-		  <para>Requires access to the directory 
+		<para>Benötigt Zugriff auf das Verzeichnis 
                 <filename>winbindd_privileged</filename> in
 		<filename>$LOCKDIR</filename>.   
                </para>
                 </listitem>
 		</varlistentry>
                  
-	        <varlistentry>
-				<term>gss-spnego-client</term>
+	      <varlistentry>
+		<term>gss-spnego-client</term>
 		<listitem><para>
-                Client-side helper that implements GSS-SPNEGO.  This
-		also uses a protocol similar to the above helpers, but
-		is currently undocumented.
+                Cleintseitiges Hilfsprogramm, das GSS-SPNEGO implementiert. Dabei
+		wird ebenfalls ein ähnliches Protokoll wie in den obigen 
+		Hilfsprogrammen verwendet, das aber im Moment nicht dokumentiert ist.
                 </para>
                 </listitem>
 		</varlistentry>
@@ -139,7 +146,7 @@
       <varlistentry>
 	<term>--username=USERNAME</term>
 	<listitem><para>
-	Specify username of user to authenticate
+	Gibt den Namen des zu identifizierenden Benutzers an.
 	</para></listitem>
 	
       </varlistentry>
@@ -147,62 +154,65 @@
       <varlistentry>
 	<term>--domain=DOMAIN</term>
 	<listitem><para>
-	Specify domain of user to authenticate
+	Gibt die Domäne des zu identifizierenden Benutzers an.
 	</para></listitem>
       </varlistentry>
 
       <varlistentry>
 	<term>--workstation=WORKSTATION</term>
 	<listitem><para>
-	Specify the workstation the user authenticated from
+	Gibt die Workstation an, auf der sich der Benutzer identifiziert hat.
 	</para></listitem>
       </varlistentry>
 
 	<varlistentry>
 	<term>--challenge=STRING</term>
-	<listitem><para>NTLM challenge (in HEXADECIMAL)</para>
+	<listitem><para>NTLM-Aufgabe (in HEXADECIMAL-Form).</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--lm-response=RESPONSE</term>
-	<listitem><para>LM Response to the challenge (in HEXADECIMAL)</para></listitem>
+	<listitem><para>LM-Antwort zur Aufgabe (in HEXADECIMAL-Form).</para>
+	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--nt-response=RESPONSE</term>
-	<listitem><para>NT or NTLMv2 Response to the challenge (in HEXADECIMAL)</para></listitem>
+	<listitem><para>NT- oder NTLMv2-Antwort zur Aufgabe 
+	(in HEXADECIMAL-Form).</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--password=PASSWORD</term>
-	<listitem><para>User's plaintext password</para><para>If 
-	not specified on the command line, this is prompted for when
-	required.  </para></listitem>
+	<listitem><para>Passwort des Benutzers in Klartext</para>
+	<para>Wird wenn nötig abgefragt, falls es nicht auf der Kommandozeile  
+	angegeben wird.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--request-lm-key</term>
-	<listitem><para>Retreive LM session key</para></listitem>
+	<listitem><para>Empfange LM-Sitzungsschlüssel.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--request-nt-key</term>
-	<listitem><para>Request NT key</para></listitem>
+	<listitem><para>NT-Abfrageschlüssel</para></listitem>
 	</varlistentry>
 
       <varlistentry>
 	<term>--diagnostics</term>
-	<listitem><para>Perform Diagnostics on the authentication
-	chain.  Uses the password from <command>--password</command>
-	or prompts for one.</para>
+	<listitem><para>Führt eine Diagnose der Authentifikationskette durch.
+	Verwendet das Passwort von <command>--password</command>
+	oder fragt eines ab.</para>
         </listitem>
         </varlistentry>
 	
 	<varlistentry>
 	    <term>--require-membership-of={SID|Name}</term>
-	    <listitem><para>Require that a user be a member of specified 
-	    group (either name or SID) for authentication to succeed.</para>
+	    <listitem><para>Verlangt, dass der Benutzer Mitglied der angegebenen 
+	    Gruppe (entweder Name oder SID) ist, damit die Authentifikation 
+	    klappt.</para>
 	    </listitem>
 	</varlistentry>
 
@@ -213,11 +223,11 @@
 </refsect1>
 
 <refsect1>
-	<title>EXAMPLE SETUP</title>
+	<title>BEISPIELEINSTELLUNG</title>
 
-        <para>To setup ntlm_auth for use by squid 2.5, with both basic and
-	NTLMSSP authentication, the following
-	should be placed in the <filename>squid.conf</filename> file.
+        <para>Um ntlm_auth für den Einsatz mit Squid 2.5 sowohl mit einfacher wie 
+	auch mit NTLMSSP-Authentifikation einzurichten, sollte
+	folgendes in die Datei <filename>squid.conf</filename> platziert werden.
 <programlisting>
 auth_param ntlm program ntlm_auth --helper-protocol=squid-2.5-ntlmssp
 auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic
@@ -226,12 +236,14 @@ auth_param basic realm Squid proxy-caching web server
 auth_param basic credentialsttl 2 hours
 </programlisting></para>
 
-<note><para>This example assumes that ntlm_auth has been installed into your
-      path, and that the group permissions on
-      <filename>winbindd_privileged</filename> are as described above.</para></note>
+<note><para>Bei diesem Beispiel wird angenommen, dass ntlm_auth in Ihrem Pfad
+	installiert wurde, und dass die Gruppenrechte von
+	<filename>winbindd_privileged</filename> so sind wie oben beschrieben
+	wurde.</para></note>
 
-	<para>To setup ntlm_auth for use by squid 2.5 with group limitation in addition to the above
-	example, the following should be added to the <filename>squid.conf</filename> file.
+	<para>Um ntlm_auth für den Einsatz mit Squid 2.5 zusätzlich zu obigem
+	Beispiel mit einer Gruppenbeschränkung einzurichten, sollte folgendes 
+	zur Datei <filename>squid.conf</filename> hinzugefügt werden.
 <programlisting>
 auth_param ntlm program ntlm_auth --helper-protocol=squid-2.5-ntlmssp --require-membership-of='WORKGROUP\Domain Users'
 auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-membership-of='WORKGROUP\Domain Users'
@@ -242,11 +254,13 @@ auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-m
 <refsect1>
 	<title>TROUBLESHOOTING</title>
 	
-	<para>If you're experiencing problems with authenticating Internet Explorer running
-	under MS Windows 9X or Millenium Edition against ntlm_auth's NTLMSSP authentication
-	helper (--helper-protocol=squid-2.5-ntlmssp), then please read 
+	<para>Sollten Sie im Internet Explorer unter MS Windows 9X oder Millenium
+	Edition Probleme bei der Authentifizierung mittels des 
+	NTLMSSP-Authentifikationshilfsprogramms ntlm_auth haben 
+	(--helper-protocol=squid-2.5-ntlmssp), dann lesen Sie bitte 
 	<ulink url="http://support.microsoft.com/support/kb/articles/Q239/8/69.ASP">
-	the Microsoft Knowledge Base article #239869 and follow instructions described there</ulink>.
+	den Artikel #239869 in der Microsoft Knowledge Base und befolgen Sie 
+	die dortigen Anweisungen</ulink>.
 	</para>
 </refsect1>
 
