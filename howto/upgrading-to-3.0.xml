@@ -358,12 +358,6 @@ Beschreibungen der neuen oder geänderten Parameter.
 			<entry>Nein</entry>
 		</row>
 		<row>
-			<entry>netlogon_unigrp</entry>
-			<entry><para>Cache der universellen Gruppenmitgliedschaft, die man erhält,
-				wenn man als Domänen-Mitglied arbeitet</para></entry>
-			<entry>Nein</entry>
-		</row>
-		<row>
 			<entry>printing/*.tdb</entry>
 			<entry><para>Gepufferte Ausgabe des Befehls `lpq command', pro Druckdienst
 			angelegt</para></entry>
