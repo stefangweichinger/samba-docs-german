@@ -34,7 +34,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>winbindd</command> ist ein Daemon, der einen Dienst
@@ -62,7 +62,7 @@
 	</para>
 
 	<para>Folgende nsswitch-Datenbanken werden vom winbindd-Dienst 
-	implementiert</para>
+	implementiert:</para>
 
 	<variablelist>
 		<varlistentry>
@@ -200,7 +200,7 @@ hosts:		files wins
 	einer Datenbankdatei unter dem Sperrenverzeichnis in Samba gespeichert
 	und in Erinnerung behalten.</para>
 
-	<para>WARNUNG: Die Datenbank, die rid auf UNIX-IDs abbildet, ist der
+	<para>WARNUNG: Die Datenbank, die rids auf UNIX-IDs abbildet, ist der
 	einzige Ort, wo die Benutzer- und Gruppenabbildungen von winbindd
 	gespeichert werden. Wenn diese Datei gelöscht oder beschädigt wird, 
 	hat winbindd keine Möglichkeit mehr, festzustellen, welche Benutzer-
@@ -281,10 +281,11 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
  
 	<para>Der Benutzername nach dem <parameter>-U</parameter> kann ein
 	beliebiger Domänenbenutzer sein, der Administratorrechte auf dem 
-	Rechner hat. Ersetzen Sie "PDC" mit dem Namen oder IP Ihres PDC.</para>
+	Rechner hat. Ersetzen Sie "PDC" mit dem Namen oder der IP Ihres 
+	PDC.</para>
 
 	<para>Als nächstes kopieren Sie <filename>libnss_winbind.so</filename>  
-	<filename>/lib</filename> und <filename>pam_winbind.so</filename> nach 
+	nach <filename>/lib</filename> und <filename>pam_winbind.so</filename> nach 
 	<filename>/lib/security</filename>. Dann muss ein symbolischer Link von 
 	<filename>/lib/libnss_winbind.so</filename> auf
 	<filename>/lib/libnss_winbind.so.2</filename> gemacht werden. 
@@ -337,7 +338,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 
 	<para>PAM kann sehr leicht fehlkonfiguriert werden. Sie sollten wissen,
 	was Sie tun, wenn Sie die PAM-Konfigurationsdateien ändern. Man kann PAM 
-	so einstellen, dass Sie sich an seinem System nicht mehr anmelden 
+	so einstellen, dass man sich an seinem System nicht mehr anmelden 
 	kann.</para>
 	
 	<para>Falls <command>winbindd</command> auf mehr als einem UNIX-Rechner

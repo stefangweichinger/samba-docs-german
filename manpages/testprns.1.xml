@@ -28,7 +28,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>testprns</command> ist ein sehr einfaches Testprogramm, 
@@ -105,7 +105,7 @@
 	"Printer name &lt;druckername&gt; is not valid" angezeigt.</para>
 
 	<para>Alle Meldungen, die normalerweise von den Samba-Daemons 
-	während ihrer Operation geloggt werden, werden von diesem Programm
+	während ihres Betriebs geloggt werden, werden von diesem Programm
 	in der Datei <filename>test.log</filename> im aktuellen Verzeichnis
 	geloggt. Das Programm läuft auf Debug-Ebene 3, d.h. es wird recht
 	viel Log-Information geschrieben. Die Log-Datei sollte aufmerksam
