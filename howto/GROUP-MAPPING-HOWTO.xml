@@ -9,29 +9,29 @@
 	<pubdate>April 3 2003</pubdate>
 	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>Group Mapping &smbmdash; MS Windows und UNIX</title>
+<title>Gruppen Mapping &smbmdash; MS Windows und UNIX</title>
 
 
 	<para>
-<indexterm significance="preferred"><primary>groups</primary><secondary>mapping</secondary></indexterm>
-	Mit der Einführung von Samba 3, wurden neue "Group Mapping" Funktionen eingebaut, die Verbindungen
+<indexterm significance="preferred"><primary>Gruppen</primary><secondary>Mapping</secondary></indexterm>
+	Mit der Einführung von Samba 3, wurden neue Gruppen-Mapping Funktionen eingebaut, die Verbindungen
 	zwischen Unix-Gruppen und Windows-Gruppen SIDs ermöglichen. Das Unterkommando <command>groupmap</command>,
 	welches zum &net; Kommando gehört, wird für das Verbinden der Gruppen verwendet.
 	</para>
 
 	<para>
-	Die neuen Merkmale des Group Mappings ermöglichen dem Administrator zu entscheiden, welche NT Domänengruppen
+	Die neuen Merkmale des Gruppen-Mappings ermöglichen dem Administrator zu entscheiden, welche NT Domänengruppen
 	dem MS Windows Client zugeordnet werden. Es werden nur jene NT Domänengruppen in den 
 	Werkzeugen zur Bearbeitung von Domänenbenutzern und -gruppen angezeigt, welche auf eine Unix-Gruppe gemappt wurden,
-	und nicht den Standardwert (<constant>-1</constant>) zugeordnet wurden.
+	und nicht dem Standardwert (<constant>-1</constant>) zugeordnet wurden.
  	</para>
 
 	<warning>
 	<para>
-	<indexterm><primary>domain admin group</primary></indexterm>
+	<indexterm><primary>Domänen Administratoren-Gruppe</primary></indexterm>
 	Der <parameter>domain admin group</parameter> Parameter wurde aus Samba-3 entfernt und sollte nicht
 	länger verwendet werden. In Samba-2.2.x Versionen wurde dieser Parameter verwendet, um einer bestimmten
-	Liste von Benutzern die Mitgliedschaft in der Domänen Admin Gruppe zu geben, welche lokale Administrator-
+	Liste von Benutzern die Mitgliedschaft in der Domänen Administratoren-Gruppe zu geben, welche lokale Administrator-
 	Rechte auf den Client Rechner vergeben (in Standard Konfigurationen).
 	</para>
 	</warning>
@@ -49,20 +49,20 @@
 <indexterm><primary>GID</primary></indexterm>
 	Gruppenkonten können mit den MS Windows 200x/XP Professional MMC Tools verwaltet werden.
 	In der &smb.conf; können entsprechende Skripts verwendet werden, um mit diesen MMC Tools 
-	automatisch UNIX/Linux-Konten anzulegen. Wenn diese Sripts nicht angegeben werden und der
+	automatisch UNIX/Linux-Konten anzulegen. Wenn diese Skripts nicht angegeben werden und der
 	<command>winbindd</command> läuft, werden die Samba Gruppenkonten den Parametern von 
 	<smbconfoption><name>idmap uid</name></smbconfoption>/<smbconfoption><name>idmap gid</name></smbconfoption>
 	der &smb.conf; zugeordnet.
 	</para>
 
-	<figure id="idmap-sid2gid"><title>IDMAP: group SID to GID resolution.</title>
+	<figure id="idmap-sid2gid"><title>IDMAP: Auflösung der Gruppen SID zur GID.</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-sid2gid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-sid2gid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
 
-	<figure id="idmap-gid2sid"><title>IDMAP: GID resolution to matching SID.</title>
+	<figure id="idmap-gid2sid"><title>IDMAP: GID Auflösung zu passender SID.</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-gid2sid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-gid2sid.png" scale="50" scalefit="1"/></imageobject>
@@ -71,13 +71,13 @@
 
 	<para>
 	In beiden Fällen wenn winbindd nicht läuft, können nur lokal auflösbare Gruppen erkannt werden. Siehe auch
-	<link linkend="idmap-sid2gid">IDMAP: group SID to GID resolution</link> und <link linkend="idmap-gid2sid">IDMAP: GID resolution to matching SID</link>. 
+	<link linkend="idmap-sid2gid">IDMAP: Auflösung der Gruppen SID zur GID</link> und <link linkend="idmap-gid2sid">IDMAP: GID Auflösung zu passender SID</link>. 
 	Das Kommando <command>net groupmap</command> wird verwendet um UNIX-Gruppen zu NT SID Mappings wie in 
-	<link linkend="idmap-store-gid2sid">IDMAP: storing group mappings</link> zu erstellen.
+	<link linkend="idmap-store-gid2sid">IDMAP: Speichern von Gruppen-Mappings</link> zu erstellen.
 	</para>
 	
 
-	<figure id="idmap-store-gid2sid"><title>IDMAP storing group mappings.</title>
+	<figure id="idmap-store-gid2sid"><title>IDMAP: Speichern von Gruppen-Mappings.</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid.png" scale="50" scalefit="1"/></imageobject>
@@ -88,11 +88,11 @@
 	<para>
 	<indexterm><primary>groupadd</primary></indexterm>
 	<indexterm><primary>groupdel</primary></indexterm>
-	Administratoren sollten beachten, dass &smb.conf; group interface Skripte direkt die UNIX/Linux Systemwerkzeuge
+	Administratoren sollten beachten, dass &smb.conf; Gruppen-Interface-Skripte direkt die UNIX/Linux Systemwerkzeuge
 	(die Shadow Utilities <command>groupadd</command>, <command>groupdel</command>, und <command>groupmod</command>) 
 	verwenden. Die resultierenden Gruppennamen können nur Zeichen enthalten, die auch die oben genannten Werkzeuge
 	bearbeiten können. Wenn die Werkzeuge keine Großbuchstaben oder Leerzeichen erlauben wird das Erstellen der
-	<ntgroup>Domain Admins</ntgroup> nicht möglich sein.
+	<ntgroup>Domänen Administratoren</ntgroup> nicht möglich sein.
 	</para>
 
 
@@ -101,7 +101,7 @@
 	<indexterm><primary>SID</primary></indexterm>
 	Es gibt verschiedene Lösungswege für solche Einschränkungen von verschiedenen Betriebsystemen.
 	Eine Möglichkeit besteht darin, Skripte zu verwenden, die die Systemeinschränkungen kennen und dann nur
-	die UNIX/Linux Gruppen ID (GID) an Samba zurückgeben. Dies ist ein dynamischer "work-around".
+	die UNIX/Linux Gruppen ID (GID) an Samba zurückgeben. Dies ist ein dynamischer Workaround.
 	</para>
 
 	<para>
@@ -131,14 +131,14 @@
 	</para>
 
 	<para>
-	Wenn eine MS Windows NT/200x/XP Maschine zum Domänenmitglied gemacht wird, so wird die <quote>Domänenadministratoren</quote> Gruppe
+	Wenn eine MS Windows NT/200x/XP Maschine zum Domänenmitglied gemacht wird, so wird die <quote>Domänen Administratoren</quote> Gruppe
 	des PDC zu der lokalen <constant>Administratoren</constant> Gruppe der Arbeitsstation hinzugefügt.
-	Jedes Mitglied der <constant>Domänenadministratoren</constant> Gruppe vererbt die Rechte der lokalen
+	Jedes Mitglied der <constant>Domänen Administratoren</constant> Gruppe vererbt die Rechte der lokalen
 	<constant>Administratoren</constant> Gruppe wenn diese sich an der Arbeitsstation anmelden.
 	</para>
 
 	<para>
-	Die folgenden Schritte beschreiben, wie man Samba PDC Benutzer Mitglied der <constant>Domänenadministratoren</constant> Gruppe macht.
+	Die folgenden Schritte beschreiben, wie man Samba PDC-Benutzer zu Mitgliedern der <constant>Domänenadministratoren</constant> Gruppe macht.
 	</para>
 
 	<orderedlist>
@@ -195,7 +195,7 @@
 
 	<para>
 	Beachten Sie, dass der RID Parameter ein unsigned 32-Bit Integer ist, der normalerweise bei 1000 startet.
-	Wie auch immer muss dieser RID sich nicht mit einem RID, der einem Benutzer zugewiesen ist, überschneiden.
+	Wie auch immer darf dieser RID sich nicht mit einem RID, der einem Benutzer zugewiesen ist, überschneiden.
 	Die Überprüfung dessen wird unterschiedlich gemacht und ist von dem von Ihnen verwendetetn passdb-Backend 
 	abhängig. Künftige Versionen der Werkzeuge machen die Überprüfung eventuell automatisch, aber derzeit ist
 	dies Ihre Sache.
@@ -221,66 +221,68 @@
 	</para>
 
 	<para>
-	Many UNIX administrators continue to request the Samba Team make it possible to add Windows workstations, or 
-	to ability to add/delete or modify user accounts, without requiring <constant>root</constant> privileges. 
-	Such a request violates every understanding of basic UNIX system security.
+	Viele UNIX Administratoren fragen wiederholt beim Samba Team an, ob es nicht möglich wäre, Windows Arbeitsstationen
+	oder die Möglichkeit Benutzerkonten hinzuzufügen/zu löschen ohne <constant>root</constant> Privilegien voraus zu setzen.
+	Solch ein Verlangen verletzt jedes Verständnis von grundlegender UNIX Systemsicherheit.
 	</para>
 
 	<para>
-	There is no safe way to provide access on a UNIX/Linux system without providing <constant>root</constant>
-	level privilege. Provision of <constant>root</constant> privileges can be done wither by logging onto
-	the Domain as the user <constant>root</constant>, or by permitting particular users to use a UNIX account
-	that is a member of the UNIX group that has a GID=0 as the primary group in the <filename>/etc/passwd</filename>
-	database. Users of such accounts can use tools like the NT4 Domain User Manager, and the NT4 Domain Server 
-	Manager to manage user and group accounts as well as Domain Member server and client accounts. This level
-	of privilege is also needed to manage share level ACLs.
+	Es gibt keinen sicheren Weg Zugriff auf ein UNIX/Linux System ohne <constant>root</constant> Level Privilegien
+	zur Verfügung zu stellen. Die Bereitstellung von <constant>root</constant> Privilegien kann entweder durch
+	Anmelden als <constant>root</constant> an der Domäne erfolgen oder es bestimmten Benutzern erlauben, ein UNIX-Konto
+	welches Mitglied einer UNIX-Gruppe ist die eine GID=0 als primäre Gruppe in der <filename>/etc/passwd</filename>
+	Datenbank hat, zu benutzen.
+	Benutzer solcher Konten können Werkzeuge wie den NT 4 Domänen-Benutzermanager benutzen und den NT 4 Domänen-Servermanager
+	um Benutzer- und Gruppenkonten zu verwalten, genauso wie Domänen-Mitgliedsserver und Client-Konten. Diese Privilegienebene
+	wird ebenfalls benutzt, um ACLs auf Freigabeebene zu verwalten.
 	</para>
 
 	<para>
-	Administrative tasks on a Windows Domain Member workstation, can be done by anyone who is a member of the
-	<constant>Domain Admins</constant> group. This group can be mapped to any convenient UNIX group.
+	Administrative Aufgaben auf einer Windows-Arbeitsstation die Domänenmitglied ist, können durch jeden, der Mitglied der
+	<constant>Domänen Administratoren</constant> Gruppe ist durchgeführt werden. Diese Gruppe kann zu jeder passenden UNIX-Gruppe
+	gemappt werden.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Default Users, Groups and Relative Identifiers</title>
+	<title>Standardbezeichner für Benutzer, Gruppen und Beziehungen</title>
 
 	<para>
-<indexterm><primary>Relative Identifier</primary><see>RID</see></indexterm>
+<indexterm><primary>Relative Bezeichner</primary><see>RID</see></indexterm>
 <indexterm><primary>RID</primary></indexterm>
-	When first installed, Microsoft Windows NT4/200x/XP are pre-configured with certain User, Group, and
-	Alias entities. Each has a well-known Relative Identifier (RID). These must be preserved for continued
-	integrity of operation. Samba must be provisioned with certain essential Domain Groups that require
-	the appropriate RID value. When Samba-3 is configured to use <constant>tdbsam</constant> the essential
-	Domain Groups are automatically created. It is the LDAP administrators' responsibility to create
-	(provision) the default NT Groups.
+	Beim ersten Installieren wird Microsoft Windows NT4/200x/XP mit einigen Benutzer-, Gruppen- und Alias-Einheiten
+	vorkonfiguriert. Jeder hat einen bekannten Relativen Bezeichner (RID). Dieser muss für weitergehende
+	Integrität von Operationen eindeutig bleiben. Samba muss mit gewissen lebensnotwendigen Domänengruppen ausgestattet
+	werden, die den entsprechenden RID-Wert verlangen. Wenn Samba-3 so konfiguriert wird, dass es <constant>tdbsam</constant> 
+	nutzt werden die lebensnotwendigen Domänengruppen automatisch angelegt. Es ist dann die Verantwortung des LDAP
+	Administrators die Standard NT Gruppen zu erzeugen (diese auszustatten).
 	</para>
 
 	<para>
-	Each essential Domain Group must be assigned its respective well-known RID. The default Users, Groups,
-	Aliases, and RIDs are shown in <link linkend="WKURIDS">Well-Known User Default RIDs</link> table.
+	Jede grundlegende Domänengruppe muss zu Ihrer zugehörigen bekannten RID zugeordnet werden. Die Standard-Benutzer,
+	Gruppen, Aliase und RIDs werden in der <link linkend="WKURIDS">Bekannte Standardbenutzer RIDs</link> Tabelle angezeigt.
 	</para>
 
 	<para><note>
-	When the <parameter>passdb backend</parameter> uses LDAP (<constant>ldapsam</constant>) it is the
-	administrators' responsibility to create the essential Domain Groups, and to assign each its default RID.
+	Wenn der <parameter>passdb backend</parameter> LDAP (<constant>ldapsam</constant>) benutzt, ist es die Verantwortung
+	des Administrators die notwendigen Domänengruppen zu erzeugen und diese jeder Ihrer RID zuzuweisen.
 	</note></para>
 
 	<para>
-	It is permissible to create any Domain Group that may be necessary, just make certain that the essential
-	Domain Groups (well known) have been created and assigned its default RID. Other groups you create may
-	be assigned any arbitrary RID you care to use.
+	Es ist zulässig, jede Domänengruppe welche benötigt wird zu erzeugen, stellen Sie lediglich sicher, dass die
+	notwendige Domänengruppe (bekanntgegebene) erzeugt wurde und Ihrer Standard-RID zugewiesen wurde. Andere Gruppen
+	die Sie anlegen können Sie jeder beliebigen RID zuordnen, die Sie benutzen möchten.
 	</para>
 
 	<para>
-	Be sure to map each Domain Group to a UNIX system group. That is the only way to ensure that the group
-	will be available for use as an NT Domain Group.
+	Stellen Sie sicher, dass jede Domänengruppe zu einer UNIX Systemgruppe gemappt wird. Dies ist der einzige Weg
+	sicherzustellen, dass die Gruppe als eine NT Domänengruppe verfügbar sein wird.
 	</para>
 
 	<para>
 	<table frame="all" id="WKURIDS">
-	<title>Well-Known User Default RIDs</title>
+	<title>Bekannte Standardbenutzer RIDs</title>
 		<tgroup cols="4" align="left">
 			<colspec align="left"/>
 			<colspec align="left"/>
@@ -288,144 +290,144 @@
 			<colspec align="center"/>
 			<thead>
 				<row>
-					<entry>Well-Known Entity</entry>
+					<entry>Bekannte Einheit</entry>
 					<entry>RID</entry>
-					<entry>Type</entry>
-					<entry>Essential</entry>
+					<entry>Typ</entry>
+					<entry>Notwendig</entry>
 				</row>
 			</thead>
 			<tbody>
 				<row>
-					<entry>Domain Administrator</entry>
+					<entry>Domänen Administrator</entry>
 					<entry>500</entry>
-					<entry>User</entry>
-					<entry>No</entry>
+					<entry>Benutzer</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Guest</entry>
+					<entry>Domänen Gast</entry>
 					<entry>501</entry>
-					<entry>User</entry>
-					<entry>No</entry>
+					<entry>Benutzer</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain KRBTGT</entry>
+					<entry>Domäne KRBTGT</entry>
 					<entry>502</entry>
-					<entry>User</entry>
-					<entry>No</entry>
+					<entry>Benutzer</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Admins</entry>
+					<entry>Domänen Administratoren</entry>
 					<entry>512</entry>
-					<entry>Group</entry>
-					<entry>Yes</entry>
+					<entry>Gruppe</entry>
+					<entry>Ja</entry>
 				</row>
 				<row>
-					<entry>Domain Users</entry>
+					<entry>Domänenbenutzer</entry>
 					<entry>513</entry>
-					<entry>Group</entry>
-					<entry>Yes</entry>
+					<entry>Gruppe</entry>
+					<entry>Ja</entry>
 				</row>
 				<row>
-					<entry>Domain Guests</entry>
+					<entry>Domänengäste/entry>
 					<entry>514</entry>
-					<entry>Group</entry>
-					<entry>Yes</entry>
+					<entry>Gruppe</entry>
+					<entry>Ja</entry>
 				</row>
 				<row>
-					<entry>Domain Computers</entry>
+					<entry>Domänen Computer</entry>
 					<entry>515</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Controllers</entry>
+					<entry>Domänen Kontroller</entry>
 					<entry>516</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Certificate Admins</entry>
+					<entry>Domänen Certificate Administratoren</entry>
 					<entry>517</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Schema Admins</entry>
+					<entry>Domänen Schema Administratoren</entry>
 					<entry>518</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Enterprise Admins</entry>
+					<entry>Domänen Enterprise Administratoren</entry>
 					<entry>519</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domain Policy Admins</entry>
+					<entry>Domänen Policy Administratoren</entry>
 					<entry>520</entry>
-					<entry>Group</entry>
-					<entry>No</entry>
+					<entry>Gruppe</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Admins</entry>
+					<entry>Builtin Administratoren</entry>
 					<entry>544</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin users</entry>
+					<entry>Builtin Benutzer</entry>
 					<entry>545</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Guests</entry>
+					<entry>Builtin Gäste</entry>
 					<entry>546</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Power Users</entry>
+					<entry>Builtin Hauptbenutzer</entry>
 					<entry>547</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Account Operators</entry>
+					<entry>Builtin Zugriffs-Operator</entry>
 					<entry>548</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin System Operators</entry>
+					<entry>Builtin System-Operator</entry>
 					<entry>549</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Print Operators</entry>
+					<entry>Builtin Drucker-Operator</entry>
 					<entry>550</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Backup Operators</entry>
+					<entry>Builtin Backup-Operator</entry>
 					<entry>551</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin Replicator</entry>
+					<entry>Builtin Replikator</entry>
 					<entry>552</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Builtin RAS Servers</entry>
+					<entry>Builtin RAS Server</entry>
 					<entry>553</entry>
 					<entry>Alias</entry>
-					<entry>No</entry>
+					<entry>Nein</entry>
 				</row>
 			</tbody>
 		</tgroup>
@@ -435,11 +437,11 @@
 	</sect2>
 
 	<sect2>
-	<title>Example Configuration</title>
+	<title>Beispielkonfiguration</title>
 
 		<para>
-		You can list the various groups in the mapping database by executing
-		<command>net groupmap list</command>. Here is an example:
+		Sie können die verschiedenen Gruppen in der Mapping-Datenbank anzeigen lassen, indem Sie eingeben
+		<command>net groupmap list</command>. Hier ist ein Beispiel:
 		</para>
 
 <indexterm><primary>net</primary><secondary>groupmap</secondary></indexterm>
@@ -447,14 +449,14 @@
 		<para>
 <screen>
 &rootprompt; <userinput>net groupmap list</userinput>
-Domain Admins (S-1-5-21-2547222302-1596225915-2414751004-512) -> domadmin
-Domain Users (S-1-5-21-2547222302-1596225915-2414751004-513) -> domuser
-Domain Guests (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
+Domänen Administratoren (S-1-5-21-2547222302-1596225915-2414751004-512) -> domadmin
+Domänen Benutzer (S-1-5-21-2547222302-1596225915-2414751004-513) -> domuser
+Domänen Gäste (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
 </screen>
 		</para>
 
 		<para>
-		For complete details on <command>net groupmap</command>, refer to the net(8) man page.
+		Für ausführliche Details zu <command>net groupmap</command>, wenden Sie sich an die net(8) man page.
 		</para>
 
 	</sect2>
@@ -462,19 +464,19 @@ Domain Guests (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
 </sect1>
 
 <sect1>
-<title>Configuration Scripts</title>
+<title>Konfigurationskripts</title>
 
 	<para>
-	Everyone needs tools. Some of us like to create our own, others prefer to use canned tools
-	(i.e., prepared by someone else for general use). 
+	Jeder braucht Werkzeuge. Manche von uns machen Ihre gerne selbst, andere bevorzugen Werkzeuge aus der Konserve
+	(z.B. welche, die von jemandem für bestimmte Zwecke vorbereitet wurden). 
 	</para>
 
 	<sect2>
-	<title>Sample &smb.conf; Add Group Script</title>
+	<title>Beispiel &smb.conf; Skript zum Gruppen hinzufügen</title>
 
 		<para>
-		A script to create complying group names for use by the Samba group interfaces
-		is provided in <link linkend="smbgrpadd.sh">smbgrpadd.sh</link>.
+		Ein Skript um übereinstimmende Gruppennamen für die Nutzung durch das Samba Gruppeninterface wird
+		in <link linkend="smbgrpadd.sh">smbgrpadd.sh</link> zur Verfügung gestellt.
 		</para>
 
 <indexterm><primary>smbgrpadd.sh</primary></indexterm>
@@ -485,16 +487,16 @@ Domain Guests (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
 
 #!/bin/bash
 
-# Add the group using normal system groupadd tool.
+# Fügt die Gruppe unter Nutzung des normalen groupadd Systemwerkzeuges hinzu.
 groupadd smbtmpgrp00
 
 thegid=`cat /etc/group | grep smbtmpgrp00 | cut -d ":" -f3`
 
-# Now change the name to what we want for the MS Windows networking end
+# Jetzt den Namen für unser MS Windows Netzwerk passend ändern.
 cp /etc/group /etc/group.bak
 cat /etc/group.bak | sed "s/smbtmpgrp00/$1/g" > /etc/group
 
-# Now return the GID as would normally happen.
+# Melde uns die GID zurück.
 echo $thegid
 exit 0
 </programlisting>
@@ -502,12 +504,12 @@ exit 0
 </para>
 
 		<para>
-		The &smb.conf; entry for the above script would be something like that in <link linkend="smbgrpadd">the following example</link>.
+		Der &smb.conf; Eintrag für obiges Skript kann etwas wie in <link linkend="smbgrpadd">Das folgende Beispiel</link> sein.
 <smbconfexample id="smbgrpadd">
-<title>Configuration of &smb.conf; for the add group script.</title>
+<title>Konfiguration von &smb.conf; für das Skript zum Gruppen hinzufügen.</title>
 <smbconfsection>[global]</smbconfsection>
 <member>...</member>
-<smbconfoption><name>add group script</name><value>/path_to_tool/smbgrpadd.sh &quot;%g&quot;</value></smbconfoption>
+<smbconfoption><name>add group script</name><value>/Pfad_zum_Werkzeug/smbgrpadd.sh &quot;%g&quot;</value></smbconfoption>
 <member>...</member>
 </smbconfexample>
 		</para>
@@ -515,42 +517,43 @@ exit 0
 	</sect2>
 	
 	<sect2>
-	<title>Script to Configure Group Mapping</title>
+	<title>Skript um Gruppen-Mappings zu konfigurieren</title>
 
 	<para>
-		In our example we have created a UNIX/Linux group called <ntgroup>ntadmin</ntgroup>.
-		Our script will create the additional groups <ntgroup>Orks</ntgroup>, <ntgroup>Elves</ntgroup>, and <ntgroup>Gnomes</ntgroup>.
-		It is a good idea to save this shell script for later re-use just in case you ever need to rebuild your mapping database.
-		For the sake of convenience we elect to save this script as a file called <filename>initGroups.sh</filename>.
-		This script is given in <link linkend="set-group-map">intGroups.sh</link>.
+		In unserem Beispiel haben wir eine UNIX/Linux-Gruppe erzeugt namens <ntgroup>ntadmin</ntgroup>.
+		Unser Skript wird die zusätzlichen Gruppen <ntgroup>Orks</ntgroup>, <ntgroup>Elfen</ntgroup> und <ntgroup>Gnome</ntgroup> anlegen.
+		Es ist eine gute Idee dieses Shellskript für spätere erneute Nutzung abzuspeichern, auch für den Fall, dass Sie später Ihre
+		Mapping-Datenbank einmal neu anlegen müssen.
+		Aus praktischen Gründen wählen wir, dieses Skript als eine Datei namens <filename>initGroups.sh</filename> zu speichern.
+		Dieses Skript ist hier <link linkend="set-group-map">intGroups.sh</link>.
 	</para>
 
 <para>
 <indexterm><primary>initGroups.sh</primary></indexterm>
 <example id="set-group-map">
-	<title>Script to Set Group Mapping</title>
+	<title>Skript um Gruppen-Mappings zu setzen</title>
 <programlisting>
 #!/bin/bash
 
-net groupmap modify ntgroup="Domain Admins" unixgroup=ntadmin
-net groupmap modify ntgroup="Domain Users" unixgroup=users
-net groupmap modify ntgroup="Domain Guests" unixgroup=nobody
+net groupmap modify ntgroup="Domänen Administratoren" unixgroup=ntadmin
+net groupmap modify ntgroup="Domänen Benutzer" unixgroup=users
+net groupmap modify ntgroup="Domänen Gäste" unixgroup=nobody
 
 groupadd Orks
-groupadd Elves
-groupadd Gnomes
+groupadd Elfen
+groupadd Gnome
 
 net groupmap add ntgroup="Orks"   unixgroup=Orks   type=d
-net groupmap add ntgroup="Elves"  unixgroup=Elves  type=d
-net groupmap add ntgroup="Gnomes" unixgroup=Gnomes type=d
+net groupmap add ntgroup="Elfen"  unixgroup=Elfen  type=d
+net groupmap add ntgroup="Gnome"  unixgroup=Gnome  type=d
 </programlisting>
 </example>
 </para>
 
 	<para>
-	Of course it is expected that the administrator will modify this to suit local needs.
-	For information regarding the use of the <command>net groupmap</command> tool please
-	refer to the man page.
+	Natürlich wird vorausgesetzt, dass der Administrator dies für lokale Zwecke anpassen wird.
+	Für Informationen hinsichtlich der Nutzung des <command>net groupmap</command> Werkzeuges sehen Sie bitte in der
+	man page nach.
 	</para>
 
 	</sect2>
@@ -558,105 +561,103 @@ net groupmap add ntgroup="Gnomes" unixgroup=Gnomes type=d
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Allgemeine Fehler</title>
 
 <para>
-At this time there are many little surprises for the unwary administrator. In a real sense
-it is imperative that every step of automated control scripts must be carefully tested
-manually before putting them into active service.
+Zur Zeit gibt es eine Menge kleiner Überraschungen für den unachtsamen Administrator. In gewisser Weise ist es erforderlich, 
+dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet wurde, bevor diese aktive Anwendung finden.
 </para>
 
 	<sect2>
-	<title>Adding Groups Fails</title>
+	<title>Hinzufügen von Gruppen schlägt fehl</title>
 
 		<para>
-		This is a common problem when the <command>groupadd</command> is called directly
-		by the Samba interface script for the <smbconfoption><name>add group script</name></smbconfoption> in
-		the &smb.conf; file.
+		Dies ist ein häufiges Problem wenn das <command>groupadd</command> direkt von dem Samba Interface-Skript
+		für das <smbconfoption><name>add group script</name></smbconfoption> in der &smb.conf; Datei aufgerufen wurde.
 		</para>
 
 		<para>
-		The most common cause of failure is an attempt to add an MS Windows group account
-		that has either an upper case character and/or a space character in it.
+		Der häufigste Fehlergrund ist der Versuch, ein MS Windows Gruppenkonto hinzuzufügen, welches
+		entweder ein grossgeschriebenes Zeichen und/oder ein Leerzeichen beinhaltet.
 		</para>
 
 		<para>
-		There are three possible work-arounds. First, use only group names that comply
-		with the limitations of the UNIX/Linux <command>groupadd</command> system tool.
-		Second, it involves the use of the script mentioned earlier in this chapter, and
-		third is the option is to manually create a UNIX/Linux group account that can substitute
-		for the MS Windows group name, then use the procedure listed above to map that group
-		to the MS Windows group.
-		</para>
-
-	</sect2>
-
-	<sect2>
-	<title>Adding MS Windows Groups to MS Windows Groups Fails</title>
-
-	<indexterm><primary>groups</primary><secondary>nested</secondary></indexterm>
-
-		<para>
-		Samba-3 does not support nested groups from the MS Windows control environment.
+		Es gibt drei mögliche Workarounds. Erstens: benutzen Sie nur Gruppennamen die mit den
+		Einschränkungen des UNIX/Linux <command>groupadd</command> Systemwerkzeuges zurecht kommen.
+		Der zweite betrifft die Benutzung des Skript, welches früher hier im Kapitel erwähnt wurde und
+		der dritte ist die Option, ein UNIX/Linux Gruppenkonto manuell anzulegen, welches zu dem MS Windows
+		Gruppennamen passt, dann benutzen Sie den Ablauf der vorher beschrieben wurde, diese Gruppe zu einer
+		MS Windows-Gruppe zu mappen.
 		</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Adding <emphasis>Domain Users</emphasis> to the <emphasis>Power Users</emphasis> Group</title>
+	<title>Hinzufügen von MS Windows-Gruppen zu MS Windows-Gruppen schlägt fehl</title>
+
+	<indexterm><primary>Gruppen</primary><secondary>versteckt</secondary></indexterm>
+
+		<para>
+		Samba-3 unterstützt keine versteckten Gruppen aus der MS Windows Kontrollumgebung.
+		</para>
+
+	</sect2>
+
+	<sect2>
+	<title>Hinzufügen von <emphasis>Domänen Benutzern</emphasis> zu der <emphasis>Hauptbenutzer</emphasis> Gruppe</title>
 
 		<para><quote>
-		What must I do to add Domain Users to the Power Users group?
+		Was muss ich machen, um Domänenbenutzer zu der Hauptbenutzer-Gruppe hinzuzufügen ?
 		</quote></para>
 
-<indexterm><primary>Domain Users group</primary></indexterm>
+<indexterm><primary>Domänen Benutzergruppe</primary></indexterm>
 
 		<para>
-		The Power Users group is a group that is local to each Windows 200x/XP Professional workstation.
-		You cannot add the Domain Users group to the Power Users group automatically, it must be done on
-		each workstation by logging in as the local workstation <emphasis>administrator</emphasis> and
-		then using the following procedure:
+		Die Hauptbenutzer-Gruppe ist eine Gruppe die lokal auf jeder Windows 200x/XP Professional Arbeitsstation vorhanden ist.
+		Sie können die Domänen Benutzergruppe nicht automatisch zu der Hauptbenutzer-Gruppe hinzufügen, dies muss auf jeder 
+		Arbeitsstation durch Anmelden als der lokale Arbeitsstations <emphasis>Administrator</emphasis> und durch Nutzung 
+		des folgenden Ablaufs gemacht werden:
 		</para>
 
 		<procedure>
 			<step><para>
-			Click <guimenu>Start -> Control Panel -> Users and Passwords</guimenu>.
+			Klicken Sie <guimenu>Start -> Systemsteuerung -> Benutzer und Kennwörter</guimenu>.
 			</para></step>
 
 			<step><para>
-			Click the <guimenuitem>Advanced</guimenuitem> tab.
+			Klicken Sie die <guimenuitem>Erweitert</guimenuitem> Registerkarte.
 			</para></step>
 
 			<step><para>
-			Click the <guibutton>Advanced</guibutton> button.
+			Klicken Sie den <guibutton>Erweitert</guibutton> Knopf.
 			</para></step>
 
 			<step><para>
-			Click <constant>Groups</constant>.
+			Klicken Sie <constant>Gruppen</constant>.
 			</para></step>
 
 			<step><para>
-			Double click <constant>Power Users</constant>. This will launch the panel to add users or groups
-			to the local machine <constant>Power Uses</constant> group.
+			Doppelklicken Sie <constant>Hauptbenutzer</constant>. Dies wird das Feld zum Hinzufügen von Benutzern und Gruppen
+			zu der lokalen <constant>Hauptbenutzer</constant> Gruppe erscheinen lassen.
 			</para></step>
 
 			<step><para>
-			Click the <guibutton>Add</guibutton> button.
+			Klicken Sie auf den <guibutton>Hinzufügen</guibutton> Knopf.
 			</para></step>
 
 			<step><para>
-			Select the domain from which the <constant>Domain Users</constant> group is to be added.
+			Wählen Sie die Domäne aus, von der Sie die <constant>Domänen Benutzer</constant> Gruppe hinzufügen.
 			</para></step>
 
 			<step><para>
-			Double click the <constant>Domain Users</constant> group.
+			Doppelklicken Sie die <constant>Domänen Benutzer</constant> Gruppe.
 			</para></step>
 
 			<step><para>
-			Click the <guibutton>Ok</guibutton> button. If a logon box is presented during this process 
-			please remember to enter the connect as <constant>DOMAIN\UserName</constant>. i.e., For the
-			domain <constant>MIDEARTH</constant> and the user <constant>root</constant> enter
-			<constant>MIDEARTH\root</constant>.
+			Klicken Sie den <guibutton>Ok</guibutton> Knopf. Falls während dieses Prozesses eine Anmeldebox
+			erscheint denken Sie bitte daran, die Anmeldung als <constant>Domäne\Benutzername</constant>
+			durchzuführen. Z.B. für die Domäne <constant>MIDEARTH</constant> und den Benutzer <constant>root</constant> geben Sie
+			<constant>MIDEARTH\root</constant> ein.
 			</para></step>
 		</procedure>
 	</sect2>
