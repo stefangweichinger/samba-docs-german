@@ -12,74 +12,73 @@
 
 	<para>
 <indexterm significance="preferred"><primary>groups</primary><secondary>mapping</secondary></indexterm>
-	Starting with Samba-3, new group mapping functionality is available to create associations
-	between Windows group SIDs and UNIX groups. The <command>groupmap</command> subcommand
-	included with the &net; tool can be used to manage these associations.
+	Mit der Einführung von Samba 3, wurden neue "Group Mapping" Funktionen eingebaut, die Verbindungen
+	zwischen Unix Gruppen und Windows Guppen SIDs ermöglichen. Das Unterkommando <command>groupmap</command>,
+	welches zum &net; Kommando gehört, wird für das Verbinden der Gruppen verwendet.
 	</para>
 
 	<para>
-	The new facility for mapping NT Groups to UNIX system groups allows the administrator to decide
-	which NT Domain Groups are to be exposed to MS Windows clients. Only those NT Groups that map
-	to a UNIX group that has a value other than the default (<constant>-1</constant>) will be exposed
-	in group selection lists in tools that access domain users and groups.
-	</para>
+	Die neuen Features des Group Mappings ermöglichen dem Administrator zu entscheiden welche NT Domain 
+	Gruppen dem MS Windows Client zugeordnet werden. Es werden nur jene NT Domain Gruppen in den 
+	Tools zur Bearbeitung von Domain User und Gruppen angezeigt, welche auf eine Unix Gruppe gemappt wurden,
+	und nicht den Standardwert (<constant>-1</constant>) zugeordnet wurden.
+ 	</para>
 
 	<warning>
 	<para>
 	<indexterm><primary>domain admin group</primary></indexterm>
-	The <parameter>domain admin group</parameter> parameter has been removed in Samba-3 and should no longer
-	be specified in &smb.conf;. In Samba-2.2.x, this parameter was used to give the listed users membership in the
-	<constant>Domain Admins</constant> Windows group which gave local admin rights on their workstations
-	(in default configurations).
+	Der <parameter>domain admin group</parameter> Parameter wurde aus Samba-3 entfernt, und sollte nicht
+	länger verwendet werden. In Samba-2.2.x Versionen wurde dieser Parameter verwendet, um einer bestimmten
+	Liste von User die Mitgliedschaft in der Domain Admin Gruppe zu geben, welche lokale Administrator
+	Rechte auf den Client Rechner vergeben. (in Standard Konfigurationen)
 	</para>
 	</warning>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Leistungen</title>
 
 	<para>
-	Samba allows the administrator to create MS Windows NT4/200x group accounts and to
-	arbitrarily associate them with UNIX/Linux group accounts.
+	Samba ermöglicht dem Administrator das Anlegen von MS Windows NT4/200x Gruppen Accounts, welche
+	auf beliebige UNIX/Linux Gruppen gemappt werden können.	
 	</para>
 
 	<para>
 <indexterm><primary>UID</primary></indexterm>
 <indexterm><primary>GID</primary></indexterm>
-	Group accounts can be managed using the MS Windows NT4 or MS Windows 200x/XP Professional MMC tools.
-	Appropriate interface scripts should be provided in &smb.conf; if it is desired that UNIX/Linux system
-	accounts should be automatically created when these tools are used. In the absence of these scripts, and
-	so long as <command>winbindd</command> is running, Samba group accounts that are created using these
-	tools will be allocated UNIX UIDs/GIDs from the ID range specified by the
+	Gruppen Accounts können mit den MS Windows 200x/XP Professional MMC Tools verwaltet werden.
+	In der &smb.conf; können entsprechende scripts verwendet werden, um mit diesen MMC Tools 
+	automatisch UNIX/Linux Accounts anzulegen. Wenn diese scripts nicht angeben werden und der
+	<command>winbindd</command> läuft, werden die Samba Gruppen Accounts den Parameter von 
 	<smbconfoption><name>idmap uid</name></smbconfoption>/<smbconfoption><name>idmap gid</name></smbconfoption>
-	parameters in the &smb.conf; file.
+	der &smb.conf; zugeordnet.
 	</para>
 
 	<figure id="idmap-sid2gid"><title>IDMAP: group SID to GID resolution.</title>
 	<mediaobject>
-
-<imageobject role="latex"><imagedata fileref="images/idmap-sid2gid" scale="50" scalefit="1"/></imageobject>
-        <imageobject><imagedata fileref="images/idmap-sid2gid.png" scale="50" scalefit="1"/></imageobject>
+	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-sid2gid" scale="50" scalefit="1"/></imageobject>
+	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-sid2gid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
 
 	<figure id="idmap-gid2sid"><title>IDMAP: GID resolution to matching SID.</title>
 	<mediaobject>
-	<imageobject role="latex"><imagedata fileref="images/idmap-gid2sid" scale="50" scalefit="1"/></imageobject>
-	<imageobject><imagedata fileref="images/idmap-gid2sid.png" scale="50" scalefit="1"/></imageobject>
+	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-gid2sid" scale="50" scalefit="1"/></imageobject>
+	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-gid2sid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
 
 	<para>
-	In both cases, when winbindd is not running, only locally resolvable groups can be recognized. Please refer to
-	<link linkend="idmap-sid2gid">IDMAP: group SID to GID resolution</link> and <link linkend="idmap-gid2sid">IDMAP: GID resolution to matching SID</link>. 
-	The <command>net groupmap</command> is
-	used to establish UNIX group to NT SID mappings as shown in <link linkend="idmap-store-gid2sid">IDMAP: storing group mappings</link>.
+	In beiden Fällen, wenn winbindd nicht läuft, können nur lokal auflösbaren Gruppen erkannt werden. Siehe auch
+	<link linkend="idmap-sid2gid">IDMAP: group SID to GID resolution</link> und <link linkend="idmap-gid2sid">IDMAP: GID resolution to matching SID</link>. 
+	Das Kommando <command>net groupmap</command> wird verwendet um UNIX Gruppen zu NT SID mappings wie in 
+	<link linkend="idmap-store-gid2sid">IDMAP: storing group mappings</link> zu erstellen.
 	</para>
+	
 
 	<figure id="idmap-store-gid2sid"><title>IDMAP storing group mappings.</title>
 	<mediaobject>
-	<imageobject role="latex"><imagedata fileref="images/idmap-store-gid2sid" scale="50" scalefit="1"/></imageobject>
-	<imageobject><imagedata fileref="images/idmap-store-gid2sid.png" scale="50" scalefit="1"/></imageobject>
+	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid" scale="50" scalefit="1"/></imageobject>
+	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
 
@@ -87,48 +86,51 @@
 	<para>
 	<indexterm><primary>groupadd</primary></indexterm>
 	<indexterm><primary>groupdel</primary></indexterm>
-	Administrators should be aware that where &smb.conf; group interface scripts make
-	direct calls to the UNIX/Linux system tools (the shadow utilities, <command>groupadd</command>,
-	<command>groupdel</command>, and <command>groupmod</command>), the resulting UNIX/Linux group names will be subject
-	to any limits imposed by these tools. If the tool does not allow upper case characters
-	or space characters, then the creation of an MS Windows NT4/200x style group of
-	<ntgroup>Engineering Managers</ntgroup> will attempt to create an identically named
-	UNIX/Linux group, an attempt that will of course fail.
+	Administratoren sollten beachten, dass &smb.conf; group interface scripts direkt die UNIX/Linux System Tools
+	(the shadow utilities, <command>groupadd</command>, <command>groupdel</command>, und <command>groupmod</command>) 
+	verwenden. Die resultierenden Gruppennamen können nur Zeichen enthalten die auch die oben genannten Tools
+	bearbeiten können. Wenn die Tools keine Großbuchstaben oder Leerzeichen erlauben wird das erstellen der
+	<ntgroup>Domain Admins</ntgroup> nicht möglich sein.
 	</para>
-
 
 
 	<para>
 	<indexterm><primary>GID</primary></indexterm>
 	<indexterm><primary>SID</primary></indexterm>
-	There are several possible work-arounds for the operating system tools limitation. One
-	method is to use a script that generates a name for the UNIX/Linux system group that
-	fits the operating system limits, and that then just passes the UNIX/Linux group ID (GID)
-	back to the calling Samba interface. This will provide a dynamic work-around solution.
+	Es gibt verschiedene Lösungswege für solche Einschränkungen von verschiedenen Betriebsystemen.
+	Eine Möglichkeit besteht darin, scripte zu verwenden, die die System Limits kennen und dann nur
+	die UNIX/Linux Gruppen ID (GID) dem Samba zurückgeben. Dies ist ein dynamischer "work-around"
 	</para>
 
 	<para>
-	Another work-around is to manually create a UNIX/Linux group, then manually create the
-	MS Windows NT4/200x group on the Samba server and then use the <command>net groupmap</command>
-	tool to connect the two to each other.
+	Ein anderer Lösungsansatz ist die manuelle Erstellung der UNIX/Linux und MS Windows NT4/200x 
+	Gruppen am Samba Server, und die Verwendung des <command>net groupmap</command> Tool um die 
+	Gruppen zu "verbinden".
 	</para>
 
 </sect1>
 
 <sect1>
-<title>Discussion</title>
+<title>Diskussion</title>
 
 	<para>
-	When installing <application>MS Windows NT4/200x</application> on a computer, the installation
-	program creates default users and groups, notably the <constant>Administrators</constant> group,
-	and gives that group privileges necessary privileges to perform essential system tasks,
-	such as the ability to change the date and time or to kill (or close) any process running on the
-	local machine.
+	Bei der Installation von <application>MS Windows NT4/200x</application> auf einem Computer,
+	erstellt das Installationsprogramm Benutzer und Gruppen, insbesondere die <constant>Administratoren</constant>
+	Gruppe. Diese Gruppe erhält die nötigen Rechte wichtige Systemaufgaben, wie die Änderung der Zeit
+	und das Beenden von Programmen, auszuführen.
 	</para>
-	
+
 	<para>
 	<indexterm><primary>Administrator</primary></indexterm>
-	The <constant>Administrator</constant> user is a member of the <constant>Administrators</constant> group, and thus inherits
+	Der <constant>Administrator</constant> Benutzer ist Mitglied der <constant>Administratoren</constant> Gruppe. Dies
+	vererbt die <constant>Administratoren</constant> Gruppen Rechte.
+
+
+
+
+
+
+The <constant>Administrator</constant> user is a member of the <constant>Administrators</constant> group, and thus inherits
 	<constant>Administrators</constant> group privileges. If a <constant>joe</constant> user is created to be a member of the
 	<constant>Administrators</constant> group, <constant>joe</constant> has exactly the same rights as the user,
 	<constant>Administrator</constant>.
