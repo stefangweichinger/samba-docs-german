@@ -55,7 +55,7 @@
 
 	<para>Neben weiteren Diensten wird <command>nmbd</command> auf 
 	solche Anfragen warten, und wenn sein eigener NetBIOS-Name angegeben
-	wird, wird er mit der IP-Nummer des Hosts antworten, auf dem er läuft.
+	wird, wird er mit der IP-Adresse des Hosts antworten, auf dem er läuft.
 	Sein "eigener NetBIOS-Name" ist per Voreinstellung der primäre 
 	DNS-Name des Hosts, auf dem er läuft, was aber durch
 	<smbconfoption><name>netbios name</name></smbconfoption>
@@ -225,9 +225,9 @@
 		<manvolnum>5</manvolnum></citerefentry>),
 		speichert <command>nmbd</command>
 		die WINS-Datenbank in der Datei <filename>wins.dat</filename>
-		im Verzeichnis <filename>var/locks</filename>, was dort 
-		konfiguriert ist, wo auch für Samba konfiguriert wurde, 
-		wo es installiert wird.</para>
+		im Verzeichnis <filename>var/locks</filename>, was an der gleichen 
+		Stelle konfiguriert ist, an der auch steht, wo Samba installiert 
+		wird.</para>
 
 		<para>Falls <command>nmbd</command> als 
 		<emphasis>browse master</emphasis> fungiert (siehe Parameter
@@ -237,8 +237,8 @@
 		<manvolnum>5</manvolnum></citerefentry>, speichert
 		<command>nmbd</command> die Browsing-Datenbank in der 
 		Datei <filename>browse.dat</filename> im Verzeichnis
-		<filename>var/locks</filename>, was dort konfiguriert ist, 
-		wo auch für Samba konfiguriert wurde, wo es installiert 
+		<filename>var/locks</filename>, was an der gleichen 
+		Stelle konfiguriert ist, an der auch steht, wo Samba installiert 
 		wird.</para></listitem>
 		</varlistentry>
 	</variablelist>
@@ -258,8 +258,8 @@
 	<para><command>nmbd</command> akzeptiert ein SIGHUP, bei dem es seine
 	Namenslisten in die Datei <filename>namelist.debug</filename> im
 	Verzeichnis <filename>/usr/local/samba/var/locks</filename> schreibt
-	(oder im Verzeichnis <filename>var/locks</filename>, das dort 
-	konfiguriert ist, wo auch für Samba konfiguriert wurde, wo es installiert
+	(oder im Verzeichnis <filename>var/locks</filename>, was an der gleichen 
+	Stelle konfiguriert ist, an der auch steht, wo Samba installiert 
 	wird). Dabei schreibt <command>nmbd</command> auch seine Server-Datenbank
 	in die Datei <filename>log.nmbd</filename>.</para>
 

@@ -143,7 +143,7 @@
 		<varlistentry>
 		<term>-T</term> 
 		<listitem><para>Hierdurch werden alle beim Lookup gefundenen IP-Adressen 
-		mit einem Reverse DNS-Lookup in einen DNS-Namen abgefragt und vor jedem
+		mit einem Reverse DNS-Lookup in einen DNS-Namen abgelegt und vor jedem
 		Paar
 		</para>
 		
