@@ -12,19 +12,19 @@
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
-Fortgeschrittene Windows-Benutzer sind häufig verwirrt, wenn eine Änderung des Besitzes von Dateien oder Verzeichnissen
-auf dem Samba-Server sich nicht so auswirken, wie sie es erwarten. MS Administratoren verwirrt es oft, wenn sie versuchen
+Fortgeschrittene Windows-Benutzer sind häufig verwirrt, wenn sich eine Änderung der Besitzrexhte an Dateien oder Verzeichnissen
+auf dem Samba-Server nicht so auswirkt, wie sie es erwarten. MS-Administratoren verwirrt es oft, wenn sie versuchen,
 Ihre Daten mit Zugriffskontroll-Listen vor unerlaubten Zugriffen zu schützen.
 </para>
 
 <para>
-Viele UNIX-Administratoren sind nicht mit der MS Windows Umgebung vertraut,
-besondere Probleme ergeben sich aus den
+Viele UNIX-Administratoren sind nicht mit der MS Windows-Umgebung vertraut.
+Besondere Probleme ergeben sich aus den
 Benutzerwünschen bezüglich der Kontrolle von Dateien und Verzeichnissen und deren Einrichtung.
 </para>
 
 <para>
-Das Problem begründet sich in den Unterschieden in den Datei- und Verzeichnis-Benutzerrechten der beiden Systeme. Diesen
+Das Problem rührt aus den Unterschieden bei den Datei- und Verzeichnis-Benutzerrechten der beiden Systeme her. Diesen
 Unterschied kann auch Samba nicht wirklich aus der Welt schaffen, aber es schafft eine Brücke
 zwischen den Umgebungen.
 </para>
@@ -32,15 +32,15 @@ zwischen den Umgebungen.
 <para>
 <indexterm><primary>Erweiterte Attribute</primary></indexterm>
 <indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
-POSIX ( UNIX, LINUX ) Zugriffskontroll-Technologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt.
-Dies erklärt vielleicht auch, warum es länger dauert, ehe diese in kommerzielle Linux Produkte eingebunden wurde.
-MS-Administratoren wird dies erstaunen, da diese seit Jahren elementarer Bestandteil von Windows-Produkten ist.
+Die POSIX-(UNIX, LINUX-)Zugriffskontroll-Technologie (ACLs) gibt es schon seit Jahren, aber sie wurde nie sehr intensiv genutzt.
+Dies erklärt vielleicht auch, warum es so lange gedauert hat, bis die die ACL-Technik in kommerzielle Linux-Produkte eingebunden wurde.
+MS-Administratoren wird dies erstaunen, da diese Technik seit Jahren elementarer Bestandteil von Windows-Produkten ist.
 </para>
 
 <para>
 Dieses Kapitel soll die Punkte im Einzelnen klären, die mit Samba-3 nötig und möglich sind,
-um Administratoren die best-erreichbare
-Zugriffsverwaltung zu ermöglichen, welche die Windows-Benutzer benötigen.
+damit Administratoren eine optimale 
+Zugriffsverwaltung für ihre Windows-Benutzer einrichten können.
 </para>
 
 <para>
@@ -52,47 +52,46 @@ sondern soll die bestmögliche Kompatibilität zwischen den beiden Systemen schaff
 <title>Möglichkeiten und Vorteile</title>
 
 	<para>
-	Samba ermöglicht hohe Flexibilität beim Systemzugriff. Hier sind es die
+	Samba ermöglicht eine hohe Flexibilität beim Systemzugriff. Hier sind es die
 	Zugriffskontrollmöglichkeiten der aktuellen Version 3 von Samba.
 	</para>
 
 	<itemizedlist>
-	<title>Samba Zugriffskontrollmöglichkeiten</title>
+	<title>Samba-Zugriffskontrollmöglichkeiten</title>
 		<listitem><para>
-				<indexterm><primary>Berechtigungen</primary><secondary>UNIX Datei und Verzeichnis</secondary></indexterm>
-		<emphasis>Unix Datei- und Verzeichnis-Berechtigungen</emphasis>
+				<indexterm><primary>Berechtigungen</primary><secondary>UNIX-Datei und Verzeichnis</secondary></indexterm>
+		<emphasis>Unix-Datei- und -Verzeichnis-Berechtigungen</emphasis>
 		</para>
 
 			<para>
-			Samba arbeitet mit den UNIX-Dateizugriffskontrollen zusammen. Benutzer greifen dabei als Windowsbenutzer
+			Samba arbeitet mit den UNIX-Dateizugriffskontrollen zusammen. Benutzer greifen dabei als Windows-Benutzer
 			auf Samba zu. Informationen über den Benutzer werden beim Einloggen übergeben. Samba benutzt
 			diese Login-Informationen, um zu entscheiden, ob einem Benutzer Zugriff auf Systemdaten gewährt werden soll oder nicht. Dieses
-			Kapitel enthält eine Übersicht von UNIX Berechtigungen für Nutzer, die diese nicht kennen oder etwas verwirrt über
-			diese sind.
+			Kapitel enthält eine Übersicht über UNIX-Berechtigungen für Nutzer, die diese nicht kennen oder diese für etwas verwirrend halten.
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Netzlaufwerks-Definitionen</emphasis>
+		<emphasis>Samba-Netzlaufwerksdefinitionen</emphasis>
 		</para>
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
 			Berechtigungen des darunter liegenden Dateisystems verändern und beeinflussen. Dies ermöglicht teilweise eine Annäherung
-			an das Verhalten, das Windowsbenutzer erwarten. Dieser Weg ist aber nur selten die beste Lösung.
+			an das Verhalten, das Windows-Benutzer erwarten. Dieser Weg ist aber nur selten die beste Lösung.
 			Die grundlegenden Möglichkeiten werden hier beschrieben.
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Netzlaufwerks-Kontroll-Listen</emphasis>
+		<emphasis>Samba-Netzlaufwerkskontroll-Listen</emphasis>
 		<indexterm><primary>ACLs</primary><secondary>share</secondary></indexterm>
 		</para>
 
 			<para>
-			Wie in Windows NT ist es auch in Samba möglich, Netzlaufwerks-Kontroll-Listen
-			zu erstellen. Einige Anwender machen Gebrauch davon, es ist zur Zeit
-			eine der leichtesten Möglichkeiten Zugriffskontrolle zu erreichen, im
+			Wie in Windows NT ist es auch in Samba möglich, Netzlaufwerkskontroll-Listen
+			zu erstellen. Einige Anwender machen Gebrauch davon. Es ist zurzeit
+			eine der leichtesten Möglichkeiten, Zugriffskontrolle zu erreichen, im
 			Gegensatz zu anderen komplexeren Methoden.
 			</para>
 		</listitem>
@@ -100,17 +99,17 @@ sondern soll die bestmögliche Kompatibilität zwischen den beiden Systemen schaff
 		<listitem><para>
 				<indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 				<indexterm><primary>ACLs</primary><secondary>Windows</secondary></indexterm>
-		<emphasis>MS Windows Zugriffskontroll-Listen und UNIX Zugriffskontroll-Listen</emphasis>
+		<emphasis>MS Windows-Zugriffskontroll-Listen und UNIX-Zugriffskontroll-Listen</emphasis>
 		</para>
 
 			<para>
 			Der Gebrauch von UNIX-Kontroll-Listen ist nur möglich, wenn diese Funktionen
 			in dem darunter liegenden Dateisystem implementiert sind.
-			In jedem anderem Fall ist deren Nutzung nicht möglich.
+			In jedem anderen Fall ist deren Nutzung nicht möglich.
 			Aktuelle Unix-Systeme sollten diese Unterstützung bieten.
 			Es gibt Patches für den Linux-Kernel, die diese Möglichkeit implementieren,
-			falls nicht vorhanden.
-			Viele Unix-Systeme werden mit der Unterstützung ausgeliefert, in diesem
+			falls sie noch nicht vorhanden ist.
+			Viele Unix-Systeme werden mit der Unterstützung ausgeliefert, und in diesem
 			Kapitel versuchen wir, den Benutzern deren Gebrauch zu erklären.
 			</para>
 		</listitem>
@@ -123,7 +122,7 @@ sondern soll die bestmögliche Kompatibilität zwischen den beiden Systemen schaff
 
 <para>
 Es ist wichtig festzustellen, dass MS Windows ein völlig anderes Dateizugriffssystem benutzt als
-UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilft, diese zu überbrücken.
+UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann zeigen, wie Samba hilft, diese Unterschiede zu überbrücken.
 </para>
 
 	<sect2>
@@ -134,53 +133,53 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 <indexterm><primary>Dateisystem</primary></indexterm>
 <indexterm><primary>Dateisystem</primary><secondary>UNIX</secondary></indexterm>
 <indexterm><primary>Dateisystem</primary><secondary>Windows</secondary></indexterm>
-	Samba benutzt das UNIX-Dateisystem, d.h. Samba verhält sich innerhalb der Möglichkeiten des UNIX-Dateisystems.
+	Samba benutzt das UNIX-Dateisystem, d.h., Samba verhält sich innerhalb der Möglichkeiten des UNIX-Dateisystems.
 	Aber Samba ist auch dafür verantwortlich, das Verhalten des Windows-Dateisystems nachzustellen.
 	</para>
 
 	<para>
 	Glücklicherweise bietet Samba eine Reihe von Konfigurationsmöglichkeiten, um die Unterschiede zu
 	überbrücken. Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle.
-	Wer mehr wissen möchte, sollte die manpage der Datei smb.conf lesen.
+	Wer mehr wissen möchte, sollte die Manpage der Datei smb.conf lesen.
 	</para>
 
-	<para>Im folgenden ein Vergleich von UNIX- und Windows-Dateisystem NT/200x:
+	<para>Im Folgenden sehen Sie einen Vergleich des UNIX-Dateisystems mit dem Dateisystem von Windows NT/200x:
 	<indexterm><primary>Dateisystem</primary><secondary>Eigenschaftsvergleich</secondary></indexterm>
 
 	</para>
 
 	<variablelist>
 		<varlistentry>
-			<term>Namens-Raum</term>
+			<term>Namensraum</term>
 			<listitem>
 		<para>
-		Windows Dateinamen können 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
+		Windows-Dateinamen können 254 Zeichen lang sein, UNIX beherrscht bis zu 1023 Zeichen. Die
 		Dateierweiterung beschreibt in Windows einen bestimmten Dateityp, in UNIX-Systemen ist das nicht zwingend so.
 		</para>
 		<para>
-		Was unter Windows ein Ordner ist, heißt in UNIX 'Verzeichnis'.
+		Was unter Windows ein 'Ordner' ist, heißt in UNIX 'Verzeichnis'.
 		</para>
 			</listitem>
 		</varlistentry>
 
 		<varlistentry>
-			<term>Groß-Kleinschreibung</term>
+			<term>Groß-/Kleinschreibung</term>
 			<listitem>
 		<para>
 		<indexterm><primary>8.3 Dateinamen</primary></indexterm>
 		<indexterm><primary>Dateisystem</primary><secondary>Schreibweise sensitiv</secondary></indexterm>
-		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt.
-		Dateinamen, die länger sind, sind in ihrer Schreibweise insensitiv
-		(d. h. es spielt keine Rolle, ob groß oder klein geschrieben).
+		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden in Großbuchstaben erstellt.
+		Dateinamen, die länger sind, sind in ihrer Schreibweise case-insensitive
+		(d.h., es spielt keine Rolle, ob sie groß- oder kleingeschrieben werden).
 		</para>
 
 		<para>
-		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen-sensitiv
-		(es spielt sehr wohl eine Rolle, ob ein Dateiname groß oder klein geschrieben wird).
+		Unter UNIX sind alle Dateien und Verzeichnisse case-sensitive
+		(d.h., es spielt sehr wohl eine Rolle, ob ein Dateiname groß- oder kleingeschrieben wird).
 		</para>
 		<para>
-		Im unteren Beispiel würden die Dateinamen von Windows völlig gleich interpretiert
-		werden, für UNIX wären es drei verschiedene Dateien.
+		Im folgenden Beispiel würden die Dateinamen von Windows völlig gleich interpretiert
+		werden, für UNIX wären es drei verschiedene Dateien:
 		<screen>
 				MYFILE.TXT
 				MyFile.txt
@@ -189,12 +188,12 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 
 		<para>
 		Es wird ziemlich klar, dass diese Dateien in Windows nicht nebeneinander
-		(im selben Ordner) stehen könnten, unter UNIX jedoch jederzeit.
+		(im selben Ordner) stehen könnten, unter ist das UNIX jedoch jederzeit möglich.
 		</para>
 		<para>
 		Was soll nun Samba tun, wenn es auf diese Dateien trifft? Die Lösung besteht darin,
-		dass die erste Datei für Windowsbenutzer sichtbar ist, die anderen jedoch
-		nicht verfügbar bzw. unsichtbar sind, eine andere Lösung ist nicht denkbar.
+		dass die erste Datei für Windows-Benutzer sichtbar ist, die anderen jedoch
+		nicht verfügbar bzw. unsichtbar sind; eine andere Lösung ist nicht denkbar.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -205,11 +204,9 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 
 		<para>
 				<indexterm><primary>Verzeichnis-Trennzeichen</primary></indexterm>
-		MS Windows und DOS benutzen das Zeichen \ (Backslash) als Verzeichnis-Trennzeichen
-		<constant>\</constant>, UNIX benutzt (wie im Internet üblich) den Slash
-		/ als Verzeichnis-Trennzeichen.
-		<constant>/</constant>
-		Dies wird von Samba transparent (für den Windowsbenutzer unbemerkt) umgesetzt.
+		MS Windows und DOS benutzen das Zeichen <constant>\</constant> (Backslash) als Verzeichnis-Trennzeichen, UNIX benutzt (wie im Internet üblich) den Slash
+		<constant>/</constant> als Verzeichnis-Trennzeichen. 		
+		Dies wird von Samba transparent (für den Windows-Benutzer unbemerkt) umgesetzt.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -224,7 +221,7 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 		Es gibt unter UNIX kein ähnliches Konzept, Festplatten-Teile (Partitionen) werden
 		als Teil des Dateisystems eingebunden (gemountet).
 		Was unter DOS <constant>C:\</constant> ist, wäre unter UNIX einfach
-		(root = Wurzel des Dateisystembaumes)<constant>/</constant>.
+		<constant>/</constant> (root = Wurzel des Dateisystembaums).
 		</para>
 			</listitem>
 		</varlistentry>
@@ -234,7 +231,7 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 			<listitem>
 		<para>
 			<indexterm><primary>Dateinamenskonvention</primary></indexterm>
-		MS Windows kennt keine Dateien, deren Namen mit einem Punkt beginnt
+		MS Windows kennt keine Dateien, deren Namen mit einem Punkt beginnen
 		(<constant>.</constant>).
 		In UNIX werden solche Dateien häufig in den <quote>Home</quote>-Verzeichnissen
 		(Heimatverzeichnissen) von Benutzern gefunden.
@@ -278,13 +275,13 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 	<title>Verwaltung von Verzeichnissen</title>
 
 	<para>
-	Es gibt grundsätzlich 3 Möglichkeiten, um Ordner (Verzeichnisse) zu verwalten:
-	<command>create (erstellen), delete (löschen), rename (umbenennen )</command>.
+	Es gibt grundsätzlich drei Möglichkeiten, um Ordner (Verzeichnisse) zu verwalten:
+	<command>create (erstellen)</command>, <command>delete (löschen)</command> und <command>rename (umbenennen )</command>.
 	<table frame="all">
 		<title>Verwaltung von Ordnern (Verzeichnissen) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Aktion</entry><entry>Windows Befehl</entry><entry>UNIX Befehl</entry></row>
+		<row><entry>Aktion</entry><entry>Windows-Befehl</entry><entry>UNIX-Befehl</entry></row>
 		</thead>
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
@@ -304,7 +301,7 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 	<indexterm><primary>ACLs</primary><secondary>Dateisystem</secondary></indexterm>
 	Jedem Administrator wird geraten, zusätzlich Handbücher zu diesem Thema zu studieren.
 	Die meisten Fälle können mit den grundlegenden Zugriffsmöglichkeiten von UNIX gelöst werden,
-	ohne die Technologien der Zugriffskontrolllisten (ACLs) oder der Erweiterten Attribute (EAs)
+	ohne die Technologien der Zugriffskontroll-Listen (ACLs) oder der erweiterten Attribute (EAs)
 	zu verwenden.
 	</para>
 
@@ -330,19 +327,19 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<para>
-	Die Reihen oben repräsentieren (von rechts nach links): Berechtigung, Anzahl der
-	<quote>harten</quote> Links einer Datei, Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
+	Die Reihen oben repräsentieren (von rechts nach links): die Berechtigung, die Anzahl der
+	<quote>harten</quote> Links einer Datei, den Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
 	</para>
 
 	<para>
-	Hier finden Sie eine Übersicht<link linkend="access1"/>.
+	In <link linkend="access1"/> finden Sie eine Übersicht.
 	</para>
 
 	<image id="access1"
-scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
+scale="40"><imagedescription>Übersicht über die UNIX-Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
 
 	<para>
-	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - ) dargestellt.
+	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus (-) dargestellt.
 
 	<example>
 		<title>Beispieldatei</title>
@@ -356,38 +353,37 @@ scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription
 	</para>
 
 	<para>
-	Zusätzliche Möglichkeiten im Typen-Feld sind [type] : c = character device, b = block device, p = pipe device, s = UNIX Domain Socket.
+	Zusätzliche Möglichkeiten im Typen-Feld [type] sind: c = character device, b = block device, p = pipe device, s = UNIX-Domain-Socket.
 	</para>
 
 	<para>
 	Die Zeichen <constant>rwxXst</constant> für die Berechtigungen für Nutzer, Gruppen und
-	anderen sind:
-	lesen (r), schreiben (w), ausführen (oder Ordner Zugriff) (x),
+	andere sind:
+	lesen (r), schreiben (w), ausführen (oder Ordner-Zugriff) (x),
 	exklusives Ausführen, wenn der Nutzer berechtigt für die Datei oder den Ordner ist (X),
-	Setzen der ID des Nutzers bei Ausführung (s), sticky (begleitendes Bit)(t).
+	Setzen der ID des Nutzers bei Ausführung (s), Sticky-Bit (begleitendes Bit)(t).
 	</para>
 
 	<para>
-	Wenn das sticky Bit auf einem Verzeichnis gesetzt ist, können darin enthaltene Dateien
-	nur vom Nutzer root oder dem Ersteller der Dateien gelöscht werden, in jedem anderem Fall sind
+	Wenn das Sticky-Bit auf einem Verzeichnis gesetzt ist, können darin enthaltene Dateien
+	nur vom Nutzer root oder dem Ersteller der Dateien gelöscht werden. In jedem anderem Fall sind
 	alle anderen Dateivorgänge (löschen, lesen, umbenennen) erlaubt.
-	Das sticky Bit wird häufig für Verzeichnisse wie das /tmp Verzeichnis benutzt, welches
-	gewöhnlich für jeden beschreibbar ist.
+	Das Sticky-Bit wird häufig für Verzeichnisse wie das /tmp-Verzeichnis benutzt, die
+	gewöhnlich für jeden beschreibbar sind.
 	 </para>
 
 	<para>
 	Wenn auf einem Verzeichnis das Gruppen- oder Nutzer-Identitätsbit gesetzt ist, dann
 	erhalten Nutzer und Gruppen Berechtigungen auf darin
-	enthaltene Dateien. Dies ermöglicht das Erstellen von Verzeichnissen, auf die alle
-	Nutzer einer Gruppe zugreifen sollen, auch wenn die primäre Gruppe der Nutzer nicht gleich
-	und nicht gewünscht ist, dass nur
-	ein Benutzer exklusiv auf eine Datei berechtigt ist.
+	enthaltene Dateien. Dies ermöglicht das Erstellen von Verzeichnissen, in denen alle
+	Nutzer einer Gruppe auf eine Datei zugreifen können sollen, insbesondere dann, wenn 
+	es nicht erwünscht ist, dass diese Datei exklusiv einem Benutzer gehört, der zu einer anderen primären Gruppe gehört als die übrigen Nutzer.
 	</para>
 
 	<para>
-	Falls ein Verzeichnis auf <constant>drw-r-----</constant> gesetzt ist, heisst dies, dass
-	der Eigner in ihm Dateien lesen und schreiben kann, aber dadurch, dass das Ausführen-Flag (x)
-	nicht gesetzt ist, Dateien in diesem Verzeichnis von niemandem gesehen werden können.
+	Falls ein Verzeichnis auf <constant>drw-r-----</constant> gesetzt ist, heißt dies, dass
+	der Eigner in ihm Dateien lesen und schreiben (erstellen) kann, aber dadurch, dass das Ausführen-Flag (x)
+	nicht gesetzt ist, können die Dateien in diesem Verzeichnis von niemandem gesehen werden.
 	Die Gruppe kann Dateien lesen, aber keine neuen anlegen. Falls Dateien in dem Verzeichnis
 	für die Gruppe les- oder schreibbar gesetzt sind, können die Gruppenmitglieder diese
 	schreiben oder löschen.
@@ -398,38 +394,38 @@ scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription
 </sect1>
 
 <sect1>
-<title>Freigabedefinition Zugriffskontrollen</title>
+<title>Zugriffskontrollen für Freigabedefinitionen</title>
 
 
 <para>
 <indexterm><primary>Berechtigungen</primary><secondary>Freigabe</secondary></indexterm>
 Die folgenden Parameter in den Dateisektionen von &smb.conf; definieren eine Freigabekontrolle oder betreffen
-Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie bitte in den manpages für &smb.conf; nach.
+Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie bitte in den Manpages für &smb.conf; nach.
 </para>
 
 	<sect2>
-	<title>Benutzer- und Gruppen-basierende Kontrollen</title>
+	<title>Benutzer- und gruppen-basierende Kontrollen</title>
 
 	<para>
-	Benutzer- und Gruppen-basierende Kontrollen können sehr hilfreich sein.
+	Benutzer- und gruppen-basierende Kontrollen können sehr hilfreich sein.
 	In manchen Situationen ist es sogar gewünscht,
 	dass alle Dateisystem-Operationen behandelt werden, als wären sie von einem einzelnen
 	Benutzer durchgeführt worden.
 	Die Benutzung von <smbconfoption><name>force user</name></smbconfoption> und
 	<smbconfoption><name>force group</name></smbconfoption>
 	wird dies erreichen. In anderen Situationen ist es vielleicht notwendig, ein
-	paranoides Level von Kontrollen einzusetzen
-	um sicherzustellen, dass es nur bestimmten ausgewählten und authorisierten Personen möglich ist,
+	paranoides Maß an Kontrollen einzusetzen,
+	um sicherzustellen, dass es nur bestimmten ausgewählten und autorisierten Personen möglich ist,
 	auf eine Freigabe oder dessen Inhalt zuzugreifen. Hier kann die Benutzung von <smbconfoption><name>valid users</name></smbconfoption> oder
 	<smbconfoption><name>invalid users</name></smbconfoption> am hilfreichsten sein.
 	</para>
 
 	<para>
-	Wie immer ist es höchst ratsam, die einfachste Methode für den Unterhalt und die
+	Wie immer ist es höchst ratsam, die einfachste Methode für die Verwaltung und die
 	eindeutigste Methode für die Zugriffskontrolle zu verwenden. Denken Sie daran,
 	dass nach dem Verlassen Ihrer Arbeit jemand anderes Unterstützung
-	geben können muss und wenn er eine grosse Baustelle vorfindet oder Ihre Vorgehensweise nicht
-	versteht es durchaus möglich sein kann, dass Samba gelöscht wird oder eine
+	geben können muss, und wenn er eine große Baustelle vorfindet oder Ihre Vorgehensweise nicht
+	versteht, kann es durchaus möglich sein, dass Samba gelöscht wird oder eine
 	alternative Lösung eingesetzt wird.
 	</para>
 
@@ -437,7 +433,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	<link linkend="ugbc"/> zählt diese Kontrollen auf.
 	</para>
 
-	<table frame='all' pgwide='0' id="ugbc"><title>Benutzer- und Gruppen-basierende Kontrollen</title>
+	<table frame='all' pgwide='0' id="ugbc"><title>Benutzer- und gruppen-basierende Kontrollen</title>
 	<tgroup cols='2'>
 		<colspec align="left"/>
 		<colspec align="justify" colwidth="1*"/>
@@ -451,8 +447,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>admin users</name></smbconfoption></entry>
 			<entry><para>
-			Benutzerliste derer, denen Administrationsprivilegien auf die Freigabe
-			erteilt wird.
+			Liste der Benutzer, denen Administrationsprivilegien auf der Freigabe
+			erteilt werden.
 			Sie werden alle Dateioperationen als Super-User (root) ausführen.
 			Jeder Benutzer in dieser Liste wird in der Lage sein, alles auf der
 			Freigabe zu machen,
@@ -462,18 +458,18 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>force group</name></smbconfoption></entry>
 			<entry><para>
-			Spezifiziert einen UNIX Gruppennamen, welcher als primäre Standardgruppe
+			Spezifiziert einen UNIX-Gruppennamen, der als primäre Standardgruppe
 			allen Benutzern zugewiesen wird, die sich mit diesem Dienst verbinden.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>force user</name></smbconfoption></entry>
 			<entry><para>
-			Spezifiziert einen UNIX Benutzernamen, welcher als Standardbenutzer
+			Spezifiziert einen UNIX-Benutzernamen, der als Standardbenutzer
 			allen Benutzern zugewiesen wird,
 			die sich mit diesem Dienst verbinden.
 			Dies ist für das gemeinsame Nutzen von Dateien hilfreich.
-			Falsche Benutzung kann Sicherheitsprobleme verursachen.
+			Die falsche Benutzung kann Sicherheitsprobleme verursachen.
 			</para></entry>
 		</row>
 		<row>
@@ -487,20 +483,20 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>invalid users</name></smbconfoption></entry>
 			<entry><para>
-			Benutzerliste derer, denen ein Anmelden an diesem Dienst nicht erlaubt wird.
+			Liste der Benutzer, denen ein Anmelden an diesem Dienst nicht erlaubt wird.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>only user</name></smbconfoption></entry>
 			<entry><para>
 			Kontrolliert, ob Verbindungen mit Benutzernamen,
-			die nicht in der Liste sind, erlaubt wird.
+			die nicht in der Liste enthalten sind, erlaubt werden.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>read list</name></smbconfoption></entry>
 			<entry><para>
-			Benutzerliste derer, die einen Nur-Lesezugriff auf diesen Dienst haben.
+			Liste der Benutzer, die einen Nur-Lesezugriff auf diesen Dienst haben.
 			Benutzer in dieser Liste bekommen keinen Schreibzugriff, egal wie die
 			Option 'read only' gesetzt wurde.
 			</para></entry>
@@ -508,21 +504,20 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>username</name></smbconfoption></entry>
 			<entry><para>
-			Sehen Sie in der &smb.conf; man page für mehr Informationen
-			nach -- dies ist ein komplexer
-			und potentiell falsch angewendeter Parameter.
+			Sehen Sie in der &smb.conf;-Manpage für mehr Informationen
+			nach -- dies ist ein komplexer Parameter, der häufig falsch angewendet wird.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>valid users</name></smbconfoption></entry>
 			<entry><para>
-			Benutzerliste derer, denen das Anmelden an diesem Dienst erlaubt wird.
+			Lister der Benutzer, denen das Anmelden an diesem Dienst erlaubt wird.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>write list</name></smbconfoption></entry>
 			<entry><para>
-			Benutzerliste derer, denen Lese-Schreibzugriff auf diesen Dienst erlaubt wird.
+			Liste der Benutzer, denen Lese-Schreibzugriff auf diesen Dienst erlaubt wird.
 			</para></entry>
 		</row>
 		</tbody>
@@ -532,20 +527,19 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	</sect2>
 
 	<sect2>
-	<title>Die Kontrollen, die auf Datei- und Verzeichnis-Berechtigungen basieren</title>
+	<title>Kontrollen, die auf Datei- und Verzeichnis-Berechtigungen basieren</title>
 
 	<para>
 	Die folgenden auf Datei- und Verzeichnis-Berechtigungen basierenden Kontrollen können,
-	wenn falsch angewendet, durch Fehlkonfigurationen
-	in erheblichen Schwierigkeiten bei der Fehlersuche enden.
-	Benutzen Sie diese sparsam und sorgfältig. Durch schrittweise Einführung einer nach der
+	wenn sie falsch angewendet werden, durch Fehlkonfigurationen
+	zu erheblichen Schwierigkeiten bei der Fehlersuche führen.
+	Benutzen Sie diese sparsam und sorgfältig. Durch die schrittweise Einführung einer Berechtigung nach der
 	anderen können unerwünschte
-	Nebeneffekte entdeckt werden. Im Fehlerfall kommentieren Sie alle aus und führen Sie diese
-	dann schrittweise in einer kontrollierten Art und Weise wieder ein.
+	Nebeneffekte entdeckt werden. Im Fehlerfall kommentieren Sie alle aus und führen sie dann Schritt für Schritt in einer kontrollierten Art und Weise wieder ein.
 	</para>
 
 	<para>
-	Sehen Sie unter <link linkend="fdpbc"/> für Informationen nach, die diese Parameter betreffen.
+	In <link linkend="fdpbc"/> finden Sie Informationen, die diese Parameter betreffen.
 	</para>
 
 	<table frame='all' id="fdpbc"><title>Auf Datei- und Verzeichnis-Berechtigungen basierende Kontrollen</title>
@@ -562,16 +556,16 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>create mask</name></smbconfoption></entry>
 			<entry><para>
-			Sehen Sie in der &smb.conf; man page nach.
+			Sehen Sie in der &smb.conf;-Manpage nach.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>directory mask</name></smbconfoption></entry>
 			<entry><para>
-			Die Oktal-Modi, die beim Konvertieren von DOS-Modi nach UNIX-Modi
-			beim Erzeugen von
+			Die Oktal-Modi, die beim Konvertieren von DOS-Modi in UNIX-Modi
+			während des Erzeugens von
 			UNIX-Verzeichnissen benutzt werden.
-			Sehen Sie auch: directory security mask.
+			Siehe auch: directory security mask.
 			</para></entry></row>
 		<row>
 			<entry><smbconfoption><name>dos filemode</name></smbconfoption></entry>
@@ -583,28 +577,28 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>force create mode</name></smbconfoption></entry>
 			<entry><para>
-			Dieser Parameter spezifiziert eine Anzahl von UNIX Mode Bit-Berechtigungen,
-			welche immer auf eine Datei gesetzt werden, die durch Samba erzeugt wurde.
+			Dieser Parameter spezifiziert eine Anzahl von UNIX-Mode-Bit-Berechtigungen,
+			die immer auf eine Datei gesetzt werden, die durch Samba erzeugt wurde.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>force directory mode</name></smbconfoption></entry>
 			<entry><para>
-			Dieser Parameter spezifiziert eine Anzahl von UNIX Mode Bit-Berechtigung,
-			welche immer auf ein Verzeichnis gesetzt werden, das durch Samba erzeugt wurde.
+			Dieser Parameter spezifiziert eine Anzahl von UNIX-Mode-Bit-Berechtigungen,
+			die immer auf ein Verzeichnis gesetzt werden, das durch Samba erzeugt wurde.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>force directory security mode</name></smbconfoption></entry>
 			<entry><para>
-			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT Client
+			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT-Client
 			UNIX-Berechtigungen eines Verzeichnisses manipuliert.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>force security mode</name></smbconfoption></entry>
 			<entry><para>
-			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT Client
+			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT-Client
 			UNIX-Berechtigungen manipuliert.
 			</para></entry>
 		</row>
@@ -625,14 +619,14 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<entry><smbconfoption><name>nt acl support</name></smbconfoption></entry>
 			<entry><para>
 			Dieser Parameter kontrolliert, ob smbd versuchen wird, UNIX-Berechtigungen
-			auf Windows NT Zugriffsberechtigungslisten zu mappen.
+			auf Windows NT-Zugriffsberechtigungslisten zu mappen.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>security mask</name></smbconfoption></entry>
 			<entry><para>
-			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT Client
-			UNIX Berechtigungen einer Datei manipuliert.
+			Kontrolliert Änderungen an UNIX-Berechtigungsbits, wenn ein Windows NT-Client
+			UNIX-Berechtigungen einer Datei manipuliert.
 			</para></entry>
 		</row>
 		</tbody>
@@ -645,9 +639,9 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	<title>Allgemeine Kontrollen</title>
 
 	<para>
-	Das folgende ist dokumentiert, da es weit verbreitet ist, dass Administratoren unabsichtlich
+	Das Folgende ist dokumentiert, da es weit verbreitet ist, dass Administratoren unabsichtlich
 	Barrieren beim Einrichten von Dateizugriffen dadurch aufbauen, dass sie die genauen
-	Auswirkungen von Dateieinstellungen in &smb.conf; nicht verstehen. Siehe <link linkend="mcoc"/>.
+	Auswirkungen von Dateieinstellungen in &smb.conf; nicht verstehen (siehe <link linkend="mcoc"/>).
 	</para>
 
 	<table frame='all' id="mcoc"><title>Andere Kontrollen</title>
@@ -664,16 +658,16 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<row>
 			<entry><smbconfoption><name>case sensitive</name></smbconfoption>, <smbconfoption><name>default case</name></smbconfoption>, <smbconfoption><name>short preserve case</name></smbconfoption></entry>
 			<entry><para>
-			Dies bedeutet, dass alle Dateinamens-Anzeigen in Schreibweisen-sensitiver Art
+			Dies bedeutet, dass alle Dateinamensanzeigen in case-sensitiver Art
 			erfolgen. Die Dateien werden genau so mit dem exakten Namen angelegt,
-			wie Samba den Dateinamen vom Windows Client erhält.
+			wie Samba den Dateinamen vom Windows-Client erhält.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>csc policy</name></smbconfoption></entry>
 			<entry><para>
-			Client-seitige Caching Richtlinie - ermöglicht parallele MS Windows
-			Client-seitige Datei-Caching Möglichkeiten.
+			Client-seitige Caching-Richtlinie - ermöglicht parallele MS Windows
+			client-seitige Datei-Caching-Fähigkeiten.
 			</para></entry>
 		</row>
 		<row>
@@ -695,17 +689,17 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<entry><para>
 			DOS und Windows erlauben Benutzern, Zeitstempel auf Dateien zu ändern,
 			wenn diese auf die Datei schreiben können.
-			POSIX-Semantiken verhindern dies. Diese Option erlaubt DOS und Windows-Verhalten.
+			POSIX-Semantiken verhindern dies. Diese Option erlaubt DOS- und Windows-Verhalten.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>fake oplocks</name></smbconfoption></entry>
 			<entry><para>
-			Oplocks sind die Art und Weise, wie SMB-Clients die Erlaubnis eines Servers
+			Oplocks sind das Verfahren, wie SMB-Clients die Erlaubnis eines Servers
 			bekommen, Dateioperationen lokal zu cachen (zwischenzuspeichern).
 			Falls ein Server
 			Oplocks erlaubt, ist es dem Client freigestellt anzunehmen,
-			dass er der einzige ist, der auf die Datei zugreift und er kann Dateicaching
+			dass er der einzige ist, der auf die Datei zugreift, und er kann das Datei-Caching
 			aggressiv nutzen.
 			</para></entry>
 		</row>
@@ -713,20 +707,20 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<entry><smbconfoption><name>hide dot files</name></smbconfoption>, <smbconfoption><name>hide files</name></smbconfoption>, <smbconfoption><name>veto files</name></smbconfoption></entry>
 			<entry><para>
 			Hinweis: MS Windows Explorer erlaubt das Überschreiben von Dateien,
-			die als versteckt markiert sind, sodass sie weiter sichtbar sind.
+			die als versteckt markiert sind, so dass sie weiter sichtbar sind.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>read only</name></smbconfoption></entry>
 			<entry><para>
-			Falls dieser Parameter 'yes' ist, können Benutzer eines Dienstes weder
-			Dateien im Diensteverzeichnis erzeugen noch ändern.
+			Falls dieser Parameter 'yes' ist, können Benutzer eines Dienstes 
+			Dateien im Diensteverzeichnis weder erzeugen noch ändern.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>veto files</name></smbconfoption></entry>
 			<entry><para>
-			Liste von Dateien oder Verzeichnissen, die weder sichtbar noch zugreifbar sind.
+			Liste von Dateien oder Verzeichnissen, die nicht sichtbar sind und auf die man auch nicht zugreifen kann.
 			</para></entry>
 		</row>
 		</tbody>
@@ -744,16 +738,16 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	<para>
 <indexterm><primary>Berechtigungen</primary><secondary>Freigabe ACLs</secondary></indexterm>
 	Dieses Kapitel handelt davon, wie Samba für Zugriffskontroll-Einschränkungen bei
-	Freigaben konfiguriert werden kann. Standardmässig setzt Samba keine Einschränkungen auf
+	Freigaben konfiguriert werden kann. Standardmäßig setzt Samba keine Einschränkungen auf
 	die Freigabe selbst. Einschränkungen auf der Freigabe selbst
-	können auf MS Windows NT4/200x/XP-Freigaben gesetzt werden. Dies kann ein effektiver Weg sein,
- 	zu regeln, wer sich auf eine Freigabe verbinden darf. In Ermangelung spezifischer
-	Einschränkungen ist die Standardeinstellung, dem globalen Benutzer
+	können auf MS Windows NT4/200x/XP-Freigaben gesetzt werden. Dies kann ein effektives Verfahren sein,
+ 	um zu regeln, wer sich mit einer Freigabe verbinden darf. In Ermangelung spezifischer
+	Einschränkungen sieht die Standardeinstellung vor, dem globalen Benutzer
 	<constant>Jeder - Volle Kontrolle</constant> (volle Kontrolle, Ändern und Lesen) zu erlauben.
 	</para>
 
 	<para>
-	Zur Zeit stellt Samba kein Werkzeug zum Konfigurieren von Zugriffskontroll-Einstellungen
+	Zurzeit stellt Samba kein Werkzeug zum Konfigurieren von Zugriffskontroll-Einstellungen
 	auf einer Freigabe selbst zur Verfügung. Samba hat die Fähigkeit, Zugriffskontroll-Einstellungen
 	zu speichern und damit zu arbeiten,
 	aber der einzige Weg, diese Einstellungen zu erzeugen, ist der NT4 Server Manager oder die
@@ -764,11 +758,10 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	Samba speichert die Zugriffskontroll-Einstellungen pro Freigabe in einer Datei
 	namens <filename>share_info.tdb</filename>.
 	Der Ablageort dieser Datei auf Ihrem System hängt davon ab, wie Sie Samba kompiliert haben.
-	Der Standard-Ablageort für Samba's tdb-Dateien ist <filename>/usr/local/samba/var</filename>.
-	Falls das <filename>tdbdump</filename>
-	Werkzeug auf Ihrem System kompiliert und installiert wurde, können Sie den Inhalt dieser
-	Datei dadurch ausführen:
-	<command>tdbdump share_info.tdb</command>, in dem Verzeichnis, welches die tdb-Dateien enthält.
+	Der Standard-Ablageort für Sambas tdb-Dateien ist <filename>/usr/local/samba/var</filename>.
+	Falls das <filename>tdbdump</filename>-Werkzeug auf Ihrem System kompiliert und installiert worden ist, können Sie den Inhalt dieser
+	Datei wie folgt ausführen:
+	<command>tdbdump share_info.tdb</command>, in dem Verzeichnis, das die tdb-Dateien enthält.
 	</para>
 
 	<sect2>
@@ -782,12 +775,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<sect3>
 			<title>Windows NT4 Workstation/Server</title>
 			<para>
-			Das Werkzeug, welches Sie zum Verwalten von Freigabeberechtigungen auf
+			Das Werkzeug, das Sie zum Verwalten von Freigabeberechtigungen auf
 			einem Samba-Server nutzen müssen,
-			ist der NT Server Manager. Der Server Manager wird mit den Windows NT4
-			Serverprodukten, aber nicht mit Windows NT4 Workstation ausgeliefert.
+			ist der NT Server Manager. Der Server Manager wird mit den Windows NT4 			Server-Produkten, aber nicht mit Windows NT4 Workstation ausgeliefert.
 			Sie können den NT Server Manager für MS Windows NT4 Workstation von
-			Microsoft &smbmdash; erhalten, Details weiter unten.
+			Microsoft erhalten (Details weiter unten).
 			</para>
 
 			<?latex \newpage ?>
@@ -795,7 +787,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<procedure>
 			<title>Anweisungen</title>
 			<step><para>
-			Starten Sie den <application>NT4 Server Manager</application>, klicken Sie
+			Starten Sie den <application>NT4 Server Manager</application>, und klicken Sie
 			auf den Samba-Server, den Sie administrieren möchten.
 			In dem Menü wählen Sie <guimenu>Computer</guimenu>, dann klicken Sie
 			auf <guimenuitem>Freigegebene Verzeichnisse</guimenuitem>.
@@ -817,18 +809,17 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 
 			<para>
 			Auf <application>MS Windows NT4/200x/XP</application> werden
-			Systemzugriffskontrolllisten für Freigaben durch Nutzung
-			von eigenen Werkzeugen gesetzt, meist durch den Dateimananger. In Windows 200x,
-			beispielsweise, rechtsklicken Sie auf den Freigabeordner,
-			dann wählen Sie <guimenuitem>Freigabe</guimenuitem>, dann klicken Sie auf
+			Systemzugriffskontroll-Listen für Freigaben mit eigenen Werkzeugen gesetzt, meist durch den Dateimananger. In Windows 200x
+			beispielsweise rechtsklicken Sie auf den Freigabeordner,
+			wählen <guimenuitem>Freigabe</guimenuitem> und klicken dann auf
 			<guilabel>Berechtigungen</guilabel>. Die Standardberechtigung
-			unter Windows NT4/200x erlaubt <quote>Jedem</quote> volle Kontrolle über
+			unter Windows NT4/200x erlaubt <quote>jedem</quote> volle Kontrolle über
 			die Freigabe.
 			</para>
 
 			<para>
-			MS Windows 200x und spätere Versionen kommen mit einem Werkzeug namens
-			<application>Computerverwaltung</application> Snap-In für die
+			MS Windows 200x und spätere Versionen enthalten ein Werkzeug namens
+			<application>Computerverwaltungs</application>-Snap-In für die
 			Microsoft Management Konsole (MMC). Dieses Werkzeug befindet sich in der
 			<guimenu>Systemsteuerung -> Verwaltung -> Computerverwaltung</guimenu>.
 			</para>
@@ -837,7 +828,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<title>Anweisungen</title>
 			<step><para>
 			Nachdem Sie die MMC über das Computerverwaltungs-Snap-In gestartet haben,
-			klicken Sie auf den Menüeintrag <guimenuitem>Action</guimenuitem>,
+			klicken Sie auf den Menüeintrag <guimenuitem>Action</guimenuitem>
 			und wählen dann <guilabel>Mit einem anderen Computer verbinden</guilabel>.
 			Falls Sie nicht an einer Domäne angemeldet sind,
 			werden Sie aufgefordert, einen Domänenbenutzer und ein Passwort einzugeben.
@@ -849,19 +840,19 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<step><para>
 			Falls der Samba-Server nicht in der Box <guilabel>Computer auswählen</guilabel>
 			angezeigt wird, geben Sie den Namen des Samba-Zielservers
-			im Feld <guilabel>Name:</guilabel> ein. Klicken Sie jetzt den
-			Knopf <guibutton>[+]</guibutton> neben
-			<guilabel>Systemwerkzeuge</guilabel>, dann auf den Knopf
-			<guibutton>[+]</guibutton> Knopf neben
+			im Feld <guilabel>Name:</guilabel> ein. Klicken Sie jetzt auf den
+			Button <guibutton>[+]</guibutton> neben
+			<guilabel>Systemwerkzeuge</guilabel>, dann auf den Button
+			<guibutton>[+]</guibutton> neben
 			<guilabel>Freigabeordner</guilabel> im linken Bereich.
 			</para></step>
 
 			<step><para>
-			Im rechten Bereich doppelklicken Sie auf die Feigabe, auf die Sie
+			Im rechten Bereich doppelklicken Sie auf die Freigabe, auf die Sie
 			Zugriffskontroll-Berechtigungen vergeben möchten.
 			Dann klicken Sie auf die Registerkarte
 			<guilabel>Freigabe-Berechtigungen</guilabel>. Jetzt ist es möglich,
-			Zugriffskontrolleinheiten zu dem Freigabeordner hinzuzufügen. Merken Sie sich,
+			Zugriffskontroll-Einheiten zu dem Freigabe-Ordner hinzuzufügen. Merken Sie sich,
 			welchen Zugriffstyp (volle Kontrolle, ändern, lesen) Sie für jeden
 			Eintrag vergeben möchten.
 			</para></step>
@@ -870,12 +861,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<warning>
 			<para>
 			Seien Sie vorsichtig. Falls Sie alle Berechtigungen von dem
-			<constant>Jeder</constant> Benutzer, ohne diesen Benutzer entfernt zu haben,
-			wegnehmen, wird anschliessend kein Benutzer mehr in der Lage sein,
-			auf die Freigabe zuzugreifen. Dies ist ein Ergebnis davon,
-			was als ACL-Präzedenz bekannt ist. Jeder mit <emphasis>kein Zugriff</emphasis>
-			heisst, dass <constant>MaryK</constant>, welche Teil der Gruppe
-			<constant>Jeder</constant> ist, keinen Zugriff hat, obwohl Ihr explizit
+			<constant>Jeder</constant> Benutzer wegnehmen, ohne diesen Benutzer entfernt zu haben, wird anschließend kein Benutzer mehr in der Lage sein,
+			auf die Freigabe zuzugreifen. Dies ist ein Ergebnis dessen,
+			was als ACL-Präzedenz bekannt ist. <constant>Jeder</constant> mit dem Eintrag <emphasis>kein Zugriff</emphasis>
+			heißt, dass <constant>MaryK</constant>, die Teil der Gruppe
+			<constant>Jeder</constant> ist, keinen Zugriff hat, obwohl ihr explizit
 			volle Zugriffsrechte gegeben wurden.
 			</para>
 			</warning>
@@ -886,27 +876,27 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 </sect1>
 
 <sect1>
-<title>MS Windows Zugriffskontrolllisten (ACLs) und UNIX-Wechselwirkungen</title>
+<title>MS Windows-Zugriffskontroll-Listen (ACLs) und UNIX-Wechselwirkungen</title>
 
 	<sect2>
-		<title>Verwalten von UNIX Berechtigungen durch NT Sicherheitsdialoge</title>
+		<title>Verwalten von UNIX-Berechtigungen durch NT-Sicherheitsdialoge</title>
 
 
 		<para>
 <indexterm><primary>Berechtigungen</primary><secondary>Datei/Verzeichnis ACLs</secondary></indexterm>
-		Windows NT Clients können Ihre eigene Dialogbox für Sicherheitseinstellungen verwenden,
+		Windows NT-Clients können ihre eigene Dialogbox für Sicherheitseinstellungen verwenden,
 		um UNIX-Berechtigungen anzuzeigen und zu ändern.
 		</para>
 
 		<para>
-		Diese Fähigkeit ist so umsichtig, dass die Sicherheit des UNIX-Hosts, auf welchem
-		Samba läuft, nicht gefährdet wird und dennoch alle Dateiberechtigungs-Regeln,
-		die ein Samba Administrator setzt, beachtet.
+		Diese Fähigkeit ist so umsichtig, dass die Sicherheit des UNIX-Hosts, auf dem
+		Samba läuft, nicht gefährdet wird und dennoch alle Dateiberechtigungsregeln,
+		die ein Samba-Administrator setzt, beachtet werden.
 		</para>
 
 		<para>
-		Samba versucht nicht, jenseits der POSIX ACLs zu gehen, sodass die vielen feiner
-		abgestimmten Zugriffskontrolloptionen, die
+		Samba versucht nicht, die POSIX-ACLs zu übertreffen, so dass die vielen feiner
+		abgestimmten Zugriffskontroll-Optionen, die
 		Windows zur Verfügung stellt, einfach ignoriert werden.
 		</para>
 
@@ -915,35 +905,34 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		Alle Zugriffe auf UNIX/Linux-Systemdateien durch Samba werden durch die
 		Betriebssystem-Dateizugriffskontrollen kontrolliert.
 		Bei der Fehlersuche nach Dateizugriffsproblemen ist es enorm wichtig, die
-		Identität des Windowsbenutzers herauszufinden,
+		Identität des Windows-Benutzers herauszufinden,
 		wie sie von Samba an dieser Stelle des Dateizugriffs gesehen wird.
-		Dies kann am besten durch die Samba Protokolldateien ermittelt werden.
+		Diese kann am besten durch die Samba-Protokolldateien ermittelt werden.
 		</para>
 		</note>
 	</sect2>
 
 	<sect2>
-		<title>Anzeigen von Dateisicherheit auf einer Samba Freigabe</title>
+		<title>Anzeigen von Dateisicherheit auf einer Samba-Freigabe</title>
 
 		<para>
-		Von einem NT4/2000/XP Client aus rechtsklicken Sie auf jede Datei oder
+		Von einem NT4/2000/XP-Client aus rechtsklicken Sie auf jede Datei oder
 		Verzeichnis in einem Samba-
 		gemounteten Laufwerksbuchstaben oder UNC-Pfad. Wenn das Menü aufgeht,
 		klicken Sie auf den Eintrag <guilabel>Eigenschaften</guilabel>
-		am Fuss des Menüs. Dies startet die Dialogbox <constant>Eigenschaften</constant>.
+		am Fuß des Menüs. Dies startet die Dialogbox <constant>Eigenschaften</constant>.
 		Klicken Sie auf die Registerkarte
-		<guilabel>Sicherheit</guilabel> und Sie werden drei Knöpfe sehen:
+		<guilabel>Sicherheit</guilabel>, <guilabel>Erweitert</guilabel> und Sie werden drei Panels sehen:
 		<guibutton>Berechtigungen</guibutton>,
-		<guibutton>Überwachung</guibutton> und <guibutton>Besitzer</guibutton>. Der Knopf
+		<guibutton>Überwachung</guibutton> und <guibutton>Besitzer</guibutton>. Der Button
 		<guibutton>Überwachung</guibutton>
 		wird entweder eine Fehlermeldung
 		<errorname>`A requested privilege is not held by the client'</errorname>
-		verursachen, falls der Benutzer kein NT-Administrator ist oder einen Dialog,
-		der dafür gedacht ist, einem Administrator
-		Überwachungsgrundlagen einer Datei zuzufügen, wenn der Benutzer als NT-Administrator
+		verursachen, falls der Benutzer kein NT-Administrator ist, oder einen Dialog erscheinen lassen,
+		mit dem ein Administrator
+		Überwachungsgrundlagen einer Datei hinzufügen kann, wenn der Benutzer als NT-Administrator
 		angemeldet ist. Dieser Dialog funktioniert derzeit nicht mit einer Samba-Freigabe,
-		da der einzige Knopf, der <guibutton>Hinzufügen</guibutton>
-		Knopf es derzeit nicht zulässt, eine Benutzerliste anzuzeigen.
+		da der einzige Button, der <guibutton>Hinzufügen</guibutton>-Button, es derzeit nicht zulässt, eine Benutzerliste anzuzeigen.
 		</para>
 
 	</sect2>
@@ -952,9 +941,9 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<title>Anzeigen von Dateieigentümern</title>
 
 		<para>
-		Durch Klicken auf den Knopf <guibutton>Eigentümer</guibutton> erscheint eine Dialogbox,
-		welche Ihnen anzeigt, wem die betreffende Datei gehört.
-		Der Name des Eigentümers wird dergestalt angezeigt:
+		Wenn Sie auf den Button <guibutton>Eigentümer</guibutton> klicken, erscheint eine Dialogbox,
+		die Ihnen zeigt, wem die betreffende Datei gehört.
+		Der Name des Eigentümers wird wie folgt angezeigt:
 		</para>
 
 		<para>
@@ -963,41 +952,40 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 
 		<para>
 		<replaceable>SERVER</replaceable> ist der NetBIOS-Name des Samba-Servers,
-		<replaceable>Benutzer</replaceable> der Name des UNIX-Benutzers, dem die Datei gehört
+		<replaceable>Benutzer</replaceable> der Name des UNIX-Benutzers, dem die Datei gehört,
 		und <replaceable>(Langer Name)</replaceable> ist
 		die Beschreibung, die den Benutzer ausweist (normalerweise wird dies im GECOS-Feld
 		der UNIX-Passwortdatenbank gefunden).
-		Klicken Sie auf den Knopf <guibutton>Schliessen</guibutton>, um diesen Dialog zu
+		Klicken Sie auf den Button <guibutton>Abbrechen</guibutton>, um diesen Dialog zu
 		entfernen.
 		</para>
 
 		<para>
 		Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption> auf
 		<constant>false</constant> gesetzt ist,
-		wird der Dateieigentümer als NT Benutzer <emphasis>Jeder</emphasis> angezeigt.
+		wird der Dateieigentümer als NT-Benutzer <emphasis>Jeder</emphasis> angezeigt.
 		</para>
 
 		<para>
-		Der <guibutton>Übernehmen</guibutton> Knopf erlaubt es Ihnen nicht, die
-		Eigentumsrechte an dieser Datei auf Sie selbst zu setzen
+		Mit dem <guibutton>Übernehmen</guibutton>-Button können Sie nicht die
+		Eigentumsrechte an dieser Datei auf sich selbst setzen
 		(ein Anklicken zeigt eine Dialogbox, die angibt, dass der Benutzer,
-		als der Sie gerade auf dem NT Client angemeldet sind, nicht gefunden werden kann).
+		als der Sie gerade auf dem NT-Client angemeldet sind, nicht gefunden werden kann).
 		Der Grund hierfür ist, dass das Ändern der Eigentumsrechte auf eine Datei eine
-		privilegierte Operation in UNIX ist, die ausschliesslich dem Benutzer
-		<emphasis>root</emphasis> obliegt. Indem Sie auf diesen Knopf drücken,
-		wird NT dazu veranlasst, die Eigentumsrechte einer Datei auf den am NT Client
-		gegenwärtig angemeldeten Benutzer zu ändern, dies funktioniert
+		privilegierte Operation in UNIX ist, die ausschließlich dem Benutzer
+		<emphasis>root</emphasis> obliegt. Indem Sie auf diesen Button klicken,
+		veranlassen Sie NT dazu, die Eigentumsrechte einer Datei auf den am NT-Client
+		gegenwärtig angemeldeten Benutzer zu übertragen; dies funktioniert
 		jedoch zu diesem Zeitpunkt mit Samba nicht.
 		</para>
 
 		<para>
-		Es gibt ein NT <command>chown</command> Kommando, welches mit Samba funktioniert
+		Es gibt ein NT-Kommando, <command>chown</command>, das mit Samba funktioniert
 		und es einem Benutzer, der mit Administratorprivilegien an
 		einen Samba-Server als root angeschlossen ist, erlaubt, die Eigentumsrechte von
-		Dateien sowohl auf lokaler NTFS-Dateisystemebene oder entfernt gemountete
-		NTFS- oder Samba-Laufwerke zu setzen. Dies ist verfügbar als Teil der von
-		Jeremy Allison vom Samba-Team geschriebenen <application>Seclib</application>
-		NT Sicherheitsbibliothek und ist von der FTP-Hauptseite von Samba abrufbar.
+		Dateien sowohl auf lokaler NTFS-Dateisystemebene als auch auf entfernt gemounteten
+		NTFS- oder Samba-Laufwerken zu setzen. Dies ist verfügbar als Teil der von
+		Jeremy Allison vom Samba-Team geschriebenen <application>Seclib</application>-NT-Sicherheitsbibliothek, und Sie können es von der FTP-Hauptseite von Samba abrufen.
 		</para>
 
 	</sect2>
@@ -1006,11 +994,10 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<title>Das Anzeigen von Datei- oder Verzeichnisberechtigungen</title>
 
 		<para>
-		Der dritte Knopf ist der Knopf <guibutton>Berechtigungen</guibutton>.
-		Indem Sie diesen anklicken, öffnet sich eine Dialogbox,
-		welche sowohl die Berechtigungen und den UNIX-Besitzer für die Datei,
-		als auch für das Verzeichnis anzeigen.
-		Der Eigentümer wird dergestalt angezeigt:
+		Der dritte Button ist die Schaltfläche <guibutton>Berechtigungen</guibutton>.
+		Wenn Sie sie anklicken, öffnet sich eine Dialogbox,
+		die sowohl die Berechtigungen als auch den UNIX-Besitzer für die Datei und das Verzeichnis anzeigen.
+		Der Eigentümer wird wie folgt angezeigt:
 		</para>
 
 		<para><command><replaceable>SERVER</replaceable>\
@@ -1019,12 +1006,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 
 		<para><replaceable>SERVER</replaceable> ist der NetBIOS-Name des Samba-Servers,
 		<replaceable>Benutzer</replaceable>
-		ist der Name des UNIX-Benutzers, dem die Datei gehört und
+		ist der Name des UNIX-Benutzers, dem die Datei gehört, und
 		<replaceable>(Langer Name)</replaceable> ist
 		die Beschreibung, die den Benutzer ausweist (normalerweise wird dies im GECOS-Feld
 		der UNIX-Passwortdatenbank gefunden).
-		Klicken Sie auf den Knopf <guibutton>Schliessen</guibutton>, um diesen Dialog zu
-		entfernen.</para>
+		</para>
 
 		<para>
 		Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption> 
@@ -1040,19 +1026,19 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<sect3>
 			<title>Dateiberechtigungen</title>
 
-			<para>Die Standard UNIX Drillinge Benutzer/Gruppe/Welt und die 
+			<para>Die Standard-UNIX-Drillinge Benutzer/Gruppe/Welt und die 
 			korrespondierenden Berechtigungen 
 			<constant>lesen, schreiben, ausführen</constant> 
 			werden von Samba in ein aus drei Elementen bestehendes NT-ACL mit 
 			den Bits <quote>r</quote>, <quote>w</quote> und <quote>x</quote>
-			auf passende NT-Berechtigungen gemappt. Die UNIX Welt-Berechtigungen werden 
-			in die globale NT Gruppe <constant>Jeder</constant> gemappt,
-			gefolgt von der Berechtigungsliste, die für UNIX-Welt gilt. Die UNIX 
+			von Samba in ein aus drei Elementen bestehendes NT-ACL gemappt, wobei die Bits <quote>r</quote>, <quote>w</quote> und <quote>x</quote> auf passende NT-Berechtigungen gemappt werden. Die UNIX-Welt-Berechtigungen werden 
+			in die globale NT-Gruppe <constant>Jeder</constant> gemappt,
+			gefolgt von der Berechtigungsliste, die unter UNIX für Welt gilt. Die UNIX 
 			Eigentümer- und Gruppenberechtigungen werden als ein NT-
 			<guiicon>Benutzer</guiicon>-Symbol und ein NT-Symbol 
 			<guiicon>lokale Gruppe</guiicon> angezeigt,
 			beziehungsweise durch die nachfolgende Berechtigungsliste für den 
-			UNIX-Benutzer und -Gruppe.</para>
+			UNIX-Benutzer und die UNIX-Gruppe.</para>
 
 			<para>Dadurch, dass viele UNIX-Berechtigungssätze nicht auf allgemeine NT-Namen
 			wie <constant>lesen</constant>,
@@ -1062,11 +1048,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			NT-Anzeigeliste angeführt.</para>
 
 			<para>Doch was passiert, wenn die Datei keine Berechtigungen für eine bestimmte 
-			UNIX-Benutzergruppe oder Welt-Komponente erlaubt ?
+			UNIX-Benutzergruppe oder Welt-Komponente erlaubt?
 			Um es zu ermöglichen, <quote>keine Berechtigungen</quote> zu sehen und zu 
-			ändern, übergibt Samba das NT ACL-Attribut 
+			ändern, übergibt Samba das NT-ACL-Attribut 
 			<constant>Eigentum übernehmen</constant> 
-			(welches keine Bedeutung für UNIX hat) und meldet eine Komponente ohne 
+			(das keine Bedeutung für UNIX hat) und meldet eine Komponente ohne 
 			Berechtigung, wie wenn das NT-Bit <command>O</command> gesetzt wäre.
 			Dies wurde natürlich deshalb gewählt, um es wie eine Null aussehen zu 
 			lassen, was bedeutet: Keine (Null) Berechtigungen. Weitere Details zu dieser
@@ -1077,42 +1063,41 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<title>Verzeichnis-Berechtigungen</title>
 
 			<para>Verzeichnisse auf einem NTFS-Dateisystem haben zwei verschiedene 
-			Berechtigungssätze. Der erste Satz ist die ACL, welche
-			auf das Verzeichnis selbst gesetzt ist, welche normalerweise im ersten Satz 
+			Berechtigungssätze. Der erste Satz ist die ACL, die
+			auf das Verzeichnis selbst gesetzt ist. Sie wird normalerweise im ersten Satz 
 			der Klammern im normalen NT-Stil <constant>RW</constant>
-			angezeigt wird. Dieser erste Satz an Berechtigungen wird durch Samba in exakt 
+			angezeigt. Dieser erste Satz an Berechtigungen wird durch Samba in exakt 
 			derselben Art und Weise erzeugt, wie es normale Dateiberechtigungen
 			werden, und wird auch auf diesselbe Art und Weise angezeigt.</para>
 			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung 
 			in der UNIX-Berechtigungs-Welt und repräsentiert
-			die <constant>vererbten</constant> Berechtigungen, die jede Datei, die in 
-			diesem Verzeichnis erzeugt wird, erben würde.</para>
+			die <constant>vererbten</constant> Berechtigungen, die jede Datei erben würde, die in 
+			diesem Verzeichnis erzeugt wird.</para>
 
 			<para>Samba vereinigt diese vererbten Berechtigungen für NT, indem es die 
-			UNIX-Berechtigungsmodi als ein NT ACL zurückgibt, so
-			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hatte.</para>
+			UNIX-Berechtigungsmodi als eine NT-ACL zurückgibt, so
+			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hat.</para>
 		</sect3>
 	</sect2>
 
 	<sect2>
 		<title>Ändern von Datei- oder Verzeichnis-Berechtigungen</title>
 
-		<para>Das Ändern von Datei- und Verzeichnis-Berechtigungen ist genauso einfach, wie das Ändern
+		<para>Das Ändern von Datei- und Verzeichnis-Berechtigungen ist genauso einfach wie das Ändern
 		der Anzeige der Berechtigungen in der Dialogbox und das Klicken auf <guibutton>OK</guibutton>.
-		Jedoch gibt es Einschränkungen, die ein Benutzer wissen sollte und die mit den Standard
-		Samba-Berechtigungsmasken und dem Vergeben von DOS-Attributen, die ebenfalls in diesem Zusammenhang
-		gemacht werden, zusammenhängen.</para>
+		Jedoch gibt es Einschränkungen, die ein Benutzer kennen sollte und die mit den Standard-Samba-Berechtigungsmasken und mit dem Vergeben von DOS-Attributen zu tun haben, die ebenfalls in diesem Zusammenhang
+		berücksichtigt werden müssen.</para>
 
 		<para>Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
 		auf <constant>false</constant> gesetzt ist, schlägt jeder Versuch, 
 		Sicherheitsberechtigungen zu setzen,
 		mit einer Meldung <errorname>'Zugriff verweigert'</errorname> fehl.</para>
 
-		<para>Das erste, was anzumerken ist, ist, dass der Knopf
+		<para>Das Erste, was anzumerken ist, ist, dass der Button
 		<guibutton>Hinzufügen</guibutton> 
 		keine Samba-Benutzerliste zurückgeben wird (es wird eine Fehlermeldung ausgegeben, 
 		die besagt
-		<errorname>`Der Remoteprozedur-Aufruf schlug fehl und konnte nicht ausgeführt 
+		<errorname>'Der Remoteprozedur-Aufruf schlug fehl und konnte nicht ausgeführt 
 		werden'</errorname>).
 		Das bedeutet, dass Sie nur die gegenwärtigen Benutzer/Gruppen/Welt-Berechtigungen, 
 		die in der Dialogbox
@@ -1121,35 +1106,35 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		die UNIX augenblicklich hat.</para>
 
 		<para>Falls ein Berechtigungsdrilling (entweder Benutzer, Gruppe oder Welt)
-		von der Liste der Berechtigungen in der NT-Dialogbox entfernt wird, und dann der
-		<guibutton>OK</guibutton> Knopf gedrückt wird, wird dies auf UNIX-Seite
+		von der Liste der Berechtigungen in der NT-Dialogbox entfernt wird und dann der
+		<guibutton>OK</guibutton>-Button angeklickt wird, wird dies auf UNIX-Seite
 		als <quote>keine Berechtigungen</quote> angewendet. Wenn Sie sich dann die Berechtigungen
 		nochmals ansehen, wird der Eintrag <quote>keine Berechtigungen</quote> als das 
 		NT-Flag <command>O</command> 
 		wie oben beschrieben angezeigt. Dies erlaubt es Ihnen, Berechtigungen wieder auf 
 		eine Datei oder Verzeichnis
-		zu setzen, nachdem Sie diese von einem der Drillingskomponenten entfernt hatten.</para>
+		zu setzen, nachdem Sie diese von einer der Drillingskomponenten entfernt hatten.</para>
 
 		<para>Weil UNIX nur die Bits <quote>r</quote>, <quote>w</quote> und <quote>x</quote> 
-		eines NT ACL unterstützt, werden diese ignoriert, falls andere
-		NT Sicherheitsattribute wie <constant>Löschzugriff</constant>
+		einer NT-ACL unterstützt, werden diese ignoriert, falls andere
+		NT-Sicherheitsattribute wie <constant>Löschzugriff</constant>
 		ausgewählt wurden, falls diese auf einem Samba-Server angewandt werden.</para>
 
 		<para>Wenn Berechtigungen auf ein Verzeichnis gesetzt werden, wird der zweite 
 		Satz an Berechtigungen (im zweiten Klammern-Paar)
-		standardmässig auf alle Dateien in diesem Verzeichnis angewandt.
+		standardmäßig auf alle Dateien in diesem Verzeichnis angewandt.
 		Falls Sie dies nicht wünschen, müssen Sie die Auswahlbox 
 		<guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel>
-		in dem NT Dialog vor einem Klicken auf <guibutton>OK</guibutton> abwählen.</para>
+		in dem NT-Dialog vor einem Klicken auf <guibutton>OK</guibutton> abwählen.</para>
 
-		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt Komponente zu entfernen,
-		können Sie entweder eine Komponente auswählen und auf den Knopf <guibutton>Entfernen</guibutton> klicken oder
+		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt-Komponente zu entfernen,
+		können Sie entweder eine Komponente auswählen und auf den Button <guibutton>Entfernen</guibutton> klicken, oder
 		setzen Sie die Komponente darauf, nur die spezielle Berechtigung <constant>Berechtigung übernehmen</constant> 
 		(angezeigt als <command>O</command>) zu setzen.</para>
 	</sect2>
 
 	<sect2>
-		<title>Die Wechselwirkung mit den Samba-Standard-Parametern <quote>create mask</quote>.</title>
+		<title>Die Wechselwirkung mit den Samba-Standard-Parametern <quote>create mask</quote></title>
 
 		<para>Es gibt vier Parameter, die das Wechselspiel mit den Samba-Standard-Parametern 
 		<parameter>create mask</parameter> kontrollieren.
@@ -1165,9 +1150,9 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		</para>
 
 		<para>Sobald ein Benutzer auf <guibutton>OK</guibutton> klickt, um Berechtigungen zu setzen, mappt Samba
-		die angegebenen Berechtigungen in einen Benutzer/Gruppe/Welt-Drillingssatz und prüft dann die geänderten
-		Berechtigungen für diese Datei gegen die in <smbconfoption><name>security mask</name></smbconfoption> gesetzten Bits.
-		Jedes geänderte Bit, welches nicht mit <quote>1</quote> in diesem Parameter gesetzt wurde, bleibt in den 
+		die angegebenen Berechtigungen in einen Benutzer/Gruppe/Welt-Drillingssatz und gleicht dann die geänderten
+		Berechtigungen für diese Datei mit den in <smbconfoption><name>security mask</name></smbconfoption> gesetzten Bits ab.
+		Jedes geänderte Bit, das nicht mit <quote>1</quote> in diesem Parameter gesetzt wurde, bleibt in den 
 		Dateiberechtigungen unberücksichtigt.</para>
 
 		<para>Grundsätzlich werden Null-Bits in der <smbconfoption><name>security mask</name></smbconfoption>
@@ -1175,44 +1160,43 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		ändern.
 		</para>
 
-		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
+		<para>Falls er nicht ausdrücklich gesetzt worden ist, zeigt dieser Parameter standardmäßig auf denselben Wert wie
 		der Parameter <smbconfoption><name>create mask</name></smbconfoption>. Um es einem Benutzer zu erlauben,
 		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei zu ändern, setzen Sie diesen Parameter auf 0777.
 		</para>
 
-		<para>Als nächstes prüft Samba die geänderten Berechtigung einer Datei gegen die Bits, die im
-		<smbconfoption><name>force security mode</name></smbconfoption> Parameter gesetzt sind. Jedes geänderte Bit
+		<para>Als Nächstes gleicht Samba die geänderten Berechtigungen einer Datei mit den Bits ab, die im
+		<smbconfoption><name>force security mode</name></smbconfoption>-Parameter gesetzt sind. Jedes geänderte Bit
 		wird passend zu den auf <quote>1</quote> gesetzten Bits in diesem Parameter zwangsläufig gesetzt.</para>
 
 		<para>Grundsätzlich werden Bits aus dem Parameter <parameter>force security mode</parameter> als ein Satz von Bits
 		behandelt, die der Benutzer immer auf <quote>an</quote> gesetzt hat, wenn die Sicherheit einer Datei geändert wird.
 		</para>
 
-		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
+		<para>Falls er nicht ausdrücklich gesetzt worden ist, zeigt dieser Parameter standardmäßig auf denselben Wert wie
 		der Parameter <smbconfoption><name>force create mode</name></smbconfoption>. Um es einem Benutzer zu erlauben,
 		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei ohne Berechtigungen zu ändern, 
 		setzen Sie diesen Parameter auf 000.
 		Die Parameter <smbconfoption><name>security mask</name></smbconfoption> und <parameter>force security mode</parameter>
 		werden angewendet, um die Anfragen in dieser Reihenfolge zu ändern.</para>
 		
-		<para>Für ein Verzeichnis wird Samba dieselben Operationen wie zuvor für eine Datei beschrieben
-		durchführen, ausser es wird der Parameter <parameter>directory security mask</parameter> anstatt des
-		Parameters <parameter>security mask</parameter> und <parameter>force directory security mode</parameter>
+		<para>Für ein Verzeichnis wird Samba dieselben Operationen durchführen, wie zuvor für eine Datei beschrieben. Es wird jedoch der Parameter <parameter>directory security mask</parameter> anstatt des
+		Parameters <parameter>security mask</parameter> und Parameter <parameter>force directory security mode</parameter>
 		anstatt des Parameters <parameter>force security mode</parameter> angewandt.</para>
 
 		<para>Der Parameter <smbconfoption><name>directory security mask</name></smbconfoption> 
-		ist standardmässig auf denselben Wert wie der Parameter <parameter>directory mask</parameter> 
-		gesetzt und der Parameter <parameter>force directory security mode</parameter> ist standardmässig
+		ist standardmäßig auf denselben Wert wie der Parameter <parameter>directory mask</parameter> 
+		gesetzt, und der Parameter <parameter>force directory security mode</parameter> ist standardmäßig
 		auf denselben Wert wie der Parameter <smbconfoption><name>force directory mode</name></smbconfoption> 
 		gesetzt.
-		Auf diese Weise erzwingt Samba die Berechtigungs-Einschränkungen, die ein Administrator auf einer
+		Auf diese Weise erzwingt Samba die Einschränkungen bei Berechtigungen, die ein Administrator auf einer
 		Samba-Freigabe gesetzt hat, während den Benutzern weiterhin erlaubt wird, innerhalb dieser Einschränkung
 		die Berechtigungsbits zu ändern.</para>
 
-		<para>Falls Sie eine Freigabe aufsetzen möchten, die es Benutzern erlaubt, volle Kontrolle bei der
-		Änderung von Berechtigungsbits auf Ihren eigenen Dateien und Verzeichnissen zu geben und nicht irgendwelche
+		<para>Falls Sie eine Freigabe aufsetzen möchten, die es Benutzern erlaubt, die volle Kontrolle bei der
+		Änderung von Berechtigungsbits auf ihren eigenen Dateien und Verzeichnissen auszuüben, und die es nicht erfordert, irgendwelche
 		Bits auf <quote>an</quote> zu verstellen, dann setzen Sie die folgenden Parameter in der &smb.conf; Datei
-		innerhalb des Freigabe-spezifischen Abschnitts:
+		innerhalb des freigabe-spezifischen Abschnitts:
 		</para>
 
 		<smbconfblock>
@@ -1224,29 +1208,27 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	</sect2>
 
 	<sect2>
-		<title>Die Wechselwirkung mit den Standard Samba Dateiattribut-Vergaben</title>
+		<title>Die Wechselwirkung mit den Standard-Samba-Dateiattribut-Vergaben</title>
 
 		<note>
-		<para>Samba vergibt einige der DOS Attributebits (wie z.B. <quote>Nur lesen</quote>)
+		<para>Samba vergibt einige der DOS-Attribut-Bits (wie z.B. <quote>Nur lesen</quote>)
 		in den UNIX-Berechtigungen einer Datei. Dies bedeutet, dass es einen
 		Konflikt zwischen den Berechtigungsbits, die durch den Sicherheitsdialog gesetzt wurden,
-		und den Berechtigungen, die durch die Vergabe von Dateiattributen gesetzt wurden, geben kann.
+		und den Berechtigungen geben kann, die durch die Vergabe von Dateiattributen gesetzt wurden.
 		</para>
 		</note>
 
 		<para>Falls eine Datei für den Eigentümer keinen UNIX-Lesezugriff hat, wird diese
-		als <quote>Nur lesen</quote> in dem Standarddialog der Registerkarte Dateiattribute angezeigt.
+		als <quote>Nur lesen</quote> in dem Standarddialog der Registerkarte <guilabel>Dateiattribute</guilabel> angezeigt.
 		Leider ist dieser Dialog derselbe, der die Sicherheitsinformationen in einer anderen Registerkarte
 		enthält.
 		</para>
 
-		<para>Was dies heissen kann ist, dass der Eigentümer glaubt, die Berechtigungen so ändern zu können,
-		dadurch dass es ihm erlaubt wird, Lesezugriff durch Nutzung des Sicherheitsdialoges zu bekommen; er klickt
+		<para>Der Eigentümer kann dadurch fälschlicherweise glauben, die Berechtigungen dadurch ändern zu können, weil es ihm anscheinend erlaubt wird, Lesezugriff durch Nutzung des Sicherheitsdialoges zu bekommen; er klickt
 		auf <guibutton>OK</guibutton>, um zurück zu der Registerkarte mit den Standardattributen zu gelangen,
-		klickt auf <guibutton>OK</guibutton> in diesem Dialog und NT setzt die Dateiberechtigungen zurück
-		auf Nur-lesen (weil dies die Attribute in diesem Dialog ihm sagen). Dies bedeutet, dass nach Setzen
-		der Berechtigungen und Klicken auf <guibutton>OK</guibutton> zum Zurückgehen auf den Attributedialog
-		Sie immer <guibutton>Abbrechen</guibutton> statt <guibutton>OK</guibutton> drücken sollten, 
+		klickt auf <guibutton>OK</guibutton> in diesem Dialog, und NT setzt die Dateiberechtigungen 
+		auf Nur-lesen zurück (weil dies die Attribute in diesem Dialog ihm sagen). Dies bedeutet: Klicken Sie - nachdem Sie
+		die Berechtigungen gesetzt und auf <guibutton>OK</guibutton> zum Zurückgehen auf den Attributdialog geklickt haben - immer auf <guibutton>Abbrechen</guibutton> statt auf <guibutton>OK</guibutton>, 
 		um sicherzustellen, dass Ihre Änderungen nicht überschrieben werden.</para>
 	</sect2>
 </sect1>
@@ -1255,7 +1237,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 <title>Gängige Fehler</title>
 
 <para>
-Datei-, Verzeichnis- und Freigabezugriffsprobleme sind häufig auf der Mailingliste. Die folgenden Beispiele wurden
+Datei-, Verzeichnis- und Freigabezugriffsprobleme tauchen häufig auf der Mailingliste auf. Die folgenden Beispiele wurden
 in letzter Zeit in der Maillingliste behandelt.
 </para>
 
@@ -1266,7 +1248,7 @@ in letzter Zeit in der Maillingliste behandelt.
 	<para>
 	<quote>
 	Wir haben einige Schwierigkeiten mit Datei/Verzeichnis-Berechtigungen. Ich kann mich als Admin-User (root) an
-	einer Domäne anmelden und es gibt eine öffentliche Freigabe, auf welcher jeder die Berechtigung zum Erzeugen und
+	einer Domäne anmelden, und es gibt eine öffentliche Freigabe, auf der jeder die Berechtigung zum Erzeugen und
 	Ändern von Dateien haben sollte, aber nur root kann Dateien ändern, sonst niemand. Wir müssen dauernd auf dem
 	Server <userinput>chgrp -R users *</userinput> und <userinput>chown -R nobody *</userinput> eingeben, um den
 	anderen Benutzern das Ändern von Dateien zu erlauben.
@@ -1274,19 +1256,19 @@ in letzter Zeit in der Maillingliste behandelt.
 	</para>
 
 	<para>
-	Es gibt viele Wege dieses Problem zu lösen und hier sind ein paar Hinweise:
+	Es gibt viele Möglichkeiten, dieses Problem zu lösen, und hier sind ein paar Hinweise:
 	</para>
 
 	<procedure>
 		<step>
 			<para>
-			Gehen Sie auf die oberste Ebene des Verzeichnisses, welches freigegeben ist.
+			Gehen Sie auf die oberste Ebene des Verzeichnisses, das freigegeben ist.
 			</para>
 		</step>
 
 		<step>
 			<para>
-			Setzen Sie die Benutzer und Gruppe als Eigentümer auf was immer auch öffentlich sein soll
+			Setzen Sie die Benutzer und Gruppe als Eigentümer auf das, was öffentlich sein soll
 			<screen>
 &prompt;find 'directory_name' -type d -exec chown user.group {}\;
 &prompt;find 'directory_name' -type d -exec chmod 6775 'directory_name'
@@ -1296,22 +1278,22 @@ in letzter Zeit in der Maillingliste behandelt.
 			</para>
 
 			<note><para>
-			Das oben aufgeführte setzt das <constant>sticky bit</constant> auf alle Verzeichnisse.
-			Lesen Sie in Ihren UNIX/Linux manpages nach, was dies bewirkt. Es veranlasst das Betriebssystem
+			Das oben Aufgeführte setzt das <constant>Sticky-Bit</constant> auf alle Verzeichnisse.
+			Lesen Sie in Ihren UNIX/Linux-Manpages nach, was dies bewirkt. Es veranlasst das Betriebssystem,
 			auf alle Dateien in Ihren Verzeichnissen den Eigentümer des Verzeichnisses zu setzen.
 			</para></note>
 		</step>
 		<step>
 			<para>
 
-			Verzeichnis heisst: <replaceable>/foobar</replaceable>
+			Das Verzeichnis heißt: <replaceable>/foobar</replaceable>
 <screen>
 &prompt;<userinput>chown jack.engr /foobar</userinput>
 </screen>
 			</para>
 
 			<note><para>
-				<para>Dies ist genauso wie:</para>
+				<para>Dies ist dasselbe wie:</para>
 <screen>
 &prompt;<userinput>chown jack /foobar</userinput>
 &prompt;<userinput>chgrp engr /foobar</userinput>
@@ -1319,7 +1301,7 @@ in letzter Zeit in der Maillingliste behandelt.
 			</para></note>
 		</step>
 		<step>
-			<para>Geben Sie jetzt ein:
+			<para>Geben Sie jetzt Folgendes ein:
 
 <screen>
 &prompt;<userinput>chmod 6775 /foobar</userinput>
@@ -1346,7 +1328,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 		</para>
 
 		<para>
-		Sie sollten nun sehen, dass die Datei <filename>Afile</filename> erzeugt durch Jill die Eigentumsrechte
+		Sie sollten nun sehen, dass die Datei <filename>Afile</filename>, die von Jill erzeugt worden ist, die Eigentumsrechte
 		und Berechtigungen von Jack hat, so wie hier:
 <screen>
 -rw-r--r--  1 jack  engr     0 2003-02-04 09:57 Afile
@@ -1356,7 +1338,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 
 		<step>
 		<para>
-		Fügen Sie jetzt in Ihrer &smb.conf; für die Freigabe dies ein:
+		Fügen Sie jetzt in Ihrer &smb.conf; für die Freigabe Folgendes ein:
 		<smbconfblock>
 <smbconfoption><name>force create mode</name><value>0775</value></smbconfoption>
 <smbconfoption><name>force directory mode</name><value>6775</value></smbconfoption>
@@ -1364,7 +1346,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 		</para>
 
 		<note><para>
-		Diese Massnahmen werden nur dann gebraucht, wenn Ihre Benutzer nicht Mitglied der Gruppe sind, die
+		Diese Maßnahmen werden nur dann gebraucht, wenn Ihre Benutzer nicht Mitglied der Gruppe sind, die
 		Sie benutzt haben. Das ist dann der Fall, wenn Sie innerhalb des Betriebssystems keine Schreibberechtigung
 		auf das Verzeichnis haben.
 		</para>
@@ -1383,7 +1365,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 
 
 	<sect2>
-		<title>Dateioperationen, die als <emphasis>root</emphasis> mit <emphasis>force user</emphasis> gemacht wurden</title>
+		<title>Dateioperationen, die als <emphasis>root</emphasis> mit <emphasis>force user</emphasis> ausgeführt wurden</title>
 
 		<para>
 		Wenn Sie einen Benutzer in <smbconfoption><name>admin users</name></smbconfoption> haben, wird Samba für
@@ -1396,28 +1378,27 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 		<title>MS Word mit Samba ändert den Eigentümer einer Datei</title>
 
 		<para>
-		<emphasis>Frage:</emphasis> <quote>Wenn Benutzer B ein Worddokument abspeichert, welches Benutzer A
-		gehört, ist anschliessend der Eigentümer der aktualisierten Datei Benutzer B.
-		Warum macht Samba dies ? Wie kann ich das beheben ?</quote>
+		<emphasis>Frage:</emphasis> <quote>Wenn Benutzer B ein Word-Dokument abspeichert, das Benutzer A
+		gehört, ist anschließend der Eigentümer der aktualisierten Datei Benutzer B.
+		Warum macht Samba das? Wie kann ich das beheben?</quote>
 		</para>
 
 		<para>
-		<emphasis>Antwort:</emphasis>Word macht das folgende, wenn Sie ein Worddokument ändern: MS Word erzeugt
-		ein NEUES Dokument mit einem temporären Namen, Word schliesst dann das alte Dokument und löscht es, dann
-		benennt Word das neue Dokument mit dem Original-Dateinamen um.
-		Es gibt keinen Mechanismus, von dem Samba in irgendeiner Weise wissen kann, dass das neue Dokument wirklich
-		vom Eigentümer der Originaldatei stammen kann. Samba hat keine Möglichkeit zu erfahren, dass MS Word die
-		Datei umbenannt hat. Samba ist nur soweit in der Lage zu sagen, dass die Datei, die erzeugt wurde, eine NEUE
-		Datei ist, aber nicht, dass die Applikation (Word) dies aktualisiert hat.
+		<emphasis>Antwort:</emphasis> Word macht Folgendes, wenn Sie ein Word-Dokument ändern: Es erzeugt
+		ein NEUES Dokument mit einem temporären Namen. Word schließt dann das alte Dokument und löscht es. Dann
+		benennt Word das neue Dokument in den Original-Dateinamen um.
+		Es gibt keinen Mechanismus, durch den Samba in irgendeiner Weise wissen kann, dass das neue Dokument wirklich
+		dem Eigentümer der Originaldatei gehören sollte. Samba hat keine Möglichkeit zu erfahren, dass MS Word die
+		Datei umbenannt hat. Samba ist nur in der Lage zu sagen, dass die Datei, die erzeugt wurde, eine NEUE
+		Datei ist, aber nicht, dass die Applikation (Word) diese aktualisiert hat.
 		</para>
 
 		<para>
 		Es gibt einen Workaround, um diese Berechtigungsprobleme zu lösen. Dieser Workaround setzt voraus, dass Sie
-		verstehen, wie Sie das Verhalten des Dateisystems innerhalb der Datei &smb.conf; steuern können, sowie
-		das Verständnis, wie ein UNIX Dateisystem funktioniert. Setzen Sie auf das Verzeichnis, in welchem Sie
-		Word-Dokumente ändern möchten: <command>chmod g+s `directory_name'</command>
+		verstehen, wie Sie das Verhalten des Dateisystems innerhalb der Datei &smb.conf; steuern können, und wissen, wie ein UNIX-Dateisystem funktioniert. Setzen Sie <command>chmod g+s `directory_name'</command> auf das Verzeichnis, in dem Sie
+		Word-Dokumente ändern möchten. 
 		Dies stellt sicher, dass alle Dateien mit der Gruppe erzeugt werden, der das Verzeichnis gehört.
-		In dem Abschnitt in der &smb.conf;, der die Freigabe deklariert setzen Sie:
+		In dem Abschnitt in der &smb.conf;, der die Freigabe deklariert, setzen Sie:
 		</para>
 
 		<para>
@@ -1429,7 +1410,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 
 		<para>
 		Diese beiden Einstellungen stellen sicher, dass alle Verzeichnisse und Dateien, die in der Freigabe
-		erzeugt werden, les- und schreibbar durch den Eigentümer und die Gruppe sind, die auf das Verzeichnis
+		erzeugt werden, durch den Eigentümer und die Gruppe les- und schreibbar sind, die auf das Verzeichnis
 		selbst gesetzt sind.
 		</para>
 
