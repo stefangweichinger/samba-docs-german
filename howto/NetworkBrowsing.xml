@@ -4,7 +4,7 @@
 	&author.jht;
 	&author.jelmer;
 	<author>&person.klimklim;<contrib>Deutsche Übersetzung</contrib></author>
-	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Netzwerk-Browsing</title>
@@ -1204,36 +1204,34 @@ Funktions-Aufrufs gethostbyname() verwendet werden. Dies wird normalerweise über
 </sect1>
 
 <sect1>
-<title>Technical Overview of Browsing</title>
+<title>Technischer Überblick über das Browsing</title>
 
 <para>
-SMB networking provides a mechanism by which clients can access a list
-of machines in a network, a so-called <smbconfoption><name>browse list</name></smbconfoption>. This list
-contains machines that are ready to offer file and/or print services
-to other machines within the network. Thus it does not include
-machines that aren't currently able to do server tasks. The browse
-list is heavily used by all SMB clients. Configuration of SMB
-browsing has been problematic for some Samba users, hence this
-document.
+SMB-Netzwerke bieten einen Mechanismus, mit dem Clients auf eine Liste von Maschinen in einem Netzwerk zugreifen
+können, eine sogenannte <smbconfoption><name>Browselist</name></smbconfoption>. Diese Liste enthält
+Maschinen, die bereit zum Anbieten von Datei- und/oder Druckdienste an andere Maschinen im Netzwerk sind.
+Daher umfaßt diese Liste keine Maschinen, die momentan nicht imstande sind, Serveraufgaben zu erfüllen. Die
+Browselist wird von allen SMB-Clients intensiv benutzt. Die Konfiguration des SMB-Browsing war für manche
+Samba-Benutzer problematisch, daher gibt es jetzt dieses Dokument.
 </para>
 
 <para>
-MS Windows 2000 and later versions, as with Samba-3 and later versions, can be
-configured to not use NetBIOS over TCP/IP. When configured this way,
-it is imperative that name resolution (using DNS/LDAP/ADS) be correctly
-configured and operative. Browsing will not work if name resolution
-from SMB machine names to IP addresses does not function correctly.
+MS Windows 2000 und spätere Versionen von Windows, genauso wie Samba-3 und dessen spätere Versionen, können
+so konfiguriert werden, daß sie NetBIOS-über-TCP/IP nicht verwenden. Wenn sie auf diese Art konfiguriert sind,
+ist es unumgänglich, daß die Namensauflösung (mittels DNS/LDAP/ADS) korrekt konfiguriert und arbeitsfähig ist.
+Browsing funktioniert nicht, wenn die Namensauflösung von SMB-Maschinen-Namen auf IP-Adressen nicht korrekt
+funktioniert.
 </para>
 
 <para>
-Where NetBIOS over TCP/IP is enabled, use of a WINS server is highly
-recommended to aid the resolution of NetBIOS (SMB) names to IP addresses.
-WINS allows remote segment clients to obtain NetBIOS name_type information
-that cannot be provided by any other means of name resolution.
+Wo NetBIOS-über-TCP/IP aktiviert ist, wird der Einsatz eines WINS-Servers stärkstens empfohlen, um die
+Namensauflösung zu unterstützen. WINS erlaubt es Clients in anderen Netzwerk-Segmenten, 
+NetBIOS-name_type-Informationen zu beziehen, die von keiner anderen Methode der Namensauflösung bereitgestellt 
+werden können.
 </para>
 
 <sect2>
-<title>Browsing Support in Samba</title>
+<title>Die Unterstützung des Browsing in Samba</title>
 
 <para>
 Samba facilitates browsing. The browsing is supported by &nmbd;
