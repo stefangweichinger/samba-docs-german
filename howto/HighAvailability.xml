@@ -12,192 +12,196 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Network administrators are often concerned about the availability of file and print
-services. Network users are inclined toward intolerance of the services they depend
-on to perform vital task responsibilities.
+Netzwerkadministratoren sind oft besorgt über die Verfügbarkeit von Datei- und Druckdiensten.
+Netzwerkbenutzer sind geneigt, intolerant gegenüber den Diensten zu sein, von denen Sie,
+was Ihre Aufgabenstellungen anbelangt, abhängig sind.
 </para>
 
 <para>
-A sign in a computer room served to remind staff of their responsibilities. It read:
+Ein Schild in einem Computerraum scheint das Personal an Ihre Verantwortung zu erinnern. Es besagt:
 </para>
 
 <blockquote>
 <para>
-All humans fail, in both great and small ways we fail continually. Machines fail too.
-Computers are machines that are managed by humans, the fallout from failure
-can be spectacular. Your responsibility is to deal with failure, to anticipate it
-and to eliminate it as far as is humanly and economically wise to achieve.
-Are your actions part of the problem or part of the solution?
+Alle Menschen sind fehlerhaft, sowohl im grossen wie im kleinen sind wir dauernd fehlerhaft.
+Maschinen sind ebenfalls fehlerhaft. Computer sind Maschinen, die von Menschen gesteuert sind,
+das Ergebnis eines Fehlers kann spektakulär sein. Ihre Verantwortung ist es, mit Fehlern zurecht 
+zu kommen, sie früh zu erkennen und sie, soweit es menschenmöglich und ökonomisch sinnvoll ist,
+zu eliminieren.
+Sind deine Handlungen Teil des Problems oder Teil der Lösung ?
 </para>
 </blockquote>
 
 <para>
-If we are to deal with failure in a planned and productive manner, then first we must
-understand the problem. That is the purpose of this chapter.
+Wenn wir also mit Fehlern in geplanten und produktiven Arten und Weisen zu tun haben, dann müssen
+wir zuerst einmal das Problem verstehen. Dies ist die Zielsetzung dieses Kapitels.
 </para>
 
 <para>
-Parenthetically, in the following discussion there are seeds of information on how to
-provision a network infrastructure against failure. Our purpose here is not to provide
-a lengthy dissertation on the subject of high availability. Additionally, we have made
-a conscious decision to not provide detailed working examples of high availability
-solutions; instead we present an overview of the issues in the hope that someone will
-rise to the challenge of providing a detailed document that is focused purely on
-presentation of the current state of knowledge and practice in high availability as it
-applies to the deployment of Samba and other CIFS/SMB technologies.
+In der folgenden Auseinandersetzung sind beiläufig Informationswerte enthalten, wie man
+Vorsorge gegen Fehler in Netzwerkinfrastrukturen trifft. Unsere Absicht ist hier nicht
+eine langatmige Dissertation über Hochverfügbarkeit selbst. Zusätzlich haben wir eine 
+bewusste Entscheidung getroffen, keine detaillierten Arbeitsbeispiele von Hochverfügbarkeits-
+Lösungen zur Verfügung zu stellen; stattdessen zeigen wir einen Überblick über die Thematik
+in der Hoffnung, dass sich jemand der Herausforderung stellt ein detailliertes Dokument zur
+Verfügung zu stellen, welches sich ausschliesslich auf die Präsentation des gegenwärtigen
+Wissensstandes und der Praktiken von hoher Verfügbarkeit beschränkt, soweit sie den Einsatz 
+von Samba und anderen CIFS/SMB Technologien betreffen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Technical Discussion</title>
+<title>Technische Auseinandersetzung</title>
 
 <para>
-The following summary was part of a presentation by Jeremy Allison at the SambaXP 2003
-conference that was held at Goettingen, Germany, in April 2003. Material has been added
-from other sources, but it was Jeremy who inspired the structure that follows.
+Die folgende Zusammenfassung war Teil einer Präsentation von Jeremy Allison auf der SambaXP 2003-
+Konferenz, welche in Göttingen, Deutschland im April 2003 abgehalten wurde. Es wurden Zusätze
+von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur vorgab.
 </para>
 
 	<sect2>
-	<title>The Ultimate Goal</title>
+	<title>Das ultimative Ziel</title>
 
 	<para>
-	All clustering technologies aim to achieve one or more of the following:
+	Alle Cluster-Technologien zielen auf eins oder mehrere des folgenden ab:
 	</para>
 
 	<itemizedlist>
-		<listitem><para>Obtain the maximum affordable computational power.</para></listitem>
-		<listitem><para>Obtain faster program execution.</para></listitem>
-		<listitem><para>Deliver unstoppable services.</para></listitem>
-		<listitem><para>Avert points of failure.</para></listitem>
-		<listitem><para>Exact most effective utilization of resources.</para></listitem>
+		<listitem><para>Sich die maximal erschwingliche rechnerische Power zu verschaffen.</para></listitem>
+		<listitem><para>Sich schnellere Programmausführung zu verschaffen.</para></listitem>
+		<listitem><para>Nicht anzuhaltende Dienste liefern.</para></listitem>
+		<listitem><para>Fehlerpunkte verhindern.</para></listitem>
+		<listitem><para>Genaue höchsteffiziente Nutzung von Resourcen.</para></listitem>
 	</itemizedlist>
 
 	<para>
-	A clustered file server ideally has the following properties:
+	Ein geclusterter Dateiserver hat also idealerweise folgende Eigenschaften:
 	</para>
 
 	<itemizedlist>
-		<listitem><para>All clients can connect transparently to any server.</para></listitem>
-		<listitem><para>A server can fail and clients are transparently reconnected to another server.</para></listitem>
-		<listitem><para>All servers server out the same set of files.</para></listitem>
-		<listitem><para>All file changes are immediately seen on all servers.</para>
-			<itemizedlist><listitem><para>Requires a distributed file system.</para></listitem></itemizedlist></listitem>
-		<listitem><para>Infinite ability to scale by adding more servers or disks.</para></listitem>
+		<listitem><para>Alle Clients können sich transparent an jeden Server verbinden.</para></listitem>
+		<listitem><para>Ein Server kann ausfallen und die Clients werden transparent wieder auf einen anderen Server verbunden.</para></listitem>
+		<listitem><para>Alle Server halten denselben Satz von Dateien bereit.</para></listitem>
+		<listitem><para>Alle Dateiänderungen sind sofort auf allen Servern zu sehen.</para>
+			<itemizedlist><listitem><para>Setzt ein verteiltes Dateisystem voraus.</para></listitem></itemizedlist></listitem>
+		<listitem><para>Grenzenlose Fähigkeit zu skalieren durch Hinzufügen zusätzlicher Server oder Festplatten.</para></listitem>
 	</itemizedlist>
 
 	</sect2>
 
 	<sect2>
-	<title>Why Is This So Hard?</title>
+	<title>Warum ist dies so schwer?</title>
 
 	<para>
-	In short, the problem is one of <emphasis>state</emphasis>.
+	Kurz gesagt, das Problem ist eines des <emphasis>Zustandes</emphasis>.
 	</para>
 
 	<itemizedlist>
 		<listitem>
 			<para>
-			All TCP/IP connections are dependent on state information.
+			Alle TCP/IP Verbindungen sind von Zustandsinformationen abhängig.
 			</para>
 			<para>
-			The TCP connection involves a packet sequence number. This
-			sequence number would need to be dynamically updated on all
-			machines in the cluster to effect seamless TCP fail-over.
+			Die TCP/IP Verbindung bringt eine Packet-Sequenznummer mit sich.
+			Diese Sequenznummer muss auf allen Maschinen in einem
+			Cluster dynamisch aktualisiert werden, um eine nahtlose TCP 
+			Ausfallsicherheit zu erreichen.
 			</para>
 		</listitem>
 		<listitem>
 			<para>
-			CIFS/SMB (the Windows networking protocols) uses TCP connections.
+			CIFS/SMB (die Windows Netzwerkprotokolle) benutzen TCP Verbindungen.
 			</para>
 			<para>
-			This means that from a basic design perspective, fail-over is not
-			seriously considered.
+			Dies bedeutet von einer grundlegenden Designperspektive, dass Ausfallsicherheit
+			nicht wirklich in Erwägung gezogen wurde.
 			<itemizedlist>
 				<listitem><para>
-				All current SMB clusters are fail-over solutions
-				&smbmdash; they rely on the clients to reconnect. They provide server
-				fail-over, but clients can lose information due to a server failure.
+				Alle aktuellen SMB Cluster sind Ausfallsicherheits-Lösungen &smbmdash; 
+				sie basieren darauf, dass die Clients sich neu verbinden. Sie stellen Server-
+				Ausfallsicherheit zur Verfügung, aber die Clients können Informationen aufgrund
+				eines Serverausfalls verlieren.
 				</para></listitem>
 			</itemizedlist>
 			</para>
 		</listitem>
 		<listitem>
 			<para>
-			Servers keep state information about client connections.
+			Server halten Zustandsinformationen über die Client-Verbindungen fest.
 			<itemizedlist>
-				<listitem><para>CIFS/SMB involves a lot of state.</para></listitem>
-				<listitem><para>Every file open must be compared with other file opens
-						to check share modes.</para></listitem>
+				<listitem><para>CIFS/SMB ist in viele Zustände verwickelt.</para></listitem>
+				<listitem><para>Jedes Öffnen einer Datei muss mit anderen Dateiöffnungen verglichen werden
+						um Freigabemodi zu überprüfen.</para></listitem>
 			</itemizedlist>
 			</para>
 		</listitem>
 	</itemizedlist>
 
 		<sect3>
-		<title>The Front-End Challenge</title>
+		<title>Die Front-End Herausforderung</title>
 
 		<para>
-		To make it possible for a cluster of file servers to appear as a single server that has one
-		name and one IP address, the incoming TCP data streams from clients must be processed by the
-		front end virtual server. This server must de-multiplex the incoming packets at the SMB protocol
-		layer level and then feed the SMB packet to different servers in the cluster.
+		Um es einem Cluster von Dateiservern zu ermöglichen, als ein einzelner Server mit einem Namen und
+		einer IP-Adresse zu erscheinen müssen die eingehenden TCP Datenströme von den Arbeitsstationen durch
+		einen virtuellen Front-End-Server verarbeitet werden. Dieser Server muss die eingehenden Pakete auf
+		SMB-Protokoll-Layerebene de-multiplexen und dann das SMB-Packet auf verschiedene Server im Cluster
+		weiterreichen.
 		</para>
 
 		<para>
-		One could split all IPC$ connections and RPC calls to one server to handle printing and user
-		lookup requirements. RPC Printing handles are shared between different IPC4 sessions &smbmdash; it is
-		hard to split this across clustered servers!
+		Einer kann dann alle IPC$ Verbindungen und RPC Calls auf einen Server aufsplitten um Druckaufgaben
+		und Benutzeranfragen aufzusplitten. RPC Druckaufgaben werden zwischen verschiedenen IPC4 Sitzungen 
+		aufgeteilt, es ist schwer dies über geclusterte Server aufzuteilen !
 		</para>
 
 		<para>
-		Conceptually speaking, all other servers would then provide only file services. This is a simpler
-		problem to concentrate on.
-		</para>
-
-		</sect3>
-
-		<sect3>
-		<title>De-multiplexing SMB Requests</title>
-
-		<para>
-		De-multiplexing of SMB requests requires knowledge of SMB state information,
-		all of which must be held by the front-end <emphasis>virtual</emphasis> server.
-		This is a perplexing and complicated problem to solve.
-		</para>
-
-		<para>
-		Windows XP and later have changed semantics so state information (vuid, tid, fid)
-		must match for a successful operation. This makes things simpler than before and is a
-		positive step forward.
-		</para>
-
-		<para>
-		SMB requests are sent by vuid to their associated server. No code exists today to
-		affect this solution. This problem is conceptually similar to the problem of
-		correctly handling requests from multiple requests from Windows 2000
-		Terminal Server in Samba.
-		</para>
-
-		<para>
-		One possibility is to start by exposing the server pool to clients directly.
-		This could eliminate the de-multiplexing step.
+		Konzeptionell ausgedrückt: alle anderen Server werden nur Dateidienste zur Verfügung stellen. Sich darauf
+		zu konzentrieren, ist ein einfacheres Problem. 
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>The Distributed File System Challenge</title>
+		<title>De-Multiplexen von SMB-Anfragen</title>
 
 		<para>
-<indexterm><primary>Distributed File Systems</primary></indexterm>
-		There exists many distributed file systems for UNIX and Linux.
+		De-Multiplexen von SMB-Anfragen verlangt nach Wissen zu SMB Zustandsinformationen,
+		alle müssen vom Front-End <emphasis>virtual</emphasis> Server bereit gehalten werden.
+		Dies ist ein verblüffendes und schwer zu lösendes Problem.
 		</para>
 
 		<para>
-		Many could be adopted to backend our cluster, so long as awareness of SMB
-		semantics is kept in mind (share modes, locking and oplock issues in particular).
-		Common free distributed file systems include:
+		Windows XP und spätere haben die Semantik der Zustandsinformationen geändert (vuid, tid, fid) -
+		müssen für eine erfolgreiche Durchführung passen. Dies macht die Dinge einfacher als zuvor und
+		ist ein positiver Schritt vorwärts.
+		</para>
+
+		<para>
+		SMB-Anfragen werden durch vuid zu Ihrem Bestimmungsserver gesendet. Es existiert zurzeit
+		kein Code um diese Lösung zu beeinflussen. Dieses Problem ist konzeptionell ähnlich des Problems,
+		Anfragen von mehreren Anfragen an einen Windows 2000 Terminalserver in Samba zu bearbeiten.
+		</para>
+
+		<para>
+		Eine Möglichkeit damit zu beginnen ist es, den Serverpool den Clients direkt auszusetzen.
+		Dies könnte den Schritt mit De-Multiplexing überflüssig machen.
+		</para>
+
+		</sect3>
+
+		<sect3>
+		<title>Die Herausforderung 'Verteiltes Dateisystem'</title>
+
+		<para>
+<indexterm><primary>Verteilte Dateisysteme</primary></indexterm>
+		Es gibt viele verteilte Dateisysteme für UNIX und Linux.
+		</para>
+
+		<para>
+		Viele können von uns übernommen werden um unsere Cluster abzusichern, solange das Bewusstsein 
+		der SMB-Semantiken in unseren Köpfen bleibt (Freigabemodi, Sperren und Oplock Themen im speziellen).
+		Allgemeine freie verteilte Dateisysteme enthalten:
 <indexterm><primary>NFS</primary></indexterm>
 <indexterm><primary>AFS</primary></indexterm>
 <indexterm><primary>OpenGFS</primary></indexterm>
@@ -212,110 +216,113 @@ from other sources, but it was Jeremy who inspired the structure that follows.
 		</itemizedlist>
 
 		<para>
-		The server pool (cluster) can use any distributed file system backend if all SMB
-		semantics are performed within this pool.
+		Der Serverpool (Cluster) kann jedes verteilte Dateisystem-Backend nutzen, wenn alle SMB-Semantiken
+		in diesem Pool aufgeführt werden.
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Restrictive Constraints on Distributed File Systems</title>
+		<title>Restriktive Zwänge in Verteilten Dateisystemen</title>
 
 		<para>
-		Where a clustered server provides purely SMB services, oplock handling
-		may be done within the server pool without imposing a need for this to
-		be passed to the backend file system pool.
+		Während ein geclusterter Server reine SMB-Dienste zur Verfügung stellt, kann
+		Oplock-Handling im Serverpool direkt gemacht werden, ohne den Zwang, dies an den
+		dahinterliegenden Dateisystem-Pool weitergeben zu müssen. 
 		</para>
 
 		<para>
-		On the other hand, where the server pool also provides NFS or other file services,
-		it will be essential that the implementation be oplock aware so it can
-		interoperate with SMB services. This is a significant challenge today. A failure
-		to provide this will result in a significant loss of performance that will be
-		sorely noted by users of Microsoft Windows clients.
+		Auf der anderen Seite wird es lebensnotwendig sein, dass die Implementierung Oplock-fähig
+		ist, sodasss es mit SMB-Diensten zusammenarbeiten kann, wenn der Serverpool ebenfalls NFS 
+		oder andere Dateidienste zur Verfügung stellt. Dies ist heutzutage eine bedeutende 
+		Herausforderung. Ein Fehler hierin wird in einem bemerkenswerten Perfomanceverlust zu 
+		verzeichnen sein, der sehr von den Benutzern von Microsoft Windows Clients zur Notiz genommen
+		wird.
 		</para>
 
 		<para>
-		Last, all state information must be shared across the server pool.
-		</para>
-
-		</sect3>
-
-		<sect3>
-		<title>Server Pool Communications</title>
-
-		<para>
-		Most backend file systems support POSIX file semantics. This makes it difficult
-		to push SMB semantics back into the file system. POSIX locks have different properties
-		and semantics from SMB locks.
-		</para>
-
-		<para>
-		All <command>smbd</command> processes in the server pool must of necessity communicate
-		very quickly. For this, the current <parameter>tdb</parameter> file structure that Samba
-		uses is not suitable for use across a network. Clustered <command>smbd</command>'s must use something else.
+		Zuletzt müssen alle Zustandsinformationen über den Serverpool verteilt werden.
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Server Pool Communications Demands</title>
+		<title>Serverpool Kommunikation</title>
 
 		<para>
-		High speed inter-server communications in the server pool is a design prerequisite
-		for a fully functional system. Possibilities for this include:
+		Die meisten Backend-Dateisysteme unterstützen POSIX Dateisemantiken. Dies macht es schwierig,
+		SMB-Semantiken zurück ins Dateisystem zu schieben. POSIX-Sperren haben andere Eigenschaften
+		und Semantiken als SMB-Sperren.
+		</para>
+
+		<para>
+		Alle <command>smbd</command> Prozesse im Serverpool müssen aufgrund der Notwendigkeit sehr schnell
+		miteinander kommunizieren.
+		Dadurch ist die gegenwärtige <parameter>tdb</parameter> Dateistruktur, die Samba benutzt, nicht
+		geeignet für die Nutzung über Netzwerke hinaus. Geclusterte <command>smbd</command>'s müssen etwas
+		anderes benutzen.
+		</para>
+
+		</sect3>
+
+		<sect3>
+		<title>Anforderungen an Serverpool-Kommunikationen</title>
+
+		<para>
+		Hochgeschwindigkeits-Inter-Serverkommunikation innerhalb des Serverpools ist eine Design-
+		Grundvoraussetzung für ein voll funktionsfähiges System. Möglichkeiten für dieses enthalten:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			Proprietary shared memory bus (example: Myrinet or SCI [Scalable Coherent Interface]).
-			These are high cost items.
+			Proprietäre Shared-Memory Bussysteme (Beispiel: Myrinet oder SCI [Scalable Coherent Interface]).
+			Diese sind äusserst kostenintensiv.
 			</para></listitem>
 		
 			<listitem><para>
-			Gigabit ethernet (now quite affordable).
+			Gigabit Ethernet (mittlerweile fast erschwinglich).
 			</para></listitem>
 		
 			<listitem><para>
-			Raw ethernet framing (to bypass TCP and UDP overheads).
+			Raw Ethernet-Framing (um TCP- und UDP-Overheads zu umgehen).
 			</para></listitem>
 		</itemizedlist>
 
 		<para>
-		We have yet to identify metrics for  performance demands to enable this to happen
-		effectively.
+		Wir müssen nun die Maße für Performance-Anforderungen identifizieren, um dies effektiv
+		einsetzen zu können.
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Required Modifications to Samba</title>
+		<title>Benötigte Änderungen an Samba</title>
 
 		<para>
-		Samba needs to be significantly modified to work with a high-speed server inter-connect
-		system to permit transparent fail-over clustering.
+		Samba muss entscheidend geändert werden, um mit einem Hochgeschwindigkeits-Server Inter-Connect-System
+		zusammen zu arbeiten, um transparente Ausfallsicherheits-Cluster zu erlauben.
 		</para>
 
 		<para>
-		Particular functions inside Samba that will be affected include:
+		Bestimmte Funktionen innerhalb von Samba, die dadurch betroffen sind, enthalten:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			The locking database, oplock notifications,
-			and the share mode database.
+			Die Sperren-Datenbank, Oplock-Benachrichtigungen und die Freigabemodi-Datenbank.
 			</para></listitem>
 
 			<listitem><para>
-			Failure semantics need to be defined. Samba behaves the same way as Windows.
-			When oplock messages fail, a file open request is allowed, but this is 
-			potentially dangerous in a clustered environment. So how should inter-server
-			pool failure semantics function and how should this be implemented?
+			Fehlersemantiken müssen definiert werden. Samba verhält sich gleich wie Windows.
+			Wenn Oplock-Nachrichten fehlschlagen ist eine Anforderung zum Datei öffnen erlaubt, doch
+			dies ist potentiell gefährlich inh einer geclusterten Umgebung.
+			Wie soll also Inter-Serverpool-Fehlersemantik funktionieren und wie soll dies
+			implementiert werden ?
 			</para></listitem>
 
 			<listitem><para>
-			Should this be implemented using a point-to-point lock manager, or can this
-			be done using multicast techniques?
+			Soll dies durch Nutzung eines Point-to-Point Sperren-Managers implementiert werden oder
+			kann dies durch Multicast-Techniken gemacht werden ?
 			</para></listitem>
 
 		</itemizedlist>
@@ -324,88 +331,89 @@ from other sources, but it was Jeremy who inspired the structure that follows.
 	</sect2>
 
 	<sect2>
-	<title>A Simple Solution</title>
+	<title>Eine einfache Lösung</title>
 
 	<para>
-	Allowing fail-over servers to handle different functions within the exported file system
-	removes the problem of requiring a distributed locking protocol.
+	Indem man ausfallsicheren Servern erlaubt verschiedene Funktionen innerhalb des exportierten Dateisystems
+	zu behandeln, beseitigt man das Problem, ein verteiltes Sperrenprotokoll zu fordern.
 	</para>
 
 	<para>
-	If only one server is active in a pair, the need for high speed server interconnect is avoided.
-	This allows the use of existing high availability solutions, instead of inventing a new one.
-	This simpler solution comes at a price &smbmdash; the cost of which is the need to manage a more
-	complex file name space. Since there is now not a single file system, administrators
-	must remember where all services are located &smbmdash; a complexity not easily dealt with.
+	Falls nur ein Server in einem Paar aktiv ist, wird die Forderung nach Hochgeschwindigkeits-Server-Interconnect
+	vermieden. Dies erlaubt dann das Nutzen von vorhandenen Hochverfügbarkeitslösungen anstatt neue erfinden zu
+	müssen. Diese einfachere Lösung hat jedoch ihren Preis &smbmdash; den Preis einen wesentlich komplexeren
+	Dateinamens-Bereich verwalten zu müssen.
+	Dadurch, dass es heute nicht nur ein Dateisystem gibt, müssen sich die Administratoren daran erinnern,
+	wo all die Dienste beheimatet sind &smbmdash; eine Komplexität, mit der es nicht einfach ist umzugehen.
 	</para>
 
 	<para>
-	The <emphasis>virtual server</emphasis> is still needed to redirect requests to backend
-	servers. Backend file space integrity is the responsibility of the administrator.
+	Der <emphasis>virtuelle Server</emphasis> wird weiterhin benötigt, um Anfragen an den Backend-Server 
+	weiterzuleiten. Die Integrität des Backend-Dateibereiches ist die Verantworlichkeit des Administrators.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>High Availability Server Products</title>
+	<title>Hochverfügbarkeits-Serverprodukte</title>
 
 	<para>
-	Fail-over servers must communicate in order to handle resource fail-over. This is essential
-	for high availability services. The use of a dedicated heartbeat is a common technique to
-	introduce some intelligence into the fail-over process. This is often done over a dedicated
-	link (LAN or serial).
+	Ausfallsichere Server müssen miteinander kommunizieren um Resourcenausfälle behandeln zu können.
+	Dies ist für hochverfügbare Dienste lebensnotwendig. Der Einsatz eines dedizierten Heartbeats ist
+	dabei eine gängige Technik etwas Intelligenz in den ausfallsichernden Prozess einzuführen. Dies wird
+	oft durch einen dedizierten Link (LAN oder seriell) bewerkstelligt.
 	</para>
 
 	<para>
 <indexterm><primary>SCSI</primary></indexterm>
-	Many fail-over solutions (like Red Hat Cluster Manager, as well as Microsoft Wolfpack)
-	can use a shared SCSI of Fiber Channel disk storage array for fail-over communication.
-	Information regarding Red Hat high availability solutions for Samba may be obtained from:
+	Viele Ausfallsicherungslösungen (der Red Hat Cluster Manager genauso wie Microsoft Wolfpack)
+	können ein geteiltes SCSI von Fiberchannel Disk Storage Arrays für ausfallsichere Kommunikation nutzen.
+	Informationen bezüglich der Red Hat Hochverfügbarkeitslösungen für Samba können hier erhalten werden:
 	<ulink url="http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-samba.html">www.redhat.com.</ulink>
 	</para>
 
 	<para>
-	The Linux High Availability project is a resource worthy of consultation if your desire is
-	to build a highly available Samba file server solution. Please consult the home page at
+	Das Linux Hochverfügbarkeits-Projekt ist eine lesenswerte Quelle falls Sie beabsichtigen,
+	eine hochverfügbare Dateiserver-Lösung mit Samba aufzubauen. Bitte konsultieren Sie die Homepage
 	<ulink url="http://www.linux-ha.org/">www.linux-ha.org/.</ulink>
 	</para>
 
 	<para>
-	Front-end server complexity remains a challenge for high availability as it needs to deal
-	gracefully with backend failures, while at the same time it needs to provide continuity of service
-	to all network clients.
+	Frontend-Server Komplexität bleibt eine Herausforderung für Hochverfügbarkeit, weil es anständig mit
+	Backend-Fehlern umgehen muss, während sie zur selben Zeit den Fortlauf der Dienste für alle Netzwerkclients
+	zur Verfügung stellen muss.
 	</para>
 	
 	</sect2>
 
 	<sect2>
-	<title>MS-DFS: The Poor Man's Cluster</title>
+	<title>MS-DFS: Der Arme-Leute-Cluster</title>
 
 	<para>
 <indexterm><primary>MS-DFS</primary></indexterm>
-<indexterm><primary>DFS</primary><see>MS-DFS, Distributed File Systems</see></indexterm>
-	MS-DFS links can be used to redirect clients to disparate backend servers. This pushes
-	complexity back to the network client, something already included by Microsoft.
-	MS-DFS creates the illusion of a simple, continuous file system name space, that even
-	works at the file level.
+<indexterm><primary>DFS</primary><see>MS-DFS, Distributed File Systems (verteilte Dateisysteme)</see></indexterm>
+	MS-DFS Links können dazu benutzt werden, Clients zu grundverschiedenen Backend-Servern umzuleiten. Dies
+	gibt die Komplexität zurück zum Netzwerkclient, etwas was bereits durch Microsoft enthalten ist.
+	MS-DFS erzeugt die Illusion eines einfachen und fortwährenden Dateinamens-Bereiches, welcher sogar auf
+	Dateiebene arbeitet.
 	</para>
 
 	<para>
-	Above all, at the cost of complexity of management, a distributed (pseudo-cluster) can
-	be created using existing Samba functionality.
+	Über allem, auf Kosten der Komplexität der Verwaltung, kann ein verteilter (Pseudo-Cluster) durch
+	Nutzung vorhandener Samba-Funktionalitäten erzeugt werden.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Conclusions</title>
+	<title>Schlussfolgerungen</title>
 
 	<itemizedlist>
-		<listitem><para>Transparent SMB clustering is hard to do!</para></listitem>
-		<listitem><para>Client fail-over is the best we can do today.</para></listitem>
-		<listitem><para>Much more work is needed before a practical and manageable high
-				availability transparent cluster solution will be possible.</para></listitem>
-		<listitem><para>MS-DFS can be used to create the illusion of a single transparent cluster.</para></listitem>
+		<listitem><para>Transparentes SMB-Clustering ist schwer durchzuführen!</para></listitem>
+		<listitem><para>Client Ausfallsicherung ist das Beste, was wir heute machen können.</para></listitem>
+		<listitem><para>Sehr viel mehr Arbeit muss erledigt werden, bevor eine praktikable und verwaltbare
+				transparente Hochverfügbarkeits-Clusterlösung möglich sein wird.</para></listitem>
+		<listitem><para>MS-DFS kann dazu benutzt werden, eine Illusion eines einzelnen transparenten Clusters zu erzeugen.</para></listitem>
 	</itemizedlist>
 
 	</sect2>
