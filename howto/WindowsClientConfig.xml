@@ -1,6 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="ClientConfig">
 <chapterinfo>
 	&author.jht;
+	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>MS Windows Network Configuration Guide</title>
