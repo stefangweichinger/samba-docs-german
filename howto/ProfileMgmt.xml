@@ -829,7 +829,6 @@ Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 	in der NETLOGON-Freigabe keine Datei <filename>NTConfig.POL</filename> existiert, die
 	Auswirkung der vorigen Datei <filename>NTConfig.POL</filename> nach wie vor im Profil behalten.
 	Diesen Effekt bezeichnet man als "Tattooing".</para> </step>
-	</para> </step>
 </procedure>
 
 <para>
@@ -921,60 +920,76 @@ User Shell Folders</filename> </para>
 
 <note><para>
 <indexterm><primary>GPOs</primary></indexterm>
-MS Windows XP Home Edition does use default per user profiles, but cannot participate
-in domain security, cannot log onto an NT/ADS-style domain, and thus can obtain the profile only
-from itself. While there are benefits in doing this, the beauty of those MS Windows clients that
-can participate in domain logon processes allows the administrator to create a global default
-profile and enforce it through the use of Group Policy Objects (GPOs).
+MS Windows XP Home Edition verwendet standard-mäßig Per-Benutzer-Profile, aber kann nicht an
+Domänen teilnehmen, sich nicht an NT/ADS-Domänen anmelden, und kann daher das Profil nur von sich selbst
+beziehen. Während dies Vorteile hat, erlaubt die "Schönheit" von jenen MS Windows Clients, die an
+Domänen-Anmeldevorgängen teilnehmen können, dem Administrator, ein globales Standard-Profil anzulegen,
+und dessen Verwendung mittels Gruppenrichtlinien (GPOs) zu erzwingen.
 </para></note>
 
-<para> When a new user first logs onto an MS Windows 200x/XP machine, the default profile is obtained from
-<filename>C:\Documents and Settings\Default User</filename>. The administrator can modify or change the
-contents of this location and MS Windows 200x/XP will gladly use it. This is far from the optimum arrangement
-since it will involve copying a new default profile to every MS Windows 200x/XP client workstation. </para>
+<para>
+Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows 200x/XP Maschine anmeldet, wird das
+Standard-Profil aus <filename>C:\Dokumente und Einstellungen\Default User</filename> geladen. Der
+Administrator kann die dortigen Inhalte modifizieren und MS Windows 200x/XP wird diese verwenden. Dies
+ist nicht gerade optimal, da es bedeutet, daß man ein neues Standard-Profil auf jede
+MS Windows 200x/XP Client Workstation kopieren muß.</para>
 
-<para> When MS Windows 200x/XP participates in a domain security context, and if the default user profile is
-	not found, then the client will search for a default profile in the NETLOGON share of the authenticating
-	server. In MS Windows parlance,<?latex \linebreak ?><filename>%LOGONSERVER%\NETLOGON\Default User,</filename> and if one
-exists there it will copy this to the workstation to the <filename>C:\Documents and Settings\</filename>
-under the Windows login name of the user. </para>
+<para>
+Wenn MS Windows 200x/XP an einem Domänen-Kontext teilnimmt, und das Standard-Benutzer-Profil wird nicht
+gefunden, sucht der Client nach einem Standard-Profil in der NETLOGON-Freigabe des authentifizierenden
+Servers. In MS Windows Begriffen,
+<?latex \linebreak ?><filename>%LOGONSERVER%\NETLOGON\Default User,</filename> und wenn ein solches
+existiert, wird der Client es auf die Workstation kopieren, in das Verzeichnis
+<filename>C:\Dokumente und Einstellungen\</filename>, unter dem Login-Namen des Benutzers.</para>
 
-<note> <para> This path translates, in Samba parlance, to the &smb.conf;
-<smbconfsection>[NETLOGON]</smbconfsection> share. The directory should be created at the root
-of this share and must be called <filename>Default Profile</filename>.	</para> </note>
+<note><para>Dieser Pfad entspricht, in Samba-Begriffen, der Freigabe
+<smbconfsection>[NETLOGON]</smbconfsection> in &smb.conf;. Das Verzeichnis sollte im Wurzelverzeichnis
+dieser Freigabe angelegt werden, und muß <filename>Default Profile</filename> heissen.</para></note>
 
-<para> If a default profile does not exist in this location, then MS Windows 200x/XP will use the local
-default profile. </para>
+<para>Wenn an diesem Ort kein Standard-Profil existiert, wird MS Windows 200x/XP das lokale
+Standard-Profil verwenden.</para>
 
-<para> On logging out, the users' desktop profile will be stored to the location specified in the registry
-settings that pertain to the user. If no specific policies have been created or passed to the client
-during the login process (as Samba does automatically), then the user's profile will be written to the
-local machine only under the path <filename>C:\Documents and Settings\%USERNAME%</filename>. </para>
+<para>Beim Abmelden wird das Desktop-Profil des Benutzers an dem Ort abgespeichert, der in den
+Registrierungs-Einstellungen für diesen Benutzer gesetzt ist. Wenn keine spezifischen Richtlinien
+angelegt oder dem Client während der Anmeldung weitergegeben worden sind (wie es Samba automatisch
+tut), dann wird das Benutzerprofil nur auf der lokalen Maschine abgelegt, unter
+<filename>C:\Dokumente und Einstellungen\%USERNAME%</filename>.</para>
 
-<para> Those wishing to modify the default behavior can do so through these three methods: </para>
+
+
+<para>Jene, die dieses Standard-Verhalten verändern wollen, können dies auf drei Arten tun:</para>
 
 <itemizedlist>
-	<listitem> <para> Modify the registry keys on the local machine manually and place the new
-	default profile in the NETLOGON share root. This is not recommended as it is maintenance intensive.
+	<listitem> <para>
+	Manuelles Ändern der Registrierungs-Schlüssel auf der lokalen Maschine und das Plazieren
+	des Standard-Profils im Wurzelverzeichnis der NETLOGON-Freigabe. Dies wird nicht empfohlen,
+	da es sehr wartungs-intensiv ist.
 	</para> </listitem>
 
-	<listitem> <para> Create an NT4-style NTConfig.POL file that specified this behavior and locate
-	this file in the root of the NETLOGON share along with the new default profile. </para> </listitem>
+        <listitem> <para>
+	Anlegen einer NT4-artigen NTConfig.POL Datei, die dieses Verhalten spezifiziert, und das
+	Plazieren dieser Datei im Wurzelverzeichnis der NETLOGON-Freigabe, neben dem neuen
+	Standard-Profil.
+	</para> </listitem>
 
-	<listitem> <para> Create a GPO that enforces this through Active Directory, and place the new
-	default profile in the NETLOGON share.	</para> </listitem>
+	<listitem> <para>
+	Anlegen einer Gruppenrichtline (GPO), die das Verhalten per Active Directory erzwingt,
+	und das Plazieren des neuen Standard-Profils in der NETLOGON-Freigabe.
+	</para> </listitem>
 </itemizedlist>
 
-<para>The registry hive key that effects the behavior of folders that are part of the default user
-profile are controlled by entries on Windows 200x/XP is: </para>
+<para>
+Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Bestandteil des
+Standard-Benutzer-Profils sind, ist unter Windows 200x/XP: </para>
 
 <para> <filename>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell
 Folders\</filename> </para>
 
 <para>
-The above hive key contains a list of automatically managed folders. The default entries are shown
-in <link linkend="defregpthkeys"/>
+Der obige Schlüssel enthält eine Liste von automatisch verwalteten Ordnern. Die Standard-Einträge
+werden in <link linkend="defregpthkeys"/>
 <indexterm><primary>windows registry settings</primary><secondary>default profile locations</secondary></indexterm>
+gezeigt.
 </para>
 
 
