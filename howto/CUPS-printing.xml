@@ -4502,135 +4502,124 @@ MIME-Typen <parameter>application/vnd.cups-postscript</parameter> erkennt.
 </para>
 
 <para>
-CUPS can handle <parameter>-o job-hold-until=indefinite</parameter>.
-This keeps the job in the queue on hold. It will only be printed
-upon manual release by the printer operator. This is a requirement in
-many central reproduction departments, where a few operators manage
-the jobs of hundreds of users on some big machine, where no user is
-allowed to have direct access (such as when the operators often need
-to load the proper paper type before running the 10,000 page job
-requested by marketing for the mailing, and so on).
+CUPS kann mit <parameter>-o job-hold-until=indefinite</parameter> umgehen.
+Das hält den Auftrag in der Queue auf Stillstand. Er wird nur auf manuelle Veranlassung des Druck-Operators
+gedruckt. Dies ist ein Erfordernis in vielen Reproduktions-Abteilungen, wo ein paar wenige Operatoren die
+Aufträge von vielen hundert Benutzern auf irgendeiner grossen Maschine verwalten, wo keinem Benutzer direkter
+Zugriff gestattet ist (wo z.B. die Operatoren das richtige Papier laden müssen, bevor sie den 
+10000-Seiten-Auftrag starten, der vom Marketing für das Mailing eingelangt ist, usw.).
 </para>
 </sect1>
 
 <sect1>
-<title>Auto-Deletion or Preservation of CUPS Spool Files</title>
+<title>Auto-Löschen oder Erhaltung der CUPS-Spool-Dateien</title>
 
 <para>
-Samba print files pass through two spool directories. One is the
-incoming directory managed by Samba, (set in the
-<smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
-directive in the <smbconfsection>[printers]</smbconfsection> section of
-&smb.conf;). The other is the spool directory of
-your UNIX print subsystem. For CUPS it is normally
-<filename>/var/spool/cups/</filename>, as set by the <filename>cupsd.conf</filename>
-directive <filename>RequestRoot /var/spool/cups</filename>.
+Samba-Druckdateien durchlaufen zwei Spool-Verzeichnisse. Eines ist das Eingangsverzeichnis, das von Samba 
+verwaltet wird (im Parameter <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
+im Abschnitt <smbconfsection>[printers]</smbconfsection> von &smb.conf; festgelegt). Das andere ist das
+Spool-Verzeichnis Ihres UNIX-Drucksystems. Für CUPS ist das normalerweise <filename>/var/spool/cups/</filename>,
+gesetzt in der Anweisung <filename>RequestRoot /var/spool/cups</filename> in der Datei
+<filename>cupsd.conf</filename>.
 </para>
 
 <sect2>
-<title>CUPS Configuration Settings Explained</title>
+<title>Erklärung von CUPS-Konfigurations-Einstellungen</title>
 
 <para>
-Some important parameter settings in the CUPS configuration file
-<filename>cupsd.conf</filename> are:
+Einige wichtige Parameter in der CUPS-Konfigurations-Datei <filename>cupsd.conf</filename> sind:
 </para>
 
 <variablelist>
 
 <varlistentry><term>PreserveJobHistory Yes</term>
 <listitem><para>
-This keeps some details of jobs in cupsd's mind (well it keeps the
-c12345, c12346, and so on, files in the CUPS spool directory, which do a
-similar job as the old-fashioned BSD-LPD control files). This is set
-to <quote>Yes</quote> as a default.
+Dies beläßt einige Details von Aufträgen im <quote>Gedächtnis</quote> von cupsd (es hält die Dateien
+c12345, c12346, usw. im CUPS-Spool-Verzeichnis, die einen ähnlichen Job machen wie die altmodischen 
+BSD-LPD-Kontroll-Dateien). Der voreingestellte Wert dieses Parameters ist <quote>Yes</quote>.
 </para></listitem></varlistentry>
 
 <varlistentry><term>PreserveJobFiles Yes</term>
 <listitem><para>
-This keeps the job files themselves in cupsd's mind
-(it keeps the d12345, d12346 etc. files in the CUPS spool
-directory). This is set to <quote>No</quote> as the CUPS
-default.
+Das beläßt die Auftragsdateien selbst im <quote>Gedächtnis</quote> von cupsd (es hält die Dateien
+d12345, d12346 etc. im CUPS-Spool-Verzeichnis). Der voreingestellte Wert dieses Parameters ist <quote>No</quote>.
 </para></listitem></varlistentry>
 
 <varlistentry><term><emphasis><quote>MaxJobs 500</quote></emphasis></term>
 <listitem><para>
-This directive controls the maximum number of jobs
-that are kept in memory. Once the number of jobs reaches the limit,
-the oldest completed job is automatically purged from the system to
-make room for the new one. If all of the known jobs are still
-pending or active, then the new job will be rejected. Setting the
-maximum to 0 disables this functionality. The default setting is
-0.
+Diese Anweisung kontrolliert die maximale Anzahl von Aufträgen, die im Speicher gehalten werden. Sobald die 
+Anzahl der Aufträge das Limit erreichen, wird der älteste abgeschlossene Auftrag automatisch aus dem System
+entfernt, um Platz für den neuen zu machen. Wenn alle Aufträge nach wie vor in Schwebe oder aktiv sind, wird
+der neue Auftrag abgelehnt. Setzt man dieses Maximum auf 0, wird diese Funktionalität deaktiviert. 
+Der voreingestellte Wert dieses Parameters ist 0.
 </para></listitem></varlistentry>
 </variablelist>
 
 <para>
-(There are also additional settings for <parameter>MaxJobsPerUser</parameter> and
+(Es gibt auch noch zusätzliche Einstellungen für <parameter>MaxJobsPerUser</parameter> und
 <parameter>MaxJobsPerPrinter</parameter>...)
 </para>
 </sect2>
 
 <sect2>
-<title>Pre-Conditions</title>
+<title>Vorbedingungen</title>
 
 <para>
-For everything to work as announced, you need to have three
-things:
+Damit alles so funktioniert, wie besprochen, brauchen Sie drei Dinge:
 </para>
 
 <itemizedlist>
-<listitem><para>A Samba-smbd that is compiled against <filename>libcups</filename> (check
-on Linux by running <userinput>ldd `which smbd'</userinput>).</para></listitem>
+<listitem><para>Einen Samba-smbd, der gegen <filename>libcups</filename> kompiliert wurde (Sie können das unter
+Linux mit <userinput>ldd `which smbd'</userinput> prüfen).</para></listitem>
 
-<listitem><para>A Samba-&smb.conf; setting of
-		<smbconfoption><name>printing</name><value>cups</value></smbconfoption>.</para></listitem>
+<listitem><para>Die Einstellung
+		<smbconfoption><name>printing</name><value>cups</value></smbconfoption> 
+		in der Samba-&smb.conf;.</para></listitem>
 
-<listitem><para>Another Samba-&smb.conf; setting of
-		<smbconfoption><name>printcap</name><value>cups</value></smbconfoption>.</para></listitem>
+<listitem><para>Die Einstellung
+		<smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
+		in der Samba-&smb.conf;.</para></listitem>
 </itemizedlist>
 
 <note><para>
-In this case, all other manually set printing-related commands (like
+In diesem Fall werden alle anderen manuell gesetzten Druck-bezogenen Befehle (wie
 <smbconfoption><name>print command</name></smbconfoption>,
 <smbconfoption><name>lpq command</name></smbconfoption>,
 <smbconfoption><name>lprm command</name></smbconfoption>,
-<smbconfoption><name>lppause command</name></smbconfoption> or
-<smbconfoption><name>lpresume command</name></smbconfoption>) are ignored and they should normally have no
-influence whatsoever on your printing.
+<smbconfoption><name>lppause command</name></smbconfoption> oder
+<smbconfoption><name>lpresume command</name></smbconfoption>) ignoriert und sollten normalerweise keinerlei
+Einfluß mehr auf Ihren Druck haben.
 </para></note>
 </sect2>
 
 <sect2>
-<title>Manual Configuration</title>
+<title>Manuelle Konfiguration</title>
 
 <para>
-If you want to do things manually, replace the <smbconfoption><name>printing</name><value>cups</value></smbconfoption>
-by <smbconfoption><name>printing</name><value>bsd</value></smbconfoption>. Then your manually set commands may work
-(I haven't tested this), and a <smbconfoption><name>print command</name><value>lp -d %P %s; rm %s"</value></smbconfoption>
-may do what you need.
+Wenn Sie Dinge manuell tun wollen, ersetzen Sie 
+<smbconfoption><name>printing</name><value>cups</value></smbconfoption> durch
+<smbconfoption><name>printing</name><value>bsd</value></smbconfoption>. Dann kann Ihr manuell gesetzter 
+Befehlssatz funktionieren (Ich habe das <emphasis>nicht</emphasis> getestet), und 
+<smbconfoption><name>print command</name><value>lp -d %P %s; rm %s"</value></smbconfoption> könnte das tun, was 
+Sie brauchen.
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Printing from CUPS to Windows Attached Printers</title>
+<title>Aus CUPS auf Windows-Drucker drucken</title>
 
 <para>
->From time to time the question arises, how can you print
-<emphasis>to</emphasis> a Windows attached printer
-<emphasis>from</emphasis> Samba? Normally the local connection
-from Windows host to printer would be done by USB or parallel
-cable, but this does not matter to Samba. From here only an SMB
-connection needs to be opened to the Windows host. Of course, this
-printer must be shared first. As you have learned by now, CUPS uses
-<emphasis>backends</emphasis> to talk to printers and other
-servers. To talk to Windows shared printers, you need to use the
-<filename>smb</filename> (surprise, surprise!) backend. Check if this
-is in the CUPS backend directory. This usually resides in
-<filename>/usr/lib/cups/backend/</filename>. You need to find an <filename>smb</filename>
-file there. It should be a symlink to <filename>smbspool</filename>
-and the file must exist and be executable:
+Von Zeit zu Zeit taucht die Frage auf, wie man <emphasis>von</emphasis> Samba <emphasis>auf</emphasis>
+einen Windows-Drucker druckt? Normalerweise erfolgt die lokale Verbindung vom Windows-Rechner zum Drucker
+via USB oder Parallel-Kabel, aber das macht Samba nichts aus. Hier muß nur eine SMB-Verbindung zum
+Windows-Rechner geöffnet werden. Natürlich muß der Drucker zuvor freigegeben werden. Wie Sie bereits 
+gelernt haben, verwendet CUPS <emphasis>Backends</emphasis>, um mit den Druckern und anderen Servern zu
+kommunizieren. Um mit unter Windows freigegebenen Druckern zu kommunizieren, müssen Sie das Backend
+<filename>smb</filename> (welch Überraschung!) verwenden. Prüfen Sie, ob es dieses im 
+CUPS-Backend-Verzeichnis gibt. Dieses liegt üblicherweise in <filename>/usr/lib/cups/backend/</filename>.
+Sie sollten dort eine Datei namens <filename>smb</filename> vorfinden. Diese sollte ein Symlink auf
+<filename>smbspool</filename> sein, und diese Datei muß existieren und ausführbar sein:
 </para>
 
 <para><screen>
@@ -4656,7 +4645,7 @@ lrwxrwxrwx    1 root   root      17 Apr  2 03:11 smb -&gt; /usr/bin/smbspool
 </screen></para>
 
 <para>
-If this symlink does not exist, create it:
+Wenn der Symlink nicht existiert, legen Sie ihn an:
 </para>
 
 <para><screen>
@@ -4664,22 +4653,20 @@ If this symlink does not exist, create it:
 </screen></para>
 
 <para>
-<command>smbspool</command> has been written by Mike Sweet from the CUPS folks. It is
-included and ships with Samba. It may also be used with print
-subsystems other than CUPS, to spool jobs to Windows printer shares. To
-set up printer <replaceable>winprinter</replaceable> on CUPS, you need to have a driver for
-it. Essentially this means to convert the print data on the CUPS/Samba
-host to a format that the printer can digest (the Windows host is
-unable to convert any files you may send). This also means you should
-be able to print to the printer if it were hooked directly at your
-Samba/CUPS host. For troubleshooting purposes, this is what you
-should do to determine if that part of the process chain is in
-order. Then proceed to fix the network connection/authentication to
-the Windows host, and so on.
+<command>smbspool</command> wurde von Mike Sweet (von den CUPS-Leuten) geschrieben. Es ist in Samba inkludiert.
+Es kann auch zum Drucken auf andere Subsysteme als CUPS verwendet werden, um Aufträge an Windows-Druckfreigaben
+zu spoolen. Um den Drucker <replaceable>winprinter</replaceable> unter CUPS einzurichten, müssen Sie einen 
+Treiber dafür haben. Prinzipiell bedeutet das, daß die Druckdaten auf dem CUPS/Samba-Rechner in ein für den
+Drucker verdaubares Format gewandelt werden müssen (der Windows-Rechner ist unfähig, irgendwelche von Ihnen
+gesendete Daten zu konvertieren). Das bedeutet auch, daß Sie imstande sein sollten, auf den Drucker zu drucken, 
+wenn er direkt an den CUPS/Samba-Rechner angeschlossen wäre. Das ist es auch, was Sie zur Fehlersuche tun 
+sollten, um zu prüfen, ob dieses Glied der Verarbeitungs-Kette intakt ist. Dann fahren Sie damit fort, die
+Netzwerk-Verbindung/Authentifikation zum/am Windows-Rechner zu prüfen, usw.
 </para>
 
 <para>
-To install a printer with the <parameter>smb</parameter> backend on CUPS, use this command:
+Um einen Drucker mit dem Backend <parameter>smb</parameter> unter CUPS zu installieren, verwenden Sie diesen
+Befehl:
 </para>
 
 <para><screen>
@@ -4688,192 +4675,177 @@ To install a printer with the <parameter>smb</parameter> backend on CUPS, use th
 </screen></para>
 
 <para>
-The PPD must be able to direct CUPS to generate
-the print data for the target model. For PostScript printers, just use
-the PPD that would be used with the Windows NT PostScript driver. But
-what can you do if the printer is only accessible with a password? Or
-if the printer's host is part of another workgroup? This is provided
-for: You can include the required parameters as part of the
-<filename>smb://</filename> device-URI like this:
+Das PPD muß imstande sein, CUPS dazu anzuweisen, die Druckdaten für das Zielgerät zu generieren. Für PS-Drucker
+verwenden Sie einfach das PPD, das mit dem Windows NT PostScript-Treiber verwendet würde. Aber was machen Sie, 
+wenn der Drucker nur mit einem Passwort zugänglich ist? Oder wenn der Drucker-Server Mitglied einer anderen
+Arbeitsgruppe ist? Dafür wurde vorgesorgt: Sie können die erforderlichen Parameter als Teil der
+<filename>smb://</filename> Geräte-URI angeben:
 </para>
 
 <itemizedlist>
-	<listitem><filename>smb://WORKGROUP/WINDOWSNETBIOSNAME/printersharename</filename></listitem>
-	<listitem><filename>smb://username:password@WORKGROUP/WINDOWSNETBIOSNAME/printersharename</filename></listitem>
-	<listitem><filename>smb://username:password@WINDOWSNETBIOSNAME/printersharename</filename></listitem>
+	<listitem><filename>smb://ARBEITSGRUPPE/WINDOWSNETBIOSNAME/druckerfreigabenname</filename></listitem>
+	<listitem><filename>smb://benutzername:passwort@ARBEITSGRUPPE/WINDOWSNETBIOSNAME/druckerfreigabenname</filename></listitem>
+	<listitem><filename>smb://benutzername:passwort@WINDOWSNETBIOSNAME/druckerfreigabenname</filename></listitem>
 </itemizedlist>
 
 <para>
-Note that the device-URI will be visible in the process list of the
-Samba server (e.g., when someone uses the <command>ps -aux</command>
-command on Linux), even if the username and passwords are sanitized
-before they get written into the log files. So this is an inherently
-insecure option, however, it is the only one. Don't use it if you want
-to protect your passwords. Better share the printer in a way that
-does not require a password! Printing will only work if you have a
-working netbios name resolution up and running. Note that this is a
-feature of CUPS and you do not necessarily need to have smbd running.
-
+Beachten Sie, daß die Geräte-URI in der Prozessliste des Samba-Servers sichtbar ist (d.h., wenn jemand den Befehl
+<command>ps -aux</command> unter Linux verwendet), sogar wenn der Benutzername und die Passwörter bereinigt
+werden, bevor Sie in die Logfiles geschrieben werden. Also ist dies eine inhärent unsichere Option, jedoch ist
+es die einzige. Verwenden Sie dies nicht, wenn Sie Ihre Passwörter schützen wollen. Geben Sie besser den Drucker
+so frei, daß man kein Passwort benötigt! Das Drucken wird nur funktionieren, wenn Sie eine funktionierende
+Netbios-Namensauflösung haben. Beachten Sie, daß dies eine Eigenschaft von CUPS ist, und Sie nicht 
+notwendigerweise smbd laufen haben müssen.
 </para>
 </sect1>
 
 <sect1>
-<title>More CUPS-Filtering Chains</title>
+<title>Mehr CUPS-Filterketten</title>
 
 <para>
-The following diagrams reveal how CUPS handles print jobs.
+Die folgenden Diagramme <quote>enthüllen</quote>, wie CUPS mit Druckaufträgen umgeht.
 </para>
 
-<image id="cups1"><imagefile>cups1</imagefile><imagedescription>Filtering chain 1.</imagedescription></image>
+<image id="cups1"><imagefile>cups1</imagefile><imagedescription>Filterkette 1.</imagedescription></image>
 
-<image id="cups2"><imagefile>cups2</imagefile><imagedescription>Filtering chain with cupsomatic</imagedescription></image>
+<image id="cups2"><imagefile>cups2</imagefile><imagedescription>Filterkette mit cupsomatic</imagedescription></image>
 
 </sect1>
 
 <sect1>
-	<title>Common Errors</title>
+	<title>Gängige Fehler</title>
 
 	<sect2>
-		<title>Windows 9x/ME Client Can't Install Driver</title>
+		<title>Windows 9x/ME Client kann keinen Treiber installieren</title>
 
-		<para>For Windows 9x/ME, clients require the printer names to be eight
-characters (or <quote>8 plus 3 chars suffix</quote>) max; otherwise, the driver files
-will not get transferred when you want to download them from
-Samba.</para>
+		<para>Für Windows 9x/ME benötigen die Clients Druckernamen, die maximal acht Zeichen lang sind
+		(oder <quote>8 plus 3 Zeichen Suffix</quote>); andernfalls werden die Treiberdateien nicht
+		übertragen, wenn Sie sie von Samba herunterladen wollen.</para>
 
 	</sect2>
 
 	<sect2>
-		<title><quote>cupsaddsmb</quote> Keeps Asking for Root Password in Never-ending Loop</title>
+		<title><quote>cupsaddsmb</quote> fragt immer wieder nach dem root-Passwort</title>
 
-		<para>Have you <smbconfoption><name>security</name><value>user</value></smbconfoption>? Have
-		you used <command>smbpasswd</command> to give root a Samba account?
-		You can do two things: open another terminal and execute
-		<command>smbpasswd -a root</command> to create the account and
-		continue entering the password into the first terminal. Or break
-		out of the loop by pressing ENTER twice (without trying to type a
-		password).</para>
+		<para>Verwenden Sie <smbconfoption><name>security</name><value>user</value></smbconfoption>? 
+		Haben Sie <command>smbpasswd</command> verwendet, um root ein Samba-Konto zu geben?
+		Sie können zwei Dinge tun: ein anderes Terminal öffnen und <command>smbpasswd -a root</command>
+		ausführen, um das Konto anzulegen und im ersten Terminal damit fortfahren, das neue Passwort
+		dort einzugeben. Oder Sie brechen die Schleife ab, indem Sie zweimal ENTER drücken (ohne zu
+		versuchen, ein Passwort einzugeben).</para>
 
 		<para>
-		If the error is: <quote>tree connect failed: NT_STATUS_BAD_NETWORK_NAME</quote>,
-		you may have forgotten to create the <filename>/etc/samba/drivers</filename> directory.
+		Wenn der Fehler lautet: <quote>tree connect failed: NT_STATUS_BAD_NETWORK_NAME</quote>,
+		haben Sie vielleicht vergessen, das Verzeichnis <filename>/etc/samba/drivers</filename> 
+		anzulegen.
 		</para>
 
 	</sect2>
 
 	<sect2>
-		<title><quote>cupsaddsmb</quote> Errors</title>
+		<title><quote>cupsaddsmb</quote> Fehler</title>
 
 		<para>
-		The use of <quote>cupsaddsmb</quote> gives <quote>No PPD file for printer...</quote>
-		Message While PPD File Is Present.  What might the problem be?
+		Die Verwendung von <quote>cupsaddsmb</quote> gibt die Meldung 
+		<quote>No PPD file for printer...</quote>, obwohl die Datei vorhanden ist. Was kann das Problem
+		sein?
 		</para>
 
-		<para>Have you enabled printer sharing on CUPS? This means:
-		Do you have a <parameter>&lt;Location
-		/printers&gt;....&lt;/Location&gt;</parameter> section in CUPS
-		server's <filename>cupsd.conf</filename> that does not deny access to
-		the host you run <quote>cupsaddsmb</quote> from?  It <emphasis>could</emphasis> be
-		an issue if you use cupsaddsmb remotely, or if you use it with a
-		<option>-h</option> parameter: <userinput>cupsaddsmb -H
-		sambaserver -h cupsserver -v printername</userinput>.
+		<para>Haben Sie die Drucker-Freigabe in CUPS aktiviert? D.h., haben Sie einen Abschnitt
+		<parameter>&lt;Location /printers&gt;....&lt;/Location&gt;</parameter> in der Datei
+		<filename>cupsd.conf</filename> Ihres CUPS-Servers, die dem Host, von dem aus Sie
+		<quote>cupsaddsmb</quote> auszuführen versuchen, den Zugriff erlaubt? Es 
+		<emphasis>könnte</emphasis> ein Thema sein, wenn Sie cupsaddsmb übers Netz verwenden, oder mit
+		dem Parameter <option>-h</option>: 
+		<userinput>cupsaddsmb -H sambaserver -h cupsserver -v printername</userinput>.
 		</para>
 
-		<para>Is your <parameter>TempDir</parameter> directive in
-		<filename>cupsd.conf</filename> set to a valid value and is it writable?
+		<para>Ist die Anweisung <parameter>TempDir</parameter> in
+		<filename>cupsd.conf</filename> auf einen gültigen Wert gesetzt und schreibbar?
 		</para>
 
 	</sect2>
 
 	<sect2>
-		<title>Client Can't Connect to Samba Printer</title>
+		<title>Client kann sich nicht mit dem Samba-Drucker verbinden</title>
 
-	<para>Use <command>smbstatus</command> to check which user
-	you are from Samba's point of view. Do you have the privileges to
-	write into the <smbconfsection>[print$]</smbconfsection>
-	share?</para>
+	<para>Verwenden Sie <command>smbstatus</command>, um zu prüfen, welcher Benutzer Sie aus der Sicht von
+	Samba sind. Haben Sie die Rechte, um in die Freigabe <smbconfsection>[print$]</smbconfsection> zu
+	schreiben?
+	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>New Account Reconnection from Windows 200x/XP Troubles</title>
+	<title>Neue Probleme: Wiederverbindung mit anderem Konto unter Windows 200x/XP</title>
 
-<para>Once you are connected as the wrong user (for
-example, as <constant>nobody</constant>, which often occurs if you have
-<smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>), Windows Explorer will not accept an
-attempt to connect again as a different user. There will not be any byte
-transfered on the wire to Samba, but still you'll see a stupid error
-message that makes you think Samba has denied access. Use
-<command>smbstatus</command> to check for active connections. Kill the
-PIDs. You still can't re-connect and you get the dreaded
-<computeroutput>You can't connect with a second account from the same
-machine</computeroutput> message, as soon as you are trying. And you
-do not see any single byte arriving at Samba (see logs; use <quote>ethereal</quote>)
-indicating a renewed connection attempt. Shut all Explorer Windows.
-This makes Windows forget what it has cached in its memory as
-established connections. Then reconnect as the right user. The best
-method is to use a DOS terminal window and <emphasis>first</emphasis>
-do <userinput>net use z: \\&example.server.samba;\print$ /user:root</userinput>. Check
-with <command>smbstatus</command> that you are connected under a
-different account. Now open the <guilabel>Printers</guilabel> folder (on the Samba server
-in the <guilabel>Network Neighborhood</guilabel>), right-click on the
-printer in question and select
-<guibutton>Connect...</guibutton></para></sect2>
+<para>Sobald Sie als falscher Benutzer verbunden sind (z.B., als <constant>nobody</constant>, was oft geschieht,
+wenn Sie <smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption> gesetzt haben),
+wird der Windows Explorer es nicht akzeptieren, wenn Sie sich als ein anderer Benutzer anzumelden versuchen.
+Nicht ein Byte wird zu Samba übertragen werden, aber Sie werden immer noch eine dumme Fehlermeldung sehen, die
+Sie glauben läßt, daß Samba den Zugriff verweigert hat. Verwenden Sie <command>smbstatus</command>, um nach
+aktiven Verbindungen zu sehen. Killen Sie die PIDs. Sie können sich noch immer nicht neu verbinden und bekommen
+die gefürchtete Meldung <computeroutput>You can't connect with a second account from the same
+machine</computeroutput>, sobald Sie es versuchen. Und Sie sehen kein einziges Byte bei Samba ankommen (sehen
+Sie die Logs; verwenden Sie <quote>ethereal</quote>), das einen neuerlichen Verbindungsversuch anzeigt. 
+Schliessen Sie alle Explorer-Fenster. Das läßt Windows vergessen, was es in seinem Speicher als aufgebaute
+Verbindungen gepuffert hat. Dann verbinden Sie sich neu als der <quote>richtige</quote> Benutzer. Die beste 
+Methode ist es, ein DOS-Terminal-Fenster zu verwenden und <emphasis>zuerst</emphasis> 
+<userinput>net use z: \\&example.server.samba;\print$ /user:root</userinput> auszuführen. Überprüfen Sie
+mit <command>smbstatus</command>, daß Sie mit einem anderen Konto angemeldet sind. Jetzt öffnen Sie den Folder
+<guilabel>Drucker und Faxgeräte</guilabel> (auf dem Samba-Server in der <guilabel>Netzwerkumgebung</guilabel>),
+klicken Sie mit rechts auf den betreffenden Drucker und wählen Sie 
+<guibutton>Verbinden...</guibutton></para></sect2>
 
 <sect2>
-<title>Avoid Being Connected to the Samba Server as the Wrong User</title>
+<title>Vermeiden Sie es, als der falsche Benutzer mit dem Samba-Server verbunden zu sein</title>
 	
-<para>You see per <command>smbstatus</command> that you are
-connected as user nobody; while you want to be root or
-printer admin. This is probably due to
-<smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>, which silently connects you under the guest account
-when you gave (maybe by accident) an incorrect username. Remove
-<smbconfoption><name>map to guest</name></smbconfoption>, if you want to prevent
-this.</para></sect2>
+<para>Sie sehen per <command>smbstatus</command>, daß Sie als der Benutzer nobody angemeldet sind; dabei wollen
+Sie root sein oder printer admin. Das kommt eventuell von
+<smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>, das Sie stillschweigend unter 
+dem Gästekonto angemeldet hat, als Sie (vielleicht unabsichtlich) einen falschen Benutzernamen angegeben haben.
+Entfernen Sie <smbconfoption><name>map to guest</name></smbconfoption>, wenn Sie dies vermeiden wollen.
+</para></sect2>
 
 <sect2>
-<title>Upgrading to CUPS Drivers from Adobe Drivers</title>
+<title>Upgrade von Adobe-Treibern auf CUPS-Treiber</title>
 
 <para>
-This information came from a mailing list posting regarding problems experienced when
-upgrading from Adobe drivers to CUPS drivers on Microsoft Windows NT/200x/XP Clients.
+Diese Information kam von einem Posting in der Mailing-Liste, das Probleme beim Upgrade von den Adobe-Treibern 
+auf die CUPS-Treiber auf Microsoft Windows NT/200x/XP Clients beschrieb.
 </para>
 
-<para>First delete all old Adobe-using printers. Then
-delete all old Adobe drivers. (On Windows 200x/XP, right-click in
-the background of <guilabel>Printers</guilabel> folder, select <guimenuitem>Server Properties...</guimenuitem>, select
-tab <guilabel>Drivers</guilabel> and delete here).</para></sect2>
+<para>Löschen Sie zuerst alle alten Drucker, die die Adobe-Treiber verwenden. Dann löschen Sie alle alten 
+Adobe-Treiber. (Unter Windows 200x/XP, Rechtsklick in den Hintergrund des Ordners
+<guilabel>Drucker und Faxgeräte</guilabel>, Wählen von <guimenuitem>Servereigenschaften</guimenuitem>,
+<guilabel>Treiber</guilabel>, und hier löschen).</para></sect2>
 
-<sect2><title>Can't Use <quote>cupsaddsmb</quote> on Samba Server Which Is a PDC</title>
-<para>Do you use the <quote>naked</quote> root user name? Try to do it
-this way: <userinput>cupsaddsmb -U <replaceable>DOMAINNAME</replaceable>\\root -v
-<replaceable>printername</replaceable></userinput>> (note the two backslashes: the first one is
-required to <quote>escape</quote> the second one).</para></sect2>
+<sect2><title>Ich kann <quote>cupsaddsmb</quote> nicht auf einem Samba-Server verwenden, der PDC ist</title>
+<para>Verwenden Sie den <quote>nackten</quote> root Benutzernamen? Versuchen Sie es so:
+<userinput>cupsaddsmb -U <replaceable>DOMAINNAME</replaceable>\\root -v
+<replaceable>druckername</replaceable></userinput> (Beachten Sie die beiden Backslashes: der erste wird 
+benötigt, um das <quote>escaping</quote> des zweiten zu bewirken).</para></sect2>
 
-<sect2><title>Deleted Windows 200x Printer Driver Is Still Shown</title>
-<para>Deleting a printer on the client will not delete the
-driver too (to verify, right-click on the white background of the
-<guilabel>Printers</guilabel> folder, select <guimenuitem>Server Properties</guimenuitem> and click on the
-<guilabel>Drivers</guilabel> tab). These same old drivers will be re-used when you try to
-install a printer with the same name. If you want to update to a new
-driver, delete the old ones first. Deletion is only possible if no
-other printer uses the same driver.</para></sect2>
+<sect2><title>Ein gelöschter Windows 200x Druckertreiber wird immer noch angezeigt</title>
+<para>Das Löschen eines Druckers auf dem Client löscht nicht gleichzeitig den Treiber (zur Überprüfung,
+Rechtsklick in den Hintergrund des Ordners
+<guilabel>Drucker und Faxgeräte</guilabel>, Wählen von <guimenuitem>Servereigenschaften</guimenuitem>,
+<guilabel>Treiber</guilabel>). Dieselben alten Treiber werden wiederverwendet, wenn Sie versuchen, einen Drucker
+mit demselben Namen zu installieren. Wenn Sie auf einen neuen Treiber aktualisieren wollen, löschen Sie zuerst
+die alten. Das Löschen ist nur möglich, wenn kein anderer Drucker den selben Treiber verwendet.</para></sect2>
 
-<sect2><title>Windows 200x/XP "Local Security Policies"</title>
-<para>Local Security Policies may not
-allow the installation of unsigned drivers. <quote>Local Security Policies</quote>
-may not allow the installation of printer drivers at
-all.</para></sect2>
+<sect2><title>Windows 200x/XP "Lokale Sicherheits-Richtlinien"</title>
+<para>Lokale Sicherheits-Richtlinien können eventuell die Installation unsignierter Treiber verhindern.
+Sie können sogar generell die Installation von Drucker-Treibern verbieten.
+</para></sect2>
 
-<sect2><title>Administrator Cannot Install Printers for All Local Users</title>
-<para>Windows XP handles SMB printers on a <quote>per-user</quote> basis.
-This means every user needs to install the printer himself. To have a
-printer available for everybody, you might want to use the built-in
-IPP client capabilities of Win XP. Add a printer with the print path of
-<parameter>http://cupsserver:631/printers/printername</parameter>.
-We're still looking into this one. Maybe a logon script could
-automatically install printers for all
-users.</para></sect2>
+<sect2><title>Administrator kann keine Drucker für alle lokalen Benutzer installieren</title>
+<para>Windows XP behandelt SMB-Drucker auf einer <quote>per-user</quote>-Basis.
+Das bedeutet, daß jeder Benutzer den Drucker selbst installieren muß. Um einen Drucker zu haben, der für jeden
+verfügbar ist, möchten Sie vielleicht die integrierten IPP-Client-Fähigkeiten von Win XP nutzen. Fügen Sie 
+einen Drucker mit dem Druck-Pfad <parameter>http://cupsserver:631/printers/druckername</parameter> hinzu.
+Wir suchen nach wie vor nach einer Lösung dieses Problems. Vielleicht könnte ein Anmelde-Skript automatisch
+Drucker für alle Benutzer installieren.</para></sect2>
 
 <sect2><title>Print Change Notify Functions on NT-clients</title>
 <para>For print change, notify functions on NT++ clients.
