@@ -226,8 +226,8 @@
 
 	<varlistentry>
 	<term>samsync</term>
-	<listitem><para>Weist smbd an, die SAM-Datenbank von PDC zu 
-	snychronisieren (being BDC)???. 
+	<listitem><para>Weist smbd an, die SAM-Datenbank vom PDC zu 
+	snychronisieren (während sie auf dem BDC steht). 
 	Kann nur an <constant>smbd</constant> gesendet werden.</para>
 	<note><para>Funktioniert im Moment nicht.</para></note>
 	</listitem>
