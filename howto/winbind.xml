@@ -657,11 +657,12 @@ Dies sollte eine Liste Ihrer Windows-Benutzer auf Ihrem PDC zurückgeben. Ich bek
 </screen></para>
 
 <para>
-quax Obviously, I have named my domain <quote>CEO</quote> and my <smbconfoption><name>winbind separator</name></smbconfoption> is <quote>+</quote>.
+Offensichtlich habe ich meine Domäne <quote>CEO</quote> benannt, und mein 
+<smbconfoption><name>winbind separator</name></smbconfoption> ist <quote>+</quote>.
 </para>
 
 <para>
-You can do the same sort of thing to get group information from the PDC:
+Sie können dasselbe tun, um Gruppeninformationen vom PDC zu erhalten:
 </para>
 
 <para><screen>
@@ -678,8 +679,8 @@ You can do the same sort of thing to get group information from the PDC:
 </screen></para>
 
 <para>
-The function <command>getent</command> can now be used to get unified 
-lists of both local and PDC users and groups. Try the following command:
+Die Funktion <command>getent</command> kann jetzt dafür verwendet werden, Gesamt-Listen von sowohl lokalen wie
+auch PDC-Benutzern und -Gruppen zu erhalten. Versuchen Sie folgenden Befehl:
 </para>
 
 <para>
@@ -687,13 +688,12 @@ lists of both local and PDC users and groups. Try the following command:
 </para>
 	
 <para>
-You should get a list that looks like your <filename>/etc/passwd</filename> 
-list followed by the domain users with their new UIDs, GIDs, home 
-directories and default shells.
+Sie sollten eine Liste erhalten, die wie Ihre Datei <filename>/etc/passwd</filename> aussieht, gefolgt von den
+Domänen-Benutzern mit ihren neuen UIDs, GIDs, home-Verzeichnissen und Standard-Shells.
 </para>
 
 <para>
-The same thing can be done for groups with the command:
+Dasselbe kann für Gruppen geschehen:
 </para>
 
 <para>
@@ -704,36 +704,34 @@ The same thing can be done for groups with the command:
 
 
 <sect3>
-<title>Fix the init.d Startup Scripts</title>
+<title>Die init.d-Startskripts anpassen</title>
 
 <sect4>
 <title>Linux</title>
 
 <para>
-The &winbindd; daemon needs to start up after the &smbd; and &nmbd; daemons are running. 
-To accomplish this task, you need to modify the startup scripts of your system.
-They are located at <filename>/etc/init.d/smb</filename> in Red Hat Linux and they are located in 
-<filename>/etc/init.d/samba</filename> in Debian Linux. Edit your
-script to add commands to invoke this daemon in the proper sequence. My 
-startup script starts up &smbd;, &nmbd;, and &winbindd; from the 
-<filename>/usr/local/samba/bin</filename> directory directly. The <command>start</command> 
-function in the script looks like this:
+Der &winbindd;-Daemon muß starten, nachdem die &smbd;- und &nmbd;-Daemons laufen. Um diese Forderung zu
+erfüllen, müssen Sie die Start-Skripts Ihres Systems anpassen. Sie finden sie in Red Hat Linux unter
+<filename>/etc/init.d/smb</filename> und in Debian Linux unter 
+<filename>/etc/init.d/samba</filename>. Editieren Sie Ihr Skript, um den &winbindd;-Daemon in der richtigen
+Sequenz zu starten. Mein Start-Skript startet &smbd;, &nmbd;, und &winbindd; direkt aus dem Verzeichnis
+<filename>/usr/local/samba/bin</filename>. Die Funktion <command>start</command> in diesem Skript sieht so aus:
 </para>
 
 <para><programlisting>
 start() {
         KIND="SMB"
-        echo -n $"Starting $KIND services: "
+        echo -n $"Start des Diensts $KIND: "
         daemon /usr/local/samba/bin/smbd $SMBDOPTIONS
         RETVAL=$?
         echo
         KIND="NMB"
-        echo -n $"Starting $KIND services: "
+        echo -n $"Start des Diensts $KIND: "
         daemon /usr/local/samba/bin/nmbd $NMBDOPTIONS
         RETVAL2=$?
         echo
         KIND="Winbind"
-        echo -n $"Starting $KIND services: "
+        echo -n $"Start des Diensts $KIND: "
         daemon /usr/local/samba/bin/winbindd
         RETVAL3=$?
         echo
@@ -743,13 +741,12 @@ start() {
 }
 </programlisting></para>
 
-<para>If you would like to run winbindd in dual daemon mode, replace 
-the line :
+<para>Wenn Sie winbindd im <quote>dual daemon mode</quote> ausführen wollen, ersetzen Sie die Zeile:
 <programlisting>
         daemon /usr/local/samba/bin/winbindd
 </programlisting>
 
-in the example above with:
+in obigem Beispiel durch:
 
 <programlisting>
         daemon /usr/local/samba/bin/winbindd -B
@@ -757,24 +754,24 @@ in the example above with:
 </para>
 
 <para>
-The <command>stop</command> function has a corresponding entry to shut down the 
-services and looks like this:
+Die Funktion <command>stop</command> hat einen korrespondierenden Eintrag, um die Dienste herunterzufahren, und
+sieht so aus:
 </para>
 
 <para><programlisting>
 stop() {
         KIND="SMB"
-        echo -n $"Shutting down $KIND services: "
+        echo -n $"Stoppen des Diensts $KIND: "
         killproc smbd
         RETVAL=$?
         echo
         KIND="NMB"
-        echo -n $"Shutting down $KIND services: "
+        echo -n $"Stoppen des Diensts $KIND: "
         killproc nmbd
         RETVAL2=$?
         echo
         KIND="Winbind"
-        echo -n $"Shutting down $KIND services: "
+        echo -n $"Stoppen des Diensts $KIND: "
         killproc winbindd
         RETVAL3=$?
         [ $RETVAL -eq 0 -a $RETVAL2 -eq 0 -a $RETVAL3 -eq 0 ] &amp;&amp; \
@@ -789,13 +786,13 @@ stop() {
 <title>Solaris</title>
 
 <para>
-Winbind does not work on Solaris 9, see <link linkend="winbind-solaris9"/> for details.
+Winbind funktioniert nicht unter Solaris 9, sehen Sie dazu <link linkend="winbind-solaris9"/>.
 </para>
 
 <para>
-On Solaris, you need to modify the <filename>/etc/init.d/samba.server</filename> startup script. It
-usually only starts smbd and nmbd but should now start winbindd, too. If you have Samba installed in
-<filename>/usr/local/samba/bin</filename>, the file could contains something like this:
+Unter Solaris müssen Sie das Start-Skript <filename>/etc/init.d/samba.server</filename> editieren. Es startet
+üblicherweise nur smbd und nmbd, sollte jetzt aber auch winbindd starten. Wenn Sie Samba in
+<filename>/usr/local/samba/bin</filename> installiert haben, sollte die Datei etwas wie das hier enthalten:
 </para>
 
 <para><programlisting>
@@ -804,34 +801,36 @@ usually only starts smbd and nmbd but should now start winbindd, too. If you hav
 	##
 
 	if [ ! -d /usr/bin ]
-	then                    # /usr not mounted
+	then                    # /usr nicht gemountet 
 		exit
 	fi
 
-	killproc() {            # kill the named process(es)
+	killproc() {            # kill den/die angegebenen Prozess(e) 
 		pid=`/usr/bin/ps -e |
 		     /usr/bin/grep -w $1 |
 		     /usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
 		[ "$pid" != "" ] &amp;&amp; kill $pid
 	}
 	 
-	# Start/stop processes required for Samba server
+	# Starte/stoppe die für den Samba-Server erforderlichen Prozesse
+
 
 	case "$1" in
 
 	'start')
 	#
-	# Edit these lines to suit your installation (paths, workgroup, host)
+	# Editieren Sie diese Zeilen passend zu Ihrer Installation 
+	# (Pfade, Arbeitsgruppe, Host)
 	#
-	echo Starting SMBD
+	echo Starten von SMBD
 	   /usr/local/samba/bin/smbd -D -s \
 		/usr/local/samba/smb.conf
 
-	echo Starting NMBD
+	echo Starten von NMBD
 	   /usr/local/samba/bin/nmbd -D -l \
 		/usr/local/samba/var/log -s /usr/local/samba/smb.conf
 
-	echo Starting Winbind Daemon
+	echo Starten von WINBINDD
 	   /usr/local/samba/bin/winbindd
 	   ;;
 
@@ -848,11 +847,12 @@ usually only starts smbd and nmbd but should now start winbindd, too. If you hav
 </programlisting></para>
 
 <para>
-Again, if you would like to run Samba in dual daemon mode, replace:
+Auch hier gilt, wenn Sie Samba im Again, if you would like to run Samba in <quote>dual daemon mode</quote>
+ausführen wollen, ersetzen Sie:
 <programlisting>
 	/usr/local/samba/bin/winbindd
 </programlisting>
-in the script above with:
+in obigem Skript durch:
 <programlisting>
 	/usr/local/samba/bin/winbindd -B
 </programlisting>
@@ -861,30 +861,27 @@ in the script above with:
 </sect4>
 
 <sect4>
-<title>Restarting</title>
+<title>Neustart</title>
 <para>
-If you restart the &smbd;, &nmbd;, and &winbindd; daemons at this point, you
-should be able to connect to the Samba server as a Domain Member just as
-if you were a local user.
+Wenn Sie an diesem Punkt die Daemons &smbd;, &nmbd;, und &winbindd; neu starten, sollten Sie sich als 
+Domänen-Mitglied mit dem Samba-Server verbinden können, genauso, als ob Sie ein lokaler Benutzer wären.
 </para>
 </sect4>
 </sect3>
 
 <sect3>
-<title>Configure Winbind and PAM</title>
+<title>Winbind und PAM konfigurieren</title>
 
 <para>
-If you have made it this far, you know that <command>winbindd</command> and Samba are working
-together. If you want to use Winbind to provide authentication for other 
-services, keep reading. The PAM configuration files need to be altered in
-this step. (Did you remember to make backups of your original 
-<filename>/etc/pam.d</filename> files? If not, do it now.)
+Wenn Sie es bis hierher geschafft haben, wissen Sie, daß <command>winbindd</command> und Samba zusammenarbeiten.
+Wenn Sie Winbind dazu verwenden wollen, Authentifikation für andere Dienste anzubieten, lesen Sie weiter.
+Die PAM-Konfigurationsdateien müssen in diesem Schritt verändert werden. (Haben Sie auch nicht vergessen, Backups
+der Dateien in <filename>/etc/pam.d</filename> anzulegen? Wenn doch, sichern Sie sie jetzt.)
 </para>
 
 <para>
-You will need a PAM module to use winbindd with these other services. This 
-module will be compiled in the <filename>../source/nsswitch</filename> directory
-by invoking the command:
+Sie brauchen ein PAM-Modul, um winbindd mit diesen anderen Diensten zu verwenden. Dieses Modul wird im
+Verzeichnis <filename>../source/nsswitch</filename> kompiliert, durch Ausführen dieses Befehls:
 </para>
 
 <para>
@@ -892,11 +889,10 @@ by invoking the command:
 </para>
 
 <para>
-from the <filename>../source</filename> directory. The
-<filename>pam_winbind.so</filename> file should be copied to the location of
-your other PAM security modules. On my RedHat system, this was the
-<filename>/lib/security</filename> directory. On Solaris, the PAM security 
-modules reside in <filename>/usr/lib/security</filename>.
+im Verzeichnis <filename>../source</filename>. Die Datei
+<filename>pam_winbind.so</filename> sollte zu Ihren anderen PAM-Sicherheits-Modulen kopiert werden.
+Auf meinem RedHat-System war das das Verzeichnis <filename>/lib/security</filename>. Unter Solaris liegen die
+PAM-Sicherheits-Module in <filename>/usr/lib/security</filename>.
 </para>
 
 <para>
@@ -904,11 +900,11 @@ modules reside in <filename>/usr/lib/security</filename>.
 </para>
 
 <sect4>
-<title>Linux/FreeBSD-specific PAM configuration</title>
+<title>Linux/FreeBSD-spezifische PAM-Konfiguration</title>
 
 <para>
-The <filename>/etc/pam.d/samba</filename> file does not need to be changed. I 
-just left this file as it was:
+Die Datei <filename>/etc/pam.d/samba</filename> muß nicht verändert werden. Ich habe diese Datei einfach so
+belassen, wie Sie war:
 </para>
 
 
@@ -918,38 +914,32 @@ just left this file as it was:
 </programlisting></para>
 
 <para>
-The other services that I modified to allow the use of Winbind 
-as an authentication service were the normal login on the console (or a terminal 
-session), telnet logins, and ftp service. In order to enable these 
-services, you may first need to change the entries in 
-<filename>/etc/xinetd.d</filename> (or <filename>/etc/inetd.conf</filename>). 
-Red Hat Linux 7.1 and later uses the new xinetd.d structure, in this case you need 
-to change the lines in <filename>/etc/xinetd.d/telnet</filename> 
-and <filename>/etc/xinetd.d/wu-ftp</filename> from 
+Die anderen Dienste, die ich modifiziert habe, um die Verwendung von Winbind als Authentifikations-Dienst zu
+erlauben, waren der normale Konsolen-Login (oder eine Terminal-Session), telnet-logins, und der ftp-Dienst. Um
+diese Dienste zu aktivieren, müssen Sie zuerst die Einträge in <filename>/etc/xinetd.d</filename> (oder
+<filename>/etc/inetd.conf</filename>) ändern. Red Hat Linux ab Version 7.1 verwendet die neue xinetd.d-Struktur,
+in diesem Fall müssen Sie die Zeilen in <filename>/etc/xinetd.d/telnet</filename> und 
+<filename>/etc/xinetd.d/wu-ftp</filename> ändern:
 </para>
 
 <para><programlisting>
 	enable = no
 </programlisting>
-to:
+wird zu:
 <programlisting>
 	enable = yes
 </programlisting></para>
 
 <para>	
-For ftp services to work properly, you will also need to either 
-have individual directories for the domain users already present on 
-the server, or change the home directory template to a general
-directory for all domain users. These can be easily set using 
-the &smb.conf; global entry 
-<smbconfoption><name>template homedir</name></smbconfoption>.
+Damit der ftp-Dienst ordnungsgemäß arbeitet, müssen Sie auch die einzelnen Verzeichnisse für die 
+Domänen-Benutzer auf dem Server angelegt haben, oder das home-Verzeichnis für die Domänen-Benutzer auf ein
+allgemeines, gemeinsames Verzeichnis für alle Domänen-Benutzer gesetzt haben. Das kann einfach durch Setzen
+des globalen Eintrags <smbconfoption><name>template homedir</name></smbconfoption> in &smb.conf; geschehen.
 </para>
 
 <para>
-The <filename>/etc/pam.d/ftp</filename> file can be changed 
-to allow Winbind ftp access in a manner similar to the
-samba file. My <filename>/etc/pam.d/ftp</filename> file was 
-changed to look like this:
+Die Datei <filename>/etc/pam.d/ftp</filename> kann verändert werden, um ftp-Zugriff in derselben Art wie
+Samba-Zugriff zu erlauben. Meine Datei <filename>/etc/pam.d/ftp</filename> wurde so verändert:
 </para>
 
 <para><programlisting>
@@ -964,8 +954,7 @@ session    required     /lib/security/pam_stack.so service=system-auth
 </programlisting></para>
 
 <para>
-The <filename>/etc/pam.d/login</filename> file can be changed nearly the 
-same way. It now looks like this:
+Die Datei <filename>/etc/pam.d/login</filename> kann fast genauso verändert werden, sie sieht jetzt so aus:
 </para>
 
 <para><programlisting>
@@ -982,25 +971,25 @@ session    optional     /lib/security/pam_console.so
 </programlisting></para>
 
 <para>
-In this case, I added the <programlisting>auth sufficient /lib/security/pam_winbind.so</programlisting> 
-lines as before, but also added the <programlisting>required pam_securetty.so</programlisting>
-above it, to disallow root logins over the network. I also added a 
+In diesem Fall habe ich die Zeilen <programlisting>auth sufficient /lib/security/pam_winbind.so</programlisting>
+wie zuvor hinzugefügt, aber auch davor <programlisting>required pam_securetty.so</programlisting> eingefügt,
+um root-Logins übers Netzwerk zu verbieten. Ich habe auch eine Zeile
 <programlisting>sufficient /lib/security/pam_unix.so use_first_pass</programlisting>
-line after the <command>winbind.so</command> line to get rid of annoying 
-double prompts for passwords.
+nach der <command>winbind.so</command>-Zeile eingefügt, um die nervenden Doppel-Aufforderungen nach dem Passwort
+loszuwerden.
 </para>
 
 </sect4>
 
 <sect4>
-<title>Solaris-specific configuration</title>
+<title>Solaris-spezifische Konfiguration</title>
 
 <para>
-The <filename>/etc/pam.conf</filename> needs to be changed. I changed this file so my Domain
-users can logon both locally as well as telnet. The following are the changes
-that I made. You can customize the <filename>pam.conf</filename> file as per your requirements, but
-be sure of those changes because in the worst case it will leave your system
-nearly impossible to boot.
+Die Datei <filename>/etc/pam.conf</filename> muß geändert werden. Ich habe diese Datei geändert, so daß meine
+Domänen-Benutzer sich sowohl lokal wie auch über telnet anmelden können.
+Sie können die Datei <filename>pam.conf</filename> auf Ihre Bedürfnisse hin zuschneiden, aber seien Sie sich
+dessen sicher, was Sie tun, da diese Änderungen im schlimmsten Fall Ihre Maschine in einem nahezu 
+nicht-startfähigen Zustand zurücklassen. Folgendes sind meine Änderungen:
 </para>
 
 <para><programlisting>
@@ -1066,13 +1055,14 @@ dtsession auth required /usr/lib/security/$ISA/pam_UNIX.so.1
 </programlisting></para>
 
 <para>
-I also added a <parameter>try_first_pass</parameter> line after the <filename>winbind.so</filename>
-line to get rid of annoying double prompts for passwords.
+Ich habe auch hier eine Zeile <parameter>try_first_pass</parameter> nach der Zeile mit 
+<filename>winbind.so</filename>
+eingefügt, um die Doppel-Aufforderungen nach den Passwörtern loszuwerden.
 </para>
 
 <para>
-Now restart your Samba and try connecting through your application that you
-configured in the pam.conf.
+Jetzt starten Sie Samba neu, und versuchn, sich über die jeweilige Anwendung zu verbinden, die Sie in
+pam.conf konfiguriert haben.
 </para>
 
 </sect4>
@@ -1084,109 +1074,104 @@ configured in the pam.conf.
 </sect1>
 
 <sect1>
-<title>Conclusion</title>
+<title>Zusammenfassung</title>
 
-<para>The Winbind system, through the use of the Name Service 
-Switch, Pluggable Authentication Modules, and appropriate 
-Microsoft RPC calls have allowed us to provide seamless 
-integration of Microsoft Windows NT domain users on a
-UNIX system. The result is a great reduction in the administrative 
-cost of running a mixed UNIX and NT network.</para>
-	
+<para>Das Winbind-System erlaubt unter Verwendung des Name Service 
+Switch, Pluggable Authentication Modules, und entsprechender 
+Microsoft RPC-Aufrufe nahtlose Integration von Microsoft Windows NT Domänen-Benutzern in ein UNIX-System.
+Das Ergebnis ist eine grosse Verringerung des administrativen Aufwands, der zum Betrieb eines gemischten
+UNIX- und NT-Netzwerks erforderlich ist.</para>
+
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Gängige Fehler</title>
 	
-	<para>Winbind has a number of limitations in its current 
-	released version that we hope to overcome in future 
-	releases:</para>
+	<para>Winbind hat eine Anzahl von Einschränkungen in der derzeit veröffentlichten Version. Wir hoffen,
+	diese in zukünftigen Versionen beseitigen zu können:
+	</para>
 
 	<itemizedlist>
-		<listitem><para>Winbind is currently only available for 
-		the Linux, Solaris, AIX, and IRIX operating systems, although ports to other operating 
-		systems are certainly possible. For such ports to be feasible, 
-		we require the C library of the target operating system to 
-		support the Name Service Switch and Pluggable Authentication
-		Modules systems. This is becoming more common as NSS and 
-		PAM gain support among UNIX vendors.</para></listitem>
+		<listitem><para>Winbind ist derzeit nur für die Betriebssysteme
+		Linux, Solaris, AIX, und IRIX verfügbar, obwohl Portierungen auf andere Betriebssysteme
+		sicherlich möglich sind. Um solche Portierungen zu ermöglichen, ist es erforderlich, daß die
+		C-Library des jeweiligen Betriebssystems die Systeme Name Service Switch und Pluggable 
+		Authentication Modules unterstützt. Das wird immer gängiger, da NSS und PAM immer mehr
+		Unterstützung von UNIX-Herstellern gewinnen.</para></listitem>
 		
-		<listitem><para>The mappings of Windows NT RIDs to UNIX IDs 
-		is not made algorithmically and depends on the order in which 
-		unmapped users or groups are seen by Winbind. It may be difficult 
-		to recover the mappings of RID to UNIX ID mapping if the file 
-		containing this information is corrupted or destroyed.</para>
-		</listitem>
+		<listitem><para>Die Zuordnungen von Windows NT RIDs auf UNIX IDs wird nicht
+		algorithmisch durchgeführt, und hängt von der Reihenfolge ab, in der die nicht-zugeordneten
+		Benutzer/Gruppen von Winbind gesehen werden. Es kann schwierig werden, die 
+		RID-zu-UNIX-ID-Zuordnungen wiederherzustellen, wenn die Datei, die diese Information enthält,
+		beschädigt oder zerstört ist.</para>
+                </listitem>
 		
-		<listitem><para>Currently the Winbind PAM module does not take 
-		into account possible workstation and logon time restrictions 
-		that may be set for Windows NT users, this is
-		instead up to the PDC to enforce.</para></listitem>
+		<listitem><para>Derzeit berücksichtigt das Winbind-PAM-Modul die möglichen Zeitbeschränkungen
+		nicht, die für Windows NT Domänen-Benutzer gesetzt sein können 
+		(Workstation- und Login-Zeitbeschränkungen), diese muß der PDC erzwingen.</para></listitem>
 	</itemizedlist>
 
 	<sect2>
-	<title>NSCD Problem Warning</title>
+	<title>NSCD Problem Warnung</title>
 
 	<?latex \nopagebreak ?>
 
 	<warning><para>
-	Do not under any circumstances run <command>nscd</command> on any system
-	on which <command>winbindd</command> is running.
+	Führen Sie unter keinen Umständen <command>nscd</command> auf irgendeinem System aus, auf dem
+	<command>winbindd</command> läuft.
 	</para></warning>
 
 	<para>
-	If <command>nscd</command> is running on the UNIX/Linux system, then
-	even though NSSWITCH is correctly configured it will not be possible to resolve
-	domain users and groups for file and directory controls.
+	Wenn <command>nscd</command> auf dem UNIX/Linux-System läuft, wird es selbst dann, wenn NSSWITCH
+	korrekt konfiguriert ist, nicht möglich sein, Namen von Domänen-Benutzern und -Gruppen aufzulösen.
 	</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Winbind Is Not Resolving Users and Groups</title>
+	<title>Winbind löst keine Benutzer- und Gruppen-Namen auf</title>
 
 	<para><quote>
-	My &smb.conf; file is correctly configured. I have specified 
+	Meine Datei &smb.conf; ist ordnungsgemäß konfiguriert. Ich habe
 	<smbconfoption><name>idmap uid</name><value>12000</value></smbconfoption>, 
-	and <smbconfoption><name>idmap gid</name><value>3000-3500</value></smbconfoption>
-	and <command>winbind</command> is running. When I do the following it all works fine.
+	und <smbconfoption><name>idmap gid</name><value>3000-3500</value></smbconfoption> angegeben,
+	und <command>winbind</command> läuft. Wenn ich folgendes tue, funktioniert es prächtig.
 	</quote></para>
 
 <para><screen>
 &rootprompt;<userinput>wbinfo -u</userinput>
-MIDEARTH+maryo
-MIDEARTH+jackb
-MIDEARTH+ameds
+MITTELERDE+maryo
+MITTELERDE+jackb
+MITTELERDE+ameds
 ...
-MIDEARTH+root
+MITTELERDE+root
 
 &rootprompt;<userinput>wbinfo -g</userinput>
-MIDEARTH+Domain Users
-MIDEARTH+Domain Admins
-MIDEARTH+Domain Guests
+MITTELERDE+Domain Users
+MITTELERDE+Domain Admins
+MITTELERDE+Domain Guests
 ...
-MIDEARTH+Accounts
+MITTELERDE+Accounts
 
 &rootprompt;<userinput>getent passwd</userinput>
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/bin/bash
 ...
-maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
+maryo:x:15000:15003:Mary Orville:/home/MITTELERDE/maryo:/bin/false
 </screen></para>
 
 <para><quote>
-But the following command just fails:
+Aber dieser Befehl schlägt fehl:
 <screen>
 &rootprompt;<userinput>chown maryo a_file</userinput>
 chown: `maryo': invalid user
 </screen>
-This is driving me nuts! What can be wrong?
+Das macht mich verrückt! Was kann da falsch sein?
 </quote></para>
 
 <para>
-Same problem as the one above.
-Your system is likely running <command>nscd</command>, the name service
-caching daemon. Shut it down, do not restart it! You will find your problem resolved.
+Das selbe Problem wie oben. Ihr System führt höchstwahrscheinlich <command>nscd</command> aus. Stoppen Sie
+diesen Dienst und starten Sie ihn nicht mehr! Ihr Problem wird gelöst sein.
 </para>
 
 </sect2>
