@@ -373,16 +373,8 @@ Kerberos-Tickets auswerten.
 <title>Beispiel Konfiguration</title>
 
 <para><smbconfblock>
-<smbconfoption><name>realm</name><value>your.kerberos.REALM</value></smbconfoption>
+<smbconfoption><name>realm</name><value>YOUR.KERBEROS.REALM</value></smbconfoption>
 <smbconfoption><name>security</name><value>ADS</value></smbconfoption>
-</smbconfblock></para>
-
-<para>
-Folgende Parameter würden benötigt:
-</para>
-
-<para><smbconfblock>
-<smbconfoption><name>password server</name><value>your.kerberos.server</value></smbconfoption>
 </smbconfblock></para>
 
 <para>
