@@ -87,8 +87,9 @@ aktuell verwendeten Plattformen. Diese sind:
 
 		<procedure>
 			<step><para>
-			On some installations the interface will be called <guimenu>Local Area Connection</guimenu> and
-			on others it will be called <guimenu>Network Bridge</guimenu>. On our system it is called <guimenu>Network Bridge</guimenu>.
+			Bei manchen Installation nennt sich das Interface <guimenu>Lokale Verbindungen</guimen> und bei anderen
+			werden Sie <guimenu>Netzwerkverbindungen</guimenu> genannt.
+			Auf unserem System heissen Sie <guimenu>Netzwerkverbindungen</guimenu>.
 			Right click on <guimenu>Network Bridge -> Properties</guimenu>. See <link linkend="WXPP002"/>.
 			<image id="WXPP002"><imagedescription>Network Bridge Configuration.</imagedescription><imagefile>WXPP002</imagefile></image>
 			</para>
