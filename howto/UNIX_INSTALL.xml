@@ -121,14 +121,10 @@
 			<listitem><para>
 			Dieser Daemon sollte gestartet werden, wenn der Samba-Server 
 			Mitglied einer Windows-NT4- oder ADS-Domäne
-			(ADS = Active Directory Service) ist. Er ist ebenfalls nötig, wenn Samba 
+			(ADS = Active Directory Service) ist. 
+			Er ist ebenfalls nötig, wenn Samba 
 			in einem Vertrauensverhältnis
-			zu anderen Domänen steht. Der Daemon <command>winbindd</command> 
-			überprüft die Datei &smb.conf; auf das
-			Vorhandensein der Parameter <parameter>idmap uid</parameter> 
-			und <parameter>idmap gid</parameter>.
-			Sollten diese fehlen, gibt der <command>winbindd</command> einen 
-			Fehler aus und startet nicht.
+			zu anderen Domänen steht.
 			</para></listitem>
 		</varlistentry>
 	</variablelist>
