@@ -8,7 +8,7 @@
 	<author>&person.reiss;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Die Samba Checkliste</title>
+<title>Die Samba-Checkliste</title>
 
 <sect1>
 <title>Einleitung</title>
@@ -23,16 +23,16 @@ funktionieren.
 
 <para>
 Sie sollten alle Tests in der genannten Reihenfolge durchführen.
-Es wurde sorgfältig versucht, die Reihenfolge so auszuwählen, 
+Wir haben sorgfältig versucht, die Reihenfolge so auszuwählen, 
 dass nachfolgende Tests auf erfolgreich durchgeführte frühere Tests 
 aufbauen.
-Auch nachdem ein Fehler behoben wurde, sollten Sie immer alle
+Auch nachdem Sie einen Fehler behoben haben, sollten Sie immer alle
 Tests komplett durchführen.
 </para>
 
 <para>
-Wenn Sie eine E-Mail an eine der Samba-Mailing-Listen mit dem Inhalt
-<quote>Es funktioniert nicht</quote> schicken, ohne diese Tests
+Wenn Sie eine E-Mail mit dem Inhalt
+<quote>Es funktioniert nicht</quote> an eine der Samba-Mailinglisten schicken, ohne diese Tests
 durchgeführt zu haben, so wundern Sie sich bitte nicht, wenn Ihre E-Mail
 ingoriert wird.
 </para>
@@ -40,11 +40,11 @@ ingoriert wird.
 </sect1>
 
 <sect1>
-<title>Vorwort</title>
+<title>Vorbemerkung</title>
 
 <para>
 In allen Tests wird davon ausgegangen, dass Sie einen Samba-Server
-BIGSERVER und einen PC ACLIENT haben, welche sich in der Arbeitsgruppe
+BIGSERVER und einen PC ACLIENT haben, die sich in der Arbeitsgruppe
 TESTGROUP befinden.
 </para>
 
@@ -53,14 +53,14 @@ Das Vorgehen ist für andere Typen von Clients ähnlich.
 </para>
 
 <para>
-Des weiteren wird angenommen, dass Sie den Namen einer verfügbaren Freigabe in Ihrer
+Des Weiteren wird angenommen, dass Sie den Namen einer verfügbaren Freigabe in Ihrer
 &smb.conf; kennen. Ich werde hier die Freigabe mit dem Namen
 <smbconfsection>tmp</smbconfsection> verwenden.
-Sie können solch eine Freigabe durch folgende Zeilen erstellen <link linkend="tmpshare"/>.
+Sie können solch eine Freigabe durch folgende Zeilen erstellen (siehe <link linkend="tmpshare"/>).
 </para>
 
 <para><smbconfexample id="tmpshare">
-<title>smb.conf mit [tmp] Freigabe</title>
+<title>smb.conf mit [tmp]-Freigabe</title>
 <smbconfsection>[tmp]</smbconfsection>
 <smbconfoption><name>comment</name><value>temporary files</value></smbconfoption>
 <smbconfoption><name>path</name><value>/tmp</value></smbconfoption>
@@ -85,7 +85,7 @@ eingetragen wurde.
 </para>
 
 <para>
-Sollten Sie keinen DNS-Server einsetzen, überprüfen Sie, ob ihre
+Sollten Sie keinen DNS-Server einsetzen, überprüfen Sie, ob Ihre
 &smb.conf; die Zeile <command>dns proxy = no</command> enthält.
 Der beste Weg, das zu überprüfen, ist der Befehl <command>testparm smb.conf</command>.
 </para>
@@ -93,13 +93,13 @@ Der beste Weg, das zu überprüfen, ist der Befehl <command>testparm smb.conf</com
 
 <para>
 <indexterm><primary>Log Dateien</primary><secondary>Überwachung</secondary></indexterm>
-Es ist hilfreich, während der Tests die Log-Dateien in einem separatem
-Konsolenfenster (mittels ctrl-alt-F1 bis F6 oder mehrere Fenster in X)
-mittels <command>tail -F log_file_name</command> zu überwachen.
-Die wichtigen Log-Dateien finden Sie (in der Default Installation) 
+Es ist hilfreich, während der Tests die Log-Dateien in einem separaten
+Konsolenfenster (mit <quote>Ctrl-Alt-F1</quote> bis <quote>Ctrl-Alt-F6</quote> oder mehrere Fenster in X)
+mit Hilfe von <command>tail -F log_file_name</command> zu überwachen.
+Die wichtigen Log-Dateien finden Sie (in der Default-Installation) 
 unter <filename>/usr/local/samba/var</filename>.
-Sie können hier des weiteren die Verbindunglogs von Computern finden
-oder evtl. auch in <filename>/var/log/samba</filename>, je nachdem wie Sie es in
+Sie können hier des Weiteren die Verbindunglogs von Computern finden - 
+oder evtl. auch in <filename>/var/log/samba</filename>, je nachdem, wie Sie es in
 &smb.conf; angegeben haben.
 </para>
 
@@ -155,7 +155,7 @@ korrekt sind.
 <para>
 Eine weitere Möglichkeit, warum ein ping nicht funktioniert, ist eine
 vorhandene Firewall. Sie müssen die Regeln der Firewall dahingehend
-anpassen, daß Sie die Workstation evtl. von einem anderen Subnetz 
+anpassen, dass Sie die Workstation evtl. von einem anderen Subnetz aus 
 zugreifen lassen können. 
 Unter Linux können Sie dies mit den Firewall-Programmen
 <command>ipchains</command> oder <command>iptables</command>
@@ -165,21 +165,21 @@ durchführen.
 <note>
 <para>
 Moderne Linux-Distributionen installieren per Default ipchains/iptables.
-Das ist ein gängiges Problem und wird gerne übersehen.
+Das ist ein gängiges Problem und wird häufig übersehen.
 </para>
 </note>
 
 <para>
-Möchten Sie die Firewallregeln des Testsystems überprüfen, rufen Sie
+Möchten Sie die Firewall-Regeln des Testsystems überprüfen, rufen Sie
 einfach 
 <command>iptables -L -v</command> oder bei <parameter>ipchains</parameter>-basierenden Firewalls 
 <command>ipchains -L -v</command> auf.
 </para>
 
 <para>
-Hier ist eine beispielhafte Ausgabe eines System mit einer externen
+Das Folgende ist eine Beispielausgabe eines System mit einer externen
 Ethernet-Schnittstelle (eth1), an der Samba nicht aktiv ist, und einer
-internen (Privates Netzwerk) Ethernet-Schnittstelle (eth0), an der Samba aktiv
+internen (privates Netzwerk) Ethernet-Schnittstelle (eth0), an der Samba aktiv
 ist.
 <screen>
 frodo:~ # iptables -L -v
@@ -210,57 +210,57 @@ Chain reject_func (0 references)
 
 <step performance="required">
 <para>
-Führen Sie auf Ihrer Unix-Box den Befehl <command>smbclient -L BIGSERVER</command> aus.
+Führen Sie auf Ihrer Unix-Maschine den Befehl <command>smbclient -L BIGSERVER</command> aus.
 Sie sollten eine Liste der verfügbaren Freigaben erhalten.
 </para>
 
 <para>
-Sollten Sie ein Meldung <quote>Bad password</quote> erhalten, so dürfte
+Sollten Sie die Meldung <quote>Bad password</quote> erhalten, so dürfte
 es sich um einen falschen Eintrag bei <parameter>hosts allow</parameter>,
 <parameter>hosts deny</parameter> oder <parameter>valid users</parameter>
-in Ihrer &smb.conf; handeln oder der guest account ist nicht gültig.
+in Ihrer &smb.conf; handeln, oder der <smbconfoption><name>guest account</name></smbconfoption> ist nicht gültig.
 
-Überprüfen Sie mit &testparm; Ihren guest account und entfernen Sie
-testweise alle <parameter>hosts allow</parameter>, <parameter>hosts
-deny</parameter>, <parameter>valid users</parameter> oder
-<parameter>invalid users</parameter> Einträge.
+Überprüfen Sie mit &testparm; Ihren <smbconfoption><name>guest account</name></smbconfoption>, und entfernen Sie
+testweise alle <parameter>hosts allow</parameter>-, <parameter>hosts
+deny</parameter>-, <parameter>valid users</parameter>- oder
+<parameter>invalid users</parameter>-Einträge.
 </para>
 
 <para>
 Erhalten Sie eine Meldung <quote><errorname>connection refused</errorname></quote>, dann 
-läuft der <command>smbd</command> Prozess nicht.
+läuft der <command>smbd</command>-Prozess nicht.
 Haben Sie diesen in <filename>inetd.conf</filename> eingetragen, so
 stimmt evtl. dieser Eintrag nicht.
-Haben Sie diesen als Dämon installiert, überprüfen Sie mit
-<command>netstat -a</command> ob dieser gestartet ist und das 
-der netbios-ssn Port den Status LISTEN hat.
+Haben Sie diesen als Daemon installiert, überprüfen Sie mit
+<command>netstat -a</command>, ob dieser gestartet ist und ob 
+der netbios-ssn-Port den Status LISTEN hat.
 </para>
 
 <note><para>
 <indexterm><primary>inetd</primary></indexterm>
 <indexterm><primary>xinetd</primary><see>inetd</see></indexterm>
-Einige UNIX/Linux System verwenden <command>xinetd</command> anstelle
+Einige UNIX/Linux-Systeme verwenden <command>xinetd</command> anstelle
 von <command>inetd</command>. Lesen Sie in Ihrer System-Dokumentation
-die Infos über die entsprechende Implementation Ihres Netzwerk-Super-Dämons nach.
+die Infos über die entsprechende Implementation Ihres Netzwerk-Super-Daemons nach.
 </para></note>
 
 <para>
-Erhalten Sie eine Meldung <quote><errorname>session request
+Erhalten Sie die Meldung <quote><errorname>session request
 failed</errorname></quote>, dann lehnt der Server eine Verbindung ab.
-Lautet die Info <quote>Your server software is being unfriendly</quote>,
+Lautet die Information <quote>Your server software is being unfriendly</quote>,
 dann könnten Sie wahrscheinlich einen falschen Startparameter für
 &smbd; angegeben haben oder es besteht ein ähnliches grundsätzliches
-Problem beim starten von &smbd;.
+Problem beim Starten von &smbd;.
 
-Testen Sie mittels &testparm; Ihre Config-Datei (&smb.conf;) 
-auf Syntax-Fehler und dass die diversen Log- und Lock-Verzeichnisse von
+Testen Sie mit &testparm; Ihre Config-Datei (&smb.conf;) 
+auf Syntax-Fehler und darauf, dass die diversen Log- und Lock-Verzeichnisse von
 Samba vorhanden sind.
 </para>
 
 <para>
-Es gibt eine Menge von Gründen dafür, daß smbd eine Verbindung ablehnt oder
-verweigert. Die häufigsten Gründe dürften bei folgenden Einträgen in der
-&smb.conf; liegen <link linkend="modif1"/>.
+Es gibt eine Menge von Gründen dafür, dass smbd eine Verbindung ablehnt oder
+verweigert. Die häufigsten Gründe dürften an folgenden Einträgen in der
+&smb.conf; liegen (siehe <link linkend="modif1"/>).
 </para>
 
 
@@ -285,7 +285,7 @@ Um das Problem zu lösen, ändern Sie die folgenden Zeilen in <link linkend="modif
 
 <para>
 <smbconfexample id="modif2">
-	<title>Konfiguration für erlaubte Verbindungen eines bestimmten Subnetzes und vom localhost</title>
+	<title>Konfiguration für erlaubte Verbindungen eines bestimmten Subnetzes und von localhost</title>
 <smbconfsection>[globals]</smbconfsection>
 <member>...</member>
 <smbconfoption><name>hosts deny</name><value>ALL</value></smbconfoption>
@@ -297,12 +297,12 @@ Um das Problem zu lösen, ändern Sie die folgenden Zeilen in <link linkend="modif
 
 <para>
 <indexterm><primary>inetd</primary></indexterm>
-Eine weitere oft vorkommende Ursache dieser 2 Fehlermeldungen ist ein
+Eine weitere oft vorkommende Ursache dieser zwei Fehlermeldungen ist ein
 bereits laufender <indexterm><primary>smbclient</primary></indexterm> an
-port <constant>139</constant>, etwa ein durch <application>inetd</application> 
-gestarteter Samba-Dämon &smbd; oder etwas vergleichbares wie 
+Port <constant>139</constant>, etwa ein durch <application>inetd</application> 
+gestarteter Samba-Daemon &smbd; oder etwas Vergleichbares wie 
 Digital's Pathworks. Überprüfen Sie daher vor dem Start von &smbd; als
-Dämon &smbmdash; Ihre <filename>inetd.conf</filename>, um eine Menge Frustration zu
+Daemon Ihre <filename>inetd.conf</filename>, um eine Menge Frustration zu
 vermeiden.
 </para>
 
@@ -310,8 +310,8 @@ vermeiden.
 Eine weitere mögliche Ursache für ein Scheitern dieses Tests besteht
 darin, dass die Subnetz-Maske und/oder die Broadcast-Adresse nicht
 korrekt ist. Bitte überprüfen Sie daher die korrekte Broadcast/Subnetz-
-Maske Ihres Netzwerkinterfaces und dass Samba diese Einstellungen in der
-<filename>log.nmbd</filename> Datei bestätigt.
+Maske Ihres Netzwerkinterfaces und stellen Sie sicher, dass Samba diese Einstellungen in der
+<filename>log.nmbd</filename>-Datei bestätigt.
 </para>
 
 </step>
@@ -326,14 +326,14 @@ Sie sollten die IP-Adresse Ihres Samba-Servers gemeldet bekommen.
 <para>
 Wenn nicht, ist nmbd nicht korrekt installiert. Überprüfen Sie Ihre
 <filename>inetd.conf</filename>, wenn er durch inetd gestartet wird, oder
-ob er als Dämon läuft und an udp-Port 137 lauscht.
+dass er als Daemon läuft und am UDP-Port 137 lauscht.
 </para>
 
 <para>
-Ein häufiges Problem sind inetd-Implementationen, welche nicht mehrere
-Parameter an der Kommandozeile verarbeiten können.
+Ein häufiges Problem sind inetd-Implementationen, die nicht mehrere
+Parameter auf der Kommandozeile verarbeiten können.
 Ist das bei Ihnen der Fall, erstellen Sie ein einzeiliges Skript mit den
-richtigen Parametern und starten Sie dieses durch inetd.
+richtigen Parametern, und starten Sie dieses durch inetd.
 </para>
 
 </step>
@@ -341,13 +341,13 @@ richtigen Parametern und starten Sie dieses durch inetd.
 <step performance="required">
 
 <para>
-Starten Sie den Befehl: <command>nmblookup -B ACLIENT '*'</command>
+Starten Sie den Befehl <command>nmblookup -B ACLIENT '*'</command>.
 </para>
 
 <para>
-Sie sollten die IP-Adresse Ihres PC's erhalten. Wenn nicht, ist an Ihrem
-PC die Software nicht richtig installiert, konfiguriert, nicht
-gestartet oder Sie haben den Namen des PC's falsch eingegeben.
+Sie sollten die IP-Adresse Ihres PCs erhalten. Wenn nicht, ist auf Ihrem
+PC die Software nicht richtig installiert, konfiguriert oder nicht
+gestartet oder Sie haben den Namen des PCs falsch eingegeben.
 </para>
 
 <para>
@@ -360,35 +360,35 @@ die IP-Adresse des Clients für den oben genannten Test.
 <step performance="required">
 
 <para>
-Starten Sie den Befehl: <command>nmblookup -d 2 '*'</command>
+Starten Sie den Befehl <command>nmblookup -d 2 '*'</command>.
 </para>
 
 <para>
-Dieses Mal versuchen wir dasselbe wie im vorherigen Test, verwenden
-aber einen Broadcast über die default Broadcast-Adresse. Es sollten
-mehrere NetBios/TCP/IP Rechner im Netzwerk antworten, obwohl Samba nicht
+Dieses Mal versuchen wir dasselbe wie im vorigen Test, verwenden
+aber einen Broadcast über die Default-Broadcast-Adresse. Es sollten
+mehrere NetBios/TCP/IP-Rechner im Netzwerk antworten, obwohl Samba nicht
 alle Anworten in der kurzen Zeit erwischen kann. Sie sollten folgende
-Meldunge von diversen Hosts sehen: <quote><errorname>got a positive name query response</errorname></quote>
+Meldungen von diversen Hosts sehen: <quote><errorname>got a positive name query response</errorname></quote>.
 </para>
 
 <para>
 Sollten hier nicht die gleichen Ergebnisse wie im vorangegangenen Test
-erscheinen, dann erkennt nmblookup über seinen Automatismus nicht die
-korrekte Broadcast-Adresse.
-In diesem Fall sollten Sie mit manuellen Eingriffen für die IP-Adresse,
-Broadcast und Netzwerkmaske in &smb.conf; bei der
-<smbconfoption><name>interfaces</name></smbconfoption>-Option experimentieren.
+erscheinen, dann erkennt nmblookup die korrekte Broadcast-Adresse nicht
+automatisch.
+In diesem Fall sollten Sie in &smb.conf; bei der
+<smbconfoption><name>interfaces</name></smbconfoption>-Option versuchen, die IP-Adresse,
+Broadcast-Adresse und Netzwerkmaske von Hand einzustellen.
 </para>
 
 <para>
-Sind Ihr PC und Server in verschiedenen Subnetzen, benötigen Sie die
-<option>-B</option>-Option, um die Broadcast-Adresse des PC-Netzwerkes zu
+Befinden sich Ihr PC und Server in verschiedenen Subnetzen, benötigen Sie die
+<option>-B</option>-Option, um die Broadcast-Adresse des PC-Netzwerks zu
 benutzen.
 </para>
 
 <para>
 Dieser Test kann möglicherweise fehlschlagen, wenn Ihre Subnetz-Maske
-und Broadcast-Adresse nicht korrekt sind. (Siehe vorherige Anmerkungen zu TEST 3).
+und Broadcast-Adresse nicht korrekt sind. (Siehe die Anmerkungen zu TEST 3).
 </para>
 
 </step>
@@ -399,21 +399,20 @@ und Broadcast-Adresse nicht korrekt sind. (Siehe vorherige Anmerkungen zu TEST 3
 <para>
 <indexterm><primary>smbclient</primary></indexterm>
 Führen Sie folgenden Befehl aus:  <command>smbclient //BIGSERVER/TMP</command>.
-Sie sollten nach einem Password gefragt werden. Verwenden Sie das Password
-Ihres aktuellen Accounts auf der Unix-Box. Möchten Sie den Test mit
-einem anderen Account durchführen, fügen Sie die <option>-U accountname</option>
-Option am Ende des Befehls hinzu.
-Als Beispiel, <command>smbclient //bigserver/tmp -Ujohndoe</command>.
+Sie sollten nach einem Passwort gefragt werden. Verwenden Sie das Passwort
+Ihres aktuellen Accounts auf der Unix-Maschine. Möchten Sie den Test mit
+einem anderen Account durchführen, fügen Sie die Option <option>-U accountname</option>
+am Ende des Befehls hinzu, zum Beispiel <command>smbclient //bigserver/tmp -Ujohndoe</command>.
 </para>
 
 <note><para>
 Es ist folgendermaßen möglich, das Passwort zusammen mit dem 
-Benutzernamen zu vewenden: <command>smbclient //bigserver/tmp -Ujohndoe%secret</command>.
+Benutzernamen zu verwenden: <command>smbclient //bigserver/tmp -Ujohndoe%secret</command>.
 </para></note>
 
 <para>
 Wenn Sie das Passwort eingegeben haben, erhalten Sie die
-<prompt>smb></prompt> Eingabeauforderung. Wenn nicht, beachten Sie die
+<prompt>smb></prompt>-Eingabeauforderung. Wenn nicht, beachten Sie die
 Fehlermeldung. Steht dort <quote><errorname>invalid network name</errorname></quote>,
 dann wurde die Freigabe <smbconfsection>tmp</smbconfsection> nicht korrekt 
 in der &smb.conf; eingetragen.
@@ -427,48 +426,46 @@ könnte dies folgende Ursachen haben:
 <orderedlist>
 <listitem>
 	<para>
-	Sie verwenden shadow-Passwörter (oder ein anderes Passwort-
-	System), haben aber keinen Support dafür in &smbd;
+	Sie verwenden Shadow-Passwörter (oder ein anderes Passwort-System), haben aber keinen Support dafür in &smbd;
 	einkompiliert.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	Ihr <smbconfoption><name>valid users</name></smbconfoption>
-	Eintrag ist nicht korrekt.
+	Ihr <smbconfoption><name>valid users</name></smbconfoption>-Eintrag ist nicht korrekt.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	Sie verwenden Groß/Kleinschreibung im Passwort und haben die
+	Sie verwenden Groß-/Kleinschreibung im Passwort und haben die Option 
 	<smbconfoption><name>password level</name></smbconfoption>-
-	Option nicht dementsprechend angepasst.
+	 nicht dementsprechend angepasst.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
 	Der <smbconfoption><name>path</name></smbconfoption>-Eintrag in
-	&smb.conf; ist falsch. Überprüfen Sie dies mittels &testparm;.
+	&smb.conf; ist falsch. Überprüfen Sie dies mit &testparm;.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
 	Sie haben die Passwortverschlüsselung aktiviert, aber keine Unix-Benutzer
-	auf Samba-Benutzer zugeordnet/gemappt.
-	Starten Sie: <command>smbpasswd -a username</command>.
+	zu Samba-Benutzern zugeordnet (gemappt).
+	Starten Sie <command>smbpasswd -a username</command>.
 	</para>
 </listitem>
 </orderedlist>
 
 <para>
 Nachdem Sie verbunden sind, sollte es Ihnen möglich sein, die Befehle
-<command>dir</command>, <command>get</command>,<command>put</command>
+<command>dir</command>, <command>get</command>, <command>put</command>
 und so weiter aufzurufen. Näheres erfahren Sie durch <command>help command</command>.
-Sie sollten besonders die Anzeige des freien Festplattenplatzes mittels
+Sie sollten besonders die Anzeige des freien Festplattenplatzes mit
 <command>dir</command> überprüfen.
 </para>
 
@@ -477,16 +474,15 @@ Sie sollten besonders die Anzeige des freien Festplattenplatzes mittels
 <step performance="required">
 
 <para>
-Führen Sie auf Ihrem PC in einer DOS-Eingabeaufforderung/Fenster den Befehl <command>net view \\BIGSERVER</command> aus.
+Führen Sie auf Ihrem PC in einer DOS-Eingabeaufforderung (DOS-Fenster) den Befehl <command>net view \\BIGSERVER</command> aus.
 Sie sollten eine Liste der verfügbaren Freigaben Ihres Servers erhalten.
 </para>
 
 <para>
 Erhalten Sie eine Meldung in der Art <quote><errorname>network name not
-found</errorname></quote>, dann funktioniert Ihre netbios-
-Namensauflösung nicht. Das ist überlicherweise ein Problem mit
-<command>nmbd</command>. Um das zu beheben, führen Sie eine der
-folgenden Möglichkeiten durch:
+found</errorname></quote>, dann funktioniert Ihre netbios-Namensauflösung nicht. Das ist überlicherweise ein Problem mit
+<command>nmbd</command>. Um das zu beheben, verwenden Sie eine der
+folgenden Möglichkeiten:
 </para>
 
 <orderedlist>
@@ -495,18 +491,18 @@ folgenden Möglichkeiten durch:
 </para></listitem>
 
 <listitem><para>
-	Fügen Sie die IP-Adresse von BIGSERVER zu den Einträgen der
-	<command>wins server</command> in die Erweiterte TCP/IP-
-	Konfiguration ihres PCs ein.
+	Fügen Sie die IP-Adresse von BIGSERVER zu den Einträgen des Felds
+	<command>wins server</command> in der erweiterten TCP/IP-
+	Konfiguration Ihres PCs hinzu.
 </para></listitem>
 
 <listitem><para>
 	Aktivieren Sie die Windows-Namensauflösung über DNS in der
-	Erweiterten Konfiguration des TCP/IP-Setups Ihres PCs.
+	erweiterten Konfiguration des TCP/IP-Setups Ihres PCs.
 </para></listitem>
 
 <listitem><para>
-	Fügen Sie den Eintrag BIGSERVER zu Ihrer lmhosts-Datei auf dem
+	Fügen Sie den Eintrag BIGSERVER zu Ihrer <filename>lmhosts</filename>-Datei auf dem
 	PC hinzu.
 </para></listitem>
 </orderedlist>
@@ -514,25 +510,24 @@ folgenden Möglichkeiten durch:
 <para>
 Erhalten Sie die Meldung <quote><errorname>invalid network name</errorname></quote> 
 oder <quote><errorname>bad password error</errorname></quote>,
-dann führen Sie die selben Maßnahmen wie für die vorherigen
-<command>smbclient -L</command> Tests durch.
-Achten Sie im Besonderen darauf, ob die Einträge in <command>hosts allow</command> 
-richtig sind. (siehe man Hilfeseiten).
+dann führen Sie dieselben Maßnahmen wie für die vorangegangenen 
+<command>smbclient -L</command>-Tests durch.
+Achten Sie besonders darauf, ob die Einträge in <command>hosts allow</command> 
+richtig sind (siehe die Manpages).
 </para>
 
 <para>
 Vergessen Sie bitte nicht, dass die Verbindungsanforderung von Ihrem PC
-zum Samba-Server immer mit dem aktuellen Benutzername Ihres angemeldeten
-Windowsbenutzers durchgeführt wird.
-Sie müssen sicherstellen, dass genau dieser Benutzeraccount mit dem
-selben Kennwort auch auf Ihrem Samba-Server existiert.
+zum Samba-Server immer mit dem aktuellen Benutzernamen Ihres angemeldeten
+Windows-Benutzers durchgeführt wird.
+Sie müssen sicherstellen, dass genau dieser Benutzeraccount mit demselben Kennwort auch auf Ihrem Samba-Server existiert.
 </para>
 
 <para>
 Erhalten Sie eine Meldung in der Art <quote><errorname>specified computer is not receiving requests</errorname></quote>
-, dann bedeutet dies vermutlich dass der Computer nicht über TCP angesprochen werden
+, dann bedeutet dies vermutlich, dass der Computer nicht über TCP angesprochen werden
 kann. Wenn Ihr Computer TCP-Wrapper einsetzt, fügen Sie für den Client
-(oder Subnetz, usw.) einen Eintrag in die Datei <filename>hosts.allow</filename> hinzu.
+(oder das Subnetz usw.) einen Eintrag in die Datei <filename>hosts.allow</filename> hinzu.
 </para>
 
 </step>
@@ -540,9 +535,9 @@ kann. Wenn Ihr Computer TCP-Wrapper einsetzt, fügen Sie für den Client
 <step performance="required">
 
 <para>
-Starten Sie den Befehl: <command>net use x: \\BIGSERVER\TMP</command>
+Starten Sie den Befehl: <command>net use x: \\BIGSERVER\TMP</command>.
 Sie sollten nach einem Passwort gefragt werden und nach dessen Eingabe
-eine Meldung <computeroutput>command completed successfully</computeroutput> erhalten. 
+die Meldung <computeroutput>command completed successfully</computeroutput> erhalten. 
 Sollte das nicht der Fall sein, ist Ihr PC nicht
 korrekt installiert oder die Datei &smb.conf; ist nicht in Ordnung.
 Stellen Sie sicher, dass die Einträge in <parameter>hosts allow</parameter> korrekt sind 
@@ -550,21 +545,21 @@ und die restlichen Einträge in &smb.conf; stimmen.
 </para>
 
 <para>
-Es ist auch möglich dass der Server nicht erkennen kann, unter welchem
+Es ist auch möglich, dass der Server nicht erkennen kann, unter welchem
 Namen Sie sich verbinden.
 Um das Problem zu erkennen, fügen Sie die Zeile
 <smbconfoption><name>user</name><value>username</value></smbconfoption>
-in die <smbconfsection>[tmp]</smbconfsection> Sektion der &smb.conf;
+im <smbconfsection>[tmp]</smbconfsection>-Abschnitt der &smb.conf;
 hinzu, wobei <parameter>username</parameter> der Benutzername zum
-eingegebenem Passwort sein muss. Wenn dass klappt, benötigen Sie die
-username mapping Option. 
+eingegebenen Passwort sein muss. Wenn dass klappt, benötigen Sie die Option 
+<smbconfoption><name>username mapping</name></smbconfoption>. 
 </para>
 
 <para>
 Es ist auch möglich, dass Ihr Client nur verschlüsselte Passwörter
-versendet, aber Sie haben den Eintrag <smbconfoption><name>encrypt
+versendet, aber der Eintrag <smbconfoption><name>encrypt
 passwords</name><value>no</value></smbconfoption> in der &smb.conf;
-stehen.
+steht.
 Ändern Sie diesen auf <quote>yes</quote>, um das Problem zu beheben.
 </para>
 
@@ -575,15 +570,14 @@ stehen.
 <para>
 Führen Sie den Befehl <command>nmblookup -M <parameter>testgroup</parameter></command>
 aus, wobei <parameter>testgroup</parameter> der Name der Arbeitsgruppe
-Ihres Samba-Servers und Ihrer Windows PCs ist. Sie sollten die IP-
-Adresse des Masterbrowsers für diese Arbeitsgruppe erhalten.
+Ihres Samba-Servers und Ihrer Windows-PCs ist. Sie sollten die IP-Adresse des Masterbrowsers für diese Arbeitsgruppe erhalten.
 </para>
 
 <para>
 Wenn nicht, dann ist der Auswahlprozess des Masterbrowsers fehlgeschlagen. 
-Warten Sie evtl. noch ein paar Minuten und versuchen Sie es dann nochmal, um zu sehen, ob
+Warten Sie evtl. noch ein paar Minuten, und versuchen Sie es dann nochmal, um zu sehen, ob
 es nur etwas langsam ist. Klappt es dann immer noch nicht, werfen Sie
-einen Blick auf die browsing-Optionen in der &smb.conf;.
+einen Blick auf die Browsing-Optionen in der &smb.conf;.
 Stellen Sie sicher, dass Sie <smbconfoption><name>preferred master</name><value>yes</value></smbconfoption>
 eingetragen haben, damit beim Starten eine Wahl des Masterbrowsers
 durchgeführt wird.
@@ -596,18 +590,17 @@ durchgeführt wird.
 <para>
 Durchsuchen Sie Ihre Netzwerkumgebung mit Ihrem Windows Explorer/Dateimanager.
 Ihr Samba-Server sollte in der Netzwerkumgebung unter Ihrer lokalen Arbeitsgruppe
-(oder welche Sie in der &smb.conf; eingetragen haben) erscheinen.
+(oder der Arbeitsgruppe, die Sie in der &smb.conf; eingetragen haben) erscheinen.
 Es müsste Ihnen möglich sein, durch einen Doppelklick auf den Namen des
 Servers die Liste der Freigaben zu erhalten.
 Erhalten Sie eine Fehlermeldung <quote>invalid password</quote>, dann
-verwenden Sie möglicherweiße Windows NT, denn das öffnet keinen Server, der
-keine verschlüsselten Passwörter unterstützt und sich im User Level Security
-Mode befindet.
+verwenden Sie möglicherweise Windows NT, denn NT öffnet keinen Server, der
+keine verschlüsselten Passwörter unterstützt und sich im User-Level-Security-Modus befindet.
 In diesem Fall tragen Sie 
 <smbconfoption><name>security</name><value>server</value></smbconfoption>
 und 
 <smbconfoption><name>password server</name><value>Windows_NT_Machine</value></smbconfoption>
-in Ihre &smb.conf; ein oder stellen Sie sicher, dass
+in Ihre &smb.conf; ein, oder stellen Sie sicher, dass
 <smbconfoption><name>encrypt passwords</name></smbconfoption> auf
 <quote>yes</quote> steht.
 </para>
