@@ -42,22 +42,22 @@
 
 	<para>
 	Es gibt eine weitere Sache, ohne welche die UNIX und Microsoft Windows Netwerk
-	Interoperabilität leiden würde. Es ist zwingend notwendig, daÃŸ es einen Mechanismus
-	gibt, mit dem es mÃ¶glich ist Dateien Ã¼ber UNIX Systeme hinweg bereitzustellen und 
-	gleichzeitig die IntegritÃ¤t der DomÃ¤nen-Benutzer- und und Gruppenrechte zu wahren. 
+	Interoperabilität leiden würde. Es ist zwingend notwendig, daß es einen Mechanismus
+	gibt, mit dem es möglich ist, Dateien über UNIX-Systeme hinweg bereitzustellen und 
+	gleichzeitig die Integrität der Domänen-Benutzer- und Gruppenrechte zu wahren. 
 	</para>
 
 	<para>
-	<emphasis>winbind</emphasis> ist ein Bestandteil der Samba Programmsammlung der das 
-	Problem der einheitlichen Anmeldung lÃ¶st. Winbind benutzt eine UNIX Implementierung der 
-	Microsoft RPC Aufrufe, Steckbare Authentisierung Module (PAM) und den Name Service Switch
-	um Windows NT DomÃ¤nenbenutzer auf UNIX Systeme als UNIX Benutzer erscheinen und arbeiten 
-	zu lassen. Dieses Kapitel beschreibt das System von winbind, erklÃ¤rt die Funktionsweise,
+	<emphasis>winbind</emphasis> ist ein Bestandteil der Samba-Suite, der das 
+	Problem der einheitlichen Anmeldung löst. Winbind benutzt eine UNIX-Implementierung der 
+	Microsoft RPC Aufrufe, Steckbare Authentisierungs-Module (PAM) und den Name Service Switch,
+	um Windows NT Domänenbenutzer auf UNIX-Systemen als UNIX-Benutzer erscheinen und arbeiten 
+	zu lassen. Dieses Kapitel beschreibt das System von winbind, erklärt die Funktionsweise,
 	wie es konfiguriert wird und wie es intern arbeitet.
 	</para>
 
 	<para>
-	Winbind stellt drei unterschiedliche Funktionen zur VerfÃ¼gung:
+	Winbind stellt drei unterschiedliche Funktionen zur Verfügung:
 	</para>
 
 	<itemizedlist>
@@ -66,25 +66,27 @@
 		</para></listitem>
 
 		<listitem><para>
-		Die AuflÃ¶sung der IndentitÃ¤t (mittels NSS)
+		Die Auflösung der Identität (mittels NSS)
 		</para></listitem>
 
 		<listitem><para>
-		Winbind hÃ¤lt eine Datenbank namens winbind_idmap.tdb, in welcher die 
+		Winbind hält eine Datenbank namens winbind_idmap.tdb, in welcher die 
 		Zuordnungen zwischen den UNIX UIDs / GIDs und den NT SIDs vermerkt sind.
-		Diese Zuordnungen sind nur fÃ¼r Benutzer und Gruppen, welche nicht Ã¼ber eine
-		lokale UID/GID verfÃ¼gen. Winbind sichert die ZusammengehÃ¶rigkeit zwischen der
+		Diese Zuordnungen sind nur für Benutzer und Gruppen, welche nicht über eine
+		lokale UID/GID verfügen. Winbind sichert die Zusammengehörigkeit zwischen der
 		UID/GID, zugeteilt aus dem idmap uid/gid Bereich, und der NT SID.
 		Wenn <parameter>idmap backend</parameter> auf den Wert ldapsam:url anstatt
 		der Nutzung einer lokalen Datei gesetzt ist, dann holt Winbind diese
-		Informationen aus der LDAP Datenbank.
+		Informationen aus der LDAP-Datenbank.
 		</para></listitem>
 	</itemizedlist>
 
 	<note><para>
-	Wenn <command>winbindd</command> nicht lÃ¤uft, dann wird der smbd (welcher <command>winbindd</command> aufruft)
-	auf die nur lokal vorhandenen Informationen der <filename>/etc/passwd</filename> und <filename>/etc/group</filename> 
-	ohne eine dynamische Zuordnung zurÃ¼ckgreifen.
+	Wenn <command>winbindd</command> nicht läuft, dann wird der smbd 
+	(welcher <command>winbindd</command> aufruft)
+	auf die nur lokal vorhandenen Informationen der <filename>/etc/passwd</filename> 
+	und <filename>/etc/group</filename> 
+	ohne eine dynamische Zuordnung zurückgreifen.
 	</para></note>
 
 
@@ -99,7 +101,7 @@
 
 
 <sect1>
-	<title>EinfÃ¼hrung</title>
+	<title>Einführung</title>
 	
 	<para>It is well known that UNIX and Microsoft Windows NT have 
 	different models for representing user and group information and 
