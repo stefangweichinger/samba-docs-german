@@ -4,60 +4,53 @@
 	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Backup Techniken</title>
+<title>Backup-Techniken</title>
 
 <sect1>
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
 Das Samba-Projekt ist nun über 10 Jahre alt. Während der frühen Geschichte von Samba waren
-UNIX
-
-
-
-The Samba project is over ten years old. During the early history
-of Samba, UNIX administrators were its key implementors. UNIX administrators
-will use UNIX system tools to backup UNIX system files. Over the past
-four years, an increasing number of Microsoft network administrators have
-taken an interest in Samba. This is reflected in the questions about backup
-in general on the Samba mailing lists.
+diejenigen, die es implementierten, meist UNIX-Administratoren. UNIX-Administratoren werden
+UNIX-Systemwerkzeuge verwenden, um UNIX-Systemdateien zu sichern. In den letzten 4 Jahren
+interessiert sich eine stark zunehmende Anzahl von Microsoft-Netzwerk-Administratoren für
+Samba. Dies spiegelt sich in den allgemeinen Fragen zu Backups in den Samba-Mailing-Listen
+wider.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Discussion of Backup Solutions</title>
+<title>Diskussion von Backup-Lösungen</title>
 
 <para>
-During discussions at a Microsoft Windows training course, one of
-the pro-UNIX delegates stunned the class when he pointed out that Windows
-NT4 is so limiting compared with UNIX. He likened UNIX to a Meccano set
-that has an unlimited number of tools that are simple, efficient,
-and, in combination, capable of achieving any desired outcome.
+Während einer Diskussion im Rahmen eines Microsoft Windows-Kurses erstaunte einer
+der pro-UNIX-Teilnehmer die Klasse, als er feststellte, daß Windows NT4 so limitierend im Vergleich
+zu UNIX sei. Er verglich UNIX mit einem Werkzeug-Set, das eine unbegrenzte Anzahl von Werkzeugen
+enthält, die simpel, effizient, und, in Kombination, imstande sind, jegliches Ergebnis zu erzielen.
 </para>
 
 <para>
-One of the Windows networking advocates retorted that if she wanted a
-Meccano set, she would buy one. She made it clear that a complex single
-tool that does more than is needed but does it with a clear purpose and
-intent is preferred by some like her.
+Eine der Fürsprecher des Windows-Networkings erwiderte, daß sie, wenn sie ein Werkzeug-Set haben
+wollte, eines kaufen würde. Sie stellte heraus, daß ein einzelnes komplexes Werkzeug, das mehr tut,
+als notwendig, dies jedoch mit einem klaren Zweck und Ziel, von jemandem wir ihr bevorzugt wird.
 </para>
 
 <para>
-Please note that all information here is provided as is and without recommendation
-of fitness or suitability. The network administrator is strongly encouraged to
-perform due-diligence research before implementing any backup solution, whether free
-software or commercial.
+Bitte beachten Sie, daß alle Information hier nur wiedergegeben wird, ohne Empfehlungen in Hinsicht
+auf Leistungsfähigkeit oder Angemessenheit. Der Netzwerk-Administrator ist stärkstens dazu angehalten,
+sorgfältige Recherchen durchzuführen, bevor er jegliche Backup-Lösung implementiert, egal ob freie
+oder kommerzielle Software.
 </para>
 
 <para>
-A useful Web site I recently stumbled across that you might like to refer to
-is located at <ulink noescape="1" url="http://www.allmerchants.com/Software/Backup_Software/">
+Eine nützliche Website, über die ich unlängst gestolpert bin, an die Sie sich vielleicht wenden
+wollen, ist <ulink noescape="1" url="http://www.allmerchants.com/Software/Backup_Software/">
 www.allmerchants.com</ulink>.
 </para>
 
 <para>
-The following three free software projects might also merit consideration.
+Die folgenden drei freien Software-Projekte könnten auch Ihre Beachtung finden.
 </para>
 
 	<sect2>
@@ -66,35 +59,36 @@ The following three free software projects might also merit consideration.
 
 	<para>
 	<indexterm><primary>BackupPC</primary></indexterm>
-	BackupPC version 2.0.0 has been released on <ulink url="http://backuppc.sourceforge.net">SourceForge.</ulink>
-	 New features include support for <command>rsync/rsyncd</command> and internationalization of the CGI interface
-	(including English, French, Spanish, and German).
+	BackupPC in der Version 2.0.0 wurde auf <ulink url="http://backuppc.sourceforge.net">SourceForge</ulink> veröffentlicht.
+	Neue Features beinhalten die Unterstützung von <command>rsync/rsyncd</command> und eine
+	Internationalisierung der CGI-Oberfläche (einschließlich Englisch, Französisch, Spanisch, und
+	Deutsch).
 	</para>
 
 	<para>
-	BackupPC is a high-performance Perl-based package for backing up Linux,
-	UNIX or Windows PCs and laptops to a server's disk. BackupPC is highly
-	configurable and easy to install and maintain. SMB (via smbclient),
-	<command>tar</command> over <command>rsh/ssh</command> or <command>rsync/rsyncd</command>
-	 are used to extract client data.
+	BackupPC ist hoch-performantes Perl-basierendes Package zum Backup von Linux, UNIX oder
+	Windows-PCs oder Laptops auf die Festplatte eines Servers. Es ist hochgradig konfigurierbar,
+	leicht zu installieren und zu warten. SMB (via smbclient),
+        <command>tar</command> über <command>rsh/ssh</command> oder <command>rsync/rsyncd</command>
+	werden zum Lesen der Client-Daten verwendet.
 	</para>
 
 	<para>
-	Given the ever decreasing cost of disks and raid systems, it is now
-	practical and cost effective to backup a large number of machines onto
-	a server's local disk or network storage. This is what BackupPC does.
+	Angesichts der sinkenden Kosten von Festplatten und RAID-Systemen ist es nunmehr praktisch
+	und kosten-effizient, eine grosse Anzahl von Maschinen auf die lokale Platte eines Servers
+	oder dessen Netzwerk-Laufwerke zu sichern. Dies tut BackupPC.	
 	</para>
 
 	<para>
-	Key features are pooling of identical files (big savings in server disk
-	space), compression, and a comprehensive CGI interface that allows users
-	to browse backups and restore files.
+	Haupteigenschaften sind das "Pooling" identischer Dateien (grosse Ersparnisse an 
+	Plattenplatz am Server), Kompression, und eine umfassende CGI-Oberfläche, die es
+	Benutzern erlaubt, in Backups zu suchen, und Dateien wiederherzustellen.
 	</para>
 
 	<para>
-	BackupPC is free software distributed under a GNU GPL license.
-	BackupPC runs on Linux/UNIX/freenix servers, and has been tested
-	on Linux, UNIX, Windows 9x/ME, Windows 98, Windows 200x, Windows XP, and Mac OSX clients.
+	BackupPC ist freie Software, die unter der GNU GPL Lizenz vertrieben wird.
+	Es läuft auf Linux/UNIX/freenix-Servern, und wurde auf Clients unter
+	Linux, UNIX, Windows 9x/ME, Windows 98, Windows 200x, Windows XP, und Mac OSX getestet.
 	</para>
 
 	</sect2>
@@ -106,7 +100,7 @@ The following three free software projects might also merit consideration.
 		directory trees.</para>
 
 	<para><command>rsync</command> has many options to select which files will be copied
-	  and how they are to be transferred. It may be used as an
+	  zand how they are to be transferred. It may be used as an
 	  alternative to <command>ftp, http, scp</command>, or <command>rcp</command>.</para>
 
 	<para>The rsync remote-update protocol allows rsync to transfer just
