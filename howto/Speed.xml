@@ -51,11 +51,12 @@ Es gibt einige Socket-Optionen, die die Performance eines TCP-basierten Servers 
 </para>
 
 <para>
-Die von Samba verwendeten Socket-Optionen können sowohl mittels der <option>-O</option> auf der Befehlszeile gesetzt werden, wie auch in der Datei &smb.conf;.
+Die von Samba verwendeten Socket-Optionen können sowohl mittels der Option <option>-O</option> auf der Befehlszeile gesetzt werden, wie auch in der Datei &smb.conf;.
 </para>
 
 <para>
-Der <smbconfoption><name>socket options</name></smbconfoption>-Abschnitt der &smb.conf; man-page beschreibt deren Verwendung und gibt diesbezügliche Empfehlungen ab.
+Der Abschnitt zu <smbconfoption><name>socket options</name></smbconfoption>
+in der man-page zu &smb.conf; beschreibt deren Verwendung und gibt diesbezügliche Empfehlungen ab.
 </para>
 
 <para>
@@ -170,7 +171,7 @@ Ein Samba-Anwender hat das Folgende an die Samba-mailing-list geschrieben:
 </para>
 
 <para>
-Ich verwende auf meinem Server Gentoo Linux und Samba 2.2.8a. Unlängst habe ich meinen Kernel von <filename>linux-2.4.19-gentoo-r10</filename> auf <filename>linux-2.4.20-wolk4.0s</filename> gewechselt. Nun habe ich ein Performance-Problem mit Samba. Viele von Euch werden vielleicht sagen, <quote>Versuche die ursprünglichen Kernel-Sourcen!</quote>. Tja, ich habe das versucht, und es hat nicht funktioniert. Ich habe ein 100mb LAN und zwei Rechner (Linux und Windows 2000). Der Linux-Server gibt Verzeichnisse mit DivX-Dateien frei, der Windows-Client spielt diese übers LAN ab. Zuvor, als ich noch den 2.4.19-Kernel verwendet habe, lief alles sauber, aber nun stocken und stoppen die Filme. Der Versuch, die Dateien vom Server auf den Windows-Rechner zu schieben, zeigte, daß dies schrecklich langsam ist.
+Ich verwende auf meinem Server Gentoo Linux und Samba 2.2.8a. Unlängst habe ich meinen Kernel von <filename>linux-2.4.19-gentoo-r10</filename> auf <filename>linux-2.4.20-wolk4.0s</filename> gewechselt. Nun habe ich ein Performance-Problem mit Samba. Viele von Euch werden vielleicht sagen, <quote>Versuche die ursprünglichen Kernel-Sourcen!</quote>. Tja, ich habe das versucht, und es hat nicht funktioniert. Ich habe ein 100MBit-LAN und zwei Rechner (Linux und Windows 2000). Der Linux-Server gibt Verzeichnisse mit DivX-Dateien frei, der Windows-Client spielt diese übers LAN ab. Zuvor, als ich noch den 2.4.19-Kernel verwendet habe, lief alles sauber, aber nun stocken und stoppen die Filme. Der Versuch, die Dateien vom Server auf den Windows-Rechner zu schieben, zeigte, daß dies schrecklich langsam ist.
 </para>
 
 <para>
@@ -187,7 +188,7 @@ Besorge Dir das mii-tool und überprüfe die Duplex-Einstellungen auf Deiner Netzw
 <title>Korrupte tdb-Dateien</title>
 
 <para>
-Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, sodaß wir schliesslich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command>rm /var/locks/*.tdb</command> auszuführen. Endlich wieder glücklich!
+Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, sodaß wir schliesslich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command>rm /var/locks/*.tdb</command> auszuführen. Endlich bin ich wieder glücklich!
 </para>
 
 <para>
@@ -196,7 +197,6 @@ Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unse
 
 <para>
 <emphasis>Antwort:</emphasis> Ja, führe <command>tdbbackup</command> nach jedem Stop und vor jedem Start von nmbd aus. 
-
 (Anmerkung des Übersetzers:
 Eine Möglichkeit ist, dies in das rcsmb/rcnmb-Skript aufzunehmen, das viele Distributionen verwenden.)
 </para>
@@ -223,7 +223,7 @@ Es stellte sich heraus, daß das Drucker-Überwachungs-Programm, das auf den Windo
 </para>
 
 <para>
-Das Stoppen dieses Überwachungs-Programms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes liess die Geschwindigkeit wieder stark abfallen. Der Drucker war ein cannon lbp810 und der betreffende task hiess so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungs-Software zeigte einen "Druck wird ausgeführt"-Dialog auf dem Windows-Client.
+Das Stoppen dieses Überwachungs-Programms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes liess die Geschwindigkeit wieder stark abfallen. Der Drucker war ein Canon lbp810 und der betreffende task hiess so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungs-Software zeigte einen "Druck wird ausgeführt"-Dialog auf dem Windows-Client.
 </para>
 
 <para>
