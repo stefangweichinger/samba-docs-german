@@ -152,7 +152,7 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 &BUGS;
 </part>
 
-<part id="Appendix A">
+<part id="Appendix_A">
 	<title>Manpages</title>
 <xi:include href="../manpages/editreg.1.xml"/>
 <xi:include href="../manpages/findsmb.1.xml"/>
@@ -194,7 +194,7 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 <xi:include href="../manpages/winbindd.8.xml"/>
 </part>
 
-<part id="Appendix B">
+<part id="Appendix_B">
 	<title>Anhang</title>
 &Compiling;
 &Portability;
