@@ -1072,81 +1072,74 @@ braucht, und daß Sie die richtigen Zeilen in die Dateien <filename>mime.types</f
 </para>
 
 <sect3>
-<title>Filter requirements</title>
+<title>Filter Erfordernisse</title>
 <para>
-The mentioned <quote>CUPS requirements</quote> for filters are simple. Take
-filenames or <filename>stdin</filename> as input and write to
-<filename>stdout</filename>. They should take these 5 or 6 arguments:
+Die erwähnten <quote>CUPS Erfordernisse</quote> für Filter sind simpel. Nehmen Sie Dateinamen oder
+<filename>stdin</filename> als Input und schreiben Sie diesen auf <filename>stdout</filename>. Die Filter
+sollten diese 5-6 Argumente verstehen:
 <emphasis>printer job user title copies options [filename]</emphasis>
 </para>
 
 <variablelist>
-<varlistentry><term>Printer </term>
-<listitem><para>The name of the printer queue (normally this is the
-name of the filter being run).</para></listitem>
+<varlistentry><term>printer </term>
+<listitem><para>
+Der Name der Drucker-Queue (normalerweise ist dies der Name des ausgeführten Filters).</para></listitem>
 </varlistentry>
 
 <varlistentry><term>job </term>
-<listitem><para>The numeric job ID for the job being
-printed.</para></listitem>
+<listitem><para>Die numerische Auftrags-ID des gerade gedruckten Auftrags.</para></listitem>
 </varlistentry>
 
 <varlistentry><term>user </term>
-<listitem><para>The string from the originating-user-name
-attribute.</para></listitem>
+<listitem><para>Der String aus dem Attribut originating-user-name.</para></listitem>
 </varlistentry>
 
 <varlistentry><term>title </term>
-<listitem><para>The string from the job-name attribute.</para></listitem>
+<listitem><para>Der String aus dem Attribut job-name.</para></listitem>
 </varlistentry>
 
 <varlistentry><term>copies </term>
-<listitem><para>The numeric value from the number-copies
-attribute.</para></listitem>
+<listitem><para>Der numerische Wert des Attributs number-copies.</para></listitem>
 </varlistentry>
 
 <varlistentry><term>options </term>
-<listitem><para>The job options.</para></listitem>
+<listitem><para>Die Auftrags-Optionen.</para></listitem>
 </varlistentry>
 
 <varlistentry><term>filename </term>
-<listitem><para>(Optionally) The print request file (if missing,
-filters expected data fed through <filename>stdin</filename>). In most
-cases, it is easy to write a simple wrapper script around existing
-filters to make them work with CUPS.</para></listitem>
+<listitem><para>(Optional) Die Datei der Druckanfrage (wenn dies fehlt, erwarten die Filter, die Daten
+über <filename>stdin</filename> geliefert zu bekommen).
+In den meisten Fällen ist es einfach, ein einfaches Wrapper-Skript um Filter zu schreiben, um sie mit
+CUPS arbeiten zu lassen.</para></listitem>
 </varlistentry>
 </variablelist>
 </sect3>
 </sect2>
 
 <sect2>
-<title>Prefilters</title>
+<title>Vorfilter ("Prefilters")</title>
 
 
 <para>
 <indexterm><primary>PostScript</primary></indexterm>
-As previously stated, PostScript is the central file format to any UNIX-based
-printing system. From PostScript, CUPS generates raster data to feed
-non-PostScript printers.
+Wie zuvor bemerkt, ist PostScript das zentrale Dateiformat für jedes UNIX-basierende Drucksystem. Von
+PostScript aus generiert CUPS Rasterdaten zur Lieferung an Nicht-PostScript-Drucker.
 </para>
 
 <para>
-But what happens if you send one of the supported non-PS formats
-to print? Then CUPS runs <quote>pre-filters</quote> on these input formats to
-generate PostScript first. There are pre-filters to create PS from
-ASCII text, PDF, DVI, or HP-GL. The outcome of these filters is always
-of MIME type <parameter>application/postscript</parameter> (meaning that
-any device-specific print options are not yet embedded into the
-PostScript by CUPS, and that the next filter to be called is
-pstops). Another pre-filter is running on all supported image formats,
-the <parameter>imagetops</parameter> filter. Its outcome is always of
-MIME type <parameter>application/vnd.cups-postscript</parameter>
-(not application/postscript), meaning it has the
-print options already embedded into the file.
+Aber was passiert, wenn Sie eines der unterstützten Nicht-PS-Formate in den Druck schicken? Dann verwendet
+CUPS <quote>pre-filters</quote> auf diese Eingabeformate, um als erstes PostScript zu erzeugen. Es gibt solche
+Vorfilter, um PS aus ASCII text, PDF, DVI, oder HP-GL zu erzeugen. Die Ausgabe dieser Filter ist immer vom
+MIME Typ <parameter>application/postscript</parameter> (das bedeutet, daß jegliche geräte-spezifische 
+Druckoptionen noch nicht von CUPS ins PS eingebettet werden, und daß der nächste aufzurufende Filter
+pstops ist). Ein weiterer Vorfilter läuft über alle unterstützten Bildformate, der Filter 
+<parameter>imagetops</parameter>. Seine Ausgabe ist immer vom MIME Typ 
+<parameter>application/vnd.cups-postscript</parameter> (nicht application/postscript), was bedeutet, daß sie
+die Druckoptionen bereits in der Datei eingebettet hat.
 </para>
 
 <para>
-	<image scale="25"><imagedescription>Pre-filtering in CUPS to form PostScript.</imagedescription>
+	<image scale="25"><imagedescription>Das Vorfiltern in CUPS, um PostScript zu erzeugen.</imagedescription>
 	<imagefile>4small</imagefile>
 </image>
 </para>
@@ -1156,38 +1149,36 @@ print options already embedded into the file.
 <title>pstops</title>
 
 <para>
-<emphasis>pstops</emphasis> is the filter to convert
-<parameter>application/postscript</parameter> to <?latex \linebreak ?>
-<parameter>application/vnd.cups-postscript</parameter>. It was said
-above that this filter inserts all device-specific print options
-(commands to the printer to ask for the duplexing of output, or
-stapling and punching it, and so on) into the PostScript file.
+<emphasis>pstops</emphasis> ist der Filter, um 
+<parameter>application/postscript</parameter> auf <?latex \linebreak ?>
+<parameter>application/vnd.cups-postscript</parameter> zu wandeln. Es wurde bereits oben erwähnt, daß dieser
+Filter alle geräte-spezifischen Druckoptionen (Befehle an den Drucker, um Duplexdruck, Stapeln und Lochen zu
+veranlassen, usw.) in die PostScript-Datei einbindet.
 </para>
 
 <para>
-	<image scale="25"><imagedescription>Adding device-specific print options.</imagedescription>
+	<image scale="25"><imagedescription>Das Hinzufügen von geräte-spezifischen Druckoptionen.</imagedescription>
 		<imagefile>5small</imagefile>
 	</image>
 </para>
 
 <para>
-This is not all. Other tasks performed by it are:
+Das ist nicht alles. Andere ausgeführte Aufgaben sind:
 </para>
 
 <itemizedlist>
 <listitem><para>
-Selecting the range of pages to be printed (if you choose to
-print only pages <quote>3, 6, 8-11, 16, 19-21</quote>, or only the odd numbered
-ones).
+Die Auswahl der zu druckenden Seiten (wenn Sie nur die Seiten <quote>3, 6, 8-11, 16, 19-21</quote> drucken
+wollen, oder nur die ungeraden Seiten).
 </para></listitem>
 
 <listitem><para>
-Putting 2 or more logical pages on one sheet of paper (the
-so-called <quote>number-up</quote> function).
+Zwei oder mehr logische Seiten auf ein Blatt Papier drucken (die sogenannte <quote>number-up</quote> Funktion).
 </para></listitem>
 
-<listitem><para>Counting the pages of the job to insert the accounting
-information into the <filename>/var/log/cups/page_log</filename>.
+<listitem><para>
+Das Zählen der Seiten des Auftrags, um die Abrechnungs-Information in die Datei 
+<filename>/var/log/cups/page_log</filename> zu schreiben.
 </para></listitem>
 </itemizedlist>
 </sect2>
@@ -1196,20 +1187,24 @@ information into the <filename>/var/log/cups/page_log</filename>.
 <title>pstoraster</title>
 
 <para>
-<parameter>pstoraster</parameter> is at the core of the CUPS filtering
-system. It is responsible for the first stage of the rasterization
-process. Its input is of MIME type application/vnd.cups-postscript;
-its output is application/vnd.cups-raster. This output format is not
-yet meant to be printable. Its aim is to serve as a general purpose
-input format for more specialized <emphasis>raster drivers</emphasis>
-that are able to generate device-specific printer data.
+<parameter>pstoraster</parameter> ist im Kern des CUPS-Filtersystems. Er ist verantwortlich für die erste Stufe
+des Raster-Prozesses. Sein Input ist vom MIME-Typ application/vnd.cups-postscript; seine Ausgabe ist
+application/vnd.cups-raster. Dieses Ausgabeformat ist noch nicht zum Drucken gedacht, die Aufgabe ist, als
+allgemeines Input-Format für spezialisierte <emphasis>Raster-Treiber</emphasis> gedacht, die imstande sind,
+geräte-spezifische Druckerdaten zu generieren.
 </para>
 
 <para>
-	<image scale="25"><imagedescription>PostScript to intermediate raster format.</imagedescription><imagefile>6small</imagefile></image>
+	<image scale="25"><imagedescription>PostScript auf Übergangs-Raster-Format.</imagedescription><imagefile>6small</imagefile></image>
 </para>
 
 <para>
+CUPS-Raster ist ein generisches Rasterformat mit mächtigen Eigenschaften. Es ist imstande, Informationen zu
+einzelnen Seiten, Farbprofile, und mehr zu inkludieren, um diese Informationen nachfolgenden Raster-Treibern
+zu übergeben. Sein MIME-Typ ist bei IANA registriert und seine Spezifikation ist, natürlich, völlig offen.
+Es ist entworfen, um es Herstellern ziemlich einfach und günstig zu
+
+
 CUPS raster is a generic raster format with powerful features. It is
 able to include per-page information, color profiles, and more, to be
 used by the following downstream raster drivers. Its MIME type is
