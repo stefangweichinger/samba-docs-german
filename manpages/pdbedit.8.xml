@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>pdbedit</refname>
-	<refpurpose>manage the SAM database</refpurpose>
+	<refpurpose>verwaltet die SAM-Datenbank</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -22,57 +22,58 @@
 		<arg choice="opt">-L</arg>	
 		<arg choice="opt">-v</arg>	
 		<arg choice="opt">-w</arg>	
-		<arg choice="opt">-u username</arg>	
-		<arg choice="opt">-f fullname</arg>	
-		<arg choice="opt">-h homedir</arg>	
-		<arg choice="opt">-D drive</arg>	
-		<arg choice="opt">-S script</arg>
-		<arg choice="opt">-p profile</arg>	
+		<arg choice="opt">-u Benutzername</arg>	
+		<arg choice="opt">-f VollerName</arg>	
+		<arg choice="opt">-h HomeVerz</arg>	
+		<arg choice="opt">-D Laufwerk</arg>	
+		<arg choice="opt">-S Skript</arg>
+		<arg choice="opt">-p Profil</arg>	
 		<arg choice="opt">-a</arg>	
 		<arg choice="opt">-m</arg>	
 		<arg choice="opt">-r</arg>	
 		<arg choice="opt">-x</arg>	
-		<arg choice="opt">-i passdb-backend</arg>	
-		<arg choice="opt">-e passdb-backend</arg>   
-		<arg choice="opt">-b passdb-backend</arg>
+		<arg choice="opt">-i Passdb-Backend</arg>	
+		<arg choice="opt">-e Passdb-Backend</arg>   
+		<arg choice="opt">-b Passdb-Backend</arg>
 		<arg choice="opt">-g</arg>
-		<arg choice="opt">-d debuglevel</arg>
-		<arg choice="opt">-s configfile</arg>
-		<arg choice="opt">-P account-policy</arg>
-		<arg choice="opt">-C value</arg>
-		<arg choice="opt">-c account-control</arg>
+		<arg choice="opt">-d DebugEbene</arg>
+		<arg choice="opt">-s KonfigDatei</arg>
+		<arg choice="opt">-P Konto-Policy</arg>
+		<arg choice="opt">-C Wert</arg>
+		<arg choice="opt">-c Konto-Steuerung</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>The pdbedit program is used to manage the users accounts
-	stored in the sam database and can only be run by root.</para>
+	<para>Mit dem Programm pdbedit werden Benutzerkonten in der SAM-Datenbank
+	verwaltet. Es kann nur von root ausgeführt werden.</para>
 
-	<para>The pdbedit tool uses the passdb modular interface and is
-	independent from the kind of users database used (currently there
-	are smbpasswd, ldap, nis+ and tdb based and more can be added
-	without changing the tool).</para>
+	<para>Das Werkzeug pdbedit verwendet die modulare Schnittstelle passdb und
+	ist unabhängig von der verwendeten Benutzerdatenbank (im Moment gibt es
+	smbpasswd, ldap, nis+ und tdb-basierte, und weitere können hinzugefügt
+	werden, ohne das Werkzeug zu verändern).</para>
 
-	<para>There are five main ways to use pdbedit: adding a user account,
-	removing a user account, modifing a user account, listing user
-	accounts, importing users accounts.</para>
+	<para>Es gibt fünf verschiedene Hauptarten, pdbedit zu benutzen: Hinzufügen
+	eines Benutzerkontos, Entfernen eines Benutzerkontos, Ändern eines Benutzerkontos,
+	Auflisten von Benutzerkonten und Importieren von Benutzerkonten.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 	<variablelist>
 		<varlistentry>
 		<term>-L</term>
-		<listitem><para>This option lists all the user accounts
-		present in the users database.
-		This option prints a list of user/uid pairs separated by
-		the ':' character.</para>
-		<para>Example: <command>pdbedit -L</command></para>
+		<listitem><para>Diese Option listet alle in der Benutzerdatenbank
+		vorhandenen Benutzerkonten auf.
+		Die Option gibt eine Liste von Benutzer/UID-Paaren aus, getrennt
+		durch Doppelpunkte, ':'.</para>
+		<para>Beispiel: <command>pdbedit -L</command></para>
 		<para><screen>
 sorce:500:Simo Sorce
 samba:45:Test User
@@ -80,15 +81,14 @@ samba:45:Test User
 		</listitem>
 		</varlistentry>
 		
-		
-		
+
 		<varlistentry>
 		<term>-v</term>
-		<listitem><para>This option enables the verbose listing format.
-		It causes pdbedit to list the users in the database, printing
-		out the account fields in a descriptive format.</para>
+		<listitem><para>Diese Option schaltet das ausführliche Listing-Format ein.
+		Dadurch listet pdbedit die Benutzer in der Datenbank auf und gibt dabei die
+		Felder des Kontos in einem ausführlicherem Format aus.</para>
 
-		<para>Example: <command>pdbedit -L -v</command></para>
+		<para>Beispiel: <command>pdbedit -L -v</command></para>
 		<para><screen>
 ---------------
 username:       sorce
@@ -116,14 +116,14 @@ Profile Path:   \\BERSERKER\profile
 		
 		<varlistentry>
 		<term>-w</term>
-		<listitem><para>This option sets the "smbpasswd" listing format.
-		It will make pdbedit list the users in the database, printing
-		out the account fields in a format compatible with the
-		<filename>smbpasswd</filename> file format. (see the
+		<listitem><para>Diese Option setzt das Listing-Format "smbpasswd".
+		Dadurch gibt pdbedit die Felder in der Benutzerliste aus der Datenbank
+		in einem Format aus, das mit dem Dateiformat von 
+		<filename>smbpasswd</filename> kompatibel ist. (Siehe die manpage
 		<citerefentry><refentrytitle>smbpasswd</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> for details)</para>
+		<manvolnum>5</manvolnum></citerefentry> für Details.)</para>
 
-		<para>Example: <command>pdbedit -L -w</command></para>
+		<para>Beispiel: <command>pdbedit -L -w</command></para>
 		<screen>
 sorce:500:508818B733CE64BEAAD3B435B51404EE:D2A2418EFC466A8A0F6B1DBB5C3DB80C:[UX         ]:LCT-00000000:
 samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX         ]:LCT-3BFA1E8D:
@@ -133,140 +133,141 @@ samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX  
 		
 		
 		<varlistentry>
-		<term>-u username</term>
-		<listitem><para>This option specifies the username to be
-		used for the operation requested (listing, adding, removing).
-		It is <emphasis>required</emphasis> in add, remove and modify
-		operations and <emphasis>optional</emphasis> in list
-		operations.</para>
+		<term>-u Benutzername</term>
+		<listitem><para>Diese Option gibt an, dass für die verlangte Operation
+		der Benutzername verwendet werden soll (Auflisten, Hinzufügen, Entfernen).
+		Sie ist <emphasis>notwendig</emphasis> beim Hinzufügen, Entfernen und Ändern
+		und <emphasis>optional</emphasis> beim Auflisten.</para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-f fullname</term>
-		<listitem><para>This option can be used while adding or
-		modifing a user account. It will specify the user's full
-		name. </para>
+		<term>-f VollerName</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt den vollständigen Namen des
+		Benutzers an. </para>
 
-		<para>Example: <command>-f "Simo Sorce"</command></para>
+		<para>Beispiel: <command>-f "Simo Sorce"</command></para>
 		</listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-h homedir</term>
-		<listitem><para>This option can be used while adding or
-		modifing a user account. It will specify the user's home
-		directory network path.</para>
+		<term>-h HomeVerz</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt den Netzwerkpfad zum 
+		Home-Verzeichnis des Benutzers an.</para>
 
-		<para>Example: <command>-h "\\\\BERSERKER\\sorce"</command>
+		<para>Beispiel: <command>-h "\\\\BERSERKER\\sorce"</command>
 		</para>
 		</listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-D drive</term>
-		<listitem><para>This option can be used while adding or
-		modifing a user account. It will specify the windows drive
-		letter to be used to map the home directory.</para>
+		<term>-D Laufwerk</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt den Windows-Laufwerksbuchstaben 
+		an, der bei der Zuordnung des Home-Verzeichnisses benutzt wird.</para>
 
-		<para>Example: <command>-d "H:"</command>
-		</para>
-		</listitem>
-		</varlistentry>
-		
-		
-		<varlistentry>
-		<term>-S script</term>
-		<listitem><para>This option can be used while adding or
-		modifing a user account. It will specify the user's logon
-		script path.</para>
-
-		<para>Example: <command>-s "\\\\BERSERKER\\netlogon\\sorce.bat"</command>
+		<para>Beispiel: <command>-d "H:"</command>
 		</para>
 		</listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>-p profile</term>
-		<listitem><para>This option can be used while adding or
-		modifing a user account. It will specify the user's profile
-		directory.</para>
+		<term>-S Skript</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt den Pfad des Anmeldeskripts 
+		des Benutzers an.</para>
 
-		<para>Example: <command>-p "\\\\BERSERKER\\netlogon"</command>
+		<para>Beispiel: <command>-s "\\\\BERSERKER\\netlogon\\sorce.bat"</command>
+		</para>
+		</listitem>
+		</varlistentry>
+		
+		
+		<varlistentry>
+		<term>-p Profil</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt das Profil-Verzeichnis des 
+		Benutzers an.</para>
+
+		<para>Beispiel: <command>-p "\\\\BERSERKER\\netlogon"</command>
 		</para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-G SID|rid</term>
-		<listitem><para>
-		This option can be used while adding or modifying a user account. It 
-		will specify the users' new primary group SID (Security Identifier) or 
-		rid. </para>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt die neue Hauptgruppen-SID 
+		(Security Identifier) oder rid des Benutzers an.</para>
 
-		<para>Example: <command>-G S-1-5-21-2447931902-1787058256-3961074038-1201</command></para>
+		<para>Beispiel: <command>-G S-1-5-21-2447931902-1787058256-3961074038-1201</command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-U SID|rid</term>
-		<listitem><para>
-		This option can be used while adding or modifying a user account. It 
-		will specify the users' new SID (Security Identifier) or 
-		rid. </para>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt die neue SID 
+		(Security Identifier) oder rid des Benutzers an.</para>
 
-		<para>Example: <command>-U S-1-5-21-2447931902-1787058256-3961074038-5004</command></para>
+		<para>Beispiel: <command>-U S-1-5-21-2447931902-1787058256-3961074038-5004</command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-c account-control</term>
-		<listitem><para>This option can be used while adding or modifying a user
-				account. It will specify the users' account control property. Possible flags are listed below.
+		<term>-c Konto-Steuerung</term>
+		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
+		Benutzerkontos verwendet werden. Sie gibt die Eigenschaft der 
+		Kontensteuerung für den Benutzer an. Die möglichen Flags werden unten
+		aufgelistet.
 	</para>
 
 	<para>
 		<itemizedlist>
-			<listitem><para>N: No password required</para></listitem>
-			<listitem><para>D: Account disabled</para></listitem>
-			<listitem><para>H: Home directory required</para></listitem>
-			<listitem><para>T: Temporary duplicate of other account</para></listitem>
-			<listitem><para>U: Regular user account</para></listitem>
-			<listitem><para>M: MNS logon user account</para></listitem>
-			<listitem><para>W: Workstation Trust Account</para></listitem>
-			<listitem><para>S: Server Trust Account</para></listitem>
-			<listitem><para>L: Automatic Locking</para></listitem>
-			<listitem><para>X: Password does not expire</para></listitem>
-			<listitem><para>I: Domain Trust Account</para></listitem>
+			<listitem><para>N: Kein Passwort notwendig</para></listitem>
+			<listitem><para>D: Konto deaktiviert</para></listitem>
+			<listitem><para>H: Home-Verzeichnis notwendig</para></listitem>
+			<listitem><para>T: Temporäres Duplikat eines anderen Kontos</para></listitem>
+			<listitem><para>U: Reguläres Benutzerkonto</para></listitem>
+			<listitem><para>M: MNS-Anmeldebenutzerkonto</para></listitem>
+			<listitem><para>W: Workstation-Vertrauenskonto</para></listitem>
+			<listitem><para>S: Server-Vertrauenskonto</para></listitem>
+			<listitem><para>L: Automatisches Sperren</para></listitem>
+			<listitem><para>X: Passwort läuft nicht aus</para></listitem>
+			<listitem><para>I: Domänen-Vertrauenskonto</para></listitem>
 		</itemizedlist>
 	</para>
 
-		<para>Example: <command>-c "[X          ]"</command></para>
+		<para>Beispiel: <command>-c "[X          ]"</command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-a</term>
-		<listitem><para>This option is used to add a user into the
-		database. This command needs a user name specified with
-		the -u switch. When adding a new user, pdbedit will also
-		ask for the password to be used.</para>
+		<listitem><para>Mit dieser Option wird ein Benutzer zur Datenbank
+		hinzugefügt. Dieser Befehl benötigt einen mit dem Schalter -u 
+		angegebenen Benutzernamen. Beim Hinzufügen eines neuen Benutzers
+		fragt pdbedit auch nach dem entsprechenden Passwort.</para>
 
-		<para>Example: <command>pdbedit -a -u sorce</command>
+		<para>Beispiel: <command>pdbedit -a -u sorce</command>
 <programlisting>new password:
 retype new password
 </programlisting>
 </para>
 
-		<note><para>pdbedit does not call the unix password syncronisation 
-				script if <smbconfoption><name>unix password sync</name></smbconfoption>
-				has been set. It only updates the data in the Samba 
-				user database. 
+		<note><para>pdbedit ruft nicht das UNIX-Skript für die Passwortsynchronisation
+			auf, wenn 
+			<smbconfoption><name>unix password sync</name></smbconfoption>
+			gesetzt wurde. Es aktualisiert lediglich die Daten in der 
+			Benutzerdatenbank von Samba. 
 			</para>
 
-			<para>If you wish to add a user and synchronise the password
-				that immediately, use <command>smbpasswd</command>'s <option>-a</option> option.
+			<para>Wenn Sie einen Benutzer hinzufügen und das Passwort sofort 
+			synchronisieren möchten, verwenden Sie <command>smbpasswd</command>
+			mit der Option <option>-a</option>.
 			</para>
 		</note>
 		</listitem>
@@ -274,22 +275,23 @@ retype new password
 		
 		<varlistentry>
 		<term>-r</term>
-		<listitem><para>This option is used to modify an existing user 
-		in the database. This command needs a user name specified with the -u 
-		switch. Other options can be specified to modify the properties of 
-		the specified user. This flag is kept for backwards compatibility, but 
-		it is no longer necessary to specify it.
+		<listitem><para>Mit dieser Option wird ein vorhandener Benutzer in der 
+		Datenbank geändert. Dieser Befehl benötigt einen mit dem Schalter -u 
+		angegebenen Benutzernamen. Um die Eigenschaften des angegebenen Benutzers 
+		zu ändern, können andere Optionen angegeben werden. Dieses Flag wurde
+		aus Gründen der Rückwärtskompatibilität beibehalten, aber es ist nicht
+		mehr notwendig, es anzugeben.
 		</para></listitem>
 		</varlistentry>
 			
 		<varlistentry>
 		<term>-m</term>
-		<listitem><para>This option may only be used in conjunction 
-		with the <parameter>-a</parameter> option. It will make
-		pdbedit to add a machine trust account instead of a user
-		account (-u username will provide the machine name).</para>
+		<listitem><para>Diese Option darf nur gemeinsam mit der Option 
+		<parameter>-a</parameter> benutzt werden. Sie veranlasst pdbedit, 
+		ein Rechnervertrauenskonto statt eines Benutzerkontos hinzuzufügen 
+		(-u Benutzername gibt den Rechnernamen an).</para>
 
-		<para>Example: <command>pdbedit -a -m -u w2k-wks</command>
+		<para>Beispiel: <command>pdbedit -a -m -u w2k-wks</command>
 		</para>
 		</listitem>
 		</varlistentry>
@@ -297,69 +299,74 @@ retype new password
 		
 		<varlistentry>
 		<term>-x</term>
-		<listitem><para>This option causes pdbedit to delete an account
-		from the database. It needs a username specified with the
-		-u switch.</para>
+		<listitem><para>Bei dieser Option löscht pdbedit ein Konto aus der
+		Datenbank. Sie benötigt einen mit dem Schalter -u angegebenen 
+		Benutzernamen.</para>
 
-		<para>Example: <command>pdbedit -x -u bob</command></para>
+		<para>Beispiel: <command>pdbedit -x -u bob</command></para>
 		</listitem>
 		</varlistentry>
 		
 
 		<varlistentry>
-		<term>-i passdb-backend</term>
-		<listitem><para>Use a different passdb backend to retrieve users
-                than the one specified in smb.conf. Can be used to import data into
-                your local user database.</para>
+		<term>-i Passdb-Backend</term>
+		<listitem><para>Verwendet ein anderes Passwortdatenbank-Backend, um an die
+		Benutzer heranzukommen, als jenes, das in smb.conf angegeben ist. Kann dazu
+		verwendet werden, Daten in Ihre lokale Benutzerdatenbank zu 
+		importieren.</para>
 
-		<para>This option will ease migration from one passdb backend to
-		another.</para>
+		<para>Diese Option erleichtert die Migration von einem Passdb-Backend zu
+		einem anderen.</para>
 
-		<para>Example: <command>pdbedit -i smbpasswd:/etc/smbpasswd.old
+		<para>Beispiel: <command>pdbedit -i smbpasswd:/etc/smbpasswd.old
                 </command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-e passdb-backend</term>
-		<listitem><para>Exports all currently available users to the
-		specified password database backend.</para>
+		<term>-e Passdb-Backend</term>
+		<listitem><para>Exportiert alle momentan verfügbaren Benutzer in das
+		angegebene Passwortdatenbank-Backend.</para>
 
-		<para>This option will ease migration from one passdb backend to
-		another and will ease backing up.</para>
+		<para>Diese Option erleichtert die Migration von einem Passdb-Backend zu
+		einem anderen ebenso wie die Anfertigung von Backups.</para>
 		
-		<para>Example: <command>pdbedit -e smbpasswd:/root/samba-users.backup</command></para>
+		<para>Beispiel: <command>pdbedit -e smbpasswd:/root/samba-users.backup</command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-g</term>
-		<listitem><para>If you specify <parameter>-g</parameter>,
-		then <parameter>-i in-backend -e out-backend</parameter>
-		applies to the group mapping instead of the user database.</para>
+		<listitem><para>Wenn Sie <parameter>-g</parameter> angeben,
+		dann bezieht sich <parameter>-i Ein-Backend -e Aus-Backend</parameter>
+		auf die Gruppenzuordnung statt auf die Benutzerdatenbank.</para>
 
-		<para>This option will ease migration from one passdb backend to
-		another and will ease backing up.</para>
+		<para>Diese Option erleichtert die Migration von einem Passdb-Backend zu
+		einem anderen ebenso wie die Anfertigung von Backups.</para>
 		
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-b passdb-backend</term>
-		<listitem><para>Use a different default passdb backend. </para>
+		<term>-b Passdb-Backend</term>
+		<listitem><para>Verwendet standardmäßig ein anderes Passdb-Backend. </para>
 
-		<para>Example: <command>pdbedit -b xml:/root/pdb-backup.xml -l</command></para>
+		<para>Beispiel: <command>pdbedit -b xml:/root/pdb-backup.xml -l</command></para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-P account-policy</term>
-		<listitem><para>Display an account policy</para>
-		<para>Valid policies are: minimum password age, reset count minutes, disconnect time,
-		user must logon to change password, password history, lockout duration, min password length,
-		maximum password age and bad lockout attempt.</para>
+		<term>-P Konto-Policy</term>
+		<listitem><para>Zeigt eine Konto-Policy an.</para>
+		<para>Gültige Policies sind: minimum password age (min. Passwortalter), 
+		reset count minutes (???), disconnect time (Trennungszeit), user must 
+		logon to change password (Benutzer muss sich anmelden um Passwort zu 
+		ändern), password history (Passwort-History), lockout duration
+		(Sperrzeit), min password length (min. Passwortlänge),
+		maximum password age (größtes Passwortalter) und bad lockout attempt
+		(fehlerhafte Anmeldeversuche vor dem Sperren).</para>
 
-		<para>Example: <command>pdbedit -P "bad lockout attempt"</command></para>
+		<para>Beispiel: <command>pdbedit -P "bad lockout attempt"</command></para>
 <para><programlisting>
 account policy value for bad lockout attempt is 0
 </programlisting></para>
@@ -369,13 +376,13 @@ account policy value for bad lockout attempt is 0
 
 
 		<varlistentry>
-		<term>-C account-policy-value</term>
-		<listitem><para>Sets an account policy to a specified value. 
-		This option may only be used in conjunction
-		with the <parameter>-P</parameter> option.
+		<term>-C Konto-Policy-Wert</term>
+		<listitem><para>Setzt eine Konto-Policy auf einen angegebenen Wert. 
+		Diese Option darf nur gemeinsam mit der Option <parameter>-P</parameter>
+		benutzt werden.
 		</para>
 
-		<para>Example: <command>pdbedit -P "bad lockout attempt" -C 3</command></para>
+		<para>Beispiel: <command>pdbedit -P "bad lockout attempt" -C 3</command></para>
 <para><programlisting>
 account policy value for bad lockout attempt was 0
 account policy value for bad lockout attempt is now 3
@@ -391,9 +398,9 @@ account policy value for bad lockout attempt is now 3
 
 
 <refsect1>
-	<title>NOTES</title>
+	<title>BEMERKUNGEN</title>
 	
-	<para>This command may be used only by root.</para>
+	<para>Dieser Befehl darf nur von root ausgeführt werden.</para>
 </refsect1>
 
 
@@ -405,7 +412,7 @@ account policy value for bad lockout attempt is now 3
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbpasswd</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry></para>
