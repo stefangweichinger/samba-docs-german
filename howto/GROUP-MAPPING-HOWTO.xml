@@ -76,7 +76,7 @@
 	</para>
 	
 
-	<figure id="idmap-store-gid2sid"><title>IDMAP: Speichern von Gruppen-Mappings.</title>
+	<figure id="idmap-store-gid2sid"><title>IDMAP: Speichern von Gruppen-Mappings</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid.png" scale="50" scalefit="1"/></imageobject>
@@ -88,7 +88,7 @@
 	<indexterm><primary>groupadd</primary></indexterm>
 	<indexterm><primary>groupdel</primary></indexterm>
 	Administratoren sollten beachten, dass &smb.conf; Gruppen-Interface-Skripte direkt die UNIX/Linux Systemwerkzeuge
-	(die Shadow Utilities <command>groupadd</command>, <command>groupdel</command>, und <command>groupmod</command>) 
+	(die Shadow Utilities <command>groupadd</command>, <command>groupdel</command> und <command>groupmod</command>) 
 	verwenden. Die resultierenden Gruppennamen können nur Zeichen enthalten, die auch die oben genannten Werkzeuge
 	bearbeiten können. Wenn die Werkzeuge keine Großbuchstaben oder Leerzeichen erlauben, wird das Erstellen der
 	Gruppe <ntgroup>Domänen-Administratoren</ntgroup> nicht möglich sein.
@@ -285,7 +285,7 @@
 	</note></para>
 
 	<para>
-	Es ist zulässig, jede Domänengruppe, welche benötigt wirdi, zu erzeugen, stellen Sie lediglich sicher, 
+	Es ist zulässig, jede Domänengruppe, welche benötigt wird, zu erzeugen, stellen Sie lediglich sicher, 
 	dass die notwendige (bekanntgegebene) Domänengruppe erzeugt wurde und Ihrer Standard-RID
 	zugewiesen wurde. Andere Gruppen, die Sie anlegen, können Sie jeder beliebigen RID zuordnen, 
 	die Sie benutzen möchten.
