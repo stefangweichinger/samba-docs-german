@@ -1086,9 +1086,10 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung 
 			in der UNIX-Berechtigungs-Welt und repräsentiert
 			die <constant>vererbten</constant> Berechtigungen, die jede Datei, die in 
-			diesem Verzeichnis erzeugt wird, vererben wird.</para>
+			diesem Verzeichnis erzeugt wird, erben würde.</para>
 
-			<para>Samba vereinigt diese vererbten Berechtigungen für NT, indem es die UNIX Berechtigungsmodi als ein NT ACL zurückgibt, so
+			<para>Samba vereinigt diese vererbten Berechtigungen für NT, indem es die 
+			UNIX-Berechtigungsmodi als ein NT ACL zurückgibt, so
 			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hatte.</para>
 		</sect3>
 	</sect2>
@@ -1103,43 +1104,55 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		gemacht werden, zusammenhängen.</para>
 
 		<para>Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
-		auf <constant>false</constant> gesetzt ist schlägt jeder Versuch, Sicherheitsberechtigungen zu setzen
+		auf <constant>false</constant> gesetzt ist, schlägt jeder Versuch, 
+		Sicherheitsberechtigungen zu setzen,
 		mit einer Meldung <errorname>'Zugriff verweigert'</errorname> fehl.</para>
 
-		<para>Das erste, was anzumerken ist, dass der <guibutton>Hinzufügen</guibutton> Knopf
-		keine Samba-Benutzerliste zurückgeben wird (es wird eine Fehlermeldung ausgeben, die besagt
-		<errorname>`Der Remoteprozedur-Aufruf schlug fehl und konnte nicht ausgeführt werden'</errorname>).
-		Das bedeutet, dass Sie nur die gegenwärtigen Benutzer/Gruppen/Welt-Berechtigungen, die in der Dialogbox
-		angezeigt werden, ändern können. Dies funktioniert deshalb so gut, weil es die einzigen Berechtigungen sind,
+		<para>Das erste, was anzumerken ist, ist, dass der Knopf
+		<guibutton>Hinzufügen</guibutton> 
+		keine Samba-Benutzerliste zurückgeben wird (es wird eine Fehlermeldung ausgegeben, 
+		die besagt
+		<errorname>`Der Remoteprozedur-Aufruf schlug fehl und konnte nicht ausgeführt 
+		werden'</errorname>).
+		Das bedeutet, dass Sie nur die gegenwärtigen Benutzer/Gruppen/Welt-Berechtigungen, 
+		die in der Dialogbox
+		angezeigt werden, ändern können. Dies funktioniert deshalb so gut, weil es die 
+		einzigen Berechtigungen sind,
 		die UNIX augenblicklich hat.</para>
 
 		<para>Falls ein Berechtigungsdrilling (entweder Benutzer, Gruppe oder Welt)
-		von der Liste der Berechtigungen in der NT Dialogbox entfernt wird, dann der
+		von der Liste der Berechtigungen in der NT-Dialogbox entfernt wird, und dann der
 		<guibutton>OK</guibutton> Knopf gedrückt wird, wird dies auf UNIX-Seite
-		mit <quote>keine Berechtigungen</quote> angewendet. Wenn Sie sich dann die Berechtigungen
-		nochmals ansehen wird der <quote>keine Berechtigungen</quote> Eintrag als das NT <command>O</command> Flag
-		wie oben beschrieben angezeigt. Dies erlaubt es Ihnen, Berechtigungen wieder auf eine Datei oder Verzeichnis
+		als <quote>keine Berechtigungen</quote> angewendet. Wenn Sie sich dann die Berechtigungen
+		nochmals ansehen, wird der Eintrag <quote>keine Berechtigungen</quote> als das 
+		NT-Flag <command>O</command> 
+		wie oben beschrieben angezeigt. Dies erlaubt es Ihnen, Berechtigungen wieder auf 
+		eine Datei oder Verzeichnis
 		zu setzen, nachdem Sie diese von einem der Drillingskomponenten entfernt hatten.</para>
 
-		<para>Weil UNIX nur die <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits eines
-		NT ACL unterstützt werden diese ignoriert, falls andere NT Sicherheitsattribute wie <constant>Löschzugriff</constant>
-		ausgewählt wurden, falls diese auf einem Samba Server angewandt werden.</para>
+		<para>Weil UNIX nur die Bits <quote>r</quote>, <quote>w</quote> und <quote>x</quote> 
+		eines NT ACL unterstützt, werden diese ignoriert, falls andere
+		NT Sicherheitsattribute wie <constant>Löschzugriff</constant>
+		ausgewählt wurden, falls diese auf einem Samba-Server angewandt werden.</para>
 
-		<para>Wenn Berechtigungen auf ein Verzeichnis gesetzt werden, wird der zweite Satz an Berechtigungen
-		(im zweiten Satz der Parenthesen) standardmässig auf alle Dateien in diesem Verzeichnis angewandt.
-		Falls Sie dies nicht wünschen müssen Sie die Auswahlbox <guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel>
+		<para>Wenn Berechtigungen auf ein Verzeichnis gesetzt werden, wird der zweite 
+		Satz an Berechtigungen (im zweiten Klammern-Paar)
+		standardmässig auf alle Dateien in diesem Verzeichnis angewandt.
+		Falls Sie dies nicht wünschen, müssen Sie die Auswahlbox 
+		<guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel>
 		in dem NT Dialog vor einem Klicken auf <guibutton>OK</guibutton> abwählen.</para>
 
-		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt Komponente zu entfernen
-		können Sie entweder eine Komponente auswählen und auf den <guibutton>Entfernen</guibutton> Knopf klicken oder
-		setzen Sie die Komponente darauf, nur die spezielle <constant>Berechtigung übernehmen</constant> Berechtigung
+		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt Komponente zu entfernen,
+		können Sie entweder eine Komponente auswählen und auf den Knopf <guibutton>Entfernen</guibutton> klicken oder
+		setzen Sie die Komponente darauf, nur die spezielle Berechtigung <constant>Berechtigung übernehmen</constant> 
 		(angezeigt als <command>O</command>) zu setzen.</para>
 	</sect2>
 
 	<sect2>
-		<title>Wechselwirkung mit den Standard Samba <quote>create mask</quote> Parametern</title>
+		<title>Die Wechselwirkung mit den Samba-Standard-Parametern <quote>create mask</quote>.</title>
 
-		<para>Es gibt vier Parameter, die das Wechselspiel mit den Standard Samba <parameter>create mask</parameter> Parametern kontrollieren.
+		<para>Es gibt vier Parameter, die das Wechselspiel mit den Samba-Standard-Parametern 
+		<parameter>create mask</parameter> kontrollieren.
 		Diese sind:
 
 		<itemizedlist>
@@ -1151,11 +1164,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 
 		</para>
 
-		<para>Sobald ein Benutzer auf <guibutton>OK</guibutton> klickt um Berechtigungen zu setzen mappt Samba
+		<para>Sobald ein Benutzer auf <guibutton>OK</guibutton> klickt, um Berechtigungen zu setzen, mappt Samba
 		die angegebenen Berechtigungen in einen Benutzer/Gruppe/Welt-Drillingssatz und prüft dann die geänderten
 		Berechtigungen für diese Datei gegen die in <smbconfoption><name>security mask</name></smbconfoption> gesetzten Bits.
-		Jedes geänderte Bit welches nicht mit <quote>1</quote> in diesem Parameter gesetzt wurde bleibt in den Dateiberechtigungen
-		unberücksichtigt.</para>
+		Jedes geänderte Bit, welches nicht mit <quote>1</quote> in diesem Parameter gesetzt wurde, bleibt in den 
+		Dateiberechtigungen unberücksichtigt.</para>
 
 		<para>Grundsätzlich werden Null-Bits in der <smbconfoption><name>security mask</name></smbconfoption>
 		als ein Satz von Bits behandelt, die der Benutzer <emphasis>nicht</emphasis> ändern darf, Einer-Bits darf der Benutzer
@@ -1163,7 +1176,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		</para>
 
 		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
-		der <smbconfoption><name>create mask</name></smbconfoption> Parameter. Um es einem Benutzer zu erlauben,
+		der Parameter <smbconfoption><name>create mask</name></smbconfoption>. Um es einem Benutzer zu erlauben,
 		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei zu ändern, setzen Sie diesen Parameter auf 0777.
 		</para>
 
@@ -1171,25 +1184,26 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<smbconfoption><name>force security mode</name></smbconfoption> Parameter gesetzt sind. Jedes geänderte Bit
 		wird passend zu den auf <quote>1</quote> gesetzten Bits in diesem Parameter zwangsläufig gesetzt.</para>
 
-		<para>Grundsätzlich werden Bits aus dem <parameter>force security mode</parameter> Parameter als ein Satz von Bits
-		behandelt die der Benutzer immer auf <quote>an</quote> gesetzt hat, wenn die Sicherheit einer Datei geändert wird.
+		<para>Grundsätzlich werden Bits aus dem Parameter <parameter>force security mode</parameter> als ein Satz von Bits
+		behandelt, die der Benutzer immer auf <quote>an</quote> gesetzt hat, wenn die Sicherheit einer Datei geändert wird.
 		</para>
 
 		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
-		der <smbconfoption><name>force create mode</name></smbconfoption> Parameter. Um es einem Benutzer zu erlauben,
-		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei ohne Berechtigungen zu ändern, setzen Sie diesen Parameter auf 000.
-		Die <smbconfoption><name>security mask</name></smbconfoption> und <parameter>force security mode</parameter>
-		Parameter werden angewendet, um die Anfragen in dieser Reihenfolge zu ändern.</para>
+		der Parameter <smbconfoption><name>force create mode</name></smbconfoption>. Um es einem Benutzer zu erlauben,
+		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei ohne Berechtigungen zu ändern, 
+		setzen Sie diesen Parameter auf 000.
+		Die Parameter <smbconfoption><name>security mask</name></smbconfoption> und <parameter>force security mode</parameter>
+		werden angewendet, um die Anfragen in dieser Reihenfolge zu ändern.</para>
 		
-		<para>Für ein Verzeichnis wird Samba diesselben Operationen wie zuvor für eine Datei beschrieben
+		<para>Für ein Verzeichnis wird Samba dieselben Operationen wie zuvor für eine Datei beschrieben
 		durchführen, ausser es wird der Parameter <parameter>directory security mask</parameter> anstatt des
 		Parameters <parameter>security mask</parameter> und <parameter>force directory security mode</parameter>
-		anstatt des <parameter>force security mode</parameter> Parameters angewandt.</para>
+		anstatt des Parameters <parameter>force security mode</parameter> angewandt.</para>
 
-		<para>Der <smbconfoption><name>directory security mask</name></smbconfoption> Parameter
-		ist standardmässig auf denselben Wert wie der <parameter>directory mask</parameter> Parameter
-		gesetzt und der <parameter>force directory security mode</parameter> Parameter ist standardmässig
-		auf denselben Wert wie der <smbconfoption><name>force directory mode</name></smbconfoption> Parameter
+		<para>Der Parameter <smbconfoption><name>directory security mask</name></smbconfoption> 
+		ist standardmässig auf denselben Wert wie der Parameter <parameter>directory mask</parameter> 
+		gesetzt und der Parameter <parameter>force directory security mode</parameter> ist standardmässig
+		auf denselben Wert wie der Parameter <smbconfoption><name>force directory mode</name></smbconfoption> 
 		gesetzt.
 		Auf diese Weise erzwingt Samba die Berechtigungs-Einschränkungen, die ein Administrator auf einer
 		Samba-Freigabe gesetzt hat, während den Benutzern weiterhin erlaubt wird, innerhalb dieser Einschränkung
@@ -1210,39 +1224,39 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	</sect2>
 
 	<sect2>
-		<title>Wechselwirkung mit den Standard Samba Dateiattribut-Vergaben</title>
+		<title>Die Wechselwirkung mit den Standard Samba Dateiattribut-Vergaben</title>
 
 		<note>
 		<para>Samba vergibt einige der DOS Attributebits (wie z.B. <quote>Nur lesen</quote>)
-		in den UNIX Berechtigungen einer Datei. Dies bedeutet, dass es einen
-		Konflikt zwischen den Berechtigungsbits, die durch den Sicherheitsdialog gesetzt wurden
-		geben kann und den Berechtigungen, die durch die Vergabe von Dateiattributen gesetzt wurden.
+		in den UNIX-Berechtigungen einer Datei. Dies bedeutet, dass es einen
+		Konflikt zwischen den Berechtigungsbits, die durch den Sicherheitsdialog gesetzt wurden,
+		und den Berechtigungen, die durch die Vergabe von Dateiattributen gesetzt wurden, geben kann.
 		</para>
 		</note>
 
-		<para>Falls eine Datei für den Eigentümer keinen UNIX Lesezugriff hat wird diese
+		<para>Falls eine Datei für den Eigentümer keinen UNIX-Lesezugriff hat, wird diese
 		als <quote>Nur lesen</quote> in dem Standarddialog der Registerkarte Dateiattribute angezeigt.
 		Leider ist dieser Dialog derselbe, der die Sicherheitsinformationen in einer anderen Registerkarte
 		enthält.
 		</para>
 
-		<para>Was dies heissen kann ist, dass der Eigentümer glaubt die Berechtigungen so ändern zu können,
-		dadurch dass es ihm erlaubt wird Lesezugriff durch Nutzung des Sicherheitsdialoges zu bekommen; er klickt
-		auf <guibutton>OK</guibutton> um zurück zu der Registerkarte mit den Standardattributen zu gelangen,
+		<para>Was dies heissen kann ist, dass der Eigentümer glaubt, die Berechtigungen so ändern zu können,
+		dadurch dass es ihm erlaubt wird, Lesezugriff durch Nutzung des Sicherheitsdialoges zu bekommen; er klickt
+		auf <guibutton>OK</guibutton>, um zurück zu der Registerkarte mit den Standardattributen zu gelangen,
 		klickt auf <guibutton>OK</guibutton> in diesem Dialog und NT setzt die Dateiberechtigungen zurück
 		auf Nur-lesen (weil dies die Attribute in diesem Dialog ihm sagen). Dies bedeutet, dass nach Setzen
 		der Berechtigungen und Klicken auf <guibutton>OK</guibutton> zum Zurückgehen auf den Attributedialog
-		Sie immer <guibutton>Abbrechen</guibutton> statt <guibutton>OK</guibutton> drücken sollten, um sicherzustellen,
-		dass Ihre Änderungen nicht überschrieben werden.</para>
+		Sie immer <guibutton>Abbrechen</guibutton> statt <guibutton>OK</guibutton> drücken sollten, 
+		um sicherzustellen, dass Ihre Änderungen nicht überschrieben werden.</para>
 	</sect2>
 </sect1>
 
 <sect1>
-<title>Allgemeine Fehler</title>
+<title>Gängige Fehler</title>
 
 <para>
 Datei-, Verzeichnis- und Freigabezugriffsprobleme sind häufig auf der Mailingliste. Die folgenden Beispiele wurden
-in letzter Zeit von der Maillingliste genommen.
+in letzter Zeit in der Maillingliste behandelt.
 </para>
 
 
@@ -1252,9 +1266,9 @@ in letzter Zeit von der Maillingliste genommen.
 	<para>
 	<quote>
 	Wir haben einige Schwierigkeiten mit Datei/Verzeichnis-Berechtigungen. Ich kann mich als Admin-User (root) an
-	einer Domäne anmelden und es gibt eine öffentliche Freigabe auf welcher jeder die Berechtigung zum Erzeugen und
+	einer Domäne anmelden und es gibt eine öffentliche Freigabe, auf welcher jeder die Berechtigung zum Erzeugen und
 	Ändern von Dateien haben sollte, aber nur root kann Dateien ändern, sonst niemand. Wir müssen dauernd auf dem
-	Server <userinput>chgrp -R users *</userinput> und <userinput>chown -R nobody *</userinput> eingeben um den
+	Server <userinput>chgrp -R users *</userinput> und <userinput>chown -R nobody *</userinput> eingeben, um den
 	anderen Benutzern das Ändern von Dateien zu erlauben.
 	</quote>
 	</para>
@@ -1290,17 +1304,17 @@ in letzter Zeit von der Maillingliste genommen.
 		<step>
 			<para>
 
-			Verzeichnis heisst: <replaceable>/foodbar</replaceable>
+			Verzeichnis heisst: <replaceable>/foobar</replaceable>
 <screen>
-&prompt;<userinput>chown jack.engr /foodbar</userinput>
+&prompt;<userinput>chown jack.engr /foobar</userinput>
 </screen>
 			</para>
 
 			<note><para>
 				<para>Dies ist genauso wie:</para>
 <screen>
-&prompt;<userinput>chown jack /foodbar</userinput>
-&prompt;<userinput>chgrp engr /foodbar</userinput>
+&prompt;<userinput>chown jack /foobar</userinput>
+&prompt;<userinput>chgrp engr /foobar</userinput>
 </screen>
 			</para></note>
 		</step>
@@ -1308,15 +1322,15 @@ in letzter Zeit von der Maillingliste genommen.
 			<para>Geben Sie jetzt ein:
 
 <screen>
-&prompt;<userinput>chmod 6775 /foodbar</userinput>
-&prompt;<userinput>ls -al /foodbar/..</userinput>
+&prompt;<userinput>chmod 6775 /foobar</userinput>
+&prompt;<userinput>ls -al /foobar/..</userinput>
 </screen>
 
 			</para>
 
 			<para>Dann sollten Sie dies sehen:
 <screen>
-drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
+drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foobar
 </screen>
 			</para>
 		</step>
@@ -1325,7 +1339,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<para>Geben Sie jetzt dies ein:
 <screen>
 &prompt;<userinput>su - jill</userinput>
-&prompt;<userinput>cd /foodbar</userinput>
+&prompt;<userinput>cd /foobar</userinput>
 &prompt;<userinput>touch Afile</userinput>
 &prompt;<userinput>ls -al</userinput>
 </screen>
@@ -1372,7 +1386,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<title>Dateioperationen, die als <emphasis>root</emphasis> mit <emphasis>force user</emphasis> gemacht wurden</title>
 
 		<para>
-		Wenn Sie einen Benutzer in <smbconfoption><name>admin users</name></smbconfoption> haben wird Samba für
+		Wenn Sie einen Benutzer in <smbconfoption><name>admin users</name></smbconfoption> haben, wird Samba für
 		diesen Benutzer Dateioperationen immer als <emphasis>root</emphasis> ausführen, sogar wenn
 		<smbconfoption><name>force user</name></smbconfoption> gesetzt wurde.
 		</para>
@@ -1382,7 +1396,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<title>MS Word mit Samba ändert den Eigentümer einer Datei</title>
 
 		<para>
-		<emphasis>Frage:</emphasis> <quote>Wenn Benutzer B ein Worddokument abspeichert welches Benutzer A
+		<emphasis>Frage:</emphasis> <quote>Wenn Benutzer B ein Worddokument abspeichert, welches Benutzer A
 		gehört, ist anschliessend der Eigentümer der aktualisierten Datei Benutzer B.
 		Warum macht Samba dies ? Wie kann ich das beheben ?</quote>
 		</para>
@@ -1391,17 +1405,17 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		<emphasis>Antwort:</emphasis>Word macht das folgende, wenn Sie ein Worddokument ändern: MS Word erzeugt
 		ein NEUES Dokument mit einem temporären Namen, Word schliesst dann das alte Dokument und löscht es, dann
 		benennt Word das neue Dokument mit dem Original-Dateinamen um.
-		Es gibt keinen Mechanismus von dem Samba in irgendeiner Weise wissen kann, dass das neue Dokument wirklich
+		Es gibt keinen Mechanismus, von dem Samba in irgendeiner Weise wissen kann, dass das neue Dokument wirklich
 		vom Eigentümer der Originaldatei stammen kann. Samba hat keine Möglichkeit zu erfahren, dass MS Word die
-		Datei umbenannt hat. Samba ist nur soweit in der Lage zu sagen, dass die Datei, die erzeugt wurde eine NEUE
+		Datei umbenannt hat. Samba ist nur soweit in der Lage zu sagen, dass die Datei, die erzeugt wurde, eine NEUE
 		Datei ist, aber nicht, dass die Applikation (Word) dies aktualisiert hat.
 		</para>
 
 		<para>
-		Es gibt einen Workaround um diese Berechtigungsprobleme zu lösen. Dieser Workaround setzt voraus, dass Sie
-		verstehen, wie Sie das Verhalten des Dateisystems innerhalb der &smb.conf; Datei steuern können, sowie
-		das Verständnis wie ein UNIX Dateisystem funktioniert. Setzen Sie auf das Verzeichnis in welchem Sie
-		Word Dokumente ändern möchten: <command>chmod g+s `directory_name'</command>
+		Es gibt einen Workaround, um diese Berechtigungsprobleme zu lösen. Dieser Workaround setzt voraus, dass Sie
+		verstehen, wie Sie das Verhalten des Dateisystems innerhalb der Datei &smb.conf; steuern können, sowie
+		das Verständnis, wie ein UNIX Dateisystem funktioniert. Setzen Sie auf das Verzeichnis, in welchem Sie
+		Word-Dokumente ändern möchten: <command>chmod g+s `directory_name'</command>
 		Dies stellt sicher, dass alle Dateien mit der Gruppe erzeugt werden, der das Verzeichnis gehört.
 		In dem Abschnitt in der &smb.conf;, der die Freigabe deklariert setzen Sie:
 		</para>
@@ -1414,7 +1428,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		</para>
 
 		<para>
-		Diese beiden Einstellungen stellen sicher, dass alle Verzeichnisse und Dateien die in der Freigabe
+		Diese beiden Einstellungen stellen sicher, dass alle Verzeichnisse und Dateien, die in der Freigabe
 		erzeugt werden, les- und schreibbar durch den Eigentümer und die Gruppe sind, die auf das Verzeichnis
 		selbst gesetzt sind.
 		</para>
