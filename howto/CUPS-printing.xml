@@ -4847,90 +4847,80 @@ einen Drucker mit dem Druck-Pfad <parameter>http://cupsserver:631/printers/druck
 Wir suchen nach wie vor nach einer Lösung dieses Problems. Vielleicht könnte ein Anmelde-Skript automatisch
 Drucker für alle Benutzer installieren.</para></sect2>
 
-<sect2><title>Print Change Notify Functions on NT-clients</title>
+<sect2><title>FIXME : Print Change Notify Functions on NT-clients</title>
 <para>For print change, notify functions on NT++ clients.
-These need to run the <command>Server</command> service first (renamed to
-<command>File &amp; Print Sharing for MS Networks</command> in
-XP).</para></sect2>
+Diese müssen zuerst den <command>Server</command>-Dienst ausführen (umbenannt auf
+<command>Datei- &amp; und Druckerfreigabe für Microsoft-Netzwerke</command> in XP).</para></sect2>
 
 <sect2>
 <title>Win XP-SP1</title>
 
-<para>Win XP-SP1 introduced a Point and Print Restriction Policy (this restriction does not apply to
-<quote>Administrator</quote> or <quote>Power User</quote> groups of users). In Group Policy
-Object Editor, go to <guimenu>User Configuration -> Administrative Templates ->
- Control Panel -> Printers</guimenu>. The policy is automatically set to
-<constant>Enabled</constant> and the <constant>Users can only Point
-and Print to machines in their Forest</constant> . You probably need
-to change it to <constant>Disabled</constant> or <constant>Users can
-only Point and Print to these servers</constant> to make
-driver downloads from Samba possible.
+<para>Win XP-SP1 führte eine Point and Print Beschränkungs-Richtlinie ein (diese Beschränkung gilt nicht für
+die Benutzergruppen
+<quote>Administrator</quote> oder <quote>Power User</quote>). Im Gruppenrichtlinien-Editor gehen Sie auf
+<guimenu>Benutzerkonfiguration -> Administrative Vorlagen ->
+ Systemsteuerung -> Drucker</guimenu>. Diese Richtlinie ist automatisch aktiviert und auf
+<constant>Benutzer können Point and Print nur für Computer in der eigenen Gesamtstruktur verwenden.</constant>.
+Sie müssen dies eventuell auf <constant>Deaktiviert</constant> oder <constant>Point and Print nur mit folgenden
+Servern</constant> setzen, um Treiberdownloads von Samba zu ermöglichen.
 </para>
 </sect2>
 
 <sect2>
-<title>Print Options for All Users Can't Be Set on Windows 200x/XP</title>
+<title>Drucker-Optionen für aller Benutzer können nicht unter Windows 200x/XP gesetzt werden</title>
 
-<para>How are you doing it? I bet the wrong way (it is not
-easy to find out, though). There are three different ways to bring
-you to a dialog that <emphasis>seems</emphasis> to set everything. All
-three dialogs <emphasis>look</emphasis> the same, yet only one of them
-does what you intend. You need to be
-Administrator or Print Administrator to do this for all users. Here
-is how I do in on XP:
+<para>Wie machen Sie das? Ich wette, auf die falsche Art (es ist auch nicht einfach herauszufinden).
+Es gibt drei verschiedene Arten, Sie zu einem Dialog zu bringen, der <emphasis>scheinbar</emphasis> all
+diese Dinge setzen kann. Alle drei Dialoge <emphasis>sehen</emphasis> gleich aus, jedoch tut nur einer das, was
+Sie beabsichtigen. Sie müssen Administrator sein, oder Druck-Administrator, um dies für alle Benutzer tun zu
+können. Hier sehen Sie, wie ich das in XP mache:
 </para>
 
 <orderedlist numeration="upperalpha">
 
-<listitem><para>The first wrong way:
+<listitem><para>Die erste falsche Art:
 
 <orderedlist>
-<listitem><para>Open the <guilabel>Printers</guilabel>
-folder.</para></listitem>
+<listitem><para>Öffnen von <guilabel>Drucker und Faxgeräte</guilabel>.</para></listitem>
 
-<listitem><para>Right-click on the printer
-(<guilabel>remoteprinter on cupshost</guilabel>) and
-select in context menu <guimenuitem>Printing
-Preferences...</guimenuitem></para></listitem>
+<listitem><para>Rechtsklick auf den Drucker 
+(<guilabel>netzwerkdrucker auf cupshost</guilabel>) und Auswahl von <guimenuitem>Druckeinstellungen</guimenuitem>
+im Kontextmenü.</para></listitem>
 
-<listitem><para>Look at this dialog closely and remember what it looks
-like.</para></listitem>
+<listitem><para>Sehen Sie sich diesen Dialog genau an, und versuchen Sie, sich genau zu merken, wie er aussieht.
+</para></listitem>
 </orderedlist>
 </para>
 </listitem>
 
-<listitem><para>The second wrong way:
+<listitem><para>Die zweite falsche Art:
 
 <orderedlist>
-<listitem><para>Open the <guilabel>Printers</guilabel>
-folder.</para></listitem>
+<listitem><para>Öffnen von <guilabel>Drucker und Faxgeräte</guilabel>.</para></listitem>
 
-<listitem><para>Right-click on the printer (<guilabel>remoteprinter on
-cupshost</guilabel>) and select the context menu
-<guimenuitem>Properties</guimenuitem>.</para></listitem>
+<listitem><para>Rechtsklick auf den Drucker
+(<guilabel>netzwerkdrucker auf cupshost</guilabel>) und Auswahl von <guimenuitem>Eigenschaften</guimenuitem>
+im Kontextmenü.</para></listitem>
 
-<listitem><para>Click on the <guilabel>General</guilabel>
-tab.</para></listitem>
+<listitem><para>Klick auf <guilabel>Allgemein</guilabel>.</para></listitem>
 
-<listitem><para>Click on the button <guibutton>Printing
-Preferences...</guibutton></para></listitem>
+<listitem><para>Klick auf <guibutton>Druckeinstellungen...</guibutton></para></listitem>
 
-<listitem><para>A new dialog opens. Keep this dialog open and go back
-to the parent dialog.</para></listitem>
+<listitem><para>Ein neuer Dialog öffnet sich. Halten Sie diesen Dialog geöffnet und gehen Sie zurück zum
+ersten Dialog.</para></listitem>
 </orderedlist>
 </para>
 </listitem>
 
-<listitem><para>The third, and the correct way:
+<listitem><para>Die dritte, und richtige Art:
 
 <orderedlist>
 
-<listitem><para>Open the <guilabel>Printers</guilabel>
-folder.</para></listitem>
+<listitem><para>Öffnen von <guilabel>Drucker und Faxgeräte</guilabel>.</para></listitem>
+</para></listitem>
 
-<listitem><para>Click on the <guilabel>Advanced</guilabel>
-tab. (If everything is <quote>grayed out,</quote> then you are not logged
-in as a user with enough privileges).</para></listitem>
+<listitem><para>Klick auf <guilabel>Erweitert</guilabel>. (Wenn alles <quote>grau ist</quote>, dann sind Sie 
+nicht als Benutzer mit ausreichenden Rechten angemeldet).</para></listitem>
 
 <listitem><para>Click on the <guibutton>Printing
 Defaults...</guibutton> button.</para></listitem>
