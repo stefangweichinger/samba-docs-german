@@ -598,14 +598,14 @@ für ein Konto, das die nötigen Privilegien hat, um Maschinen der Domäne hinzuzuf
 erfolgreich ist, werden Sie die Nachricht in Ihrem Terminal-Fenster sehen, die unten gezeigten Text
 enthält. Wo alte NT4-artige Domänen-Architektur eingesetzt wird:
 <screen>
-<computeroutput>ÜBERSETZUNG VON Joined domain DOM.</computeroutput>
+<computeroutput>Joined domain DOM.</computeroutput>
 </screen>
 </para>
 
 <para>
 Wo Active Directory eingesetzt wird:
 <screen>
-<computeroutput>ÜBERSETZUNG VON Joined SERV1 to realm MYREALM.</computeroutput>
+<computeroutput>Joined SERV1 to realm MYREALM.</computeroutput>
 </screen>
 </para>
 
