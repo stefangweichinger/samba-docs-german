@@ -401,7 +401,7 @@ resolution methods will be attempted in this order. </para></listitem>
 
 <!ENTITY stdarg.netbios.name '
 <varlistentry>
-<term>-n &lt;primärer NetBIOS-Name&gt;</term>
+<term>-n &lt;NetBIOS-Hauptname&gt;</term>
 <listitem><para>Mit dieser Option können Sie den NetBIOS-Namen überschreiben,
 den Samba für sich selbst benutzt. Das ist identisch damit, dass Sie den
 Parameter <smbconfoption><name>netbios name</name></smbconfoption> in der
@@ -412,33 +412,32 @@ Einstellungen in &smb.conf;.</para></listitem>
 
 <!ENTITY stdarg.scope '
 <varlistentry>
-<term>-i &lt;scope&gt;</term>
-<listitem><para>This specifies a NetBIOS scope that
-<command>nmblookup</command> will use to communicate with when
-generating NetBIOS names. For details on the use of NetBIOS
-scopes, see rfc1001.txt and rfc1002.txt. NetBIOS scopes are
-<emphasis>very</emphasis> rarely used, only set this parameter
-if you are the system administrator in charge of all the
-NetBIOS systems you communicate with.</para></listitem>
+<term>-i &lt;Scope&gt;</term>
+<listitem><para>Dies gibt einen NetBIOS-Scope an, mit dem 
+<command>nmblookup</command> beim Generieren von NetBIOS-Namen 
+kommuniziert. Für Details zur Verwendung von NetBIOS_Scopes
+siehe rfc1001.txt und rfc1002.txt. NetBIOS-Scopes werden 
+<emphasis>sehr</emphasis> selten benutzt. Setzen Sie diesen Parameter
+nur dann, wenn Sie als Systemadministrator für alle NetBIOS-Systeme 
+zuständig sind, mit denen Sie kommunizieren.</para></listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.workgroup '
 <varlistentry>
-<term>-W|--workgroup=domain</term>
-<listitem><para>Set the SMB domain of the username.   This
-overrides the default domain which is the domain defined in
-smb.conf.  If the domain specified is the same as the servers 
-NetBIOS name, it causes the client to log on using the servers local 
-SAM (as opposed to the Domain SAM). </para></listitem>
+<term>-W|--workgroup=Domäne</term>
+<listitem><para>Setzt die SMB-Domäne des Benutzernamens. Dies überschreibt
+die vorgegebene Domäne, die in smb.conf definiert wird. Wenn die definierte
+Domäne identisch ist mit dem NetBIOS-Namen des Servers, meldet sich der 
+Client unter Verwendung des lokalen SAMs des Servers an (statt des 
+Domänen-SAMs).</para></listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.socket.options '
 <varlistentry>
-<term>-O socket options</term>
-<listitem><para>TCP socket options to set on the client
-socket. See the socket options parameter in
-the &smb.conf; manual page for the list of valid
-options. </para></listitem>
+<term>-O Socket-Optionen</term>
+<listitem><para>TCP-Socket-Optionen, die beim Client-Socket eingestellt
+werden können. Siehe Parameter socket options in der manpage &smb.conf;, 
+um eine Liste der gültigen Optionen zu sehen.</para></listitem>
 </varlistentry>
 '>
 
