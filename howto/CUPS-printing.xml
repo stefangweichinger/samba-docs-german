@@ -1459,38 +1459,33 @@ das gesamte Bild dieses Puzzles am Ende dieses Dokuments.
 <title><filename>mime.convs</filename></title>
 
 <para>
-CUPS auto-constructs all possible filtering chain paths for any given
-MIME type, and every printer installed. But how does it decide in
-favor or against a specific alternative?  (There may often be cases
-where there is a choice of two or more possible filtering chains for
-the same target printer.) Simple. You may have noticed the figures in
-the third column of the mime.convs file. They represent virtual costs
-assigned to this filter. Every possible filtering chain will sum up to
-a total <quote>filter cost.</quote> CUPS decides for the most <quote>inexpensive</quote> route.
+CUPS bildet automatisch alle möglichen Filterketten für jeden beliebigen MIME-Typ, und jeden installierten
+Drucker. Aber wie entscheidet es für oder gegen eine bestimmte Alternative? (Es kann oft Fälle geben, in denen
+es zwei oder mehr Filterketten für denselben Ziel-Drucker gibt.) Einfach. Sie haben vielleicht die Zahlen in der
+dritten Spalte der Datei mime.convs bemerkt. Diese repräsentieren virtuelle Kosten, die dem jeweiligen Filter
+zugeordnet sind. Jede mögliche Filterkette ergibt eine Summe von <quote>Filter-Kosten.</quote>CUPS entscheidet
+zugunsten der <quote>günstigsten</quote> Route.
 </para>
 
 <tip><para>
-The setting of <parameter>FilterLimit 1000</parameter> in
-<filename>cupsd.conf</filename> will not allow more filters to
-run concurrently than will consume a total of 1000 virtual filter
-cost. This is an efficient way to limit the load of any CUPS
-server by setting an appropriate <quote>FilterLimit</quote> value. A FilterLimit of
-200 allows roughly one job at a time, while a FilterLimit of 1000 allows
-approximately five jobs maximum at a time.
+Die Einstellung von <parameter>FilterLimit 1000</parameter> in <filename>cupsd.conf</filename> erlaubt es nicht,
+mehr Filter gleichzeitig auszuführen, als solche, die insgesamt 1000 virtuelle Filter-Kosten verbrauchen. Dies
+ist eine effiziente Art, die Last eines CUPS-Servers zu begrenzen, indem man einen passenden Wert für
+<quote>FilterLimit</quote> setzt. Ein FilterLimit von 200 erlaubt nur ungefähr einen Auftrag zur gleichen Zeit, 
+während ein FilterLimit von 1000 ungefähr 5 Aufträge gleichzeitig erlaubt.
 </para></tip>
 </sect2>
 
 <sect2>
-	<title><quote>Raw</quote> Printing</title>
+	<title><quote>Raw</quote> Druck</title>
 
 <para>
-	You can tell CUPS to print (nearly) any file <quote>raw</quote>. <quote>Raw</quote> means it
-	will not be filtered. CUPS will send the file to the printer <quote>as is</quote>
-without bothering if the printer is able to digest it. Users need to
-take care themselves that they send sensible data formats only. Raw
-printing can happen on any queue if the <quote><parameter>-o raw</parameter></quote> option is specified
-on the command line. You can also set up raw-only queues by simply not
-associating any PPD with it. This command:
+Sie können CUPS (so ziemlich) jede Datei <quote>raw</quote> drucken lassen. <quote>Raw</quote> bedeutet, daß sie
+nicht gefiltert wird. CUPS sendet die Datei an den Drucker <quote>wie sie ist</quote>, ohne sich darum zu 
+kümmern, ob der Drucker imstande ist, diese Datei zu <quote>verdauen</quote>. Die Benutzer müssen sich selbst
+darum kümmern, daß sie nur sinnvolle Datenformate senden. Raw-Druck kann in jeder Warteschlange passieren, wenn
+die Option <quote><parameter>-o raw</parameter></quote> auf der Befehlszeile angegeben wird. Sie können auch
+nur-raw-Queues anlegen, indem Sie einfach keinerlei PPD mit einer Queue assoziieren. Dieser Befehl:
 </para>
 
 <para><screen>
@@ -1498,32 +1493,27 @@ associating any PPD with it. This command:
 </screen></para>
 
 <para>
-	sets up a queue named <quote>rawprinter</quote>, connected via the <quote>socket</quote>
-	protocol (a.k.a. <quote>HP JetDirect</quote>) to the device at IP address
-11.12.1.3.14, using port 9100. (If you had added a PPD with
-<command>-P /path/to/PPD</command> to this command line, you would
-have installed a <quote>normal</quote> print queue.
+installiert eine Queue namens <quote>rawprinter</quote>, verbunden mittels dem Protokoll <quote>socket</quote>
+(a.k.a. <quote>HP JetDirect</quote>) mit dem Gerät auf IP-Adresse 11.12.1.3.14, Port 9100. (Wenn Sie ein PPD
+mit <command>-P /path/to/PPD</command> der Befehlszeile hinzugefügt hätten, hätten Sie eine 
+<quote>normale</quote> Druck-Queue installiert.)
 </para>
 
 <para>
-CUPS will automatically treat each job sent to a queue as a <quote>raw</quote> one,
-if it can't find a PPD associated with the queue. However, CUPS will
-only send known MIME types (as defined in its own mime.types file) and
-refuse others.
+CUPS behandelt automatisch jeden Auftrag, der an eine Queue gesendet wird, als <quote>raw</quote>, wenn es keine
+mit der Queue assoziierte PPD vorfindet. Jedoch wird CUPS nur bekannte MIME-Typen senden (wie in seiner eigenen
+Datei mime.types definiert) und andere ablehnen.
 </para>
 </sect2>
 
 <sect2>
-<title>application/octet-stream Printing</title>
+<title>application/octet-stream Druck</title>
 
 <para>
-Any MIME type with no rule in the
-<filename>/etc/cups/mime.types</filename> file is regarded as unknown
-or <parameter>application/octet-stream</parameter> and will not be
-sent. Because CUPS refuses to print unknown MIME types per default,
-you will probably have experienced the fact that print jobs originating
-from Windows clients were not printed. You may have found an error
-message in your CUPS logs like:
+Jeder MIME-Typ ohne Regel in der Datei <filename>/etc/cups/mime.types</filename> wird als unbekannt oder als
+<parameter>application/octet-stream</parameter> betrachtet und nicht gesendet. Weil CUPS per Standard ablehnt,
+unbekannte MIME-Typen zu drucken, haben Sie vielleicht schon einmal erlebt, daß Druckaufträge von Windows-Clients
+nicht gedruckt wurden. Sie haben vielleicht eine Fehlermeldung in Ihren CUPS-Logdateien gefunden, die lautet wie:
 </para>
 
 <para><computeroutput>
@@ -1531,8 +1521,8 @@ message in your CUPS logs like:
 </computeroutput></para>
 
 <para>
-To enable the printing of <parameter>application/octet-stream</parameter> files, edit
-these two files:
+Um das Drucken von Dateien des Typs <parameter>application/octet-stream</parameter> zu ermöglichen, müssen Sie
+zwei Dateien editieren:
 </para>
 
 <itemizedlist>
@@ -1564,61 +1554,54 @@ application/octet-stream   application/vnd.cups-raw   0   -
 
 <indexterm><primary>MIME</primary></indexterm>
 
-This line tells CUPS to use the <emphasis>Null Filter</emphasis>
-(denoted as <quote>-</quote>, doing nothing at all) on
-<parameter>application/octet-stream</parameter>, and tag the result as
-<parameter>application/vnd.cups-raw</parameter>. This last one is
-always a green light to the CUPS scheduler to now hand the file over
-to the backend connecting to the printer and sending it over.
+Diese Zeile weist CUPS an, für den MIME-Typen <parameter>application/octet-stream</parameter> den 
+<emphasis>Null Filter</emphasis> zu verwenden (markiert mit <quote>-</quote>, tut gar nichts), und das Resultat
+als <parameter>application/vnd.cups-raw</parameter> zu kennzeichnen. Dies ist immer ein grünes Licht für den
+CUPS-Scheduler, um die Datei an das Backend zu übergeben, das sich dann zum Drucker verbindet und die Datei
+sendet.
 </para>
 
-<note><para>Editing the <filename>mime.convs</filename> and the
-<filename>mime.types</filename> file does not
-<emphasis>enforce</emphasis> <quote>raw</quote> printing, it only
-<emphasis>allows</emphasis> it.
+<note><para>Das Editieren von <filename>mime.convs</filename> und <filename>mime.types</filename>
+ <emphasis>erzwingt</emphasis> den <quote>raw</quote>-Druck nicht, es <emphasis>erlaubt</emphasis> ihn nur.
 </para></note>
 
 <formalpara>
-<title>Background</title>
+<title>Hintergrund</title>
 
 <para>
-CUPS being a more security-aware printing system than traditional ones
-does not by default allow one to send deliberate (possibly binary)
-data to printing devices. (This could be easily abused to launch a
-Denial of Service attack on your printer(s), causing at least the loss
-of a lot of paper and ink...) <quote>Unknown</quote> data are regarded by CUPS
-as <emphasis>MIME type</emphasis>
-<emphasis>application/octet-stream</emphasis>. While you
-<emphasis>can</emphasis> send data <quote>raw</quote>, the MIME type for these must
-be one that is known to CUPS and an allowed one. The file
-<filename>/etc/cups/mime.types</filename> defines the <quote>rules</quote> of how CUPS
-recognizes MIME types. The file
-<filename>/etc/cups/mime.convs</filename> decides which file
-conversion filter(s) may be applied to which MIME types.
+Da CUPS ein mehr sicherheitsbewußtes Drucksystem ist als die traditionellen Systeme, erlaubt es
+in der Voreinstellung nicht, daß ein Benutzer beliebige (möglicherweise binäre) Daten an
+Druck-Geräte sendet. (Dies könnte leicht dazu benutzt werden, um einen <quote>Denial of Service</quote>-Angriff
+auf Ihre(n) Drucker zu starten, was zumindest den Verlust von einer Menge Papier und Tinte nach sich ziehen 
+würde.)
+<quote>Unbekannte</quote> Daten werden von CUPS als <emphasis>MIME-Typ</emphasis>
+<emphasis>application/octet-stream</emphasis> behandelt. Während Sie Daten <quote>raw</quote> senden 
+<emphasis>können</emphasis>, muß der MIME-Typ dafür einer sein, der CUPS bekannt ist, und erlaubt ist. Die Datei
+<filename>/etc/cups/mime.types</filename> legt die Regeln fest, wie CUPS MIME-Typen erkennt. Die Datei
+<filename>/etc/cups/mime.convs</filename> entscheidet, welche Wandlungs-Filter auf welche MIME-Typen angewandt
+werden können.
 </para>
 </formalpara>
 </sect2>
 
-<sect2>
-<title>PostScript Printer Descriptions (PPDs) for Non-PS Printers</title>
+
+<title>PostScript Printer Descriptions (PPDs) für Nicht-PS-Drucker</title>
 
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-Originally PPDs were meant to be used for PostScript printers
-only. Here, they help to send device-specific commands and settings
-to the RIP which processes the job file. CUPS has extended this
-scope for PPDs to cover non-PostScript printers too. This was not
-difficult, because it is a standardized file format. In a way
-it was logical too: CUPS handles PostScript and uses a PostScript
-RIP (Ghostscript) to process the job files. The only difference is:
-a PostScript printer has the RIP built-in, for other types of
-printers the Ghostscript RIP runs on the host computer.
+Ursprünglich waren PPDs nur zur Verwendung mit PostScript-Drucker gedacht. Hier helfen sie dabei, 
+geräte-spezifische Befehle und Einstellungen an den RIP zu senden, der die Auftragsdatei verarbeitet. CUPS hat
+die Reichweite von PPDs erweitert, um auch Nicht-PS-Drucker abzudecken. Dies war nicht schwierig, da es ein
+standardisiertes Dateiformat ist. Auf eine gewisse Art war es auch logisch: CUPS verarbeitet PostScript und
+verwendet einen PostScript RIP (Ghostscript), um die Auftragsdateien zu verarbeiten. Der einzige Unterschied ist:
+Ein PostScript-Drucker hat den RIP eingebaut, für die anderen Arten von Drucker läuft der Ghostscript RIP auf
+dem Druck-Server.
 </para>
 
 <para>
-PPDs for a non-PS printer have a few lines that are unique to
-CUPS. The most important one looks similar to this:
+PPDs für einen Nicht-PS-Drucker beinhalten ein paar Zeilen, die einzigartig für CUPS sind. Die wichtigste sieht
+ungefähr so aus:
 
 <indexterm><primary>application/vnd.cups-raster</primary></indexterm>
 
@@ -1626,30 +1609,28 @@ CUPS. The most important one looks similar to this:
  *cupsFilter: application/vnd.cups-raster  66   rastertoprinter
 </filterline>
 
-It is the last piece in the CUPS filtering puzzle. This line tells the
-CUPS daemon to use as a last filter <parameter>rastertoprinter</parameter>. This filter
-should be served as input an <parameter>application/vnd.cups-raster</parameter> MIME type
-file. Therefore, CUPS should auto-construct a filtering chain, which
-delivers as its last output the specified MIME type. This is then
-taken as input to the specified <parameter>rastertoprinter</parameter> filter. After this
-the last filter has done its work (<parameter>rastertoprinter</parameter> is a Gimp-Print
-filter), the file should go to the backend, which sends it to the
-output device.
+Dies ist das letzte Stück im CUPS-Filter-Puzzle. Diese Zeile weist den CUPS-Daemon an, als letzten Filter
+<parameter>rastertoprinter</parameter> zu verwenden. Dieser Filter sollte als Input eine Datei vom MIME-Typ
+<parameter>application/vnd.cups-raster</parameter> serviert bekommen. Daher sollte CUPS automatisch eine
+Filterkette konstruieren, die als letzte Ausgabe den angegebenen MIME-Typ liefert. Diese wird dann als Input
+für den erwähnten Filter <parameter>rastertoprinter</parameter> verwendet. Nachdem der letzte Filter seine Arbeit
+getan hat (<parameter>rastertoprinter</parameter> ist ein Gimp-Print-Filter), sollte die Datei an das Backend
+gesendet werden, welches in weiterer Folge an das Ausgabe-Gerät sendet.
 </para>
 
 <para>
-CUPS by default ships only a few generic PPDs, but they are good for
-several hundred printer models. You may not be able to control
-different paper trays, or you may get larger margins than your
-specific model supports. See <link linkend="cups-ppds">PPDs shipped with CUPS</link> for summary information.
+CUPS liefert standardmässig nur ein paar generische PPDs, aber diese sind verwendbar für ein paar hundert 
+Drucker-Modelle. Es kann sein, daß Sie damit nicht verschiedene Papierschächte verwalten könne, oder daß Sie
+breitere Druckränder erhalten, als Ihr spezielles Modell unterstützt. Sehen Sie 
+<link linkend="cups-ppds">Mit CUPS gelieferte PPDs</link> für eine Zusammenfassung.
 </para>
 
 <table frame="all" id="cups-ppds">
-	<title>PPDs shipped with CUPS</title>
+	<title>Mit CUPS gelieferte PPDs</title>
 	<tgroup cols="2" align="left">
 		<colspec align="left"/>
 		<colspec align="justify" width="1*"/>
-		<thead><row><entry>PPD file</entry><entry>Printer type</entry></row></thead>
+		<thead><row><entry>PPD Datei</entry><entry>Drucker-Typ</entry></row></thead>
 		<tbody>
 		<row><entry>deskjet.ppd</entry><entry>older HP inkjet printers and compatible</entry></row>
 
