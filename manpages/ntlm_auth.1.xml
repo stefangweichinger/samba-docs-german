@@ -84,6 +84,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 		<listitem><para>
                 Serverseitiges Hilfsprogramm für den Einsatz mit der einfachen
 		Authentifikation von Squid 2.5 (Klartext). 
+		</para>
 		</listitem>
 		</varlistentry>
 

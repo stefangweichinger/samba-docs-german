@@ -400,7 +400,7 @@ definierte Namensauflösungsreihenfolge verwendet.
 oder ohne Eintrag in der Datei 
 <citerefentry><refentrytitle>smb.conf</refentrytitle>
 <manvolnum>5</manvolnum></citerefentry> werden die Methoden der
-Namensauflösung in dieser Reihenfolge ausprobiert.</para></listitem>
+Namensauflösung in dieser Reihenfolge ausprobiert.</para>
 </varlistentry>'>
 
 <!ENTITY stdarg.netbios.name '
