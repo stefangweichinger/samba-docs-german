@@ -92,7 +92,7 @@ Samba-3 bietet folgende Funktionen an um zu Samba2.2.x abwärtskompatibel zu sein
 </sect2>
 
 <para>
-Samba-3 fuehrt einige neue Passwortdatenbankformen ein.
+Samba-3 führt einige neue Passwortdatenbankformen ein.
 <indexterm><primary>SAM Datenbank</primary><secondary>tdbsam</secondary></indexterm>
 <indexterm><primary>SAM Datenbank</primary><secondary>ldapsam</secondary></indexterm>
 <indexterm><primary>SAM Datenbank</primary><secondary>mysqlsam</secondary></indexterm>
@@ -121,11 +121,11 @@ Samba-3 fuehrt einige neue Passwortdatenbankformen ein.
 			</para>
 
 			<para>
-			The inclusion of the <emphasis>tdbsam</emphasis> capability is a direct
-			response to user requests to allow simple site operation without the overhead
-			of the complexities of running OpenLDAP. It is recommended to use this only
-			for sites that have fewer than 250 users. For larger sites or implementations,
-			the use of OpenLDAP or of Active Directory integration is strongly recommended.
+			Die Einbeziehung der Möglichkeiten von <emphasis>tdbsam</emphasis> ist eine direkte
+			Antwort auf Benutzernachfragen, die nach einem einfachen Standortbetrieb ohne den
+			Aufwand mit OpenLDAP fragten. Es wird empfohlen dies nur bei Standorten bis 250
+			Benutzern anzuwenden. Fuer grössere Umgebungen wird ein OpenLDAP-basierendes waermstens
+			empfohlen.
 			</para>
 		</listitem>
 	</varlistentry>
@@ -133,49 +133,52 @@ Samba-3 fuehrt einige neue Passwortdatenbankformen ein.
 	<varlistentry><term>ldapsam</term>
 		<listitem>
 			<para>
-			This provides a rich directory backend for distributed account installation.	
+			Diese Datenbank ist eine umfangreiche Directory-Datenbank für Installationen mit 
+			verteilte Accounts.
 			</para>
 
 			<para>
-			Samba-3 has a new and extended LDAP implementation that requires configuration
-			of OpenLDAP with a new format Samba schema. The new format schema file is
-			included in the <filename class="directory">examples/LDAP</filename> directory of the Samba distribution.
+			Samba-3 hat eine neue, erweiterte Implemetation von LDAP, die eine Konfiguration 
+			von OpenLDAP mit dem neuen Samba Format-Schema voraussetzt. Dieses neue Format-Schema
+			ist abgelegt im Verzeichnis <filename class="directory">examples/LDAP</filename> 
+			der Samba Distribution.
 			</para>
 
 			<para>
-			The new LDAP implementation significantly expands the control abilities that
-			were possible with prior versions of Samba. It is now possible to specify
-			<quote>per user</quote> profile settings, home directories, account access controls, and
-			much more. Corporate sites will see that the Samba Team has listened to their
-			requests both for capability and to allow greater scalability.
+			Die neue LDAP-Implementation erweitert die Möglickeiten zur Kontrolle signifikant 
+			verglichen mit den Moeglichkeiten vorheriger Samba-Versionen.
+			Man kann nun unter anderem Profile-Einstellungen, home-Verzeichnisse, 
+			Access Controls <quote>per user</quote> vornehmen.
+			Firmenkunden werden sehen, dass das Samba Team auf die Nachfragen nach besserer 
+			Ressourcennutzung und mehr Skalierbarkeit gehoert hat.
 			</para>
 		</listitem>
 	</varlistentry>
 
-	<varlistentry><term>mysqlsam (MySQL based backend)</term>
+	<varlistentry><term>mysqlsam (MySQL basierende Datenbank)</term>
 		<listitem>
 			<para>
-			It is expected that the MySQL-based SAM will be very popular in some corners.
-			This database backend will be of considerable interest to sites that want to
-			leverage existing MySQL technology.
+			Es wird erwartet, dass eine MySQL-basierende SAM in einigen Bereichen sehr 
+			beliebt sein wird. Diese Datenbank wird sicherlich fuer Standorte, 
+			die ihre existierende MySQL-Technologie erweitern moechten, ueberlegenswert sein.
 			</para>
 		</listitem>
 	</varlistentry>
 
-	<varlistentry><term>xmlsam (XML based datafile)</term>
+	<varlistentry><term>xmlsam (XML basierende Datendatei)</term>
 		<listitem>
 			<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-			Allows the account and password data to be stored in an XML format
-			data file. This backend cannot be used for normal operation, it can only 
-			be used in conjunction with <command>pdbedit</command>'s pdb2pdb 
-			functionality. The DTD that is used might be subject to changes in the future.
+			erlaubt die Account- und Passwort-Informationen in einer XML-Datei abzulegen.
+			Diese Datenbank kann nicht fuer normalen Betrieb gebraucht werden; sie kann lediglich
+			in Verbindung mit der Funktion <command>pdbedit</command> pdb2pdb genutz werden.
+			Das DTD welches benutzt wird koennte in der Zukunft geaendert werden.
 			</para>
 
 			<para>
-			The <parameter>xmlsam</parameter> option can be useful for account migration between database
-			backends or backups. Use of this tool will allow the data to be edited before migration
-			into another backend format.
+			Die Option <parameter>xmlsam</parameter> kann fuer Account-Migration zwischen 
+			verschiedenen Datenbanken oder fuer Backups nuetzlich sein. Ueberdies koennten 
+			die Daten Bearbeitet werden, bevor sie in einen andere Datenbank umgezogen werden.
 			</para>
 		</listitem>
 	</varlistentry>
@@ -187,7 +190,7 @@ Samba-3 fuehrt einige neue Passwortdatenbankformen ein.
 </sect1>
 
 <sect1 id="passdbtech">
-	<title>Technical Information</title>
+	<title>Technische Information</title>  ###RD
 
 	<para>
 	Old Windows clients send plain text passwords over the wire. Samba can check these
