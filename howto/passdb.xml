@@ -486,10 +486,19 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 <para>
 <indexterm><primary>pdbedit</primary></indexterm>
 Samba enthält zwei Werkzeuge zur Verwaltung von Benutzer- und Maschinen-Konten. Diese Werkzeuge
-sind <command>smbpasswd</command> und <command>pdbedit</command>. Ein drittes Werkzeug ist in
+sind <command>smbpasswd</command> und <command>pdbedit</command>. 
+
+<!-- 
+
+Nach Rückfrage bei Jelmer aus dem aktuellen Stand kommentiert: Projekt schläft. sgw
+
+Ein drittes Werkzeug ist in
 Entwicklung, aber wird nicht mit Samba-3.0.0 ausgeliefert. Das neue Werkzeug wird ein 
 TCL/TK-GUI-Werkzeug sein, das in vielerlei Hinsicht wie der MS Windows NT4 Domain User Manager
 aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0.1 fertig.
+
+ -->
+
 </para>
 	<sect2>
 	<title>Der Befehl <emphasis>smbpasswd</emphasis></title>
