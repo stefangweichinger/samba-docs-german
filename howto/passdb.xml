@@ -504,40 +504,40 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 	<title>Der Befehl <emphasis>smbpasswd</emphasis></title>
 	
 		<para>
-		The smbpasswd utility is similar to the <command>passwd</command>
-		or <command>yppasswd</command> programs. It maintains the two 32 byte password
-		fields in the passdb backend.
+		Das Hilfsprogramm smbpasswd ist den Programmen <command>passwd</command> oder
+		<command>yppasswd</command> ähnlich. Es wartet die beiden 32 Byte grossen
+		Passwort-Felder im passdb-Backend.
 		</para>
 
 		<para>
-		<command>smbpasswd</command> works in a client-server mode where it contacts the
-		local smbd to change the user's password on its behalf. This has enormous benefits.
+		<command>smbpasswd</command> arbeitet in einem Client-Server-Modus, wo es den lokalen
+		smbd kontaktiert, um das Passwort des Benutzers selbst zu ändern. Dies hat enorme Vorteile.
 		</para>
 
 		<para>
-		<command>smbpasswd</command> has the capability to change passwords on Windows NT
-		servers (this only works when the request is sent to the NT Primary Domain Controller
-		if changing an NT Domain user's password).
+		<command>smbpasswd</command> hat die Fähigkeit, Passwörter auf Windows NT Servern zu ändern
+		(dies funktioniert nur, wenn die Anfrage an den NT PDC gesendet wird, wenn man das Passwort
+		eines Domänen-Benutzers ändert).
 		</para>
 
 		<para>
-		<command>smbpasswd</command> can be used to:
-<indexterm><primary>User Management</primary></indexterm>
-<indexterm><primary>User Accounts</primary><secondary>Adding/Deleting</secondary></indexterm>
+		<command>smbpasswd</command> kann für Folgendes verwendet werden:
+<indexterm><primary>Benutzerverwaltung</primary></indexterm>
+<indexterm><primary>Benutzer-Konten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
 		
 		</para>
 
 		<itemizedlist>
-			<listitem><emphasis>add</emphasis> user or machine accounts.</listitem>
-			<listitem><emphasis>delete</emphasis> user or machine accounts.</listitem>
-			<listitem><emphasis>enable</emphasis> user or machine accounts.</listitem>
-			<listitem><emphasis>disable</emphasis> user or machine accounts.</listitem>
-			<listitem><emphasis>set to NULL</emphasis> user passwords.</listitem>
-			<listitem><emphasis>manage interdomain trust accounts.</emphasis></listitem>
+			<listitem><emphasis>Hinzufügen</emphasis> von Benutzer- oder Maschinen-Konten.</listitem>
+			<listitem><emphasis>Löschen</emphasis> von Benutzer- oder Maschinen-Konten.</listitem>
+			<listitem><emphasis>Aktivieren</emphasis> von Benutzer- oder Maschinen-Konten.</listitem>
+			<listitem><emphasis>Deaktivieren</emphasis> von Benutzer- oder Maschinen-Konten.</listitem>
+			<listitem><emphasis>Auf-NULL-Setzen</emphasis> von Benutzer-Passwörtern.</listitem>
+			<listitem><emphasis>Verwalten von Domänen-Vertrauens-Konten.</emphasis></listitem>
 		</itemizedlist>
 		
 		<para>
-		To run smbpasswd as a normal user just type:
+		Um smbpasswd als normaler Benutzer auszuführen, tippen SIe einfach:
 		</para>
 		
 		<para>
@@ -545,8 +545,8 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 &prompt;<userinput>smbpasswd</userinput>
 <prompt>Old SMB password: </prompt><userinput><replaceable>secret</replaceable></userinput>
 </screen>
-		For <replaceable>secret</replaceable>, type old value here or press return if
-		there is no old password.
+		Anstatt <replaceable>secret</replaceable>, geben Sie hier den alten Wert an, oder drücken einfach
+		Enter, falls es kein altes Passwort gibt.
 <screen>
 <prompt>New SMB Password: </prompt><userinput><replaceable>new secret</replaceable></userinput>
 <prompt>Repeat New SMB Password: </prompt><userinput><replaceable>new secret</replaceable></userinput>
@@ -554,20 +554,21 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 		</para>
 		
 		<para>
-		If the old value does not match the current value stored for that user, or the two
-		new values do not match each other, then the password will not be changed.
+		Wenn der alte Wert nicht mit dem aktuell für den Benutzer gespeicherten Wert übereinstimmt, oder
+		die beiden neuen Werte nicht zusammenpassen, wird das Passwort nicht geändert.		
 		</para>
 		
 		<para>
-		When invoked by an ordinary user, the command will only allow the user to change his or her own
-		SMB password.
+		Von einem normalen Benutzer aufgerufen, erlaubt der Befehl dem Benutzer nur, das eigene Passwort
+		zu ändern.
 		</para>
 		
 		<para>
-		When run by root, <command>smbpasswd</command> may take an optional argument specifying
-		the user name whose SMB password you wish to change. When run as root, <command>smbpasswd</command>
-		does not prompt for or check the old password value, thus allowing root to set passwords 
-		for users who have forgotten their passwords.
+		Wird der Befehl von root ausgeführt, akzeptiert <command>smbpasswd</command> ein optionales
+		Argument, das den Benutzer angibt, dessen Passwort Sie verändern wollen. Mit root-Rechten
+		ausgeführt, fragt <command>smbpasswd</command> nicht nach dem alten Passwort, bzw. prüft es auch
+		nicht, und erlaubt daher dem Benutzer root, Passwörter für Benutzer zu setzen, die ihr
+		Passwort vergessen haben.
 		</para>
 		
 		<para>
