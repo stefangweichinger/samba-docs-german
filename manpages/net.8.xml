@@ -29,7 +29,7 @@
 		<arg choice="opt">-I IP-Adresse</arg>
 		<arg choice="opt">-p Port</arg>
 		<arg choice="opt">-n MeinName</arg>
-		<arg choice="opt">-s KonfDatei</arg>
+		<arg choice="opt">-s KonfigDatei</arg>
 		<arg choice="opt">-S Server</arg>
 		<arg choice="opt">-l</arg>
 		<arg choice="opt">-P</arg>
@@ -44,8 +44,8 @@
 	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>Das Samba-Utility net ist so gedacht, dass es funktioniert wie das
-	net-Utility unter Windows und DOS. Mit dem ersten Argument sollte das zu
+	<para>Das Samba-Werkzeug net ist so gedacht, dass es funktioniert wie das
+	Werkzeug net unter Windows und DOS. Mit dem ersten Argument sollte das zu
 	benutzende Protokoll bei der Ausführung eines bestimmten Befehls angegeben 
 	werden. ADS wird bei ActiveDirectory benutzt, RAP bei älteren (Win9x/NT3-) 
 	Clients und RPC kann bei NT4 und Windows 2000 benutzt werden. Wenn dieses 
@@ -191,17 +191,17 @@ Computer an.</para>
 </refsect2>
 
 <refsect2>
-<title>[RPC|ADS] JOIN [TYPE] [-U Benutzername[%Passwort]] [Optionen]</title>
+<title>[RPC|ADS] JOIN [TYP] [-U Benutzername[%Passwort]] [Optionen]</title>
 
 <para>
-Einer Domäne beitreten. Wenn das Konto auf dem Server bereits existiert und 
-[TYPE] gleich MEMBER ist, versucht der Rechner automatisch beizutreten (unter
+Tritt einer Domäne bei. Wenn das Konto auf dem Server bereits existiert und 
+[TYP] gleich MEMBER ist, versucht der Rechner automatisch beizutreten (unter
 der Annahme, dass der Rechner im Server Manager erstellt wurde).
 Sonst wird nach einem Passwort gefragt und evtl. wird ein neues Konto 
 angelegt.</para>
 
 <para>
-[TYPE] kann PDC, BDC oder MEMBER sein, um den Typ des Servers anzugeben,
+[TYP] kann PDC, BDC oder MEMBER sein, um den Typ des Servers anzugeben,
 der der Domäne beitritt.
 </para>
 </refsect2>
@@ -209,7 +209,7 @@ der der Domäne beitritt.
 <refsect2>
 <title>[RPC] OLDJOIN [Optionen]</title>
 
-<para>Trete einer Domäne bei. Verwende die Option OLDJOIN, um der Domäne 
+<para>Tritt einer Domäne bei. Verwendet die Option OLDJOIN, um der Domäne 
 mit dem alten Verfahren beizutreten - zuerst müssen Sie ein Vertrauenskonto 
 im Server Manager erstellen.</para>
 </refsect2>
@@ -218,30 +218,30 @@ im Server Manager erstellen.</para>
 <title>[RPC|ADS] USER</title>
 
 <refsect3>
-<title>[RPC|ADS] USER DELETE <replaceable>ziel</replaceable></title>
+<title>[RPC|ADS] USER DELETE <replaceable>Ziel</replaceable></title>
 
-<para>Lösche den angegebenen Benutzer.</para>
+<para>Löscht den angegebenen Benutzer.</para>
 
 </refsect3>
 
 <refsect3>
 <title>[RPC|ADS] USER LIST</title>
 
-<para>Liste alle Benutzer auf.</para>
+<para>Listet alle Benutzer auf.</para>
 
 </refsect3>
 
 <refsect3>
-<title>[RPC|ADS] USER INFO <replaceable>ziel</replaceable></title>
+<title>[RPC|ADS] USER INFO <replaceable>Ziel</replaceable></title>
 
-<para>Liste die Domäne-Gruppen des angegebenen Benutzer auf.</para>
+<para>Listez die Domäne-Gruppen des angegebenen Benutzer auf.</para>
 
 </refsect3>
 
 <refsect3>
 <title>[RPC|ADS] USER ADD <replaceable>Name</replaceable> [Passwort] [-F Benutzerflags] [-C Kommentar]</title>
 
-<para>Füge den angegebenen Benutzer hinzu.</para>
+<para>Fügt den angegebenen Benutzer hinzu.</para>
 </refsect3>
 </refsect2>
 
@@ -250,20 +250,20 @@ im Server Manager erstellen.</para>
 
 <refsect3>
 <title>[RPC|ADS] GROUP [versch. Optionen] [Ziele]</title>
-<para>Liste Benutzergruppen auf.</para>
+<para>Listet Benutzergruppen auf.</para>
 </refsect3>
 
 <refsect3>
-<title>[RPC|ADS] GROUP DELETE <replaceable>name</replaceable> [versch. Optionen]</title>
+<title>[RPC|ADS] GROUP DELETE <replaceable>Name</replaceable> [versch. Optionen]</title>
 
-<para>Lösche die angegebene Gruppe.</para>
+<para>Löscht die angegebene Gruppe.</para>
 
 </refsect3>
 
 <refsect3>
 <title>[RPC|ADS] GROUP ADD <replaceable>Name</replaceable> [-C Kommentar]</title>
 
-<para>Erzeuge die angegebene Gruppe.</para>
+<para>Erzeugt die angegebene Gruppe.</para>
 
 </refsect3>
 </refsect2>
@@ -288,9 +288,9 @@ können.</para>
 </refsect3>
 
 <refsect3>
-<title>SHARE DELETE <replaceable>sharenam</replaceable></title>
+<title>SHARE DELETE <replaceable>Freigabename</replaceable></title>
 
-<para>Lösche die angegebene Freigabe.</para>
+<para>Löscht die angegebene Freigabe.</para>
 </refsect3>
 </refsect2>
 
@@ -300,24 +300,24 @@ können.</para>
 <refsect3>
 <title>[RPC|RAP] FILE</title>
 
-<para>Liste alle geöffneten Dateien auf dem entfernten Server auf.</para>
+<para>Listet alle geöffneten Dateien auf dem entfernten Server auf.</para>
 
 </refsect3>
 
 <refsect3>
-<title>[RPC|RAP] FILE CLOSE <replaceable>datei-id</replaceable></title>
+<title>[RPC|RAP] FILE CLOSE <replaceable>Datei-id</replaceable></title>
 
-<para>Schließe Datei mit der angegebenen <replaceable>datei-id</replaceable> auf 
+<para>Schließt Datei mit der angegebenen <replaceable>Datei-id</replaceable> auf 
 dem entfernten Server.</para>
 
 </refsect3>
 
 <refsect3>
-<title>[RPC|RAP] FILE INFO <replaceable>datei-id</replaceable></title>
+<title>[RPC|RAP] FILE INFO <replaceable>Datei-id</replaceable></title>
 
 <para>
-Gib Information zur angegebenen <replaceable>datei-id</replaceable> aus. 
-Im Moment wird ausgegeben: datei-id, Benutzername, Sperren, Pfad und Rechte.
+Gibt Information zur angegebenen <replaceable>Datei-id</replaceable> aus. 
+Im Moment wird ausgegeben: Datei-id, Benutzername, Sperren, Pfad und Rechte.
 </para>
 
 </refsect3>
@@ -362,15 +362,15 @@ Sitzung aus.</para>
 <refsect2>
 <title>RAP SERVER <replaceable>DOMÄNE</replaceable></title>
 
-<para>Listet alle Server in der angegebenen Domäne/Arbeitsgruppe. Voreinstellung ist die lokale
-Domäne/Arbeitsgruppe.</para>
+<para>Listet alle Server in der angegebenen Domäne/Arbeitsgruppe. 
+Voreinstellung ist die lokale Domäne/Arbeitsgruppe.</para>
 
 </refsect2>
 
 <refsect2>
 <title>RAP DOMAIN</title>
 
-<para>Liste alle Domänen und Arbeitsgruppen auf, die im aktuellen
+<para>Listet alle Domänen und Arbeitsgruppen auf, die im aktuellen
 Netzwerk sichtbar sind.</para>
 
 </refsect2>
@@ -414,21 +414,21 @@ Wenn das Passwort nicht auf der Kommandozeile angegeben wird, wird danach gefrag
 <refsect3>
 <title>RAP GROUPMEMBER LIST <replaceable>GRUPPE</replaceable></title>
 
-<para>Liste alle Mitglieder der angegebenen Gruppe auf.</para>
+<para>Listet alle Mitglieder der angegebenen Gruppe auf.</para>
 
 </refsect3>
 
 <refsect3>
 <title>RAP GROUPMEMBER DELETE <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
 
-<para>Lösche Mitglied aus der angegebenen Gruppe.</para>
+<para>Löscht Mitglied aus der angegebenen Gruppe.</para>
 
 </refsect3>
 
 <refsect3>
 <title>RAP GROUPMEMBER ADD <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
 
-<para>Füge Mitglied zur Gruppe hinzu.</para>
+<para>Fügt Mitglied zur Gruppe hinzu.</para>
 
 </refsect3>
 
@@ -451,7 +451,7 @@ entfernten Server aus. Funktioniert nur auf OS/2-Servern.
 <refsect3>
 <title>RAP SERVICE START <replaceable>NAME</replaceable> [Argumente...]</title>
 
-<para>Starte den angegebenen Dienst auf dem entfernten Server. 
+<para>Startet den angegebenen Dienst auf dem entfernten Server. 
 Noch nicht implementiert.</para>
 
 &not.implemented;
@@ -486,7 +486,7 @@ Noch nicht implementiert.</para>
 <title>LOOKUP HOST <replaceable>HOSTNAME</replaceable> [<replaceable>TYP</replaceable>]</title>
 
 <para>
-Suche die IP-Adresse des gegebenen Hosts mit dem angegebenen Typ (netbios-Endung). 
+Sucht die IP-Adresse des gegebenen Hosts mit dem angegebenen Typ (netbios-Endung). 
 Als Vorgabetyp wird 0x20 (Workstation) verwendet.
 </para>
 
@@ -805,7 +805,7 @@ den lokalen Server. Kann nur auf einem BDC ausgeführt werden.
 <refsect2>
 <title>GETSID</title>
 
-<para>Hole Domänen-SID und speichere sie in der lokalen Datei 
+<para>Holt Domänen-SID und speichert sie in der lokalen Datei 
 <filename>secrets.tdb</filename>. </para>
 
 </refsect2>
@@ -813,7 +813,7 @@ den lokalen Server. Kann nur auf einem BDC ausgeführt werden.
 <refsect2>
 <title>ADS LEAVE</title>
 
-<para>Veranlasse den entfernten Host, seine Domäne zu verlassen. </para>
+<para>Veranlasst den entfernten Host, seine Domäne zu verlassen. </para>
 
 </refsect2>
 

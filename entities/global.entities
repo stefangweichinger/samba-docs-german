@@ -297,7 +297,7 @@ vernünftige Ebene beim alltäglichen Betrieb - dabei wird eine kleine
 Informationsmenge über die ausgeführten Operationen erzeugt.</para>
 
 <para>Die Ebenen höher als 1 erzeugen beachtliche Mengen von Logdaten, 
-und sollten nur bei der Suche nach Problemen verwendet werden. Die Ebenenen 
+und sollten nur bei der Suche nach Problemen verwendet werden. Die Ebenen 
 größer als 3 sind nur für Entwickler gedacht und erzeugen RIESIGE Mengen
 an Logdaten, von denen die meisten extrem kryptisch sind.</para>
 
@@ -311,7 +311,7 @@ in der Datei &smb.conf; überschrieben wird.</para>
 <varlistentry>
 <term>-s &lt;Konfigurations-Datei&gt;</term>
 <listitem><para>Die angegebene Datei enthält die Konfigurationdetails, 
-die der Server benötigt. Zu der Information in dieser Datei ist zum Teil 
+die der Server benötigt. Die Information in dieser Datei ist zum Teil 
 Server-spezifisch, z.B. welche printcap-Datei benutzt werden soll, 
 enthält aber auch Beschreibungen aller Dienste, die der Server anbieten
 soll. Siehe &smb.conf; für weitere Informationen.
