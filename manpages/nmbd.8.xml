@@ -13,8 +13,8 @@
 
 <refnamediv>
 	<refname>nmbd</refname>
-	<refpurpose>NetBIOS name server to provide NetBIOS 
-	over IP naming services to clients</refpurpose>
+	<refpurpose>NetBIOS-Nameserver zur Bereitstellung von NetBIOS 
+	über IP-Namensdiensten für Clients</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -28,52 +28,55 @@
 		<arg choice="opt">-o</arg>
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-V</arg>
-		<arg choice="opt">-d &lt;debug level&gt;</arg>
-		<arg choice="opt">-H &lt;lmhosts file&gt;</arg>
-		<arg choice="opt">-l &lt;log directory&gt;</arg>
-		<arg choice="opt">-p &lt;port number&gt;</arg>
-		<arg choice="opt">-s &lt;configuration file&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-H &lt;lmhosts-Datei&gt;</arg>
+		<arg choice="opt">-l &lt;Log-Verzeichnis&gt;</arg>
+		<arg choice="opt">-p &lt;Port-Nummer&gt;</arg>
+		<arg choice="opt">-s &lt;Konfigurationsdatei&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
-	<para>This program is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<title>BESCHREIBUNG</title>
+	<para>Dieses Programm ist Teil der 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>nmbd</command> is a server that understands 
-	and can reply to NetBIOS over IP name service requests, like 
-	those produced by SMB/CIFS clients such as Windows 95/98/ME, 
-	Windows NT, Windows 2000, Windows XP and LanManager clients. It also
-	participates in the browsing protocols which make up the 
-	Windows "Network Neighborhood" view.</para>
+	<para><command>nmbd</command> ist ein Server, der Anfragen zu
+	NetBIOS über IP-Namensdiensten verstehen und beantworten kann, wie  
+	sie von SMB/CIFS-Clients produziert werden, z.B. Windows 95/98/ME, 
+	Windows NT, Windows 2000, Windows XP und LanManager-Clients. Er
+	nimmt auch an den Browsing-Protokollen teil, die in Windows die
+	Ansicht "Netzwerkumgebung" ausmachen.</para>
 
-	<para>SMB/CIFS clients, when they start up, may wish to 
-	locate an SMB/CIFS server. That is, they wish to know what 
-	IP number a specified host is using.</para>
+	<para>Wenn SMB/CIFS-Clients hochgefahren werden, möchten sie evtl.
+	einen SMB/CIFS-Server ausfindig machen, d.h. sie wollen wissen,
+	welche IP-Nummer ein bestimmter Host benutzt.</para>
 
-	<para>Amongst other services, <command>nmbd</command> will 
-	listen for such requests, and if its own NetBIOS name is 
-	specified it will respond with the IP number of the host it 
-	is running on.  Its "own NetBIOS name" is by
-	default the primary DNS name of the host it is running on, 
-	but this can be overridden by the <smbconfoption><name>netbios name</name></smbconfoption>
-	in &smb.conf;. Thus <command>nmbd</command> will 
-	reply to broadcast queries for its own name(s). Additional
-	names for <command>nmbd</command> to respond on can be set 
-	via parameters in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> configuration file.</para>
+	<para>Neben weiteren Diensten wird <command>nmbd</command> auf 
+	solche Anfragen warten, und wenn sein eigener NetBIOS-Name angegeben
+	wird, wird er mit der IP-Nummer des Hosts antworten, auf dem er läuft.
+	Sein "eigener NetBIOS-Name" ist per Voreinstellung der primäre 
+	DNS-Name des Hosts, auf dem er läuft, was aber durch
+	<smbconfoption><name>netbios name</name></smbconfoption>
+	in &smb.conf; überschrieben werden kann. Somit beantwortet
+	<command>nmbd</command> Broadcast-Anfragen nach seinem (bzw. seinen)
+	eigenen Namen. Weitere Namen, auf die <command>nmbd</command> 
+	antworten soll, können mit Hilfe von Parametern in der 
+	Konfigurationsdatei 
+	<citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry> eingestellt werden.</para>
 
-	<para><command>nmbd</command> can also be used as a WINS 
-	(Windows Internet Name Server) server. What this basically means 
-	is that it will act as a WINS database server, creating a 
-	database from name registration requests that it receives and 
-	replying to queries from clients for these names.</para>
+	<para><command>nmbd</command> kann auch als WINS-Server (Windows
+	Internet Name Server) benutzt werden. Das heisst prinzipiell,
+	dass er als WINS-Datenbankserver fungiert und aus den 
+	empfangenen Anfragen zu Namensregistrierungen eine Datenbank 
+	erstellt, mit der er auf Client-Abfragen nach diesen Namen 
+	antwortet.</para>
 
-	<para>In addition, <command>nmbd</command> can act as a WINS 
-	proxy, relaying broadcast queries from clients that do 
-	not understand how to talk the WINS protocol to a WINS 
-	server.</para>
+	<para>Außerdem kann <command>nmbd</command> als WINS-Proxy agieren
+	und Broadcast-Anfragen von Clients weiterleiten, die das 
+	WINS-Protokoll eines WINS-Servers nicht beherrschen.</para>
 </refsect1>
 
 <refsect1>
@@ -82,171 +85,191 @@
 	<variablelist>
 		<varlistentry>
 		<term>-D</term>
-		<listitem><para>If specified, this parameter causes 
-		<command>nmbd</command> to operate as a daemon. That is, 
-		it detaches itself and runs in the background, fielding 
-		requests on the appropriate port. By default, <command>nmbd</command> 
-		will operate as a daemon if launched from a command shell. 
-		nmbd can also be operated from the <command>inetd</command> 
-		meta-daemon, although this is not recommended.
+		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass 
+		<command>nmbd</command> als Daemon arbeitet. Das heisst, er
+		koppelt sich selbst ab, und läuft im Hintergrund weiter, wo
+		er Anfragen auf dem entsprechenden Port auffängt. 
+		<command>nmbd</command> arbeitet standardmäßig als Daemon,
+		wenn er von der Kommandozeile gestartet wird. 
+		nmbd kann auch vom Meta-Daemon <command>inetd</command> 
+		ausgeführt werden, was aber nicht empfohlen wird.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-F</term>
-		<listitem><para>If specified, this parameter causes
-		the main <command>nmbd</command> process to not daemonize,
-		i.e. double-fork and disassociate with the terminal.
-		Child processes are still created as normal to service
-		each connection request, but the main process does not
-		exit. This operation mode is suitable for running
-		<command>nmbd</command> under process supervisors such
-		as <command>supervise</command> and <command>svscan</command>
-		from Daniel J. Bernstein's <command>daemontools</command>
-		package, or the AIX process monitor.
+		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass
+		der <command>nmbd</command>-Hauptprozess nicht daemonisiert 
+		wird, d.h. eine Doppelteilung vornimmt und sich vom Terminal
+		trennt.
+		Kindprozesse werden weiterhin normal erzeugt, um jede 
+		Verbindungsanfrage zu bedienen, aber der Hauptprozess wird 
+		nicht beendet. Diese Arbeitsweise eignet sich bei der Ausführung 
+		von <command>nmbd</command> unter Prozessüberwachern 
+		wie <command>supervise</command> und <command>svscan</command>
+		aus dem Paket <command>daemontools</command> von 
+		Daniel J. Bernstein oder unter dem AIX-Prozessmonitor.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>If specified, this parameter causes
-		<command>nmbd</command> to log to standard output rather
-		than a file.</para></listitem>
+		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass
+		<command>nmbd</command> seine Log-Meldungen auf die
+		Standardausgabe statt in einer Datei ausgibt.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-i</term>
-		<listitem><para>If this parameter is specified it causes the
-		server to run "interactively", not as a daemon, even if the
-		server is executed on the command line of a shell. Setting this
-		parameter negates the implicit daemon mode when run from the
-		command line. <command>nmbd</command> also logs to standard
-		output, as if the <constant>-S</constant> parameter had been
-		given. </para></listitem>
+		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		der Server "interaktiv" läuft, d.h. nicht als Daemon, selbst
+		wenn der Server von der Kommandozeile einer Shell gestartet wird.
+		Durch das Setzen dieses Parameters wird der implizite 
+		Daemon-Modus negiert, wenn er von der Kommandozeile aus
+		gestartet wird. <command>nmbd</command> gibt seine Log-Daten 
+		ebenfalls auf die Standardausgabe aus, so als ob der Parameter
+		<constant>-S</constant> gesetzt wäre. </para></listitem>
 		</varlistentry>
 
 		&stdarg.help;
 		
 		<varlistentry>
-		<term>-H &lt;filename&gt;</term>
-		<listitem><para>NetBIOS lmhosts file.  The lmhosts 
-		file is a list of NetBIOS names to IP addresses that 
-		is loaded by the nmbd server and used via the name 
-		resolution mechanism <smbconfoption><name>name resolve order</name></smbconfoption> described in <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> to resolve any 
-		NetBIOS name queries needed by the server. Note 
-		that the contents of this file are <emphasis>NOT</emphasis> 
-		used by <command>nmbd</command> to answer any name queries. 
-		Adding a line to this file affects name NetBIOS resolution 
-		from this host <emphasis>ONLY</emphasis>.</para>
+		<term>-H &lt;Dateiname&gt;</term>
+		<listitem><para>NetBIOS lmhosts-Datei. Die lmhosts-Datei ist 
+		eine Liste von NetBIOS-Namen auf IP-Adressen, die vom 
+		nmbd-Server geladen wird und über den Namensauflösungsmechanismus 
+		<smbconfoption><name>name resolve order</name></smbconfoption>,
+		der in <citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> beschrieben wird, 
+		dazu benutzt wird, alle NetBIOS-Namenanfragen an den Server
+		aufzulösen. Beachten Sie, dass der Inhalt dieser Datei 
+		von <command>nmbd</command> <emphasis>NICHT</emphasis> 
+		benutzt wird, um Namensanfragen zu beantworten. 
+		Das Hinzufügen einer Zeile zu dieser Datei beeinflusst 
+		die NetBIOS-Namensauflösung <emphasis>ALLEIN</emphasis> 
+		von diesem Host aus.</para>
 
-		<para>The default path to this file is compiled into 
-		Samba as part of the build process. Common defaults 
-		are <filename>/usr/local/samba/lib/lmhosts</filename>,
-		<filename>/usr/samba/lib/lmhosts</filename> or
-		<filename>/etc/samba/lmhosts</filename>. See the <citerefentry><refentrytitle>lmhosts</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> man page for details on the contents of this file.</para></listitem>
+		<para>Der Standardpfad zu dieser Datei wird in Samba während
+		der Kompilierung eingebaut. Übliche Werte dafür sind 
+		<filename>/usr/local/samba/lib/lmhosts</filename>,
+		<filename>/usr/samba/lib/lmhosts</filename> oder
+		<filename>/etc/samba/lmhosts</filename>. Siehe die Manpage
+		<citerefentry><refentrytitle>lmhosts</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> für Details zum Inhalt
+		dieser Datei.</para></listitem>
 		</varlistentry>
 
 		&popt.common.samba;
 		
 		<varlistentry>
-		<term>-p &lt;UDP port number&gt;</term>
-		<listitem><para>UDP port number is a positive integer value.
-		This option changes the default UDP port number (normally 137)
-		that <command>nmbd</command> responds to name queries on. Don't
-		use this option unless you are an expert, in which case you
-		won't need help!</para></listitem>
+		<term>-p &lt;UDP-Port-Nummer&gt;</term>
+		<listitem><para>UDP-Port-Nummer ist eine positive ganze Zahl.
+		Diese Option ändert die vorgegebene UDP-Port-Nummer 
+		(normalerweise 137), auf der <command>nmbd</command> 
+		Namensabfragen beantwortet. Verwenden Sie diese Option nur
+		dann, wenn Sie ein Experte sind, wobei Sie dann keine Hilfe
+		benötigen werden!</para></listitem>
 		</varlistentry>
 
 	</variablelist>
 </refsect1>
 
 <refsect1>
-	<title>FILES</title>
+	<title>DATEIEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term><filename>/etc/inetd.conf</filename></term>
-		<listitem><para>If the server is to be run by the
-		<command>inetd</command> meta-daemon, this file
-		must contain suitable startup information for the
-		meta-daemon. 
+		<listitem><para>Falls der Server vom Meta-Daemon
+		<command>inetd</command> ausgeführt werden soll, muss
+		diese Datei die passende Startup-Information für den
+		Meta-Daemon enthalten. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term><filename>/etc/rc</filename></term>
-		<listitem><para>or whatever initialization script your
-		system uses).</para>
+		<listitem><para>oder welches Initialisierungsskript Ihr
+		System auch immer benutzt.</para>
 
-		<para>If running the server as a daemon at startup,
-		this file will need to contain an appropriate startup
-		sequence for the server.</para></listitem>
+		<para>Wenn der Server beim Start als Daemon läuft,
+		muss diese Datei eine passende Startup-Sequenz für den
+		Server enthalten.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term><filename>/etc/services</filename></term>
-		<listitem><para>If running the server via the
-		meta-daemon <command>inetd</command>, this file
-		must contain a mapping of service name (e.g., netbios-ssn)
-		to service port (e.g., 139) and protocol type (e.g., tcp).
+		<listitem><para>Wird der Server über den Meta-Daemon
+		<command>inetd</command> ausgeführt, muss diese Datei
+		eine Abbildung von Dienstnamen, z.B. netbios-ssn, auf
+		Dienst-Port, z.B. 139, und Protokolltyp, z.B. tcp,
+		enthalten.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term><filename>/usr/local/samba/lib/smb.conf</filename></term>
-		<listitem><para>This is the default location of 
-		the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> server
-		configuration file. Other common places that systems
-		install this file are <filename>/usr/samba/lib/smb.conf</filename>
-		and <filename>/etc/samba/smb.conf</filename>.</para>
+		<listitem><para>Dies ist der voreingestellte Ort der 
+		Server-Konfigurationsdatei
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry>.
+		Zu den anderen Plätzen, an denen manche Systeme diese Datei
+		installieren, gehören 
+		<filename>/usr/samba/lib/smb.conf</filename>
+		und <filename>/etc/samba/smb.conf</filename>.</para>
 
-		<para>When run as a WINS server (see the
-			<smbconfoption><name>wins support</name></smbconfoption>
-		parameter in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> man page),
-		<command>nmbd</command>
-		will store the WINS database in the file <filename>wins.dat</filename>
-		in the <filename>var/locks</filename> directory configured under
-		wherever Samba was configured to install itself.</para>
+		<para>Wenn er als WINS-Server läuft (siehe Parameter
+		<smbconfoption><name>wins support</name></smbconfoption>
+		in der Manpage 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry>),
+		speichert <command>nmbd</command>
+		die WINS-Datenbank in der Datei <filename>wins.dat</filename>
+		im Verzeichnis <filename>var/locks</filename>, was dort 
+		konfiguriert ist, wo auch für Samba konfiguriert wurde, 
+		wo es installiert wird.</para>
 
-		<para>If <command>nmbd</command> is acting as a <emphasis>
-				browse master</emphasis> (see the <smbconfoption><name>local master</name></smbconfoption>
-		parameter in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> man page, <command>nmbd</command>
-		will store the browsing database in the file <filename>browse.dat
-		</filename> in the <filename>var/locks</filename> directory
-		configured under wherever Samba was configured to install itself.
-		</para></listitem>
+		<para>Falls <command>nmbd</command> als 
+		<emphasis>browse master</emphasis> fungiert (siehe Parameter
+		<smbconfoption><name>local master</name></smbconfoption>
+		in der Manpage 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry>, speichert
+		<command>nmbd</command> die Browsing-Datenbank in der 
+		Datei <filename>browse.dat</filename> im Verzeichnis
+		<filename>var/locks</filename>, was dort konfiguriert ist, 
+		wo auch für Samba konfiguriert wurde, wo es installiert 
+		wird.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
 
 <refsect1>
-	<title>SIGNALS</title>
+	<title>SIGNALE</title>
 
-	<para>To shut down an <command>nmbd</command> process it is recommended
-	that SIGKILL (-9) <emphasis>NOT</emphasis> be used, except as a last
-	resort, as this may leave the name database in an inconsistent state.
-	The correct way to terminate <command>nmbd</command> is to send it
-	a SIGTERM (-15) signal and wait for it to die on its own.</para>
+	<para>Zum Herunterfahren eines <command>nmbd</command>-Prozesses wird
+	empfohlen, SIGKILL (-9) <emphasis>NICHT</emphasis> zu benutzen, außer
+	als letztes Mittel, weil das die Namensdatenbank in einen inkonsistenten
+	Zustand versetzen kann.
+	Korrekt terminiert man <command>nmbd</command> dadurch, dass man ihm
+	das Signal SIGTERM (-15) schickt und darauf wartet, dass er sich selbst
+	beendet.</para>
 
-	<para><command>nmbd</command> will accept SIGHUP, which will cause
-	it to dump out its namelists into the file <filename>namelist.debug
-	</filename> in the <filename>/usr/local/samba/var/locks</filename>
-	directory (or the <filename>var/locks</filename> directory configured
-	under wherever Samba was configured to install itself). This will also
-	cause <command>nmbd</command> to dump out its server database in
-	the <filename>log.nmb</filename> file.</para>
+	<para><command>nmbd</command> akzeptiert ein SIGHUP, bei dem es seine
+	Namenslisten in die Datei <filename>namelist.debug</filename> im
+	Verzeichnis <filename>/usr/local/samba/var/locks</filename> schreibt
+	(oder im Verzeichnis <filename>var/locks</filename>, das dort 
+	konfiguriert ist, wo auch für Samba konfiguriert wurde, wo es installiert
+	wird). Dabei schreibt <command>nmbd</command> auch seine Server-Datenbank
+	in die Datei <filename>log.nmb</filename>.</para>
 
-	<para>The debug log level of nmbd may be raised or lowered
-	using <citerefentry><refentrytitle>smbcontrol</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> (SIGUSR[1|2] signals
-	are no longer used since Samba 2.2). This is to allow
-	transient problems to be diagnosed, whilst still running 
-	at a normally low log level.</para>
+	<para>Die Debug-Log-Ebene von nmbd kann mit
+	<citerefentry><refentrytitle>smbcontrol</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry> erhöht oder erniedrigt werden
+	(SIGUSR[1|2]-Signale werden ab Samba 2.2 nicht mehr verwendet). Das
+	geschieht, damit vorübergehende Probleme diagnostiziert werden können,
+	während man sich weiterhin auf einer normalerweise geringeren 
+	Log-Ebene befindet.</para>
 </refsect1>
 
 
@@ -258,7 +281,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para>
 	<citerefentry><refentrytitle>inetd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>smbd</refentrytitle>
@@ -266,11 +289,11 @@
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>smbclient</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testparm</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testprns</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry>, and the Internet 
-	RFC's <filename>rfc1001.txt</filename>, <filename>rfc1002.txt</filename>. 
-	In addition the CIFS (formerly SMB) specification is available 
-	as a link from the Web page <ulink noescape="1" url="http://samba.org/cifs/"> 
-	http://samba.org/cifs/</ulink>.</para>
+	<manvolnum>1</manvolnum></citerefentry>, sowie die Internet-RFCs
+	<filename>rfc1001.txt</filename> und <filename>rfc1002.txt</filename>. 
+	Ausserdem ist die CIFS- (früher SMB-) Spezifikation als Link auf der 
+	Website <ulink noescape="1" url="http://samba.org/cifs/"> 
+	http://samba.org/cifs/</ulink> verfügbar.</para>
 </refsect1>
 
 <refsect1>
