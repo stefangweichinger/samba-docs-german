@@ -1019,135 +1019,129 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 
 		</para>
 
-		<para>Once a user clicks on <guibutton>OK</guibutton> to apply the
-		permissions, Samba maps the given permissions into a user/group/world
-		r/w/x triplet set, and then checks the changed permissions for a
-		file against the bits set in the
-		<smbconfoption><name>security mask</name></smbconfoption> parameter. Any bits that
-		were changed that are not set to <quote>1</quote> in this parameter are left alone
-		in the file permissions.</para>
+		<para>Sobald ein Benutzer auf <guibutton>OK</guibutton> klickt um Berechtigungen zu setzen mappt Samba
+		die angegebenen Berechtigungen in einen Benutzer/Gruppe/Welt-Drillingssatz und prüft dann die geänderten
+		Berechtigungen für diese Datei gegen die in <smbconfoption><name>security mask</name></smbconfoption> gesetzten Bits.
+		Jedes geänderte Bit welches nicht mit <quote>1</quote> in diesem Parameter gesetzt wurde bleibt in den Dateiberechtigungen
+		unberücksichtigt.</para>
 
-		<para>Essentially, zero bits in the <smbconfoption><name>security mask</name></smbconfoption>
-		may be treated as a set of bits the user is <emphasis>not</emphasis>
-		allowed to change, and one bits are those the user is allowed to change.
+		<para>Grundsätzlich werden Null-Bits in der <smbconfoption><name>security mask</name></smbconfoption>
+		als ein Satz von Bits behandelt, die der Benutzer <emphasis>nicht</emphasis> ändern darf, Einer-Bits darf der Benutzer
+		ändern.
 		</para>
 
-		<para>If not explicitly set, this parameter defaults to the same valü as
-		the <smbconfoption><name>create mask</name></smbconfoption> parameter. To allow a user to modify all the
-		user/group/world permissions on a file, set this parameter to 0777.
+		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
+		der <smbconfoption><name>create mask</name></smbconfoption> Parameter. Um es einem Benutzer zu erlauben,
+		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei zu ändern, setzen Sie diesen Parameter auf 0777.
 		</para>
 
-		<para>Next Samba checks the changed permissions for a file against the bits set in the
-		<smbconfoption><name>force security mode</name></smbconfoption> parameter. Any bits
-		that were changed that correspond to bits set to <quote>1</quote> in this parameter
-		are forced to be set.</para>
+		<para>Als nächstes prüft Samba die geänderten Berechtigung einer Datei gegen die Bits, die im
+		<smbconfoption><name>force security mode</name></smbconfoption> Parameter gesetzt sind. Jedes geänderte Bit
+		wird passend zu den auf <quote>1</quote> gesetzten Bits in diesem Parameter zwangsläufig gesetzt.</para>
 
-		<para>Essentially, bits set in the <parameter>force security mode</parameter> parameter
-		may be treated as a set of bits that, when modifying security on a file, the user has always set to be <quote>on</quote>.</para>
+		<para>Grundsätzlich werden Bits aus dem <parameter>force security mode</parameter> Parameter als ein Satz von Bits
+		behandelt die der Benutzer immer auf <quote>an</quote> gesetzt hat, wenn die Sicherheit einer Datei geändert wird.
+		</para>
 
-		<para>If not explicitly set, this parameter defaults to the same valü
-		as the <smbconfoption><name>force create mode</name></smbconfoption> parameter.
-		To allow a user to modify all the user/group/world permissions on a file
-		with no restrictions set this parameter to 000. The
-		<smbconfoption><name>security mask</name></smbconfoption> and <parameter>force
-		security mode</parameter> parameters are applied to the change
-		request in that order.</para>
+		<para>Falls nicht ausdrücklich gesetzt, zeigt dieser Parameter standardmässig auf denselben Wert wie
+		der <smbconfoption><name>force create mode</name></smbconfoption> Parameter. Um es einem Benutzer zu erlauben,
+		alle Berechtigungen von Benutzer/Gruppe/Welt an einer Datei ohne Berechtigungen zu ändern, setzen Sie diesen Parameter auf 000.
+		Die <smbconfoption><name>security mask</name></smbconfoption> und <parameter>force security mode</parameter> 
+		Parameter werden angewendet, um die Anfragen in dieser Reihenfolge zu ändern.</para>
+		
+		<para>Für ein Verzeichnis wird Samba diesselben Operationen wie zuvor für eine Datei beschrieben
+		durchführen, ausser es wird der Parameter <parameter>directory security mask</parameter> anstatt des
+		Parameters <parameter>security mask</parameter> und <parameter>force directory security mode</parameter> 
+		anstatt des <parameter>force security mode</parameter> Parameters angewandt.</para>
 
-		<para>For a directory, Samba will perform the same operations as
-		described above for a file except it uses the parameter <parameter>
-		directory security mask</parameter> instead of <parameter>security
-		mask</parameter>, and <parameter>force directory security mode
-		</parameter> parameter instead of <parameter>force security mode
-		</parameter>.</para>
+		<para>Der <smbconfoption><name>directory security mask</name></smbconfoption> Parameter
+		ist standardmässig auf denselben Wert wie der <parameter>directory mask</parameter> Parameter
+		gesetzt und der <parameter>force directory security mode</parameter> Parameter ist standardmässig
+		auf denselben Wert wie der <smbconfoption><name>force directory mode</name></smbconfoption> Parameter
+		gesetzt.
+		Auf diese Weise erzwingt Samba die Berechtigungs-Einschränkungen, die ein Administrator auf einer
+		Samba-Freigabe gesetzt hat, während den Benutzern weiterhin erlaubt wird, innerhalb dieser Einschränkung
+		die Berechtigungsbits zu ändern.</para>
 
-		<para>The <smbconfoption><name>directory security mask</name></smbconfoption> parameter
-		by default is set to the same valü as the <parameter>directory mask
-		</parameter> parameter and the <parameter>force directory security
-		mode</parameter> parameter by default is set to the same valü as
-		the <smbconfoption><name>force directory mode</name></smbconfoption> parameter.
-		In this way Samba enforces the permission restrictions that
-		an administrator can set on a Samba share, while still allowing users
-		to modify the permission bits within that restriction.</para>
-
-		<para>If you want to set up a share that allows users full control
-		in modifying the permission bits on their files and directories and
-		dös not force any particular bits to be set <quote>on</quote>, then set the following
-		parameters in the &smb.conf; file in that share-specific section:
+		<para>Falls Sie eine Freigabe aufsetzen möchten, die es Benutzern erlaubt, volle Kontrolle bei der
+		Änderung von Berechtigungsbits auf Ihren eigenen Dateien und Verzeichnissen zu geben und nicht irgendwelche
+		Bits auf <quote>an</quote> zu verstellen, dann setzen Sie die folgenden Parameter in der &smb.conf; Datei
+		innerhalb des Freigabe-spezifischen Abschnitts:
 		</para>
 
 		<smbconfblock>
-			<smbconfoption><name>security mask</name><valü>0777</valü></smbconfoption>
-			<smbconfoption><name>force security mode</name><valü>0</valü></smbconfoption>
-			<smbconfoption><name>directory security mask</name><valü>0777</valü></smbconfoption>
-			<smbconfoption><name>force directory security mode</name><valü>0</valü></smbconfoption>
+			<smbconfoption><name>security mask</name><value>0777</value></smbconfoption>
+			<smbconfoption><name>force security mode</name><value>0</value></smbconfoption>
+			<smbconfoption><name>directory security mask</name><value>0777</value></smbconfoption>
+			<smbconfoption><name>force directory security mode</name><value>0</value></smbconfoption>
 		</smbconfblock>
 	</sect2>
 
 	<sect2>
-		<title>Interaction with the Standard Samba File Attribute Mapping</title>
+		<title>Wechselwirkung mit den Standard Samba Dateiattribut-Vergaben</title>
 
 		<note>
-		<para>Samba maps some of the DOS attribute bits (such as <quote>read
-		only</quote>) into the UNIX permissions of a file. This means there can
-		be a conflict between the permission bits set via the security
-		dialog and the permission bits set by the file attribute mapping.
+		<para>Samba vergibt einige der DOS Attributebits (wie z.B. <quote>Nur lesen</quote>) 
+		in den UNIX Berechtigungen einer Datei. Dies bedeutet, dass es einen
+		Konflikt zwischen den Berechtigungsbits, die durch den Sicherheitsdialog gesetzt wurden
+		geben kann und den Berechtigungen, die durch die Vergabe von Dateiattributen gesetzt wurden.
 		</para>
 		</note>
 
-		<para>If a file has no UNIX read access for the owner, it will show up
-		as <quote>read only</quote> in the standard file attributes tabbed dialog.
-		Unfortunately, this dialog is the same one that contains the security information
-		in another tab.</para>
+		<para>Falls eine Datei für den Eigentümer keinen UNIX Lesezugriff hat wird diese
+		als <quote>Nur lesen</quote> in dem Standarddialog der Registerkarte Dateiattribute angezeigt.
+		Leider ist dieser Dialog derselbe, der die Sicherheitsinformationen in einer anderen Registerkarte
+		enthält.
+		</para>
 
-		<para>What this can mean is that if the owner changes the permissions
-		to allow himself read access using the security dialog, clicks on
-		<guibutton>OK</guibutton> to get back to the standard attributes tab
-		dialog, and clicks on <guibutton>OK</guibutton> on that dialog, then
-		NT will set the file permissions back to read-only (as that is what
-		the attributes still say in the dialog). This means that after setting
-		permissions and clicking on <guibutton>OK</guibutton> to get back to the
-		attributes dialog, you should always press <guibutton>Cancel</guibutton>
-		rather than <guibutton>OK</guibutton> to ensure that your changes
-		are not overridden.</para>
+		<para>Was dies heissen kann ist, dass der Eigentümer glaubt die Berechtigungen so ändern zu können, 
+		dadurch dass es ihm erlaubt wird Lesezugriff durch Nutzung des Sicherheitsdialoges zu bekommen; er klickt
+		auf <guibutton>OK</guibutton> um zurück zu der Registerkarte mit den Standardattributen zu gelangen,
+		klickt auf <guibutton>OK</guibutton> in diesem Dialog und NT setzt die Dateiberechtigungen zurück
+		auf Nur-lesen (weil dies die Attribute in diesem Dialog ihm sagen). Dies bedeutet, dass nach Setzen
+		der Berechtigungen und Klicken auf <guibutton>OK</guibutton> zum Zurückgehen auf den Attributedialog
+		Sie immer <guibutton>Abbrechen</guibutton> statt <guibutton>OK</guibutton> drücken sollten, um sicherzustellen,
+		dass Ihre Änderungen nicht überschrieben werden.</para>
 	</sect2>
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Allgemeine Fehler</title>
 
 <para>
-File, directory and share access problems are common on the mailing list. The following
-are examples taken from the mailing list in recent times.
+Datei-, Verzeichnis- und Freigabezugriffsprobleme sind häufig auf der Mailingliste. Die folgenden Beispiele wurden
+in letzter Zeit von der Maillingliste genommen.
 </para>
 
 
 	<sect2>
-	<title>Users Cannot Write to a Public Share</title>
+	<title>Benutzer können nicht auf eine öffentliche Freigabe schreiben</title>
 
 	<para>
 	<quote>
-	We are facing some troubles with file/directory permissions. I can log on the domain as admin user(root),
-	and there's a public share on which everyone needs to have permission to create/modify files, but only
-	root can change the file, no one else can. We need to constantly go to the server to
-	<userinput>chgrp -R users *</userinput> and <userinput>chown -R nobody *</userinput> to allow others users to change the file.
+	Wir haben einige Schwierigkeiten mit Datei/Verzeichnis-Berechtigungen. Ich kann mich als Admin-User (root) an
+	einer Domäne anmelden und es gibt eine öffentliche Freigabe auf welcher jeder die Berechtigung zum Erzeugen und 
+	Ändern von Dateien haben sollte, aber nur root kann Dateien ändern, sonst niemand. Wir müssen dauernd auf dem
+	Server <userinput>chgrp -R users *</userinput> und <userinput>chown -R nobody *</userinput> eingeben um den
+	anderen Benutzern das Ändern von Dateien zu erlauben.
 	</quote>
 	</para>
 
 	<para>
-	There are many ways to solve this problem and here are a few hints:
+	Es gibt viele Wege dieses Problem zu lösen und hier sind ein paar Hinweise:
 	</para>
 
 	<procedure>
 		<step>
 			<para>
-			Go to the top of the directory that is shared.
+			Gehen Sie auf die oberste Ebene des Verzeichnisses, welches freigegeben ist.
 			</para>
 		</step>
 
 		<step>
 			<para>
-			Set the ownership to what ever public owner and group you want
-<screen>
+			Setzen Sie die Benutzer und Gruppe als Eigentümer auf was immer auch öffentlich sein soll 
+			<screen>
 &prompt;find 'directory_name' -type d -exec chown user.group {}\;
 &prompt;find 'directory_name' -type d -exec chmod 6775 'directory_name'
 &prompt;find 'directory_name' -type f -exec chmod 0775 {} \;
@@ -1156,23 +1150,22 @@ are examples taken from the mailing list in recent times.
 			</para>
 
 			<note><para>
-			The above will set the <constant>sticky bit</constant> on all directories. Read your
-			UNIX/Linux man page on what that dös. It causes the OS to assign
-			to all files created in the directories the ownership of the
-			directory.
+			Das oben aufgeführte setzt das <constant>sticky bit</constant> auf alle Verzeichnisse.
+			Lesen Sie in Ihren UNIX/Linux manpages nach, was dies bewirkt. Es veranlasst das Betriebssystem
+			auf alle Dateien in Ihren Verzeichnissen den Eigentümer des Verzeichnisses zu setzen.
 			</para></note>
 		</step>
 		<step>
 			<para>
 
-			Directory is: <replaceable>/foodbar</replaceable>
+			Verzeichnis heisst: <replaceable>/foodbar</replaceable>
 <screen>
 &prompt;<userinput>chown jack.engr /foodbar</userinput>
 </screen>
 			</para>
 
 			<note><para>
-				<para>This is the same as doing:</para>
+				<para>Dies ist genauso wie:</para>
 <screen>
 &prompt;<userinput>chown jack /foodbar</userinput>
 &prompt;<userinput>chgrp engr /foodbar</userinput>
@@ -1180,7 +1173,7 @@ are examples taken from the mailing list in recent times.
 			</para></note>
 		</step>
 		<step>
-			<para>Now type:
+			<para>Geben Sie jetzt ein:
 
 <screen>
 &prompt;<userinput>chmod 6775 /foodbar</userinput>
@@ -1189,7 +1182,7 @@ are examples taken from the mailing list in recent times.
 
 			</para>
 
-			<para>You should see:
+			<para>Dann sollten Sie dies sehen:
 <screen>
 drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 </screen>
@@ -1197,7 +1190,7 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		</step>
 		<step>
 
-		<para>Now type:
+		<para>Geben Sie jetzt dies ein:
 <screen>
 &prompt;<userinput>su - jill</userinput>
 &prompt;<userinput>cd /foodbar</userinput>
@@ -1207,8 +1200,8 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 		</para>
 
 		<para>
-		You should see that the file <filename>Afile</filename> created by Jill will have ownership
-		and permissions of Jack, as follows:
+		Sie sollten nun sehen, dass die Datei <filename>Afile</filename> erzeugt durch Jill die Eigentumsrechte
+		und Berechtigungen von Jack hat, so wie hier:
 <screen>
 -rw-r--r--  1 jack  engr     0 2003-02-04 09:57 Afile
 </screen>
@@ -1217,24 +1210,25 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 
 		<step>
 		<para>
-		Now in your &smb.conf; for the share add:
+		Fügen Sie jetzt in Ihrer &smb.conf; für die Freigabe dies ein:
 		<smbconfblock>
-<smbconfoption><name>force create mode</name><valü>0775</valü></smbconfoption>
-<smbconfoption><name>force direcrtory mode</name><valü>6775</valü></smbconfoption>
+<smbconfoption><name>force create mode</name><value>0775</value></smbconfoption>
+<smbconfoption><name>force directory mode</name><value>6775</value></smbconfoption>
 		</smbconfblock>
 		</para>
 
 		<note><para>
-		These procedures are needed only if your users are not members of the group
-		you have used. That is if within the OS do not have write permission on the directory.
+		Diese Massnahmen werden nur dann gebraucht, wenn Ihre Benutzer nicht Mitglied der Gruppe sind, die
+		Sie benutzt haben. Das ist dann der Fall, wenn Sie innerhalb des Betriebssystems keine Schreibberechtigung
+		auf das Verzeichnis haben.
 		</para>
 		</note>
 
 		<para>
-		An alternative is to set in the &smb.conf; entry for the share:
+		Eine Alternative ist es, in der &smb.conf; diesen Eintrag für die Freigabe zu setzen:
 		<smbconfblock>
-<smbconfoption><name>force user</name><valü>jack</valü></smbconfoption>
-<smbconfoption><name>force group</name><valü>engr</valü></smbconfoption>
+<smbconfoption><name>force user</name><value>jack</value></smbconfoption>
+<smbconfoption><name>force group</name><value>engr</value></smbconfoption>
 		</smbconfblock>
 		</para>
 	</step>
@@ -1243,47 +1237,54 @@ drwsrwsr-x  2 jack  engr    48 2003-02-04 09:55 foodbar
 
 
 	<sect2>
-		<title>File Operations Done as <emphasis>root</emphasis> with <emphasis>force user</emphasis> Set</title>
+		<title>Dateioperationen, die als <emphasis>root</emphasis> mit <emphasis>force user</emphasis> gemacht wurden</title>
 
 		<para>
-		When you have a user in <smbconfoption><name>admin users</name></smbconfoption>, Samba will always do file operations for
-		this user as <emphasis>root</emphasis>, even if <smbconfoption><name>force user</name></smbconfoption> has been set.
+		Wenn Sie einen Benutzer in <smbconfoption><name>admin users</name></smbconfoption> haben wird Samba für 
+		diesen Benutzer Dateioperationen immer als <emphasis>root</emphasis> ausführen, sogar wenn 
+		<smbconfoption><name>force user</name></smbconfoption> gesetzt wurde.
 		</para>
 	</sect2>
 
 	<sect2>
-		<title>MS Word with Samba Changes Owner of File</title>
+		<title>MS Word mit Samba ändert den Eigentümer einer Datei</title>
 
 		<para>
-		<emphasis>Question:</emphasis> <quote>When user B saves a word document that is owned by user A the updated file is now owned by user B.
-		Why is Samba doing this? How do I fix this?</quote>
+		<emphasis>Frage:</emphasis> <quote>Wenn Benutzer B ein Worddokument abspeichert welches Benutzer A
+		gehört, ist anschliessend der Eigentümer der aktualisierten Datei Benutzer B.
+		Warum macht Samba dies ? Wie kann ich das beheben ?</quote>
 		</para>
 
 		<para>
-		<emphasis>Answer:</emphasis> Word dös the following when you modify/change a Word document: MS Word creates a NEW document with
-		a temporary name, Word then closes the old document and deletes it, Word then renames the new document to the original document name.
-		There is no mechanism by which Samba can in any way know that the new document really should be owned by the owners
-		of the original file. Samba has no way of knowing that the file will be renamed by MS Word. As far as Samba is able
-		to tell, the file that gets created is a NEW file, not one that the application (Word) is updating.
+		<emphasis>Antwort:</emphasis>Word macht das folgende, wenn Sie ein Worddokument ändern: MS Word erzeugt
+		ein NEUES Dokument mit einem temporären Namen, Word schliesst dann das alte Dokument und löscht es, dann
+		benennt Word das neue Dokument mit dem Original-Dateinamen um.
+		Es gibt keinen Mechanismus von dem Samba in irgendeiner Weise wissen kann, dass das neue Dokument wirklich
+		vom Eigentümer der Originaldatei stammen kann. Samba hat keine Möglichkeit zu erfahren, dass MS Word die
+		Datei umbenannt hat. Samba ist nur soweit in der Lage zu sagen, dass die Datei, die erzeugt wurde eine NEUE
+		Datei ist, aber nicht, dass die Applikation (Word) dies aktualisiert hat.
 		</para>
 
 		<para>
-		There is a work-around to solve the permissions problem. That work-around involves understanding how you can manage file
-		system behavior from within the &smb.conf; file, as well as understanding how UNIX file systems work. Set on the directory
-		in which you are changing Word documents: <command>chmod g+s `directory_name'</command> This ensures that all files will
-		be created with the group that owns the directory. In &smb.conf; share declaration section set:
+		Es gibt einen Workaround um diese Berechtigungsprobleme zu lösen. Dieser Workaround setzt voraus, dass Sie
+		verstehen, wie Sie das Verhalten des Dateisystems innerhalb der &smb.conf; Datei steuern können, sowie
+		das Verständnis wie ein UNIX Dateisystem funktioniert. Setzen Sie auf das Verzeichnis in welchem Sie
+		Word Dokumente ändern möchten: <command>chmod g+s `directory_name'</command> 
+		Dies stellt sicher, dass alle Dateien mit der Gruppe erzeugt werden, der das Verzeichnis gehört.
+		In dem Abschnitt in der &smb.conf;, der die Freigabe deklariert setzen Sie:
 		</para>
 
 		<para>
 		<smbconfblock>
-                <smbconfoption><name>force create mode</name><valü>0660</valü></smbconfoption>
-                <smbconfoption><name>force directory mode</name><valü>0770</valü></smbconfoption>
+                <smbconfoption><name>force create mode</name><value>0660</value></smbconfoption>
+                <smbconfoption><name>force directory mode</name><value>0770</value></smbconfoption>
 		</smbconfblock>
 		</para>
 
 		<para>
-		These two settings will ensure that all directories and files that get created in the share will be read/writable by the
-		owner and group set on the directory itself.
+		Diese beiden Einstellungen stellen sicher, dass alle Verzeichnisse und Dateien die in der Freigabe
+		erzeugt werden, les- und schreibbar durch den Eigentümer und die Gruppe sind, die auf das Verzeichnis 
+		selbst gesetzt sind.
 		</para>
 
 	</sect2>
