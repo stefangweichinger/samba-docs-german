@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbpasswd</refname>
-	<refpurpose>change a user's SMB password</refpurpose>
+	<refpurpose>ändert das SMB-Passwort eines Benutzers</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,154 +23,166 @@
 		<arg choice="opt">-x</arg>	
 		<arg choice="opt">-d</arg>	
 		<arg choice="opt">-e</arg>	
-		<arg choice="opt">-D debuglevel</arg>	
+		<arg choice="opt">-D Debug-Ebene</arg>	
 		<arg choice="opt">-n</arg>	
-		<arg choice="opt">-r &lt;remote machine&gt;</arg>	
-		<arg choice="opt">-R &lt;name resolve order&gt;</arg>	
+		<arg choice="opt">-r &lt;entfernter Rechner&gt;</arg>	
+		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>	
 		<arg choice="opt">-m</arg>	
-		<arg choice="opt">-U username[%password]</arg>	
+		<arg choice="opt">-U Benutzername[%Passwort]</arg>	
 		<arg choice="opt">-h</arg>	
 		<arg choice="opt">-s</arg>	
-		<arg choice="opt">-w pass</arg>	
+		<arg choice="opt">-w Passwort</arg>	
 		<arg choice="opt">-i</arg>
 		<arg choice="opt">-L</arg>
-		<arg choice="opt">username</arg>	
+		<arg choice="opt">Benutzername</arg>	
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 	
-	<para>The smbpasswd program has several different 
-	functions, depending on whether it is run by the <emphasis>root</emphasis> user 
-	or not. When run as a normal user it allows the user to change 
-	the password used for their SMB sessions on any machines that store 
-	SMB passwords. </para>
+	<para>Das Programm smbpasswd hat mehrere verschiedene Aufgaben,
+	jenachdem, ob es vom Benutzer <emphasis>root</emphasis> ausgeführt 
+	wird oder nicht. Einem normalen Benutzer erlaubt es, das Passwort 
+	seiner SMB-Sitzungen auf allen Rechnern zu ändern, die SMB-Passworte
+	speichern.</para>
 
-	<para>By default (when run with no arguments) it will attempt to 
-	change the current user's SMB password on the local machine. This is 
-	similar to the way the <command>passwd(1)</command> program works. <command>
-	smbpasswd</command> differs from how the passwd program works 
-	however in that it is not <emphasis>setuid root</emphasis> but works in 
-	a client-server mode and communicates with a 
-	locally running <citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>. As a consequence in order for this to 
-	succeed the smbd daemon must be running on the local machine. On a 
-	UNIX machine the encrypted SMB passwords are usually stored in 
+	<para>Standardmäßig (ohne Angabe von Argumenten) versucht es, das 
+	aktuelle SMB-Passwort des Benutzers auf dem lokalen Rechner zu ändern. 
+	Auf eine ähnliche Weise funktioniert das Programm 
+	<command>passwd(1)</command>. Aber <command>
+	smbpasswd</command> unterscheidet sich von passwd darin, dass es nicht 
+	<emphasis>setuid root</emphasis> ist, sondern in einem 
+	Client-Server-Modus läuft und mit einem lokal laufenden 
+	<citerefentry><refentrytitle>smbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> kommuniziert. 
+	Damit das funktionieren kann muss als Konsequenz der smbd-Daemon auf
+	dem lokalen Rechner laufen. Auf einem UNIX-Rechner werden die 
+	verschlüsselten SMB-Passworte normalerweise in der Datei
 	the <citerefentry><refentrytitle>smbpasswd</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> file. </para>
+	<manvolnum>5</manvolnum></citerefentry> gespeichert.</para>
 
-	<para>When run by an ordinary user with no options, smbpasswd 
-	will prompt them for their old SMB password and then ask them 
-	for their new password twice, to ensure that the new password
-	was typed correctly. No passwords will be echoed on the screen 
-	whilst being typed. If you have a blank SMB password (specified by 
-	the string "NO PASSWORD" in the smbpasswd file) then just press 
-	the &lt;Enter&gt; key when asked for your old password. </para>
+	<para>Wenn es von einem gewöhnlichen Benutzer ohne Optionen ausgeführt 
+	wird, fragt smbpasswd ihn nach seinem alten SMB-Passwort und dann fragt
+	es zwei mal nach seinem neuen Passwort, um sicherzugehen, dass das neue
+	Passwort korrekt eingegeben wird. Während der Eingabe sind die 
+	Passworte auf dem Bildschirm nicht sichtbar. Sollten Sie ein leeres 
+	SMB-Passwort haben (angegeben durch den String "NO PASSWORD" in der
+	Datei smbpasswd), so drücken Sie einfach die Eingabetaste, wenn Sie nach
+	Ihrem alten Passwort gefragt werden.</para>
 
-	<para>smbpasswd can also be used by a normal user to change their
-	SMB password on remote machines, such as Windows NT Primary Domain 
-	Controllers.   See the (<parameter>-r</parameter>) and <parameter>-U</parameter> options 
-	below. </para>
+	<para>Normale Benutzer können mit smbpasswd auch ihr SMB-Passwort auf
+	entfernten Rechnern ändern, z.B. auf Windows NT-Primären 
+	Domänen-Controllern. Siehe die Optionen <parameter>-r</parameter> und
+	<parameter>-U</parameter> unten.</para>
 
-	<para>When run by root, smbpasswd allows new users to be added 
-	and deleted in the smbpasswd file, as well as allows changes to 
-	the attributes of the user in this file to be made. When run by root, <command>
-	smbpasswd</command> accesses the local smbpasswd file 
-	directly, thus enabling changes to be made even if smbd is not 
-	running. </para>
+	<para>Unter root ausgeführt, kann smbpasswd auch neue Benutzer 
+	zur smbpasswd-Datei hinzufügen oder von dort löschen, und es kann
+	dann Änderungen an den Attributen eines Benutzers in dieser Datei 
+	vornehmen. Unter root greift <command>smbpasswd</command> direkt auf
+	die Datei smbpasswd zu, so dass auch dann Änderungen vorgenommen werden
+	können, wenn smbd gar nicht läuft.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 	<variablelist>
 		<varlistentry>
 		<term>-a</term>
-		<listitem><para>This option specifies that the username 
-		following should be added to the local smbpasswd file, with the 
-		new password typed (type &lt;Enter&gt; for the old password). This 
-		option is ignored if the username following already exists in 
-		the smbpasswd file and it is treated like a regular change 
-		password command.  Note that the default passdb backends require 
-                the user to already exist in the system password file (usually 
-                <filename>/etc/passwd</filename>), else the request to add the 
-                user will fail. </para>
+		<listitem><para>Diese Option gibt an, dass der folgende Benutzername
+		zur lokalen Datei smbpasswd hinzugefügt werden soll, mit dem  
+		eingegebenen neuen Passwort (drücken Sie die Eingabetaste für das
+		alte Passwort). Diese Option wird ignoriert, falls der folgende
+		Benutzername in der smbpasswd-Datei bereits existiert und sie wird
+		dann wie ein normaler Befehl zum Ändern eines Passworts behandelt. 
+		Beachten Sie, dass die standardmäßigen passdb-Backends verlangen,
+		dass der Benutzer in der Passwortdatei des Systems bereits
+		vorhanden ist (normalerweise <filename>/etc/passwd</filename>),
+		sonst schlägt die Anfrage, den Benutzer hinzuzufügen, fehl.
+		</para>
 		
-		<para>This option is only available when running smbpasswd 
-		as root. </para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-x</term>
-		<listitem><para>This option specifies that the username 
-		following should be deleted from the local smbpasswd file.
+		<listitem><para>Diese Option gibt an, dass der folgende Benutzername
+		aus der lokalen smbpasswd-Datei gelöscht werden soll.
 		</para>
 
-		<para>This option is only available when running smbpasswd as 
-		root.</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-d</term>
-		<listitem><para>This option specifies that the username following 
-		should be <constant>disabled</constant> in the local smbpasswd 
-		file. This is done by writing a <constant>'D'</constant> flag 
-		into the account control space in the smbpasswd file. Once this 
-		is done all attempts to authenticate via SMB using this username 
-		will fail. </para>
+		<listitem><para>Diese Option gibt an, dass der folgende Benutzername 
+		in der lokalen smbpasswd-Datei deaktiviert werden soll.
+		Das wird dadurch bewerkstelligt, dass das Flag 
+		<constant>'D'</constant> in den Bereich mit den Kontoangaben der
+		Datei smbpasswd geschrieben wird. Anschließend schlagen alle
+		Versuche einer SMB-Authentifikation für diesen Benutzernamen 
+		fehl.</para>
 		
-		<para>If the smbpasswd file is in the 'old' format (pre-Samba 2.0 
-		format) there is no space in the user's password entry to write
-		this information and the command will FAIL. See <citerefentry><refentrytitle>smbpasswd</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> for details on the 'old' and new password file formats.
-		</para>
+		<para>Falls die smbpasswd-Datei im 'alten' Format ist (vor 
+		Samba 2.0), gibt es im Passworteintrag des Benutzers keinen Platz,
+		wo diese Information hingeschrieben werden könnte, und der Befehl
+		schlägt fehl. Siehe 
+		<citerefentry><refentrytitle>smbpasswd</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> für weitere Details zu den
+		'alten' und neuen Passwort-Dateiformaten.</para>
 
-		<para>This option is only available when running smbpasswd as 
-		root.</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-e</term>
-		<listitem><para>This option specifies that the username following 
-		should be <constant>enabled</constant> in the local smbpasswd file, 
-		if the account was previously disabled. If the account was not 
-		disabled this option has no effect. Once the account is enabled then 
-		the user will be able to authenticate via SMB once again. </para>
+		<listitem><para>Diese Option gibt an, dass der folgende Benutzername 
+		in der lokalen smbpasswd-Datei aktiviert werden soll, 
+		falls das Konto zuvor deaktiviert wurde. Falls das Konto nicht
+		deaktiviert wurde, hat diese Option keinen Effekt. Nachdem das
+		Konto aktiviert wurde, kann der Benutzer sich mit SMB wieder
+		authentifizieren.</para>
 		
-		<para>If the smbpasswd file is in the 'old' format, then <command>
-		smbpasswd</command> will FAIL to enable the account.  
-                See <citerefentry><refentrytitle>smbpasswd</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> for 
-		details on the 'old' and new password file formats. </para>
+		<para>Falls die smbpasswd-Datei im 'alten' Format ist, kann
+		<command>smbpasswd</command> das Konto NICHT aktivieren. Siehe 
+		<citerefentry><refentrytitle>smbpasswd</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> für weitere Details zu den
+		'alten' und neuen Passwort-Dateiformaten.</para>
 
-		<para>This option is only available when running smbpasswd as root. 
-		</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 
 
 		<varlistentry>
-		<term>-D debuglevel</term>
-		<listitem><para><replaceable>debuglevel</replaceable> is an integer 
-		from 0 to 10.  The default value if this parameter is not specified 
-		is zero. </para>
+		<term>-D Debug-Ebene</term>
+		<listitem><para><replaceable>Debug-Ebene</replaceable> ist ein
+		Integer von 0 bis 10. Falls nicht angegeben, ist der Vorgabewert 
+		für diesen Parameter gleich Null.</para>
 
-		<para>The higher this value, the more detail will be logged to the 
-		log files about the activities of smbpasswd. At level 0, only 
-		critical errors and serious warnings will be logged. </para>
+		<para>Je höher dieser Wert ist, desto mehr Details werden in den
+		Log-Dateien über die Aktivitäten von smbpasswd festgehalten. Auf
+		der Ebene 0 werden nur kritische Fehler und ernste Warnungen 
+		gespeichert.</para>
 
-		<para>Levels above 1 will generate considerable amounts of log 
-		data, and should only be used when investigating a problem. Levels 
-		above 3 are designed for use only by developers and generate
-		HUGE amounts of log data, most of which is extremely cryptic. 
+		<para>Auf Ebenen über 1 werden erhebliche Mengen an Log-Daten
+		gespeichert, daher sollten diese Ebenen nur bei der Untersuchung
+		eines Problems verwendet werden. Ebenen über 3 sind für den Gebrauch 
+		von Entwicklern gedacht und erzeugen RIESIGE Mengen an Log-Daten,
+		von denen die meisten extrem kryptisch sind. 
 		</para></listitem>
 		</varlistentry>
 		
@@ -178,176 +190,197 @@
 		
 		<varlistentry>
 		<term>-n</term>
-		<listitem><para>This option specifies that the username following 
-		should have their password set to null (i.e. a blank password) in 
-		the local smbpasswd file. This is done by writing the string "NO 
-		PASSWORD" as the first part of the first password stored in the 
-		smbpasswd file. </para>
+		<listitem><para>Diese Option gibt an, dass für den folgenden
+		Benutzernamen das Passwort in der lokalen smbpasswd-Datei auf 
+		Null, d.h. ein leeres Passwort, zurückgesetzt werden soll. 
+		Das wird dadurch bewerkstelligt, dass in der smbpasswd-Datei 
+		am Anfang des Passworts der String "NO PASSWORD" gespeichert 
+		wird.</para>
 
-		<para>Note that to allow users to logon to a Samba server once 
-		the password has been set to "NO PASSWORD" in the smbpasswd
-		file the administrator must set the following parameter in the [global]
-		section of the <filename>smb.conf</filename> file : </para>
+		<para>Man beachte, dass der Administrator den folgenden Parameter
+		im Abschnitt [global] der Datei <filename>smb.conf</filename>
+		setzen muss, damit Benutzer sich auf einem Samba-Server anmelden
+		kännen, nachdem das Passwort in der smbpasswd-Datei auf 
+		"NO PASSWORD" eingestellt wurde:</para>
 		
 		<para><command>null passwords = yes</command></para> 
 		
-		<para>This option is only available when running smbpasswd as 
-		root.</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>-r remote machine name</term>
-		<listitem><para>This option allows a user to specify what machine 
-		they wish to change their password on. Without this parameter 
-		smbpasswd defaults to the local host. The <replaceable>remote 
-		machine name</replaceable> is the NetBIOS name of the SMB/CIFS 
-		server to contact to attempt the password change. This name is 
-		resolved into an IP address using the standard name resolution 
-		mechanism in all programs of the Samba suite. See the <parameter>-R 
-		name resolve order</parameter> parameter for details on changing 
-		this resolving mechanism. </para>
+		<term>-r entfernter Rechnername</term>
+		<listitem><para>Mit dieser Option kann ein Benutzer angeben, auf
+		welchem Rechner er sein Passwort ändern möchte. Ohne diesen 
+		Parameter geht smbpasswd vom lokalen Host aus. Der
+		<replaceable>entfernte Rechnername</replaceable> ist der 
+		NetBIOS-Name des SMB/CIFS-Servers, der für den Versuch einer
+		Passwortänderung kontaktiert werden soll. Dieser Name wird 
+		mit dem standardmäßigen Namensauflösungsmechanismus in allen
+		Programmen der Samba-Suite in eine IP-Adresse aufgelöst. Siehe 
+		den Parameter <parameter>-R Namensauflösungsreihenfolge</parameter>
+		für weitere Details zur Änderung dieses Auflösungsmechanismus.
+		</para>
 
-		<para>The username whose password is changed is that of the 
-		current UNIX logged on user. See the <parameter>-U username</parameter>
-		parameter for details on changing the password for a different 
-		username. </para>
+		<para>Der Benutzername, dessen Passwort geändert wird, ist der 
+		des aktuell angemeldeten UNIX-Benutzers. Siehe den Parameter
+		<parameter>-U Benutzername</parameter> zu Details darüber, wie
+		man das Passwort eines anderen Benutzers ändert.</para>
 
-		<para>Note that if changing a Windows NT Domain password the 
-		remote machine specified must be the Primary Domain Controller for 
-		the domain (Backup Domain Controllers only have a read-only
-		copy of the user account database and will not allow the password 
-		change).</para>
+		<para>Man beachte, dass bei der Änderung eines Windows 
+		NT-Domänenpassworts der angegebene entfernte Rechner der Primäre
+		Domänen-Controller der Domäne sein muss (Backup Domänen-Controller
+		verfügen lediglich über eine nur lesbare Kopie der 
+		Benutzerkonten-Datenbank und erlauben keine Passwortänderung).</para>
 		
-		<para><emphasis>Note</emphasis> that Windows 95/98 do not have 
-		a real password database so it is not possible to change passwords 
-		specifying a Win95/98  machine as remote machine target. </para>
+		<para>Beachten Sie, dass Windows 95/98 keine echte 
+		Passwort-Datenbank besitzt. Daher ist es nicht möglich,
+		Passworte zu ändern, indem ein Win95/98-Rechner als entfernter
+		Zielrechner angegeben wird.</para>
 		</listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>-R name resolve order</term>
-		<listitem><para>This option allows the user of smbpasswd to determine
-		what name resolution services to use when looking up the NetBIOS
-		name of the host being connected to. </para>
+		<term>-R Namensauflösungsreihenfolge</term>
+		<listitem><para>Mit dieser Option kann der Benutzer von smbpasswd
+		bestimmen, welche Dienste bei der Namensauflösung benutzt werden,
+		wenn der NetBIOS-Name des Hosts gesucht wird, mit dem eine
+		Verbindung hergestellt wird.</para>
 
-		<para>The options are :"lmhosts", "host", "wins" and "bcast". They
-		 cause names to be resolved as follows: </para>
-			<itemizedlist>
-				<listitem><para><constant>lmhosts</constant>: Lookup an IP 
-            address in the Samba lmhosts file. If the line in lmhosts has 
-            no name type attached to the NetBIOS name (see the <citerefentry><refentrytitle>lmhosts</refentrytitle>
-	    <manvolnum>5</manvolnum></citerefentry> for details) then
-            any name type matches for lookup.</para></listitem>
+		<para>Verfügbare Option sind: "lmhosts", "host", "wins" und "bcast".
+		Sie bewirken, dass Namen wie folgt aufgelöst werden:</para>
 
-            <listitem><para><constant>host</constant>: Do a standard host 
-            name to IP address resolution, using the system <filename>/etc/hosts
-            </filename>, NIS, or DNS lookups. This method of name resolution 
-            is operating system depended for instance on IRIX or Solaris this 
-            may be controlled by the <filename>/etc/nsswitch.conf</filename> 
-            file).  Note that this method is only used if the NetBIOS name 
-            type being queried is the 0x20 (server) name type, otherwise 
-            it is ignored.</para></listitem>
-
-            <listitem><para><constant>wins</constant>: Query a name with 
-            the IP address listed in the <parameter>wins server</parameter> 
-	    parameter.  If no WINS server has been specified this method 
-	    will be ignored.</para></listitem>
-
-            <listitem><para><constant>bcast</constant>: Do a broadcast on 
-            each of the known local interfaces listed in the
-            <parameter>interfaces</parameter> parameter. This is the least 
-	    reliable of the name resolution methods as it depends on the 
-	    target host being on a locally connected subnet.</para></listitem>
+		<itemizedlist>
+			<listitem><para><constant>lmhosts</constant>: Sucht eine 
+			IP-Adresse in der Samba-Datei lmhosts. Falls die Zeile in 
+			lmhosts keinen mit dem NetBIOS-Namen verbundenen Namenstyp 
+			hat (Details siehe 
+			<citerefentry><refentrytitle>lmhosts</refentrytitle>
+			<manvolnum>5</manvolnum></citerefentry>), dann trifft bei
+			einer Suche jeder gefundene Namenstyp zu.</para>
+			</listitem>
+			
+			<listitem><para><constant>host</constant>: Führt eine 
+			standardmäßige Auflösung von Hostname zu IP-Adresse aus, 
+			entweder mit der Systemdatei <filename>/etc/hosts</filename>, 
+			mit einer NIS- oder DNS-Suche. Diese Methode der Namensauflösung 
+			ist abhängig vom Betriebssystem und wird z.B. unter IRIX oder
+			Solaris mit der Datei <filename>/etc/nsswitch.conf</filename> 
+			gesteuert). Beachten Sie, dass diese Methode nur dann benutzt 
+			wird, wenn der gesuchte NetBIOS-Namenstyp der Typ 0x20 (Server)
+			ist, ansonsten wird sie ignoriert.</para>
+			</listitem>
+			
+			<listitem><para><constant>wins</constant>: Fragt einen Namen 
+			mit Hilfe der IP-Adresse ab, die im Parameter 
+			<parameter>wins server</parameter> aufgelistet ist. Falls kein
+			WINS-Server angegeben wurde, wird diese Methode ignoriert.</para>
+			</listitem>
+			
+			<listitem><para><constant>bcast</constant>: Führt ein Broadcast
+			auf allen bekannten Schnittstellen durch, die im Parameter 
+			<parameter>interfaces</parameter> aufgelistet sind. Dies ist 
+			die unzuverlässigste Methode der Namensauflösung, da sie 
+			verlangt, dass der Ziel-Host sich in einem lokal verbundenen 
+			Subnetz befindet.</para>
+			</listitem>
 		</itemizedlist>
 		
-		<para>The default order is <command>lmhosts, host, wins, bcast</command> 
-		and without this parameter or any entry in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file the name resolution methods will 
-		be attempted in this order. </para></listitem>
+		<para>Die Standardreihenfolge ist 
+		<command>lmhosts, host, wins, bcast</command> und ohne diesen Parameter 
+		oder ohne Eintrag in der Datei 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> werden die Methoden der
+		Namensauflösung in dieser Reihenfolge ausprobiert.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-m</term>
-		<listitem><para>This option tells smbpasswd that the account 
-		being changed is a MACHINE account. Currently this is used 
-		when Samba is being used as an NT Primary Domain Controller.</para>
+		<listitem><para>Diese Option sagt smbpasswd, dass es sich beim geänderten
+		Konto um ein RECHNER-Konto handelt. Momentan wird das dann benutzt, 
+		wenn Samba als Primärer NT-Domänen-Controller benutzt wird.</para>
 
-		<para>This option is only available when running smbpasswd as root.
-		</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>-U username</term>
-		<listitem><para>This option may only be used in conjunction 
-		with the <parameter>-r</parameter> option. When changing
-		a password on a remote machine it allows the user to specify 
-		the user name on that machine whose password will be changed. It 
-		is present to allow users who have different user names on 
-		different systems to change these passwords. </para></listitem>
+		<term>-U Benutzername</term>
+		<listitem><para>Diese Option darf nur zusammen mit der Option
+		<parameter>-r</parameter> benutzt werden. Bei der Änderung eines
+		Passworts auf einem entfernten Rechner erlaubt sie, den 
+		Benutzernamen auf diesem Rechner anzugeben, dessen Passwort 
+		geändert wird. Diese Option existiert, damit Benutzer mit 
+		verschiedenen Benutzernamen auf verschiedenen Systemen diese
+		Passworte ändern können.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-h</term>
-		<listitem><para>This option prints the help string for <command>
-		smbpasswd</command>, selecting the correct one for running as root 
-		or as an ordinary user. </para></listitem>
+		<listitem><para>Diese Option gibt den Hilfe-String für <command>
+		smbpasswd</command> aus, wobei je nach normalem oder root-Benutzer
+		der richtige ausgewählt wird.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-s</term>
-		<listitem><para>This option causes smbpasswd to be silent (i.e. 
-		not issue prompts) and to read its old and new passwords from 
-		standard  input, rather than from <filename>/dev/tty</filename> 
-		(like the <command>passwd(1)</command> program does). This option 
-		is to aid people writing scripts to drive smbpasswd</para>
+		<listitem><para>Diese Option bewirkt, dass smbpasswd leise ist, d.h. 
+		keine Fragen stellt, und seine alten und neuen Passworte von der 
+		Standardeingabe statt von <filename>/dev/tty</filename> einliest  
+		(wie es das Programm <command>passwd(1)</command> macht). Diese 
+		Option soll den Leuten helfen, die Skripte zur Steuerung von smbpasswd
+		schreiben.</para>
 		</listitem>
 		</varlistentry>
 		
 
 		<varlistentry>
-		<term>-w password</term>
-		<listitem><para>This parameter is only available if Samba
-		has been configured to use the experimental
-		<command>--with-ldapsam</command> option. The <parameter>-w</parameter> 
-		switch is used to specify the password to be used with the 
-		<smbconfoption><name>ldap admin dn</name></smbconfoption>.  Note that the password is stored in
-		the <filename>secrets.tdb</filename> and is keyed off 
-		of the admin's DN.  This means that if the value of <parameter>ldap
-		admin dn</parameter> ever changes, the password will need to be 
-		manually updated as well.
-		</para>
+		<term>-w Passwort</term>
+		<listitem><para>Dieser Parameter ist nur dann verfügbar, wenn Samba
+		so konfiguriert wurde, dass es die experimentelle Option
+		<command>--with-ldapsam</command> benutzt. Mit dem Schalter 
+		<parameter>-w</parameter> wird das Passwort angegeben, das mit  
+		<smbconfoption><name>ldap admin dn</name></smbconfoption> benutzt 
+		wird. Man beachte, dass das Passwort in der Datei
+		<filename>secrets.tdb</filename> gespeichert wird, 
+		and is keyed off of the admin's DN???.
+		Das bedeutet, dass falls sich der Wert von <parameter>ldap
+		admin dn</parameter> jemals ändert, das Passwort manuell ebenfalls
+		aktualisiert werden muss.</para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-i</term>
-		<listitem><para>This option tells smbpasswd that the account 
-		being changed is an interdomain trust account. Currently this is used 
-		when Samba is being used as an NT Primary Domain Controller. 
-		The account contains the info about another trusted domain.</para>
+		<listitem><para>Diese Option sagt smbpasswd, dass das veränderte 
+		Konto ein Interdomänen-Trust-Konto ist. Momentan wird das benutzt,
+		wenn Samba als Primärer NT-Domänen-Controller verwendet wird. 
+		Das Konto enthält Informationen über eine andere vertrauenswürdige
+		Domäne.</para>
 
-		<para>This option is only available when running smbpasswd as root.
-		</para></listitem>
+		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
+		root ausgeführt wird.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-L</term>
-		<listitem><para>Run in local mode.</para></listitem>
+		<listitem><para>Läuft im lokalen Modus.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>username</term>
-		<listitem><para>This specifies the username for all of the 
-		<emphasis>root only</emphasis> options to operate on. Only root 
-		can specify this parameter as only root has the permission needed 
-		to modify attributes directly in the local smbpasswd file. 
+		<term>Benutzername</term>
+		<listitem><para>Dies gibt den Benutzernamen an, auf dem alle 
+		<emphasis>nur root</emphasis>-Optionen operieren sollen. Nur root 
+		kann diesen Parameter angeben, da nur root die notwendigen Rechte
+		hat, Attribute direkt in der lokalen smbpasswd-Datei zu ändern. 
 		</para></listitem>
 		</varlistentry>
 	</variablelist>
@@ -355,20 +388,22 @@
 
 
 <refsect1>
-	<title>NOTES</title>
+	<title>BEMERKUNGEN</title>
 	
-	<para>Since <command>smbpasswd</command> works in client-server 
-	mode communicating  with a local smbd for a non-root user then 
-	the smbd daemon must be running for this to work. A common problem 
-	is to add a restriction to the hosts that may access the <command>
-	smbd</command> running on the local machine by specifying either <parameter>allow
-	hosts</parameter> or <parameter>deny hosts</parameter> entry in 
-	the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> file and neglecting to 
-	allow "localhost" access to the smbd. </para>
+	<para>Da <command>smbpasswd</command> im Client-Server-Modus arbeitet
+	und für einen Benutzer, der nicht root ist, mit einem lokalen smbd 
+	kommuniziert, muss der smbd-Daemon laufen, damit das funktioniert. 
+	Ein häufiges Problem besteht darin, eine Einschränkung der Hosts 
+	vorzunehmen, die auf dem lokal laufenden <command>smbd</command> 
+	zugreifen, indem einer der Einträge <parameter>allow hosts</parameter> 
+	oder <parameter>deny hosts</parameter> in der 
+	Datei <citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry> angegeben wird, und vergessen
+	wird, den Zugriff von "localhost" auf smbd zu erlauben.</para>
 
-	<para>In addition, the smbpasswd command is only useful if Samba
-	has been set up to use encrypted passwords. </para>
+	<para>Außerdem gilt, dass der Befehl smbpasswd nur dann nützlich ist,
+	wenn Samba so eingestellt wurde, dass es verschlüsselte Passworte
+	verwendet.</para>
 </refsect1>
 
 
@@ -380,9 +415,10 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbpasswd</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry>,
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>.</para>
 </refsect1>
 
