@@ -98,8 +98,8 @@ aktuell verwendeten Plattformen. Diese sind:
 			werden diese <guimenu>Netzwerkverbindungen</guimenu> genannt.
 			Auf unserem System heissen Sie <guimenu>Netzwerkverbindungen</guimenu>.
 			Rechtsklicken Sie auf <guimenu>Netzwerkverbindungen -> Eigenschaften</guimenu>.
-			Siehe auch <link linkend="WXPP002"/>.
-			<image id="WXPP002"><imagedescription>Konfiguration Netzwerkverbindungen</imagedescription><imagefile>WXPP002</imagefile></image>
+			Siehe auch <link linkend="wxpp002"/>.
+			<image id="wxpp002"><imagedescription>Konfiguration Netzwerkverbindungen</imagedescription><imagefile>wxpp002</imagefile></image>
 			</para>
 			</step>
 			
@@ -112,8 +112,8 @@ aktuell verwendeten Plattformen. Diese sind:
 
 			<para>
 			Die Standardeinstellung ist aktiviertes DHCP (d.h. <quote>IP-Adresse automatisch beziehen</quote>.
-			Siehe auch <link linkend="WXPP003"/>.
-			<image id="WXPP003"><imagefile>WXPP003</imagefile>
+			Siehe auch <link linkend="wxpp003"/>.
+			<image id="wxpp003"><imagefile>wxpp003</imagefile>
 			<imagedescription>Eigenschaften von Internetprotokoll (TCP/IP)</imagedescription></image>
 			</para>
 
@@ -138,8 +138,8 @@ aktuell verwendeten Plattformen. Diese sind:
 			Standard-Gateways (oder Router) eingeben.
 			In den meisten Fällen, in denen DHCP genutzt wird,
 			ist es nicht erforderlich, weitere Einstellungen vorzunehmen. 			
-			Siehe auch <link linkend="WXPP005"></link>, um das Erscheinungsbild dieser Box zu sehen.
-			<image id="WXPP005"><imagefile>WXPP005</imagefile><imagedescription>Erweiterte TCP/IP Einstellungen</imagedescription></image>
+			Siehe auch <link linkend="wxpp005"></link>, um das Erscheinungsbild dieser Box zu sehen.
+			<image id="wxpp005"><imagefile>wxpp005</imagefile><imagedescription>Erweiterte TCP/IP Einstellungen</imagedescription></image>
 			</para>
 
 			<para>
@@ -152,8 +152,8 @@ aktuell verwendeten Plattformen. Diese sind:
 			um DNS-Server-Einstellungen hinzuzufügen.
 			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen.
 			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
-			Siehe auch <link linkend="WXPP014"/>.
-			<image id="WXPP014"><imagefile>WXPP014</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
+			Siehe auch <link linkend="wxpp014"/>.
+			<image id="wxpp014"><imagefile>wxpp014</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para></step>
 
 			<step><para>
@@ -162,8 +162,8 @@ aktuell verwendeten Plattformen. Diese sind:
 			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte
 			WINS-Einstellungen nutzt.
 			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
-Siehe auch <link linkend="WXPP009"></link>.
-						<image id="WXPP009"><imagefile>WXPP009</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
+Siehe auch <link linkend="wxpp009"></link>.
+						<image id="wxpp009"><imagefile>wxpp009</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
 			</para></step>
 		</procedure>
 
