@@ -24,7 +24,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para>smbpasswd ist die verschlüsselte Samba-Passwortdatei. Sie enthält 
@@ -170,7 +170,7 @@
 		
 		<varlistentry>
 		<term>Last Change Time</term>
-		<listitem><para>Dieses Feld enthält die Zeit, zu der das Konto 
+		<listitem><para>Dieses Feld enthält den Zeitpunkt, an dem das Konto 
 		zuletzt modifiziert wurde. Es besteht aus den Zeichen 'LCT-' 
 		(die für "Last Change Time" stehen), gefolgt von einer numerischen
 		Codierung der UNIX-Zeit in Sekunden seit der Epoche (1970), zu der

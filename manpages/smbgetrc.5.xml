@@ -24,7 +24,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Diese Manpage dokumentiert das Format sowie die Optionen der Datei
-	<emphasis>smbgetrc</emphasis>.Dies ist die Konfigurationsdatei, die von
+	<emphasis>smbgetrc</emphasis>. Dies ist die Konfigurationsdatei, die von
 	dem Werkzeug 
 	<citerefentry><refentrytitle>smbget</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry> 
@@ -93,7 +93,7 @@
 		</varlistentry>
 
 		<varlistentry><term>blocksize <replaceable>int</replaceable></term>
-			<listitem><para>Die Anzahl an Bytes in einem Block.
+			<listitem><para>Die Anzahl der Bytes in einem Block.
 			</para></listitem>
 		</varlistentry>
 	</variablelist>

@@ -58,38 +58,38 @@
 	<variablelist>
 		<varlistentry>
 		<term>-r</term>
-		<listitem><para>mountet das Dateisystem nur lesbar 
+		<listitem><para>Mountet das Dateisystem nur lesbar. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-u uid</term>
-		<listitem><para>gibt die uid an, der die Dateien gehören 
+		<listitem><para>Gibt die uid an, der die Dateien gehören.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-g gid</term>
-		<listitem><para>gibt die gid an, der die Dateien gehören 
+		<listitem><para>Gibt die gid an, der die Dateien gehören. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-f Maske</term>
-		<listitem><para>gibt die angewendete oktale Dateimaske an
+		<listitem><para>Gibt die angewendete oktale Dateimaske an.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-d Maske</term>
-		<listitem><para>gibt die angewendete oktale Verzeichnismaske an 
+		<listitem><para>Gibt die angewendete oktale Verzeichnismaske an. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-o Optionen</term>
 		<listitem><para>
-		eine Liste von Optionen, die direkt so an smbfs übergeben werden, falls
+		Eine Liste von Optionen, die direkt so an smbfs übergeben werden, falls
 		dieser Befehl auf einem Linux-Kernel 2.4 oder höher ausgeführt wird.
 		</para></listitem>
 		</varlistentry>

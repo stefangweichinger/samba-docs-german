@@ -35,7 +35,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbcontrol</command> ist ein sehr kleines Programm, 
@@ -73,7 +73,7 @@
 		Nachricht in einem "Broadcast" an alle smbd-Daemons gesendet
 		wird.</para>
 
-		<para>Das Ziel <parameter>smbd</parameter> bewirkt, dass die 
+		<para>Das Ziel <parameter>nmbd</parameter> bewirkt, dass die 
 		Nachricht an den nmbd-Daemon gesendet wird, der in der Datei 
 		<filename>nmbd.pid</filename> angegeben ist.</para>
 
@@ -91,7 +91,7 @@
 
 		<varlistentry>
 		<term>Parameter</term>
-		<listitem><para>irgendwelche für den Nachrichten-Typ benötigte
+		<listitem><para>Irgendwelche für den Nachrichten-Typ benötigte
 		Parameter.</para>
 		</listitem>
 		</varlistentry>
@@ -181,33 +181,33 @@
 
 	    <varlistentry>
 	    <term>queuepause printername</term>
-	    <listitem><para>Sendet eine Nachricht queue pause change notify
+	    <listitem><para>Sendet die Nachricht queue pause change notify
 	    an den angegebenen Drucker.</para></listitem>
  	    </varlistentry>
 
 	    <varlistentry>
 	    <term>queueresume printername</term>
-	    <listitem><para>Sendet eine Nachricht queue resume change notify
+	    <listitem><para>Sendet die Nachricht queue resume change notify
 	    für den angegebenen Drucker.</para></listitem>
  	    </varlistentry>
 
 	    <varlistentry>
 	    <term>jobpause printername unixjobid</term>
-	    <listitem><para>Sendet eine Nachricht job pause change notify
+	    <listitem><para>Sendet die Nachricht job pause change notify
 	    für den angegebenen Drucker und die angegebene unix jobid.
 	    </para></listitem> 
  	    </varlistentry>
 
 	    <varlistentry>
 	    <term>jobresume printername unixjobid</term>
-	    <listitem><para>Sendet eine Nachricht job resume change notify
+	    <listitem><para>Sendet die Nachricht job resume change notify
 	    für den angegebenen Drucker und die angegebene unix jobid.
 	    </para></listitem>  
 	    </varlistentry>
 
 	    <varlistentry>
 	    <term>jobdelete printername unixjobid</term>
-	    <listitem><para>Sendet eine Nachricht job delete change notify
+	    <listitem><para>Sendet die Nachricht job delete change notify
 	    für den angegebenen Drucker und die angegebene unix jobid.
 	    </para></listitem> 
 	    </varlistentry>
@@ -229,7 +229,7 @@
 	<listitem><para>Weist smbd an, die SAM-Datenbank vom PDC zu 
 	snychronisieren (während sie auf dem BDC steht). 
 	Kann nur an <constant>smbd</constant> gesendet werden.</para>
-	<note><para>Funktioniert im Moment nicht.</para></note>
+	<note><para>Funktioniert momentan nicht.</para></note>
 	</listitem>
 	</varlistentry>
 
@@ -278,7 +278,7 @@
 
 	<varlistentry>
 	<term>reload-config</term>
-	<listitem><para>Zwingt den Daemon dazu, die Konfiguraionsdatei 
+	<listitem><para>Zwingt den Daemon dazu, die Konfigurationsdatei 
 	smb.conf neu zu laden. Kann an <constant>smbd</constant>, 
 	<constant>nmbd</constant> oder <constant>winbindd</constant> gesendet
 	werden.

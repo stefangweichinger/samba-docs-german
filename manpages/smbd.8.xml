@@ -38,7 +38,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbd</command> ist der Server-Daemon, der Dateifreigaben 
@@ -277,48 +277,54 @@
 <refsect1>
 	<title>DIAGNOSEMELDUNGEN</title>
 
-	<para>Most diagnostics issued by the server are logged 
-	in a specified log file. The log file name is specified 
-	at compile time, but may be overridden on the command line.</para>
+	<para>Die meisten vom Server ausgegebenen Diagnosemeldungen werden in
+	einer bestimmten Log-Datei gespeichert. Der Name der Log-Datei wird
+	zum Zeitpunkt des Kompilierens angegeben, kann aber auf der 
+	Kommandozeile überschrieben werden.</para>
 
-	<para>The number and nature of diagnostics available depends 
-	on the debug level used by the server. If you have problems, set 
-	the debug level to 3 and peruse the log files.</para>
+	<para>Die Anzahl und Art der verfügbaren Diagnosemeldungen hängt von 
+	der Debug-Ebene ab, die der Server benutzt. Wenn Sie Probleme haben, 
+	setzen Sie die Debug-Ebene auf 3 und schauen Sie die Log-Dateien 
+	durch.</para>
 
-	<para>Most messages are reasonably self-explanatory. Unfortunately, 
-	at the time this man page was created, there are too many diagnostics 
-	available in the source code to warrant describing each and every 
-	diagnostic. At this stage your best bet is still to grep the 
-	source code and inspect the conditions that gave rise to the 
-	diagnostics you are seeing.</para>
+	<para>Die meisten Meldungen sind einigermaßen selbsterklärend. Als diese
+	manpage erzeugt wurde, gab es leider zu viele Diagnosemeldungen im 
+	Quellcode, als dass jede einzelne beschrieben werden konnte. Zu diesem
+	Zeitpunkt ist das Beste, was Sie machen können, ein grep auf dem 
+	Quellcode und zu versuchen, die Bedingungen herauszufinden, die zu der 
+	Diagnosemeldung geführt haben, die Sie sehen.</para>
 </refsect1>
 
 <refsect1>
 	<title>SIGNALE</title>
 
-	<para>Sending the <command>smbd</command> a SIGHUP will cause it to 
-	reload its <filename>smb.conf</filename> configuration 
-	file within a short period of time.</para>
+	<para>Ein SIGHUP an <command>smbd</command> zu senden, bewirkt, dass er 
+	seine Konfigurationsdatei <filename>smb.conf</filename> innerhalb kurzer
+	Zeit erneut lädt.</para>
 
-	<para>To shut down a user's <command>smbd</command> process it is recommended 
-	that <command>SIGKILL (-9)</command> <emphasis>NOT</emphasis> 
-	be used, except as a last resort, as this may leave the shared
-	memory area in an inconsistent state. The safe way to terminate 
-	an <command>smbd</command> is to send it a SIGTERM (-15) signal and wait for 
-	it to die on its own.</para>
+	<para>Zum Herunterfahren eines <command>smbd</command>-Prozesses eines 
+	Benutzers, wird empfohlen <command>SIGKILL (-9)</command> 
+	<emphasis>NICHT</emphasis> zu benutzen, außer als letztes Mittel, weil
+	das den Shared Memory-bereich in einen inkonsistenten Zustand versetzen 
+	kann. Die sichere Art, einen <command>smbd</command> zu terminieren, 
+	besteht darin, ihm das Signal SIGTERM (-15) zu schicken und darauf zu 
+	warten, dass er sich selbst beendet.</para>
 
-	<para>The debug log level of <command>smbd</command> may be raised
-	or lowered using <citerefentry><refentrytitle>smbcontrol</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> program (SIGUSR[1|2] signals are no longer 
-	used since Samba 2.2). This is to allow transient problems to be diagnosed, 
-	whilst still running at a normally low log level.</para>
+	<para>Die Debug-Log-Ebene von <command>smbd</command> kann mit Hilfe des
+	Programms <citerefentry><refentrytitle>smbcontrol</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry> erhöht oder erniedrigt werden 
+	(SIGUSR[1|2]-Signale werden seit Samba 2.2 nicht mehr verwendet). 
+	Das geschieht, damit vorübergehende Probleme diagnostiziert werden können,
+	während man sich weiterhin auf einer normalerweise geringeren Log-Ebene 
+	befindet.</para>
 
-	<para>Note that as the signal handlers send a debug write, 
-	they are not re-entrant in <command>smbd</command>. This you should wait until 
-	<command>smbd</command> is in a state of waiting for an incoming SMB before 
-	issuing them. It is possible to make the signal handlers safe 
-	by un-blocking the signals before the select call and re-blocking 
-	them after, however this would affect performance.</para>
+	<para>Beachten Sie, dass die Signal-Handler beim Schreiben in eine 
+	Debug-Datei nicht re-entrant in <command>smbd</command> sind. Das heisst,
+	Sie sollten warten, bis <command>smbd</command> wieder in einem Zustand ist,
+	in dem es auf einen eintreffenden SMB wartet, bevor Sie solche abschicken.  
+	Man kann Signal-Handler sicher machen, indem die Signale vor dem ausgewählten
+	Aufrud entsperrt und hinterher wieder gesperrt werden, was aber die 
+	Performanz beeinträchtigen würde.</para>
 </refsect1>
 
 <refsect1>
@@ -330,11 +336,11 @@
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>smbclient</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testparm</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testprns</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry>, and the 
-	Internet RFC's	<filename>rfc1001.txt</filename>, <filename>rfc1002.txt</filename>. 
-	In addition the CIFS (formerly SMB) specification is available 
-	as a link from the Web page <ulink noescape="1" url="http://samba.org/cifs/"> 
-	http://samba.org/cifs/</ulink>.</para>
+	<manvolnum>1</manvolnum></citerefentry> sowie die 
+	Internet RFCs <filename>rfc1001.txt</filename> und <filename>rfc1002.txt</filename>. 
+	Außerdem ist die CIFS- (früher SMB-) Spezifikation als Link auf der 
+	Webseite <ulink noescape="1" url="http://samba.org/cifs/"> 
+	http://samba.org/cifs/</ulink> verfügbar.</para>
 </refsect1>
 
 <refsect1>
