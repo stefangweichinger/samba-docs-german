@@ -12,15 +12,15 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Sogenannte <quote>Roaming Profiles</quote> (zu Deutsch etwa <quote>servergespeicherte Benutzerprofile</quote>) 
-werden von manchen gefürchtet, von einigen gehasst, von vielen geliebt,
+So genannte <quote>Roaming Profiles</quote> (zu Deutsch etwa <quote>servergespeicherte Benutzerprofile</quote>) 
+werden von manchen gefürchtet, von einigen gehasst, von vielen geliebt
 und sind ein Geschenk des Himmels für so manchen Administrator.
 </para>
 
 <para>
 Roaming Profiles erlauben es einem Administrator, dem Benutzer einen konsistenten Desktop
 zur Verfügung stellen, wenn er sich von einer Maschine zu einer anderen bewegt. Dieses
-Kapitel stellt Informationen zur Verfügung, wie man Roaming Profiles konfiguriert und
+Kapitel stellt Informationen darüber zur Verfügung, wie man Roaming Profiles konfiguriert und
 verwaltet.
 </para>
 
@@ -44,35 +44,35 @@ Die Unterstützung für Roaming Profiles ist für Windows 9x/Me und Windows NT4/200
 </warning>
 
 <para>
-Bevor wir die Konfiguration von Roaming Profiles diskutieren, ist es sinnvoll, zu sehen, wie
-Windows 9x/Me und Windows NT4/200x Clients diese Eigenschaften implementieren.
+Bevor wir die Konfiguration von Roaming Profiles beschreiben, ist es sinnvoll zu sehen, wie
+Windows 9x/Me- und Windows NT4/200x-Clients diese Eigenschaften implementieren.
 </para>
 
 <para>
-Windows 9x/Me Clients senden einen NetUserGetInfo-Request an den Server, um den Pfad zu den
+Windows 9x/Me-Clients senden einen <quote>NetUserGetInfo</quote>-Request an den Server, um den Pfad zu den
 Profilen des Benutzers zu erhalten. Die Antwort hat jedoch nicht genug Platz für ein separates
-Feld für den Pfad der Profile, nur für die home-Freigabe des Benutzers. Das bedeutet, daß
+Feld für den Pfad der Profile, nur für die home-Freigabe des Benutzers. Das bedeutet, dass
 Windows 9x/Me-Profile darauf beschränkt sind, im Home-Verzeichnis des Benutzers gespeichert zu werden.
 </para>
 
 <para>
 Windows NT4/200x-Clients senden einen NetSAMLogon-RPC-Request, der viele Felder enthält, inklusive
-einem Feld für den Pfad der Profile des Benutzers.
+eines Feldes für den Pfad der Profile des Benutzers.
 </para>
 
 <sect2>
 <title>Die Konfiguration von Samba für den Umgang mit Profilen</title>
 
 <para>
-Dieser Abschnitt dokumentiert, wie man Samba konfiguriert, um MS Windows Client Profile zu
+Dieser Abschnitt dokumentiert, wie man Samba konfiguriert, um MS Windows-Client-Profile zu
 unterstützen.
 </para>
 
 <sect3>
-<title>NT4/200x Benutzer-Profile</title>
+<title>NT4/200x-Benutzer-Profile</title>
 
 <para>
-Um zum Beispiel Windows NT4/200x Clients zu unterstützen, setzen Sie folgendes im Abschnitt [global] der Datei &smb.conf;:
+Um zum Beispiel Windows NT4/200x-Clients zu unterstützen, setzen Sie Folgendes im Abschnitt [global] der Datei &smb.conf;:
 </para>
 
 <para>
@@ -85,7 +85,7 @@ Dies wird typischerweise so implementiert:
 <smbconfblock>
 <smbconfoption><name>logon path</name><value>\\%L\Profiles\%u</value></smbconfoption>
 </smbconfblock>
-wobei <quote>%L</quote> auf den Namen des Samba-Servers aufgelöst wird, und <quote>%u</quote> auf den Benutzernamen.
+wobei <quote>%L</quote> in den Namen des Samba-Servers aufgelöst wird und <quote>%u</quote> in den Benutzernamen.
 </para>
 
 <para>
@@ -93,14 +93,14 @@ Die Voreinstellung für diese Option ist <filename>\\%N\%U\profile</filename>, al
 <filename>\\sambaserver\username\profile</filename>.
 Der Dienst <filename>\\%N\%U</filename> wird automatisch vom [homes]-Dienst angelegt.
 Wenn Sie einen Samba-Server für die Profile verwenden, müssen Sie die in <quote>logon path</quote> angegebene
-Freigabe browseable machen. Bitte lesen Sie die manpage für &smb.conf;, um mehr über die 
-unterschiedliche Semantik von <quote>%L</quote> und <quote>%N</quote> zu erfahren, wie auch über
-<quote>%U</quote> und <quote>%u</quote>.
+Freigabe durchsuchbar (<smbconfoption>browseable</smbconfoption>) machen. Bitte lesen Sie die Manpage für &smb.conf;, um mehr über die 
+unterschiedliche Semantik von <quote>%L</quote>, <quote>%N</quote>, 
+<quote>%U</quote> und <quote>%u</quote> zu erfahren.
 </para>
 
 <note>
 <para>
-MS Windows NT/200x Clients trennen manchmal zwischen einzelnen
+MS Windows NT/200x-Clients trennen manchmal zwischen einzelnen
 Logons eine Verbindung zu einem Server nicht. 
 Es wird empfohlen, den Meta-Dienst <smbconfsection>homes</smbconfsection> nicht als Teil des
 Profil-Pfads zu verwenden.
@@ -109,46 +109,46 @@ Profil-Pfads zu verwenden.
 </sect3>
 
 <sect3>
-<title>Windows 9x/Me Benutzer-Profile</title>
+<title>Windows 9x/Me-Benutzer-Profile</title>
 
 <para>
-Um Windows 9x/Me Clients zu unterstützen, müssen Sie den Parameter 
-<smbconfoption><name>logon home</name></smbconfoption> verwenden. Samba wurde repariert, sodaß
-<userinput>net use /home</userinput> nun auch funktioniert, und auch auf dem Parameter
+Um Windows 9x/Me-Clients zu unterstützen, müssen Sie den Parameter 
+<smbconfoption><name>logon home</name></smbconfoption> verwenden. Samba wurde repariert, so dass
+<userinput>net use /home</userinput> nun auch funktioniert und auch auf dem Parameter
 <command>logon home</command> beruht.
 </para>
 
 <para>
-Mittels Verwendung des Parameters <command>logon home</command> sind Sie darauf beschränkt, Windows 9x/Me Benutzer-Profile
-im Home-Verzeichnis des Benutzers abzulegen. Aber warten Sie! Es gibt einen Trick, den Sie
-benutzen können. Wenn Sie folgendes im Abschnitt <smbconfsection>[global]</smbconfsection> Ihrer
-&smb.conf;-Datei setzen:
+Durch die Verwendung des Parameters <command>logon home</command> sind Sie darauf beschränkt, Windows 9x/Me-Benutzer-Profile
+im home-Verzeichnis des Benutzers abzulegen. Aber warten Sie! Es gibt einen Trick, den Sie
+benutzen können. Wenn Sie im Abschnitt <smbconfsection>[global]</smbconfsection> Ihrer
+&smb.conf;-Datei 
 </para>
 <para><smbconfblock>
 <smbconfoption><name>logon home</name><value>\\%L\%U\.profiles</value></smbconfoption>
 </smbconfblock></para>
 
 <para>
-werden Ihre Windows 9x/Me Clients pflichtbewußt Ihre Clients in ein Unterverzeichnis Ihres
+setzen, werden Ihre Windows 9x/Me-Clients pflichtbewusst ihre Profile in ein Unterverzeichnis Ihres
 home-Verzeichnisses namens <filename>.profiles</filename> ablegen (und sie damit verstecken).
 </para>
 
 <para>
-Nicht nur das, <userinput>net use /home</userinput> wird genauso funktionieren, aufgrund eines
-Features in Windows 9x/Me. Es entfernt jegliche Verzeichnis-Angaben am Ende der Angabe
-des Home-Verzeichnisses und benutzt nur die Teile, die Server und Freigabe angeben. Daher
+Nicht nur das, <userinput>net use /home</userinput> wird aufgrund eines
+Features in Windows 9x/Me genauso funktionieren. Es entfernt jegliche Verzeichnis-Angaben am Ende der Angabe
+des home-Verzeichnisses und benutzt nur die Teile, die den Server und die Freigabe angeben. Daher
 sieht es für den Client so aus, als ob Sie <filename>\\%L\%U</filename> für
 <smbconfoption><name>logon home</name></smbconfoption> spezifiziert hätten.
 </para>
 </sect3>
 
 <sect3>
-<title>Gemischte Windows 9x/Me und Windows NT4/200x Benutzer-Profile</title>
+<title>Gemischte Windows 9x/Me- und Windows NT4/200x-Benutzer-Profile</title>
 
 <para>
-Sie können Profile für Windows 9x/Me und Windows NT4/200x Clients unterstützen, indem Sie
-beide Parameter <smbconfoption><name>logon home</name></smbconfoption> und
-<smbconfoption><name>logon path</name></smbconfoption> angeben. Zum Beispiel:
+Sie können Profile für Windows 9x/Me- und Windows NT4/200x-Clients unterstützen, indem Sie
+beide Parameter, <smbconfoption><name>logon home</name></smbconfoption> und
+<smbconfoption><name>logon path</name></smbconfoption>, angeben. Zum Beispiel:
 </para>
 
 <para><smbconfblock>
@@ -158,10 +158,10 @@ beide Parameter <smbconfoption><name>logon home</name></smbconfoption> und
 
 </sect3>
 <sect3>
-<title>Deaktivieren der Unterstützung von Roaming Profiles</title>
+<title>Die Unterstützung von Roaming Profiles deaktivieren</title>
 
 <para>
-Oft wird gefragt: <quote>Wie kann ich die Verwendung lokaler Profile erzwingen?</quote> oder
+Oft wird gefragt: <quote>Wie kann ich die Verwendung lokaler Profile erzwingen?</quote> oder:
 <quote>Wie kann ich Roaming Profiles deaktivieren?</quote>
 </para>
 
@@ -176,17 +176,16 @@ Es gibt drei Arten, dies zu tun:
 	<varlistentry>
 		<term>In &smb.conf;</term>
 		<listitem><para>
-		Ändern Sie die folgenden Settings und ALLE Clients werden dazu gezwungen,
+		Ändern Sie die folgenden Settings, und ALLE Clients werden dazu gezwungen,
 		ein lokales Profil zu verwenden:
-		<smbconfoption><name>logon home</name></smbconfoption> und <smbconfoption><name>logon path</name></smbconfoption>
+		<smbconfoption><name>logon home</name></smbconfoption> und <smbconfoption><name>logon path</name></smbconfoption>.
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>MS Windows Registry</term>
 		<listitem><para>
-		Unter Verwendung der Microsoft Management Console gpedit.msc, um Ihre MS Windows XP
-		Maschine zu zwingen, nur ein lokales Profil zu verwenden. Dies verändert natürlich
+		Verwenden Sie die Microsoft Management Console gpedit.msc, um Ihre MS Windows XP-		Maschine zu zwingen, nur ein lokales Profil zu verwenden. Dies verändert natürlich
 		Registry-Settings. Der volle Pfad zu der Option ist:
 <screen>
 Local Computer Policy\
@@ -196,7 +195,7 @@ Local Computer Policy\
 				User Profiles\
 
 Disable: Nur lokale Benutzer-Profile erlauben
-Disable: Verhindern, daß Änderungen des Roaming Profiles zum Server weitergegeben werden 
+Disable: Verhindern, dass Änderungen des Roaming Profile an den Server weitergegeben werden 
 </screen>
 	</para> </listitem>
 	</varlistentry>
@@ -205,10 +204,10 @@ Disable: Verhindern, daß Änderungen des Roaming Profiles zum Server weitergegebe
 		<term>Ändern des Profil-Typs:</term>
 		<listitem><para>Klicken Sie im Start-Menü mit der rechten Maustaste auf
 		<guiicon>Arbeitsplatz</guiicon>,
-		wählen Sie <guimenuitem>Properties</guimenuitem>, klicken auf das Tab
+		wählen Sie <guimenuitem>Properties</guimenuitem>, klicken Sie auf das Tab
 		<guilabel>Benutzerprofile</guilabel>,
 		wählen Sie das Profil, das Sie vom Typ
-		<guimenu>Roaming</guimenu> auf <guimenu>Local</guimenu> ändern wollen, und klicken auf 
+		<guimenu>Roaming</guimenu> auf <guimenu>Local</guimenu> ändern wollen, und klicken Sie auf 
 		<guibutton>Typ ändern</guibutton>.
 		</para></listitem>
 	</varlistentry>
@@ -221,23 +220,22 @@ Verwendung lokaler Benutzer-Profile zu erzwingen.
 </para>
 
 <note><para>
-Die Besonderheiten, wie man ein lokales Profil auf ein Roaming Profil wandelt, oder umgekehrt,
-variieren je nach Version von MS Windows, die Sie einsetzen. Konsultieren Sie auch das
+Die Besonderheiten, wie man ein lokales Profil in ein Roaming Profil umwandelt oder umgekehrt,
+variieren je nach der Version von MS Windows, die Sie einsetzen. Konsultieren Sie auch das
 Microsoft MS Windows Resource Kit für besondere Informationen.
 </para></note>
 
 </sect3> </sect2>
 
-<sect2> <title>Informationen zur Konfiguration von Windows Client Profilen</title>
+<sect2> <title>Informationen zur Konfiguration von Windows-Client-Profilen</title>
 
-<sect3> <title>Windows 9x/Me Profil-Setup</title>
+<sect3> <title>Windows 9x/Me-Profil-Setup</title>
 
 <para>
-Wenn sich ein Benutzer zum ersten Mal in Windows 9x anmeldet, wird die Datei user.DAT erstellt,
-weiters die Verzeicnisse <filename>Startmenü</filename>, <filename>Desktop</filename>, 
-<filename>Programme</filename>, und <filename>Netzwerkumgebung</filename>.
-Diese Verzeichnisse und ihre Inhalte werden mit den lokalen Versionen in
-<filename>c:\windows\profiles\username</filename> vereint, bei jedem folgenden Login,
+Wenn sich ein Benutzer zum ersten Mal in Windows 9x anmeldet, werden die Datei user.DAT erstellt sowie die Verzeicnisse <filename>Startmenü</filename>, <filename>Desktop</filename>, 
+<filename>Programme</filename> und <filename>Netzwerkumgebung</filename>.
+Diese Verzeichnisse und ihre Inhalte werden bei jedem folgenden Login mit den lokalen Versionen in
+<filename>c:\windows\profiles\username</filename> vereint, 
 wobei immer die jeweils neuesten Versionen verwendet werden. Sie werden folgende
 <smbconfsection>[global]</smbconfsection>-Optionen verwenden müssen:
 <smbconfoption><name>preserve case</name><value>yes</value></smbconfoption>,
@@ -248,14 +246,14 @@ um Großbuchstaben in Shortcuts in einem der Profil-Verzeichnisse zu erhalten.
 
 <para>
 Die Datei <filename>user.DAT</filename> enthält alle Benutzereinstellungen. Wenn Sie einen Satz von
-Einstellungen erzwingen wollen, benennen Sie die Datei <filename>user.DAT</filename> auf
-<filename>user.MAN</filename> um, und verweigern den Schreibzugriff auf diese Datei.
+Einstellungen erzwingen wollen, benennen Sie die Datei <filename>user.DAT</filename> in
+<filename>user.MAN</filename> um und verweigern den Schreibzugriff auf diese Datei.
 </para>
 
 <orderedlist>
 	<listitem> <para>
-	Gehen Sie auf der Windows 9x/Me Maschine auf <guimenu>Systemsteuerung</guimenu> ->
-	<guimenuitem>Passwörter</guimenuitem> und wählen Sie den Tab
+	Gehen Sie auf der Windows 9x/Me-Maschine auf <guimenu>Systemsteuerung</guimenu> ->
+	<guimenuitem>Passwörter</guimenuitem>, und wählen Sie den Tab
 	<guilabel>Benutzer-Profile</guilabel>.
 	Wählen Sie das erforderliche Level von Roaming-Einstellungen.
 	Drücken Sie <guibutton>OK</guibutton>, aber erlauben Sie keinen Reboot.
@@ -265,30 +263,29 @@ Einstellungen erzwingen wollen, benennen Sie die Datei <filename>user.DAT</filen
 	Dann gehen Sie auf <guimenu>Systemsteuerung</guimenu> ->,
 	<guimenuitem>Netzwerk</guimenuitem> -> <guimenuitem>Client for Microsoft Networks</guimenuitem>	
 	<guilabel>Einstellungen</guilabel>. Wählen Sie <guilabel>An NT Domäne anmelden</guilabel>.
-	Dann stellen Sie sicher, daß das Primary Logon <guilabel>Client for Microsoft Networks</guilabel>
-	ist. Drücken Sie <guibutton>OK</guibutton>, und erlauben diesmal den Reboot.
+	Dann stellen Sie sicher, dass das Primary Logon <guilabel>Client for Microsoft Networks</guilabel>
+	ist. Drücken Sie <guibutton>OK</guibutton>, und erlauben Sie diesmal den Reboot.
 	</para> </listitem>
 </orderedlist>
 
 <para> 
-In Windows 9x/ME werden die Profile vom Primary Logon geladen. Wenn Sie das Primary Logon auf
-<quote>Client for Novell Networks</quote> gesetzt haben, werden die Profile und Logon-Skripts vom
-Novell-Server geladen. Wenn Sie das Primary Logon auf <quote>Windows Logon</quote> haben, werden die
-Profile von der lokalen Maschine geladen &smbmdash; ein wenig gegen das Prinzip der Roaming Profiles,
+In Windows 9x/Me werden die Profile vom Primary Logon geladen. Wenn Sie das Primary Logon auf
+<quote>Client for Novell Networks</quote> gesetzt haben, werden die Profile und Logon-Skripten vom
+Novell-Server geladen. Wenn Sie das Primary Logon auf <quote>Windows Logon</quote> gesetzt haben, werden die
+Profile von der lokalen Maschine geladen, was ein wenig dem Prinzip der Roaming Profiles widerspricht,
 wie es scheint!
 </para>
 
 <para>
-Sie werden nun sehen, daß der MS-Netzwerk-Login-Dialog <constant>[Benutzer, Passwort, Domäne]</constant>
-anstatt nur <constant>[Benutzer, Passwort]</constant> enthält. Geben Sie den Domänen-Namen des
-Samba-Servers ein (oder den einer anderen existierenden Domäne, aber denken Sie daran, daß der Benutzer
-an dieser Domäne angemeldet wird, und die Profile aus dieser Domäne geladen werden, wenn dieser
-Domänen-Anmelde-Server es unterstützt), Benutzernamen, und das Passwort des Benutzers.
+Sie werden nun sehen, dass der MS-Netzwerk-Login-Dialog <constant>[Benutzer, Passwort, Domäne]</constant>
+statt nur <constant>[Benutzer, Passwort]</constant> enthält. Geben Sie den Domänen-Namen des
+Samba-Servers (oder den einer anderen existierenden Domäne, aber denken Sie daran, dass der Benutzer
+an dieser Domäne angemeldet wird und die Profile aus dieser Domäne geladen werden, wenn dieser
+Domänen-Anmelde-Server es unterstützt), den Benutzernamen und das Passwort des Benutzers ein.
 </para>
 
 <para> 
-Sobald der Benutzer erfolgreich überprüft wurde, wird Sie die Windows 9x/Me-Maschine informieren, daß
-<computeroutput>The user has not logged on before</computeroutput> und fragen
+Sobald der Benutzer erfolgreich überprüft wurde, wird die Windows 9x/Me-Maschine Ihnen Folgendes anzeigen: <computeroutput>The user has not logged on before</computeroutput> und Sie Folgendes fragen:
 <computeroutput>Do you wish to save the user's preferences?</computeroutput> 
 Wählen Sie <guibutton>Yes</guibutton>.
 </para>
@@ -296,23 +293,23 @@ Wählen Sie <guibutton>Yes</guibutton>.
 <para>
 Sobald der Windows 9x/Me-Client den Desktop hergestellt hat, sollte es Ihnen möglich sein, den Inhalt
 des im Parameter <smbconfoption><name>logon path</name></smbconfoption> angegebenen Verzeichnisses
-auf dem Samba-Server zu prüfen, und festzustellen, daß die Ordner
+auf dem Samba-Server zu prüfen und festzustellen, dass die Ordner
 <filename>Desktop</filename>, <filename>Startmenü</filename>, <filename>Programme</filename> und
 <filename>Netzwerkumgebung</filename> angelegt worden sind.
 </para>
 
 <para>
-Diese Ordner werden lokal auf dem Client gepuffert (Cache),
+Diese Ordner werden lokal auf dem Client gepuffert (Cache)
 und erfahren ein Update, wenn sich der Benutzer
-abmeldet (wenn Sie sie dann nicht schon auf read-only gesetzt haben). Sie werden sehen, daß der Client,
+abmeldet (wenn Sie sie dann nicht schon auf read-only gesetzt haben). Sie werden sehen, dass der Client,
 wenn der Benutzer weitere Ordner oder Verknüpfungen anlegt, die heruntergeladenen Profil-Inhalte
-mit dem Inhalt des lokalen Profil-Ordners zusammenfügt, unter Verwendung der neuesten Ordner und
-Verknüpfungen jeden Profil-Bestands.
+mit dem Inhalt des lokalen Profil-Ordners zusammenfügt, wozu er die neuesten Ordner und
+Verknüpfungen jeden Profil-Bestands verwendet.
 </para>
 
 <para>
-Wenn Sie die Ordner/Dateien auf dem Samba-Server read-only gesetzt haben, werden Sie Fehler von
-der Windows 9x/Me-Maschine bei An- und Abmeldung erhalten, wenn sie versucht, lokale und entfernte
+Wenn Sie die Ordner/Dateien auf dem Samba-Server auf read-only gesetzt haben, werden Sie Fehler von
+der Windows 9x/Me-Maschine bei der An- und Abmeldung erhalten, wenn sie versucht, lokale und entfernte
 Profile zu vereinigen. Grundsätzlich sollten Sie die UNIX-Dateirechte und Eigentumsverhältnisse
 auf dem Samba-Server prüfen, wenn Sie irgendwelche Fehler von der Windows 9x/Me-Maschine erhalten.
 </para>
@@ -320,7 +317,7 @@ auf dem Samba-Server prüfen, wenn Sie irgendwelche Fehler von der Windows 9x/Me-
 <para>
 Wenn Sie Probleme beim Anlegen von Benutzerprofilen haben, können Sie den lokalen Desktop-Cache des
 Benutzers zurücksetzen, wie unten gezeigt. Wenn sich dieser Benutzer das nächste Mal anmeldet, wird
-ihm gesagt werden, daß er/sie sich <quote>zum ersten Mal</quote> anmeldet.
+ihm gesagt werden, dass er/sie sich <quote>zum ersten Mal</quote> anmeldet.
 	
 <indexterm><primary>windows registry settings</primary><secondary>profile path</secondary></indexterm>
 	</para>
@@ -340,7 +337,7 @@ ihm gesagt werden, daß er/sie sich <quote>zum ersten Mal</quote> anmeldet.
 	</para>
 
 	<para>
-	Sie werden einen ProfilePath-Eintrag für jeden Benutzer finden. Notieren Sie Sie die Inhalte
+	Sie werden einen ProfilePath-Eintrag für jeden Benutzer finden. Notieren Sie sich die Inhalte
 	dieses Schlüssels (wahrscheinlich <filename>c:\windows\profiles\username</filename>), dann
 	löschen Sie den Schlüssel <parameter>ProfilePath</parameter> für den erforderlichen Benutzer.
 	</para></listitem>
@@ -350,8 +347,8 @@ ihm gesagt werden, daß er/sie sich <quote>zum ersten Mal</quote> anmeldet.
 	</para></listitem>
 
 	<listitem><para>
-	Suchen Sie nach der .PWL password-caching Datei des Benutzers im Verzeichnis
-	<filename>c:\windows</filename>, und löschen Sie es.
+	Suchen Sie nach der .PWL-password-caching-Datei des Benutzers im Verzeichnis
+	<filename>c:\windows</filename>, und löschen Sie diese Datei.
 	</para></listitem>
 
 	<listitem><para>
@@ -360,37 +357,34 @@ ihm gesagt werden, daß er/sie sich <quote>zum ersten Mal</quote> anmeldet.
 
 	<listitem><para>
 	Prüfen Sie die Inhalte des Profil-Pfads (siehe 
-	<smbconfoption><name>logon path</name></smbconfoption>, wie oben beschrieben) und löschen Sie
+	<smbconfoption><name>logon path</name></smbconfoption>, wie oben beschrieben), und löschen Sie
 	die Datei <filename>user.DAT</filename> oder <filename>user.MAN</filename> des Benutzers,
-	nachdem Sie eine Sicherung angelegt haben, falls erforderlich.
+	nachdem Sie, falls erforderlich, eine Sicherung angelegt haben.
 	</para></listitem>
 </orderedlist>
 
 <warning><para>
-Vor dem Löschen der Inhalte des in <parameter>ProfilePath</parameter> angegebenen Verzeichnisses
-(wahrscheinlich <filename>c:\windows\profiles\username)</filename>) fragen Sie den Benutzer, ob er
-irgendwelche wichtige Dateien auf seinem Desktop oder im Startmenü gespeichert hat. Löschen Sie
+Bevor Sie die Inhalte des in <parameter>ProfilePath</parameter> angegebenen Verzeichnisses
+(wahrscheinlich <filename>c:\windows\profiles\username</filename>) löschen, fragen Sie den Benutzer, ob er
+irgendwelche wichtigen Dateien auf seinem Desktop oder im Startmenü gespeichert hat. Löschen Sie
 die Inhalte des Verzeichnisses <parameter>ProfilePath</parameter> (nach einem Backup, falls Dateien
 benötigt werden).
 </para>
 
 <para>
-Dies wird den Effekt haben, daß die lokale (read-only, versteckte) Datei <filename>user.DAT</filename>
-aus dem Profil-Verzeichnis entfernt wird, genauso die lokalen Ordner 
-<quote>Desktop</quote>, <quote>Startmenü</quote>, <quote>Programme</quote> und <quote>Netzwerkumgebung</quote>.
+Dies wird den Effekt haben, dass die lokale (read-only, versteckte) Datei <filename>user.DAT</filename>
+genauso wie die lokalen Ordner 
+<quote>Desktop</quote>, <quote>Startmenü</quote>, <quote>Programme</quote> und <quote>Netzwerkumgebung</quote> aus dem Profil-Verzeichnis entfernt wird.
 </para></warning>
 
 <para>
-Wenn alles scheitert, erhöhen Sie Samba's log-level auf einen Wert zwischen 3 und 10, und/oder
-verwenden Sie einen Packet-Sniffer wie ethereal oder <command>netmon.exe</command>, und suchen
-Sie nach Fehlermeldungen.
+Wenn alles scheitert, erhöhen Sie Sambas Log-Level auf einen Wert zwischen 3 und 10 und/oder
+verwenden einen Packet-Sniffer wie ethereal oder <command>netmon.exe</command> und suchen nach Fehlermeldungen.
 </para>
 
 <para>
-Wenn Sie Zugriff auf einen Windows NT4/200x Server haben, installieren Sie zuerst Roaming Profiles
-und/oder Netzwerk-Anmeldungen auf dem Windows NT4/200x Server. Führen Sie eine Paketverfolgung aus,
-(Trace)
-oder prüfen Sie die Beispiel-Traces, die dem Windows NT4/200x Server beiliegen, und stellen
+Wenn Sie Zugriff auf einen Windows NT4/200x-Server haben, installieren Sie zuerst Roaming Profiles
+und/oder Netzwerk-Anmeldungen auf dem Windows NT4/200x-Server. Führen Sie eine Paketverfolgung (Trace) aus, oder prüfen Sie die Beispiel-Traces, die dem Windows NT4/200x-Server beiliegen, und stellen
 Sie die Unterschiede zum Samba-Trace fest.
 </para>
 
@@ -401,20 +395,20 @@ Sie die Unterschiede zum Samba-Trace fest.
 
 <para>
 Wenn sich ein Benutzer zum ersten Mal an einer Windows NT4 Workstation anmeldet, wird das Profil
-NTuser.DAT angelegt. Der Ort, wo das Profil abgelegt wird, kann durch den Parameter
+<filename>NTuser.DAT</filename> angelegt. Der Ort, an dem das Profil abgelegt wird, kann durch den Parameter
 <smbconfoption><name>logon path</name></smbconfoption> angegeben werden.
 </para>
 
 <para>
 Es gibt einen Parameter, der nun für die Verwendung mit NT-Profilen verfügbar ist:
 <smbconfoption><name>logon drive</name></smbconfoption>.
-Dieser sollte auf <filename>H:</filename> oder ein anderes Laufwerk gesetzt werden, und in Verbindung
+Dieser sollte auf <filename>H:</filename> oder ein anderes Laufwerk gesetzt werden und in Verbindung
 mit dem neuen Parameter <smbconfoption><name>logon home</name></smbconfoption> verwendet werden.
 </para>
 
 <para>
 Der Eintrag für das NT4-Profil ist ein Verzeichnis, keine Datei. Die NT-Hilfe bezüglich Profilen
-erwähnt, daß ein Verzeichnis auch mit der Endung .PDS angelegt wird. Der Benutzer muß beim Anmelden
+erwähnt, dass ein Verzeichnis auch mit der Endung .PDS angelegt wird. Der Benutzer muss beim Anmelden
 Schreibrechte haben, um den vollen Profil-Pfad anzulegen (und den Ordner mit der Endung .PDS, in den
 Fällen, in denen er angelegt wird).
 </para>
@@ -427,52 +421,52 @@ Das Profil selbst wird in einer Datei namens <filename>NTuser.DAT</filename> ges
 nichts in dem Verzeichnis .PDS gespeichert, und sein Zweck ist uns momentan unbekannt.</para>
 
 <para>Sie können die <application>Systemsteuerung</application> dazu verwenden, um ein lokales
-Profil auf einen Samba-Server zu kopieren (sehen Sie dazu die NT-Hilfe zu Profilen; diese ist sogar
-dazu imstande, sie zum richtigen Platz in der <application>Systemsteuerung</application> zu bringen).
-Die NT-Hilfe-Datei erwähnt auch, daß das Umbenennen der Datei <filename>NTuser.DAT</filename> auf
+Profil auf einen Samba-Server zu kopieren (sehen Sie sich dazu die NT-Hilfe zu Profilen an; diese ist sogar
+dazu imstande, Sie zum richtigen Platz in der <application>Systemsteuerung</application> zu bringen).
+Die NT-Hilfe-Datei erwähnt auch, dass das Umbenennen der Datei <filename>NTuser.DAT</filename> in
 <filename>NTuser.MAN</filename> ein Profil in ein zwingendes Profil verwandelt.
 </para>
 
 <para>
-Die Groß/Kleinschreibung des Profils ist wichtig. Die Datei muß <filename>NTuser.DAT</filename>
-heissen, oder, für ein zwingendes Profil, <filename>NTuser.MAN</filename>. </para> </sect3>
+Die Groß-/Kleinschreibung des Profils ist wichtig. Die Datei muss <filename>NTuser.DAT</filename>
+heißen oder, für ein zwingendes Profil, <filename>NTuser.MAN</filename>. </para> </sect3>
 
 <sect3> <title>Windows 2000/XP Professional</title>
 
 <para>
-Sie müssen zuerst auf der MS Windows Workstation das Profil von einem lokalen zu einem 
-Domänen-Profil wandeln, wie folgt:</para>
+Sie müssen zuerst auf der MS Windows Workstation das Profil von einem lokalen Profil in ein 
+Domänen-Profil umwandeln, und zwar wie folgt:</para>
 
 <procedure>
 	<step><para>Melden Sie sich als der <emphasis>lokale</emphasis> Workstation-Administrator an. </para></step>
 
-	<step><para>Klicken Sie rechts auf das Icon <guiicon>Arbeitsplatz</guiicon>, wählen Sie
+	<step><para>Klicken Sie mit der rechten Maustaste auf das Icon <guiicon>Arbeitsplatz</guiicon>, und wählen Sie
 	<guimenuitem>Eigenschaften</guimenuitem>.</para></step>
 
-	<step><para>Klicken Sie den Tab <guilabel>Erweitert</guilabel>.</para></step>
+	<step><para>Klicken Sie auf den Tab <guilabel>Erweitert</guilabel>.</para></step>
 
-	<step><para>Klicken Sie im Abschnitt Benutzerprofile den Eintrag <guilabel>Einstellungen</guilabel>.</para></step>
+	<step><para>Klicken Sie im Abschnitt <guilabel>Benutzerprofile</guilabel> auf den Eintrag <guilabel>Einstellungen</guilabel>.</para></step>
 
-	<step><para>Wählen Sie das Profil, das Sie wandeln wollen (einmal darauf klicken).</para></step>
+	<step><para>Wählen Sie das Profil, das Sie umwandeln wollen (einmal darauf klicken).</para></step>
 
-	<step><para>Klicken Sie auf den Knopf <guibutton>Kopieren nach</guibutton>.</para></step>
+	<step><para>Klicken Sie auf den Button <guibutton>Kopieren nach</guibutton>.</para></step>
 
-	<step><para>In der Box <guilabel>Permitted to use</guilabel>, klicken Sie auf
+	<step><para>In der Box <guilabel>Benutzer</guilabel> klicken Sie auf
 	<guibutton>Ändern</guibutton>.</para></step>
 
-	<step><para>Klicken Sie auf den Bereich <guilabel>Look in</guilabel>, der den Maschinen-Namen
-	listet, es wird sich eine Auswahl-Box öffnen. Klicken Sie die Domäne, für die das Profil
-	zugänglich sein muß.</para>
+	<step><para>Klicken Sie auf den Bereich <guilabel>Pfade</guilabel>, der den Maschinen-Namen
+	listet; es wird sich eine Auswahl-Box öffnen. Klicken Sie auf die Domäne, für die das Profil
+	zugänglich sein muss.</para>
 
 	<note><para>
 	Sie werden sich anmelden müssen, wenn sich ein Anmelde-Dialog öffnet.
-	Zum Beispiel melden Sie sich an als <replaceable>DOMAIN</replaceable>\root,passwort:
+	Zum Beispiel melden Sie sich an als <replaceable>DOMÄNE</replaceable>\root,passwort:
 	<replaceable>meinpasswort</replaceable>.</para></note> </step>
 
 	<step><para>Um einem Profil zu gestatten, von jedem verwendet zu werden, wählen Sie
 	<quote>Jeder</quote>. </para></step>
 
-	<step><para>Klicken Sie auf <guibutton>OK</guibutton> und die Auswahl-Box schließt sich. </para></step>
+	<step><para>Klicken Sie auf <guibutton>OK</guibutton>; die Auswahl-Box schließt sich. </para></step>
 
 	<step><para>Nun klicken Sie auf <guibutton>OK</guibutton>, um das Profil im angegebenen
 	Pfad anzulegen.</para></step>
@@ -484,15 +478,15 @@ edititiert werden kann.
 
 <note><para>
 Unter Windows NT/200x erzwingt die Verwendung von zwingenden Profilen die Verwendung von
-MS-Exchange für die SPeicherung von Mail-Daten und hält diese außerhalb des Desktop-Profils.
-Dies verhindert, daß die Desktop-Profile unbenützbar werden.
+MS-Exchange für die Speicherung von Mail-Daten und hält diese außerhalb des Desktop-Profils.
+Dies verhindert, dass die Desktop-Profile unbenutzbar werden.
 </para> </note>
 
 <sect4>
 <title>Windows XP Service Pack 1</title>
 	<para>
 	Es gibt einen Sicherheits-Check, der neu für Windows XP ist (oder vielleicht nur für
-	Windows XP Service Pack 1). Er kann via einer Gruppen-Richtlinie im Active Directory
+	Windows XP Service Pack 1). Er kann über eine Gruppen-Richtlinie im Active Directory
 	deaktiviert werden. Die Richtlinie heißt:
 	</para>
 
@@ -513,58 +507,57 @@ Dies verhindert, daß die Desktop-Profile unbenützbar werden.
 	<para>
 	Wenn Sie keine Gruppen-Richtlinien in Samba setzen können, dann können Sie sie vielleicht
 	lokal auf jeder Maschine setzen. Wenn Sie dies versuchen wollen, machen Sie folgendes
-	(N.B. Ich weiß nicht mit Sicherheit, daß dies genauso funktioniert wie eine
+	(Ich weiß nicht mit Sicherheit, dass dies genauso funktioniert wie eine
 	Domänen-Gruppenrichtlinie):
 	</para>
 
 <procedure>
 
-<para>TODO : DIESE PROZEDUR MUSS NOCH ÜBERSETZT WERDEN - ANHAND VON SCREENSHOTS !!!</para>
+	<step><para>Melden Sie sich auf der XP-Workstation mit einem Administrator-Konto an.</para></step>
 
-	<step><para>On the XP workstation, log in with an Administrative account.</para></step>
-
-	<step><para>Click on <guimenu>Start</guimenu> -> <guimenuitem>Run</guimenuitem>.</para></step>
-	<step><para>Type <command>mmc</command>.</para></step>
-	<step><para>Click on <guibutton>OK</guibutton>.</para></step>
-	<step><para>A Microsoft Management Console should appear.</para></step>
-	<step><para>Click on <guimenu>File</guimenu> -> <guimenuitem>Add/Remove Snap-in</guimenuitem> -> <guimenuitem>Add</guimenuitem>.</para></step> 
-	<step><para>Double-click on <guiicon>Group Policy</guiicon>.</para></step> 
-	<step><para>Click on <guibutton>Finish</guibutton> -> <guibutton>Close</guibutton>.</para></step> 
-	<step><para>Click on <guibutton>OK</guibutton>.</para></step>
-	<step><para>In the <quote>Console Root</quote> window expand <guiicon>Local Computer Policy</guiicon> ->
-		<guiicon>Computer Configuration</guiicon> -> <guiicon>Administrative Templates</guiicon> -> <guiicon>System</guiicon> -> <guiicon>User Profiles</guiicon>.</para></step>
-	<step><para>Double-click on <guilabel>Do not check for user ownership of Roaming Profile Folders</guilabel>.</para></step>
-	<step><para>Select <guilabel>Enabled</guilabel>.</para></step>
-	<step><para>Click on <guibutton>OK</guibutton>.</para></step>
-	<step><para>Close the whole console. You do not need to save the settings (this refers to the
-	console settings rather than the policies you have changed).</para></step>
-	<step><para>Reboot.</para></step>
+	<step><para>Klicken Sie auf <guimenu>Start</guimenu> -> <guimenuitem>Ausführen</guimenuitem>.</para></step>
+	<step><para>Geben Sie <command>mmc</command> ein.</para></step>
+	<step><para>Klicken Sie auf <guibutton>OK</guibutton>.</para></step>
+	<step><para>Eine Microsoft Management Console sollte erscheinen.</para></step>
+	<step><para>Klicken Sie auf <guimenu>Datei</guimenu> -> <guimenuitem>Snap-In hinzufügen/entfernen</guimenuitem> -> <guimenuitem>Hinzufügen</guimenuitem>.</para></step> 
+	<step><para>Einen Doppelklick auf <guiicon>Gruppenrichtlinie</guiicon>.</para></step> 
+	<step><para>Klicken Sie auf <guibutton>Fertigstellen</guibutton> -> <guibutton>Schliessen</guibutton>.</para></step> 
+	<step><para>Klicken Sie auf <guibutton>OK</guibutton>.</para></step>
+	<step><para>In dem Fenster <quote>Konsolenstamm</quote> klappen Sie 
+	<guiicon>Richtlinien für Lokaler Computer</guiicon> auf ->
+		<guiicon>Computerkonfiguration</guiicon> -> <guiicon>Administrative Vorlagen</guiicon> -> <guiicon>System</guiicon> -> <guiicon>Benutzerprofile</guiicon>.</para></step>
+	<step><para>Einen Doppelklick auf <guilabel>Eigentümer von servergespeicherten Profilen nicht prüfen</guilabel>.</para></step>
+	<step><para>Wählen Sie <guilabel>Aktiviert</guilabel>.</para></step>
+	<step><para>Klicken Sie auf <guibutton>OK</guibutton>.</para></step>
+	<step><para>Schliessen Sie die gesamte Konsole. Sie müssen die Einstellungen nicht speichern (dies
+	bezieht sich mehr auf die Konsolen-Einstellungen als auf die Richtlinien, die Sie geändert haben).
+	</para></step>
+	<step><para>Rebooten Sie den Rechner.</para></step>
 </procedure>
 </sect4>
 </sect3>
 </sect2>
 
 <sect2>
-	<title>Das gemeinsame Nutzen von Profilen mit W9x/Me und NT4/200x/XP Workstations</title>
+	<title>Das gemeinsame Nutzen von Profilen mit Windows 9x/Me- und NT4/200x/XP-Workstations</title>
 
 <para>
 Das gemeinsame Nutzen von Desktop-Profilen mit verschiedenen Windows-Versionen ist nicht zu empfehlen.
-Desktop-Profile sind ein Phänomen in Evolution, und Profile für spätere MS Windows-Versionen fügen
-Eigenschaften hinzu, die mit früheren MS Windows Clients zu Problemen führen können. Vielleicht ist
-der herausragendste Grund dafür, Profile nicht zu mischen, daß, wenn man sich von einer älteren
-MS Windows Version abmeldet, das alte Format der Profil-Inhalte Information überschreiben könnte, die
-zur neueren Version gehört, was in dem Verlust von Profil-Informations-Gehalt führt, wenn sich dieser
+Desktop-Profile sind ein Phänomen, das sich ständig weiterentwickelt, und Profile für spätere MS Windows-Versionen fügen
+Eigenschaften hinzu, die mit früheren MS Windows-Clients zu Problemen führen können. Der herausragendste Grund dafür, Profile nicht zu mischen, ist vermutlich folgender: Wenn man sich von einer älteren
+MS Windows-Version abmeldet, könnte das alte Format der Profil-Inhalte Informationen überschreiben, die
+zur neueren Version gehören, was zum Verlust von Profil-Informationsgehalt führt, wenn sich dieser
 Benutzer wieder an der neueren Version von MS Windows anmeldet.</para>
 
 <para>
-Wenn Sie dasselbe Startmenü/Desktop mit W9x/Me teilen wollen, müssen Sie einen gemeinsamen Ort 
+Wenn Sie dasselbe Startmenü bzw. denselben Desktop mit W9x/Me teilen wollen, müssen Sie einen gemeinsamen Ort 
 für die Profile angeben. Die Parameter in &smb.conf;, die gleich sein müssen, sind
 <smbconfoption><name>logon path</name></smbconfoption> und
 <smbconfoption><name>logon home</name></smbconfoption>. </para>
 
 <para>
-Wenn Sie dies korrekt eingerichtet haben, werden Sie separate Dateien <filename>user.DAT</filename>
-und <filename>NTuser.DAT</filename> im selben Profil-Verzeichnis vorfinden.</para>
+Wenn Sie dies korrekt eingerichtet haben, werden Sie separate  <filename>user.DAT</filename>-
+und <filename>NTuser.DAT</filename>-Dateien im selben Profil-Verzeichnis vorfinden.</para>
 
 </sect2>
 
@@ -572,48 +565,48 @@ und <filename>NTuser.DAT</filename> im selben Profil-Verzeichnis vorfinden.</par
 <title>Migration von Profilen von Windows NT4/200x Server zu Samba</title>
 
 <para>
-Es gibt nichts, das Sie davon abhält, jeglichen beliebigen Pfad für die Benutzer-Profile anzugeben.
-Daher könnten Sie bestimmen, daß das Profil auf einem Samba-Server gespeichert werden soll, oder auf 
-irgendeinem anderen SMB-Server, solange diese Server verschlüsselte Passwörter unterstützt.</para>
+Es gibt nichts, was Sie davon abhält, jeglichen beliebigen Pfad für die Benutzer-Profile anzugeben.
+Daher könnten Sie bestimmen, dass das Profil auf einem Samba-Server oder auf 
+irgendeinem anderen SMB-Server gespeichert werden soll, solange dieser Server verschlüsselte Passwörter unterstützt.</para>
 
 <sect3>
-<title>Windows NT4 Profil-Verwaltungs-Werkzeuge</title>
+<title>Windows NT4-Werkzeuge zur Profil-Verwaltung</title>
 
 <para>
-Unglücklicherweise sind die Informationen zum Resource Kit spezifisch für die Version von
-MS Windows NT4/200x. Das passende Resource Kit ist für jede Plattform erforderlich.</para>
+Leider sind die Informationen zum Resource Kit für die Version von
+MS Windows NT4/200x spezifisch. Das passende Resource Kit ist für jede Plattform erforderlich.</para>
 
 <para>Hier eine Kurz-Anleitung:</para>
 
-<para>TODO : DIESE PROZEDUR MUSS NOCH ÜBERSETZT WERDEN - ANHAND VON SCREENSHOTS !!!</para>
 <procedure>
-	<step><para>Klicken Sie auf Ihrem NT4 Domain Controller mit der rechten Maustaste auf
-	<guiicon>Arbeitsplatz</guiicon>, dann wählen Sie die Klappe namens
+	<step><para>Klicken Sie auf Ihrem NT4-Domänencontroller mit der rechten Maustaste auf
+	<guiicon>Arbeitsplatz</guiicon>, dann wählen Sie den Tab namens
 	<guilabel>Benutzerprofile</guilabel>. </para></step>
 
-	<step><para>Wählen Sie ein Benutzerprofil, das Sie migrieren wollen und klicken Sie darauf.
+	<step><para>Wählen Sie das Benutzerprofil, das Sie migrieren wollen, und klicken Sie darauf.
 	</para>
 
-	<note><para>Ich verwende den Begriff <quote>migrieren</quote> locker.
+	<note><para>Ich verwende den Begriff <quote>migrieren</quote> nicht sehr streng.
 	Sie können ein Profil kopieren, um ein Gruppen-Profil anzulegen. Sie können dem Benutzer
 	<parameter>Jeder</parameter> Rechte an dem Profil geben, auf das Sie kopieren. Dies
 	müssen Sie tun, da Ihre Samba-Domäne kein Mitglied einer Vertrauensstellung mit Ihrem PDC
 	ist.</para></note></step>
 
-	<step><para>Klicken Sie auf <guibutton>Kopieren auf</guibutton>.</para></step>
+	<step><para>Klicken Sie auf <guibutton>Kopieren nach</guibutton>.</para></step>
 
-	<step><para>In the box labeled <guilabel>Copy Profile to</guilabel> add your new path, e.g.,
+	<step><para>In dem Feld namens <guilabel>Kopieren nach</guilabel> geben Sie den neuen Pfad an, z.B.,
 	<filename>c:\temp\foobar</filename></para></step>
 
-	<step><para>Click on <guibutton>Change</guibutton> in the <guilabel>Permitted to use</guilabel> box.</para></step>
+	<step><para>Klicken Sie auf <guibutton>Ändern</guibutton> im Feld <guilabel>Benutzer</guilabel>.</para></step>
 
-	<step><para>Click on the group <quote>Everyone</quote>, click on <guibutton>OK</guibutton>. This
-	closes the <quote>choose user</quote> box.</para></step>
+	<step><para>Klicken Sie auf die Gruppe <quote>Jeder</quote>, dann auf <guibutton>OK</guibutton>.
+	Dies schliesst die Box 
+	<quote>Benutzer oder Gruppe wählen</quote>.</para></step>
 
-	<step><para>Now click on <guibutton>OK</guibutton>.</para></step>
+	<step><para>Jetzt klicken Sie auf <guibutton>OK</guibutton>.</para></step>
 </procedure>
 
-<para>Befolgen Sie obige Anleitung für jedes zu migrierende Profil.</para>
+<para>Befolgen Sie obige Anleitung für jedes Profil, das Sie migrieren müssen.</para>
 
 </sect3>
 
@@ -624,7 +617,7 @@ MS Windows NT4/200x. Das passende Resource Kit ist für jede Plattform erforderli
 <para>
 <indexterm><primary>SID</primary></indexterm>
 Sie sollten sich die SID Ihrer NT4-Domäne besorgen, dazu können Sie smbpasswd verwenden.
-Lesen Sie dazu die man-page.</para>
+Lesen Sie dazu die Manpage.</para>
 
 </sect3>
 
@@ -632,8 +625,8 @@ Lesen Sie dazu die man-page.</para>
 
 <para>
 Das Windows 200x Professional Resource Kit enthält <command>moveuser.exe</command>.
-<command>moveuser.exe</command> verändert die Sicherheit eines Profils von einem Benutzer auf einen
-anderen. Dies erlaubt es, die Domäne des Kontos zu ändern, und/oder den Benutzernamen.</para>
+<command>moveuser.exe</command> verschiebt die Sicherheitseinstellungen eines Profils von einem Benutzer auf einen
+anderen. Dies erlaubt es, die Domäne des Kontos und/oder den Benutzernamen zu ändern.</para>
 
 <para>
 Dieser Befehl ist dem Samba-Befehl <command>profiles</command> ähnlich.
@@ -649,13 +642,13 @@ Dieser Befehl ist dem Samba-Befehl <command>profiles</command> ähnlich.
 Sie können die SID bestimmen, indem Sie das Programm <command>GetSID.exe</command> aus dem
 Windows NT Server 4.0 Resource Kit verwenden.</para>
 
-<para>Windows NT 4.0 speichert die lokalen Profil-Informationen in der Registry, an folgender Stelle:
+<para>Windows NT 4.0 speichert die lokalen Profil-Informationen an folgender Stelle in der Registry:
 <filename>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</filename> </para>
 
 <para>
 Im Schlüssel <quote>ProfileList</quote> gibt es Sub-Schlüssel, die nach den SIDs der Benutzer benannt sind, die
 sich an diesem Computer angemeldet haben. (Um die Informationen zu dem Benutzer zu finden, dessen
-lokal zwischengespeichertes Profil sie verschieben wollen, bestimmen Sie dessen SID mit dem Werkzeug
+lokal zwischengespeichertes Profil Sie verschieben wollen, bestimmen Sie dessen SID mit dem Werkzeug
 <command>GetSID.exe</command>.) Innerhalb des entsprechenden Sub-Schlüssel des Benutzers werden Sie
 einen String-Wert namens <parameter>ProfileImagePath</parameter> finden.</para>
 
@@ -670,25 +663,24 @@ das der Benutzer nicht überschreiben kann.
 Während der einzelnen Sitzung des Benutzers sind Änderungen an der Desktop-Umgebung möglich, jedoch
 sind alle diese Änderungen beim Abmelden des Benutzers verloren. Wenn es erwünscht ist, dem Benutzer
 keinerlei Möglichkeit zur Veränderung der Desktop-Umgebung zu erlauben, muß dies durch Setzen von
-Richtlinien erfolgen. Sehen Sie dazu das vorhergehende Kapitel. </para>
+Richtlinien erfolgen. Lesen Sie dazu das vorhergehende Kapitel. </para>
 
 <note><para>
 Das Profil-Verzeichnis (oder dessen Inhalte) sollten unter KEINEN Umständen read-only gesetzt werden,
-da dies das Profil unbenutzbar machen kann. Wo es essentiell wichtig ist, ein Profil innerhalb des
-UNIX-Dateisystems read-only zu setzen, kann dies gemacht werden, in diesem Fall müssen Sie jedoch
-JEDENFALLS das VFS-Modul <command>fake-permissions</command> benutzen, um die MS Windows NT/200x/XP
-Clients anzuweisen, daß der Benutzer Schreibberechtigung hat. Siehe <link linkend="fakeperms"/>.
+da dies das Profil unbenutzbar machen kann. Wo es essenziell wichtig ist, ein Profil innerhalb des
+UNIX-Dateisystems read-only zu setzen, kann dies gemacht werden. In diesem Fall müssen Sie jedoch
+UNBEDINGT das VFS-Modul <command>fake-permissions</command> benutzen, um die MS Windows NT/200x/XP-Clients anzuweisen, dass der Benutzer Schreibberechtigung hat (siehe <link linkend="fakeperms"/>).
 </para></note>
 
 <para>
 Für MS Windows NT4/200x/XP kann die obige Methode auch zum Anlegen zwingender Profile verwendet
-werden. Um ein Gruppen-Profil in ein zwingendes Profil zu wandeln, suchen Sie einfach nach der Datei
-<filename>NTUser.DAT</filename> im kopierten Profil und benennen es auf 
+werden. Um ein Gruppen-Profil in ein zwingendes Profil umzuwandeln, suchen Sie einfach nach der Datei
+<filename>NTUser.DAT</filename> im kopierten Profil und benennen sie in 
 <filename>NTUser.MAN</filename> um.</para>
 
 <para>
-Für MS Windows 9x/ME ist es die Datei <filename>User.DAT</filename>, die auf
-<filename>User.MAN</filename> umbenannt werden muß, um ein zwingendes Profil zu erhalten.</para>
+Für MS Windows 9x/ME ist es die Datei <filename>User.DAT</filename>, die in
+<filename>User.MAN</filename> umbenannt werden muss, um ein zwingendes Profil zu erhalten.</para>
 
 </sect1>
 
@@ -697,8 +689,8 @@ Für MS Windows 9x/ME ist es die Datei <filename>User.DAT</filename>, die auf
 
 <para>
 <indexterm><primary>group profiles</primary></indexterm>
-Die meisten Organisationen sind in Abteilungen gegliedert. Darin liegt ein angenehmer Nebeneffekt,
-da üblicherweise die meisten Benutzer innerhalb einer Abteilung dieselben Desktop-Anwendungen
+Die meisten Organisationen sind in Abteilungen gegliedert. Ein angenehmer Nebeneffekt dieser Tatsache ist,
+dass üblicherweise die meisten Benutzer innerhalb einer Abteilung dieselben Desktop-Anwendungen
 und dasselbe Desktop-Layout benötigen. MS Windows NT4/200x/XP erlaubt die Verwendung von 
 Gruppen-Profilen. Ein Gruppen-Profil ist ein Profil, das ursprünglich unter Verwendung eines
 Beispiel-Anwenders angelegt wird. Danach werden unter Verwendung des Profil-Migrations-Tools
@@ -712,7 +704,7 @@ modifizierten Profil zugewiesen.</para>
 
 <note>
 <para>
-Seien Sie vorsichtig mit Gruppen-Profilen. Wenn der Benutzer, der Mitglied der Gruppe ist. auch ein
+Seien Sie vorsichtig mit Gruppen-Profilen. Wenn der Benutzer, der Mitglied der Gruppe ist, auch ein
 persönliches Profil hat, wird das Ergebnis eine Vereinigung (Merge) dieser beiden Profile sein.</para>
 </note>
 
@@ -724,8 +716,8 @@ persönliches Profil hat, wird das Ergebnis eine Vereinigung (Merge) dieser beide
 <para>
 <indexterm><primary>default profile</primary></indexterm>
 MS Windows 9x/Me und NT4/200x/XP benutzen ein Standard-Profil für jeden Benutzer, für den noch kein
-Profil existiert. Bewaffnet mit dem Wissen, wo das Standard-Profil auf einer Windows-Workstation
-zu finden ist, und wissend, welche Registrierungs-Schlüssel den Pfad beeinflussen, aus dem heraus das
+Profil existiert. Wenn man weiß, wo das Standard-Profil auf einer Windows-Workstation
+zu finden ist und welche Registrierungs-Schlüssel den Pfad beeinflussen, aus dem heraus das
 Standard-Profil angelegt wird, ist es möglich, das Standard-Profil für die jeweilige Installation
 zu optimieren. Dies hat signifikante administrative Vorteile.</para>
 
@@ -733,29 +725,28 @@ zu optimieren. Dies hat signifikante administrative Vorteile.</para>
 <title>MS Windows 9x/Me</title>
 
 <para>Um Standard-Benutzer-Profile in Windows 9x/ME zu aktivieren, können Sie entweder den
-<application>Windows 98 System Policy Editor</application> verwenden, oder die Registry direkt
+<application>Windows 98 System Policy Editor</application> verwenden oder die Registry direkt
 ändern.</para>
 
 <para>Um Standard-Benutzer-Profile in Windows 9x/ME zu aktivieren, öffnen Sie den
 <application>System Policy Editor</application>, dann wählen Sie
-<guimenu>Datei</guimenu> -> <guimenuitem>Registrierung öffnen</guimenuitem>, als nächstes klicken
-Sie das Icon <guiicon>Lokaler Computer</guiicon>, klicken auf <guilabel>Windows 98 System</guilabel>,
-wählen <guilabel>Benutzer-Profile</guilabel>, und klicken auf die Aktivieren-Box. Vergessen Sie
+<guimenu>Datei</guimenu> -> <guimenuitem>Registrierung öffnen</guimenuitem>. Als Nächstes klicken
+Sie auf das Icon <guiicon>Lokaler Computer</guiicon>, klicken auf <guilabel>Windows 98 System</guilabel>,
+wählen <guilabel>Benutzer-Profile</guilabel> und klicken auf die Aktivieren-Box. Vergessen Sie
 nicht, die Registry-Änderungen zu speichern.</para>
 
 
-<para>Zum direkten Modifizieren der Registry, öffnen Sie den 
-<application>Registrierungs-Editor</application> (<command>regedit.exe</command>) und wählen Sie
-den Abschnitt <filename>HKEY_LOCAL_MACHINE\Network\Logon</filename>. Nun fügen Sie einen Wert vom Typ
-DWORD hinzu, mit dem Namen <quote>User Profiles</quote>, um Benutzerprofile zu aktivieren, setzen Sie
+<para>Zum direkten Modifizieren der Registry öffnen Sie den 
+<application>Registrierungs-Editor</application> (<command>regedit.exe</command>) und wählen den Abschnitt <filename>HKEY_LOCAL_MACHINE\Network\Logon</filename>. Nun fügen Sie einen Wert vom Typ
+DWORD mit dem Namen <quote>User Profiles</quote> hinzu. Um Benutzerprofile zu aktivieren, setzen Sie
 ihn auf 1; um diese zu deaktivieren, setzen Sie ihn auf den Wert 0.</para>
 
 <sect3>
 <title>Behandlung von Benutzerprofilen mit Windows 9x/Me</title>
 
 <para>Wenn sich ein Benutzer an einer Windows 9x/Me-Maschine anmeldet, wird der lokale Profilpfad
-<filename>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ProfileList</filename> auf einen
-existierenden Eintrag für diesen Benutzer überprüft.</para>
+<filename>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ProfileList</filename> daraufhin überprüft, ob ein
+Eintrag für diesen Benutzer existiert.</para>
 
 <para>Wenn der Benutzer einen Eintrag in diesem Registrierungsabschnitt hat, prüft Windows 9x/Me, ob eine
 lokal gepufferte Version des Benutzerprofils vorhanden ist. Windows 9x/Me prüft auch das 
@@ -777,25 +768,23 @@ dem Server geschrieben.</para>
 <title>MS Windows NT4 Workstation</title>
 
 <para>Unter MS Windows NT4 wird das Standard-Benutzer-Profil aus 
-<filename>%SystemRoot%\Profiles</filename> bezogen, welches in einer Standard-Installation
+<filename>%SystemRoot%\Profiles</filename> bezogen, das in einer Standard-Installation
 <filename>C:\Windows NT\Profiles</filename> entspricht. Unter diesem Verzeichnis gibt es in einer
-herkömmlichen sauberen Installation drei (3) Verzeichnisse: <filename>Administrator</filename>, <filename>All Users,</filename> und <filename>Default User</filename>. </para>
+herkömmlichen sauberen Installation drei Verzeichnisse: <filename>Administrator</filename>, <filename>All Users</filename> und <filename>Default User</filename>. </para>
 
 <para>
 Das Verzeichnis <filename>All Users</filename> enthält Menü-Einstellungen, die für alle System-Benutzer
-gleich sind. Das Verzeichnis <filename>Default User</filename> enthält Menü-Einträge, die per Benutzer
-anpassbar sind, abhängig von den gewählten oder angelegten Profil-Einstellungen.</para>
+gleich sind. Das Verzeichnis <filename>Default User</filename> enthält Menü-Einträge, die - abhängig von den gewählten oder angelegten Profil-Einstellungen - an den jeweiligen Benutzer angepasst werden können.</para>
 
 <para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows NT4-Maschine anmeldet, wird
-ein neues Profil angelegt, zusammengesetzt aus:</para>
+ein neues Profil angelegt, das sich wie folgt zusammensetzt:</para>
 
 <itemizedlist>
-	<listitem><para>All Users Einstellungen.</para></listitem>
-	<listitem><para>Default User Einstellungen (enthalten die Standard-Datei <filename>NTUser.DAT</filename>).</para></listitem>
+	<listitem><para>All Users-Einstellungen</para></listitem>
+	<listitem><para>Default User-Einstellungen (sie enthalten die Standard-Datei <filename>NTUser.DAT</filename>)</para></listitem>
 </itemizedlist>
 
-<para>Wenn sich ein Benutzer an einer MS Windows NT4-Maschine anmeldet, die Mitglied einer MS 
-Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
+<para>Wenn sich ein Benutzer an einer MS Windows NT4-Maschine anmeldet, die Mitglied einer MS-Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 
 <indexterm><primary>NTConfig.POL</primary></indexterm>
 </para>
@@ -813,13 +802,13 @@ Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 
 	<step> <para>
 	Wenn das Benutzerkonto einen Profil-Pfad hat, aber dort kein Profil existiert, wird ein neues
-	Profil in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> angelegt, unter Verwendung
-	des Profils <filename>Default User</filename>.</para> </step>.
+	Profil in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> angelegt. Dazu wird
+	das Profil <filename>Default User</filename> verwendet.</para> </step>
 
 	<step> <para>
 	Wenn die Freigabe NETLOGON auf dem authentifizierenden Server (Logon-Server) eine
-	Richtlinien-Datei (<filename>NTConfig.POL</filename>) enthält, werden dessen Inhalte auf
-	<filename>NTUser.DAT</filename> angewandt, welche wiederum auf den Abschnitt
+	Richtlinien-Datei (<filename>NTConfig.POL</filename>) enthält, werden dessen Inhalte auf die Datei
+	<filename>NTUser.DAT</filename> angewandt, die wiederum auf den Abschnitt
 	<filename>HKEY_CURRENT_USER</filename> der Registrierung angewandt wird.</para> </step>
 
 	<step> <para>
@@ -833,9 +822,9 @@ Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 </procedure>
 
 <para>
-MS Windows NT4 Profile können <emphasis>lokal</emphasis> oder <emphasis>roaming</emphasis> sein.
+MS Windows NT4-Profile können <emphasis>lokal</emphasis> oder <emphasis>roaming</emphasis> sein.
 Ein lokales Profil wird in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> gespeichert. Ein
-<quote>Roaming Profile</quote> wird auch in derselben Art gespeichert, außer der folgende Registrierungs-Schlüssel
+<quote>Roaming Profile</quote> wird auch in derselben Art gespeichert, es sei denn, der folgende Registrierungsschlüssel
 wird wie folgt angelegt:</para>
 
 <para><screen>HKEY_LOCAL_MACHINE\SYSTEM\Software\Microsoft\Windows NT\CurrentVersion\winlogon\"DeleteRoamingCache"=dword:0000000
@@ -846,14 +835,14 @@ beim Abmelden gelöscht.</para>
 <para>Unter MS Windows NT4 können Standard-Pfade für allgemeine Ressourcen wie <filename>Eigene
 Dokumente</filename> auf eine Netzwerk-Freigabe umgeleitet werden, indem man die folgenden
 Registrierungs-Schlüssel ändert. Diese Änderungen können durch Verwendung des System Policy Editor
-vorgenommen werden. Dies erfordert das Anlegen Ihrer eigenen Vorlage für den Policy Editor, um
-diese Änderungen per GUI zu erlauben. Eine andere Möglichkeit, dies zu tun, ist, zuerst ein
-Standard-Benutzer-Profil anzulegen, dann, während man als anderer Benutzer angemeldet ist,
+vorgenommen werden. Dazu müssen Sie Ihre eigene Vorlage für den Policy Editor anlegen, um
+diese Änderungen per GUI zu erlauben. Eine andere Möglichkeit, dies zu tun, besteht darin, zuerst ein
+Standard-Benutzer-Profil anzulegen und dann, während man als anderer Benutzer angemeldet ist,
 <command>regedt32</command> auszuführen, um die Schlüssel zu editieren.</para>
 
 <para>
-Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Teil des Standard-Benutzer-
-Profils sind, ist auf Windows NT4:
+Der Registrierungsschlüssel, der das Verhalten der Ordner beeinflusst, die Teil des Standard-Benutzer-
+Profils sind, lautet unter Windows NT4:
 <screen>
 HKEY_CURRENT_USER
 	\Software
@@ -871,7 +860,7 @@ Der obige Schlüssel enthält eine Liste von automatisch verwalteten Ordnern. Die 
 werde in <link linkend="ProfileLocs"/> gezeigt.</para>
 
 <table frame="all" id="ProfileLocs">
-	<title>Standard-Werte der Registrierungs-Schlüssel für Benutzer-Ordner</title>
+	<title>Standard-Werte der Registrierungsschlüssel für Benutzer-Ordner</title>
 	<tgroup cols="2">
 		<colspec align="left"/>
 		<colspec align="left"/>
@@ -893,7 +882,7 @@ werde in <link linkend="ProfileLocs"/> gezeigt.</para>
 	</tgroup>
 </table>
 
-<para>Der Registrierungs-Schlüssel, der den Ort der Standard-Profil-Einstellungen enthält, ist:</para>
+<para>Der Registrierungsschlüssel, der den Ort der Standard-Profil-Einstellungen enthält, ist:</para>
 
 <para> <filename>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\
 User Shell Folders</filename> </para>
@@ -901,7 +890,7 @@ User Shell Folders</filename> </para>
 <para>Die Standard-Einträge werden in <link linkend="regkeys"/> gezeigt.</para>
 
 <table frame="all" id="regkeys">
-	<title>Standardwerte der Registrierungs-Schlüssel für Profil-Einstellungen</title>
+	<title>Standardwerte der Registrierungsschlüssel für Profil-Einstellungen</title>
 	<tgroup cols="2">
 		<colspec align="left"/>
 		<colspec align="left"/>
@@ -920,38 +909,37 @@ User Shell Folders</filename> </para>
 
 <note><para>
 <indexterm><primary>GPOs</primary></indexterm>
-MS Windows XP Home Edition verwendet standard-mäßig Per-Benutzer-Profile, aber kann nicht an
-Domänen teilnehmen, sich nicht an NT/ADS-Domänen anmelden, und kann daher das Profil nur von sich selbst
-beziehen. Während dies Vorteile hat, erlaubt die <quote>Schönheit</quote> jener MS Windows Clients, die an
-Domänen-Anmeldevorgängen teilnehmen können, dem Administrator, ein globales Standard-Profil anzulegen,
-und dessen Verwendung mittels Gruppenrichtlinien (GPOs) zu erzwingen.
+MS Windows XP Home Edition verwendet standardmäßig Per-Benutzer-Profile, aber kann nicht an
+Domänen teilnehmen, sich nicht an NT/ADS-Domänen anmelden und kann daher das Profil nur von sich selbst
+beziehen. Während dies Vorteile hat, erlaubt es die <quote>Schönheit</quote> jener MS Windows-Clients, die an
+Domänen-Anmeldevorgängen teilnehmen können, dem Administrator, ein globales Standard-Profil anzulegen und dessen Verwendung mit Hilfe von Gruppenrichtlinien (GPOs) zu erzwingen.
 </para></note>
 
-<para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows 200x/XP Maschine anmeldet, wird das
+<para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows 200x/XP-Maschine anmeldet, wird das
 Standard-Profil aus <filename>C:\Dokumente und Einstellungen\Default User</filename> geladen. Der
-Administrator kann die dortigen Inhalte modifizieren und MS Windows 200x/XP wird diese verwenden. Dies
-ist nicht gerade optimal, da es bedeutet, daß man ein neues Standard-Profil auf jede
-MS Windows 200x/XP Client Workstation kopieren muß.</para>
+Administrator kann die dortigen Inhalte modifizieren, und MS Windows 200x/XP wird diese verwenden. Dies
+ist nicht gerade optimal, da es bedeutet, dass man ein neues Standard-Profil auf jede
+MS Windows 200x/XP-Client-Workstation kopieren muss.</para>
 
-<para>Wenn MS Windows 200x/XP an einem Domänen-Kontext teilnimmt, und das Standard-Benutzer-Profil wird nicht
-gefunden, sucht der Client nach einem Standard-Profil in der NETLOGON-Freigabe des authentifizierenden
-Servers. In MS Windows Begriffen,
+<para>Wenn MS Windows 200x/XP an einem Domänen-Kontext teilnimmt und das Standard-Benutzer-Profil nicht
+gefunden wird, sucht der Client nach einem Standard-Profil in der NETLOGON-Freigabe des authentifizierenden
+Servers. In MS Windows-Begriffen handelt es sich um 
 <?latex \linebreak ?><filename>%LOGONSERVER%\NETLOGON\Default User,</filename> und wenn ein solches
-existiert, wird der Client es auf die Workstation kopieren, in das Verzeichnis
-<filename>C:\Dokumente und Einstellungen\</filename>, unter dem Login-Namen des Benutzers.</para>
+existiert, wird der Client es auf die Workstation kopieren, und zwar in das Verzeichnis
+<filename>C:\Dokumente und Einstellungen\</filename> unter dem Login-Namen des Benutzers.</para>
 
 <note><para>Dieser Pfad entspricht, in Samba-Begriffen, der Freigabe
 <smbconfsection>[NETLOGON]</smbconfsection> in &smb.conf;. Das Verzeichnis sollte im Wurzelverzeichnis
-dieser Freigabe angelegt werden, und muß <filename>Default Profile</filename> heissen.</para></note>
+dieser Freigabe angelegt werden und muss <filename>Default Profile</filename> heißen.</para></note>
 
 <para>Wenn an diesem Ort kein Standard-Profil existiert, wird MS Windows 200x/XP das lokale
 Standard-Profil verwenden.</para>
 
 <para>Beim Abmelden wird das Desktop-Profil des Benutzers an dem Ort abgespeichert, der in den
 Registrierungs-Einstellungen für diesen Benutzer gesetzt ist. Wenn keine spezifischen Richtlinien
-angelegt oder dem Client während der Anmeldung weitergegeben worden sind (wie es Samba automatisch
-tut), dann wird das Benutzerprofil nur auf der lokalen Maschine abgelegt, unter
-<filename>C:\Dokumente und Einstellungen\%USERNAME%</filename>.</para>
+angelegt oder während der Anmeldung an den Client weitergegeben worden sind (wie es Samba automatisch
+tut), dann wird das Benutzerprofil nur auf der lokalen Maschine unter
+<filename>C:\Dokumente und Einstellungen\%USERNAME%</filename> abgelegt.</para>
 
 
 
@@ -959,24 +947,24 @@ tut), dann wird das Benutzerprofil nur auf der lokalen Maschine abgelegt, unter
 
 <itemizedlist>
 	<listitem> <para>
-	Manuelles Ändern der Registrierungs-Schlüssel auf der lokalen Maschine und das Plazieren
+	Manuelles Ändern der Registrierungsschlüssel auf der lokalen Maschine und das Platzieren
 	des Standard-Profils im Wurzelverzeichnis der NETLOGON-Freigabe. Dies wird nicht empfohlen,
-	da es sehr wartungs-intensiv ist.
+	da es sehr wartungsintensiv ist.
 	</para> </listitem>
 
         <listitem> <para>
-	Anlegen einer NT4-artigen NTConfig.POL Datei, die dieses Verhalten spezifiziert, und das
-	Plazieren dieser Datei im Wurzelverzeichnis der NETLOGON-Freigabe, neben dem neuen
+	Anlegen einer NT4-artigen Datei <filename>NTConfig.POL</filename>, die dieses Verhalten spezifiziert, und das
+	Platzieren dieser Datei im Wurzelverzeichnis der NETLOGON-Freigabe neben dem neuen
 	Standard-Profil.
 	</para> </listitem>
 
 	<listitem> <para>
 	Anlegen einer Gruppenrichtline (GPO), die das Verhalten per Active Directory erzwingt,
-	und das Plazieren des neuen Standard-Profils in der NETLOGON-Freigabe.
+	und das Platzieren des neuen Standard-Profils in der NETLOGON-Freigabe.
 	</para> </listitem>
 </itemizedlist>
 
-<para>Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Bestandteil des
+<para>Der Registrierungsschlüssel, der das Verhalten der Ordner beeinflusst, die Bestandteil des
 Standard-Benutzer-Profils sind, ist unter Windows 200x/XP: </para>
 
 <para> <filename>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell
@@ -990,7 +978,7 @@ gezeigt.
 
 
 <table frame="all" id="defregpthkeys">
-	<title>Pfade des Standard-Profiles: Standard-Werte der Registrierungs-Schlüssel</title>
+	<title>Pfade des Standard-Profils: Standard-Werte der Registrierungsschlüssel</title>
 	<tgroup cols="2">
 		<colspec align="left"/>
 		<colspec align="left"/>
@@ -1027,29 +1015,29 @@ Standard-Eintrag ist vom Typ <constant>REG_SZ</constant>, alle anderen sind vom 
 
 <para>Es macht einen riesigen Unterschied in Bezug auf die Geschwindigkeit, mit der man 
 <quote>Roaming Profiles</quote> verwenden kann, wenn all die notwendigen Ordner an einem dafür bestimmten Ort auf
-einem Netzwerk-Server abgelegt werden. Das bedeutet, daß es nicht mehr notwendig ist, bei jedem
-An- und Abmelden die Outlook PST-Datei über das Netzwerk zu schreiben.</para>
+einem Netzwerk-Server abgelegt werden. Das bedeutet, dass es nicht mehr notwendig ist, bei jedem
+An- und Abmelden die Outlook-PST-Datei über das Netzwerk zu schreiben.</para>
 
 <para>Um dies auf einen Netzwerk-Pfad zu ändern, könnten Sie folgende Beispiele verwenden:</para>
 
 <para><filename>%LOGONSERVER%\%USERNAME%\Standard Ordner</filename></para>
 
-<para>Dies würde die Ordner im Home-Verzeichnis des Benutzers ablegen, in einem Ordner namens
+<para>Dies würde die Ordner im Home-Verzeichnis des Benutzers ablegen, und zwar in einem Ordner namens
 <filename>Standard Ordner</filename>. Sie könnten auch das verwenden:</para>
 
 <para><filename>\\<replaceable>SambaServer</replaceable>\<replaceable>OrdnerFreigabe</replaceable>\%USERNAME%</filename></para>
 
 <para>
 In diesem Fall werden die Standard-Ordner auf dem Server namens <replaceable>SambaServer</replaceable>
-gespeichert, in der Freigabe <replaceable>OrdnerFreigabe</replaceable>, unter einem Verzeichnis, das
+ in der Freigabe <replaceable>OrdnerFreigabe</replaceable> gespeichert, und zwar unter einem Verzeichnis, das
 den Namen des Windows-Benutzers hat, wie er vom Linux/UNIX-Dateisystem aus gesehen wird.</para>
 
-<para>Bitte beachten Sie, daß Sie, sobald Sie eine Standard-Profil-Freigabe angelegt haben, das
-Benutzer-Profil darauf migrieren MÜSSEN (egal ob Standard- oder angepaßtes Profil).</para>
+<para>Bitte beachten Sie, dass Sie, sobald Sie eine Standard-Profil-Freigabe angelegt haben, das
+Benutzer-Profil darauf migrieren MÜSSEN (egal ob es ein Standard- oder angepasstes Profil ist).</para>
 
 
 
-<para>MS Windows 200x/XP Profile können <emphasis>Local</emphasis> oder <emphasis>Roaming</emphasis>
+<para>MS Windows 200x/XP-Profile können <emphasis>Local</emphasis> oder <emphasis>Roaming</emphasis>
 sein. Ein <quote>Roaming Profile</quote> wird lokal gepuffert (Cache), außer der folgende Registrierungsschlüssel
 wird angelegt:
 
@@ -1068,8 +1056,7 @@ In diesem Fall wird die lokale Cache-Kopie beim Abmelden gelöscht.
 
 <sect1> <title>Gängige Fehler</title>
 
-<para>Im Folgenden werden typische Fehler, Probleme und Fragen beschrieben, die in den Samba
-Mailing-Listen gestellt wurden.</para>
+<para>Im Folgenden werden typische Fehler, Probleme und Fragen beschrieben, die in den Samba-Mailing-Listen gestellt wurden.</para>
 
 <sect2>
 <title>Das Konfigurieren von <quote>Roaming Profiles</quote> für einige wenige Benutzer oder Gruppen</title>
@@ -1080,9 +1067,9 @@ zu deaktivieren. Die Voreinstellung ist, Roaming Profiles zu haben, und der Stan
 diese im Home-Verzeichnis des Benutzers suchen.</para>
 
 <para>Falls diese global deaktiviert sind, hat kein Benutzer die Fähigkeit, Roaming Profiles zu
-verwenden. Wenn diese aktiviert sind, und Sie wollen sie nur auf bestimmte Maschinen anwenden, ist
+verwenden. Wenn diese aktiviert sind und Sie sie nur auf bestimmte Maschinen anwenden wollen, ist
 es notwendig, auf jenen Maschinen, die keine Unterstützung für Roaming Profiles bieten sollen, diese
-Unterstützung in der Registrierung jeder einzelner dieser Maschinen zu deaktivieren.</para>
+Unterstützung in der Registrierung jeder einzelnen dieser Maschinen zu deaktivieren.</para>
 
 <para>Mit Samba-3 können Sie eine globale Profil-Einstellung in der &smb.conf; haben, und Sie können
 diese aufheben, indem Sie Per-Benutzer-Einstellungen mit dem Domain User Manager setzen (wie bei
@@ -1091,16 +1078,16 @@ MS Windows NT4/ Win 200xx).</para>
 <para>In jedem Fall können Sie nur ein Profil pro Benutzer konfigurieren. Dieses Profil kann sein:</para>
 
 <itemizedlist>
-	<listitem>Ein Profil, das einzigartig für diesen Benutzer ist.</listitem>
-	<listitem>Ein zwingendes Profil (eines, das der Benutzer nicht ändern kann).</listitem>
-	<listitem>Ein Gruppen-Profil (sollte wirklich zwingend sein, also unveränderbar).</listitem>
+	<listitem>Ein Profil, das einzigartig für diesen Benutzer ist</listitem>
+	<listitem>Ein zwingendes Profil (eines, das der Benutzer nicht ändern kann)</listitem>
+	<listitem>Ein Gruppen-Profil (es sollte wirklich zwingend sein, also unveränderbar)</listitem>
 </itemizedlist>
 
 </sect2>
 
 <sect2> <title>Ich kann keine Roaming Profiles verwenden</title>
 
-<para>Ein Benutzer fragte folgendes: <quote>Ich will keine Roaming Profiles implementieren. Ich möchte
+<para>Ein Benutzer fragte Folgendes: <quote>Ich will keine Roaming Profiles implementieren. Ich möchte
 den Benutzern nur ein lokales Profil geben. Bitte helfen Sie mir, ich bin verloren ... Seit zwei Tagen
 versuche ich alles, google herum, aber finde keine hilfreichen Anhaltspunkte. Bitte um Hilfe!
 </quote></para>
@@ -1110,7 +1097,7 @@ versuche ich alles, google herum, aber finde keine hilfreichen Anhaltspunkte. Bi
 <variablelist>
 	<varlistentry>
 		<term>Lokale Profile</term> <listitem><para>Ich kenne keine 
-		Registrierungs-Einstellungen, die das automatische Löschen von LOKALEN Profilen
+		Registrierungseinstellungen, die das automatische Löschen von LOKALEN Profilen
 		beim Abmelden erlauben.</para></listitem>
 	</varlistentry>
 
@@ -1118,8 +1105,8 @@ versuche ich alles, google herum, aber finde keine hilfreichen Anhaltspunkte. Bi
 		<term>Roaming Profiles</term> <listitem><para>Wenn sich ein Benutzer an einem Netzwerk
 		anmeldet, wird ein zentral gespeichertes Profil auf die Workstation kopiert, um ein
 		lokales Profil zu bilden. Dieses lokale Profil bleibt bestehen (verbleibt auf der Platte
-		der Workstation), außer ein Registrierungs-Schlüssel wird geändert, der das 
-		automatische Löschen dieses Profils beim Abmelden veranlaßt.</para></listitem>
+		der Workstation), es sei denn, ein Registrierungsschlüssel wird geändert, der das 
+		automatische Löschen dieses Profils beim Abmelden veranlasst.</para></listitem>
 	</varlistentry>
 </variablelist>
 
@@ -1143,24 +1130,24 @@ versuche ich alles, google herum, aber finde keine hilfreichen Anhaltspunkte. Bi
 
 	<varlistentry>
 		<term>Zwingende Profile</term> <listitem><para>Zwingende Profile können genauso für
-		einen einzelnen Benutzer angelegt werden, wie auch für jede Gruppe, deren Mitglied
+		einen einzelnen Benutzer angelegt werden wie auch für jede Gruppe, deren Mitglied
 		ein Benutzer ist. Zwingende Profile können nicht von einfachen Benutzern geändert
 		werden. Nur der Administrator kann diese ändern oder neu konfigurieren.</para></listitem>
 	</varlistentry>
 </variablelist>
 
-<para>Ein Windows NT4/200x/XP Profil kann in seiner Größe variieren - von 130 kB bis zu sehr großem
-Umfang. Outlook PST Dateien sind meistens Teil des Profils und können viele GB groß sein. Im 
-Durchschnitt (in einer gut verwalteten Umgebung) ist ein Roaming Profile von 2MB ein guter Richtwert
-für Planungszwecke. In einem undisziplinierten Umfeld habe ich bereits Profile von bis zu 2GB
+<para>Ein Windows NT4/200x/XP-Profil kann in seiner Größe variieren - von 130 Kbyte bis zu einem sehr großen
+Umfang. Outlook-PST-Dateien sind meistens Teil des Profils und können viele Gbyte groß sein. Im 
+Durchschnitt (in einer gut verwalteten Umgebung) ist ein Roaming Profile von 2 Mbyte ein guter Richtwert
+für Planungszwecke. In einem undisziplinierten Umfeld habe ich bereits Profile von bis zu 2 Gbyte
 gesehen. Benutzer neigen dazu, sich zu beschweren, wenn es eine Stunde dauert, sich an einer Workstation
-anzumelden, jedoch ernten sie nur die Früchte des Unverstands (und der Ignoranz).</para>
+anzumelden, jedoch ernten sie nur die Früchte von Unverstand (und Ignoranz).</para>
 
-<para>Die Hauptaussage des bisher Erwähnten ist es, zu zeigen, daß Roaming Profiles, sowie gute
+<para>Das bisher Erwähnte soll vor allem zeigen, dass Roaming Profiles, sowie eine gute
 Kontrolle darüber, wie diese verändert werden können, neben guter Disziplin wesentlich zu einer
 problemfreien Installation beitragen.</para>
 
-<para>Microsoft's Antwort auf das PST-Problem ist, alle Email-Daten in einem MS Exchange Server backend
+<para>Microsofts Antwort auf das PST-Problem ist, alle E-Mail-Daten in einem MS Exchange Server-Backend
 zu speichern. Dies macht eine PST-Datei überflüssig.</para>
 
 <para>Lokale Profile bedeuten:</para>
@@ -1169,7 +1156,7 @@ zu speichern. Dies macht eine PST-Datei überflüssig.</para>
 	<listitem><para>Wenn jede Maschine von vielen Benutzern verwendet wird, wird auch viel lokaler
 	Speicherplatz für die Profile benötigt.</para></listitem> <listitem><para>Jede Workstation, an
 	der sich der Benutzer anmeldet, hat ein eigenes Profil für ihn; diese Profile können sehr
-	stark von einander abweichen.</para></listitem>
+	stark voneinander abweichen.</para></listitem>
 </itemizedlist>
 
 <para>Auf der anderen Seite bedeutet der Einsatz von Roaming Profiles:</para>
@@ -1195,7 +1182,7 @@ Wohin stelle ich dieses Standard-Profil?</quote></para>
 
 <para>
 <indexterm><primary>Standard-Profil</primary></indexterm>
-Zuerst muß der Samba-Server als ein Domänen-Controller konfiguriert werden. Dies erfolgt durch 
+Zuerst muss der Samba-Server als ein Domänen-Controller konfiguriert werden. Dies erfolgt durch 
 Einstellungen in der &smb.conf;:</para>
 
 <smbconfblock>
@@ -1204,21 +1191,21 @@ Einstellungen in der &smb.conf;:</para>
 <smbconfoption><name>domain logons</name><value>Yes</value></smbconfoption>
 </smbconfblock>
 
-<para>Es muß eine Freigabe namens <smbconfsection>[netlogon]</smbconfsection> geben, die world-readable
+<para>Es muss eine Freigabe namens <smbconfsection>[netlogon]</smbconfsection> geben, die world-readable
 ist. Es ist generell eine gute Idee, ein Start-Skript hinzuzufügen, das Drucker- und 
-Laufwerks-Verbindungen vorbereitet. Es gibt außerdem eine Einrichtung zum automatischen Synchronisieren
+Laufwerksverbindungen vorbereitet. Es gibt außerdem eine Einrichtung zum automatischen Synchronisieren
 der Workstation-Uhr mit der des Anmelde-Servers (eine weitere gute Idee, dies zu verwenden).</para>
 
-<note><para>Um automatisches Löschen der Roaming Profiles aus dem lokalen Cache der Workstation
-(Festplatte) zu aktivieren, verwenden Sie den <application>Group Policy Editor</application>, um eine
-Datei namens <filename>NTConfig.POL</filename> mit den passenden Einträgen zu erstellen. Diese Datei
-muß im Wurzelverzeichnis der Freigabe <smbconfsection>netlogon</smbconfsection> plaziert werden.
+<note><para>Um das automatische Löschen der Roaming Profiles aus dem lokalen Cache der Workstation
+(Festplatte) zu aktivieren, verwenden Sie den <application>Group Policy Editor</application>, mit dem Sie eine
+Datei namens <filename>NTConfig.POL</filename> mit den passenden Einträgen erstellen. Diese Datei
+muss im Wurzelverzeichnis der Freigabe <smbconfsection>netlogon</smbconfsection> platziert werden.
 </para></note>
 
-<para>Windows Clients müssen Domänen-Mitglieder sein. Arbeitsgruppen-Maschinen benutzen keine
+<para>Windows-Clients müssen Domänen-Mitglieder sein. Arbeitsgruppen-Maschinen benutzen keine
 Netzwerk-Anmeldungen, also arbeiten sie auch nicht mit Domänen-Profilen zusammen.</para>
 
-<para>Für Roaming Profiles fügen Sie zur &smb.conf; hinzu:</para>
+<para>Für Roaming Profiles fügen Sie Folgendes zur &smb.conf; hinzu:</para>
 
 <smbconfblock>
 <smbconfoption><name>logon path</name><value>\\%N\profiles\%U</value></smbconfoption>
