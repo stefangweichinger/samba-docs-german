@@ -86,7 +86,7 @@ samba:45:Test User
 		<term>-v</term>
 		<listitem><para>Diese Option schaltet das ausführliche Listing-Format ein.
 		Dadurch listet pdbedit die Benutzer in der Datenbank auf und gibt dabei die
-		Felder des Kontos in einem ausführlicherem Format aus.</para>
+		Felder des Kontos in einem ausführlicheren Format aus.</para>
 
 		<para>Beispiel: <command>pdbedit -L -v</command></para>
 		<para><screen>

@@ -27,8 +27,8 @@
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-B &lt;Broadcast-Adresse&gt;</arg>
 		<arg choice="opt">-U &lt;Unicast-Adresse&gt;</arg>
-		<arg choice="opt">-d &lt;Debug-Level&gt;</arg>
-		<arg choice="opt">-s &lt;smb-Config-Datei&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Konfig-Datei&gt;</arg>
 		<arg choice="opt">-i &lt;NetBIOS-Scope&gt;</arg>
 		<arg choice="opt">-T</arg>
 		<arg choice="opt">-f</arg>
@@ -69,7 +69,7 @@
 		
 		<varlistentry>
 		<term>-R</term>
-		<listitem><para>Setze im Paket das Bit "Rekursion erwünscht", um ein 
+		<listitem><para>Setzt im Paket das Bit "Rekursion erwünscht", um ein 
 		rekursives Lookup durchzuführen. Das wird dann gemacht, wenn eine
 		Namensabfrage an einen Rechner geschickt wird, auf dem ein WINS-Server
 		läuft, und der Benutzer die Namen im WINS-Server abfragen möchte. 
@@ -81,7 +81,7 @@
 		
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>Führe auch eine Abfrage des Node-Status durch, nachdem
+		<listitem><para>Führt auch eine Abfrage des Node-Status durch, nachdem
 		die Namensabfrage eine IP-Adresse zurückgegeben hat. Eine Abfrage des 
 		Node-Status gibt die von einem Host registrierten NetBIOS-Namen zurück.
 		</para></listitem>
@@ -90,7 +90,7 @@
 
 		<varlistentry>
 		<term>-r</term> 
-		<listitem><para>Versuche den UDP-Port 137 beim Senden und Empfangen von 
+		<listitem><para>Versucht den UDP-Port 137 beim Senden und Empfangen von 
 		UDP-Datagrammen zu verwenden. Der Grund für diese Option ist ein Fehler in 
 		Windows 95, das den Ursprungs-Port des Abfragepakets ignoriert und nur auf 
 		dem UDP-Port 137 antwortet. Unglücklicherweise sind auf den meisten 
@@ -105,8 +105,8 @@
 
 		<varlistentry>
 		<term>-A</term>
-		<listitem><para>Interpretiere <replaceable>name</replaceable> als 
-		IP-Adresse und führe auf dieser Adresse eine Node-Statusabfrage durch.</para>
+		<listitem><para>Interpretiert <replaceable>name</replaceable> als 
+		IP-Adresse und führt auf dieser Adresse eine Node-Statusabfrage durch.</para>
 		</listitem>
 		</varlistentry>
 
@@ -117,7 +117,7 @@
 
 		<varlistentry>
 		<term>-B &lt;Broadcast-Adresse&gt;</term> 
-		<listitem><para>Sende die Abfrage an die gegebene Broadcast-Adresse. Ohne 
+		<listitem><para>Sendet die Abfrage an die gegebene Broadcast-Adresse. Ohne 
 		diese Option verhält sich nmblookup standardmäßig so, dass es die Abfrage 
 		an die Broadcast-Adresse der Netzwerkschnittstelle sendet, die es entweder 
 		automatisch findet oder die im Parameter <ulink 
@@ -131,7 +131,7 @@
 
 		<varlistentry>
 		<term>-U &lt;Unicast-Adresse&gt;</term>
-		<listitem><para>Führe eine Unicast-Abfrage auf der angegebenen Adresse oder 
+		<listitem><para>Führt eine Unicast-Abfrage auf der angegebenen Adresse oder 
 		dem Host <replaceable>unicast address</replaceable> durch. Diese Option 
 		(zusammen mit der Option <parameter>-R</parameter>) wird benötigt, um einen 
 		WINS-Server abzufragen.</para></listitem>
@@ -147,7 +147,7 @@
 		Paar
 		</para>
 		
-		<para><emphasis>IP address .... NetBIOS name</emphasis></para>
+		<para><emphasis>IP-Adresse .... NetBIOS-Name</emphasis></para>
 		
 		<para>ausgegeben, was die normale Ausgabe ist.</para></listitem>
 		</varlistentry>
@@ -155,7 +155,7 @@
 		<varlistentry>
 		<term>-f</term>
 		<listitem><para>
-		Zeige an, welche Flags auf den abgefragten Namen zutreffen. Mögliche 
+		Zeigt an, welche Flags auf den abgefragten Namen zutreffen. Mögliche 
 		Antworten sind Null oder mehr aus der Liste: Response, Authoritative, 
 		Truncated, Recursion_Desired, Recursion_Available, Broadcast.
 		</para></listitem>

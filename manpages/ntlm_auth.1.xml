@@ -46,9 +46,9 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 	<title>FUNKTIONALE ANFORDERUNGEN</title>
 
     <para>
-    Der Daemon <citerefentry><refentrytitle>winbindd</refentrytitle>
-    <manvolnum>8</manvolnum></citerefentry> muss laufen, damit
-    viele dieser Befehle funktionieren.</para>
+    Damit viele dieser Befehle funktionieren, muss der Daemon
+    <citerefentry><refentrytitle>winbindd</refentrytitle>
+    <manvolnum>8</manvolnum></citerefentry> laufen.</para>
 
     <para>Manche dieser Befehle benötigen auch einen Zugriff auf das Verzeichnis 
     <filename>winbindd_privileged</filename> in <filename>$LOCKDIR</filename>.  
@@ -168,20 +168,20 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 
 	<varlistentry>
 	<term>--challenge=STRING</term>
-	<listitem><para>NTLM-Aufgabe (in HEXADECIMAL-Form).</para>
+	<listitem><para>NTLM-Aufgabe (in HEXADEZIMAL-Form).</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--lm-response=RESPONSE</term>
-	<listitem><para>LM-Antwort zur Aufgabe (in HEXADECIMAL-Form).</para>
+	<listitem><para>LM-Antwort zur Aufgabe (in HEXADEZIMAL-Form).</para>
 	</listitem>
 	</varlistentry>
 
 	<varlistentry>
 	<term>--nt-response=RESPONSE</term>
 	<listitem><para>NT- oder NTLMv2-Antwort zur Aufgabe 
-	(in HEXADECIMAL-Form).</para></listitem>
+	(in HEXADEZIMAL-Form).</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -193,7 +193,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 
 	<varlistentry>
 	<term>--request-lm-key</term>
-	<listitem><para>Empfange LM-Sitzungsschlüssel.</para></listitem>
+	<listitem><para>Empfängt LM-Sitzungsschlüssel.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>

@@ -231,7 +231,7 @@
 		dem Verzeichnis, das von <command>getdriverdir</command> zurückgegeben
 		wird, schon existieren sollten. Mögliche Werte für <parameter>Arch</parameter> 
 		sind die gleichen wie beim Befehl <command>getdriverdir</command>. Der
-		Parameter <parameter>config</parameter> ist wie folgt definiert:</para>
+		Parameter <parameter>Konfig</parameter> ist wie folgt definiert:</para>
 		
 <para><programlisting>
 Long Printer Name:\
@@ -376,13 +376,13 @@ Comma Separated list of Files
 		<command>enumdrivers</command>, um eine Liste von installierten Druckern
 		und Treibern zu erhalten.</para></listitem></varlistentry>
 
-		<varlistentry><term>addform</term><listitem><para>Füge Form hinzu.</para></listitem></varlistentry>
-		<varlistentry><term>setform</term><listitem><para>Setze Form.</para></listitem></varlistentry>
-		<varlistentry><term>getform</term><listitem><para>Hole Form.</para></listitem></varlistentry>
-		<varlistentry><term>deleteform</term><listitem><para>Lösche Form.</para></listitem></varlistentry>
-		<varlistentry><term>enumforms</term><listitem><para>Zähle Form auf.</para></listitem></varlistentry>
-		<varlistentry><term>setprinter</term><listitem><para>Setze Druckerkommentar.</para></listitem></varlistentry>
-		<varlistentry><term>setprinterdata</term><listitem><para>Setze REG_SZ-Druckerdaten.</para></listitem></varlistentry>
+		<varlistentry><term>addform</term><listitem><para>Fügt Form hinzu.</para></listitem></varlistentry>
+		<varlistentry><term>setform</term><listitem><para>Setzt Form.</para></listitem></varlistentry>
+		<varlistentry><term>getform</term><listitem><para>Holt Form.</para></listitem></varlistentry>
+		<varlistentry><term>deleteform</term><listitem><para>Löscht Form.</para></listitem></varlistentry>
+		<varlistentry><term>enumforms</term><listitem><para>Zählt Form auf.</para></listitem></varlistentry>
+		<varlistentry><term>setprinter</term><listitem><para>Setzt Druckerkommentar.</para></listitem></varlistentry>
+		<varlistentry><term>setprinterdata</term><listitem><para>Setzt REG_SZ-Druckerdaten.</para></listitem></varlistentry>
 		<varlistentry><term>rffpcnex</term><listitem><para>Rffpcnex-Test</para></listitem></varlistentry>
 		
 

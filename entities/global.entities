@@ -419,7 +419,7 @@ Einstellungen in &smb.conf;.</para></listitem>
 <term>-i &lt;Scope&gt;</term>
 <listitem><para>Dies gibt einen NetBIOS-Scope an, mit dem 
 <command>nmblookup</command> beim Generieren von NetBIOS-Namen 
-kommuniziert. Für Details zur Verwendung von NetBIOS_Scopes
+kommuniziert. Für Details zur Verwendung von NetBIOS-Scopes
 siehe rfc1001.txt und rfc1002.txt. NetBIOS-Scopes werden 
 <emphasis>sehr</emphasis> selten benutzt. Setzen Sie diesen Parameter
 nur dann, wenn Sie als Systemadministrator für alle NetBIOS-Systeme 
@@ -456,12 +456,12 @@ um eine Liste der gültigen Optionen zu sehen.</para></listitem>
 <varlistentry>
 <term>-N</term>
 <listitem><para>Wenn angegeben unterdrückt dieser Parameter die normale
-Passworabfrage eines Clients beim Benutzer. Das ist dann nützlich, wenn
+Passwortabfrage eines Clients beim Benutzer. Das ist dann nützlich, wenn
 ein Dienst verwendet wird, der kein Passwort benötigt.</para>
 
-<para>Unless a password is specified on the command line or
-this parameter is specified, the client will request a
-password.</para></listitem>
+<para>Falls kein Passwort auf der Kommandozeile und dieser Parameter nicht
+angegeben wird, verlangt der Client ein Passwort.</para>
+</listitem>
 </varlistentry>'>
 
 <!ENTITY pct "&#37;">
@@ -471,25 +471,26 @@ password.</para></listitem>
 <term>-U|--user=Benutzername[&pct;Passwort]</term>
 <listitem><para>Setzt den SMB-Benutzernamen oder Benutzernamen und Passwort.</para>
 
-<para>If &pct;password is not specified, the user will be prompted. The
-client will first check the <envar>USER</envar> environment variable, then the
-<envar>LOGNAME</envar> variable and if either exists, the
-string is uppercased. If these environmental variables are not
-found, the username <constant>GUEST</constant> is used. </para>
+<para>Falls &pct;Passwort nicht angegeben wird, wird der Benutzer danach
+gefragt. Der Client überprüft zunächst die Umgebungsvariable 
+<envar>USER</envar>, dann <envar>LOGNAME</envar> und wenn eine davon
+existiert, wird sie in Großbuchstaben umgewandelt. Werden diese
+Umgebungsvariablen nichtgefunden, wird der Benutzername 
+<constant>GUEST</constant> verwendet.</para>
 
-<para>A third option is to use a credentials file which
-contains the plaintext of the username and password.  This
-option is mainly provided for scripts where the admin does not
-wish to pass the credentials on the command line or via environment
-variables. If this method is used, make certain that the permissions
-on the file restrict access from unwanted users.  See the
-<parameter>-A</parameter> for more details. </para>
+<para>Eine dritte Option besteht darin, eine Credentials-Datei zu 
+verwenden, mit den Benutzernamen und Passwörtern in Klartext. Diese
+Option ist ist vor allem für Skripte gedacht, wenn der Administrator
+die Credentials nicht auf der Kommandozeile oder über Umgebungsvariablen
+übergeben möchte. Bei dieser Methode sollten Sie sicherstellen, dass
+die Zugriffsrechte an der Datei unerwünschte Benutzer ausschließen. 
+Siehe <parameter>-A</parameter> für weitere Details.</para>
 
-<para>Be cautious about including passwords in scripts. Also, on
-many systems the command line of a running process may be seen
-via the <command>ps</command> command.  To be safe always allow
-<command>rpcclient</command> to prompt for a password and type
-it in directly. </para></listitem>
+<para>Seien Sie achtsam, wenn Sie Passwörter in Skripten verwenden. Auf
+vielen Systemen kann man außerdem die Kommandozeile eines laufenden
+Prozesses mit dem Befehl <command>ps</command> sehen. Um sicherzugehen
+sollten <command>rpcclient</command> immer erlauben, ein Passwort zu 
+verlangen und es dann direkt eingeben.</para></listitem>
 </varlistentry>
 '>
 
@@ -497,7 +498,7 @@ it in directly. </para></listitem>
 <varlistentry>
 <term>-A|--authfile=Dateiname</term>
 <listitem><para>Mit dieser Option können Sie eine Datei angeben, 
-aus der der Benutzername und Passwort für eine Verbindung gelesen 
+aus der der Benutzername und das Passwort für eine Verbindung gelesen 
 werden sollen. Das Dateiformat ist:
 </para>
 
