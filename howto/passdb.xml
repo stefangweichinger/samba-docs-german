@@ -1277,7 +1277,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			<para>Die Objektklasse sambaSamAccount besteht aus den Komponenten, die in den folgenden
 			Tabellen gezeigt werden: 
 			<link linkend="attribobjclPartA">Teil A</link> und
-			<link linkend="attribobjclPartB">Teil B</link>. (((Als Verweise bitte mit Nummern)))
+			<link linkend="attribobjclPartB">Teil B</link>.
 			</para>
 
 			<para>

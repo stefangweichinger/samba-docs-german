@@ -311,7 +311,7 @@ Diese Informationen sind nicht vollständig &smbmdash; Sie wurden gewarnt!
 
 		<note>
 		<para>
-		Das MS Windows 2000 Resource Kit enthält ein Werkzeug namens gpolmig.exe(((auszeichnen?))). Dieses Werkzeug
+		Das MS Windows 2000 Resource Kit enthält ein Werkzeug namens <filename>gpolmig.exe</filename>. Dieses Werkzeug
 		kann zur Migration einer NT4-NTConfig.POL-Datei in eine Windows 200x-GPO genutzt werden.
 		Seien Sie SEHR vorsichtig bei der Nutzung dieses mächtigen Werkzeugs.
 		Bitte ziehen Sie die Resource-Kit-Handbücher für weitergehende Informationen hinzu.
@@ -488,7 +488,7 @@ durchgesetzt werden. Anschließend folgt ein Neustart des Systems und ein Teil ei
 	</para></listitem>
 
 	<listitem><para>
-	Eine sortierte Liste von Benutzer-GPOs wird erhalten(((angezeigt?))).
+	Eine sortierte Liste von Benutzer-GPOs wird angezeigt?.
 	Der Inhalt der Liste richtet sich danach, was hier konfiguriert wurde:
 
 <itemizedlist>

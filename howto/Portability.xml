@@ -191,7 +191,7 @@ die mit 127.0.0.1 beginnt.
 <title>AIX</title>
 <sect2>
 <title>Sequenzieller Read Ahead</title>
-<!-- From an email by William Jojo <jojowil@hvcc.edu> -->(((?)))
+<!-- From an email by William Jojo <jojowil@hvcc.edu> -->
 <para>
 Das Deaktivieren von <quote>Sequential Read Ahead</quote> mit <userinput>vmtune -r 0</userinput>
 steigert die Performance von Samba deutlich.
