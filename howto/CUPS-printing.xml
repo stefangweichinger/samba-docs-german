@@ -4001,217 +4001,187 @@ der Epson-Treiber für Microsoft-Plattformen). Dieses Projekt unterstützt derzeit
 
 <para>
 Linuxprinting.org ist heute der One-Stop-Shop, um Druckertreiber herunterzuladen. Sehen Sie nach 
-Drucker-Information
-
-
-today is the one-stop shop to download printer
-drivers. Look for printer information and <ulink
-url="http://www.linuxprinting.org//kpfeifle/LinuxKongress2002/Tutorial/">tutorials</ulink>
-or solve printing problems in its popular <ulink
-url="http://www.linuxprinting.org/newsportal/">forums.</ulink> This forum 
-it's not just for GNU/Linux users, but admins of <ulink
-url="http://www.linuxprinting.org/macosx/">commercial UNIX
-systems</ulink> are also going there, and the relatively new <ulink
+Drucker-Informationen und <ulink
+url="http://www.linuxprinting.org//kpfeifle/LinuxKongress2002/Tutorial/">Tutorials</ulink> oder lösen Sie
+Probleme in den populären <ulink
+url="http://www.linuxprinting.org/newsportal/">Foren.</ulink> Dieses Forum ist nicht nur für GNU/Linux-Anwender,
+sondern auch für Admins <ulink
+url="http://www.linuxprinting.org/macosx/">kommerzieller UNIX-Systeme</ulink>, und das ziemlich neue <ulink
 url="http://www.linuxprinting.org/newsportal/thread.php3?name=linuxprinting.macosx.general">Mac
-OS X forum</ulink> has turned out to be one of the most frequented
-forums after only a few weeks.
+OS X Forum</ulink> wurde innerhalb einiger weniger Wochen zu einem der meist-frequentierten Foren.
 </para>
 
 <para>
-Linuxprinting.org and the Foomatic driver wrappers around Ghostscript
-are now a standard tool-chain for printing on all the important
-distros. Most of them also have CUPS underneath. While in recent years
-most printer data had been added by Kamppeter (who works at Mandrake), many
-additional contributions came from engineers with SuSE, Red Hat,
-Conectiva, Debian, and others. Vendor-neutrality is an important goal
-of the Foomatic project.
+Linuxprinting.org und die Foomatic-Treiber-Wrapper um Ghostscript sind nunmehr eine Standard Werkzeug-Kette für
+das Drucken in allen wichtigen Distributionen. Die meisten haben auch CUPS darunter integriert. Während in den 
+letzten Jahren die meisten Drucker-Daten von Kamppeter (der für Mandrake arbeitet) hinzugefügt wurden, kamen
+viele andere Beiträge von Leuten bei SuSE, Red Hat, Conectiva, Debian, und anderen. Hersteller-Neutralität ist
+ein wichtiges Ziel des Foomatic-Projekts.
 </para>
 
 <note><para>
-Till Kamppeter from MandrakeSoft is doing an excellent job in his
-spare time to maintain Linuxprinting.org and Foomatic. So if you use
-it often, please send him a note showing your appreciation.
+Till Kamppeter von MandrakeSoft leistet in seiner Freizeit hervorragende Arbeit, um Linuxprinting.org und
+Foomatic zu pflegen. Wenn Sie diese oft nutzen, bitte senden Sie ihm doch eine kleine Mail, um Ihre Anerkennung
+zu zeigen.
 </para></note>
 </sect3>
 
 <sect3>
-<title>Foomatic Database-Generated PPDs</title>
+<title>Foomatic Datenbank-generierte PPDs</title>
 
 <para>
-The Foomatic database is an amazing piece of ingenuity in itself. Not
-only does it keep the printer and driver information, but it is
-organized in a way that it can generate PPD files on the fly from
-its internal XML-based datasets. While these PPDs are modeled to the
-Adobe specification of PostScript Printer Descriptions (PPDs), the
-Linuxprinting.org/Foomatic-PPDs do not normally drive PostScript
-printers. They are used to describe all the bells and whistles you
-could ring or blow on an Epson Stylus inkjet, or a HP Photosmart, or
-what-have-you. The main trick is one little additional line, not
-envisaged by the PPD specification, starting with the <parameter>*cupsFilter</parameter>
-keyword. It tells the CUPS daemon how to proceed with the PostScript
-print file (old-style Foomatic-PPDs named the
-cupsomatic filter script, while the new-style
-PPDs are now call foomatic-rip). This filter
-script calls Ghostscript on the host system (the recommended variant
-is ESP Ghostscript) to do the rendering work. foomatic-rip knows which
-filter or internal device setting it should ask from Ghostscript to
-convert the PostScript print job into a raster format ready for the
-target device. This usage of PPDs to describe the options of non-PS
-printers was the invention of the CUPS developers. The rest is easy.
-GUI tools (like KDE's marvelous <ulink
-url="http://printing.kde.org/overview/kprinter.phtml">kprinter,</ulink>
-or the GNOME <ulink
-url="http://gtklp.sourceforge.net/">gtklp,</ulink> xpp and the CUPS
-Web interface) read the PPD as well and use this information to present
-the available settings to the user as an intuitive menu selection.
+Die Foomatic Datenbank ist selbst ein erstaunliches Stück Raffiniertheit. Sie enthält nicht nur die
+Drucker- und Treiber-Informationen, sondern ist auf eine Art organisiert, daß sie PPD-Dateien ad hoc aus ihren
+internen, auf XML basierenden Datensätzen generieren kann. Während diese PPDs der Adobe-Spezifikation für
+PostScript Printer Descriptions (PPDs) entsprechen, betreiben Linuxprinting.org/Foomatic-PPDs normalerweise
+keine PostScript-Drucker. Sie werden verwendet, um all die Features zu beschreiben, die Sie auf jedem beliebigen
+Gerät verwenden können. Der hauptsächliche Trick ist eine zusätzliche Zeile, die nicht von der 
+Adobe-Spezifikation beachtet wird und mit dem Schlüsselwort <parameter>*cupsFilter</parameter> beginnt.
+Sie teilt dem CUPS-Daemon mit, wie er mit der PostScript-Druckdatei weiter verfahren soll (ältere Foomatic-PPDs
+benannten das cupsomatic-Filter-Skript, während die neueren PPDs foomatic-rip aufrufen). Dieses Filter-Skript
+ruft Ghostscript auf dem Host-System auf (die empfohlene Variante ist ESP Ghostscript), um die erforderliche
+Arbeit zu tun. foomatic-rip weiß, welchen Filter oder welche interne Geräte-Einstellung es von Ghostscript
+verlangen muß, um den PostScript-Druckauftrag in ein Rasterformat zu wandeln, das passend für das Zielgerät ist.
+Diese Verwendung von PPDs, um die Optionen von Nicht-PS-Druckern zu beschreiben, war eine Erfindung der 
+CUPS-Entwickler. Der Rest ist einfach. GUI-Werkzeuge (wie KDE's wunderbares <ulink
+url="http://printing.kde.org/overview/kprinter.phtml">kprinter,</ulink> oder <ulink
+url="http://gtklp.sourceforge.net/">gtklp</ulink> von GNOME, xpp und das CUPS-Web-Interface) lesen das PPD 
+genauso, und verwenden diese Information, um die verfügbaren Einstellungen dem Benutzer anzubieten, genauso wie
+eine intuitive Menü-Auswahl.
 </para>
 </sect3>
 </sect2>
 
 <sect2>
-<title>foomatic-rip and Foomatic-PPD Download and Installation</title>
+<title>foomatic-rip und Foomatic-PPD Download und Installation</title>
 
 <para>
-Here are the steps to install a foomatic-rip driven LaserJet 4 Plus-compatible
-printer in CUPS (note that recent distributions of SuSE, UnitedLinux and
-Mandrake may ship with a complete package of Foomatic-PPDs plus the
-<command>foomatic-rip</command> utility. Going directly to
-Linuxprinting.org ensures that you get the latest driver/PPD files):
+Hier sind die erforderlichen Schritte, um einen von foomatic-rip betriebenen LaserJet 4 Plus-kompatiblen
+Drucker in CUPS zu installieren (beachten Sie, daß aktuelle Distributionen von SuSE, UnitedLinux und Mandrake
+möglicherweise mit einem kompletten Package von Foomatic-PPDs geliefert werden, plus dem Werkzeug
+<command>foomatic-rip</command>. Der Besuch von Linuxprinting.org stellt sicher, daß Sie die aktuellsten
+Treiber und PPD-Dateien haben):
 </para>
 
 <itemizedlist>
-<listitem><para>Open your browser at the Linuxprinting.org printer list<ulink url="http://www.linuxprinting.org/printer_list.cgi">page.</ulink>
+<listitem><para>Öffnen Sie Ihren Browser und besuchen Sie die Linuxprinting.org Druckerlisten-<ulink url="http://www.linuxprinting.org/printer_list.cgi">Seite.</ulink>
 </para></listitem>
 
-<listitem><para>Check the complete list of printers in the 
-<ulink url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">database.</ulink>.
+<listitem><para>Sehen Sie die komplette Liste von Druckern in der
+<ulink url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">Datenbank.</ulink>.
 </para></listitem>
 
-<listitem><para>Select your model and click on the link.
+<listitem><para>Wählen Sie Ihr Modell und klicken Sie auf den Link.
 </para></listitem>
 
-<listitem><para>You'll arrive at a page listing all drivers working with this
-model (for all printers, there will always be <emphasis>one</emphasis>
-recommended driver. Try this one first).
+<listitem><para>Sie landen auf einer Seite, die alle funktionierenden Treiber für dieses Modell auflistet (es
+gibt für alle Drucker zumindest <emphasis>einen</emphasis> empfohlenen Treiber. Probieren Sie den als erstes).
 </para></listitem>
 
-<listitem><para>In our case (HP LaserJet 4 Plus), we'll arrive at the default driver for the
+<listitem><para>In unserem Fall (HP LaserJet 4 Plus) landen wir beim Standard-Treiber für den
 <ulink url="http://www.linuxprinting.org/show_printer.cgi?recnum=HP-LaserJet_4_Plus">HP-LaserJet 4 Plus.</ulink>
 </para></listitem>
 
-<listitem><para>The recommended driver is ljet4.</para></listitem>
+<listitem><para>Der empfohlene Treiber ist ljet4.</para></listitem>
 
-<listitem><para>Several links are provided here. You should visit them all if you
-are not familiar with the Linuxprinting.org database.
+<listitem><para>Verschiedene Links werden hier angeboten. Sie sollten sie alle besuchen, falls Sie noch nicht mit
+der Linuxprinting.org-Datenbank vertraut sind.
 </para></listitem>
 
-<listitem><para>There is a link to the database page for the
+<listitem><para>Es gibt einen Link auf die Datanbank-Seite für
 <ulink url="http://www.linuxprinting.org/show_driver.cgi?driver=ljet4">ljet4.</ulink>
-On the driver's page, you'll find important and detailed information
-about how to use that driver within the various available
-spoolers.</para></listitem>
+Auf der Seite des Treibers finden Sie wichtige und detaillierte Information, wie Sie den Treiber mit den 
+verschiedenen Spoolern verwenden können.
+</para></listitem>
 
-<listitem><para>Another link may lead you to the home-page of the
-driver author or the driver.</para></listitem>
+<listitem><para>Ein weiterer Link führt Sie auf die Homepage des Treibers oder dessen Autors.
+</para></listitem>
 
-<listitem><para>Important links are the ones that provide hints with
-setup instructions for <ulink noescape="1" url="http://www.linuxprinting.org/cups-doc.html">CUPS</ulink>,
+<listitem><para>Wichtige Links sind diejenigen, die Ihnen Hinweise und Anleitungen zu
+<ulink noescape="1" url="http://www.linuxprinting.org/cups-doc.html">CUPS</ulink>,
 <ulink url="http://www.linuxprinting.org/pdq-doc.html">PDQ</ulink>,
-<ulink url="http://www.linuxprinting.org/lpd-doc.html">LPD, LPRng and GNUlpr</ulink>)
-as well as <ulink url="http://www.linuxprinting.org/ppr-doc.html">PPR</ulink>
-or <quote>spooler-less</quote> <ulink url="http://www.linuxprinting.org/direct-doc.html">printing.</ulink>
+<ulink url="http://www.linuxprinting.org/lpd-doc.html">LPD, LPRng und GNUlpr</ulink> geben,
+genauso wie zu <ulink url="http://www.linuxprinting.org/ppr-doc.html">PPR</ulink>
+oder <quote>spooler-freiem</quote> <ulink url="http://www.linuxprinting.org/direct-doc.html">Drucken.</ulink>
 </para></listitem>
 
-<listitem><para>You can view the PPD in your browser through this link:
+<listitem><para>Sie können das PPD in Ihrem Browser ansehen, mit diesem Link:
 <ulink noescape="1" url="http://www.linuxprinting.org/ppd-o-matic.cgi?driver=ljet4&amp;printer=HP-LaserJet_4_Plus&amp;show=1">http://www.linuxprinting.org/ppd-o-matic.cgi?driver=ljet4&amp;printer=HP-LaserJet_4_Plus&amp;show=1</ulink>
-</para></listitem> <listitem><para>Most importantly, you can also generate and download
-the <ulink url="http://www.linuxprinting.org/ppd-o-matic.cgi?driver=ljet4&amp;printer=HP-LaserJet_4_Plus&amp;show=0">PPD.</ulink>
+</para></listitem> <listitem><para>Und das Wichtigste, Sie können das
+<ulink url="http://www.linuxprinting.org/ppd-o-matic.cgi?driver=ljet4&amp;printer=HP-LaserJet_4_Plus&amp;show=0">PPD</ulink> auch generieren und herunterladen.
 </para></listitem>
 
-<listitem><para>The PPD contains all the information needed to use our
-model and the driver; once installed, this works transparently
-for the user. Later you'll only need to choose resolution, paper size,
-and so on from the Web-based menu, or from the print dialog GUI, or from
-the command line.</para></listitem>
+<listitem><para>Das PPD enthält all die Informationen, um unseren Drucker und den Treiber zu verwenden; sobald
+es installiert ist, arbeitet es transparent für den Anwenden. Sie brauchen später nur noch Auflösung, 
+Papierformat, usw. aus dem Web-basierenden Menü, dem Druck-GUI-Dialog oder auf der Befehlszeile auswählen.
+</para></listitem>
 
-<listitem><para>If you ended up on the drivers
-<ulink url="http://www.linuxprinting.org/show_driver.cgi?driver=ljet4">page</ulink>
-you can choose to use the <quote>PPD-O-Matic</quote> online PPD generator
-program.</para></listitem>
+<listitem><para>Wenn Sie auf der Treiber-
+<ulink url="http://www.linuxprinting.org/show_driver.cgi?driver=ljet4">Seite</ulink> angelangt sind,
+können Sie den <quote>PPD-O-Matic</quote> Online-PPD-Generator verwenden.</para></listitem>
 
-<listitem><para>Select the exact model and check either <guilabel>Download</guilabel> or
-<guilabel>Display PPD file</guilabel> and click <guilabel>Generate PPD file</guilabel>.</para></listitem>
+<listitem><para>Wählen Sie das genaue Modell aus, wählen Sie <guilabel>Download</guilabel> oder
+<guilabel>Display PPD file</guilabel> und klicken Sie <guilabel>Generate PPD file</guilabel>.</para></listitem>
 
-<listitem><para>If you save the PPD file from the browser view, please
-do not use cut and paste (since it could possibly damage line endings
-and tabs, which makes the PPD likely to fail its duty), but use <guimenuitem>Save
-as...</guimenuitem> in your browsers menu. (It is best to use the <guilabel>Download</guilabel> option
-directly from the Web page).</para></listitem>
+<listitem><para>Wenn Sie die PPD-Datei aus der Broswer-Ansicht speichern, verwenden Sie bitte nicht
+Cut and Paste (da dies eventuell die Zeilenenden und Tabulatoren beschädigt, was das PPD eventuell in seiner
+Pflichterfüllung hindert), sondern verwenden Sie <guimenuitem>Speichern unter...</guimenuitem> aus dem
+Menü Ihres Browsers. (Am besten ist die Verwendung der Option <guilabel>Download</guilabel> direkt auf der
+Web-Seite).</para></listitem>
 
-<listitem><para>Another interesting part on each driver page is
-the <guimenuitem>Show execution details</guimenuitem> button. If you
-select your printer model and click on that button,
-a complete Ghostscript command line will be displayed, enumerating all options
-available for that combination of driver and printer model. This is a great way to
-<quote>learn Ghostscript by doing</quote>. It is also an excellent cheat sheet
-for all experienced users who need to re-construct a good command line
-for that damn printing script, but can't remember the exact
-syntax. </para></listitem>
+<listitem><para>Ein weiterer interessanter Teil jeder Treiber-Seite ist der Button 
+<guimenuitem>Show execution details</guimenuitem>. Wenn Sie Ihr Druckermodell wählen und diesen Button klicken,
+wird eine komplette Ghostscript-Befehlszeile angezeigt, die alle verfügbaren Optionen für diese 
+Drucker/Treiber-Kombination aufzählt. Dies ist eine gute Möglichkeit, <quote>Ghostscript durch Anwendung zu 
+erlernen</quote>. Es ist weiters ein hervorragender Schummelzettel für alle erfahrenen Anwender, die eine
+gute Befehlszeile für irgendein verdammtes Druck-Skript rekonstruieren müssen, sich aber nicht mehr an die
+exakte Syntax erinnern.</para></listitem>
 
-<listitem><para>Some time during your visit to Linuxprinting.org, save
-the PPD to a suitable place on your hard-disk, say
-<filename>/path/to/my-printer.ppd</filename> (if you prefer to install
-your printers with the help of the CUPS Web interface, save the PPD to
-the <filename>/usr/share/cups/model/</filename> path and restart
-cupsd).</para></listitem>
+<listitem><para>Irgendwann während Ihres Besuchs auf Linuxprinting.org speichern Sie Ihre PPD-Datei unter einem
+passenden Platz auf Ihrer Festplatte, sagen wir <filename>/pfad/zu/ihrer.ppd</filename> (wenn Sie es vorziehen,
+Ihre Drucker unter Verwendung des CUPS-Web-Interface zu installieren, speichern Sie das PPD in 
+<filename>/usr/share/cups/model/</filename> und starten CUPS neu).</para></listitem>
 
-<listitem><para>Then install the printer with a suitable command line,
-like this: 
+<listitem><para>Dann installieren Sie den Drucker mit einer entsprechenden Befehlszeile, wie dieser:
 </para>
 
 <para><screen>
 &rootprompt;<userinput>lpadmin -p laserjet4plus -v parallel:/dev/lp0 -E \
-	-P path/to/my-printer.ppd</userinput>
+	-P pfad/zu/mein-drucker.ppd</userinput>
 </screen></para></listitem>
 
-<listitem><para>For all the new-style <quote>Foomatic-PPDs</quote>
-from Linuxprinting.org, you also need a special CUPS filter named
-foomatic-rip. 
+<listitem><para>Für alle neuartigen <quote>Foomatic-PPDs</quote> von Linuxprinting.org brauchen Sie auch den
+speziellen CUPS-Filter namens foomatic-rip.
 </para></listitem>
 
-<listitem><para>The foomatic-rip Perl script itself also makes some
-interesting <ulink url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=1">reading</ulink>
-because it is well documented by Kamppeter's in-line comments (even
-non-Perl hackers will learn quite a bit about printing by reading
-it).</para></listitem>
+<listitem><para>Das foomatic-rip Perl-Skript selbst gibt ziemlich interessanten 
+<ulink url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=1">Lesestoff</ulink>
+ab, da es durch Kamppeter's Inline-Kommentare gut dokumentiert ist (sogar Nicht-Perl-Hacker werden einiges über Drucken lernen, wenn sie es lesen).</para></listitem>
 
-<listitem><para>Save foomatic-rip either directly in
-<filename>/usr/lib/cups/filter/foomatic-rip</filename> or somewhere in
-your $PATH (and remember to make it world-executable). Again,
-do not save by copy and paste but use the appropriate link or the
-<guimenuitem>Save as...</guimenuitem>  menu item in your browser.</para></listitem>
+<listitem><para>Speichern Sie foomatic-rip entweder direkt in
+<filename>/usr/lib/cups/filter/foomatic-rip</filename> oder sonstwo in Ihren  $PATH (und vergessen Sie nicht, es
+für alle ausführbar zu setzen). Verwenden Sie auch hier nicht Cut and Paste, sondern verwenden Sie den 
+entsprechenden Link oder den Menü-Eintrag <guimenuitem>Speichern unter ...</guimenuitem> Ihres Browsers.
+</para></listitem>
 
-<listitem><para>If you save foomatic-rip in your $PATH, create a symlink:
+<listitem><para>Wenn Sie foomatic-rip in Ihrem $PATH speichern, legen Sie einen Symlink an:
 <screen>
 &rootprompt;<userinput>cd /usr/lib/cups/filter/ ; ln -s `which foomatic-rip'</userinput>
 </screen>
 </para>
 
 <para>
-CUPS will discover this new available filter at startup after restarting
-cupsd.</para></listitem>
+CUPS wird diesen neu verfügbaren Filter beim Neustart von cupsd entdecken.
+</para></listitem>
 </itemizedlist>
 
 <para>
-Once you print to a print queue set up with the Foomatic-PPD, CUPS will
-insert the appropriate commands and comments into the resulting
-PostScript jobfile. foomatic-rip is able to read and act upon
-these and uses some specially encoded Foomatic comments
-embedded in the jobfile. These in turn are used to construct
-(transparently for you, the user) the complicated Ghostscript command
-line telling the printer driver exactly how the resulting raster
-data should look and which printer commands to embed into the
-data stream. You need:
+Sobald Sie auf eine Queue drucken, die mit dem Foomatic-PPD installiert wurde, fügt CUPS die entsprechenden
+Befehle und Kommentare in die resultierende PostScript-Datei ein. foomatic-rip kann diese lesen und mit ihnen
+umgehen, und verwendet einige speziell codierte Foomatic-Kommentare, die in die Auftragsdatei eingebettet sind.
+Diese werden wiederum dazu verwendet (transparent für Sie, den Anwender), um die komplizierte 
+Ghostscript-Befehlszeile zu konstruieren, die dem Druckertreiber exakt mitteilt, wie die ausgegebenen Rasterdaten
+auszusehen haben, und welche Druckerbefehle in den Datenstrom einzubetten sind. Sie brauchen:
 </para>
 
 <itemizedlist>
