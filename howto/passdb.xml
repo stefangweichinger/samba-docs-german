@@ -276,31 +276,34 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		</para>
 
 		<para>
-		Windows NT 4.0 Service Pack 3 changed the default setting so plaintext passwords
-		are disabled from being sent over the wire. This mandates either the use of encrypted
-		password support or editing the Windows NT registry to re-enable plaintext passwords.
+		Windows NT 4.0 Service Pack 3 hat die Standard-Einstellung geändert, so daß
+		Klartext-Passwörter nicht mehr über das Netzwerk gesendet werden. Dies macht die
+		Verwendung verschlüsselter Passwörter notwendig, bzw. das Editieren der Windows NT
+		Registrierung, um Klartext-Passwörter wieder zu aktivieren.
 		</para>
 		
 		<para>
-		The following versions of Microsoft Windows do not support full domain security protocols,
-		although they may log onto a domain environment:
+		Die folgenden Versionen von MS Windows unterstützen NICHT die vollständigen
+		Domänen-Sicherheits-Protokolle, obwohl sie sich an einer Domäne anmelden können:
 		</para>
 
 		<itemizedlist>
-			<listitem>MS DOS Network client 3.0 with the basic network redirector installed.</listitem>
-			<listitem>Windows 95 with the network redirector update installed.</listitem>
+			<listitem>MS DOS Network Client 3.0 mit installiertem "basic network redirector".</listitem>
+			<listitem>Windows 95 mit installiertem "network redirector update".</listitem>
 			<listitem>Windows 98 [Second Edition].</listitem>
 			<listitem>Windows Me.</listitem>
 		</itemizedlist>
 
 		<note>
 		<para>
- 		MS Windows XP Home does not have facilities to become a Domain Member and it cannot participate in domain logons.
+ 		MS Windows XP Home hat keine Einrichtungen, um Domänen-Mitglied zu werden, und kann
+		nicht an Domänen-Anmeldungen teilnehmen.
 		</para>
 		</note>
 
 		<para>
-		The following versions of MS Windows fully support domain security protocols.
+		Die folgenden Versionen von MS Windows unterstützen die vollständigen
+		Domänen-Sicherheits-Protokolle.
 		</para>
 
 		<itemizedlist>
@@ -312,74 +315,80 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		</itemizedlist>
 			
 		<para>
-		All current releases of Microsoft SMB/CIFS clients support authentication via the
-		SMB Challenge/Response mechanism described here. Enabling clear-text authentication
-		does not disable the ability of the client to participate in encrypted authentication.
-		Instead, it allows the client to negotiate either plain text or encrypted password
-		handling.
+		Alles aktuellen Microsoft SMB/CIFS Clients unterstützen die Authentifikation
+		über den hier beschriebenen SMB Challenge/Response Mechanismus. Das Aktivieren
+		von Klartext-Authentifikation deaktiviert die Fähigkeit des Clients nicht, an
+		verschlüsselter Authentifikation teilzunehmen. Stattdessen erlaubt dies dem Client,
+		entweder Klartext- oder verschlüsselte Passwörter zu verwenden.		
 		</para>
 
 		<para>
-		MS Windows clients will cache the encrypted password alone. Where plain text passwords
-		are re-enabled through the appropriate registry change, the plain text password is never
-		cached. This means that in the event that a network connections should become disconnected
-		(broken), only the cached (encrypted) password will be sent to the resource server to
-		effect an auto-reconnect. If the resource server does not support encrypted passwords the
-		auto-reconnect will fail. Use of encrypted passwords is strongly advised.
-		</para>
+		MS Windows Clients puffern nur das verschlüsselte Passwort. Wo Klartext-Passwörter
+		durch den entsprechenden Registrierungs-Eintrag aktiviert wurden, wird das
+		Klartext-Passwort nie gepuffert. Das bedeutet, daß im Fall einer getrennten 
+		Netzwerk-Verbindung nur das gepufferter (verschlüsselte) Passwort an den Server
+		gesendet wird, um einen automatischen Wiederaufbau der Verbindung zu erzielen.
+		Wenn der Server keine verschlüsselten Passwörter unterstützt, wird dies scheitern.
+		Die Verwendung verschlüsselter Passwörter wird nachhaltig empfohlen</para>
 
 		<sect3>
-		<title>Advantages of Encrypted Passwords</title>
+		<title>Vorteile verschlüsselter Passwörter</title>
 
 			<itemizedlist>
-				<listitem><para>Plaintext passwords are not passed across 
-				the network. Someone using a network sniffer cannot just 
-				record passwords going to the SMB server.</para></listitem>
-
-				<listitem><para>Plaintext passwords are not stored anywhere in
-				memory or on disk.</para></listitem>
-			 
-				<listitem><para>Windows NT does not like talking to a server 
-				that does not support encrypted passwords. It will refuse 
-				to browse the server if the server is also in User Level 
-				security mode. It will insist on prompting the user for the 
-				password on each connection, which is very annoying. The
-				only things you can do to stop this is to use SMB encryption.
+				<listitem><para>
+				Es werden keine Klartext-Passwörter über das Netzwerk versandt.
+				Jemand, der einen Netzwerk-Sniffer verwendet, kann keine an den
+				SMB-Server gesandten Passwörter abhören und aufzeichnen.
 				</para></listitem>
 
-				<listitem><para>Encrypted password support allows automatic share
-				(resource) reconnects.</para></listitem>
+				<listitem><para>Es werden keine Klartext-Passwörter auf Festplatten
+				oder im RAM abgelegt.</para></listitem>
+			 
+				<listitem><para>Windows NT mag es nicht, mit einem Server zu
+				kommunizieren, der keine verschlüsselten Passwörter unterstützt.
+				Es wird verweigern, den Server zu durchsuchen (browsing), wenn der
+				Server auch noch im User Level Sicherheits-Modus läuft. NT wird
+				darauf bestehen, den Benutzer bei jeder Verbindung nach einem
+				Passwort zu fragen, was sehr lästig ist. Das einzige, was man
+				dagegegen tun kann, ist die Verwendung von SMB-Verschlüsselung.
+				</para></listitem>
 
-				<listitem><para>Encrypted passwords are essential for PDC/BDC
-				operation.</para></listitem>
+				<listitem><para>Die Unterstützung verschlüsselter Passwörter
+				erlaubt automatisches Wiederverbinden von Freigaben (Ressourcen).
+				</para></listitem>
+
+				<listitem><para>Verschlüsselte Passwörter sind essentiell notwendig
+				für den PDC/BDC-Betrieb.
+				</para></listitem>
 			</itemizedlist>
 		</sect3>
 
 
 		<sect3>
-		<title>Advantages of Non-Encrypted Passwords</title>
+		<title>Vorteile nicht verschlüsselter Passwörter</title>
 
 			<itemizedlist>
-				<listitem><para>Plaintext passwords are not kept 
-				on disk, and are not cached in memory. </para></listitem>
+				<listitem><para>Es werden keine Klartext-Passwörter auf Festplatten
+                                oder im RAM abgelegt.</para></listitem>
+	
+				<listitem><para>Verwendung derselben Passwort-Datei wie Login oder FTP.
+				</para></listitem>
 				
-				<listitem><para>Uses same password file as other UNIX 
-				services such as Login and FTP.</para></listitem>
-				
-				<listitem><para>Use of other services (such as Telnet and FTP) that
-				send plain text passwords over the network, so sending them for SMB
-				is not such a big deal.</para></listitem>
+				<listitem><para>Verwendung anderer Dienste (wie Telnet und FTP),
+				die Klartext-Passwörter über das Netz senden, daher ist deren Versand
+				für SMB keine so wichtige Angelegenheit mehr.
+				</para></listitem>
 			</itemizedlist>
 		</sect3>
 	</sect2>
 
 	<sect2>
-	<title>Mapping User Identifiers between MS Windows and UNIX</title>
+	<title>Die Zuordnung von Benutzer-Identifiern (UIDs) zwischen MS Windows und UNIX</title>
 
 	<para>
-	Every operation in UNIX/Linux requires a user identifier (UID), just as in
-	MS Windows NT4/200x this requires a Security Identifier (SID). Samba provides
-	two means for mapping an MS Windows user to a UNIX/Linux UID.
+	Jede Operation in UNIX/Linux erfordert einen Benutzer-Identifier (UID), genauso wie sie
+	in MS Windows NT4/200x einen Sicherheits-Identifier (SID) erfordert. Samba stellt zwei
+	Wege zur Verfügung, um einen Windows-Benutzer einem UNIX/Linux-UID zuzuweisen.
 	</para>
 
 	<para>
