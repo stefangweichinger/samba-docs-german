@@ -1064,16 +1064,16 @@ benötigt).
 <indexterm><primary>MIME</primary></indexterm>
 Es gibt viel mehr Kombinationen in <filename>mime.convs</filename>. Sie sind jedoch nicht darauf beschränkt,
 die hier vordefinierten Kombinationen zu verwenden. Sie können jeden Filter, den Sie wollen, in das
-CUPS-Grundgerüst einsetzen. Es muß einigen minimalen Erfordernissen entsprechen, oder dazu gebracht werden.
+CUPS-Grundgerüst einsetzen. Es muß einigen minimalen Anforderungen entsprechen, oder dazu gebracht werden.
 Wenn Sie irgend einen coolen Filter finden (oder schreiben), stellen Sie sicher, daß er dem entspricht, was CUPS
 braucht, und daß Sie die richtigen Zeilen in die Dateien <filename>mime.types</filename> und
 <filename>mime.convs</filename> einfügen, dann wird er nahtlos innerhalb CUPS arbeiten.
 </para>
 
 <sect3>
-<title>Filter Erfordernisse</title>
+<title>Filter Anforderungen</title>
 <para>
-Die erwähnten <quote>CUPS Erfordernisse</quote> für Filter sind simpel. Nehmen Sie Dateinamen oder
+Die erwähnten <quote>CUPS Anforderungen</quote> für Filter sind simpel. Nehmen Sie Dateinamen oder
 <filename>stdin</filename> als Input und schreiben Sie diesen auf <filename>stdout</filename>. Die Filter
 sollten diese 5-6 Argumente verstehen:
 <emphasis>printer job user title copies options [filename]</emphasis>
@@ -2287,7 +2287,7 @@ Vor dem Ausführen von <command>cupsaddsmb</command> müssen Sie die Einstellungen
 <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
 <smbconfoption><name>browseable</name><value>no</value></smbconfoption>
 <smbconfoption><name>public</name><value>yes</value></smbconfoption>
-<smbconfcomment>Einstellung ist abhängig von Ihren Erfordernissen</smbconfcomment>
+<smbconfcomment>Einstellung ist abhängig von Ihren Anforderungen</smbconfcomment>
 <smbconfoption><name>guest ok</name><value>yes</value></smbconfoption>
 <smbconfoption><name>writable</name><value>no</value></smbconfoption>
 <smbconfoption><name>printable</name><value>yes</value></smbconfoption>
@@ -3133,7 +3133,7 @@ wir keine (und auch für die Adobe-Treiber würden wir keine brauchen), daher erhä
 </sect2>
 
 <sect2>
-<title>Erfordernisse für erfolgreiches Ausführen von adddriver und setdriver</title>
+<title>Anforderungen für erfolgreiches Ausführen von adddriver und setdriver</title>
 
 <para>
 >Aus der man-page (und der oben zitierten Ausgabe von <command>cupsaddsmb</command>) wird klar, daß Sie bestimmte
@@ -4504,7 +4504,7 @@ MIME-Typen <parameter>application/vnd.cups-postscript</parameter> erkennt.
 <para>
 CUPS kann mit <parameter>-o job-hold-until=indefinite</parameter> umgehen.
 Das hält den Auftrag in der Queue auf Stillstand. Er wird nur auf manuelle Veranlassung des Druck-Operators
-gedruckt. Dies ist ein Erfordernis in vielen Reproduktions-Abteilungen, wo ein paar wenige Operatoren die
+gedruckt. Dies ist eine Anforderung in vielen Reproduktions-Abteilungen, wo ein paar wenige Operatoren die
 Aufträge von vielen hundert Benutzern auf irgendeiner grossen Maschine verwalten, wo keinem Benutzer direkter
 Zugriff gestattet ist (wo z.B. die Operatoren das richtige Papier laden müssen, bevor sie den 
 10000-Seiten-Auftrag starten, der vom Marketing für das Mailing eingelangt ist, usw.).

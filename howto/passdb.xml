@@ -1849,7 +1849,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	</para>
 
 	<para>
-	Dies ist das exakte Gegenteil zum Erfordernis der Option 
+	Dies ist das exakte Gegenteil zur Anforderung der Option 
 	<smbconfoption><name>passdb backend</name></smbconfoption>, wo <parameter>guest</parameter>
 	der <emphasis>LETZTE</emphasis> Parameter der Zeile sein muﬂ.	
 	</para>

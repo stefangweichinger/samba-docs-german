@@ -212,7 +212,7 @@ Neu in Samba-3 ist die Fähigkeit, als vollwertiger MS-Windows-NT4-Domänen-Contro
 </para>
 
 <para>
-Zum jetzigen Zeitpunkt ist jegliches Anzeichen dafür, daß Samba-3 als <emphasis>Domänen Controller</emphasis> im nativen ADS-Modus arbeiten kann, begrenzt und völlig experimentell. Diese Funktionalität sollte nicht verwendet werden, bis das Samba-Team formal die Unterstützung dafür anbietet. Sobald dies erfolgt, wird die Dokumentation revidiert werden, um alle Konfigurations- und Verwaltungs-Erfordernisse vollständig widerzuspiegeln. Samba kann als NT4-DC in einem Windows 2000/XP-Umgebung arbeiten. Jedoch gibt es einige Kompromisse:
+Zum jetzigen Zeitpunkt ist jegliches Anzeichen dafür, daß Samba-3 als <emphasis>Domänen Controller</emphasis> im nativen ADS-Modus arbeiten kann, begrenzt und völlig experimentell. Diese Funktionalität sollte nicht verwendet werden, bis das Samba-Team formal die Unterstützung dafür anbietet. Sobald dies erfolgt, wird die Dokumentation revidiert werden, um alle Konfigurations- und Verwaltungs-Anforderungen vollständig widerzuspiegeln. Samba kann als NT4-DC in einem Windows 2000/XP-Umgebung arbeiten. Jedoch gibt es einige Kompromisse:
 
 <itemizedlist>
 	<listitem>Keine Maschinen-Policy-Dateien.</listitem>

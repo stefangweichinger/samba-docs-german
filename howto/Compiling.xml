@@ -361,7 +361,7 @@ Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agru
 	</sect3>
 
 	<sect3>
-	<title>SuSE Linux Package Erfordernisse</title>
+	<title>SuSE Linux Package Anforderungen</title>
 
 	<para>SuSE Linux installiert Heimdal-Packages, die erforderlich sein könnten, um 
 	Binary-Packages erstellen zu können. Sie sollten überprüfen, ob diese Entwickler-Bibliotheken
