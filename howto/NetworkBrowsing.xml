@@ -542,25 +542,21 @@ Dieser Mechanismus kann via DNS, <filename>/etc/hosts</filename>, usw. funktioni
 <title>Konfiguration von ARBEITSGRUPPEN-Browsing</title>
 
 <para>
-To configure cross-subnet browsing on a network containing machines
-in a WORKGROUP, not an NT Domain, you need to set up one
-Samba server to be the Domain Master Browser (note that this is not
-the same as a Primary Domain Controller, although in an NT Domain the
-same machine plays both roles). The role of a Domain Master Browser is
-to collate the browse lists from Local Master Browsers on all the
-subnets that have a machine participating in the workgroup. Without
-one machine configured as a Domain Master Browser, each subnet would
-be an isolated workgroup unable to see any machines on another
-subnet. It is the presence of a Domain Master Browser that makes
-cross-subnet browsing possible for a workgroup.
+Um <quote>Cross-Subnetz-Browsing</quote> in einem Netzwerk zu konfigurieren, das Maschinen in einer
+ARBEITSGRUPPE enthält, nicht solche einer NT Domäne, müssen Sie einen Samba-Server als Domänen Master Browser
+(DMB) einrichten (beachten Sie, daß dies nicht dasselbe wie ein Primär-Domänen-Controller ist, obwohl in einer
+NT Domäne dieselbe Maschine beide Funktionen übernimmt). Die Rolle eines Domänen Master Browsers ist das
+Sammeln und Zusammenfügen der Browselists von den Lokalen Master Browsern all der Subnetze, die eine Maschine
+beinhalten, die Teil der Arbeitsgruppe ist. Ohne daß eine Maschine als Domänen Master Browser konfiguriert ist,
+würde jedes Subnetz eine isolierte Arbeitsgruppe sein, die unfähig wäre, irgendwelche Maschinen in einem anderen
+Subnetz zu sehen. Es ist das Vorhandensein eines Domänen Master Browsers, der Cross-Subnetz-Browsing für eine
+Arbeitsgruppe ermöglicht. 
 </para>
 
 <para>
-In a WORKGROUP environment the Domain Master Browser must be a
-Samba server, and there must only be one Domain Master Browser per
-workgroup name. To set up a Samba server as a Domain Master Browser,
-set the following option in the <smbconfsection>[global]</smbconfsection> section 
-of the &smb.conf; file:
+In einer ARBEITSGRUPPEN-Umgebung muß der Domänen Master Browser ein Samba-Server sein, und es darf nur einen
+DMB pro Arbeitsgruppen-Namen geben. Um einen Samba-Server als DMB einzurichten, setzen Sie folgende Option
+im Abschnitt <smbconfsection>[global]</smbconfsection> der Datei &smb.conf;:
 </para>
 
 <para>
@@ -570,15 +566,14 @@ of the &smb.conf; file:
 </para>
 
 <para>
-The Domain Master Browser should preferably be the local master
-browser for its own subnet. In order to achieve this, set the following
-options in the <smbconfsection>[global]</smbconfsection> section of the &smb.conf;
-file as shown in <link linkend="dmbexample">the following example</link>:
+Der Domänen Master Browser sollte vorzugsweise auch der Lokale Master Browser für sein eigenes Subnetz sein.
+Um dies zu erreichen, setzen Sie die Optionen im Abschnitt <smbconfsection>[global]</smbconfsection>
+der Datei &smb.conf; wie <link linkend="dmbexample">im folgenden Beispiel</link>:
 </para>
 
 <para>
 <smbconfexample id="dmbexample">
-<title>Domain Master Browser smb.conf</title>
+<title>smb.conf für einen Domänen Master Browser</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>yes</value></smbconfoption>
 <smbconfoption><name>local master</name><value>yes</value></smbconfoption>
@@ -588,22 +583,21 @@ file as shown in <link linkend="dmbexample">the following example</link>:
 </para>
 
 <para>
-The Domain Master Browser may be the same machine as the WINS server, if necessary.
+Der Domänen Master Browser kann dieselbe Maschine wie der WINS-Server sein, wenn notwendig.
 </para>
 
 <para>
-Next, you should ensure that each of the subnets contains a machine that can act as
-a Local Master Browser for the workgroup. Any MS Windows NT/200x/XP machine should
-be able to do this, as will Windows 9x/Me machines (although these tend to get
-rebooted more often, so it is not such a good idea to use these). To make a Samba
-server a Local Master Browser set the following options in the
-<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as
-shown in <link linkend="lmbexample">following example</link>:
+Als Nächstes sollten Sie sicherstellen, daß jedes der Subnetze eine Maschine enthält, die als der Lokale Master 
+Browser für die Arbeitsgruppe arbeiten kann. Jede MS Windows NT/200x/XP-Maschine sollte imstande sein, dies zu 
+tun, genauso wie Windows 9x/Me-Maschinen (obwohl diese dazu neigen, öfters neu gestartet zu werden, also ist es
+keine allzu gute Idee, diese dafür zu verwenden). Um einen Samba-Server zu einem Lokalen Master Browser zu 
+machen, setzen Sie die Optionen im Abschnitt <smbconfsection>[global]</smbconfsection>
+der Datei &smb.conf; wie <link linkend="lmbexample">im folgenden Beispiel</link>:
 </para>
 
 <para>
 <smbconfexample id="lmbexample">
-<title>Local master browser smb.conf</title>
+<title>smb.conf für einen Lokalen Master Browser</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>no</value></smbconfoption>
 <smbconfoption><name>local master</name><value>yes</value></smbconfoption>
@@ -613,26 +607,27 @@ shown in <link linkend="lmbexample">following example</link>:
 </para>
 
 <para>
-Do not do this for more than one Samba server on each subnet, or they will war with
-each other over which is to be the Local Master Browser.
+Machen Sie das nicht für mehr als einen Samba-Server pro Subnetz, oder diese Rechner werden gegeneinander darum
+kämpfen, welcher denn der Lokale Master Browser sein soll.
 </para>
 
 <para>
-The <smbconfoption><name>local master</name></smbconfoption> parameter allows Samba to act as a
-Local Master Browser. The <smbconfoption><name>preferred master</name></smbconfoption> causes <command>nmbd</command>
-to force a browser election on startup and the <smbconfoption><name>os level</name></smbconfoption>
-parameter sets Samba high enough so it should win any browser elections.
+Der Parameter <smbconfoption><name>local master</name></smbconfoption> erlaubt es Samba, als Lokaler Master 
+Browser zu arbeiten. Der Parameter <smbconfoption><name>preferred master</name></smbconfoption> veranlaßt
+<command>nmbd</command> dazu, bei seinem Start eine Browser-Wahl zu erzwingen, und 
+<smbconfoption><name>os level</name></smbconfoption> stuft Samba so hoch ein, daß es jede Wahl gewinnen sollte.
 </para>
 
 <para>
-If you have an NT machine on the subnet that you wish to be the Local Master Browser, you can disable Samba from
-becoming a Local Master Browser by setting the following options in the <smbconfsection>[global]</smbconfsection> section of the 
-&smb.conf; file as shown in <link linkend="nombexample">following example</link>:
+Wenn Sie eine NT-Maschine im Subnetz haben, die Sie zum Lokalen Master Browser machen wollen, können Sie Samba
+<quote>verbieten</quote>, ein Lokaler Master Browser zu werden, indem Sie folgende Optionen im Abschnitt 
+<smbconfsection>[global]</smbconfsection>
+der Datei &smb.conf; wie <link linkend="nombexample">im folgenden Beispiel</link> setzen:
 </para>
 
 <para>
 <smbconfexample id="nombexample">
-<title>smb.conf for not being a Master Browser</title>
+<title>smb.conf für Samba, der nicht Master Browser ist</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>no</value></smbconfoption>
 <smbconfoption><name>local master</name><value>no</value></smbconfoption>
@@ -644,7 +639,7 @@ becoming a Local Master Browser by setting the following options in the <smbconf
 </sect2>
 
 <sect2>
-<title>DOMAIN Browsing Configuration</title>
+<title>Konfiguration von DOMÄNEN-Browsing</title>
 
 <para>
 If you are adding Samba servers to a Windows NT Domain, then you must not set up a Samba server as a Domain Master Browser.
