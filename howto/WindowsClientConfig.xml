@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="ClientConfig">
 <chapterinfo>
 	&author.jht;
@@ -7,18 +8,19 @@
 <title>Anleitung zur MS Windows Netzwerkkonfiguration</title>
 
 <sect1>
-<title>Eigenschaften und Vorzüge/title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-Occasionally network administrators will report difficulty getting Microsoft Windows clients to interoperate
-correctly with Samba servers. It would appear that some folks just can not accept the fact that the right way
-to configure MS Windows network client is precisely as one would do when using Microsoft Windows NT4 or 200x
-servers. Yet there is repetitious need to provide detailed Windows client configuration instructions.
+Gelegentlich berichten Netzwerk-Administratoren von Schwierigkeiten, Microsoft Windows Clients
+zur korrekten Zusammenarbeit mit Samba-Servern zu bringen. Es scheint, daß manche Leute einfach die
+Tatsache nicht akzeptieren können, daß der richtige Weg, MS Windows Netzwerk Clients zu konfigurieren,
+präzise derselbe ist, als wenn man Microsoft Windows NT4 oder 200x Server einsetzt. Dennoch gibt
+es den wiederholten Bedarf, detaillierte Anleitungen zur Konfiguration von Windows Clients zu geben.
 </para>
 
 <para>
-Ziel dieses Kapitels ist es, die MS Windows Clientkonfiguration für die meisten kritischen Aspekte einer solchen
-Konfiguration grafisch darzustellen. Ein erfahrener Netzwerkadministrator wird nicht weiter an Einzelheiten dieses
+Ziel dieses Kapitels ist es, die Konfiguration von MS Windows Clients für die meisten kritischen Aspekte einer solchen Konfiguration grafisch darzustellen.
+Ein erfahrener Netzwerkadministrator wird nicht weiter an Einzelheiten dieses
 Kapitels interessiert sein.
 </para>
 
@@ -48,15 +50,15 @@ aktuell verwendeten Plattformen. Diese sind:
 	<title>TCP/IP Konfiguration</title>
 
 	<para>
-	Ein Hausbauer muss sicherstellen, dass alle Konstruktionen auf Basis einer sauberen Grundlage entstehen.
+	Ein Bauherr muss sicherstellen, dass die gesamte Konstruktion auf Basis einer festen Grundlage entsteht.
 	Dasselbe gilt für TCP/IP-basiertes Vernetzen. Grundlegende Probleme mit Netzwerkkonfigurationen plagen alle 
 	Benutzer eines Netzwerkes bis zu deren Lösung.
 	</para>
 
 	<para>
 	Microsoft Windows Arbeitsstationen und Server können entweder mit fixen IP-Adressen oder per DHCP konfiguriert werden.
-	Die folgenden Beispiele zeigen die Anwendung von DHCP und beschäftigen sich nur beiläufig mit Situationen, in denen
-	fixe IP-Konfigurationen berührt sind.
+	Die folgenden Beispiele zeigen die Anwendung von DHCP und beschäftigen sich nur am Rande mit 
+	jenen Situationen, in denen fixe IP-Settings verwendet werden können.
 	</para>
 
 	<para>
@@ -69,11 +71,12 @@ aktuell verwendeten Plattformen. Diese sind:
 		<title>MS Windows XP Professional</title>
 
 		<para>
-		Es gibt 2 Wege zu einer Windows XP TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode:
+		Es gibt 2 Wege zu einer Windows XP TCP/IP Konfiguration.
+		Wählen Sie Ihre bevorzugte Methode:
 		</para>
 
 		<para>
-		Klicken Sie auf <guimenu>Start -> Systemsteuerung -> Netzwerk Verbindungen</guimenu>
+		Klicken Sie auf <guimenu>Start -> Systemsteuerung -> Netzwerkverbindungen</guimenu>
 		</para>
 
 		<para>
@@ -88,8 +91,9 @@ aktuell verwendeten Plattformen. Diese sind:
 
 		<procedure>
 			<step><para>
-			Bei manchen Installationen nennt sich das Interface <guimenu>Lokale Verbindungen</guimen> und bei anderen
-			werden Sie <guimenu>Netzwerkverbindungen</guimenu> genannt.
+			Bei manchen Installationen nennt sich das Interface 
+			<guimenu>Lokale Verbindungen</guimenu>, bei anderen
+			werden diese <guimenu>Netzwerkverbindungen</guimenu> genannt.
 			Auf unserem System heissen Sie <guimenu>Netzwerkverbindungen</guimenu>.
 			Rechtsklicken Sie auf <guimenu>Netzwerkverbindungen -> Eigenschaften</guimenu>. 
 			Siehe auch <link linkend="WXPP002"/>.
@@ -101,52 +105,60 @@ aktuell verwendeten Plattformen. Diese sind:
 			Das Menü zur Konfiguration der Netzwerkverbindungen oder LAN-Verbindungen wird für die Einstellungen des 
 			TCP/IP Protokolles benutzt.
 			In der Box <guimenuitem>Diese Verbindung verwendet folgende Elemente:</guimenuitem> klicken Sie auf 
-			<guimenu>Internetprotokoll TCP/IP</guimenu> dann auf <guibutton>Eigenschaften</guibutton>.
+			<guimenu>Internetprotokoll (TCP/IP)</guimenu> dann auf <guibutton>Eigenschaften</guibutton>.
 			</para>
 
 			<para>
-			Die Standardeinstellung ist DHCP aktivierte Vorgehensweise (z.B. <quote>IP-Adresse automatisch beziehen</quote>.
+			Die Standardeinstellung ist aktiviertes DHCP (d.h. <quote>IP-Adresse automatisch beziehen</quote>.
 			Siehe auch <link linkend="WXPP003"/>.
-			<image id="WXPP003"><imagefile>WXPP003</imagefile><imagedescription>Eigenschaften Internet Protokoll (TCP/IP)</imagedescription></image>
+			<image id="WXPP003"><imagefile>WXPP003</imagefile>
+			<imagedescription>Eigenschaften von Internetprotokoll (TCP/IP)</imagedescription></image>
 			</para>
 
 			<para>
-			Viele Netzwerkadministratoren nutzen gerne DHCP um die Client-seitigen TCP/IP Protokoll-Einstellungen zu setzen.
+			Viele Netzwerkadministratoren nutzen gerne DHCP, um die Client-seitigen TCP/IP-Protokoll-Einstellungen zu setzen.
 			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet, sehen 
 			Sie bitte <link linkend="DHCP"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein soll, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
+			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton> um mit der TCP/IP Konfiguration fort zu fahren.
+			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton> um mit der 
+			TCP/IP-Konfiguration fortzufahren.
 			Dies öffnet eine Box, in welcher Sie zusätzliche IP-Adressen eingeben können.
-			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet <emphasis>IP-Aliase</emphasis> und in dieser
-			Box kann man weitere Standard-Gateways (oder Router) eingeben. In den meisten Fällen, in denen DHCP genutzt wird,
+			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet 
+			<emphasis>IP-Aliase</emphasis> und in dieser Box kann man weitere 
+			Standard-Gateways (oder Router) eingeben.
+			In den meisten Fällen, in denen DHCP genutzt wird,
 			ist es nicht erforderlich, weitere Einstellungen vorzunehmen. 			
-			Siehe auch <link linkend="WXPP005"></link> um das Erscheinungsbild dieser Box zu sehen.
+			Siehe auch <link linkend="WXPP005"></link>, um das Erscheinungsbild dieser Box zu sehen.
 			<image id="WXPP005"><imagefile>WXPP005</imagefile><imagedescription>Erweiterte TCP/IP Einstellungen</imagedescription></image>
 			</para>
 
 			<para>
-			Fixe Einstellungen für DNS und DHCP sind vielleicht noch erforderlich, falls diese nicht automatisch durch
-			DHCP zur Verfügung gestellt wurden.
+			Fixe Einstellungen für DNS und WINS sind vielleicht noch erforderlich,
+			falls diese nicht automatisch durch DHCP zur Verfügung gestellt wurden.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um zusätzliche DNS Server Einstellungen zu machen. 
-			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie fertig mit Ihren Änderungen sind, klicken 			Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
+			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte,
+			um DNS-Server-Einstellungen hinzuzufügen.
+			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen.
+			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="WXPP014"/>.
 			<image id="WXPP014"><imagefile>WXPP014</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para></step>
 
 			<step><para>
-			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte um zusätzliche menuelle WINS Server Einträge vorzunehmen. 
-			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte WINS Einstellungen nutzt.
+			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte, um 
+			zusätzliche manuelle WINS-Server-Einträge vorzunehmen. 
+			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte 
+			WINS-Einstellungen nutzt.
 			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
 Siehe auch <link linkend="WXPP009"></link>.
 						<image id="WXPP009"><imagefile>WXPP009</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
@@ -163,7 +175,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para>
 
 		<para>
-		Klicken Sie auf <guimenu>Start -> Systemsteuerung -> Netzwerk Verbindungen</guimenu>
+		Klicken Sie auf <guimenu>Start -> Systemsteuerung -> Netzwerkverbindungen</guimenu>
 		</para>
 
 		<para>
@@ -190,25 +202,25 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Die Standardeinstellung ist DHCP aktivierte Vorgehensweise (z.B. <quote>IP-Adresse automatisch beziehen</quote>.
+			Die Standardeinstellung ist aktiviertes DHCP (z.B. <quote>IP-Adresse automatisch beziehen</quote>.
 			Siehe auch <link linkend="w2kp002"/>.
 			<image id="w2kp002"><imagefile>w2kp002</imagefile><imagedescription>Eigenschaften Internetprotokoll (TCP/IP)</imagedescription></image>
 			</para>
 
 			<para>
-			Viele Netzwerkadministratoren nutzen gerne DHCP um die Client-seitigen TCP/IP Protokoll-Einstellungen zu setzen.
+			Viele Netzwerkadministratoren nutzen gerne DHCP, um die Client-seitigen TCP/IP-Protokoll-Einstellungen zu setzen.
 			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen 
 			Sie bitte <link linkend="DHCP"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein soll, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
+			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton>, um mit der TCP/IP Konfiguration fort zu fahren.
+			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton>, um mit der TCP/IP-Konfiguration fort zu fahren.
 			Dies öffnet eine Box, in welcher Sie zusätzliche IP-Adressen eingeben können.
 			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet <emphasis>IP-Aliase</emphasis> und in dieser
 			Box kann man weitere Standard-Gateways (oder Router) eingeben. In den meisten Fällen, in denen DHCP genutzt wird,
@@ -223,16 +235,20 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um zusätzliche DNS Server Einstellungen zu machen. 
-			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie fertig mit Ihren Änderungen sind, klicken 			Sie auf den <guibutton>OK</guibutton> Knopf um Ihre Einstellungen zu speichern.
+			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um DNS-Server-Einstellungen hinzuzufügen. 
+			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie
+			fertig mit Ihren Änderungen sind, klicken Sie auf den Knopf
+			<guibutton>OK</guibutton>, um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="w2kp004"/>.
 			<image id="w2kp004"><imagefile>w2kp004</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para></step>
 
 			<step><para>
-			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte um zusätzliche menuelle WINS Server Einträge vorzunehmen. 
-			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte WINS Einstellungen nutz.
-			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf um Ihre Einstellungen zu speichern.
+			Klicken Sie die Registerkarte <guibutton>WINS</guibutton>, 
+			um zusätzliche manuelle WINS-Server-Einträge vorzunehmen. 
+			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte 
+			WINS-Einstellungen nutzt.
+			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den Knopf <guibutton>OK</guibutton>, um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="w2kp005"></link>.
 			<image id="w2kp005"><imagefile>w2kp005</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
 			</para></step>
