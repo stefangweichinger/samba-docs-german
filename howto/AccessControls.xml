@@ -193,12 +193,12 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		</varlistentry>
 
 		<varlistentry>
-			<term>Verzeichnis Trennzeichen</term>
+			<term>Verzeichnis-Trennzeichen</term>
 			<listitem>
 
 		<para>
-				<indexterm><primary>Verzeichnis Trennzeichen</primary></indexterm>
-		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis Trennzeichen <constant>\</constant>
+				<indexterm><primary>Verzeichnis-Trennzeichen</primary></indexterm>
+		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis-Trennzeichen <constant>\</constant>
 		UNIX benutzt ( wie im Internet üblich ) den Slash / als Verzeichnis Trennzeichen.
 		<constant>/</constant>Dies wird von Samba transparent (für den Windowsnutzer unbemerkt ) umgelegt.
 		</para>
@@ -268,7 +268,7 @@ delete (löschen), rename (umbenennen )</command>.
 		<title>Verwaltung von Ordnern (Verzeichnisse) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Action</entry><entry>MS Windows Command (Windows Befehle) </entry><entry>UNIX Command (UNIX Befehle)</entry></row>
+		<row><entry>Action</entry><entry>Windows Befehle</entry><entry>UNIX Befehle</entry></row>
 		</thead>
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
@@ -604,76 +604,80 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 	<title>Allgemeine Kontrollen</title>
 
 	<para>
-	The following are documented because of the prevalence of administrators creating inadvertent barriers to file
-	access by not understanding the full implications of &smb.conf; file settings. See <link linkend="mcoc"/>.
+	Das folgende ist dokumentiert, da es weit verbreitet ist, dass Administratoren unabsichtliche Barrieren beim
+	Einrichten von Dateizugriffen dadurch aufbauen, dass sie die genauen Auswirkungen von Dateieinstellungen in 
+	&smb.conf; nicht verstehen. Siehe <link linkend="mcoc"/>.
 	</para>
 
-	<table frame='all' id="mcoc"><title>Other Controls</title>
+	<table frame='all' id="mcoc"><title>Andere Kontrollen</title>
 	<tgroup cols='2'>
 		<colspec align="justify" colwidth="1*"/>
 		<colspec align="justify" colwidth="1*"/>
 		<thead>
 		<row>
-			<entry align="center">Control Parameter</entry>
-			<entry align="center">Description - Action - Notes</entry>
+			<entry align="center">Kontrollparameter</entry>
+			<entry align="center">Beschreibung - Ausführung - Hinweise</entry>
 		</row>
 		</thead>
 		<tbody>
 		<row>
 			<entry><smbconfoption><name>case sensitive</name></smbconfoption>, <smbconfoption><name>default case</name></smbconfoption>, <smbconfoption><name>short preserve case</name></smbconfoption></entry>
 			<entry><para>
-			This means that all file name lookup will be done in a case sensitive manner.
-			Files will be created with the precise file name Samba received from the MS Windows client.
+			Dies bedeutet, dass alle Dateinamens-Anzeigen in schreibweise-sensitiver Art erfolgen.
+			Die Dateien werden genau so mit dem exakten Namen angelegt, wie Samba den Dateinamen vom Windows Client erhält.t.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>csc policy</name></smbconfoption></entry>
 			<entry><para>
-			Client Side Caching Policy - parallels MS Windows client side file caching capabilities.
+			Client-seitige Caching Policy - ermöglicht parallele MS Windows Client-seitige Datei-Caching Möglichkeiten.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>dont descend</name></smbconfoption></entry>
 			<entry><para>
-			Allows specifying a comma-delimited list of directories that the server should always show as empty.
+			Erlaubt das Spezifizieren einer kommata-getrennten Verzeichnisliste, die der Server immer leer anzeigt.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>dos filetime resolution</name></smbconfoption></entry>
 			<entry><para>
-			This option is mainly used as a compatibility option for Visual C++ when used against Samba shares.
+			Diese Option ist hauptsächlich als Kompatibilitätsoption für Visual C++ geacht, wenn diese gegen eine
+			Samba-Freigabe genutzt wird.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>dos filetimes</name></smbconfoption></entry>
 			<entry><para>
-			DOS and Windows allow users to change file time stamps if they can write to the file. POSIX semantics prevent this.
-			This option allows DOS and Windows behavior.
+			DOS und Windows erlauben Benutzer, Zeitstempel auf Dateien zu ändern, wenn diese auf die Datei schreiben können.
+			POSIX-Semantiken verhindern dies. Diese Option erlaubt DOS und Windows-Verhalten.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>fake oplocks</name></smbconfoption></entry>
 			<entry><para>
-			Oplocks are the way that SMB clients get permission from a server to locally cache file operations. If a server grants an
-			oplock, the client is free to assume that it is the only one accessing the file and it will aggressively cache file data.
+			Oplocks sind die Art und Weise, wie SMB Clients die Erlaubnis eines Servers bekommen, Dateioperationen
+			lokal zu cachen (zwischenzuspeichern). Falls ein Server Oplock erlaubt, ist es dem Client freigestellt anzunehmen,
+			dass er der einzige ist der auf die Datei zugreift und er kann Dateicaching aggressiv nutzen.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>hide dot files</name></smbconfoption>, <smbconfoption><name>hide files</name></smbconfoption>, <smbconfoption><name>veto files</name></smbconfoption></entry>
 			<entry><para>
-			Note: MS Windows Explorer allows over-ride of files marked as hidden so they will still be visible.
+			HInweis: MS Windows Explorer erlaubt das Überschreiben von Dateien, die als Versteckt markiert sind, sodass
+			sie weiter sichtbar sind.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>read only</name></smbconfoption></entry>
 			<entry><para>
-			If this parameter is yes, then users of a service may not create or modify files in the service's directory.
+			Falls dieser Parameter 'yes' ist, können Benutzer eines Dienstes weder Dateien im Diensteverzeichnis erzeugen noch ändern.
 			</para></entry>
 		</row>
 		<row>
 			<entry><smbconfoption><name>veto files</name></smbconfoption></entry>
 			<entry><para>
-			List of files and directories that are neither visible nor accessible.
+			Liste von Dateien oder Verzeichnissen die weder sichtbar noch zugreifbar sind.
 			</para></entry>
 		</row>
 		</tbody>
@@ -685,60 +689,61 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 </sect1>
 
 <sect1>
-<title>Access Controls on Shares</title>
+<title>Zugriffskontrollen auf Freigaben</title>
 
 
 	<para>
-<indexterm><primary>permissions</primary><secondary>share ACLs</secondary></indexterm>
-	This section deals with how to configure Samba per share access control restrictions.
-	By default, Samba sets no restrictions on the share itself. Restrictions on the share itself
-	can be set on MS Windows NT4/200x/XP shares. This can be an effective way to limit who can
-	connect to a share. In the absence of specific restrictions the default setting is to allow
-	the global user <constant>Everyone - Full Control</constant> (full control, change and read).
+<indexterm><primary>Berechtigungen</primary><secondary>Freigabe ACLs</secondary></indexterm>
+	Dieses Kaptitel handelt davon, wie Samba Zugriffskontroll-Einschränkungen für Freigaben konfiguriert werden kann.
+	Standardmässig setzt Samba keine Einschränkungen auf die Freigabe selbst. Einschränkungen auf der Freigabe selbst
+	können auf MS Windows NT4/200x/XP-Freigaben gesetzt werden. Dies kann ein effektiver Weg sein zu regeln, wer auf
+	eine Freigabe verbinden darf. In Abwesenheit von spezifischen Einschränkungen ist die Standardeinstellung, dem
+	globalen Benutzer <constant>Everyone - Volle Kontrolle</constant> (volle Kontrolle, ändern und lesen) zu erlauben.
 	</para>
 
 	<para>
-	At this time Samba dös not provide a tool for configuring access control setting on the share
-	itself. Samba dös have the capacity to store and act on access control settings, but  the only
-	way to create those settings is to use either the NT4 Server Manager or the Windows 200x MMC for
-	Computer Management.
+	Zur Zeit stellt Samba kein Werkzeug zum Konfigurieren von Zugriffskontroll-Einstellung auf einer Freigabe selbst zur 
+	Verfügung. Samba hat die Kapazität auf Zugriffskontroll-Einstellungen zu speichern und zu arbeiten, aber der einzige Weg
+	diese Einstellung zu erzeugen ist der NT4 Server Manager oder die Windows 200x MMC für Computer-Verwaltung.
 	</para>
 
 	<para>
-	Samba stores the per share access control settings in a file called <filename>share_info.tdb</filename>.
-	The location of this file on your system will depend on how Samba was compiled. The default location
-	for Samba's tdb files is under <filename>/usr/local/samba/var</filename>. If the <filename>tdbdump</filename>
-	utility has been compiled and installed on your system, then you can examine the contents of this file
-	by executing: <command>tdbdump share_info.tdb</command> in the directory containing the tdb files.
+	Samba speichert die Zugriffskontroll-Einstellungen pro Freigabe in einer Datei namens <filename>share_info.tdb</filename>.
+	Der Ablageort dieser Datei auf Ihrem System hängt davon ab, wie Sie Samba kompiliert haben.
+	Der Standard-Ablageort für Samba's tdb Dateien ist unter <filename>/usr/local/samba/var</filename>. Falls das <filename>tdbdump</filename>
+	Werkzeug auf Ihrem System kompiliert und installiert wurde können Sie den Inhalt dieser Datei dadurch ausführen:
+	<command>tdbdump share_info.tdb</command> in dem Verzeichnis, welches die tdb Dateien enthält.
 	</para>
 
 	<sect2>
-	<title>Share Permissions Management</title>
+	<title>Verwaltung von Freigabeberechtigungen</title>
 
 		<para>
-		The best tool for the task is platform dependant. Choose the best tool for your environment.
+		Das beste Werkzeug für eine Aufgabe ist plattformabhängig. Wählen Sie das beste Werkzeug für Ihre Umgebung.
 		</para>
 
 			<sect3>
 			<title>Windows NT4 Workstation/Server</title>
 			<para>
-			The tool you need to use to manage share permissions on a Samba server is the NT Server Manager.
-			Server Manager is shipped with Windows NT4 Server products but not with Windows NT4 Workstation.
-			You can obtain the NT Server Manager for MS Windows NT4 Workstation from Microsoft &smbmdash; see details below.
+			Das Werkzeug, welches Sie zum verwalten von Freigabeberechtigungen auf einem Samba-Server nutzen müssen 
+			ist der NT Server Manager. Der Server Manager wird mit den Windows NT4 Serverprodukten, aber
+			nicht mit Windows NT4 Workstation ausgeliefert.
+			Sie können den NT Server Manager für MS Windows NT4 Workstation von Microsoft &smbmdash; erhalten, Details weiter unten.
 			</para>
 
 			<?latex \newpage ?>
 
 			<procedure>
-			<title>Instructions</title>
+			<title>Anweisungen</title>
 			<step><para>
-			Launch the <application>NT4 Server Manager</application>, click on the Samba server you want to administer. From the menu
-			select <guimenu>Computer</guimenu>, then click on <guimenuitem>Shared Directories</guimenuitem>.
+			Starten Sie den <application>NT4 Server Manager</application>, klicken Sie auf den Sambaserver, den Sie administrieren möchten.
+			In dem Menü wählen Sie <guimenu>Computer</guimenu>, dann klicken Sie auf <guimenuitem>Freigegebene Verzeichnisse</guimenuitem>.
 			</para></step>
 
 			<step><para>
-			Click on the share that you wish to manage, then click the <guilabel>Properties</guilabel> tab. then click
-			the <guilabel>Permissions</guilabel> tab. Now you can add or change access control settings as you wish.
+			Klicken Sie auf die Freigabe, die Sie verwalten möchten, dann gehen Sie auf <guilabel>Eigenschaften</guilabel>
+			und klicken auf die <guilabel>Berechtigungen</guilabel> Registerkarte. 
+			Jetzt können Sie Zugriffskontroll-Einstellungen nach Belieben hinzufügen und ändern.
 			</para></step>
 			</procedure>
 
@@ -748,48 +753,48 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 			<title>Windows 200x/XP</title>
 
 			<para>
-			On <application>MS Windows NT4/200x/XP</application> system access control lists on the share itself are set using native
-			tools, usually from File Manager. For example, in Windows 200x, right click on the shared folder,
-			then select <guimenuitem>Sharing</guimenuitem>, then click on <guilabel>Permissions</guilabel>. The default
-			Windows NT4/200x permission allows <quote>Everyone</quote> full control on the share.
+			Auf <application>MS Windows NT4/200x/XP</application> werden Systemzugriffskontrolllisten für Freigaben durch Nutzung
+			von eigenen Werkzeugen gesetzt, meist durch den Dateimananger. Beispielsweise in Windows 200x, rechtsklicken Sie auf den Freigabeordner,
+			dann wählen Sie <guimenuitem>Freigabe</guimenuitem>, dann klicken Sie auf <guilabel>Berechtigungen</guilabel>. Die Standardberechtigung
+			unter Windows NT4/200x erlaubt <quote>Jedem</quote> volle Kontrolle auf die Freigabe.
 			</para>
 
 			<para>
-			MS Windows 200x and later versions come with a tool called the <application>Computer Management</application> snap-in for the
-			Microsoft Management Console (MMC). This tool is located by clicking on <guimenu>Control Panel ->
-			Administrative Tools -> Computer Management</guimenu>.
+			MS Windows 200x und spätere Versionen kommen mit einem Werkzeug namens <application>Computerverwaltung</application> Snap-In für die
+			Microsoft Management Konsole (MMC). Dieses Werkzeug befindet sich in der <guimenu>Systemsteuerung ->
+			Verwaltung -> Computerverwaltung</guimenu>.
 			</para>
 
 			<procedure>
-			<title>Instructions</title>
+			<title>Anweisungen</title>
 			<step><para>
-			After launching the MMC with the Computer Management snap-in, click the menu item <guimenuitem>Action</guimenuitem>,
-			and select <guilabel>Connect to another computer</guilabel>. If you are not logged onto a domain you will be prompted
-			to enter a domain login user identifier and a password. This will authenticate you to the domain.
-			If you are already logged in with administrative privilege, this step is not offered.
+			Nachdem Sie die MMC über das Computerverwaltungs-Snap-In gestartet haben, klicken Sie auf den Menüeintrag <guimenuitem>Action</guimenuitem>,
+			und wählen dann <guilabel>Mit einem anderen Computer verbinden</guilabel>. Falls Sie nicht an einer Domäne angemeldet sind,
+			werden Sie aufgefordert, einen Domänenbenutzer und ein Passwort einzugeben. Dies wird Sie gegenüber der Domäne authentifizieren.
+			Falls Sie bereits als ein Benutzer mit Administrationsrechten angemeldet sind wird dieser Schritt nicht angeboten.
 			</para></step>
 
 			<step><para>
-			If the Samba server is not shown in the <guilabel>Select Computer</guilabel> box, type in the name of the target
-			Samba server in the field <guilabel>Name:</guilabel>. Now click the on <guibutton>[+]</guibutton> next to
-			<guilabel>System Tools</guilabel>, then on the <guibutton>[+]</guibutton> next to <guilabel>Shared Folders</guilabel> in the
-			left panel.
+			Falls der Sambaserver nicht in der Box <guilabel>Computer auswählen</guilabel> angezeigt wird, geben Sie den Namen des Samba-Zielservers
+			im Feld <guilabel>Name:</guilabel> ein. Klicken Sie jetzt den <guibutton>[+]</guibutton> Knopf in der Nähe von
+			<guilabel>Systemwerkzeuge</guilabel>, dann auf den <guibutton>[+]</guibutton> Knopf in der Nähe von <guilabel>Freigabeordner</guilabel>
+			im linken Bereich.
 			</para></step>
 
 			<step><para>
-			In the right panel, double-click on the share on which you wish to set access control permissions.
-			Then click the tab <guilabel>Share Permissions</guilabel>. It is now possible to add access control entities
-			to the shared folder. Remember to set what type of access (full control, change, read) you
-			wish to assign for each entry.
+			Im rechten Bereich doppelklicken Sie auf die Feigabe, auf die Sie Zugriffskontroll-Berechtigungen vergeben möchten.
+			Dann klicken Sie auf die Registerkarte <guilabel>Freigabe-Berechtigungen</guilabel>. Jetzt ist es möglich, Zugriffskontrolleinheiten
+			zu dem Freigabeordner hinzuzufügen. Merken Sie sich, welchen Zugriffstyp (volle Kontrolle, ändern, lesen) Sie für jeden
+			Eintrag vergeben möchten.
 			</para></step>
 			</procedure>
 
 			<warning>
 			<para>
-			Be careful. If you take away all permissions from the <constant>Everyone</constant> user without removing this user,
-			effectively no user will be able to access the share. This is a result of what is known as
-			ACL precedence. Everyone with <emphasis>no access</emphasis> means that <constant>MaryK</constant> who is part of the group
-			<constant>Everyone</constant> will have no access even if she is given explicit full control access.
+			Seien Sie vorsichtig. Falls Sie alle Berechtigungen von dem <constant>Jeder</constant> Benutzer ohne diesen Benutzer entfernt zu haben
+			wegnehmen, wird anschliessend kein Benutzer mehr in der Lage sein, auf die Freigabe zuzugreifen. Dies ist ein Ergebnis davon,
+			was als ACL-Präzedenz bekannt ist. Jeder mit <emphasis>kein Zugriff</emphasis> heisst, dass <constant>MaryK</constant>, welche Teil der Gruppe
+			<constant>Jeder</constant> ist, keinen Zugriff hat, obwohl Ihr explizit volle Zugriffsrechte gegeben wurden.
 			</para>
 			</warning>
 
@@ -799,78 +804,78 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 </sect1>
 
 <sect1>
-<title>MS Windows Access Control Lists and UNIX Interoperability</title>
+<title>MS Windows Zugriffskontrolllisten (ACLs) und UNIX Interoperabilität</title>
 
 	<sect2>
-		<title>Managing UNIX Permissions Using NT Security Dialogs</title>
+		<title>Verwalten von UNIX Berechtigungen durch NT Sicherheitsdialoge</title>
 
 
 		<para>
-<indexterm><primary>permissions</primary><secondary>file/directory ACLs</secondary></indexterm>
-		Windows NT clients can use their native security settings dialog box to view and modify the
-		underlying UNIX permissions.
+<indexterm><primary>Berechtigungen</primary><secondary>Datei/Verzeichnis ACLs</secondary></indexterm>
+		Windows NT Clients können Ihre eigene Dialogbox für Sicherheitseinstellungen verwenden, um UNIX
+		Berechtigungen anzuzeigen und zu ändern.
 		</para>
 
 		<para>
-		This ability is careful not to compromise the security of the UNIX host on which Samba is running, and
-		still obeys all the file permission rules that a Samba administrator can set.
+		Diese Fähigkeit ist so umsichtig , dass die Sicherheit des UNIX Hosts auf welchem Samba läuft nicht 
+		gefährdet wird und dennoch alle Dateiberechtigungs-Regeln, die ein Samba Administrator setzt, beachtet.
 		</para>
 
 		<para>
-		Samba dös not attempt to go beyond POSIX ACLs, so the various finer-grained access control
-		options provided in Windows are actually ignored.
+		Samba versucht nicht, jenseits der POSIX ACLs zu gehen, sodass die vielen feiner abgestimmten Zugriffskontrolloptionen, die
+		Windows zur Verfügung stellt, einfach ignoriert werden.
 		</para>
 
 		<note>
 		<para>
-		All access to UNIX/Linux system files via Samba is controlled by the operating system file access controls.
-		When trying to figure out file access problems, it is vitally important to find the identity of the Windows
-		user as it is presented by Samba at the point of file access. This can best be determined from the
-		Samba log files.
+		Alle Zugriffe auf UNIX/Linux Systemdateien durch Samba wird durch die Betriebssystem-Dateizugrifsskontrollen kontrolliert.
+		Bei der Fehlersuche nach Dateizugriffsproblemen ist es enorm wichtig, die Identität des Windowsbenutzers heraus zu finden,
+		wie er von Samba an dieser Stelle des Dateizugriffs gezeigt wird. Dies kann am besten durch die Samba Protokolldateien
+		ermittelt werden.
 		</para>
 		</note>
 	</sect2>
 
 	<sect2>
-		<title>Viewing File Security on a Samba Share</title>
+		<title>Anzeigen von Dateisicherheit auf einer Samba Freigabe</title>
 
 		<para>
-		From an NT4/2000/XP client, right click on any file or directory in a Samba-mounted drive letter
-		or UNC path. When the menu pops up, click on the <guilabel>Properties</guilabel> entry at the bottom
-		of the menu. This brings up the file <constant>Properties</constant> dialog box. Click on the
-		<guilabel>Security</guilabel> tab and you will see three buttons: <guibutton>Permissions</guibutton>,
-		<guibutton>Auditing</guibutton>, and <guibutton>Ownership</guibutton>. The <guibutton>Auditing</guibutton>
-		button will cause either an error message <errorname>`A requested privilege is not held by the client'</errorname>
-		to appear if the user is not the NT Administrator, or a dialog which is intended to allow an Administrator
-		to add auditing requirements to a file if the user is logged on as the NT Administrator. This dialog is
-		non-functional with a Samba share at this time, as the only useful button, the <guibutton>Add</guibutton>
-		button, will not currently allow a list of users to be seen.
+		Von einem NT4/2000/XP Client aus rechtsklicken Sie auf jede Datei oder Verzeichnis in einem Samba-
+		gemounteten Laufwerksbuchstaben oder UNC-Pfad. Wenn das Menü aufgeht klicken Sie auf den <guilabel>Eigenschaften</guilabel> Eintrag 
+		am Fuss des Menüs. Dies startet die Datei <constant>Eigenschaften</constant> Dialogbox. Klicken Sie auf die
+		<guilabel>Sicherheit</guilabel> Registerkarte und Sie werden drei Knöpfe sehen: <guibutton>Berechtigungen</guibutton>,
+		<guibutton>Überwachung</guibutton>, und <guibutton>Besitzer</guibutton>. Der <guibutton>Überwachung</guibutton>
+		Knopf wird entweder eine Fehlermeldung <errorname>`A requested privilege is not held by the client'</errorname>
+		verursachen falls der Benutzer kein NT Administrator ist oder ein Dialog, der dafür gedacht ist, einem Administrator
+		Überwachungsgrundlagen einer Datei zuzufügen, wenn der Benutzer als NT Administrator angemeldet ist. Dieser Dialog
+		ist mit einer Samba-Freigabe zu diesem Zeitpunkt nicht funktionierend, da der einzige Knopf, der <guibutton>Hinzufügen</guibutton>
+		Knopf derzeit es nicht zulässt, eine Benutzerliste anzuzeigen.
 		</para>
 
 	</sect2>
 
 	<sect2>
-		<title>Viewing File Ownership</title>
+		<title>Anzeigen von Dateieigentümern</title>
 
 		<para>
-		Clicking on the <guibutton>Ownership</guibutton> button brings up a dialog box telling you who owns
-		the given file. The owner name will be displayed like this:
+		Durch Klicken auf den <guibutton>Eigentümer</guibutton> Knopf erscheitn eine Dialogbox, welche Ihnen
+		anzeigt, wem die betreffende Datei gehört. Der Name des Eigentümers wird dergestalt angezeigt:
 		</para>
 
 		<para>
-		<command><quote>SERVER\user (Long name)</quote></command>
+		<command><quote>SERVER\Benutzer (Langer Name)</quote></command>
 		</para>
 
 		<para>
-		<replaceable>SERVER</replaceable> is the NetBIOS name of the Samba server, <replaceable>user</replaceable>
-		is the user name of the UNIX user who owns the file, and <replaceable>(Long name)</replaceable> is the
-		descriptive string identifying the user (normally found in the GECOS field of the UNIX password database).
-		Click on the <guibutton>Close </guibutton> button to remove this dialog.
+		<replaceable>SERVER</replaceable> ist der NetBIOS Name des Samba Servers, <replaceable>Benutzer</replaceable>
+		ist der Name des UNIX-Benutzers, dem die Datei gehört und <replaceable>(Langer Name)</replaceable> ist
+		die Beschreibung, die den Benutzer ausweist (normalerweise wird dies im GECOS Feld der UNIX Passwortdatenbank gefunden).
+		Klicken Sie auf den <guibutton>Schliessen</guibutton> Knopf um diesen Dialog zu entfernen.
 		</para>
 
 		<para>
-		If the parameter <smbconfoption><name>nt acl support</name></smbconfoption> is set to <constant>false</constant>,
-		the file owner will be shown as the NT user <emphasis>Everyone</emphasis>.
+		Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption> auf <constant>false</constant> gesetzt ist,
+		wird der Dateieigentümer als NT Benutzer <emphasis>Jeder</emphasis> angezeigt.
 		</para>
 
 		<para>
