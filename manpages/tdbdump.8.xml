@@ -13,29 +13,31 @@
 
 <refnamediv>
 	<refname>tdbdump</refname>
-	<refpurpose>tool for printing the contents of a TDB file</refpurpose>
+	<refpurpose>Werkzeug zum Ausgeben des Inhalts einer TDB-Datei</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>tdbdump</command>
-		<arg choice="req">filename</arg>
+		<arg choice="req">Dateiname</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>tdbdump</command> is a very simple utility that 'dumps' the 
-		contents of a TDB (Trivial DataBase) file to standard output in a 
-		human-readable format.
+	<para><command>tdbdump</command> ist ein sehr einfaches Werkzeug, das
+	den Inhalt einer TDB-Datei (Trivial DataBase) in einem für Menschen
+	lesbaren Format auf die Standardausgabe ausgibt.
 	</para>
 
-	<para>This tool can be used when debugging problems with TDB files. It is 
-		intended for those who are somewhat familiar with Samba internals.
+	<para>Dieses Werkzeug wird bei der Fehlersuche bei Problemen mit 
+	TDB-Dateien benutzt. Es ist für jene gedacht, die etwas mit den 
+	internen Vorgängen in Samba vertraut sind.
 	</para>
 </refsect1>
 
