@@ -675,8 +675,7 @@ um das Herunterfahren anzukündigen.</para></listitem>
 <refsect2>
 <title>SAMDUMP</title>
 
-<para>Gibt SAM-Datenbank auf dem entfernten Server aus. Sie müssen das
-entweder auf einem BDC ausführen. <!-- Is that correct? - Jelmer -->
+<para>Gibt SAM-Datenbank auf dem entfernten Server aus. 
 </para>
 </refsect2>
 
