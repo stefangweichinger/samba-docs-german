@@ -506,9 +506,7 @@ Dies verhindert, dass die Desktop-Profile unbenutzbar werden.
 
 	<para>
 	Wenn Sie keine Gruppen-Richtlinien in Samba setzen können, dann können Sie sie vielleicht
-	lokal auf jeder Maschine setzen. Wenn Sie dies versuchen wollen, machen Sie folgendes
-	(Ich weiß nicht mit Sicherheit, dass dies genauso funktioniert wie eine
-	Domänen-Gruppenrichtlinie):
+	lokal auf jeder Maschine setzen. Wenn Sie dies versuchen wollen, machen Sie folgendes:
 	</para>
 
 <procedure>
