@@ -298,7 +298,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein soll, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf
+			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box. In diesem Beispiel gehen wir davon aus, dass alle Netzwerkclients
 			durch DHCP konfiguriert wurden.
@@ -310,13 +310,16 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Falls notwendig klicken Sie auf die <guimenu>DNS Konfiguration</guimenu> Registerkarte, um
-			einen DNS Server Eintrag zu machen.
-			Klicken Sie auf die <guibutton>WINS Konfiguration</guibutton> Registerkarte, um einen WINS Server
-			Eintrag zu machen.
-			Die Registerkarte <guimenu>Gateway</guimenu> erlaubt zusätzliche Gateways (Router Adressen) in den
-			Netzwerkkarten-Einstellungen zu hinterlegen. In den meisten Fällen, in denen DHCP genutzt wird, wird
-			an dieser Stelle eine manuelle Einstellung nicht notwendig sein.
+			Falls notwendig, klicken Sie auf die Registerkarte 
+			<guimenu>DNS Konfiguration</guimenu>, um
+			einen DNS-Server-Eintrag vorzunehmen. 
+			Klicken Sie auf die Registerkarte <guibutton>WINS Konfiguration</guibutton>,
+			, um einen WINS-Server-Eintrag vorzunehmen.
+			Die Registerkarte <guimenu>Gateway</guimenu> erlaubt es, zusätzliche Gateways 
+			(Router-Adressen) in den
+			Netzwerkkarten-Einstellungen zu hinterlegen. In den meisten Fällen,
+			in denen DHCP genutzt wird, wird
+			an dieser Stelle keine manuelle Einstellung notwendig sein.
 			</para></step>
 
 			<step><para>
@@ -326,9 +329,10 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para>
 
 			<para>
-			Dies ist ein Beispiel dafür, wie ein System manuell konfigurierte WINS Einstellungen nutzt.
-			Eine Situation in der dies auftritt, kann ein Netzwerk sein, in dem ein einzelner DHCP Server
-			Einstellungen für mehrere Windows Arbeitsgruppen oder Domänen zur Verfügung stellt.
+			Dies ist ein Beispiel dafür, wie ein System manuell konfigurierte WINS-Einstellungen nutzt.
+			Eine Situation, in der dies auftritt, kann ein Netzwerk sein, 
+			in dem ein einzelner DHCP-Server
+			Einstellungen für mehrere Windows-Arbeitsgruppen oder -Domänen zur Verfügung stellt.
 			Siehe auch <link linkend="WME003"></link>.
 			<image id="WME003"><imagefile>WME003</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
 			</para></step>
@@ -343,9 +347,11 @@ Siehe auch <link linkend="WXPP009"></link>.
 	<title>Einer Domäne beitreten: Windows 2000/XP Professional</title>
 
 	<para>
-	Microsoft Windows NT/200x/XP Professional Plattformen können in einer Sicherheitsdomäne teilhaben.
-	Dieser Abschnitt beschreibt den Prozess, der eine Windows 200x/XP Professional Maschine Mitglied einer
-	Sicherheitsdomänen-Umgebung werden lässt. Es sollte beachtet werden, dass dieser Prozess beim Beitreten
+	Microsoft Windows NT/200x/XP Professional Plattformen können an einer 
+	Sicherheitsdomäne teilnehmen.
+	Dieser Abschnitt beschreibt den Prozess, der eine Windows 200x/XP Professional Maschine 
+	zum Mitglied einer
+	Sicherheitsdomänen-Umgebung macht. Es sollte beachtet werden, dass dieser Prozess beim Beitreten
 	einer von Windows NT4/200x kontrollierten Domäne gleich ist, als wenn es ein Samba PDC wäre.
 	</para>
 
