@@ -4,108 +4,114 @@
 	&author.jht;
 	&author.jeremy;
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
-		&author.jht;
+	&author.jht;
     <pubdate>April 3 2003</pubdate>
 	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
+<title>Zugriffskontrollen für Dateien, Verzeichnisse und Netzwerk-Freigaben</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
-Fortgeschrittene Windows Benutzer sind häufig verwirrt, wenn eine Änderung des Besitzes von Dateien oder Verzeichnissen
-auf dem Samba Server sich nicht so auswirken, wie sie es erwarten. MS Administratoren verwirrt es oft, wenn sie versuchen
-Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schützen.
+Fortgeschrittene Windows-Benutzer sind häufig verwirrt, wenn eine Änderung des Besitzes von Dateien oder Verzeichnissen
+auf dem Samba-Server sich nicht so auswirken, wie sie es erwarten. MS Administratoren verwirrt es oft, wenn sie versuchen
+Ihre Daten mit Zugriffskontroll-Listen vor unerlaubten Zugriffen zu schützen.
 </para>
 
 <para>
-Viele UNIX Administratoren sind nicht mit der MS Windows Umgebung vertraut, besondere Probleme ergeben sich aus den
-Benutzerwünschen über die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung.
+Viele UNIX-Administratoren sind nicht mit der MS Windows Umgebung vertraut,
+besondere Probleme ergeben sich aus den
+Benutzerwünschen bezüglich der Kontrolle von Dateien und Verzeichnisse und deren Einrichtung.
 </para>
 
 <para>
-Das Problem begründet sich in den Unterschieden bei Datei- und Verzeichnis-Benutzerrechten der beiden Systeme. Diesen
-Unterschied kann auch Samba nicht wirklich aus der Welt schaffen, aber er schafft eine Brücke zwischen den Umgebungen.
+Das Problem begründet sich in den Unterschieden in den Datei- und Verzeichnis-Benutzerrechten der beiden Systeme. Diesen
+Unterschied kann auch Samba nicht wirklich aus der Welt schaffen, aber es schafft eine Brücke 
+zwischen den Umgebungen.
 </para>
 
 <para>
 <indexterm><primary>Erweiterte Attribute</primary></indexterm>
 <indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
-
-POSIX ( UNIX, LINUX ) Zugriffskontrolltechnologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt.
-Dies erklärt vielleicht auch, warum es länger dauert ehe diese in kommerzielle Linux Produkte eingebunden wurden. MS
-Administratoren wird dies erstaunen, da dies seit Jahren elementarer Bestandteil von Windows Produkten ist.
+POSIX ( UNIX, LINUX ) Zugriffskontroll-Technologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt.
+Dies erklärt vielleicht auch, warum es länger dauert, ehe diese in kommerzielle Linux Produkte eingebunden wurde.
+MS-Administratoren wird dies erstaunen, da diese seit Jahren elementarer Bestandteil von Windows-Produkten ist.
 </para>
 
 <para>
-Dieses Kapitel soll die Punkte im Einzelnen klären, die mit Samba-3 nötig und möglich sind um Administratoren die best-
-erreichbare Zugriffsverwaltung zu ermöglichen, welche die Windows Benutzer benötigen.
+Dieses Kapitel soll die Punkte im Einzelnen klären, die mit Samba-3 nötig und möglich sind,
+um Administratoren die best-erreichbare
+Zugriffsverwaltung zu ermöglichen, welche die Windows-Benutzer benötigen.
 </para>
 
 <para>
-Samba ist nicht primär dafür gedacht, eine Unix Plattform in eine Windows Plattform zu verwandeln, sondern soll höchst-
-mögliche Kompatibilität zwischen den beiden Systemen schaffen.
+Samba ist nicht primär dafür gedacht, eine Unix-Plattform in eine Windows-Plattform zu verwandeln,
+sondern soll die best-mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 </para>
 
 <sect1>
 <title>Möglichkeiten und Vorteile</title>
 
 	<para>
-	Samba ermöglicht eine hohe Flexibilität beim Systemzugriff. Hier sind die Zugriffskontrollmöglichkeiten der
-	jetzigen Version (3) von Samba.
+	Samba ermöglicht hohe Flexibilität beim Systemzugriff. Hier sind die
+	Zugriffskontrollmöglichkeiten der aktuellen Version 3 von Samba.
 	</para>
 
 	<itemizedlist>
 	<title>Samba Zugriffskontrollmöglichkeiten</title>
 		<listitem><para>
 				<indexterm><primary>Berechtigungen</primary><secondary>UNIX Datei und Verzeichnis</secondary></indexterm>
-		<emphasis>Unix Datei und Verzeichnis Berechtigungen</emphasis>
+		<emphasis>Unix Datei- und Verzeichnis-Berechtigungen</emphasis>
 		</para>
 
 			<para>
-			Samba arbeitet mit den UNIX Dateizugriffskontrollen zusammen. Benutzer greifen dabei als Windowsbenutzer
+			Samba arbeitet mit den UNIX-Dateizugriffskontrollen zusammen. Benutzer greifen dabei als Windowsbenutzer
 			auf Samba zu. Informationen über den Benutzer werden beim Einloggen übergeben. Samba benutzt
-			diese Login Informationen, um zu entscheiden, ob einem Benutzer Zugriff auf Systemdaten gewährt werden soll oder nicht. Dieses
+			diese Login-Informationen, um zu entscheiden, ob einem Benutzer Zugriff auf Systemdaten gewährt werden soll oder nicht. Dieses
 			Kapitel enthält eine Übersicht von UNIX Berechtigungen für Nutzer, die diese nicht kennen oder etwas verwirrt über
 			diese sind.
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Netzlaufwerk Definitionen</emphasis>
+		<emphasis>Samba Netzlaufwerks-Definitionen</emphasis>
 		</para>
 
 			<para>
 			Beim Konfigurieren von Netzlaufwerken mit Samba in der Datei smb.conf kann der Administrator
 			Berechtigungen des darunter liegenden Dateisystems verändern und beeinflussen. Dies ermöglicht teilweise eine Annäherung
-			an das Verhalten, dass Windowsbenutzer erwarten. Dieser Weg ist aber nur selten die beste Lösung.
+			an das Verhalten, das Windowsbenutzer erwarten. Dieser Weg ist aber nur selten die beste Lösung.
 			Die grundlegenden Möglichkeiten werden hier beschrieben.
 			</para>
 		</listitem>
 
 		<listitem><para>
-		<emphasis>Samba Netzlaufwerkskontrolllisten</emphasis>
+		<emphasis>Samba Netzlaufwerks-Kontroll-Listen</emphasis>
 		<indexterm><primary>ACLs</primary><secondary>share</secondary></indexterm>
 		</para>
 
 			<para>
-			Wie in Windows NT ist es auch in Samba möglich, Netzlaufwerkskontrolllisten zu erstellen. Einige
-			Benutzer machen Gebrauch davon, es ist zur Zeit eine der leichtesten Möglichkeiten Zugriffskontrolle zu erreichen im
-			Gegensatz zu komplexeren anderen Methoden.
+			Wie in Windows NT ist es auch in Samba möglich, Netzlaufwerks-Kontroll-Listen 
+			zu erstellen. Einige Anwender machen Gebrauch davon, es ist zur Zeit
+			eine der leichtesten Möglichkeiten, Zugriffskontrolle zu erreichen, im
+			Gegensatz zu anderen komplexeren Methoden.
 			</para>
 		</listitem>
 
 		<listitem><para>
 				<indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 				<indexterm><primary>ACLs</primary><secondary>Windows</secondary></indexterm>
-		<emphasis>MS Windows Zugriffskontrolllisten und UNIX Zugriffskontrolllisten</emphasis>
+		<emphasis>MS Windows Zugriffskontroll-Listen und UNIX Zugriffskontroll-Listen</emphasis>
 		</para>
 
 			<para>
-			Der Gebrauch von UNIXkontrolllisten ist nur möglich, wenn diese Funktionen in dem darunter liegenden
-			Dateisystem implemtiert sind. In jedem anderem Fall ist deren Nutzung nicht möglich. Aktuelle Unix-Systeme sollten diese
-			Unterstützung haben. Es gibt Patches für die Linux Kernel, die diese Möglichkeit implementieren, falls nicht vorhanden.
-			Viele Unix-Systeme werden mit der Unterstützung ausgeliefert, in diesem Kapitel werden wir versuchen den Benutzern
-			deren Gebrauch zu erklären.
+			Der Gebrauch von UNIX-Kontroll-Listen ist nur möglich, wenn diese Funktionen 
+			in dem darunter liegenden Dateisystem implementiert sind.
+			In jedem anderem Fall ist deren Nutzung nicht möglich. 
+			Aktuelle Unix-Systeme sollten diese Unterstützung bieten.
+			Es gibt Patches für den Linux-Kernel, die diese Möglichkeit implementieren,
+			falls nicht vorhanden.
+			Viele Unix-Systeme werden mit der Unterstützung ausgeliefert, in diesem 
+			Kapitel versuchen wir, den Benutzern deren Gebrauch zu erklären.
 			</para>
 		</listitem>
 	</itemizedlist>
@@ -113,11 +119,11 @@ mögliche Kompatibilität zwischen den beiden Systemen schaffen.
 </sect1>
 
 <sect1>
-<title>Dateisystem Zugriffskontrollen</title>
+<title>Die Zugriffskontrollen des Dateisystems</title>
 
 <para>
-Es ist wichtig festzustellen, dass MS Windows ein völlig anderes Dateizugriffssystem benutzt als UNIX-Systeme. Wir werden
-erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
+Es ist wichtig festzustellen, dass MS Windows ein völlig anderes Dateizugriffssystem benutzt als 
+UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilft, diese zu überbrücken.
 </para>
 
 	<sect2>
@@ -125,18 +131,17 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 
 	<para>
 <indexterm><primary>NTFS</primary></indexterm>
-<indexterm><primary>File System</primary></indexterm>
-<indexterm><primary>File System</primary><secondary>UNIX</secondary></indexterm>
-<indexterm><primary>File System</primary><secondary>Windows</secondary></indexterm>
-
-	Samba benutzt das UNIX Dateisystem, d.h. Samba verhält sich innerhalb der Möglichkeiten des UNIX-Dateisystems.
-	Aber Samba ist auch dafür verantwortlich, das Verhalten des Windows Dateisystems nachzustellen.
+<indexterm><primary>Dateisystem</primary></indexterm>
+<indexterm><primary>Dateisystem</primary><secondary>UNIX</secondary></indexterm>
+<indexterm><primary>Dateisystem</primary><secondary>Windows</secondary></indexterm>
+	Samba benutzt das UNIX-Dateisystem, d.h. Samba verhält sich innerhalb der Möglichkeiten des UNIX-Dateisystems.
+	Aber Samba ist auch dafür verantwortlich, das Verhalten des Windows-Dateisystems nachzustellen.
 	</para>
 
 	<para>
 	Glücklicherweise bietet Samba eine Reihe von Konfigurationsmöglichkeiten, um die Unterschiede zu
-	überbrücken. Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle. Wer mehr wissen möchte, sollte die
-	Beschreibung (man = manual Datei) der smb.conf lesen.
+	überbrücken. Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle.
+	Wer mehr wissen möchte, sollte die manpage der Datei smb.conf lesen.
 	</para>
 
 	<para>Im folgenden ein Vergleich von UNIX- und Windows-Dateisystem NT/200x:
@@ -164,16 +169,18 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		<para>
 		<indexterm><primary>8.3 Dateinamen</primary></indexterm>
 		<indexterm><primary>Dateisystem</primary><secondary>Schreibweise sensitiv</secondary></indexterm>
-		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt. Dateinamen die
-		länger sind, sind in ihrer Schreibweise insensitiv (d. h. ob groß oder klein geschrieben spielt keine Rolle )
+		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt.
+		Dateinamen, die länger sind, sind in ihrer Schreibweise insensitiv 
+		(d. h. es spielt keine Rolle, ob groß oder klein geschrieben)
 		</para>
 
 		<para>
-		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen sensitiv (es spielt sehr wohl eine Rolle,
-		ob eine Datei groß oder klein geschrieben wird).
+		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen-sensitiv
+		(es spielt sehr wohl eine Rolle, ob ein Dateiname groß oder klein geschrieben wird).
 		</para>
 		<para>
-		Im unteren Beispiel würden die Dateinamen von Windows völlig gleich interpretiert werden , für UNIX wären es drei verschiedene Dateien.
+		Im unteren Beispiel würden die Dateinamen von Windows völlig gleich interpretiert 
+		werden, für UNIX wären es drei verschiedene Dateien.
 		<screen>
 				MYFILE.TXT
 				MyFile.txt
@@ -181,13 +188,13 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		</screen></para>
 
 		<para>
-		Es wird ziemlich klar, dass diese Dateien in Windows nicht nebeneinander stehen könnten
-		(im selben Ordner) unter UNIX jedoch jederzeit.
+		Es wird ziemlich klar, dass diese Dateien in Windows nicht nebeneinander 
+		(im selben Ordner) stehen könnten, unter UNIX jedoch jederzeit.
 		</para>
 		<para>
-		Was soll nun Samba tun, wenn es auf diese Dateien trifft? Die Lösung besteht darin, dass die erste
-		Datei für Windowsbenutzer sichtbar ist, die anderen jedoch nicht verfügbar bzw. unsichtbar sind, eine
-		andere Lösung ist nicht denkbar.
+		Was soll nun Samba tun, wenn es auf diese Dateien trifft? Die Lösung besteht darin,
+		dass die erste Datei für Windowsbenutzer sichtbar ist, die anderen jedoch
+		nicht verfügbar bzw. unsichtbar sind, eine andere Lösung ist nicht denkbar.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -198,9 +205,11 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 
 		<para>
 				<indexterm><primary>Verzeichnis-Trennzeichen</primary></indexterm>
-		MS Windows und DOS benutzen den \ (Backslash) als Verzeichnis-Trennzeichen <constant>\</constant>
-		UNIX benutzt (wie im Internet üblich) den Slash / als Verzeichnis Trennzeichen.
-		<constant>/</constant>Dies wird von Samba transparent (für den Windowsbenutzer unbemerkt) umgelegt.
+		MS Windows und DOS benutzen das Zeichen \ (Backslash) als Verzeichnis-Trennzeichen 
+		<constant>\</constant>, UNIX benutzt (wie im Internet üblich) den Slash
+		/ als Verzeichnis-Trennzeichen.
+		<constant>/</constant>
+		Dies wird von Samba transparent (für den Windowsbenutzer unbemerkt) umgesetzt.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -210,9 +219,11 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 			<listitem>
 		<para>
 			<indexterm><primary>Laufwerksbezeichnung</primary></indexterm>
-		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command>C:</command>
-		Es gibt unter UNIX kein ähnliches Konzept, Festplatten Teile (Partitionen) werden eingebunden
-		(gemounted) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist, wäre unter UNIX einfach
+		In MS Windows werden verschiedene Festplatten-Partitionen mit Buchstaben belegt.
+		<command>C:</command>
+		Es gibt unter UNIX kein ähnliches Konzept, Festplatten-Teile (Partitionen) werden 
+		als Teil des Dateisystems eingebunden (gemountet).
+		Was unter DOS <constant>C:\</constant> ist, wäre unter UNIX einfach
 		(root = Wurzel des Dateisystembaumes)<constant>/</constant>.
 		</para>
 			</listitem>
@@ -223,9 +234,12 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 			<listitem>
 		<para>
 			<indexterm><primary>Dateinamenskonvention</primary></indexterm>
-		MS Windows kennt keine Dateien, deren Namen mit einem Punkt beginnt(<constant>.</constant>).
-		In UNIX werden solche Dateien häufig in den "Home" (Heimatverzeichnissen) von Benutzern gefunden.
-		Punktdateien(<constant>.</constant>) sind typischerweise Start- oder Konfigurationsdateien für UNIX-Programme.
+		MS Windows kennt keine Dateien, deren Namen mit einem Punkt beginnt
+		(<constant>.</constant>).
+		In UNIX werden solche Dateien häufig in den "Home"-Verzeichnissen
+		(Heimatverzeichnissen) von Benutzern gefunden.
+		Punktdateien(<constant>.</constant>) sind typischerweise 
+		Start- oder Konfigurationsdateien für UNIX-Programme.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -237,7 +251,8 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		<indexterm><primary>Links</primary><secondary>hard</secondary></indexterm>
 		<indexterm><primary>Links</primary><secondary>soft</secondary></indexterm>
 		<indexterm><primary>Short-Cuts</primary></indexterm>
-		Unter Windows sind Verknüpfungen spezielle Dateitypen, die zum verkürzten Starten von Programmen in deren
+		Unter Windows sind Verknüpfungen spezielle Dateitypen, die zum verkürzten 
+		Starten von Programmen in deren
 		realen Ordner dienen. Auch unter UNIX gibt es Verknüpfungen und Verkürzungen,
 		diese werden jedoch völlig unterschiedlich gehandhabt.
 		</para>
@@ -253,22 +268,23 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 	</variablelist>
 
 	<para>
-	Es gibt noch viele Unterschiede, die einem Windows Administrator unangenehm im Umgang mit UNIX sein könnten.
+	Es gibt noch viele Unterschiede, die einem Windows-Administrator unangenehm im Umgang 
+	mit UNIX sein könnten.
 	</para>
 
-	</sect2>Verwaltung von Verzeichnissen
+	</sect2>
 
 	<sect2>
-	<title>naging Directories</title>
+	<title>Verwaltung von Verzeichnissen</title>
 
 	<para>
-	Es gibt grunsätzlich 3 Möglichkeiten um Ordner (Verzeichnisse) zu verwalten: <command>create (erstellen), 
-delete (löschen), rename (umbenennen )</command>.
+	Es gibt grundsätzlich 3 Möglichkeiten, um Ordner (Verzeichnisse) zu verwalten: 
+	<command>create (erstellen), delete (löschen), rename (umbenennen )</command>.
 	<table frame="all">
 		<title>Verwaltung von Ordnern (Verzeichnissen) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
-		<row><entry>Action</entry><entry>Windows Befehle</entry><entry>UNIX Befehle</entry></row>
+		<row><entry>Aktion</entry><entry>Windows Befehl</entry><entry>UNIX Befehl</entry></row>
 		</thead>
 		<tbody>
 			<row><entry>create</entry><entry>md folder</entry><entry>mkdir folder</entry></row>
@@ -282,14 +298,14 @@ delete (löschen), rename (umbenennen )</command>.
 	</sect2>
 
 	<sect2>
-	<title>Verwaltung von Datei- und Ordner- (Verzeichnis) Zugriffskontrollen</title>
-
+	<title>Die Verwaltung der Zugriffskontrollen von Dateien und Ordnern (Verzeichnissen)</title>
 
 	<para>
 	<indexterm><primary>ACLs</primary><secondary>Dateisystem</secondary></indexterm>
-	Jedem Administrator wird geraten zusätzliche Handbücher über dieses Thema zu studieren.
-	Die meisten Fälle können mit den grundlegenden Zugriffsmöglichkeiten von UNIX gelöst werden
-	ohne die Technologien der Zugriffskontrolllisten (ACLs) oder der Erweiterten Attribute (EAs) zu gebrauchen.
+	Jedem Administrator wird geraten, zusätzlich Handbücher zu diesem Thema zu studieren.
+	Die meisten Fälle können mit den grundlegenden Zugriffsmöglichkeiten von UNIX gelöst werden,
+	ohne die Technologien der Zugriffskontrolllisten (ACLs) oder der Erweiterten Attribute (EAs) 
+	zu verwenden.
 	</para>
 
 	<para>
@@ -314,8 +330,8 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<para>
-	Die Reihen oben repräsentieren (von rechts nach links): Berechtigung, Anzahl der "harten" Links einer Datei, 
-	Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
+	Die Reihen oben repräsentieren (von rechts nach links): Berechtigung, Anzahl der 
+	"harten" Links einer Datei, Besitzer (einer Datei), die Besitzergruppe und die Größe in Bytes.
 	</para>
 
 	<para>
@@ -323,7 +339,7 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 	</para>
 
 	<image id="access1" 
-scale="40"><imagedescription>Übersicht der UNIX Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
+scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
 
 	<para>
 	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - )dargestellt.
@@ -344,31 +360,37 @@ scale="40"><imagedescription>Übersicht der UNIX Berechtigungen</imagedescription
 	</para>
 
 	<para>
-	Die Zeichen <constant>rwxXst</constant> für die Berechtigungen für Nutzer, Gruppen und anderen sind: 
+	Die Zeichen <constant>rwxXst</constant> für die Berechtigungen für Nutzer, Gruppen und 
+	anderen sind: 
 	lesen (r), schreiben (w), ausführen (oder Ordner Zugriff) (x),
-	exclusives ausführen, wenn der Nutzer berechtigt für die Datei oder den Ordner ist (X), Setzen der ID des 
-	Nutzers bei Ausführung (s), sticky (begleitendes Bit)(t).
+	exklusives Ausführen, wenn der Nutzer berechtigt für die Datei oder den Ordner ist (X), 
+	Setzen der ID des Nutzers bei Ausführung (s), sticky (begleitendes Bit)(t).
 	</para>
 
 	<para>
-	Wenn das sticky bit auf einem Verzeichnis gesetzt ist, können darin enthaltene Dateien nur von Nutzer root oder dem 
-	Ersteller der Dateien gelöscht werden, in jedem anderem Fall sind alle anderen Dateivorgänge (löschen,lesen,umbenennen 
-	erlaubt). Das sticky bit wird häufig für Verzeichnisse wie das /tmp Verzeichnis benutzt, welches gewöhnlich für jeden 
-	beschreibbar ist.
+	Wenn das sticky Bit auf einem Verzeichnis gesetzt ist, können darin enthaltene Dateien 
+	nur vom Nutzer root oder dem Ersteller der Dateien gelöscht werden, in jedem anderem Fall sind
+	alle anderen Dateivorgänge (löschen, lesen, umbenennen) erlaubt.
+	Das sticky Bit wird häufig für Verzeichnisse wie das /tmp Verzeichnis benutzt, welches 
+	gewöhnlich für jeden beschreibbar ist.
 	 </para>
 
 	<para>
-	Wenn auf einem Verzeichnis das Gruppen- oder Nutzer-Identitätsbit gesetzt ist, dann werden Nutzer und Gruppen auf dort 
-	enthaltene Dateien berechtigt. Dies ermöglicht das Erstellen von Verzeichnissen, auf die alle Nutzer einer Gruppe 
-	zugreifen sollen, auch wenn die primäre Gruppe der Nutzer nicht gleiche ist und es nicht gewünscht ist, dass nur ein Benutzer 
-	exklusiv auf eine Datei berechtigt ist.
+	Wenn auf einem Verzeichnis das Gruppen- oder Nutzer-Identitätsbit gesetzt ist, dann 
+	erhalten Nutzer und Gruppen Berechtigungen auf darin
+	enthaltene Dateien. Dies ermöglicht das Erstellen von Verzeichnissen, auf die alle 
+	Nutzer einer Gruppe zugreifen sollen, auch wenn die primäre Gruppe der Nutzer nicht gleiche ist,
+	auch wenn die primäre Gruppe der Nutzer nicht gleiche ist und nicht gewünscht ist, dass nur 
+	ein Benutzer exklusiv auf eine Datei berechtigt ist.
 	</para>
 
 	<para>
-	Falls ein Verzeichnis auf <constant>drw-r-----</constant> gesetzt ist, heisst dies, dass der Eigner in ihm Dateien lesen 
-	und schreiben kann, aber dadruch, dass das Ausführen-Flag (x) nicht gesetzt ist, Dateien in diesem Verzeichnis von niemand
-	gesehen werden kann. Die Gruppe kann Dateien lesen aber keine neuen anlegen. Falls Dateien in dem Verzeichnis auf les- oder
-	schreibbar für die Gruppe gesetzt sind, können die Gruppenmitglieder diese schreiben oder löschen.
+	Falls ein Verzeichnis auf <constant>drw-r-----</constant> gesetzt ist, heisst dies, dass 
+	der Eigner in ihm Dateien lesen und schreiben kann, aber dadurch, dass das Ausführen-Flag (x) 
+	nicht gesetzt ist, Dateien in diesem Verzeichnis von niemandem gesehen werden können.
+	Die Gruppe kann Dateien lesen, aber keine neuen anlegen. Falls Dateien in dem Verzeichnis 
+	für die Gruppe les- oder schreibbar gesetzt sind, können die Gruppenmitglieder diese
+	schreiben oder löschen.
 	</para>
 
 	</sect2>
@@ -382,18 +404,22 @@ scale="40"><imagedescription>Übersicht der UNIX Berechtigungen</imagedescription
 <para>
 <indexterm><primary>Berechtigungen</primary><secondary>Freigabe</secondary></indexterm>
 Die folgenden Parameter in den Dateisektionen von &smb.conf; definieren eine Freigabekontrolle oder betreffen
-Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie bitte in den den manpages für &smb.conf; nach.
+Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie bitte in den den manpages für &smb.conf; nach.
 </para>
 
 	<sect2>
 	<title>Benutzer- und Gruppen-basierende Kontrollen</title>
 
 	<para>
-	Benutzer- und Gruppen-basierende Kontrollen können sehr hilfreich sein. In manchen Situationen ist es sogar gewünscht,
-	dass alle Dateisystem-Operationen behandelt werden, als wären sie von einem einzelnen Benutzer gemacht worden.
-	Die Benutzung von <smbconfoption><name>force user</name></smbconfoption> und <smbconfoption><name>force group</name></smbconfoption> 
-	wird dies erreichen. In anderen Situationen ist es vielleicht notwendig, ein Paranoia-Level von Kontrollen einzusetzen,
-	umm sicherzustellen, dass es nur bestimmten ausgewählten und authorisierten Personen möglich sein wird,
+	Benutzer- und Gruppen-basierende Kontrollen können sehr hilfreich sein. 
+	In manchen Situationen ist es sogar gewünscht,
+	dass alle Dateisystem-Operationen behandelt werden, als wären sie von einem einzelnen 
+	Benutzer durchgeführt worden.
+	Die Benutzung von <smbconfoption><name>force user</name></smbconfoption> und 
+	<smbconfoption><name>force group</name></smbconfoption> 
+	wird dies erreichen. In anderen Situationen ist es vielleicht notwendig, ein 
+	paranoides Level von Kontrollen einzusetzen,
+	umm sicherzustellen, dass es nur bestimmten ausgewählten und authorisierten Personen möglich ist,
 	auf eine Freigabe oder dessen Inhalt zuzugreifen. Hier kann die Benutzung von <smbconfoption><name>valid users</name></smbconfoption> oder 
 	<smbconfoption><name>invalid users</name></smbconfoption> am hilfreichsten sein.
 	</para>
