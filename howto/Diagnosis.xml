@@ -76,7 +76,7 @@ enthalten.
 
 <para>
 Bitte schenken Sie den gemeldeten Fehlermeldungen Ihre Aufmerksamkeit.
-Sollten Sie eine Fehlermeldung erhalten, dass Ihr Server "unfriendly"
+Sollten Sie eine Fehlermeldung erhalten, dass Ihr Server <quote>unfriendly</quote>
 wäre, überprüfen Sie bitte, ob Ihre IP-Namensauflösung korrekt eingestellt
 ist.
 Stellen Sie sicher, dass in der Datei
@@ -565,7 +565,7 @@ Es ist auch möglich, dass Ihr Client nur verschlüsselte Passwörter
 versendet, aber Sie haben den Eintrag <smbconfoption><name>encrypt
 passwords</name><value>no</value></smbconfoption> in der &smb.conf;
 stehen.
-Ändern Sie diesen auf "yes", um das Problem zu beheben.
+Ändern Sie diesen auf <quote>yes<quote>, um das Problem zu beheben.
 </para>
 
 </step>
