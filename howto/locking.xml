@@ -243,232 +243,208 @@ Diese Konfiguration wird sehr wahrscheinlich Probleme mit Oplocks erfahren.
 Oplocks können sehr wirksam die Client-Performance steigern, wenn sie als Konfigurations-Schalter
 für Client-seitiges Daten-Puffern behandelt werden. Wenn das Puffern der Daten wahrscheinlich unterbrochen 
 werden könnte, sollte der Einsatz von Oplocks nochmals überdacht werden. Samba aktiviert standardmässig die
-Verwendung von Oplocks auf allen Freigaben. 
-
-
-Oplocks can be beneficial to perceived client performance when treated
-as a configuration toggle for client-side data caching. If the data
-caching is likely to be interrupted, then oplock usage should be
-reviewed. Samba enables opportunistic locking by default on all
-shares. Careful attention should be given to the client usage of
-shared data on the server, the server network reliability and the
-opportunistic locking configuration of each share.
-In mission critical high availability environments, data integrity is
-often a priority. Complex and expensive configurations are implemented
-to ensure that if a client loses connectivity with a file server, a
-failover replacement will be available immediately to provide
-continuous data availability.
+Verwendung von Oplocks auf allen Freigaben. Die Client-seitige Verwendung von Daten auf dem Server,
+die Zuverlässigkeit des Servers im Netzwerk und die Oplock-Konfiguration jeder Freigabe sollten 
+mit besonderer Aufmerksamkeit bedacht und konfiguriert werden. In Hochverfügbarkeits-Umgebungen ist die
+Integrität der Daten oft von hoher Priorität. Komplexe und teure Konfigurationen werden implementiert, um zu
+gewährleisten, daß wenn ein Client die Verbindung zum Dateiserver verliert, sofort ein Ersatz verfügbar ist,
+um durchgehende Verfügbarkeit der Daten zu gewährleisten.
 </para>
 
 <para>
-Windows client failover behavior is more at risk of application
-interruption than other platforms because it is dependent upon an
-established TCP transport connection. If the connection is interrupted
-&smbmdash; as in a file server failover &smbmdash; a new session must be established.
-It is rare for Windows client applications to be coded to recover
-correctly from a transport connection loss, therefore, most applications
-will experience some sort of interruption &smbmdash; at worst, abort and
-require restarting.
+Das Verhalten von Windows Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
+andere Plattformen, da es von einer aufgebauten TCP-Transport-Verbindung abhängt. Wenn die Verbindung 
+unterbrochen wird 
+&smbmdash; wie bei einem Datei-Server-Ausfall und dessen Ersatz durch einen Failover-Server &smbmdash;
+muß eine neue Verbindung aufgebaut werden. Es ist selten, daß eine Windows-Client-Applikation so programmiert 
+ist, daß sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt, daher werden die meisten
+Applikationen in irgendeiner Art unterbrochen &smbmdash; im schlimmsten Fall abgebrochen, und erfordern
+einen Neustart.
 </para>
 
 <para>
-If a client session has been caching writes and reads locally due to
-opportunistic locking, it is likely that the data will be lost when the
-application restarts or recovers from the TCP interrupt. When the TCP
-connection drops, the client state is lost. When the file server
-recovers, an oplock break is not sent to the client. In this case, the
-work from the prior session is lost. Observing this scenario with
-oplocks disabled and with the client writing data to the file server
-real-time,  the failover will provide the data on disk as it
-existed at the time of the disconnect.
+Wenn eine Client-Session Schreib- und Lese-Vorgänge mittels Oplocks lokal gepuffert hat, ist es wahrscheinlich,
+daß die Daten verloren gehen, wenn die Applikation neu startet, oder sich nach der TCP-Unterbrechung wieder
+verbindet. Wenn die TCP-Verbindung ausfällt, ist der Status des Clients verloren. Wenn der Server die
+Verbindung wiederherstellt, wird keine Aufforderung zum Brechen des Oplocks an den Client gesandt. In diesem
+Fall ist die Arbeit aus der vorangehenden Session verloren. Durch Echtzeit-Überwachung dieses Szenarios mit
+deaktivierten Oplocks und des Clients, der Daten auf den Datei-Server schreibt, wird die
+Ausfallssicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
+haben.
 </para>
 
 <para>
-In mission-critical high-availability environments, careful attention
-should be given to opportunistic locking. Ideally, comprehensive
-testing should be done with all affected applications with oplocks
-enabled and disabled.
+In <quote>mission-critical</quote> Hochverfügbarkeits-Umgebungen, sollte grosse Vorsicht im Umgang mit
+Oplocks geübt werden. Idealerweise sollten umfassende Tests mit allen betroffenen Applikationen erfolgen, sowohl
+mit wie auch ohne aktivierten Oplocks. 
 </para>
 
 <sect3>
-<title>Exclusively Accessed Shares</title>
+<title>Exklusive Freigaben</title>
 
 <para>
-Opportunistic locking is most effective when it is confined to shares
-that are exclusively accessed by a single user, or by only one user at
-a time. Because the true value of opportunistic locking is the local
-client caching of data, any operation that interrupts the caching
-mechanism will cause a delay.
+Opportunistische Sperren sind am effektivsten, wenn sie auf Freigaben beschränkt sind, auf die ausschließlich
+von einem einzelnen Anwender zugegriffen wird, oder nur von einem Anwender gleichzeitig. Da der eigentliche
+Wert der Oplocks das client-seitige Puffern von Daten ist, verursacht jede Operation, die den Puffer-Mechanismus
+unterbricht, eine Verzögerung.
 </para>
 
 <para>
-Home directories are the most obvious examples of where the performance
-benefit of opportunistic locking can be safely realized.
+Home-Verzeichnisse sind die offensichtlichsten Beispiele für das sichere Realisieren von Performanc-Steigerungen
+mit Oplocks.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Multiple-Accessed Shares or Files</title>
+<title>Freigaben oder Dateien, auf die von mehreren zugegriffen wird</title>
 
 <para>
-As each additional user accesses a file in a share with opportunistic
-locking enabled, the potential for delays and resulting perceived poor
-performance increases. When multiple users are accessing a file on a
-share that has oplocks enabled, the management impact of sending and
-receiving oplock breaks and the resulting latency while other clients
-wait for the caching client to flush data offset the performance gains
-of the caching user.
+Mit jedem weiteren Anwender, der auf eine Datei auf einer Freigabe mit aktiven Oplocks zugreift, erhöht sich
+das Potential für Verzögerungen und daraus resultierende Performance-Verschlechterung. Wenn mehrere Anwender
+auf eine Datei auf einer Freigabe mit aktiven Oplocks zugreifen, übersteigt der Verwaltungsaufwand für das
+Senden und Empfangen der Oplock-Breaks und die resultierende Latenz, während die anderen Clients auf den
+momentan puffernden Client warten (bis er seine Puffer geleert hat), den Performance-Gewinn des
+puffernden Clients.
 </para>
 
 <para>
-As each additional client attempts to access a file with oplocks set,
-the potential performance improvement is negated and eventually results
-in a performance bottleneck.
-</para>
-
-</sect3>
-
-<sect3>
-<title>UNIX or NFS Client-Accessed Files</title>
-
-<para>
-Local UNIX and NFS clients access files without a mandatory
-file-locking mechanism. Thus, these client platforms are incapable of
-initiating an oplock break request from the server to a Windows client
-that has a file cached. Local UNIX or NFS file access can therefore
-write to a file that has been cached by a Windows client, which
-exposes the file to likely data corruption.
-</para>
-
-<para>
-If files are shared between Windows clients, and either local UNIX 
-or NFS users, turn opportunistic locking off.
+Mit jedem weiteren Client, der auf eine Datei mit gesetzten Oplocks zugreift, wird der potentielle
+Performance-Zuwachs negiert, und es ergibt sich eventuell sogar ein Flaschenhals.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Slow and/or Unreliable Networks</title>
+<title>Dateien, auf die von UNIX- oder NFS-Clients aus zugegriffen wird</title>
 
 <para>
-The biggest potential performance improvement for opportunistic locking
-occurs when the client-side caching of reads and writes delivers the
-most differential over sending those reads and writes over the wire.
-This is most likely to occur when the network is extremely slow,
-congested, or distributed (as in a WAN). However, network latency also
-has a high impact on the reliability of the oplock break
-mechanism, and thus increases the likelihood of encountering oplock
-problems that more than offset the potential perceived performance
-gain. Of course, if an oplock break never has to be sent, then this is
-the most advantageous scenario to utilize opportunistic locking.
+Lokale UNIX- oder NFS-Clients greifen ohne einen zwingenden Datei-Sperren-Mechanismus auf Dateien zu.
+Daher sind diese Client-Plattformen nicht imstande, vom Server aus einen Oplock-Bruch am Client zu erfragen, der
+gerade eine Datei puffert. Lokaler UNIX- oder NFS-Dateizugriff kann daher in eine Datei schreiben, die von einem
+Windows-Client gepuffert wurde, was diese Datei sehr wahrscheinlich unbrauchbar macht.
 </para>
 
 <para>
-If the network is slow, unreliable, or a WAN, then do not configure
-opportunistic locking if there is any chance of multiple users
-regularly opening the same file.
+Wenn Dateien sowohl an Windows-Clients, wie auch an lokale UNIX- oder NFS-Benutzer freigegeben werden, schalten
+Sie das opportunistische Sperren ab.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Multi-User Databases</title>
+<title>Langsame und/oder unzuverlässige Netzwerke</title>
 
 <para>
-Multi-user databases clearly pose a risk due to their very nature &smbmdash;
-they are typically heavily accessed by numerous users at random
-intervals. Placing a multi-user database on a share with opportunistic
-locking enabled will likely result in a locking management bottleneck
-on the Samba server. Whether the database application is developed
-in-house or a commercially available product, ensure that the share
-has opportunistic locking disabled.
+Der größtmögliche Performance-Gewinn für Oplocks wird dann erzielt, wenn das client-seitige Puffern der
+Lese- und Schreib-Vorgänge den größten Unterschied zum Senden dieser Vorgänge über das Netzwerk liefert.
+Dies passiert am wahrscheinlichsten dann, wenn das Netzwerk extrem langsam ist, verstopft, oder weitreichend
+verteilt (wie in einem WAN). Die Netzwerk-Latenz hat jedoch auch einen grossen Einfluß auf die Zuverlässigkeit
+des Oplock-Bruch-Mechanismus, und erhöht daher die Wahrscheinlichkeit, Oplock-Probleme zu bekommen, die die
+potentiellen Performance-Gewinne mehr als zunichte machen. Wenn natürlich niemals ein Oplock-Bruch gesendet
+werden müßte, wäre dies das vorteilhafteste Szenario, um Oplocks einzusetzen.
+</para>
+
+<para>
+Wenn das Netzwerk langsam, unzuverlässig, oder ein WAN ist, konfigurieren Sie keine Oplocks, wenn irgendeine
+Möglichkeit besteht, daß mehrere Benutzer regelmässig die selbe Datei öffnen.
 </para>
 
 </sect3>
 
 <sect3>
-<title>PDM Data Shares</title>
+<title>Mehrbenutzer-Datenbanken</title>
 
 <para>
-Process Data Management (PDM) applications such as IMAN, Enovia and
-Clearcase are increasing in usage with Windows client platforms, and
-therefore SMB datastores. PDM applications manage multi-user
-environments for critical data security and access. The typical PDM
-environment is usually associated with sophisticated client design
-applications that will load data locally as demanded. In addition, the
-PDM application will usually monitor the data-state of each client.
-In this case, client-side data caching is best left to the local
-application and PDM server to negotiate and maintain. It is
-appropriate to eliminate the client OS from any caching tasks, and the
-server from any oplock management, by disabling opportunistic locking on
-the share.
+Mehrbenutzer-Datenbanken stellen klarerweise durch ihre grundlegende Natur ein Risiko dar &smbmdash;
+auf sie wird üblicherweise massiv von vielen Anwendern zugegriffen, in zufälligen Intervallen. Das Plazieren
+einer Mehrbenutzer-Datenbank auf einer Freigabe mit aktivierten Oplocks wird wahrscheinlich in einem Flaschenhals
+auf dem Samba-Server resultieren, durch die notwendige Verwaltung der Sperren. Egal, ob eine Datenbank eine
+Eigenentwicklung ist, oder ein kommerzielles Produkt, stellen Sie sicher, daß die entsprechende Freigabe
+deaktivierte Oplocks hat.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Beware of Force User</title>
+<title>PDM Daten-Freigaben</title>
 
 <para>
-Samba includes an &smb.conf; parameter called <smbconfoption><name>force user</name></smbconfoption> that changes
-the user accessing a share from the incoming user to whatever user is
-defined by the smb.conf variable. If opportunistic locking is enabled
-on a share, the change in user access causes an oplock break to be sent
-to the client, even if the user has not explicitly loaded a file. In
-cases where the network is slow or unreliable, an oplock break can
-become lost without the user even accessing a file. This can cause
-apparent performance degradation as the client continually reconnects
-to overcome the lost oplock break.
+Process Data Management (PDM)-Applikationen wie IMAN, Enovia und Clearcase finden immer mehr Verwendung mit
+Windows-Client-Plattformen, und daher auch mit SMB-Daten-Servern. PDM-Applikationen verwalten 
+Mehrbenutzer-Umgebungen für Sicherheit von und Zugriff auf kritische Daten. Die typische PDM-Umgebung ist
+üblicherweise verbunden mit ausgeklügelt entworfenen Client-Anwendungen, die Daten lokal laden, wenn 
+erforderlich. Zusätzlich überwacht die PDM-Applikation üblicherweise den Daten-Status jeden Clients. In diesem
+Fall wird das client-seitige Puffern am besten der lokalen Applikation und dem PDM-Server überlassen. Es ist
+angemessen, das Client-OS von jeglichen Puffer-Aufgaben zu befreien, und auch den Server von der Verwaltung
+der Oplocks, indem man Oplocks auf der Freigabe deaktiviert. 
+</para>
+
+</sect3>
+
+<sect3>
+<title>Vorsicht vor Force User</title>
+
+<para>
+Samba enthält einen Parameter in &smb.conf; namens
+<smbconfoption><name>force user</name></smbconfoption>, der den Benutzer, der auf eine Freigabe zugreift, vom
+tatsächlich zugreifenden Benutzer auf den in diesem Parameter angegebenen ändert. Wenn Oplocks auf einer
+Freigabe aktiviert sind, verursacht die Änderung des Benutzers, daß ein Bruch des Oplocks an den Client
+gesendet wird, sogar wenn der Benutzer gar nicht explizit eine Datei geladen hat. In den Fällen, wo das Netzwerk
+langsam oder unzuverlässig ist, kann ein Oplock-Bruch verloren gehen, ohne daß der Benutzer auch nur auf eine
+Datei zugreift. Das kann sichtbare Performance-Einbrüche verursachen, wenn der Client wiederholt neu verbindet,
+um den verlorenen Oplock-Bruch <quote>zu überwinden</quote>.
 </para>
 
 <para>
-Avoid the combination of the following: 
+Vermeiden Sie die folgende Kombination:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	<smbconfoption><name>force user</name></smbconfoption> in the &smb.conf; share configuration.
+	<smbconfoption><name>force user</name></smbconfoption> in der &smb.conf; Freigaben-Konfiguration.
 	</para></listitem>
 
 	<listitem><para>
-	Slow or unreliable networks
+	Langsames oder unzuverlässiges Netzwerk.
 	</para></listitem>
 
 	<listitem><para>
-	Opportunistic locking enabled
+	Opportunistisches Sperren aktiviert.
 	</para></listitem>
 </itemizedlist>
 
 </sect3>
 
 <sect3>
-<title>Advanced Samba Opportunistic Locking Parameters</title>
+<title>Erweiterte Samba Oplock-Parameter</title>
 
 <para>
-Samba provides opportunistic locking parameters that allow the
-administrator to adjust various properties of the oplock mechanism to
-account for timing and usage levels. These parameters provide good
-versatility for implementing oplocks in environments where they would
-likely cause problems. The parameters are: 
+Samba bietet Oplock-Parameter, die es dem Administrator erlauben, verschiedene Eigenschaften des 
+Oplock-Mechanismus anzupassen, an Timing- und Benutzungs-Level. Diese Parameter bieten hohe Flexibilität zum
+Implementieren von Oplocks in Umgebungen, wo Sie sehr wahrscheinlich Probleme verursachen würden.
+Die Parameter sind:
 <smbconfoption><name>oplock break wait time</name></smbconfoption>,
 <smbconfoption><name>oplock contention limit</name></smbconfoption>.
 </para>
 
 <para>
-For most users, administrators and environments, if these parameters
-are required, then the better option is to simply turn oplocks off.
-The Samba SWAT help text for both parameters reads: <quote>Do not change
+Falls diese Parameter benötigt werden, ist es für die meisten Anwender, Administratoren und Umgebungen die
+bessere Wahl, die Oplocks einfach abzuschalten. Der Samba-SWAT-Hilfetext für diese beiden Parameter sagt:
+<quote>Do not change
 this parameter unless you have read and understood the Samba oplock code.</quote>
-This is good advice.
+Dies ist ein guter Rat.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Mission-Critical High-Availability</title>
+<title>Missions-kritische Hochverfügbarkeit</title>
 
 <para>
+In missions-kritischen Hochverfügbarkeits-Umgebungen ist die Datenintegrität oft eine Priorität.
+
+
 In mission-critical high-availability environments, data integrity is
 often a priority. Complex and expensive configurations are implemented
 to ensure that if a client loses connectivity with a file server, a
