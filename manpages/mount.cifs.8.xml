@@ -68,204 +68,213 @@
 	<variablelist>
 		<varlistentry><term>user=<replaceable>arg</replaceable></term>
 
-		<listitem><para>specifies the username to connect as. If
-				this is not given, then the environment variable <emphasis>USER</emphasis> is used. This option can also take the
-form "user%password" or "user/workgroup" or
-"user/workgroup%password" to allow the password and workgroup
-to be specified as part of the username.
+		<listitem><para>Gibt den Benutzernamen an, als der die Verbindung aufgebaut wird.
+		Wenn dieser nicht angegeben wird, wird die Umgebungsvariable <emphasis>USER</emphasis>
+		verwendet. Diese Option kann auch in der Form "Benutzer%Passwort", 
+		"Benutzer/Arbeitsgruppe" oder "Benutzer/Arbeitsgruppei%Passwort" angegeben werden, um
+		die Angabe von Passwort und Arbeitsgruppe als Teil des Benutzernamens zu erlauben.
 		</para>
 
 <note>
 	<para>
-	The cifs vfs accepts the parameter <parameter>user=</parameter>, or for users familiar with smbfs it accepts the longer form of the parameter <parameter>username=</parameter>.  Similarly the longer smbfs style parameter names may be accepted as synonyms for the shorter cifs parameters <parameter>pass=</parameter>,<parameter>dom=</parameter> and <parameter>cred=</parameter>.
+	Das CIFS-VFS akzeptiert den Parameter <parameter>user=</parameter>, oder für Benutzer, die
+	vertraut mit smbfs sind, auch die längere Form des Parameters <parameter>username=</parameter>.
+	Genauso werden die längeren Formen der Parameternamen als Entsprechungen für die kürzeren
+	CIFS-Parameter <parameter>pass=</parameter>,<parameter>dom=</parameter> und 
+	<parameter>cred=</parameter> akzeptiert.
 	</para>
 </note>
 
 		</listitem>
 	</varlistentry>
 
-	<varlistentry><term>password=<replaceable>arg</replaceable></term>
+	<varlistentry><term>password=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>specifies the CIFS password. If this
-option is not given then the environment variable
-<emphasis>PASSWD</emphasis> is used. If the password is not specified 
-directly or indirectly via an argument to mount <emphasis>mount.cifs</emphasis> will prompt
-for a password, unless the guest option is specified.
-</para>
+		<listitem><para>gibt das CIFS-Passwort an. Wenn diese Option nicht angegeben wird,
+		wird die Umgebungs-Variable <emphasis>PASSWD</emphasis> verwendet. Wenn das Passwort
+		nicht direkt oder indirekt via Argument an mount weitergegeben wird, wird
+		<emphasis>mount.cifs</emphasis> per Prompt nach einem Passwort fragen, außer
+		die guest-Option ist angegeben.
+		</para>
 
-<para>Note that a password which contains the delimiter
-character (i.e. a comma ',') will fail to be parsed correctly
-on the command line.  However, the same password defined
-in the PASSWD environment variable or via a credentials file (see
-below) will be read correctly.
+<para>Beachten Sie, daß ein Passwort, welches das Trennzeichen (z.B. ein Komma ',') enthält,
+auf der Befehlszeile nicht korrekt interpretiert werden kann. Jedoch kann dasselbe Passwort, wird
+es in der Umgebungs-Variable PASSWD oder via einer "credentials"-Datei (siehe unten) angegeben,
+korrekt gelesen werden.
 </para>
 	</listitem></varlistentry>
 
-	<varlistentry><term>credentials=<replaceable>filename</replaceable></term>
+	<varlistentry><term>credentials=<replaceable>Dateiname</replaceable></term>
 
 		<listitem><para>
-				specifies a file that contains a username
-				and/or password. The format of the file is:
+				gibt eine Datei an, die einen Benutzernamen und/oder
+				ein Passwort enthält. Das Format der Datei ist:
 			</para>
 
 <programlisting>
-		username=<replaceable>value</replaceable>
-		password=<replaceable>value</replaceable>
+		username=<replaceable>Argument</replaceable>
+		password=<replaceable>Argument</replaceable>
 </programlisting>
 		
 		<para>
-This is preferred over having passwords in plaintext in a
-shared file, such as <filename>/etc/fstab</filename>. Be sure to protect any
-credentials file properly.
+		Dies wird dem Eintragen von Klartext-Passwörten in einer mit anderen Benutzern
+		gemeinsam genutzten Datei wie <filename>/etc/fstab</filename> vorgezogen.
+		Stellen Sie sicher, daß jegliche "credentials"-Datei richtig geschützt wird.
 		</para>
 	</listitem></varlistentry>
 
 	<varlistentry>
-		<term>uid=<replaceable>arg</replaceable></term>
+		<term>uid=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>sets the uid that will own all files on
-	the mounted filesystem.
-	It may be specified as either a username or a numeric uid.
-	This parameter is ignored when the target server supports
-	the CIFS Unix extensions.</para></listitem>
+		<listitem><para>Gibt die UID an, die alle Dateien auf dem eingebundenen
+		Dateisystem besitzen wird. Dies kann entweder per Benutzername oder numerischer
+		UID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
+		CIFS Unix Erweiterungen unterstützt.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>gid=<replaceable>arg</replaceable></term>
+		<term>gid=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>sets the gid that will own all files on
-the mounted filesystem.
-It may be specified as either a groupname or a numeric 
-gid. This parameter is ignored when the target server supports
-the CIFS Unix extensions.
+		<listitem><para>Gibt die GID an, die alle Dateien auf dem eingebundenen
+                Dateisystem besitzen wird. Dies kann entweder per Gruppenname oder numerischer
+                GID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
+                CIFS Unix Erweiterungen unterstützt.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+		<term>port=<replaceable>Argument</replaceable></term>
+
+		<listitem><para>Setzt die Port-Nummer, auf der versucht werden soll,
+		CIFS-Unterstützung zu verhandeln. Wenn der CIFS-Server nicht auf diesem
+		Port zuhört, oder der Port nicht angegeben wird, werden die Standard-Ports
+		versucht, d.h. Port 445 wird versucht, erfolgt dort keine Antwort, dann
+		wird Port 139 versucht.
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>port=<replaceable>arg</replaceable></term>
+		<term>file_mode=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>sets the port number on the server to attempt to contact to negotiate
-CIFS support.  If the CIFS server is not listening on this port or
-if it is not specified, the default ports will be tried i.e. 
-port 445 is tried and if no response then port 139 is tried.
-		</para></listitem>
+		<listitem><para>Wenn der Server die CIFS Unix Erweiterungen nicht unterstützt,
+		setzt dies den Standard-Modus für Dateien außer Kraft.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>file_mode=<replaceable>arg</replaceable></term>
+		<term>dir_mode=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>If the server does not support the CIFS Unix extensions this
-				overrides the default file mode.</para></listitem>
+		<listitem><para>Wenn der Server die CIFS Unix Erweiterungen nicht unterstützt,
+                setzt dies den Standard-Modus für Verzeichnisse außer Kraft.</para></listitem>
+
 	</varlistentry>
 
 	<varlistentry>
-		<term>dir_mode=<replaceable>arg</replaceable></term>
+		<term>ip=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>If the server does not support the CIFS Unix extensions this
-				overrides the default mode for directories. </para></listitem>
+		<listitem><para>Gibt den Ziel-Host oder dessen IP-Adresse an.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>ip=<replaceable>arg</replaceable></term>
+		<term>domain=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>sets the destination host or IP address.</para></listitem>
-	</varlistentry>
-
-	<varlistentry>
-		<term>domain=<replaceable>arg</replaceable></term>
-
-		<listitem><para>sets the domain (workgroup) of the user </para></listitem>
+		<listitem><para>Gibt die Arbeitsgruppe/Domäne des Benutzers an.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>guest</term>
 
-		<listitem><para>don't prompt for a password </para></listitem>
+		<listitem><para>Nicht nach einem Passwort fragen.</para></listitem>
 
 	</varlistentry>
 
 	<varlistentry>
 		<term>ro</term>
 
-		<listitem><para>mount read-only</para></listitem>
+		<listitem><para>Das Dateisystem im Modus Read-Only einbinden.</para></listitem>
 
 	</varlistentry>
 
 	<varlistentry>
 		<term>rw</term>
-		<listitem><para>mount read-write</para></listitem>
+		<listitem><para>Das Dateisystem im Modus Read-Write einbinden.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>rsize</term>
-		<listitem><para>default network read size</para></listitem>
+		<listitem><para>Standard-Wert für Größe eines Netzwerk-Lese-Vorgangs</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>wsize</term>
 
-		<listitem><para>default network write size</para></listitem>
+		<listitem><para>Standard-Wert für Größe eines Netzwerk-Schreibe-Vorgangs</para></listitem>
 	</varlistentry>
 
 	</variablelist>
 </refsect1>
 
 <refsect1>
-	<title>ENVIRONMENT VARIABLES</title>
+	<title>UMGEBUNGSVARIABLEN</title>
 
 	<para>
-		The variable <emphasis>USER</emphasis> may contain the username of the
-person to be used to authenticate to the server.
-The variable can be used to set both username and
-password by using the format username%password.
+	Die Variable <emphasis>USER</emphasis> kann den Benutzernamen enthalten,
+	der verwendet wird, um sich am Server zu authentifizieren. Diese Variable kann
+	auch dazu verwendet werden, Benutzernamen und Passwort anzugeben, mittels des
+	Formats Benutzername%Passwort.
 	</para>
 	
 	<para>
-		The variable <emphasis>PASSWD</emphasis> may contain the password of the
-person using the client.
+	Die Variable <emphasis>PASSWD</emphasis> kann das Passwort des Benutzers enthalten,
+	der den Client verwendet.
 	</para>
 
 	<para>
-		The variable <emphasis>PASSWD_FILE</emphasis> may contain the pathname
-of a file to read the password from. A single line of input is
-read and used as the password.
+	Die Variable <emphasis>PASSWD_FILE</emphasis> kann den Namen einer Datei enthalten,
+	von der das Passwort gelesen werden soll. Eine einzelne Zeile wird eingelesen und
+	als Passwort verwendet.
 	</para>
 
 </refsect1>
 
 <refsect1>
-	<title>NOTES</title>
+	<title>ANMERKUNGEN</title>
 	
-	<para>This command may be used only by root, unless installed setuid, in which case the noeexec and nosuid mount flags are enabled.</para>
+	<para>Dieser Befehl kann nur von root verwendet werden, außer es ist mittels
+	setuid installiert, in diesem Fall sind die mount-flags noeexec und nosuid
+	aktiviert.</para>
 </refsect1>
 
 <refsect1>
-	<title>CONFIGURATION</title>
-		<para>
-The primary mechanism for making configuration changes and for reading 
-debug information for the cifs vfs is via the Linux /proc filesystem.
-In the directory /proc/fs/cifs are various configuration files and
-pseudo files which can display debug information.  For more
-information see the kernel file fs/cifs/README
-</para>
+	<title>KONFIGURATION</title>
+	<para>
+	Der Haupt-Mechanismus, um Konfigurations-Änderungen vorzunehmen und 
+	Debug-Informationen für das CIFS-VFS zu lesen, ist das Linux-Dateisystem
+	/proc. Im Verzeichnis /proc/fs/cifs gibt es es verschiedene Konfigurations-Dateien
+	und Pseudo-Dateien, die Debug-Informationen anzeigen können.
+	Lesen Sie die Kernel-Datei fs/cifs/README für mehr
+        Informationen dazu.	
+	</para>
 </refsect1>
 
 <refsect1>
 	<title>BUGS</title>
 
-	<para>Passwords and other options containing , can not be handled.
-For passwords an alternative way of passing them is in a credentials
-file or in the PASSWD environment.</para>
-
-	<para>The credentials file does not handle usernames or passwords with
-		leading space.</para>
+	<para>
+	Passwörter und andere Optionen, die das Zeichen ',' enthalten, können nicht
+	verarbeitet werden. Eine Alternative für Passwörter ist die Verwendung einer
+	credentials-Datei oder der Variable PASSWD.</para>
 
 	<para>
-Note that the typical response to a bug report is a suggestion
-to try the latest version first. So please try doing that first,
-and always include which versions you use of relevant software
-when reporting bugs (minimum: mount.cifs (try mount.cifs -V), kernel (see /proc/version) and
-server type you are trying to contact.
+	Die credentials-Datei kann nicht mit Benutzernamen oder Passwörtern umgehen,
+	die ein führendes Leerzeichen enthalten.
+	</para>
+
+	<para>
+	Beachten Sie, daß die übliche Antwort auf einen Fehler-Bericht der Vorschlag
+	ist, zuerst die neueste Version zu versuchen. Bitte versuchen Sie also zuerst
+	dies und erwähnen Sie immer, welche Versionen relevanter Software Sie verwenden,
+	wenn Sie von Fehlern berichten.
+	Minimum: mount.cifs (versuchen Sie mount.cifs -V), Kernel (siehe /proc/version),
+	Typ des Servers, den Sie zu kontaktieren versuchen.
 </para>
 </refsect1>
 
@@ -274,31 +283,34 @@ server type you are trying to contact.
 <refsect1>
 	<title>VERSION</title>
 
-	<para>This man page is correct for version 1.0.6 of 
-	the cifs vfs filesystem (roughly Linux kernel 2.6.6).</para>
+	<para>Diese man-page ist korrekt für die Version 1.0.6 des CIFS-VFS-Dateisystems 
+	(ca. Linux-Kernel 2.6.6).</para>
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para>
-	Documentation/filesystems/cifs.txt and fs/cifs/README in the linux kernel
-	source tree may contain additional options and information.
+	Documentation/filesystems/cifs.txt und fs/cifs/README im Linux-Kernel-tree
+	könnten zusätzliche Optionen und Informationen enthalten.
 </para>
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
 	
 	<para>Steve French</para>
 
-	<para>The syntax and manpage were loosely based on that of smbmount. It 
-		was converted to Docbook/XML by Jelmer Vernooij.</para>
+	<para>Die Syntax und man-page sind angelehnt an jene von smbmount. 
+	Umwandlung in Docbook/XML: Jelmer Vernooij.</para>
 
-	<para>The maintainer of the Linux cifs vfs and the userspace
-		tool <emphasis>mount.cifs</emphasis> is <ulink url="mailto:sfrench@samba.org">Steve French</ulink>.
-		The <ulink url="mailto:linux-cifs-client@lists.samba.org">Linux CIFS Mailing list</ulink> 
-		is the preferred place to ask questions regarding these programs. 
+
+	<para>Der Maintainer des Linux-CIFS-VFS und des Werkzeugs
+	<emphasis>mount.cifs</emphasis> ist <ulink url="mailto:sfrench@samba.org">Steve French</ulink>.
+	Die <ulink url="mailto:linux-cifs-client@lists.samba.org">Linux CIFS Mailing list</ulink> 
+	ist die erste Adresse, um Fragen zu diesen Programmen zu stellen.
 	</para>
+
+	<para>Übersetzung ins Deutsche: Stefan G. Weichinger.</para>
 
 </refsect1>
 
