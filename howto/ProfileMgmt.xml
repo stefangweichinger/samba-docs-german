@@ -731,68 +731,70 @@ zu optimieren. Dies hat signifikante administrative Vorteile.</para>
 <sect2>
 <title>MS Windows 9x/Me</title>
 
-<para>Um ...
+<para>Um Standard-Benutzer-Profile in Windows 9x/ME zu aktivieren, können Sie entweder den
+<application>Windows 98 System Policy Editor</application> verwenden, oder die Registry direkt
+ändern.</para>
+
+<para>Um Standard-Benutzer-Profile in Windows 9x/ME zu aktivieren, öffnen Sie den
+<application>System Policy Editor</application>, dann wählen Sie
+<guimenu>Datei</guimenu> -> <guimenuitem>Registrierung öffnen</guimenuitem>, als nächstes klicken
+Sie das Icon <guiicon>Lokaler Computer</guiicon>, klicken auf <guilabel>Windows 98 System</guilabel>,
+wählen <guilabel>Benutzer-Profile</guilabel>, und klicken auf die Aktivieren-Box. Vergessen Sie
+nicht, die Registry-Änderungen zu speichern.</para>
 
 
- To enable default per use profiles in Windows 9x/ME, you can either use the <application>Windows
-98 System Policy Editor</application> or change the registry directly.	</para>
-
-<para> To enable default per user profiles in Windows 9x/ME, launch the <application>System Policy
-Editor</application>, then select <guimenu>File</guimenu> -> <guimenuitem>Open Registry</guimenuitem>,
-next click on the <guiicon>Local Computer</guiicon> icon, click on <guilabel>Windows 98 System</guilabel>,
-select <guilabel>User Profiles</guilabel>, and click on the enable box. Remember to save the registry
-changes. </para>
-
-<para> To modify the registry directly, launch the <application>Registry Editor</application>
-(<command>regedit.exe</command>) and select the hive <filename>HKEY_LOCAL_MACHINE\Network\Logon</filename>. Now
-add a DWORD type key with the name <quote>User Profiles,</quote> to
-enable user profiles to set the value
-to 1; to disable user profiles set it to 0. </para>
+<para>Zum direkten Modifizieren der Registry, öffnen Sie den 
+<application>Registrierungs-Editor</application> (<command>regedit.exe</command>) und wählen Sie
+den Abschnitt <filename>HKEY_LOCAL_MACHINE\Network\Logon</filename>. Nun fügen Sie einen Wert vom Typ
+DWORD hinzu, mit dem Namen <quote>User Profiles</quote>, um Benutzerprofile zu aktivieren, setzen Sie
+ihn auf 1; um diese zu deaktivieren, setzen Sie ihn auf den Wert 0.</para>
 
 <sect3>
-<title>User Profile Handling with Windows 9x/Me</title>
+<title>Behandlung von Benutzerprofilen mit Windows 9x/Me</title>
 
-<para> When a user logs on to a Windows 9x/Me machine, the local profile path,
-<filename>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ProfileList</filename>, is checked
-for an existing entry for that user. </para>
+<para>Wenn sich ein Benutzer an einer Windows 9x/Me-Maschine anmeldet, wird der lokale Profilpfad
+<filename>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ProfileList</filename> auf einen
+existierenden Eintrag für diesen Benutzer überprüft.</para>
 
-<para> If the user has an entry in this registry location, Windows 9x/Me checks for a locally cached
-version of the user profile. Windows 9x/Me also checks the user's home directory (or other specified
-directory if the location has been modified) on the server for the User Profile. If a profile exists
-in both locations, the newer of the two is used. If the User Profile exists on the server, but does not
-exist on the local machine, the profile on the server is downloaded and used. If the User Profile only
-exists on the local machine, that copy is used. </para>
+<para>Wenn der Benutzer einen Eintrag in diesem Registrierungsabschnitt hat, prüft Windows 9x/Me, ob eine
+lokal gepufferte Version des Benutzerprofils vorhanden ist. Windows 9x/Me prüft auch das 
+Home-Verzeichnis des Benutzers (oder ein anderes angegebenes Verzeichnis, wenn diese Angabe verändert
+wurde) auf dem Server auf Vorhandensein des Profils. Wenn ein Profil an beiden Orten existiert, wird
+die neuere Version verwendet. Wenn das Benutzerprofil auf dem Server existiert, aber nicht auf der
+lokalen Maschine, wird das Profil vom Server geladen und verwendet. Wenn es nur auf der lokalen
+Maschine existiert, wird diese Kopie verwendet.</para>
 
-<para> If a User Profile is not found in either location, the Default User Profile from the Windows
-9x/Me machine is used and copied to a newly created folder for the logged on user. At log off, any
-changes that the user made are written to the user's local profile. If the user has a roaming profile,
-the changes are written to the user's profile on the server. </para>
+<para>Wenn an keinem der beiden Orte ein Benutzerprofil gefunden wird, wird das Standard-Benutzer-Profil
+der Windows 9x/Me-Maschine verwendet und in einen neu angelegten Ordner für den angemeldeten Benutzer
+kopiert. Beim Abmelden werden alle vorgenommenen Änderungen des Benutzers in sein lokales Profil
+geschrieben. Wenn der Benutzer ein "Roaming Profile" hat, werden die Änderungen in sein Profil auf
+dem Server geschrieben.</para>
 
 </sect3> </sect2>
 
 <sect2>
 <title>MS Windows NT4 Workstation</title>
 
-<para> On MS Windows NT4, the default user profile is obtained from the location
-<filename>%SystemRoot%\Profiles</filename> which in a default installation will translate to
-<filename>C:\Windows NT\Profiles</filename>. Under this directory on a clean install there will be three
-(3) directories: <filename>Administrator</filename>, <filename>All
-Users,</filename> and <filename>Default
-User</filename>. </para>
+<para>Unter MS Windows NT4 wird das Standard-Benutzer-Profil aus 
+<filename>%SystemRoot%\Profiles</filename> bezogen, welches in einer Standard-Installation
+<filename>C:\Windows NT\Profiles</filename> entspricht. Unter diesem Verzeichnis gibt es in einer
+herkömmlichen sauberen Installation drei (3) Verzeichnisse: <filename>Administrator</filename>, <filename>All Users,</filename> und <filename>Default User</filename>. </para>
 
-<para> The <filename>All Users</filename> directory contains menu settings that are common across all
-system users. The <filename>Default User</filename> directory contains menu entries that are customizable
-per user depending on the profile settings chosen/created. </para>
+<para>
+Das Verzeichnis <filename>All Users</filename> enthält Menü-Einstellungen, die für alle System-Benutzer
+gleich sind. Das Verzeichnis <filename>Default User</filename> enthält Menü-Einträge, die per Benutzer
+anpassbar sind, abhängig von den gewählten oder angelegten Profil-Einstellungen.</para>
 
-<para> When a new user first logs onto an MS Windows NT4 machine, a new profile is created from: </para>
+<para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows NT4-Maschine anmeldet, wird
+ein neues Profil angelegt, aus:</para>
 
 <itemizedlist>
-	<listitem><para>All Users settings.</para></listitem>
-	<listitem><para>Default User settings (contains the default <filename>NTUser.DAT</filename> file).</para></listitem>
+	<listitem><para>All Users Einstellungen.</para></listitem>
+	<listitem><para>Default User Einstellungen (enthalten die Standard-Datei <filename>NTUser.DAT</filename>).</para></listitem>
 </itemizedlist>
 
-<para> When a user logs onto an MS Windows NT4 machine that is a member of a Microsoft security domain,
-	the following steps are followed in respect of profile handling: 
+<para>Wenn sich ein Benutzer an einer MS Windows NT4-Maschine anmeldet, die Mitglied einer MS 
+Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 
 <indexterm><primary>NTConfig.POL</primary></indexterm>
 </para>
