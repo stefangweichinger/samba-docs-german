@@ -13,58 +13,64 @@
 
 <refnamediv>
 	<refname>tdbbackup</refname>
-	<refpurpose>tool for backing up and for validating the integrity of samba .tdb files</refpurpose>
+	<refpurpose>Werkzeug für Backups und für die Überprüfung 
+	der Integrität von Sambas .tdb-Dateien</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>tdbbackup</command>
-		<arg choice="opt">-s suffix</arg>
+		<arg choice="opt">-s Endung</arg>
 		<arg choice="opt">-v</arg>
 		<arg choice="opt">-h</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>tdbbackup</command> is a tool that may be used to backup samba .tdb
-	files. This tool may also be used to verify the integrity of the .tdb files prior
-	to samba startup, in which case, if it find file damage and it finds a prior backup
-	it will restore the backup file.
+	<para><command>tdbbackup</command> ist ein Werkzeug, mit dem ein Backup
+	von .tdb-Samba-Dateien angefertigt werden kann, und mit dem die
+	Integrität von .tdb-Dateien überprüft werden kann, bevor Samba
+	gestartet wird. Für den Fall, dass eine Datei beschädigt ist und ein
+	vorher dafür angelegtes Backup gefunden wird, wird diese Backup-Datei 
+	wiederhergestellt.
 	</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 
 		<varlistentry>
 		<term>-h</term>
 		<listitem><para>
-		Get help information.
+		Gibt Hilfe-Information aus.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-s suffix</term>
+		<term>-s Endung</term>
 		<listitem><para>
-		The <command>-s</command> option allows the adminisistrator to specify a file
-		backup extension. This way it is possible to keep a history of tdb backup
-		files by using a new suffix for each backup.
+		Die Option <command>-s</command> ermöglicht dem Adminisistrator
+		die Angabe einer Dateierweiterung für Backups. Auf diese Weise
+		kann man alle tdb-Backupdateien aufbewahren, indem für jedes
+		Backup eine neue Endung verwendet wird.
 		</para> </listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-v</term>
 		<listitem><para>
-		The <command>-v</command> will check the database for damages (currupt data)
-		which if detected causes the backup to be restored.
+		Die Option <command>-v</command> überprüft die Datenbank auf
+		Schäden (fehlerhafte Daten). Wenn welche gefunden werden, wird
+		das Backup wiederhergestellt.
 		</para></listitem>
 		</varlistentry>
 
@@ -73,42 +79,49 @@
 
 
 <refsect1>
-	<title>COMMANDS</title>
+	<title>BEFEHLE</title>
 
-	<para><emphasis>GENERAL INFORMATION</emphasis></para>
+	<para><emphasis>ALLGEMEINE INFORMATION</emphasis></para>
 
 	<para>
-	The <command>tdbbackup</command> utility should be run as soon as samba has shut down.
-	Do NOT run this command on a live database. Typical usage for the command will be:
+	Das Werkzeug <command>tdbbackup</command> sollte ausgeführt werden,
+	gleich nachdem samba heruntergefahren wurde. Führen Sie diesen Befehl
+	NICHT auf einer aktiven Datenbank aus! Die übliche Weise, diesen Befehl
+	zu benutzen, ist folgende:
 	</para>
 
-	<para>tdbbackup [-s suffix] *.tdb</para>
+	<para>tdbbackup [-s Endung] *.tdb</para>
 
 	<para>
-	Before restarting samba the following command may be run to validate .tdb files:
+	Bevor samba neu gestartet wird, können die .tdb-Dateien mit dem 
+	folgenden Befehl überprüft werden:
 	</para>
 
-	<para>tdbbackup -v [-s suffix] *.tdb</para>
+	<para>tdbbackup -v [-s Endung] *.tdb</para>
 
 	<para>
-	Samba .tdb files are stored in various locations, be sure to run backup all
-	.tdb file on the system. Imporatant files includes:
+	Samba speichert .tdb-Dateien an verschiedenen Orten, daher sollten Sie
+	sicher sein, dass Sie ein Backup von allen .tdb-Dateien im System
+	machen. Zu den wichtigen Dateien gehören:
 	</para>
 
 	<itemizedlist>
 		<listitem><para>
-		<command>secrets.tdb</command> - usual location is in the /usr/local/samba/private
-		directory, or on some systems in /etc/samba.
+		<command>secrets.tdb</command> - üblicher Ort ist im
+		Verzeichnis /usr/local/samba/private, bzw. auf manchen 
+		Systemen in /etc/samba.
 		</para></listitem>
 
 		<listitem><para>
-		<command>passdb.tdb</command> - usual location is in the /usr/local/samba/private
-		directory, or on some systems in /etc/samba.
+		<command>passdb.tdb</command> - üblicher Ort ist im
+		Verzeichnis /usr/local/samba/private bzw. auf manchen 
+		Systemen in /etc/samba.
 		</para></listitem>
 
 		<listitem><para>
-		<command>*.tdb</command> located in the /usr/local/samba/var directory or on some
-		systems in the /var/cache or /var/lib/samba directories.
+		<command>*.tdb</command> befinden sich im Verzeichnis 
+		/usr/local/samba/var bzw. auf manchen Systemen in den
+		Verzeichnisse /var/cache oder /var/lib/samba.
 		</para></listitem>
 	</itemizedlist>
 
