@@ -239,8 +239,8 @@ in der Integrität des Netzwerks.
 
 <para>
 In dem Falle, daß der NT4 PDC außer Betrieb genommen werden muß, oder wenn dieser ausfällt, kann einer
-der NT4 BDCs zu einem PDC "befördert" werden. Wenn dies geschieht, während der originale NT4 PDC
-online ist, wird dieser automatisch zu einem NT4 BDC "degradiert". Dies ist ein wichtiger Aspekt des
+der NT4 BDCs zu einem PDC <quote>befördert</quote> werden. Wenn dies geschieht, während der originale NT4 PDC
+online ist, wird dieser automatisch zu einem NT4 BDC <quote>degradiert</quote>. Dies ist ein wichtiger Aspekt des
 Managements von Domänen-Controllern. Es sollte bemerkt werden, daß Samba-3 BDCs NICHT auf diese Art
 zu PDCs befördert werden können, da die nötige Rekonfiguration von Samba Änderungen an &smb.conf; bedingt.
 </para>
@@ -535,7 +535,7 @@ UIDs und GIDs für UNIX-Konten zu verwenden.
 
 <note><para>
 <indexterm><primary>Server-Typ</primary><secondary>Domänen-Mitglied</secondary></indexterm>
-Samba-3 hat eine neue Möglichkeit eingeführt, IDs zu "mappen". Diese erlaubt unter anderem grössere
+Samba-3 hat eine neue Möglichkeit eingeführt, IDs zu <quote>mappen</quote>. Diese erlaubt unter anderem grössere
 Flexibilität im Umgang mit UIDs und GIDs in Bezug auf NT-Domänen-User- und Gruppen-SIDs.
 Eine der neuen Funktionalitäten gewährleistet explizit, daß UNIX/Linux-UIDs und GIDs konsistent
 auf dem PDC, allen BDCs und allen Domänen-Mitglieds-Servern sind. Der Parameter, der dies kontrolliert,

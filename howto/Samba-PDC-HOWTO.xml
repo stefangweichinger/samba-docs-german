@@ -19,7 +19,8 @@ vorhandenen Information und Dokumentation vertraut zu machen.
 </para>
 
 <para>
-Der Leser ist gut beraten, diesen Abschnitt der Samba-Dokumentation gar nicht erst anzugehen, solange er nicht einige Grundlagen beherrscht. MS-Windows-Netzwerke sind nicht gerade tolerant gegenüber Fehl-Konfigurationen. Anwender von MS-Windows-Netzwerken beschweren sich oft über dauernde Unannehmlichkeiten infolge "kaputter" Netzwerk-Konfigurationen.
+Der Leser ist gut beraten, diesen Abschnitt der Samba-Dokumentation gar nicht erst anzugehen, solange er nicht einige Grundlagen beherrscht. MS-Windows-Netzwerke sind nicht gerade tolerant gegenüber Fehl-Konfigurationen. Anwender von MS-Windows-Netzwerken beschweren sich oft über dauernde Unannehmlichkeiten infolge <quote>kaputter</quote>
+Netzwerk-Konfigurationen.
 Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänen-Controller, von dem erwartet wird, daß er auf irgendeine magische Art alle Netzwerk-Probleme lösen kann.
 </para>
 
@@ -72,7 +73,7 @@ Lernen Sie in einem Test-Netzwerk.
 
 <para>
 In einem Wort, <emphasis>Single Sign On</emphasis>, oder noch kürzer, SSO.
-Für viele ist dies der "Heilige Gral" des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut konzipierten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
+Für viele ist dies der <quote>Heilige Gral</quote> des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut konzipierten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
 </para>
 
 <para>
@@ -97,7 +98,7 @@ Die folgenden Funktionalitäten sind in der Release Samba 3 neu:
 
 	<listitem><para>
 	<indexterm><primary>Nexus.exe</primary></indexterm>
-	Das Hinzufügen von Benutzern via "User Manager for Domains". Dies kann von jedem MS-Windows-Client mittels dem <filename>Nexus.exe</filename> toolkit für Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket für MS Windows NT4/200x/XP-Plattformen durchgeführt werden. Diese Pakete sind auf der Microsoft-Website verfügbar.
+	Das Hinzufügen von Benutzern via <quote>User Manager for Domains</quote>. Dies kann von jedem MS-Windows-Client mittels dem <filename>Nexus.exe</filename> toolkit für Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket für MS Windows NT4/200x/XP-Plattformen durchgeführt werden. Diese Pakete sind auf der Microsoft-Website verfügbar.
 	</para></listitem>
 
 	<listitem><para>
@@ -168,7 +169,8 @@ Im Laufe der Jahre hat die allgemeine Auffassung von Domänen-Verwaltung eine fas
 </itemizedlist>
 
 <para>
-Der <emphasis>Primary Domain Controller</emphasis> oder PDC spielt eine wichtige Rolle in MS Windows NT4. In der Windows 200x-Domänenverwaltungs-Architektur wird diese Rolle von Domänen-Controllern übernommen. Die "Folklore" schreibt vor, daß dies wegen seiner Rolle im MS Windows Netzwerk der stärkste und schnellste Rechner im Netz sein sollte. So seltsam das an dieser Stelle klingen mag, der Wunsch nach guter allgemeiner Netzwerk-Performance erfordert zwingend, daß die gesamte Infrastruktur ausgewogen gestaltet wird. Es ist ratsam, mehr in Stand-alone(Domänen-Mitglieds-)-Server zu investieren als in die DCs.
+Der <emphasis>Primary Domain Controller</emphasis> oder PDC spielt eine wichtige Rolle in MS Windows NT4. In der Windows 200x-Domänenverwaltungs-Architektur wird diese Rolle von Domänen-Controllern übernommen. Die 
+<quote>Folklore</quote> schreibt vor, daß dies wegen seiner Rolle im MS Windows Netzwerk der stärkste und schnellste Rechner im Netz sein sollte. So seltsam das an dieser Stelle klingen mag, der Wunsch nach guter allgemeiner Netzwerk-Performance erfordert zwingend, daß die gesamte Infrastruktur ausgewogen gestaltet wird. Es ist ratsam, mehr in Stand-alone(Domänen-Mitglieds-)-Server zu investieren als in die DCs.
 </para>
 
 <para>
@@ -177,7 +179,9 @@ Im Falle von MS Windows NT4-Domänen ist es der PDC, der eine neue Domänen-Verwal
 </para>
 
 <para>
-In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden "downstream controller" zu übergehen, jedoch hat ein "downline controller" nur Kontrolle über seine "downline". Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
+In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden <quote>downstream controller</quote> zu übergehen, jedoch hat 
+ein <quote>downline controller</quote> nur Kontrolle über seine <quote>downline</quote>. 
+Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
 </para>
 
 <para>
@@ -305,7 +309,11 @@ Ein Domänen-Controller ist ein SMB/CIFS-Server, der:
 
 <para>
 Es ist ziemlich einfach, Samba so zu konfigurieren, daß er all dies zur Verfügung stellt. Jeder Samba Domain Controller muß den NETLOGON-Dienst anbieten, welcher von Samba als <smbconfoption><name>domain logons</name></smbconfoption>-Funktionalität bezeichnet wird (nach dem Parameter in der &smb.conf;-Datei). Weiters muß ein Server in einer Samba-3-Domäne sich selbst als Domain Master Browser bekanntgeben <footnote>Siehe <link linkend="NetworkBrowsing"/>.</footnote>.
-Dies veranlaßt den PDC dazu, einen Domänen-spezifischen NetBIOS-Namen zu beanspruchen, der ihn als Domain Master Browser für die gegebene Domäne/Workgroup identifiziert. Lokale Master Browser in derselben Domäne/Workgroup und broadcast-isolierten Subnetzen erfragen dann eine komplette Kopie der "browse list" für das gesamte WAN. Browser Clients kontaktieren darauf ihren Lokalen Master Browser, und erhalten die "browse list" der gesamten Domäne, anstatt nur der Liste für ihr broadcast-isoliertes Subnetz.
+Dies veranlaßt den PDC dazu, einen Domänen-spezifischen NetBIOS-Namen zu beanspruchen, der ihn als Domain Master Browser für die gegebene Domäne/Workgroup identifiziert. 
+Lokale Master Browser in derselben Domäne/Workgroup und broadcast-isolierten Subnetzen erfragen dann eine 
+komplette Kopie der <quote>browse list</quote> für das gesamte WAN. Browser Clients kontaktieren darauf 
+ihren Lokalen Master Browser, 
+und erhalten die <quote>browse list</quote> der gesamten Domäne, anstatt nur der Liste für ihr broadcast-isoliertes Subnetz.
 </para>
 
 </sect2>
@@ -435,9 +443,9 @@ Die Protokolle für einige Funktionalitäten von AD-DCs wurden teilweise auf exper
 implementiert. Bitte erwarten Sie nicht, daß Samba-3 diese Protokolle unterstützt.
 Verlassen Sie nicht auf irgendeine derartige Funktionalität, weder jetzt noch in der Zukunft.
 Das Samba-Team könnte diese experimentellen Features entfernen oder deren Verhalten verändern.
-Dies wird erwähnt, um jenen zu helfen, die "geheime" Fähigkeiten von Samba-3 entdeckt haben und
+Dies wird erwähnt, um jenen zu helfen, die <quote>geheime</quote> Fähigkeiten von Samba-3 entdeckt haben und
 danach gefragt haben, wann diese Funktionalitäten vervollständigt sein werden.
-Die Antwort darauf ist: "Vielleicht. Vielleicht nie!"
+Die Antwort darauf ist: <quote>Vielleicht. Vielleicht nie!</quote>
 </para>
 
 <para>
@@ -659,7 +667,7 @@ können sie einfachst durch Verwendung von Netzwerk-Sniffern abgehört werden.
 <para>
 Es gibt ein paar Anmerkungen, die zu machen sind, um einige offene Fragen zu klären.
 Es gab viele Diskussionen darüber, ob es okay ist, Samba als Domänen-Controller in anderen
-Sicherheits-Modi als "user" zu konfigurieren. Der einzige Modus, der aus technischen Gründen
+Sicherheits-Modi als <quote>user</quote> zu konfigurieren. Der einzige Modus, der aus technischen Gründen
 nicht funktionieren wird, ist der Modus der Freigaben-Sicherheit. Domänen- und Server-Modus-Sicherheit
 sind in Wirklichkeit einfach nur Abwandlungen der SMB-Benutzer-Ebenen-Sicherheit.
 </para>
@@ -828,7 +836,9 @@ Nach dem erfolgreichen Beitreten zu einer Domäne scheitern Benutzeranmeldungen m
 </para>
 
 <para>
-Benutzen Sie auch die  Microsoft Management Console &smbmdash; Local Security Settings. Dieses Werkzeug ist in der Systemsteuerung verfügbar. Die Policy-Einstellungen findet man im Bereich "Local Policies/Security Options", sie sind erkennbar am Prefix <emphasis>Secure Channel: ..., and Digitally sign ....</emphasis>.
+Benutzen Sie auch die  Microsoft Management Console &smbmdash; Local Security Settings. Dieses Werkzeug ist in der Systemsteuerung verfügbar. Die Policy-Einstellungen findet man im Bereich 
+<quote>Local Policies/Security Options</quote>, sie sind erkennbar am 
+Prefix <emphasis>Secure Channel: ..., and Digitally sign ....</emphasis>.
 </para>
 
 <para>

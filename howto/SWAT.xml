@@ -376,7 +376,7 @@ Um dieses Feature zu aktivieren, tun Sie Folgendes:
 
 <para>
 Der Name der msg Datei ist gleich der Sprach-ID vom Browser. Zum Beispiel
-en für "English", de für "Deutsch", ja für "Japanisch", fr für "Französisch".
+en für <quote>English</quote>, de für <quote>Deutsch</quote>, ja für <quote>Japanisch</quote>, fr für <quote>Französisch</quote>.
 </para>
 
 <para>

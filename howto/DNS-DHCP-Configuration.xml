@@ -105,7 +105,7 @@ DHCP-Server, passend zur DNS-Konfiguration.
 	<para>
 	<indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
 	Die Beispiels-DNS-Konfiguration ist für ein privates Netzwerk im IP-Adressraum
-	192.168.1.0/24. Der "private class" Netzwerk-Adress-Raum ist in der RFC1918 festgelegt.
+	192.168.1.0/24. Der <quote>private class</quote> Netzwerk-Adress-Raum ist in der RFC1918 festgelegt.
 	</para>
 
 
