@@ -139,80 +139,78 @@ Die Samba-Anwendung, die die Verwaltung des Browsing und die Namensauflösung kon
 
 <para>
 <indexterm><primary>WINS</primary></indexterm>
-For Samba, the WINS Server and WINS Support are mutually exclusive options. Those marked with
-an (*) are the only options that commonly may need to be modified. Even if none of these
-parameters is set, <filename>nmbd</filename> will still do its job.
+Für Samba sind der WINS-Server und die WINS-Unterstützung zwei einander ausschließende Optionen. Die mit
+(*) markierten Optionen sind die einzigen Optionen, die im Allgemeinen verändert werden müssen. Sogar wenn
+keiner dieser Parameter gesetzt ist, tut <filename>nmbd</filename> nach wir vor seinen Job.
 </para>
 
 </sect1>
 
 <sect1 id="netdiscuss">
-<title>Discussion</title>
+<title>Diskussion</title>
 
 <para>
-All MS Windows networking uses SMB-based messaging.  SMB messaging may be implemented with or without NetBIOS.
-MS Windows 200x supports NetBIOS over TCP/IP for backwards compatibility. Microsoft appears intent on phasing
-out NetBIOS support.
+Die gesamte MS Windows-Netzwerk-Technologie verwendet <quote>SMB Messaging</quote>. Dieses kann mit oder ohne
+NetBIOS implementiert werden. MS Windows 200x unterstützt NetBIOS-über-TCP/IP, für Rückwärtskompatibilität.
+MS scheint zu planen, NetBIOS-Unterstützung auslaufen zu lassen.
 </para>
 
 <sect2>
-<title>NetBIOS over TCP/IP</title>
+<title>NetBIOS-über-TCP/IP</title>
 
 <para>
-Samba implements NetBIOS, as does MS Windows NT/200x/XP, by encapsulating it over TCP/IP.
-MS Windows products can do likewise. NetBIOS-based networking uses broadcast messaging to
-effect browse list management. When running NetBIOS over TCP/IP, this uses UDP-based messaging.
-UDP messages can be broadcast or uni-cast.
+Samba implementiert NetBIOS, wie es auch MS Windows NT/200x/XP tut, indem es dieses Protokoll in
+TCP/IP einbettet. NetBIOS-basierendes Netzwerke verwenden Broadcasts, um die Verwaltung der Browselists zu
+regeln. Wenn man NetBIOS-über-TCP/IP ausführt, verwendet dieses UDP-Messaging, diese UDP-Nachrichten können
+broadcast oder uni-cast sein.
 </para>
 
 
 <para>
 <indexterm><primary>UDP</primary></indexterm>
-Normally, only uni-cast UDP messaging can be forwarded by routers. The
-<smbconfoption><name>remote announce</name></smbconfoption> parameter to smb.conf helps to project browse announcements
-to remote network segments via uni-cast UDP. Similarly, the 
-<smbconfoption><name>remote browse sync</name></smbconfoption> parameter of &smb.conf;
-implements browse list collation using uni-cast UDP.
+Normalerweise können nur uni-cast UDP-Messages von Routern weitergeleitet werden. Der Parameter
+<smbconfoption><name>remote announce</name></smbconfoption> in &smb.conf; hilft dabei, die Ankündigungen und
+Aktualisierungen der Browselists in entfernte Netzwerksegmente über uni-cast UDP weiterzugeben. In ähnlicher
+Weise implementiert der Parameter <smbconfoption><name>remote browse sync</name></smbconfoption> in &smb.conf;
+die Sammlung und Zusammenfügung von Browselists mittels uni-cast UDP.
 </para>
 
 <para>
-Secondly, in those networks where Samba is the only SMB server technology,
-wherever possible <filename>nmbd</filename> should be configured on one machine as the WINS
-server. This makes it easy to manage the browsing environment. If each network
-segment is configured with its own Samba WINS server, then the only way to
-get cross-segment browsing to work is by using the 
+Weiters sollte <filename>nmbd</filename> in jenen Netzen, in denen Samba die einzige SMB-Server-Technologie ist,
+wo immer es möglich ist, auf einer Maschine als der WINS-Server konfiguriert werden. Das macht es einfach, die
+Browsing-Umgebung zu verwalten. Wenn jedes Netzwerk-Segment mit seinem eigenen Samba-WINS-Server konfiguriert 
+ist, dann ist der einzige Weg, um Browsing über mehrere Segmente zu ermöglichen, die Verwendung der Parameter
 <indexterm><primary>LMB</primary><see>Local Master Browser</see></indexterm>
 <indexterm><primary>Local Master Browser</primary></indexterm>
-<smbconfoption><name>remote announce</name></smbconfoption> and the <smbconfoption><name>remote browse sync</name></smbconfoption>
-parameters to your &smb.conf; file.
+<smbconfoption><name>remote announce</name></smbconfoption> und 
+<smbconfoption><name>remote browse sync</name></smbconfoption> in Ihrer &smb.conf;.
 </para>
 
 <para>
 <indexterm><primary>WINS</primary></indexterm>
-If only one WINS server is used for an entire multi-segment network, then
-the use of the <smbconfoption><name>remote announce</name></smbconfoption> and the 
-<smbconfoption><name>remote browse sync</name></smbconfoption> parameters should not be necessary.
+Wenn nur ein WINS-Server für ein gesamtes Multi-Segment-Netzwerk verwendet wird, dann sollte die Verwendung
+der Parameter <smbconfoption><name>remote announce</name></smbconfoption> und
+<smbconfoption><name>remote browse sync</name></smbconfoption> nicht erforderlich sein.
 </para>
 
 <para>
-<indexterm><primary>replication</primary><secondary>WINS</secondary></indexterm>
-As of Samba-3 WINS replication is being worked on. The bulk of the code has
-been committed, but it still needs maturation. This is not a supported feature
-of the Samba-3.0.0 release. Hopefully, this will become a supported feature
-of one of the Samba-3 release series.
+<indexterm><primary>Replikation</primary><secondary>WINS</secondary></indexterm>
+Seit Samba-3 wird an der Replikation von WINS gearbeitet. Der Großteil des Codes wurde bereits ins Samba-SVN
+übernommen, muß aber noch <quote>reifen</quote>. Diese Replikation ist kein unterstütztes Feature der
+Samba-3.0.0-Release. Hoffentlich wird es zu einem unterstützten Feature in einer der folgenden Samba-3-Releases. 
 </para>
 
 <para>
-Right now Samba WINS does not support MS-WINS replication. This means that
-when setting up Samba as a WINS server, there must only be one <filename>nmbd</filename>
-configured as a WINS server on the network. Some sites have used multiple Samba WINS
-servers for redundancy (one server per subnet) and then used 
-<smbconfoption><name>remote browse sync</name></smbconfoption> and <smbconfoption><name>remote announce</name></smbconfoption>
-to effect browse list collation across all segments. Note that this means clients
-will only resolve local names, and must be configured to use DNS to resolve names
-on other subnets in order to resolve the IP addresses of the servers they can see
-on other subnets. This setup is not recommended, but is mentioned as a practical
-consideration (i.e., an <quote>if all else fails</quote> scenario).
+Derzeit unterstützt das Samba WINS keine MS-WINS-Replikation. Das bedeutet, daß, wenn Sie einen Samba-Server als
+WINS-Server einrichten, nur <emphasis>ein</emphasis> <filename>nmbd</filename> als WINS-Server im Netzwerk 
+konfiguriert sein darf. Manche Installationen haben mehrere Samba-WINS-Server aus Gründen der Redundanz 
+eingesetzt (ein Server pro Subnetz) und dann <smbconfoption><name>remote announce</name></smbconfoption> und
+<smbconfoption><name>remote browse sync</name></smbconfoption> verwendet, um die Sammlung und Zusammenführung
+der Browselists über alle Segmente zu erzielen. Beachten Sie, daß dies bedeutet, daß Clients nur lokale Namen
+auflösen, und so konfiguriert werden müssen, daß sie DNS zur Auflösung von Namen anderer Subnetze verwenden,
+um es ihnen zu ermöglichen, die IP-Adressen der Server anderer Subnetze aufzulösen. Dieses Setup wird nicht
+empfohlen, aber wird aus Gründen der Vollständigkeit, und aus praktischen Überlegungen aufgeführt
+(d.h. als Szenario, <quote>wenn alles andere schiefgeht</quote>).
 </para>
 
 <para>
