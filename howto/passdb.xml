@@ -212,61 +212,67 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	</para>
 	<para>
 <indexterm><primary>encrypted passwords</primary></indexterm>	
-	Neuere Windows-Clients senden verschlüsselte Passwörter (sogenannte Lan man und NT
+	Neuere Windows-Clients senden verschlüsselte Passwörter (sogenannte LanMan und NT
 	Hashes), anstatt von Klartext. Die neuesten Clients senden nur verschlüsselte
 	Passwörter und verweigern, Klartext-Passwörter zu senden, außer ihre Registrierung
 	wurde modifiziert.
 	</para>
 
 	<para>
-	These passwords can't be converted to UNIX-style encrypted passwords. Because of that,
-	you can't use the standard UNIX user database, and you have to store the LanMan and NT
-	hashes somewhere else.
+	Diese Passwörter können nicht in UNIX-artige verschlüsselte Passwörter konvertiert werden.
+	Deshalb können Sie nicht die Standard-UNIX-Benutzerdatenbank verwenden, und Sie müssen
+	die LanMan und NT-Hashes anderswo speichern.	
 	</para>
 	
 	<para>
-	In addition to differently encrypted passwords, Windows also stores certain data for each
-	user that is not stored in a UNIX user database. For example, workstations the user may logon from,
-	the location where the user's profile is stored, and so on. Samba retrieves and stores this
-	information using a <smbconfoption><name>passdb backend</name></smbconfoption>. Commonly available backends are LDAP, plain text
-	file, and MySQL. For more information, see the man page for &smb.conf; regarding the 
-	<smbconfoption><name>passdb backend</name></smbconfoption> parameter.
-	</para>
+	Zusätzlich zu verschieden verschlüsselten Passwörtern speichert Windows auch Daten für jeden
+	Benutzer ab, die nicht in einer UNIX-Benutzerdatenbank abgespeichert werden. Zum Beispiel
+	die Workstations, von denen aus sich der Benutzer anmelden darf, wo sein Profil abgelegt
+	wird, und so weiter. Samba fragt diese Daten ab und speichert sie unter Verwendung eines
+	<smbconfoption><name>passdb backend</name></smbconfoption>. Üblicherweise verfügbare Backends
+	sind LDAP, Klartext-Dateien und MySQL. Für mehr Informationen dazu lesen Sie in der ManPage
+	zu &smb.conf; den Abschnitt bezüglich des Parameters
+	<smbconfoption><name>passdb backend</name></smbconfoption>.</para>
 
-
-	<image scale="50" id="idmap-sid2uid"><imagedescription>IDMAP: Resolution of SIDs to UIDs.</imagedescription><imagefile>idmap-sid2uid</imagefile></image>
+	<image scale="50" id="idmap-sid2uid"><imagedescription>IDMAP: Auflösung von SIDs auf UIDs.</imagedescription><imagefile>idmap-sid2uid</imagefile></image>
 
 	<para>
 <indexterm><primary>SID</primary></indexterm>
-	The resolution of SIDs to UIDs is fundamental to correct operation of Samba. In both cases shown, if winbindd is not running, or cannot
-	be contacted, then only local SID/UID resolution is possible. See <link linkend="idmap-sid2uid">resolution of SIDs to UIDs</link> and
-	<link linkend="idmap-uid2sid">resolution of UIDs to SIDs</link> diagrams.
+	Die Auflösung von SIDs auf UIDs ist fundamental für den korrekten Betrieb von Samba.
+	In beiden gezeigten Fällen, wenn winbindd nicht läuft, oder nicht erreicht werden kann, ist
+	nur lokale SID/UID-Auflösung möglich. Sehen Sie die Diagramme
+	<link linkend="idmap-sid2uid">Auflösung von SIDs auf UIDs</link> und
+	<link linkend="idmap-uid2sid">Auflösung von UIDs auf SIDs</link>.
 	</para>
 
-	<image scale="50" id="idmap-uid2sid"><imagedescription>IDMAP: Resolution of UIDs to SIDs.</imagedescription><imagefile>idmap-uid2sid</imagefile></image>
+	<image scale="50" id="idmap-uid2sid"><imagedescription>IDMAP: Auflösung von UIDs auf SIDs.</imagedescription><imagefile>idmap-uid2sid</imagefile></image>
 
 	<sect2>
-	<title>Important Notes About Security</title>
+	<title>Wichtige Bemerkungen zur Sicherheit</title>
 		
 		<para>
-		The UNIX and SMB password encryption techniques seem similar on the surface. This
-		similarity is, however, only skin deep. The UNIX scheme typically sends clear-text
-		passwords over the network when logging in. This is bad. The SMB encryption scheme
-		never sends the clear-text password over the network but it does store the 16 byte 
-		hashed values on disk. This is also bad. Why? Because the 16 byte hashed values
-		are a <quote>password equivalent.</quote> You cannot derive the user's password from them, but
-		they could potentially be used in a modified client to gain access to a server.
-		This would require considerable technical knowledge on behalf of the attacker but
-		is perfectly possible. You should thus treat the data-stored in whatever passdb
-		backend you use (smbpasswd file, LDAP, MYSQL) as though it contained the clear-text
-		passwords of all your users. Its contents must be kept secret and the file should
-		be protected accordingly.
+		Die UNIX und SMB Passwort-Verschlüsselungs-Techniken scheinen an der
+		Oberfläche ähnlich. Diese Ähnlichkeit ist jedoch nur sehr oberflächlich.
+		Das UNIX-Schema sendet beim Anmelden Klartext-Passwörter über das Netz.
+		Das ist schlecht. Das SMB-Verschlüsselungs-Schema sendet niemals das
+		Klartext-Passwort über das Netzwerk, sondern speichert die 16 Byte
+		Hash-Werte auf der Platte. Das ist auch schlecht. Warum? Weil diese
+		16 Byte Hash-Werte ein <quote>Passwort Äquivalent</quote> sind. Sie können
+		das Passwort des Benutzers nicht daraus ableiten, aber diese Werte könnten
+		möglicherweise in einem modifizierten Client dazu eingesetzt werden, Zugriff
+		auf einen Server zu erlangen. Dies würde einiges technisches Wissen auf Seiten
+		des Angreifers voraussetzen, ist jedoch definitiv möglich. Sie sollten daher
+		die gespeicherten Daten, welche Datenbank auch immer Sie benutzen (smbpasswd,
+		LDAP, MYSQL), so behandeln, als ob diese Daten die Klartext-Passwörter all
+		Ihrer Benutzer enthielten. Diese Inhalte müssen geheim gehalten werden und
+		die Datei sollte dementsprechend geschützt werden.
 		</para>
 		
 		<para>
-		Ideally, we would like a password scheme that involves neither plain text passwords
-		on the network nor on disk. Unfortunately, this is not available as Samba is stuck with
-		having to be compatible with other SMB systems (Windows NT, Windows for Workgroups, Windows 9x/Me).
+		Idealerweise würden wir ein Passwort-Schema bevorzugen, daß Klartext-Passwörter
+		weder im Netz noch auf der Festplatte verwendet. Dies ist unglücklicherweise
+		nicht verfügbar, da Samba darauf beschränkt ist, kompatibel mit anderen SMB-Systemen
+		(Windows NT, Windows for Workgroups, Windows 9x/Me) sein zu müssen.
 		</para>
 
 		<para>
