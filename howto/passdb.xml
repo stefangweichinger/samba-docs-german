@@ -392,79 +392,86 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	</para>
 
 	<para>
-	First, all Samba SAM (Security Account Manager database) accounts require
-	a UNIX/Linux UID that the account will map to. As users are added to the account
-	information database, Samba will call the <smbconfoption><name>add user script</name></smbconfoption>
-	interface to add the account to the Samba host OS. In essence all accounts in
-	the local SAM require a local user account.
+	Als erstes brauchen alle Samba SAM (Security Account Manager Datenbank) Konten eine
+	UNIX/Linux-UID, der das jeweilige Konto zugewiesen wird. Da Benutzer der Konten-Datenbank
+	hinzugefügt werden, ruft Samba das <smbconfoption><name>add user script</name></smbconfoption>
+	Interface auf, um das Konto dem Betriebssystem, unter dem Samba läuft, hinzuzufügen.
+	Grundsätzlich brauchen alle Konten in der lokalen SAM ein lokales Benutzerkonto.
 	</para>
 
 	<para>
-	The second way to effect Windows SID to UNIX UID mapping is via the
-	<emphasis>idmap uid</emphasis> and <emphasis>idmap gid</emphasis> parameters in &smb.conf;.
-	Please refer to the man page for information about these parameters.
-	These parameters are essential when mapping users from a remote SAM server.
+	Die zweite Möglichkeit, die Zuweisung von Windows SIDs auf UNIX UIDs zu erzielen, ist via
+	der Parameter <emphasis>idmap uid</emphasis> und <emphasis>idmap gid</emphasis> in &smb.conf;. 	
+	Bitte lesen Sie die manpage für Informationen zu diesen Parametern. Sie sind essentiell
+	wichtig für das Mappen von Benutzern von einem enfernten SAM-Server.
 	</para>
 
 	</sect2>
 
 	<sect2 id="idmapbackend">
-	<title>Mapping Common UIDs/GIDs on Distributed Machines</title>
+	<title>Das Zuweisen gemeinsamer UIDs/GIDs auf verteilten Maschinen</title>
 
 	<para>
-	Samba-3 has a special facility that makes it possible to maintain identical UIDs and GIDs
-	on all servers in a distributed network. A distributed network is one where there exists
-	a PDC, one or more BDCs and/or one or more Domain Member servers. Why is this important?
-	This is important if files are being shared over more than one protocol (e.g., NFS) and where
-	users are copying files across UNIX/Linux systems using tools such as <command>rsync</command>.
+	Samba-3 hat eine spezielle Einrichtung, die es ermöglicht, identische UIDs und GIDs auf
+	allen Servern eines verteilten Netzwerks aufrecht zu erhalten. Ein verteiltes Netzwerk ist
+	ein Netzwerk, in dem ein PDC, ein oder mehrere BDCs und/oder ein oder mehrere
+	Domänen-Mitglieds-Server existieren. Warum ist dies wichtig? Es ist wichtig, wenn Dateien
+	über mehr als nur ein Protokoll (z.B. NFS) im Netz bereitgestellt werden, und wenn
+	Benutzer Dateien mittels Werkzeugen wie <command>rsync</command> zwischen UNIX/Linux-Systemen
+	kopieren.
 	</para>
 
-	<para>
-	The special facility is enabled using a parameter called <parameter>idmap backend</parameter>.
-	The default setting for this parameter is an empty string. Technically it is possible to use
-	an LDAP based idmap backend for UIDs and GIDs, but it makes most sense when this is done for
-	network configurations that also use LDAP for the SAM backend. Following
-	<link linkend="idmapbackendexample">example</link> shows that.
+        <para> 
+	Die spezielle Einrichtung wird mittels einem Parameter namens 
+	<parameter>idmap backend</parameter> aktiviert. Die Standard-Einstellung für diesen
+	Parameter ist ein leerer String. Technisch ist es möglich, ein LDAP-Backend für UIDs und GIDs
+	zu verwenden, dies macht dann am meisten Sinn, wenn es in Netzwerk-Konfigurationen
+	verwendet wird, die auch LDAP für das SAM-Backend verwenden.
+	Sehen Sie dazu dieses <link linkend="idmapbackendexample">Beispiel</link>.
 	</para>
 
 	<para>
 <indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
 <smbconfexample id="idmapbackendexample">
-<title>Example configuration with the LDAP idmap backend</title>
-<indexterm><primary>SAM backend</primary><secondary>xmlsam</secondary></indexterm>
+<title>Beispiel-Konfiguration mit dem LDAP idmap Backend</title>
+<indexterm><primary>SAM Backend</primary><secondary>xmlsam</secondary></indexterm>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>idmap backend</name><value>ldap:ldap://ldap-server.quenya.org:636</value></smbconfoption>
-<smbcomment>Alternately, this could be specified as:</smbcomment>
+<smbcomment>Alternativ könnte dies so angegeben werden:</smbcomment>
 <smbconfoption><name>idmap backend</name><value>ldap:ldaps://ldap-server.quenya.org</value></smbconfoption>
 </smbconfexample>
 	</para>
 
 	<para>
-	A network administrator who wants to make significant use of LDAP backends will sooner or later be
-	exposed to the excellent work done by PADL Software. PADL <ulink url="http://www.padl.com"/> have
-	produced and released to open source an array of tools that might be of interest. These tools include:
+	Ein Netzwerk-Administrator, der ernsthaft LDAP-Backends verwenden will, wird früher oder später
+	auf die exzellente Arbeit von PADL Software stossen. PADL <ulink url="http://www.padl.com"/>
+	haben eine Reihe von Werkzeugen produziert und als OpenSource veröffentlicht, die von
+	Interesse sein könnten. Diese Werkzeuge enthalten:
 	</para>
-
+	
 	<itemizedlist>
 		<listitem>
 		<para>
-		<emphasis>nss_ldap:</emphasis> An LDAP Name Service Switch module to provide native
-		name service support for AIX, Linux, Solaris, and other operating systems. This tool
-		can be used for centralized storage and retrieval of UIDs/GIDs.
+		<emphasis>nss_ldap:</emphasis>
+		Ein LDAP Name Service Switch Modul, um native Namensdienst-Unterstützung für AIX,
+		Linux, Solaris, und andere Betriebssysteme anzubieten. Dieses Werkzeug kann zum
+		zentralen Speichern und Beziehen von UIDs/GIDs verwendet werden.
 		</para>
 		</listitem>
 
 		<listitem>
 		<para>
-		<emphasis>pam_ldap:</emphasis> A PAM module that provides LDAP integration for UNIX/Linux
-		system access authentication.
+		<emphasis>pam_ldap:</emphasis>
+		Ein PAM-Modul, das LDAP-Integration für UNIX/Linux-System-Authentifikation
+		bietet.
 		</para>
 		</listitem>
 		<listitem>
 		<para>
-		<emphasis>idmap_ad:</emphasis> An IDMAP backend that supports the Microsoft Services for
-		UNIX RFC 2307 schema available from their web
-		<ulink url="http://www.padl.com/download/xad_oss_plugins.tar.gz">site</ulink>.
+		<emphasis>idmap_ad:</emphasis>
+		Ein IDMAP-Backend, das das Schema "Microsoft Services for
+		UNIX RFC 2307" unterstützt, das unter
+		<ulink url="http://www.padl.com/download/xad_oss_plugins.tar.gz"></ulink>zu finden ist.
 		</para>
 		</listitem>
 	</itemizedlist>
@@ -474,18 +481,18 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 </sect1>
 
 <sect1 id="acctmgmttools">
-<title>Account Management Tools</title>
+<title>Werkzeuge zur Verwaltung von Konten</title>
 
 <para>
 <indexterm><primary>pdbedit</primary></indexterm>
-Samba provides two tools for management of user and machine accounts. These tools are
-called <command>smbpasswd</command> and <command>pdbedit</command>. A third tool is under
-development but is not expected to ship in time for Samba-3.0.0. The new tool will be a TCL/TK
-GUI tool that looks much like the MS Windows NT4 Domain User Manager. Hopefully this will
-be announced in time for the Samba-3.0.1 release.
+Samba enthält zwei Werkzeuge zur Verwaltung von Benutzer- und Maschinen-Konten. Diese Werkzeuge
+sind <command>smbpasswd</command> und <command>pdbedit</command>. Ein drittes Werkzeug ist in
+Entwicklung, aber wird nicht mit Samba-3.0.0 ausgeliefert. Das neue Werkzeug wird ein 
+TCL/TK-GUI-Werkzeug sein, das in vielerlei Hinsicht wie der MS Windows NT4 Domain User Manager
+aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0.1 fertig.
 </para>
 	<sect2>
-	<title>The <emphasis>smbpasswd</emphasis> Command</title>
+	<title>Der Befehl <emphasis>smbpasswd</emphasis></title>
 	
 		<para>
 		The smbpasswd utility is similar to the <command>passwd</command>
