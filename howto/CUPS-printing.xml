@@ -2170,46 +2170,49 @@ so stabil, wie es unter Windows eben geht. Der CUPS-Treiber ist von dem MS-Treib
 </sect2>
 
 <sect2>
-<title>Workarounds Impose Heavy Limitations</title>
+<title>Workarounds bringen massive Einschränkungen</title>
 
 <para>
-In many cases, in an attempt to work around this problem, site
-administrators have resorted to restricting the allowed drivers installed
-on their WTS to one generic PCL and one PostScript driver. This,
-however, restricts the clients in the number of printer options
-available for them. Often they can't get out more than simplex
-prints from one standard paper tray, while their devices could do much
-better, if driven by a different driver!
+In vielen Fällen haben Administratoren, in dem Bestreben, dieses Problem zu umgehen, dazu gegriffen, die
+erlaubten Druckertreiber auf ihrem WTS auf einen generischen PCL- und einen PostScript-Treiber einzuschränken.
+Dies schränkt jedoch die Clients im Umfang der ihnen zur Verfügung stehenden Druckoptionen ein. Oft bekommen
+sie nicht mehr als Simplex-Druck aus einem Standard-Papierschacht, während ihre Geräte bei weitem mehr könnten,
+wenn sie von einem besseren Treiber angesteuert würden!
 </para>
 </sect2>
 
 <sect2>
-<title>CUPS: A <quote>Magical Stone</quote>?</title>
+<title>CUPS: Ein <quote>Zauberstein</quote>?</title>
 
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
 <indexterm><primary>PostScript</primary></indexterm>
-Using a PostScript driver, enabled with a CUPS-PPD, seems to be a very
-elegant way to overcome all these shortcomings. There are, depending
-on the version of Windows OS you use, up to three different PostScript
-drivers available: Adobe, Microsoft and CUPS PostScript drivers. None
-of them is known to cause major stability problems on WTS (even if
-used with many different PPDs). The clients will be able to (again)
-chose paper trays, duplex printing and other settings. However, there
-is a certain price for this too: a CUPS server acting as a PostScript
-RIP for its clients requires more CPU and RAM than when just acting as
-a <quote>raw spooling</quote> device. Plus, this setup is not yet widely tested,
-although the first feedbacks look very promising.
+Das Verwenden eines Postscript-Treibers, aktiviert mit einem CUPS-PPD, scheint eine sehr elegante Art zu sein,
+all diese Mängel zu überbrücken. Es gibt, je nach der von Ihnen verwendeten Windows-Version, bis zu drei 
+verschiedene verfügbare Postscript-Treiber: Adobe, Microsoft und CUPS Postscript-Treiber. Keiner der drei
+ist bekannt dafür, grössere Instabilitäten auf WTS zu verursachen (auch nicht, wenn viele verschiedene PPDs
+verwendet werden). Die Clients werden (wieder) imstande dazu sein, Papierschächte auszuwählen, Duplexdruck
+und andere Einstellungen. Es gibt jedoch auch einen Preis dafür: ein CUPS-Server, der als PostScript RIP für
+seine Clients arbeitet, erfordert mehr CPU und RAM als wenn er nur als <quote>raw spooling</quote> Server
+arbeitet. Weiters ist dieses Setup noch nicht ausführlich getestet, wobei die ersten Rückmeldungen sehr
+vielversprechend aussehen.
 </para>
 </sect2>
 
 <sect2>
-<title>PostScript Drivers with No Major Problems &smbmdash; Even in Kernel
-Mode</title>
+<title>PostScript-Treiber ohne grössere Probleme &smbmdash; sogar im Kernel-Modus</title>
 
 <para>
 <indexterm><primary>DDK</primary></indexterm>
+Aktuellere Drucker-Treiber unter W200x und XP laufen nicht mehr im Kernel-Modus (anders als unter Windows NT).
+Beide Betriebssysteme können jedoch die NT-Treiber verwenden, die im Kernel-Modus laufen (Sie können grob 
+bestimmen, welcher Treiber zu welchem System gehört, da die Treiber im Unterverzeichnis <quote>2</quote> des
+Verzeichnisses <quote>W32X86</quote> die <quote>alten</quote> sind). Wie zuvor gesagt wurde, sind weder die
+Adobe-Treiber noch die von MS dafür bekannt, irgendwelche Stabilitätsprobleme zu verursachen. Der CUPS-Treiber
+wurde vom MS-Treiber abgeleitet. Es gibt einen einfachen Grund dafür: 
+
+
 More recent printer drivers on W200x and XP no longer run in kernel mode
 (unlike Windows NT). However, both operating systems can still
 use the NT drivers, running in kernel mode (you can roughly tell which
