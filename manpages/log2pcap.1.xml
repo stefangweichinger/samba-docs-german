@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>log2pcap</refname>
-	<refpurpose>Extract network traces from Samba log files</refpurpose>
+	<refpurpose>Erstellt Netzwerk-Traces aus den Samba Log-Dateien</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,61 +21,58 @@
 		<command>log2pcap</command>
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-q</arg>
-		<arg choice="opt">logfile</arg>
-		<arg choice="opt">pcap_file</arg>
+		<arg choice="opt">logdatei</arg>
+		<arg choice="opt">pcap_datei</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>log2pcap</command> reads in a 
-	samba log file and generates a pcap file (readable 
-	by most sniffers, such as ethereal or tcpdump) based on the packet 
-	dumps in the log file.</para>
+	<para><command>log2pcap</command> liest eine Samba-Log-Datei und generiert eine
+	pcap-Datei (lesbar von den meisten Sniffern, wie ethereal oder tcpdump), basierend auf
+	den "packet-dumps" in der Log-Datei.</para>
 
-	<para>The log file must have a <parameter>log level</parameter> 
-	of at least <constant>5</constant> to get the SMB header/parameters 
-	right, <constant>10</constant> to get the first 512 data bytes of the 
-	packet and <constant>50</constant> to get the whole packet.
+	<para>Die Log-Datei muß zumindest mit einem <parameter>log level</parameter> 
+	von <constant>5</constant> erstellt werden, um die SMB Header/Parameter richtig zu
+	erhalten, mit <constant>10</constant>, um die ersten 512 Daten-Bytes des Pakets zu erhalten,
+	und mit <constant>50</constant>, um das ganze Paket zu bekommen.
 	</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 	    <varlistentry>
 		<term>-h</term>
-		<listitem><para>If this parameter is 
-		specified the output file will be a 
-		hex dump, in a format that is readable 
-		by the <application>text2pcap</application> utility.</para></listitem>
+		<listitem><para>Wenn dieser Parameter angegeben ist, wird die Ausgabe-Datei ein
+		sogenannter "hex dump" sein, in einem Format, das lesbar für das Werkzeug
+		<application>text2pcap</application> ist.</para></listitem>
 	    </varlistentry>
 
 	    <varlistentry>
 	    	<term>-q</term>
-		<listitem><para>Be quiet. No warning messages about missing 
-		or incomplete data will be given.</para></listitem>
+		<listitem><para>Sei still. Keine Warnungen über fehlende oder unvollständige
+		Daten werden ausgegeben.</para></listitem>
 	    </varlistentry>
 		
 	    <varlistentry>
-		<term>logfile</term>
+		<term>logdatei</term>
 		<listitem><para>
-		Samba log file. log2pcap will try to read the log from stdin 
-		if the log file is not specified.
+		Samba Log-Datei. log2pcap wird versuchen, von stdin zu lesen, wenn die
+		Log-Datei nicht angegeben wird.
 		</para></listitem>
 	    </varlistentry>
 
 	    <varlistentry>
 		<term>pcap_file</term>
 		<listitem><para>
-		Name of the output file to write the pcap (or hexdump) data to.
-		If this argument is not specified, output data will be written 
-		to stdout.
+		Namen der Ausgabe-Datei, auf die die pcap- (oder hexdump-)Daten geschrieben werden.
+		Wenn dieses Argument nicht angegeben ist, wird die Ausgabe auf stdout geschrieben.
 		</para></listitem>
 	    </varlistentry>
 
@@ -85,15 +82,15 @@
 </refsect1>
 
 <refsect1>
-	<title>EXAMPLES</title>
+	<title>BEISPIELE</title>
 
-	<para>Extract all network traffic from all samba log files:</para>
+	<para>Extrahiere allen Netzwerkverkehr aus allen Samba-Log-Dateien:</para>
 
 	<para><screen>
 			<prompt>$</prompt> log2pcap &lt; /var/log/* &gt; trace.pcap
 	</screen></para>
 
-	<para>Convert to pcap using text2pcap:</para>
+	<para>Konvertieren auf pcap mittels text2pcap:</para>
 
 	<para><screen>
 	<prompt>$</prompt> log2pcap -h samba.log | text2pcap -T 139,139 - trace.pcap
@@ -103,36 +100,35 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>This man page is correct for version 3.0 of the Samba suite.</para>
+	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>BUGS</title>
 
-	<para>Only SMB data is extracted from the samba logs, no LDAP, 
-	NetBIOS lookup or other data.</para>
+	<para>SMB-Daten werden nur aus den Samba-Logs extrahiert, nicht aus LDAP, 
+	NetBIOS-Lookups oder anderen Datenquellen.</para>
 
-	<para>The generated TCP and IP headers don't contain a valid 
-	checksum.</para>
+	<para>Die generierten TCP- und IP-Header enthalten keine gültige Prüfsummen.</para>
 	
 </refsect1>
 
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>text2pcap</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>ethereal</refentrytitle><manvolnum>1</manvolnum></citerefentry></para>
 </refsect1>
 
 <refsect1>
 	<title>AUTHOR</title>
+
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge wurden von
+        Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
+        entwickelt, ähnlich wie der Linux-Kernel.</para>
 	
-	<para>The original Samba software and related utilities 
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar 
-	to the way the Linux kernel is developed.</para>
-	
-	<para>This manpage was written by Jelmer Vernooij.</para>
+	<para>Diese man-page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Übersetzung ins Deutsche: Stefan G. Weichinger.</para>
 </refsect1>
 
 </refentry>
