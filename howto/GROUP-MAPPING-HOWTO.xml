@@ -15,21 +15,21 @@
 	<para>
 <indexterm significance="preferred"><primary>groups</primary><secondary>mapping</secondary></indexterm>
 	Mit der Einführung von Samba 3, wurden neue "Group Mapping" Funktionen eingebaut, die Verbindungen
-	zwischen Unix Gruppen und Windows Guppen SIDs ermöglichen. Das Unterkommando <command>groupmap</command>,
+	zwischen Unix-Gruppen und Windows-Gruppen SIDs ermöglichen. Das Unterkommando <command>groupmap</command>,
 	welches zum &net; Kommando gehört, wird für das Verbinden der Gruppen verwendet.
 	</para>
 
 	<para>
-	Die neuen Features des Group Mappings ermöglichen dem Administrator zu entscheiden welche NT Domain 
-	Gruppen dem MS Windows Client zugeordnet werden. Es werden nur jene NT Domain Gruppen in den 
-	Tools zur Bearbeitung von Domain User und Gruppen angezeigt, welche auf eine Unix Gruppe gemappt wurden,
+	Die neuen Merkmale des Group Mappings ermöglichen dem Administrator zu entscheiden, welche NT Domänengruppen
+	dem MS Windows Client zugeordnet werden. Es werden nur jene NT Domänengruppen in den 
+	Werkzeugen zur Bearbeitung von Domänenbenutzern und -gruppen angezeigt, welche auf eine Unix-Gruppe gemappt wurden,
 	und nicht den Standardwert (<constant>-1</constant>) zugeordnet wurden.
  	</para>
 
 	<warning>
 	<para>
 	<indexterm><primary>domain admin group</primary></indexterm>
-	Der <parameter>domain admin group</parameter> Parameter wurde aus Samba-3 entfernt, und sollte nicht
+	Der <parameter>domain admin group</parameter> Parameter wurde aus Samba-3 entfernt und sollte nicht
 	länger verwendet werden. In Samba-2.2.x Versionen wurde dieser Parameter verwendet, um einer bestimmten
 	Liste von User die Mitgliedschaft in der Domain Admin Gruppe zu geben, welche lokale Administrator
 	Rechte auf den Client Rechner vergeben. (in Standard Konfigurationen)
