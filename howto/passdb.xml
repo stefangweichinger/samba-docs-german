@@ -23,7 +23,7 @@
 <para>
 Samba-3 führt eine neue Fähigkeit ein, gleichzeitig mit mehreren Account-Backends zu arbeiten.
 Die möglichen neuen Kombinationen von Passwort-Backends ermöglicht Samba-3
-eine Flexibilität und Skalierbarkeit, wie sie zuvor nur mit MS Windows Active Directory 
+eine Flexibilität und Skalierbarkeit, wie sie zuvor nur mit MS Windows Active Directory
 erreicht werden konnte.
 Dieses Kapitel beschreibt die neue Funktionalitäten und wie man das Meiste herausholt.
 </para>
@@ -47,11 +47,11 @@ Samba-3 bietet folgende Funktionen an, um zu Samba-2.2.x abwärtskompatibel zu se
 	<varlistentry><term>Plain Text</term>
 		<listitem>
 			<para>
-			Diese Option benutzt nichts weiter als das UNIX/Linux 
+			Diese Option benutzt nichts weiter als das UNIX/Linux
 			<filename>/etc/passwd</filename>
 			Modell. Bei Betriebssystemen, die Pluggable Authentication Modules (PAM) bieten,
-			werden alle PAM-Module unterstützt. Das Verhalten ist unverändert wie in 
-			Samba-2.2.x, und die Protokoll-Beschränkungen, die durch MS Windows Clients 
+			werden alle PAM-Module unterstützt. Das Verhalten ist unverändert wie in
+			Samba-2.2.x, und die Protokoll-Beschränkungen, die durch MS Windows Clients
 		 	bestehen,	
 			treffen gleichermassen zu. Für weitere Informationen zu den Beschränkungen bei Verwendung von
 			Plain Text Passwörtern finden Sie in den <link linkend="passdbtech">Technischen Informationen</link>.
@@ -62,19 +62,19 @@ Samba-3 bietet folgende Funktionen an, um zu Samba-2.2.x abwärtskompatibel zu se
 	<varlistentry><term>smbpasswd</term>
 		<listitem>
 			<para>
-			Auch diese Option bedeutet weiterhin die Nutzung der Datei 
+			Auch diese Option bedeutet weiterhin die Nutzung der Datei
 			<filename>smbpasswd</filename>,
 			die im simplen ASCII (Text) Stil gehalten ist und die verschlüsselten MS Windows
 			LanMan und NT Passworte, sowie ein Feld für die Accountinformationen enthält.
-			Diese Art der Passwort-Datenbank enthält keine 
-			MS Windows NT/200x SAM (Security Account Manager) Informationen. 
+			Diese Art der Passwort-Datenbank enthält keine
+			MS Windows NT/200x SAM (Security Account Manager) Informationen.
 			Diese wären notwendig,
-			um die erweiterten Funktionen für eine umfassendere Zusammenarbeit mit 
+			um die erweiterten Funktionen für eine umfassendere Zusammenarbeit mit
 			MS Windows NT4/200x Servern zu bieten.
 			</para>
 
 			<para>
-			Diese Datenbank sollte nur zur Abwärtskompatiblität zu älteren 
+			Diese Datenbank sollte nur zur Abwärtskompatiblität zu älteren
 			Samba-Versionen benutzt werden.
 			Sie wird möglicherweise von zukünftigen Versionen abgelehnt.
 			</para>
@@ -84,11 +84,11 @@ Samba-3 bietet folgende Funktionen an, um zu Samba-2.2.x abwärtskompatibel zu se
 	<varlistentry><term>ldapsam_compat (Samba-2.2 LDAP Kompatibilität)</term>
 		<listitem>
 			<para>
-			Es gibt eine Passwortdatenbank-Option, die fortgeführte Zusammenarbeit mit 
-			einer existierenden OpenLDAP-Datenbank erlaubt, die noch Samba-2.2.x 
+			Es gibt eine Passwortdatenbank-Option, die fortgeführte Zusammenarbeit mit
+			einer existierenden OpenLDAP-Datenbank erlaubt, die noch Samba-2.2.x
 			LDAP Schemata-Erweiterungen benutzt.
-			Diese vorläufige Option ist als Migrations-Hilfe gedacht, 
-			auch wenn zum jetzigen Zeitpunkt kein zwingender Grund für eine 
+			Diese vorläufige Option ist als Migrations-Hilfe gedacht,
+			auch wenn zum jetzigen Zeitpunkt kein zwingender Grund für eine
 			Migration vorliegt.
 			Diese Hilfe wird möglicherweise von zukünftigen Versionen abgelehnt.
 			</para>
@@ -113,13 +113,13 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<varlistentry><term>tdbsam</term>
 		<listitem>
 			<para>
-			Diese Datenbank ist eine umfangreiche Datenbank für lokale Server. 
-			Allerdings eignet sich diese Datenbankmethode nicht für das Aufsetzen 
+			Diese Datenbank ist eine umfangreiche Datenbank für lokale Server.
+			Allerdings eignet sich diese Datenbankmethode nicht für das Aufsetzen
 			von mehreren Domain-Controllern (z. B., ein PDC plus ein oder mehrere BDCs)
 			</para>
 
 			<para>
-			Die <emphasis>tdbsam</emphasis> Passwort-Datenbank legt neben den alten 
+			Die <emphasis>tdbsam</emphasis> Passwort-Datenbank legt neben den alten
 			<emphasis>smbpasswd</emphasis>-Informationen
 			noch die erweiterten MS Windows NT / 200x
 			SAM Informationen in binärer Form in der TDB (Trivial DataBase) Datei ab.
@@ -129,11 +129,11 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 			</para>
 
 			<para>
-			Die Einbeziehung der Möglichkeiten von <emphasis>tdbsam</emphasis> ist 
+			Die Einbeziehung der Möglichkeiten von <emphasis>tdbsam</emphasis> ist
 			eine direkte Antwort auf Benutzernachfragen, die nach einer einfachen
 			Betriebsart ohne den
 			Aufwand von OpenLDAP fragten. Es wird empfohlen dies nur bei Standorten bis 250
-			Benutzern anzuwenden. Fuer grössere Umgebungen wird eine 
+			Benutzern anzuwenden. Fuer grössere Umgebungen wird eine
 			OpenLDAP-basierende Installation wärmstens empfohlen.
 			</para>
 		</listitem>
@@ -142,25 +142,25 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<varlistentry><term>ldapsam</term>
 		<listitem>
 			<para>
-			Diese Datenbank ist eine umfangreiche Directory-Datenbank für Installationen mit 
+			Diese Datenbank ist eine umfangreiche Directory-Datenbank für Installationen mit
 			verteilten Accounts.
 			</para>
 
 			<para>
-			Samba-3 hat eine neue, erweiterte Implementation von LDAP, die eine 
+			Samba-3 hat eine neue, erweiterte Implementation von LDAP, die eine
 			Konfiguration von OpenLDAP mit dem neuen Samba Format-Schema voraussetzt.
 			Dieses neue Format-Schema
-			ist im Verzeichnis <filename class="directory">examples/LDAP</filename> 
+			ist im Verzeichnis <filename class="directory">examples/LDAP</filename>
 			der Samba-Distribution abgelegt.
 			</para>
 
 			<para>
-			Die neue LDAP-Implementation erweitert die Möglichkeiten zur Kontrolle 
+			Die neue LDAP-Implementation erweitert die Möglichkeiten zur Kontrolle
 			signifikant,
 			verglichen mit den Möglichkeiten vorheriger Samba-Versionen.
-			Man kann nun unter anderem Profil-Einstellungen, home-Verzeichnisse, 
+			Man kann nun unter anderem Profil-Einstellungen, home-Verzeichnisse,
 			Access Controls <quote>per user</quote> vornehmen.
-			Firmenkunden werden sehen, dass das Samba Team auf die Nachfragen nach besserer 
+			Firmenkunden werden sehen, dass das Samba Team auf die Nachfragen nach besserer
 			Ressourcennutzung und mehr Skalierbarkeit gehört hat.
 			</para>
 		</listitem>
@@ -169,8 +169,8 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<varlistentry><term>mysqlsam (MySQL basierende Datenbank)</term>
 		<listitem>
 			<para>
-			Es wird erwartet, dass eine MySQL-basierende SAM in einigen Bereichen sehr 
-			beliebt sein wird. Diese Datenbank wird sicherlich für Standorte, 
+			Es wird erwartet, dass eine MySQL-basierende SAM in einigen Bereichen sehr
+			beliebt sein wird. Diese Datenbank wird sicherlich für Standorte,
 			die ihre existierende MySQL-Technologie erweitern möchten, überlegenswert sein.
 			</para>
 		</listitem>
@@ -188,8 +188,8 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 			</para>
 
 			<para>
-			Die Option <parameter>xmlsam</parameter> kann für Account-Migration zwischen 
-			verschiedenen Datenbanken oder für Backups nützlich sein. Überdies könnten 
+			Die Option <parameter>xmlsam</parameter> kann für Account-Migration zwischen
+			verschiedenen Datenbanken oder für Backups nützlich sein. Überdies könnten
 			die Daten bearbeitet werden, bevor sie in eine andere Datenbank
 			übernommen werden.
 			</para>
@@ -325,7 +325,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		<para>
 		MS Windows Clients puffern nur das verschlüsselte Passwort. Wo Klartext-Passwörter
 		durch den entsprechenden Registrierungs-Eintrag aktiviert wurden, wird das
-		Klartext-Passwort nie gepuffert. Das bedeutet, daß im Fall einer getrennten 
+		Klartext-Passwort nie gepuffert. Das bedeutet, daß im Fall einer getrennten
 		Netzwerk-Verbindung nur das gepufferter (verschlüsselte) Passwort an den Server
 		gesendet wird, um einen automatischen Wiederaufbau der Verbindung zu erzielen.
 		Wenn der Server keine verschlüsselten Passwörter unterstützt, wird dies scheitern.
@@ -343,7 +343,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 
 				<listitem><para>Es werden keine Klartext-Passwörter auf Festplatten
 				oder im RAM abgelegt.</para></listitem>
-			 
+			
 				<listitem><para>Windows NT mag es nicht, mit einem Server zu
 				kommunizieren, der keine verschlüsselten Passwörter unterstützt.
 				Es wird verweigern, den Server zu durchsuchen (browsing), wenn der
@@ -421,8 +421,8 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	kopieren.
 	</para>
 
-        <para> 
-	Die spezielle Einrichtung wird mittels einem Parameter namens 
+        <para>
+	Die spezielle Einrichtung wird mittels einem Parameter namens
 	<parameter>idmap backend</parameter> aktiviert. Die Standard-Einstellung für diesen
 	Parameter ist ein leerer String. Technisch ist es möglich, ein LDAP-Backend für UIDs und GIDs
 	zu verwenden, dies macht dann am meisten Sinn, wenn es in Netzwerk-Konfigurationen
@@ -486,14 +486,14 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 <para>
 <indexterm><primary>pdbedit</primary></indexterm>
 Samba enthält zwei Werkzeuge zur Verwaltung von Benutzer- und Maschinen-Konten. Diese Werkzeuge
-sind <command>smbpasswd</command> und <command>pdbedit</command>. 
+sind <command>smbpasswd</command> und <command>pdbedit</command>.
 
-<!-- 
+<!--
 
 Nach Rückfrage bei Jelmer aus dem aktuellen Stand kommentiert: Projekt schläft. sgw
 
 Ein drittes Werkzeug ist in
-Entwicklung, aber wird nicht mit Samba-3.0.0 ausgeliefert. Das neue Werkzeug wird ein 
+Entwicklung, aber wird nicht mit Samba-3.0.0 ausgeliefert. Das neue Werkzeug wird ein
 TCL/TK-GUI-Werkzeug sein, das in vielerlei Hinsicht wie der MS Windows NT4 Domain User Manager
 aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0.1 fertig.
 
@@ -617,7 +617,7 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 		</para>
 
 		<para>
-		Das Folgende ist ein Beispiel für die Benutzer-Konten-Information, die einem 
+		Das Folgende ist ein Beispiel für die Benutzer-Konten-Information, die einem
 		tdbsam-passdb-Backend gespeichert ist. Diese Liste wurde so erzeugt:
 		</para>
 
@@ -703,7 +703,7 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 		und eventuell ein paar weiteren Feldern aus der Datei <filename>/etc/samba/smbpasswd</filename>
 		oder <filename>/etc/smbpasswd</filename>. Wenn Passwort-Verschlüsselung deaktiviert ist, werden
 		überhaupt keine SMB-spezifischen Daten gespeichert. Stattdessen werden alle Operationen auf
-		die Art durchgeführt, in der das Wirts-Betriebssystem auf seine Datenbank 
+		die Art durchgeführt, in der das Wirts-Betriebssystem auf seine Datenbank
 		<filename>/etc/passwd</filename> zugreift. Auf Linux-System geschieht dies beispielsweise via
 		PAM.
 		</para>
@@ -716,51 +716,45 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 		<para>
 <indexterm><primary>SAM backend</primary><secondary>smbpasswd</secondary></indexterm>
 		Traditionellerweise wurden Benutzer-Konten-Informationen wie Benutzername, LM/NT Passwort-Hashes,
-		Passwort-Änderungszeiten, und Konten-Flags in der Datei 		
-
-
-
-Traditionally, when configuring <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption> in Samba's &smb.conf; file, user account
-		information such as username, LM/NT password hashes, password change times, and account
-		flags have been stored in the <filename>smbpasswd(5)</filename> file. There are several
-		disadvantages to this approach for sites with large numbers of users (counted
-		in the thousands).
+		Passwort-Änderungszeiten, und Konten-Flags in der Datei <filename>smbpasswd(5)</filename>
+		gespeichert. Es gibt einige Nachteile an diesem Ansatz, besonders für Installationen mit
+		einer grossen Anzahl von Benutzern (wir sprechen hier von Tausenden ...).
 		</para>
 
 		<itemizedlist>
 		<listitem><para>
-		The first problem is that all lookups must be performed sequentially. Given that
-		there are approximately two lookups per domain logon (one for a normal
-		session connection such as when mapping a network drive or printer), this
-		is a performance bottleneck for large sites. What is needed is an indexed approach
-		such as used in databases.
+		Das erste Problem ist, daß alle Suchen ("lookups") sequentiell ausgeführt werden müssen.
+		Dadurch, daß durchschnittlich zwei lookups pro Domänen-Anmeldung ausgeführt werden
+		(einer für die normale Verbindung wie beim Verbinden eines Netzwerk-Laufwerks oder -Drucker)
+		ist dies performance-mässig ein Flaschenhals für grosse Installationen. Was hier gebraucht wird,
+		ist ein Ansatz mit Indizes, wie er in Datenbanken verwendet wird.
 		</para></listitem>
 
 		<listitem><para>
-		The second problem is that administrators who desire to replicate a smbpasswd file
-		to more than one Samba server were left to use external tools such as
-		<command>rsync(1)</command> and <command>ssh(1)</command> and wrote custom,
-		in-house scripts.
+		Das zweite Problem ist, daß Administratoren, die eine smbpasswd-Datei auf mehr als einen
+		Samba-Server replizieren wollen, externe Werkzeuge wie <command>rsync(1)</command> und
+		<command>ssh(1)</command> verwenden mußten, und eigene, haus-interne Skripts geschrieben haben.	
 		</para></listitem>
 
 		<listitem><para>
-		Finally, the amount of information that is stored in an smbpasswd entry leaves
-		no room for additional attributes such as a home directory, password expiration time,
-		or even a Relative Identifier (RID).
+		Zuletzt läßt der Raum, den die Menge an Informationen, die in einem smbpasswd-Eintrag gespeichert
+		wird, keinen Platz für weitere Attribute, wie z.B. ein home-Verzeichnis, Ablaufdatum des 
+		Passworts oder auch nur für einen Relative Identifier (RID).
 		</para></listitem>
 		</itemizedlist>
 
 		<para>
-		As a result of these deficiencies, a more robust means of storing user attributes
-		used by smbd was developed. The API which defines access to user accounts
-		is commonly referred to as the samdb interface (previously this was called the passdb
-		API, and is still so named in the Samba CVS trees). 
+		Als Schlußfolgerung aus diesen Mängeln wurde ein robusteres Hilfsmittel entwickelt, mit dem
+		smbd Benutzer-Attribute speichern kann. Die API, welche den Zugriff auf Benutzer-Konten
+		definiert, wird üblicherweise als das samdb-Interface bezeichnet (davor wurde es als die
+		passdb-API bezeichnet, und im Samba-CVS-Tree wird es das immer noch).
 		</para>
 
 		<para>
-		Samba provides an enhanced set of passdb backends that overcome the deficiencies
-		of the smbpasswd plain text database. These are tdbsam, ldapsam and xmlsam.
-		Of these, ldapsam will be of most interest to large corporate or enterprise sites.
+		Samba bietet eine erweiterte Auswahl an passdb-Backends, die die Mängel der 
+		smbpasswd-Klartext-Datenbank beseitigen. Diese sind tdbsam, ldapsam und xmlsam.
+		Aus diesen dreien wird ldapsam dasjenige sein, das für grosse Firmen- oder
+		Unternehmens-Installationen von größtem Interesse ist.
 		</para>
 
 	</sect2>
@@ -777,8 +771,8 @@ Traditionally, when configuring <smbconfoption><name>encrypt passwords</name><va
 
 		<para>
 		As a general guide, the Samba Team does not recommend using the tdbsam backend for sites
-		that have 250 or more users. Additionally, tdbsam does not support a replication protocol 
-		necessary for Samba PDC and BDC installations.  In such cases, the use of ldapsam is 
+		that have 250 or more users. Additionally, tdbsam does not support a replication protocol
+		necessary for Samba PDC and BDC installations.  In such cases, the use of ldapsam is
 		be encouraged.
 		</para>
 
@@ -808,7 +802,7 @@ Traditionally, when configuring <smbconfoption><name>encrypt passwords</name><va
 
 		<para>
 		The second item can be accomplished by using LDAP NSS and PAM modules. LGPL
-		versions of these libraries can be obtained from 
+		versions of these libraries can be obtained from
 		<ulink url="http://www.padl.com/">PADL Software</ulink>.
 		More information about the configuration of these packages may be found at
 		<ulink url="http://safari.oreilly.com/?XmlId=1-56592-491-6">
@@ -1112,7 +1106,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 			LDAP libraries are found.
 			</para>
 
-			<para>LDAP related smb.conf options: 
+			<para>LDAP related smb.conf options:
 			<smbconfoption><name>passdb backend</name><value>ldapsam:url</value></smbconfoption>,
 			<smbconfoption><name>ldap admin dn</name></smbconfoption>,
 			<smbconfoption><name>ldap delete dn</name></smbconfoption>,
@@ -1206,7 +1200,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 			For now, there is no NT-like group system management (global and local
 			groups). Samba-3 knows only about <constant>Domain Groups</constant>
 			and, unlike MS Windows 2000 and Active Directory, Samba-3 does not
-			support nested groups. 
+			support nested groups.
 			</para>
 
 		</sect3>
@@ -1271,7 +1265,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		<title>LDAP Special Attributes for sambaSamAccounts</title>
 
 			<para> The sambaSamAccount objectclass is composed of the attributes shown in next tables: <link
-			linkend="attribobjclPartA">Part A</link>, and <link linkend="attribobjclPartB">Part B</link>. 
+			linkend="attribobjclPartA">Part A</link>, and <link linkend="attribobjclPartB">Part B</link>.
 			</para>
 
 			<para>
@@ -1504,7 +1498,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 
 			<para>
 			You can set up your own table and specify the field names to pdb_mysql (see below
-			for the column names) or use the default table. The file <filename>examples/pdb/mysql/mysql.dump</filename> 
+			for the column names) or use the default table. The file <filename>examples/pdb/mysql/mysql.dump</filename>
 			contains the correct queries to create the required tables. Use the command:
 
 <screen>
@@ -1524,9 +1518,9 @@ access to attrs=sambaLMPassword,sambaNTPassword
 </smbconfblock>
 			</para>
 
-			<para>The identifier can be any string you like, as long as it does not collide with 
-			the identifiers of other plugins or other instances of pdb_mysql. If you 
-			specify multiple pdb_mysql.so entries in <smbconfoption><name>passdb backend</name></smbconfoption>, you also need to 
+			<para>The identifier can be any string you like, as long as it does not collide with
+			the identifiers of other plugins or other instances of pdb_mysql. If you
+			specify multiple pdb_mysql.so entries in <smbconfoption><name>passdb backend</name></smbconfoption>, you also need to
 			use different identifiers.
 			</para>
 
@@ -1556,12 +1550,12 @@ access to attrs=sambaLMPassword,sambaNTPassword
 
 			<warning>
 			<para>
-			Since the password for the MySQL user is stored in the &smb.conf; file, you should make the &smb.conf; file 
+			Since the password for the MySQL user is stored in the &smb.conf; file, you should make the &smb.conf; file
 			readable only to the user who runs Samba. This is considered a security bug and will soon be fixed.
 			</para>
 			</warning>
 
-			<para>Names of the columns are given in <link linkend="moremysqlpdbe">the next table</link>. 
+			<para>Names of the columns are given in <link linkend="moremysqlpdbe">the next table</link>.
 			The default column names can be found in the example table dump.
 			 </para>
 
@@ -1611,7 +1605,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		</para>
 
 			<para>
-			You can put a colon (:) after the name of each column, which 
+			You can put a colon (:) after the name of each column, which
 			should specify the column to update when updating the table. You can also
 			specify nothing behind the colon. Then the field data will not be updated. Setting a column name to <parameter>NULL</parameter> means the field should not be used.
 			</para>
@@ -1650,7 +1644,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			If you would like to use plaintext passwords, set
 			`identifier:lanman pass column' and `identifier:nt pass column' to
 			`NULL' (without the quotes) and `identifier:plain pass column' to the
-			name of the column containing the plaintext passwords. 
+			name of the column containing the plaintext passwords.
 			</para>
 
 			<para>
@@ -1715,7 +1709,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 
 		<para><quote>I've installed Samba, but now I can't log on with my UNIX account! </quote></para>
 
-		<para>Make sure your user has been added to the current Samba <smbconfoption><name>passdb backend</name></smbconfoption>. 
+		<para>Make sure your user has been added to the current Samba <smbconfoption><name>passdb backend</name></smbconfoption>.
 		Read the section <link linkend="acctmgmttools">Account Management Tools</link> for details.</para>
 
 	</sect2>
