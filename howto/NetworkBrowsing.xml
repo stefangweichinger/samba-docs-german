@@ -1072,7 +1072,7 @@ tun müssen, ist, eine Zeile zur Datei <filename>wins.dat</filename> hinzuzufügen
 Einträge in <filename>wins.dat</filename> haben die Form:
 
 <programlisting>
-"NAME#TYPE" TTL ADDRESS+ FLAGS
+&quot;NAME#TYPE&quot; TTL ADDRESS+ FLAGS
 </programlisting>
 Dabei ist NAME der NetBIOS-Name, TYPE der NetBIOS-Typ, TTL die <quote>time-to-live</quote> als Absolut-Zeit in
 Sekunden und ADDRESS+ eine oder mehrere Adressen, die mit der Registrierung zusammenhängen; und FLAGS sind die
@@ -1082,13 +1082,13 @@ NetBIOS-Flags für die Registrierung.
 <para>
 Ein typischer dynamischer Eintrag sieht so aus:
 <programlisting>
-"MADMAN#03" 1055298378 192.168.1.2 66R
+&quot;MADMAN#03&quot; 1055298378 192.168.1.2 66R
 </programlisting>
 
 Um ihn statisch zu machen, muss nur der Wert für TTL auf 0 gesetzt werden:
 
 <programlisting>
-"MADMAN#03" 0 192.168.1.2 66R
+&quot;MADMAN#03&quot; 0 192.168.1.2 66R
 </programlisting>
 </para>
 
@@ -1609,7 +1609,7 @@ Wahrscheinlich ist Ihr Gastzugang aus irgendeinem Grund ungültig. Samba verwende
 </sect2>
 
 <sect2>
-	<title>Ich bekomme einen Fehler <errorname>"Unable to browse the network"</errorname></title>
+	<title>Ich bekomme einen Fehler <errorname>&quot;Unable to browse the network&quot;</errorname></title>
 
 	<para>Dieser Fehler kann viele Gründe haben:
 <indexterm><primary>Browsing-Probleme</primary></indexterm>
