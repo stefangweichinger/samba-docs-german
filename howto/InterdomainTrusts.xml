@@ -204,28 +204,28 @@ in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windo
 	</para></listitem>
 
 	<listitem><para>
-	The trusting domain can access and use accounts (Users/Global Groups) in the
-	trusted domain.
+	Die vertrauende Domäne kann auf Konten (Benutzer/Globale Gruppen) der 
+	vertrauten Domäne zugreifen und sie benutzen.
 	</para></listitem>
 
 	<listitem><para>
-	Administrators of the trusted domain can be granted administrative rights in the 
-	trusting domain.
+	Administratoren der vertrauten Domäne können administrative Rechte in der vertrauenden Domäne
+	gegeben werden.
 	</para></listitem>
 
 	<listitem><para>
-	Users in a trusted domain can be given rights and privileges in the trusting
-	domain.
+	Benutzer in einer vertrauten Domäne können Rechte und Privilegien in der vertrauenden Domäne gegeben
+	werden.
 	</para></listitem>
 
 	<listitem><para>
-	Trusted domain Global Groups can be given rights and permissions in the trusting
-	domain.
+	Globale Gruppen der vertrauten Domäne können Rechte und Zugriffe in der vertrauenden Domäne
+	gegeben werden.
 	</para></listitem>
 
 	<listitem><para>
-	Global Groups from the trusted domain can be made members in Local Groups on
-	MS Windows Domain Member machines.
+	Globale Gruppen einer vertrauten Domäne können Mitglieder in Lokalen Gruppen
+	einer MS Windows Domain Member Maschine werden.
 	</para></listitem>
 </itemizedlist>
 
@@ -234,32 +234,33 @@ in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windo
 </sect1>
 
 <sect1>
-<title>Configuring Samba NT-Style Domain Trusts</title>
+<title>Konfigurieren einer Samba NT-gleichen Vertrauensstellung</title>
 
 <para>
-This description is meant to be a fairly short introduction about how to set up a Samba server so
-that it can participate in interdomain trust relationships. Trust relationship support in Samba
-is at an early stage, so do not be surprised if something does not function as it should.
+Diese Beschreibung sollte eine recht kurze Einführung sein wie man einen Samba Server aufsetzt so
+dass er an einer Inderdomain Vertrauensstellung Teilnehmen kann. Die Unterstützung von Verstrauensstellungen
+in Samba ist in einem frühen Stadium, deshalb sollte man nicht überrascht sein wenn etwas nicht funktioniert
+wie es sollte.
 </para>
 
 <para>
-Each of the procedures described below assumes the peer domain in the trust relationship is 
-controlled by a Windows NT4 server. However, the remote end could just as well be another 
-Samba-3  domain. It can be clearly seen, after reading this document, that combining 
-Samba-specific parts of what's written below leads to trust between domains in a purely Samba 
-environment.
+Alle unten beschriebenen Szenarien gehen davon aus dass die Peer Domäne in der Vertrauensstellung von
+einem Windows NT4 Server betrieben wird. Das entfernte Ende könnte aber auch genausogut eine andere
+Samba-3 Domäne sein. Nachdem man dieses Dokument zu ende gelesen hat, kann man gut erkennen dass wenn
+man Samba-spezifische Teile von den unten beschrieben zusammensetzt, auch eine Vertrauensstellung zwischen
+Domänen in einer reinen Samba Umgebung herstellen kann.
 </para>
 
 <sect2 id="samba-trusted-domain">
-<title>Samba as the Trusted Domain</title>
+<title>Samba als vertraute Domäne</title>
 
 <para>
-In order to set the Samba PDC to be the trusted party of the relationship, you first need
-to create a special account for the domain that will be the trusting party. To do that,
-you can use the <command>smbpasswd</command> utility. Creating the trusted domain account is 
-similar to creating a trusted machine account. Suppose, your domain is
-called SAMBA, and the remote domain is called RUMBA. The first step
-will be to issue this command from your favorite shell:
+Um den Samba PDC als vertraute Seite der Vertrauensstellung festzulegen muss zuerst ein spezielles
+Konto in der Domäne festgelegt werden die die vertrauende Seite sein wird. Um dies zu machen kann
+das <command>smbpasswd</command> Programm verwendet werden. Ein vertrautes Domänen Konto zu erstellen
+funktioniert ähnlich wie ein vertrautes Maschinen Konto zu erstellen. Angenommen, Ihre Domäne heisst
+SAMBA, und die entfernte Domäne ist RUMBA. Der erste Schritt ist, folgenden Befehl in Ihrer lieblings 
+Shell auszuführen:
 </para>
 
 <para>
@@ -270,53 +271,52 @@ Retype SMB password: <userinput>XXXXXXXX</userinput>
 Added user rumba$
 </screen>
 
-where <option>-a</option> means to add a new account into the
-passdb database and <option>-i</option> means: <quote>create this
-account with the Inter-Domain trust flag</quote>.
+wobei <option>-a</option> bedeutet dass ein neues Konto der passdb Datenbank hinzugefügt wird
+und <option>-i</option> soviel heisst wie <quote>erstelle dieses Konto mit der Inter-Domain
+vertrauens flag</quote>.
 </para>
 
 <para>
-The account name will be <quote>rumba$</quote> (the name of the remote domain).
-If this fails, you should check that the trust account has been added to the system
-password database (<filename>/etc/passwd</filename>). If it has not been added, you
-can add it manually and then repeat the step above.
+Der Konto Namen ist nun <quote>rumba$</quote> (der Namen der entfernten Domäne)
+Falls dies fehlschlägt sollten Sie überprüfen ob das Konto der System Password
+Datenbank (<filename>/etc/passwd</filename>) hinzugefügt wurde. Falls nicht, können
+sie es händisch hinzufügen und dann obigen Schritt wiederholen.
 </para>
 
 <para>
-After issuing this command, you will be asked to enter the password for
-the account. You can use any password you want, but be aware that Windows NT will
-not change this password until seven days following account creation.
-After the command returns successfully, you can look at the entry for the new account
-(in the standard way as appropriate for your configuration) and see that accounts name is
-really RUMBA$ and it has the <quote>I</quote> flag set in the flags field. Now you are ready to confirm
-the trust by establishing it from Windows NT Server.
+Nachdem sie diesen Befehl eingegeben haben, werden Sie nach einem Password für dieses Konto gefragt.
+Sie können hier jedes beliebige Passwort verwenden, aber beachten Sie dass Windows NT dieses Passwort
+nicht vor 7 Tage nach der Konto Erstellung ändern wird. Nach erfolgreicher Ausführung des Befehls,
+können sie den Eintrag für das neue Konto anschauen (in der Art wie es Ihre Konfiguration vorsieht),
+und Sie werden sehen dass der Kontoname wirklick RUMBA$ ist und dass die <quote>I</quote> flag im flags Feld
+gesetzt ist. Sie sind nun bereit die Vertrauensstellung zu bestätigen, indem Sie sie vom Windows NT Server
+aus aufbauen.
 </para>
 
 
 <para>
 <indexterm><primary>User Manager</primary></indexterm>
-Open <application>User Manager for Domains</application> and from the
-<guimenu>Policies</guimenu> menu, select <guimenuitem>Trust Relationships...</guimenuitem>.
-Beside the <guilabel>Trusted domains</guilabel> list box click the
-<guimenu>Add...</guimenu> button. You will be prompted for
-the trusted domain name and the relationship password. Type in SAMBA, as this is
-the name of the remote domain and the password used at the time of account creation.
-Click on <guibutton>OK</guibutton> and, if everything went without incident, you will see 
-the <computeroutput>Trusted domain relationship successfully 
-established</computeroutput> message.
+Öffnen Sie den <application>User Manager for Domains</application> und vom
+<guimenu>Policies</guimenu> Menu, wählen Sie <guimenuitem>Trust Relationships...</guimenuitem>.
+Neben der <guilabel>Trusted domains</guilabel> List Box klicken Sie den
+<guimenu>Add...</guimenu> Knopf. Sie werden nach dem Namen der vertrauten Domäne und dem
+dazugehörigen Passwort gefragt. Geben Sie SAMBA an, da dies der Name unserer entfernten Domäne ist,
+und das Passwort welches bei der Konto Erstellung verwendet wurde. Klicken Sie auf den <guibutton>OK</guibutton>
+und, wenn alles ohne Fehler ging, werden Sie die <computeroutput>Trusted domain relationship successfully 
+established</computeroutput> Mitteilung bekommen.
 </para>
 
 </sect2>
 <sect2>
-<title>Samba as the Trusting Domain</title>
+<title>Samba als die vertrauende Domäne</title>
 
 <para>
-This time activities are somewhat reversed. Again, we'll assume that your domain
-controlled by the Samba PDC is called SAMBA and the NT-controlled domain is called RUMBA.
+Jetzt werden die Aufgaben umgekehrt. Wieder nehmen wir an, dass Ihre vom Samba PDC kontrollierte Domäne
+SAMBA heisst und die NT-kontrollierte Domäne RUMBA.
 </para>
 
 <para>
-The very first step is to add an account for the SAMBA domain on RUMBA's PDC.
+Der erste Schritt ist ein Konto für die SAMBA Domäne auf dem RUMBA PDC zu erstellen.
 </para>
 
 
