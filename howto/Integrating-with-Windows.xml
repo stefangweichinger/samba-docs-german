@@ -333,10 +333,10 @@ zeigen typische Registrierungen für NetBIOS-Namen und -Service-Typen.
 <colspec align="left"/>
 <colspec align="justify"/>
 <tbody>
-<row><entry>MACHINENAME&lt;00&gt;</entry><entry>Server Service is running on MACHINENAME</entry></row>
-<row><entry>MACHINENAME&lt;03&gt;</entry><entry>Generic Machine Name (NetBIOS name)</entry></row>
-<row><entry>MACHINENAME&lt;20&gt;</entry><entry>LanMan Server service is running on MACHINENAME</entry></row>
-<row><entry>WORKGROUP&lt;1b&gt;</entry><entry>Domain Master Browser</entry></row>
+<row><entry>MASCHINENNAME&lt;00&gt;</entry><entry>Serverdienst läuft auf MASCHINENNAME</entry></row>
+<row><entry>MASCHINENNAME&lt;03&gt;</entry><entry>Generischer Maschinenname (NetBIOS-Name)</entry></row>
+<row><entry>MASCHINENNAME&lt;20&gt;</entry><entry>LanMan-Server-Dienst läuft auf MASCHINENNAME</entry></row>
+<row><entry>ARBEITSGRUPPE&lt;1b&gt;</entry><entry>Domänen Master Browser</entry></row>
 </tbody>
 </tgroup>
 </table>
@@ -347,10 +347,10 @@ zeigen typische Registrierungen für NetBIOS-Namen und -Service-Typen.
 <colspec align="left"/>
 <colspec align="justify"/>
 <tbody>
-<row><entry>WORKGROUP&lt;03&gt;</entry><entry>Generic Name registered by all members of WORKGROUP</entry></row>
-<row><entry>WORKGROUP&lt;1c&gt;</entry><entry>Domain Controllers / Netlogon Servers</entry></row>
-<row><entry>WORKGROUP&lt;1d&gt;</entry><entry>Local Master Browsers</entry></row>
-<row><entry>WORKGROUP&lt;1e&gt;</entry><entry>Browser Election Service</entry></row>
+<row><entry>ARBEITSGRUPPE&lt;03&gt;</entry><entry>Generischer Name, registriert von allen Mitgliedern der ARBEITSGRUPPE</entry></row>
+<row><entry>ARBEITSGRUPPE&lt;1c&gt;</entry><entry>Domänencontroller / Netlogon-Server</entry></row>
+<row><entry>ARBEITSGRUPPE&lt;1d&gt;</entry><entry>Lokale Master Browser</entry></row>
+<row><entry>ARBEITSGRUPPE&lt;1e&gt;</entry><entry>Dienst für Browser-Wahl</entry></row>
 </tbody>
 </tgroup>
 </table>
@@ -458,84 +458,85 @@ Mapping durch.
 Sie sieht typischerweise in etwa so aus:
 </para>
 
-<para><programlisting>(((Kommentare übersetzen?)))
-# Copyright (c) 1998 Microsoft Corp.
+<para><programlisting>
+# Copyright (c) 1993-1999 Microsoft Corp.
 #
-# This is a sample LMHOSTS file used by the Microsoft Wins Client (NetBIOS
-# over TCP/IP) stack for Windows98
+# Dies ist eine Beispieldatei für LMHOSTS, wie sie von Microsoft TCP/IP
+# für Windows 2000 verwendet wird.
+# Sie ist mit der LMHOSTS-Datei von Microsoft TCP/IP für LAN Manager 2.x
+# kompatibel.
+# Bearbeiten Sie diese Datei mit einem ASCII-Editor.
 #
-# This file contains the mappings of IP addresses to NT computernames
-# (NetBIOS) names. Each entry should be kept on an individual line.
-# The IP address should be placed in the first column followed by the
-# corresponding computername. The address and the computername
-# should be separated by at least one space or tab. The "#" character
-# is generally used to denote the start of a comment (see the exceptions
-# below).
-#
-# This file is compatible with Microsoft LAN Manager 2.x TCP/IP lmhosts
-# files and offers the following extensions:
+# In dieser Datei werden einzelnen IP-Adressen die entsprechenden
+# Computernamen (NetBIOS-Namen) zugeordnet. Jeder Eintrag sollte aus
+# einer einzelnen Zeile bestehen.
+# Die IP-Adresse wird in der ersten Spalte eingetragen, gefolgt vom
+# zugehörigen Computer-Namen. Die Adresse und der Computer-Name müssen
+# dabei durch mindestens ein Leerzeichen oder ein Tabulatorzeichen
+# getrennt sein.
+# Das Zeichen "#" wird gewöhnlich Kommentaren vorangestellt. Ausnahmen
+# hiervon sind die folgenden Erweiterungen:
 #
 #      #PRE
-#      #DOM:&lt;domain&gt;
-#      #INCLUDE &lt;filename&gt;
+#      #DOM:&lt;Domäne&gt;
+#      #INCLUDE &lt;Dateiname&gt;
 #      #BEGIN_ALTERNATE
 #      #END_ALTERNATE
-#      \0xnn (non-printing character support)
+#      \0xnn (Unterstützung nichtdarstellbarer Zeichen)
 #
-# Following any entry in the file with the characters "#PRE" will cause
-# the entry to be preloaded into the name cache. By default, entries are
-# not preloaded, but are parsed only after dynamic name resolution fails.
+# Die Erweiterung "#PRE" wird nach dem Computer-Namen angegeben, wenn
+# dieser Eintrag bereits zu Anfang in den Namen-Cache geladen werden
+# soll. Standardmäßig werden die Einträge nicht zu Anfang in den Namen-
+# Cache geladen, sie werden jedoch auch nur dann ausgewertet, wenn die
+# dynamische Namensauswertung fehlschlägt.
 #
-# Following an entry with the "#DOM:&lt;domain&gt;" tag will associate the
-# entry with the domain specified by &lt;domain&gt;. This effects how the
-# browser and logon services behave in TCP/IP environments. To preload
-# the host name associated with #DOM entry, it is necessary to also add a
-# #PRE to the line. The &lt;domain&gt; is always preloaded although it will not
-# be shown when the name cache is viewed.
+# Die Erweiterung "#DOM:&lt;Domäne&gt;" wird nach dem Computer-Namen angegeben,
+# wenn der Eintrag mit einer Domäne verknüpft werden soll.
+# Dies wirkt sich auf das Verhalten des Computer-Suchdienstes und des
+# Anmeldedienstes in der TCP/IP-Umgebung aus.
+# Die Erweiterung "DOM:&lt;Domäne&gt;" kann zusammen mit der Erweiterung "PRE"
+# für einen Eintrag angegeben werden.
 #
-# Specifying "#INCLUDE &lt;filename&gt;" will force the RFC NetBIOS (NBT)
-# software to seek the specified &lt;filename&gt; and parse it as if it were
-# local. &lt;filename&gt; is generally a UNC-based name, allowing a
-# centralized lmhosts file to be maintained on a server.
-# It is ALWAYS necessary to provide a mapping for the IP address of the
-# server prior to the #INCLUDE. This mapping must use the #PRE directive.
-# In addition the share "public" in the example below must be in the
-# LanManServer list of "NullSessionShares" in order for client machines to
-# be able to read the lmhosts file successfully. This key is under
-# \machine\system\currentcontrolset\services\lanmanserver\
-# parameters\nullsessionshares
-# in the registry. Simply add "public" to the list found there.
+# Die Angabe von "#INCLUDE &lt;Dateiname&gt;" veranlasst den NetBIOS Helper-
+# Dienst die angegebene Datei zu suchen und sie wie eine lokale Datei
+# auszuwerten. Für &lt;Dateiname&gt; werden UNC-Namen akzeptiert. Dadurch ist
+# es möglich, eine LMHOSTS-Datei zentral auf einem Server zu verwalten.
+# Befindet sich der Server außerhalb des Broadcast-Bereichs, ist eine
+# Adresszuordnung für diesen Server vor der "#INCLUDE"-Anweisung not-
+# wendig.
 #
-# The #BEGIN_ and #END_ALTERNATE keywords allow multiple #INCLUDE
-# statements to be grouped together. Any single successful include
-# will cause the group to succeed.
+# Die Anweisungen "#BEGIN_ALTERNATE" und "#END_ALTERNATE" ermöglichen die
+# Gruppierung von mehreren "#INCLUDE"-Anweisungen.
+# Ist eine "INCLUDE"-Anweisung erfolgreich, werden alle weiteren
+# "INCLUDE-ANWEISUNGEN" übersprungen und die Gruppe verlassen.
 #
-# Finally, non-printing characters can be embedded in mappings by
-# first surrounding the NetBIOS name in quotations, then using the
-# \0xnn notation to specify a hex value for a non-printing character.
+# Nichtdarstellbare Zeichen können im Computer-Namen enhalten sein.
+# Solche Zeichen müssen als Hex-Wert in der \0xnn-Notation angegeben
+# werden und zusammen mit dem NetBIOS-Namen in Anführungszeichen
+# eingeschlossen werden.
 #
-# The following example illustrates all of these extensions:
 #
-# 102.54.94.97     rhino     #PRE #DOM:networking  #net group's DC
-# 102.54.94.102    "appname  \0x14"       #special app server
-# 102.54.94.123    popular   #PRE         #source server
-# 102.54.94.117    localsrv  #PRE         #needed for the include
-#
+# Beispiel:
+# 
+# 102.54.94.97     maestro         #PRE #DOM:technik    # DC von "Technik"
+# 102.54.94.102    "spiele \0x14"                       # besonderer Server
+# 102.54.94.123    nordpol         #PRE                 # Server in 3/4317
 # #BEGIN_ALTERNATE
-# #INCLUDE \\localsrv\public\lmhosts
-# #INCLUDE \\rhino\public\lmhosts
+# #INCLUDE \\lokal\public\lmhosts
+# #INCLUDE \\maestro\public\lmhosts
 # #END_ALTERNATE
 #
-# In the above example, the "appname" server contains a special
-# character in its name, the "popular" and "localsrv" server names are
-# preloaded, and the "rhino" server name is specified so it can be used
-# to later #INCLUDE a centrally maintained lmhosts file if the "localsrv"
-# system is unavailable.
+# In diesem Beispiel enthält der Server "spiele" ein Sonderzeichen
+# im Namen, und der Server "nordpol" wird bereits zu Anfang in den
+# Namen-Cache geladen.
+# Die Adresszuordnung für den Server "maestro" wird angegeben, um diesen
+# Server weiter unten in der #INCLUDE-Gruppe verwenden zu können.
+# Wenn der Server "lokal" nicht verfügbar ist, wird die zentrale LMHOSTS-
+# Datei auf "maestro" verwendet.
 #
-# Note that the whole file is parsed including comments on each lookup,
-# so keeping the number of comments to a minimum will improve performance.
-# Therefore it is not advisable to simply add lmhosts file entries onto the
-# end of this file.
+# Beachten Sie, dass die gesamte Datei bei jeder Auswertung durchsucht wird,
+# einschließlich der Kommentarzeilen. Es wird daher empfohlen, die obigen
+# Kommentarzeilen zu entfernen.
 </programlisting></para>
 
 </sect2>
