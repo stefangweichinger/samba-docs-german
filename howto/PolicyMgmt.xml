@@ -46,14 +46,14 @@ gestellt wurden.
 
 <para>
 Ausgehend von dem Trafficvolumen seit Mitte des Jahres 2002 wurden GPOs ein
-grundlegender Bestandteil von Entwicklungen auf vielen Seiten.
+grundlegender Bestandteil von Entwicklungen vielerorts.
 Dieses Kapitel betrachtet Techniken und Methoden die dazu genutzt werden können,
 Vorteile der Automatisierung von Kontrollen über Benutzeroberflächen und vernetzte
 Client-Arbeitsplätze zu erfahren.
 </para>
 
 <para>
-Ebenfalls beschrieben in diesem Dokunent ist ein neues Samba-Werkzeug &smbmdash;
+In diesem Dokunent ebenfalls beschrieben ist ein neues Samba-Werkzeug &smbmdash;
  das <command>editreg</command> Werkzeug
 &smbmdash; welches ein wichtiger künftiger Bestandteil der Samba Administratoren
 Arbeit werden kann.
@@ -65,9 +65,9 @@ Arbeit werden kann.
 <title>Anlegen und Verwalten von System-Richtlinien</title>
 
 <para>
-Unter MS WIndows Plattformen, speziell denen die den Veröffentlichungen von
+Unter MS Windows Plattformen, speziell denen die den Veröffentlichungen von
 MS Windows NT4 und MS Windows 95 folgten, ist es möglich, einen Dateityp zu 
-erzeugen, der im NETLOGIN share des Domänen-Controllers abgelegt werden kann.
+erzeugen, der in der NETLOGON Freigabe des Domänen-Controllers abgelegt werden kann.
 Sobald sich ein Client am Netzwerk anmeldet, wird diese Datei ausgelesen und der 
 Inhalt dazu benutzt, Änderungen an der Registry der Clientmaschine durch zu führen.
 Diese Datei erlaubt Änderungen in den Teilen der Registry, die die Benutzer, 
@@ -78,7 +78,7 @@ Benutzergruppen oder Maschinen betreffen.
 <indexterm><primary>Config.POL</primary></indexterm>
 Für MS Windows 9x/ME muss diese Datei <filename>Config.POL</filename> heissen 
 und kann dadurch erzeugt werden, daß das Werkzeug <filename>poledit.exe</filename>, 
-auch besser unter dem Namen Policy Editor bekannt, benutzt wird. Der policy Editor
+auch besser unter dem Namen Policy Editor bekannt, benutzt wird. Der Policy Editor
 wurde auf der Windows 98 Installations-CD zur Verfügung gestellt, aber verschwand 
 wieder durch die Einführung von MS Windows Me (Millenium Edition). Durch Aussagen
 von MS Windows Netzwerk-Administratoren kam heraus, daß dieses Werkzeug Bestandteil
@@ -88,12 +88,12 @@ des MS Windws Me Resource Kits werden sollte.
 <para>
 <indexterm><primary>System Richtlinien Editor</primary></indexterm>
 MS Windows NT4 Server Produkte enthalten den <emphasis>System Richtlinien Editor</emphasis>
-unterhalb von <guimenu>Start -> Programme -> Administrations Werkzeuge</guimenu>.
+unterhalb von <guimenu>Start -> Programme -> Administrations-Werkzeuge</guimenu>.
 Für MS Windows NT4 und spätere Clients muss diese Datei <filename>NTConfig.POL</filename> heissen.
 </para>
 
 <para>
-Mit der Einführung von MS Windows 2000 war eine Neuheit die Microsoft Management Konsole
+Mit der Einführung von MS Windows 2000 war eine Neuheit die Microsoft Management Konsole,
 oder auch MMC. Dieses Werkzeug ist die neue Welle in der sich ständig ändernden Landschaft
 der Methodiken, die Microsoft für das Management von Netzwerkzugriffen und Sicherheit
 einsetzt. Jedes neue Microsoft Produkt oder jede neue Technologie scheint die alten Regeln
@@ -114,8 +114,13 @@ Richtlinien</quote> zu suchen.
 </para>
 
 <para>
+<<<<<<< PolicyMgmt.xml
+Nachfolgend erhalten Sie eine kurze Auflistung mit einigen hilfreichen Anmerkungen.
+Diese Informationen sind nicht ganz vollständig &smbmdsh; seien Sie also vorsichtig damit.
+=======
 Nachfolgende erhalten Sie eine kurze Auflistung mit einigen hilfreichen Anmerkungen.
 Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsichtig damit.
+>>>>>>> 1.3
 </para>
 
 	<sect2>
@@ -170,7 +175,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 	Um die Datei <filename>ntconfig.pol</filename> zu erzeugen oder zu editieren müssen Sie den NT Server
 	Richtlinieneditor <command>poledit.exe</command> benutzen, welcher nicht bei NT Workstation sondern 
 	nur bei NT4 Server enthalten ist.
-	Es gibt zwar einen Richtlinieneditor bei NT Workstation, dieser eignet sich jedoch nicht, um Domänen
+	Es gibt zwar einen Richtlinieneditor bei NT Workstation, dieser eignet sich jedoch nicht, um Domänen-
 	Richtlinien zu erzeugen. Ebenso könnte man den Windows 95 Richtlinien-Editor auf NT4 Workstation/Server
 	installieren, dieser arbeitet jedoch nicht mit NT Clients. Die Dateien vom NT Server werden jedoch gut 
 	mit einer NT4 Workstation laufen.
@@ -179,14 +184,14 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 	<para>
 	Sie benötigen <filename>poledit.exe</filename>, <filename>common.adm</filename> und <filename>winnt.adm</filename>.
 	Es ist zweckmässig, die beiden <filename>*.adm</filename> Dateien in das Verzeichnis <filename>c:\winnt\inf</filename> 
-	zu legen, welches dazu dient, dass das Programm hier nachschaut, wenn nicht anders eingestellt. Dieses Verzeichnis 
-	ist normalerweise <quote>Versteckt.</quote>
+	zu legen, welches dazu dient, dass das Programm hier nachschaut (wenn nicht anders eingestellt). Dieses Verzeichnis 
+	ist normalerweise <quote>Versteckt (Hidden).</quote>
 	</para>
 
 	<para>
 	Der Windows NT Richtlinien-Editor für Windows Windows NT 4.0 ist ebenfalls im Service Pack 3 
 	(und später) enthalten. Entpacken Sie die Datei durch <command>servicepackname  /x</command>,
-	dies wäre für Service Pack 6a <command>Nt4sp6ai.exe</command>. Der Richtlinien-Editor
+	dies wäre für Service Pack 6a <command>Nt4sp6ai.exe /x</command>. Der Richtlinien-Editor
 	<command>poledit.exe</command> und die zugehörigen Vorlagendateien (*.adm) sollten ebenfalls
 	ausgepackt werden. Es ist des weiteren möglich, die Richtlinien-Vorlagen für Office 97 und somit eine
 	Kopie des Richtlinien-Editors downzuloaden. Eine mögliche weitere Quelle stellt das Zero Administration
@@ -197,12 +202,14 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 		<title>Registry Spoiling</title>
 
 			<para>
-			With NT4-style registry-based policy changes, a large number of settings are not
-			automatically reversed as the user logs off. The settings that were in the
-			<filename>NTConfig.POL</filename> file were applied to the client machine registry and apply to the
-			hive key HKEY_LOCAL_MACHINE are permanent until explicitly reversed. This is known
-			as tattooing. It can have serious consequences downstream and the administrator must
-			be extremely careful not to lock out the ability to manage the machine at a later date.
+			Mit NT4 änderten sich Registry-basierende Richlinien, eine grosse Anzahl von Einstellungen
+			werden nicht automatisch zurückgesetzt, wenn der Benutzer sich abmeldet. Die Einstellungen,
+			die in der Datei <filename>NTConfig.POL</filename> in die Arbeitsstations-Registry des
+			Clients gesetzt werden und durch den Registrykey HKEY_LOCAL_MACHINE bereits gesetzt sind,
+			sind solange dauerhaft bis ie icht anderweitig zurückgesetzt werden. Dies ist auch als
+			'tatooing' bekannt. Es kann ernsthafte Probleme damit geben und der Administrator muss
+			extrem vorsichtig im Umgang damit sein, um nicht die Möglichkeiten, die Maschine später 
+			noch managen zu können, zu verhindern.
 			</para>
 
 		</sect3>
@@ -230,17 +237,17 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 	Diese beinhalten die Möglichkeit zahlreiche Sicherheitskonfigurationen zu setzen, 
 	Browser-Einstellungen des Internet Explorers zu erzwingen, das Ändern und Umleiten von Aspekten den
 	Benutzer-Desktop betreffend (inklusive den Pfad zu <filename>Eigene Dateien</filename> (Verzeichnis)
-	ebenso wie die Eigenschaft, an welcher Stelle im Start-Menü Einträge erscheinen sollen). 
+	sowie die Eigenschaft, an welcher Stelle im Start-Menü Einträge erscheinen sollen). 
 	Ein weiteres neues Feature ist die Möglichkeit, bestimmte Windows-Software zu bestimmten Benutzern
 	und/oder Gruppen zuzuordnen.
 	</para>
 
 	<para>
 	Denken Sie daran, dass NT4 Richtlinien-Dateien <filename>NTConfig.POL</filename> heissen und im
-	Hauptverzeichnis der NETLOGON Freigabe des Domänen-Kontrollers gespeichert werden.
+	Hauptverzeichnis der NETLOGON-Freigabe des Domänen-Kontrollers gespeichert werden.
 	Ein Windows NT4 Benutzer gibt einen Benutzernamen und ein Passwort ein und wählt dann den Domänennamen 
 	aus, an dem er sich anmelden möchte. Während des Anmeldeprozesses liest die Client-Machine die Datei
-	<filename>NTConfig.POL</filename> aus der NETLOGON Freigabe aus und modifiziert die lokalen Registry-
+	<filename>NTConfig.POL</filename> aus der NETLOGON-Freigabe aus und modifiziert die lokalen Registry-
 	Einstellungen gemäss den Werten aus dieser Datei.
 	</para>
 
@@ -248,7 +255,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 	Windows 200x GPOs (Gruppenrichtlinien-Objekte) sind reich an Möglichkeiten. Sie werden nicht
 	in der NETLOGON-Freigabe gespeichert, denn es wird ein Teil einer Windows 200x Richtlinie in 
 	Active Directory selbst abgelegt und ein weiterer Teil wird in einem freigegebenen (und replizierten)
-	Laufwerk, welches der SYSVOL Ordner genannt wird, abgelegt.
+	Laufwerk, welches der SYSVOL-Ordner genannt wird, abgelegt.
 	Dieser Ordner ist auf allen Active Directory Domänen-Kontrollern vorhanden. Der Teil, der im Active
 	Directory selbst gespeichert ist, wird der Gruppen-Richtlinien-Container (GPC) genannt. Der andere
 	Teil, der im replizierten Ordner SYSVOL gespeichert wird, wird die Gruppen-Richtlinien-Vorlage (GPT)
@@ -281,7 +288,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 		<procedure>
 			<step><para>
 			Gehen Sie in das Windows 200x/XP Menü <guimenu>Start->Programme->Administrations-Werkzeuge</guimenu>
-			und suchen Sie nach dem MMC snap-in <guimenuitem>Active Directory Benutzer und Computer</guimenuitem>
+			und suchen Sie nach dem MMC Snap-In <guimenuitem>Active Directory Benutzer und Computer</guimenuitem>
 			</para></step>
 
 			<step><para>
@@ -291,7 +298,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 			</para></step>
 
 			<step><para>
-			Klicken Sie mit der linken Maus auf den<guilabel>Gruppen Richtlinien</guilabel> Reiter,
+			Klicken Sie mit der linken Maus auf den<guilabel>Gruppen-Richtlinien</guilabel> Reiter,
 			dann klicken Sie auf Neu. Geben Sie einen Namen für die neue gewünschte Richtlinie ein, die
 			Sie erzeugen möchten.
 			</para></step>
@@ -308,7 +315,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 		NT als auch bei Windows 200x/XP. Achten Sie darauf, dass die .adm Dateien nicht zwischen
 		NT4 und Windows 200x austauschbar sind. Die zweite Möglichkeit beinhaltet eine Menge neuer
 		Features und auch erweiterte Definitionsmöglichkeiten. Es ist jedoch nicht das Ziel dieser
-		Dokumentation zu erklären, wie mn .adm Dateien programmiert; für diesen Zweck wird der 
+		Dokumentation zu erklären, wie man .adm Dateien programmiert; für diesen Zweck wird der 
 		Administrator auf das Microsoft Windows Resource Kit für die jeweilige MS Windows-Version 
 		verwiesen.
 		</para>
@@ -330,7 +337,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsic
 <title>Zugriffs/Benutzer Richtlinien verwalten</title>
 
 <para>
-Richtlinien können bestimte Benutzereinstellungen oder Einstellungen für eine Gruppe von Benutzern definieren.
+Richtlinien können bestimmte Benutzereinstellungen oder Einstellungen für eine Gruppe von Benutzern definieren.
 Die daraus entstehende Richtliniendatei enthält die Registry-Einstellungen für alle Benutzer, Gruppen und Maschinen,
 welche die Richtliniendatei nutzen werden. Gesonderte Richtliniendateien für einzelne Benutzer, Gruppen oder Maschinen sind 
 nicht mehr notwendig.
@@ -339,8 +346,9 @@ nicht mehr notwendig.
 <para>
 <indexterm><primary>NTConfig.POL</primary></indexterm>
 Falls Sie eine Richtlinie erzeugen, die automatisch von gültigen Domänencontrollern heruntergeladen werden sollen, so
-müssen Sie den Dateinamen <filename>NTConfig.POL</filename> verwenden. Als Systemadministrator haben Sie die Möglichkeit
-durch Ändern der Windows NT-basierenden Arbeitsstation die Richtliniendatei umzubenennen, indem Sie die Maschine anweisen,
+müssen Sie den Dateinamen <filename>NTConfig.POL</filename> verwenden. Als Systemadministrator haben Sie 
+durch Ändern der Windows NT-basierenden Arbeitsstation die Möglichkeit, die Richtliniendatei umzubenennen, indem Sie die Maschine 
+anweisen,
 die Aktualisierung der Richtlinien durch einen manuell eingegebenen Pfad durchzuführen. Sie können dies entweder durch
 manuelles Ändern der Registrywerte tun oder durch Nutzung des System-Richtlinien-Editors. Dies kann sogar ein lokales
 Verzeichnis sein, in welchem die Machine Ihre eigene Richtliniendatei hat, aber wenn eine Änderung für alle Maschinen
@@ -348,25 +356,25 @@ notwendig ist, muss dies an jeder Arbeitsstation gemacht werden.
 </para>
 
 <para>
-Sobald eine Windows NT4/200x/XP Maschine sich am Netzwerk anmeldet, sieht der Client in der NETLOGON Freigabe des 
-authentifizierten Domänencontrollers nach der Existenz der NTConfig.POL datei nach. Falls eine existiert, wird diese
+Sobald eine Windows NT4/200x/XP Maschine sich am Netzwerk anmeldet, sieht der Client in der NETLOGON-Freigabe des 
+authentifizierten Domänencontrollers nach der Existenz der Datei NTConfig.POL nach. Falls eine existiert, wird diese
 heruntergeladen, durchgesehen und dann in den Benutzerteil der Registry eingelesen.
 </para>
 
 <para>
 <indexterm><primary>GPOs</primary></indexterm>
-MS Windows 200x/XP Clinets die sich an einer MS Windows Active Directory Sicherheitsdomäne anmelden werden ggf.
-zusätzlich Richtlinieneinstellungen durch Gruppen-Richtlinien-Objekte (GPOs) erwerben, welche in der Active Directory
+MS Windows 200x/XP Clients, die sich an einer MS Windows Active Directory Sicherheitsdomäne anmelden werden ggf.
+zusätzliche Richtlinieneinstellungen durch Gruppen-Richtlinien-Objekte (GPOs) erwerben, welche in der Active Directory
 selbst abgespeichert sind. Die Hauptvorteile der Nutzung von AS GPOs ist, dass diese keine <emphasis>störenden</emphasis> 
 Effekte durchsetzen, die man in der Registry nicht brauchen kann.
-Dies hat beträchtliche Vorteile gegenüber der Nutzung von <filename>NTConfig.POL</filename> (NT4) 
+Dies hat beträchtliche Vorteile gegenüber der Nutzung von <filename>NTConfig.POL</filename> (NT4-) 
 basierenden Richtlinien-Aktualisierungen.
 </para>
 
 <para>
-Zusätzlich zu Benutzerzugriffs-Kontrollen die durch System und/oder Gruppenrichtlinien welche zusammen
+Zusätzlich zu Benutzerzugriffs-Kontrollen, die durch System und/oder Gruppenrichtlinien zusammen
 mit Benutzerprofilen arbeiten, durchgesetzt oder angewandt werden, erlaubt die Benutzerverwaltung unter
-MS Windows NT4/200x/XP eine Per-Domäne als auch Per-Benutzer Zugriffsverwaltung.
+MS Windows NT4/200x/XP sowohl eine Per-Domäne als auch eine Per-Benutzer Zugriffsverwaltung.
 Allgemeine Einschränkungen, welche häufig genutzt werden, beinhalten:
 </para>
 
@@ -395,7 +403,7 @@ gesetzt werden können.
 <title>Verwaltungs-Werkzeuge</title>
 
 <para>
-Jeder, der sich wünscht, Gruppen-Richtlinien erzeugen  oder verwalten zu können, muss mit eine Reihe von Werkzeugen vertraut sein.
+Jeder, der sich wünscht, Gruppen-Richtlinien erzeugen  oder verwalten zu können, muss mit einer Reihe von Werkzeugen vertraut sein.
 Die folgenden Abschnitte beschreiben ein paar der wichtigsten Werkzeuge, welche Ihnen helfen werden, eine Benutzerumgebung mit 
 geringem Aufwand zu schaffen.
 </para>
@@ -415,7 +423,7 @@ geringem Aufwand zu schaffen.
 	der Absicht gemacht, <filename>NTConfig.POL</filename> Dateien in einem Textformat abzuspeichern und die Erzeugung neuer
 	<filename>NTConfig.POL</filename> Dateien mit erweiterten Möglichkeiten zu gewährleisten.
 	Es ist nachgewiesen, dass diese Möglichkeiten schwer zu realisieren sind, also lassen Sie nicht überraschen, wenn Sie
-	diese nicht in die Tat umsetzen können. Offizielle Möglichkeiten werden zu dem Zeitpunkt herausgegeben, wenn das Werkzeug
+	diese nicht in gleich die Tat umsetzen können. Offizielle Möglichkeiten werden zu dem Zeitpunkt herausgegeben, wenn das Werkzeug
 	im Prduktionsstadium ist.
 	</para>
 
@@ -427,8 +435,8 @@ geringem Aufwand zu schaffen.
 	<para>
 	Die Werkzeuge, die für diesen Kontrolltyp aus der MS Windows Umgebung genutzt werden können, sind:
 	der NT4 Benutzer-Manager für Domänen, der NT4 System-und Gruppen-Richtlinien-Editor und der Registryeditor (regedt32.exe).
-	Unter MS Windows 200x/XP kann dies mit der Microsoft Management Console (MMC) und geeigneten <quote>snap-ins</quote>
-	gemacht werden, dem Registryeditor und ggf. ebenfalls mit dem NT4 System und Gruppen-Richtlinien-Editor.
+	Unter MS Windows 200x/XP kann dies mit der Microsoft Management Console (MMC) und geeigneten <quote>Snap-Ins</quote>
+	gemacht werden, dem Registryeditor und ggf. ebenfalls mit dem NT4 System- und Gruppen-Richtlinien-Editor.
 	</para>
 	</sect2>
 
@@ -436,9 +444,10 @@ geringem Aufwand zu schaffen.
 	<title>Samba PDC</title>
 
 	<para>
-	Mit einem Samba Domänen-Kontroller enthalten die neuen Werkzeuge für Benutzerzugriffs-Verwaltung und Richtlinien-Inforamtionen:
+	Mit einem Samba Domänen-Kontroller enthalten sind die neuen Werkzeuge für Benutzerzugriffs-Verwaltung und 
+	Richtlinien-Informationen:
 	<command>smbpasswd</command>, <command>pdbedit</command>, <command>net</command>, <command>rpcclient</command>. 
-	Der Administrator sollte die man pages für diese Werkzeuge lesen und sich mit deren Bedienung vertraut machen.
+	Der Administrator sollte die Man Pages für diese Werkzeuge lesen und sich mit deren Bedienung vertraut machen.
 	</para>
 
 	</sect2>
@@ -464,14 +473,14 @@ einem Neustart des Systems und einem Teil einer Benutzeranmeldung:
 <itemizedlist>
 	<listitem><para>den Ort zu den Maschinen in einer Directory betreffen.</para></listitem>
 	<listitem><para>nur zutreffen, wenn Änderungen durchgeführt wurden.</para></listitem>
-	<listitem><para>auf Einstellungen basieren, die die Anwendbarkeit von Möglchkeiten betreffen: lokal, Ort, Domäne, 
-	Organisatorische Einheit, und so weiter.</para></listitem>
+	<listitem><para>auf Einstellungen basieren, die die Anwendbarkeit von Möglichkeiten betreffen: lokal, Ort, Domäne, 
+	Organisatorische Einheit (OU), und so weiter.</para></listitem>
 </itemizedlist>
 	Kein Benutzer-Arbeitsplatz Interface wird angezeigt, bevor obiges nicht vollständig ausgeführt wurde.
 	</para></listitem>
 
 	<listitem><para>
-	Ausführung von Startskripts (standardmässig versteckt und synchronisiert).
+	Ausführung von Startskripts (standardmässig versteckt (hidden) und synchronisiert).
 	</para></listitem>
 
 	<listitem><para>
@@ -486,8 +495,8 @@ einem Neustart des Systems und einem Teil einer Benutzeranmeldung:
 	Eine sortierte Liste von Benutzer GPOs wird erhalten. Der Inhalt der Liste richtet sich danach, was hier konfiguriert wurde:
 
 <itemizedlist>
-	<listitem>Ist der Benutzer ein Domänenmitglied, oder Teil bestimmter Richtlinien ?</listitem>
-	<listitem>Loopback eingeschaltet und der Status der Lopback-Richtlinie (Zusammenführen oder Ersetzen).</listitem>
+	<listitem>Ist der Benutzer ein Domänenmitglied oder Teil bestimmter Richtlinien ?</listitem>
+	<listitem>Loopback ist eingeschaltet und der Status der Lopback-Richtlinie (Zusammenführen oder Ersetzen).</listitem>
 	<listitem>Ort der Active Directory selbst.</listitem>
 	<listitem>Hat sich die Liste der GPOs geändert? Keine Weiterverarbeitung notwendig, wenn nichts geändert wurde.</listitem>
 </itemizedlist>
@@ -499,8 +508,8 @@ einem Neustart des Systems und einem Teil einer Benutzeranmeldung:
 
 	<listitem><para>
 	Anmeldeskripte werden ausgeführt. Als Neuheit in Windows 200x und Active Directory können Anmeldeskripte beschafft werden,
-	die auf Gruppen-Richtlinien-Objekten basieren (versteckt und synchron ausgeführt). NT4-basierende Anmeldeskripte werden dann
-	in einem normalen Fenster ausgeführt.
+	die auf Gruppen-Richtlinien-Objekten basieren (versteckt (hidden) und synchron ausgeführt). NT4-basierende Anmeldeskripte werden
+	dann in einem normalen Fenster ausgeführt.
 	</para></listitem>
 
 	<listitem><para>
@@ -516,7 +525,7 @@ einem Neustart des Systems und einem Teil einer Benutzeranmeldung:
 <title>Allgemeine Fehler</title>
 
 <para>
-Mit Richtlinien verbundene Probleme können sehr schwer zu ermitteln und noch schwerer zu verbessern sein. Die folgende Auswahl zeigt
+Mit Richtlinien verbundene Probleme können sehr schwer zu ermitteln und noch schwerer zu beheben sein. Die folgende Auswahl zeigt
 nur Basisangelegenheiten.
 </para>
 
@@ -526,7 +535,7 @@ nur Basisangelegenheiten.
 <para>
 <quote>Wir haben die Datei <filename>Config.POL</filename> erzeugt und diese in der Freigabe <emphasis>NETLOGON</emphasis> abgespeichert.
 Es wurden keinerlei Änderungen an unseren Win XP Pro Maschinen gemacht, wir sehen sie nicht einmal. Mit Windows 98 funktionierte dies
-prima, erst mit dem Update auf Win XP Pro nicht mehr. Ein paar Vorchläge ?</quote>
+prima, erst mit dem Update auf Win XP Pro nicht mehr. Ein paar Vorschläge ?</quote>
 </para>
 
 <para>
