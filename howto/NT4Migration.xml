@@ -19,7 +19,7 @@ auf Samba-3-basierte Domänen-Verwaltung migrieren wollen.
 <para>
 In der IT-Welt gibt es den Satz, der besagt, daß alle Probleme infolge schlechter Planung entstehen.
 Der Folgesatz dazu ist, daß nicht alle Probleme vorweggenommen und eingeplant werden können.
-Jedoch wird gute Planung die meisten "Show-Stopper"-Situationen vorwegnehmen können.
+Jedoch wird gute Planung die meisten <quote>Show-Stopper</quote>-Situationen vorwegnehmen können.
 </para>
 
 <para>
@@ -205,7 +205,7 @@ Drucker ohne Benutzer-Intervention hinzufügt, und das mittels des Anmelde-Skript
 
 <para>
 Benutzer- und Gruppen-Profile können unter Verwendung der Werkzeuge migriert werden, die in dem
-Abschnitt namens "Desktop Profil Management" beschrieben sind.
+Abschnitt namens <quote>Desktop Profil Management</quote> beschrieben sind.
 </para>
 
 
@@ -225,7 +225,7 @@ zu ändern.
 Es ist möglich, alle Konten-Einstellungen von einer MS Windows NT4-Domäne auf Samba-3 zu migrieren.
 Bevor Sie versuchen, Benutzer- und Gruppen-Konten zu migrieren, ist es STÄRKSTENS empfohlen, in
 Samba die Gruppen anzulegen, die in der MS Windows NT4-Domäne vorhanden sind <emphasis>UND</emphasis>
-sie auf passende UNIX/Linux-Gruppen umzulegen ("mappen"). Durch das Befolgen dieses einfachen
+sie auf passende UNIX/Linux-Gruppen umzulegen (<quote>mappen</quote>). Durch das Befolgen dieses einfachen
 Ratschlags sollten alle Benutzer- und Gruppen-Attribute problemlos migrieren.
 </para>
 </sect3>
@@ -458,7 +458,7 @@ Minimieren Sie nachfolgende Probleme:
 		</para>
                 <itemizedlist>
                         <listitem><para>Verwendung des Group Policy Editor (NT4).</para></listitem>
-                        <listitem><para>Achten Sie auf den "Tattoo-Effekt".</para></listitem>
+                        <listitem><para>Achten Sie auf den <quote>Tattoo-Effekt</quote>.</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>

@@ -446,7 +446,7 @@ Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode
 		<para>
 		Um die Möglichkeiten im Umgang mit der neuen Syntax zu zeigen, hier ein paar Beispiele.
 		Mit Linux-PAM-0.63 wurde der
-		Begriff "Client Plug-in Agents" eingeführt. Dies macht es möglich, dass PAM eine
+		Begriff <quote>Client Plug-in Agents</quote> eingeführt. Dies macht es möglich, dass PAM eine
 		Rechner-zu-Rechner-Authentifizierung erlaubt,
 		die das Transportprotokoll der Client/Server-Applikation benützt.
 		Mit der <parameter>[ ... value=action ... ]</parameter>
@@ -685,7 +685,8 @@ unterstützen, der von Samba bei Passwort-Verschlüsselung verwendet wird.
 <para>
 Alle Betriebssysteme hängen von einer Bereitstellung von Benutzerdaten ab, die von der jeweiligen
 Plattform akzeptiert werden kann.
-UNIX benutzt dazu die Übergabe eines "User Identifier" (UID) sowie eines "Group Identifier" (GID).
+UNIX benutzt dazu die Übergabe eines <quote>User Identifier</quote> (UID) sowie eines 
+<quote>Group Identifier</quote> (GID).
 Dies sind beides Nummern vom Typ Integer, die von einem Password Backend
 wie <filename>/etc/passwd</filename> bezogen werden.
 </para>
@@ -700,7 +701,7 @@ Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
 <para>
 Sowie Winbind-Benutzer und -Gruppen von einem Server aufgelöst werden, werden Benutzer-
 und Gruppen-IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
-Basis ala "Wer zuerst kommt, kriegt zuerst" verteilt, obwohl alle bestehenden Benutzer und
+Basis ala <quote>Wer zuerst kommt, kriegt zuerst</quote> verteilt, obwohl alle bestehenden Benutzer und
 Gruppen gemappt werden, sobald ein Client einen Befehl zur Auflistung der Benutzer und 
 Gruppen gibt. Die zugeteilten UNIX-IDs werden in einer Datenbank-Datei im Samba-Lock-Verzeichnis
 gespeichert, um sie nachher wiederverwenden zu können.
@@ -832,7 +833,7 @@ session    required    pam_unix.so
 
 <para>
 Ein Beispiel einer Konfiguration für eine ausgereifte <filename>smbpasswd</filename>-Installation.
-<filename>private/smbpasswd</filename> ist mit Benutzern "gefüllt" und wir betrachten es als Fehler,
+<filename>private/smbpasswd</filename> ist mit Benutzern <quote>gefüllt</quote> und wir betrachten es als Fehler,
 wenn kein SMB-Passwort vorhanden ist oder wenn es nicht mit dem UNIX-Passwort übereinstimmt.
 </para>
 

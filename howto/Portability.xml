@@ -56,7 +56,7 @@ korrupte Daten-Transfers mit Samba auftreten.
 </para>
 
 <para>
-Der Patch, den Sie brauchen, ist "UOD385 Connection Drivers SLS". Er ist verfügbar bei
+Der Patch, den Sie brauchen, ist <quote>UOD385 Connection Drivers SLS</quote>. Er ist verfügbar bei
 SCO (<ulink noescape="1" url="ftp://ftp.sco.com/">ftp.sco.com</ulink>, Verzeichnis SLS,
 Dateien uod385a.Z und uod385a.ltr.Z).
 </para>
@@ -175,14 +175,14 @@ Eintrag zu <filename>/etc/hosts</filename> hinzu, wie folgt:
 </para>
 	
 <para>
-Dies veranlaßt Samba, auf das loopback-Interface zurück zu "loopen".
+Dies veranlaßt Samba, auf das loopback-Interface zurück zu <quote>loopen</quote>.
 Das Ergebnis ist, daß Samba nicht mehr korrekt kommuniziert, und dadurch daran
 scheitern kann, den Master Browser und den Verwalter der Master Browse List zu
 bestimmen.
 </para>
 
 <para>
-Korrektur-Maßnahme: Löschen Sie den Eintrag nach dem Wort "loopback" in der Zeile,
+Korrektur-Maßnahme: Löschen Sie den Eintrag nach dem Wort <quote>loopback</quote> in der Zeile,
 die mit 127.0.0.1 beginnt.
 </para>
 </sect1>
@@ -193,7 +193,7 @@ die mit 127.0.0.1 beginnt.
 <title>Sequenzieller Read Ahead</title>
 <!-- From an email by William Jojo <jojowil@hvcc.edu> -->
 <para>
-Das Deaktivieren von "Sequential Read Ahead" mit <userinput>vmtune -r 0</userinput>
+Das Deaktivieren von <quote>Sequential Read Ahead</quote> mit <userinput>vmtune -r 0</userinput>
 steigert die Performance von Samba deutlich.
 </para>
 </sect2>

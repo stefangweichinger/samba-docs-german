@@ -9,9 +9,10 @@
 <title>Einführung in Samba</title>
 
 <para><quote>
-"Wenn du verstehst was du tust, wirst du nichts lernen"
+Wenn du verstehst was du tust, wirst du nichts lernen
+</quote>
 -- Anonym
-</quote></para>
+</para>
 
 <para>
 Samba ist ein Datei- und Druckserver für auf Windows basierende Clients, die TCP/IP als Transport-Protokoll nutzen.
@@ -28,23 +29,24 @@ Vor langer Zeit gab es ein Schlüsselwort welches sich auf DCE/RPC bezog. Dies st
 Computing Environment/Remote Procedure Calls und war vom Konzept her eine gute Idee. Ursprünglich
 wurde es von Apollo/HP als NCA1.0 (Network Computing Architecture) entwickelt und konnte nur über
 UDP benutzt werden. Als es nötig wurde, das ganze über TCP zu betreiben, um die Kompatibilität zu
-DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation "The Open Group" gesandt
+DECnet3.0 gewährleisten zu können, wurde es neu entworfen, zur Organisation <quote>The Open Group</quote> gesandt
 und offiziell als DCE/RPC bekannt. Microsoft kam allerdings auf eine Idee, entschied,
 mehr als $20 für eine
 Arbeitsplatz-Lizenz zu verlangen und es als eigenes MSRPC verkaufen zu wollen. Von diesem Punkt
-an wurde das Konzept in Form von SMB (Server Message Block, das "Was") unter Benutzung von
-NetBIOS (Network Basic Input/Output System, das "Wie") als Kompatibilitäts-Schicht weiter geführt.
+an wurde das Konzept in Form von SMB (Server Message Block, das <quote>Was</quote>) unter Benutzung von
+NetBIOS (Network Basic Input/Output System, das <quote>Wie</quote>) als Kompatibilitäts-Schicht weiter geführt.
 Sie können SMB über viele verschiedene Protokolle nutzen, sprich transportieren; viele verschiedene
 Implementationen führen zu einem Ergebnis, einschließlich NBIPX (NetBIOS über IPX, NwLnkNb, oder NWNBLink)
 und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur meist genutzten Form der
-Implementationen bis zum Fortschritt des "Direct-Hosted TCP" -- der Microsoft Marketing Formulierung zur
+Implementationen bis zum Fortschritt des <quote>Direct-Hosted TCP</quote>
+-- der Microsoft Marketing Formulierung zur
 vollständigen Eliminierung von NetBIOS und der Möglichkeit, SMB direkt an den TCP-Port 445 zu binden.
-Wie es zum jetzigen Zeitpunkt aussieht, muß "Direct-Hosted TCP" jedoch noch aufschliessen.
+Wie es zum jetzigen Zeitpunkt aussieht, muß </quote>Direct-Hosted TCP</quote> jedoch noch aufschliessen.
 </para>
 
 <para>
 Der wohl beste Artikel über den Ursprung von SMB erschien 1997 in einem Artikel mit dem Titel -
-"CIFS: Common Insecurities Fail Scrutiny".
+<quote>CIFS: Common Insecurities Fail Scrutiny</quote>.
 </para>
 
 <para><emphasis>
@@ -52,8 +54,8 @@ Mehrere Megabytes aus NT-Security-Archiven, verschiedensten Whitepapers, RFCs, d
 dem Samba-Zeug, ein paar MS-Knowledge-Base-Artikel, Zeichenketten aus Binärdateien und Packet-Dumps
 wurden pflichtbewußt in den Phasen der Informationssammlung dieses Projektes durchschritten und es
 fehlen noch *immer* einige Teile ... Oftmals müßig, wurde der Weg zumindest großzügig
-gesäumt von Anlässen zum "Hand vor die Stirn schlagen"
-und Murmeln "Mein Gott, was denken die sich dabei?"
+gesäumt von Anlässen zum <quote>Hand vor die Stirn schlagen</quote>
+und Murmeln <quote>Mein Gott, was denken die sich dabei?</quote>
 </emphasis></para>
 
 </sect1>
@@ -64,13 +66,14 @@ und Murmeln "Mein Gott, was denken die sich dabei?"
 <itemizedlist>
 
 	<listitem><para>
-	SMB: Akronym für "Server Message Block". Dies ist das Datei- und Druckerfreigabe-Protokoll 
+	SMB: Akronym für <quote>Server Message Block</quote>. Dies ist das Datei- und Druckerfreigabe-Protokoll 
 	von Microsoft.
 	</para></listitem>
 
 	<listitem><para>
-	CIFS: Akronym für "Common Internet File System". Um 1996 entschied Microsoft, dass SMB das Wort
-	"Internet" im Namen bräuchte und sie änderten den Namen in CIFS.
+	CIFS: Akronym für <quote>Common Internet File System</quote>. Um 1996 entschied Microsoft, dass 
+	SMB das Wort
+	<quote>Internet</quote> im Namen bräuchte und sie änderten den Namen in CIFS.
 	</para></listitem>
 
 	<listitem><para>
@@ -80,7 +83,7 @@ und Murmeln "Mein Gott, was denken die sich dabei?"
 	</para></listitem>
 
 	<listitem><para>
-	IPC: Akronym für "Inter-Process Communication".
+	IPC: Akronym für <quote>Inter-Process Communication</quote>.
 	Eine Methode, spezielle Informationen unter Programmen zu verbreiten.
 	</para></listitem>
 
@@ -92,7 +95,7 @@ und Murmeln "Mein Gott, was denken die sich dabei?"
 	</para></listitem>
 
 	<listitem><para>
-	NetBIOS: Akronym für "Network Basic Input/Output System". Dies ist kein Protokoll;
+	NetBIOS: Akronym für <quote>Network Basic Input/Output System</quote>. Dies ist kein Protokoll;
 	es ist eine Möglichkeit der Kommunikation über ein anderes Protokoll.
 	Dies ist ein Standard, welcher ursprünglich 1983 von IBM entwickelt wurde.
 	Um die Analogie ein wenig zu übertreiben, könnte man NetBIOS mit dem BIOS Ihres
@@ -107,19 +110,20 @@ und Murmeln "Mein Gott, was denken die sich dabei?"
 	</para></listitem>
 
 	<listitem><para>
-	NetBEUI: Akronym für das "NetBIOS Extended User Interface". Nicht vergleichbar mit 
+	NetBEUI: Akronym für das <quote>NetBIOS Extended User Interface</quote>. Nicht vergleichbar mit 
 	NetBIOS ist NetBEUI ein Protokoll, kein Standard. Es ist auch kein routingfähiges Protokoll,
 	was wiederum heißt, dass es nicht
 	von einer Seite eines Routers auf die andere gelangt.
 	Es ist nicht notwendig, NetBEUI zu verstehen, um SMB
 	zu entziffern; es hilft, zu verstehen, dass NetBEUI nicht das gleiche wie NetBIOS ist,
 	um ihre Beliebtheit auf Parties zu erhöhen.
-	Auf NetBEUI wurde ursprünglich von Microsoft als "NBF" oder "Der
-	Windows NT NetBEUI Frame Protocol Treiber" verwiesen. Heutzutage hört man nicht viel davon.
+	Auf NetBEUI wurde ursprünglich von Microsoft als <quote>NBF</quote> oder 
+	<quote>Der
+	Windows NT NetBEUI Frame Protocol Treiber</quote> verwiesen. Heutzutage hört man nicht viel davon.
 	</para></listitem>
 
 	<listitem><para>
-	NBT: Akronym für "NetBIOS über TCP" auch bekannt als "NetBT".
+	NBT: Akronym für <quote>NetBIOS über TCP</quote> auch bekannt als <quote>NetBT</quote>.
 	Erlaubt die Benutzung von NetBIOS-Verkehrim TCP/IP. Im Endeffekt werden NetBIOS-Namen zu 
 	IP-Adressen gewandelt und NetBIOS Namenstypen sind im Grunde genommen mit 
 	TCP/IP Ports vergleichbar.
@@ -170,7 +174,8 @@ SMBFS und CIFS VFS. Sie sind beide im Linux-Kernel verfügbar.
 	<listitem><para>
 	CIFS VFS (Common Internet File System Virtual File System) ist der Nachfolger von SMBFS und wird derzeit aktiv
 	für die neue Version des Linux-Kernels entwickelt. Die Absicht dieses Moduls ist es, erweiterte Netzwerkdateisysteme,
-	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere "Pro-User"-
+	Funktionen wie Unterstützung von dfs (hierarischer Namensplatz / hierarchical name space), sichere 
+	<quote>Pro-User</quote>-
 	Sessions, sicheres verteiltes Zwischenspeichern (oplock), optionales Signieren von Paketen, den Unicode-Zeichensatz,
 	weitere internationalisierte Verbesserungen und die optionale Einbindung von Winbind (nsswitch) zu unterstützen.
     </para></listitem>
@@ -206,17 +211,17 @@ Reihenfolge aufgebaut:
 
 <itemizedlist>
 	<listitem><para>
-	"TCP Verbindung" - Aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
+	<quote>TCP Verbindung</quote> - Aufbau des 3-Wege Handschlags (Verbindung) zu Port 139/tcp
     oder 445/tcp.
 	</para></listitem>
 
 	<listitem><para>
-	"NetBIOS Session Anfrage" - Benutzt folgende Rufnamen: Den lokalen NetBIOS-Namen der lokalen
+	<quote>NetBIOS Session Anfrage</quote> - Benutzt folgende Rufnamen: Den lokalen NetBIOS-Namen der lokalen
 	Maschine zzgl. den 16. Buchstaben 0x00 und den NetBIOS-Namen des Servers zzgl. 0x20 als 16. Buchstaben.
 	</para></listitem>
 
 	<listitem><para>
-	"SMB Negotiate Protocol" - bestimmt den Protokoll-Dialekt, der benutzt werden soll, dieser Dialekt
+	<quote>SMB Negotiate Protocol</quote> - bestimmt den Protokoll-Dialekt, der benutzt werden soll, dieser Dialekt
 	kann einer der folgenden sein:
 	PC Network Program 1.0 (Core) - nur share level security modus;
 	Microsoft Networks 1.03 (Core Plus) - nur share level security modus;
@@ -272,8 +277,9 @@ Sie können dem System nicht vertrauen, da es unter bestimmten Bedingungen einfac
 einfach nur stehen bleibt, wenn Sie gerade etwas völlig Normales machen. 
 Normalerweise funktioniert es gut, nur ist es irgendwann ohne Begründung tot, und niemand weiß warum.
 Nicht Microsoft, nicht die erfahrenen Anwender
-und schon gar nicht der ahnungslose Benutzer, der vor seinem Bildschirm sitzt und sich fragt: "Was hab
-ich bloß falsch gemacht?", wenn er doch gar nichts falsch gemacht hat.
+und schon gar nicht der ahnungslose Benutzer, der vor seinem Bildschirm sitzt und sich fragt: 
+<quote>Was hab
+ich bloß falsch gemacht?</quote>, wenn er doch gar nichts falsch gemacht hat.
 </quote></para>
 
 <para><quote>

@@ -12,7 +12,7 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Sogenannte "Roaming Profiles" (zu Deutsch etwa "servergespeicherte Benutzerprofile") 
+Sogenannte <quote>Roaming Profiles</quote> (zu Deutsch etwa <quote>servergespeicherte Benutzerprofile</quote>) 
 werden von manchen gefürchtet, von einigen gehasst, von vielen geliebt,
 und sind ein Geschenk des Himmels für so manchen Administrator.
 </para>
@@ -92,7 +92,7 @@ wobei <quote>%L</quote> auf den Namen des Samba-Servers aufgelöst wird, und <quo
 Die Voreinstellung für diese Option ist <filename>\\%N\%U\profile</filename>, also
 <filename>\\sambaserver\username\profile</filename>.
 Der Dienst <filename>\\%N\%U</filename> wird automatisch vom [homes]-Dienst angelegt.
-Wenn Sie einen Samba-Server für die Profile verwenden, müssen Sie die in "logon path" angegebene
+Wenn Sie einen Samba-Server für die Profile verwenden, müssen Sie die in <quote>logon path</quote> angegebene
 Freigabe browseable machen. Bitte lesen Sie die manpage für &smb.conf;, um mehr über die 
 unterschiedliche Semantik von <quote>%L</quote> und <quote>%N</quote> zu erfahren, wie auch über
 <quote>%U</quote> und <quote>%u</quote>.
@@ -653,7 +653,7 @@ Windows NT Server 4.0 Resource Kit verwenden.</para>
 <filename>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</filename> </para>
 
 <para>
-Im Schlüssel "ProfileList" gibt es Sub-Schlüssel, die nach den SIDs der Benutzer benannt sind, die
+Im Schlüssel <quote>ProfileList</quote> gibt es Sub-Schlüssel, die nach den SIDs der Benutzer benannt sind, die
 sich an diesem Computer angemeldet haben. (Um die Informationen zu dem Benutzer zu finden, dessen
 lokal zwischengespeichertes Profil sie verschieben wollen, bestimmen Sie dessen SID mit dem Werkzeug
 <command>GetSID.exe</command>.) Innerhalb des entsprechenden Sub-Schlüssel des Benutzers werden Sie
@@ -665,7 +665,8 @@ einen String-Wert namens <parameter>ProfileImagePath</parameter> finden.</para>
 
 <para>
 <indexterm><primary>mandatory profiles</primary></indexterm>
-Ein zwingendes Profil ("Mandatory Profile") ist ein Profil, das der Benutzer nicht überschreiben kann.
+Ein zwingendes Profil (<quote>Mandatory Profile</quote>) ist ein Profil, 
+das der Benutzer nicht überschreiben kann.
 Während der einzelnen Sitzung des Benutzers sind Änderungen an der Desktop-Umgebung möglich, jedoch
 sind alle diese Änderungen beim Abmelden des Benutzers verloren. Wenn es erwünscht ist, dem Benutzer
 keinerlei Möglichkeit zur Veränderung der Desktop-Umgebung zu erlauben, muß dies durch Setzen von
@@ -767,7 +768,7 @@ Maschine existiert, wird diese Kopie verwendet.</para>
 <para>Wenn an keinem der beiden Orte ein Benutzerprofil gefunden wird, wird das Standard-Benutzer-Profil
 der Windows 9x/Me-Maschine verwendet und in einen neu angelegten Ordner für den angemeldeten Benutzer
 kopiert. Beim Abmelden werden alle vorgenommenen Änderungen des Benutzers in sein lokales Profil
-geschrieben. Wenn der Benutzer ein "Roaming Profile" hat, werden die Änderungen in sein Profil auf
+geschrieben. Wenn der Benutzer ein <quote>Roaming Profile</quote> hat, werden die Änderungen in sein Profil auf
 dem Server geschrieben.</para>
 
 </sect3> </sect2>
@@ -822,19 +823,19 @@ Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 	<filename>HKEY_CURRENT_USER</filename> der Registrierung angewandt wird.</para> </step>
 
 	<step> <para>
-	Beim Abmelden des Benutzers wird, wenn das Profil ein "Roaming Profile" ist, das Profil
+	Beim Abmelden des Benutzers wird, wenn das Profil ein <quote>Roaming Profile</quote> ist, das Profil
 	in den Profil-Pfad geschrieben. Die Datei <filename>NTuser.DAT</filename> wird dann neu
 	aus den Inhalten von <filename>HKEY_CURRENT_USER</filename> angelegt.
 	Daher wird, falls beim nächsten Anmelden
 	in der NETLOGON-Freigabe keine Datei <filename>NTConfig.POL</filename> existiert, die
 	Auswirkung der vorigen Datei <filename>NTConfig.POL</filename> nach wie vor im Profil behalten.
-	Diesen Effekt bezeichnet man als "Tattooing".</para> </step>
+	Diesen Effekt bezeichnet man als <quote>Tattooing</quote>.</para> </step>
 </procedure>
 
 <para>
 MS Windows NT4 Profile können <emphasis>lokal</emphasis> oder <emphasis>roaming</emphasis> sein.
 Ein lokales Profil wird in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> gespeichert. Ein
-"Roaming Profile" wird auch in derselben Art gespeichert, außer der folgende Registrierungs-Schlüssel
+<quote>Roaming Profile</quote> wird auch in derselben Art gespeichert, außer der folgende Registrierungs-Schlüssel
 wird wie folgt angelegt:</para>
 
 <para><screen>HKEY_LOCAL_MACHINE\SYSTEM\Software\Microsoft\Windows NT\CurrentVersion\winlogon\"DeleteRoamingCache"=dword:0000000
@@ -921,7 +922,7 @@ User Shell Folders</filename> </para>
 <indexterm><primary>GPOs</primary></indexterm>
 MS Windows XP Home Edition verwendet standard-mäßig Per-Benutzer-Profile, aber kann nicht an
 Domänen teilnehmen, sich nicht an NT/ADS-Domänen anmelden, und kann daher das Profil nur von sich selbst
-beziehen. Während dies Vorteile hat, erlaubt die "Schönheit" von jenen MS Windows Clients, die an
+beziehen. Während dies Vorteile hat, erlaubt die <quote>Schönheit</quote> jener MS Windows Clients, die an
 Domänen-Anmeldevorgängen teilnehmen können, dem Administrator, ein globales Standard-Profil anzulegen,
 und dessen Verwendung mittels Gruppenrichtlinien (GPOs) zu erzwingen.
 </para></note>
@@ -1025,7 +1026,7 @@ Standard-Eintrag ist vom Typ <constant>REG_SZ</constant>, alle anderen sind vom 
 
 
 <para>Es macht einen riesigen Unterschied in Bezug auf die Geschwindigkeit, mit der man 
-"Roaming Profiles" verwenden kann, wenn all die notwendigen Ordner an einem dafür bestimmten Ort auf
+<quote>Roaming Profiles</quote> verwenden kann, wenn all die notwendigen Ordner an einem dafür bestimmten Ort auf
 einem Netzwerk-Server abgelegt werden. Das bedeutet, daß es nicht mehr notwendig ist, bei jedem
 An- und Abmelden die Outlook PST-Datei über das Netzwerk zu schreiben.</para>
 
@@ -1049,7 +1050,7 @@ Benutzer-Profil darauf migrieren MÜSSEN (egal ob Standard- oder angepaßtes Profi
 
 
 <para>MS Windows 200x/XP Profile können <emphasis>Local</emphasis> oder <emphasis>Roaming</emphasis>
-sein. Ein "Roaming Profile" wird lokal gepuffert (Cache), außer der folgende Registrierungsschlüssel
+sein. Ein <quote>Roaming Profile</quote> wird lokal gepuffert (Cache), außer der folgende Registrierungsschlüssel
 wird angelegt:
 
 <indexterm><primary>delete roaming profiles</primary></indexterm>
@@ -1070,17 +1071,13 @@ In diesem Fall wird die lokale Cache-Kopie beim Abmelden gelöscht.
 <para>Im Folgenden werden typische Fehler, Probleme und Fragen beschrieben, die in den Samba
 Mailing-Listen gestellt wurden.</para>
 
-
-
-
 <sect2>
-<title>Das Konfigurieren von "Roaming Profiles" für einige wenige Benutzer oder Gruppen</title>
+<title>Das Konfigurieren von <quote>Roaming Profiles</quote> für einige wenige Benutzer oder Gruppen</title>
 
 <para>
 Mit Samba-2.2.x haben Sie die Wahl, die Unterstützung von Roaming Profiles zu aktivieren oder
 zu deaktivieren. Die Voreinstellung ist, Roaming Profiles zu haben, und der Standard-Pfad wird
 diese im Home-Verzeichnis des Benutzers suchen.</para>
-
 
 <para>Falls diese global deaktiviert sind, hat kein Benutzer die Fähigkeit, Roaming Profiles zu
 verwenden. Wenn diese aktiviert sind, und Sie wollen sie nur auf bestimmte Maschinen anwenden, ist
