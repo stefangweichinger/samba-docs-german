@@ -12,7 +12,7 @@
 	</author>
 	&author.jerry;
 	&author.jht;
-	<pubdate>May 31, 2003</pubdate>
+	<author>&author.gherman;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Klassische Druckerunterstützung</title>
@@ -1629,7 +1629,7 @@ Dazu gehören vier verschiedene Schritte:
 	(evtl. mit dem Befehl <command>smbclient</command>).
 	</para></listitem>
 
-	<litem><para>
+	<listitem><para>
 	Führen Sie das Kommandozeilen-Utility <command>rpcclient</command>
 	mit dem Unterbefehl <command>adddriver</command> einmal aus.
 	</para></listitem>
