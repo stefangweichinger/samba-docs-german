@@ -5,10 +5,10 @@
 <xsl:import href="http://db2latex.sourceforge.net/xsl/docbook.xsl"/>
 
 <xsl:output method="text" encoding="ISO-8859-1" indent="yes"/>
-<xsl:param name="l10n.gentext.default.language" select="'en'"/>
+<xsl:param name="l10n.gentext.default.language" select="'de'"/>
 <xsl:param name="latex.example.caption.style"></xsl:param>
 <xsl:variable name="latex.documentclass">sambadoc</xsl:variable>
-<xsl:variable name="latex.documentclass.common">twoside,11pt,letterpaper</xsl:variable>
+<xsl:variable name="latex.documentclass.common">german,twoside,11pt,letterpaper</xsl:variable>
 <xsl:variable name="latex.documentclass.book"></xsl:variable>
 <xsl:variable name="latex.hyperref.param.pdftex">hyperfigures,hyperindex,citecolor=black,urlcolor=black,filecolor=black,linkcolor=black,menucolor=red,pagecolor=black</xsl:variable>
 <xsl:variable name="latex.document.font">default</xsl:variable>
@@ -88,9 +88,14 @@ footskip=.025in}
 \renewcommand{\topfraction}{1.0}
 \renewcommand{\bottomfraction}{1.0}
 
+\pretolerance = 500 
+% covers most paragraphs
+\tolerance = 5000 
+% covers the nasty cases
+
 %% Document Parts
 </xsl:variable>
-<xsl:param name="latex.babel.language">english</xsl:param>
+<xsl:param name="latex.babel.language">german</xsl:param>
 <xsl:param name="ulink.url">1</xsl:param>
 
 <xsl:template match="//title/filename|//title/command|//title/parameter|//title/constant">
