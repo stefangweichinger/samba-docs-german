@@ -3,16 +3,16 @@
 <chapter id="printing">
 
 <chapterinfo>
-	<author>
-		<firstname>Kurt</firstname><surname>Pfeifle</surname>
-		<affiliation>
-			<orgname> Danka Deutschland GmbH </orgname>
-			<address><email>kpfeifle@danka.de</email></address>
-		</affiliation>
-	</author>
-	&author.jerry;
-	&author.jht;
-	<author>&person.gherman;<contrib>Deutsche Übersetzung</contrib></author>
+    <author>
+        <firstname>Kurt</firstname><surname>Pfeifle</surname>
+        <affiliation>
+            <orgname> Danka Deutschland GmbH </orgname>
+            <address><email>kpfeifle@danka.de</email></address>
+        </affiliation>
+    </author>
+    &author.jerry;
+    &author.jht;
+    <author>&person.gherman;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Klassische Druckerunterstützung</title>
@@ -164,24 +164,24 @@ auch hier Parameter auf einer globalen Ebene (in den Listings mit einem
 </para>
 
 <variablelist>
-	<varlistentry><term>Globale Parameter</term>
-		<listitem><para> Diese <emphasis>dürfen nicht</emphasis> in die
-		individuellen Freigabedefinitionen eingehen. Wenn Sie dort irrtümlich 
-		eingehen, kann das Utility <command>testparm</command> das
-		feststellen und Ihnen mitteilen (sofern Sie es starten).
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term>Globale Parameter</term>
+        <listitem><para> Diese <emphasis>dürfen nicht</emphasis> in die
+        individuellen Freigabedefinitionen eingehen. Wenn Sie dort irrtümlich 
+        eingehen, kann das Utility <command>testparm</command> das
+        feststellen und Ihnen mitteilen (sofern Sie es starten).
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term>Serviceebenen-Parameter</term>
-		<listitem><para> Diese dürfen im Abschnitt 
-		<smbconfsection>[global]</smbconfsection> von &smb.conf;
-		angegeben werden.
-		In diesem Fall definieren sie das Standardverhalten von allen
-		individuellen Freigaben oder von Freigaben auf Serviceebene
-		(vorausgesetzt, es gibt keine andere Einstellung für den 
-		gleichen Parameter, der die globale Voreinstellung überschreibt).
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term>Serviceebenen-Parameter</term>
+        <listitem><para> Diese dürfen im Abschnitt 
+        <smbconfsection>[global]</smbconfsection> von &smb.conf;
+        angegeben werden.
+        In diesem Fall definieren sie das Standardverhalten von allen
+        individuellen Freigaben oder von Freigaben auf Serviceebene
+        (vorausgesetzt, es gibt keine andere Einstellung für den 
+        gleichen Parameter, der die globale Voreinstellung überschreibt).
+        </para></listitem>
+    </varlistentry>
 </variablelist>
 </sect2>
 
@@ -240,6 +240,16 @@ Einstellungen <parameter>Yes/No</parameter> oder
 <parameter>True/False</parameter> zu verwenden. Listen von Namen dürfen
 mit Kommas, Leerzeichen oder Tabulatoren getrennt werden.
 </para>
+
+<important><para>Seit der Erst-Veröffentlichung dieses Buches in 
+Englisch sind die Samba-Versionen 3.0.1 bin 3.0.7 erschienen. Diese
+brachten wichtige Änderungen zu den Druckfunktionen. Am Ende dieses 
+Kapitels (ebenso wie am Ende des Kapitels "Unterstützung des 
+CUPS-Drucksystems") finden Sie den Abschnitt "Aktualisierungen". Bitte
+versäumen Sie nicht, diesen Abschnitt ebenfalls zu lesen. Falls Sie mit
+einer neueren Samba-Version als 3.0.0 arbeiten, sollten Sie unbedingt
+dort nachschauen, bevor sie die nun folgenden Beispiele ausprobieren.
+</para></important>
 
 <sect2>
 <title>Überprüfen der Konfiguration mit <command>testparm</command></title>
@@ -428,9 +438,9 @@ testparm hat zwei Warnungen ausgegeben:
 </para>
 
 <itemizedlist>
-	<listitem><para>Wir haben nicht angegeben, dass der Abschnitt 
+    <listitem><para>Wir haben nicht angegeben, dass der Abschnitt 
 <smbconfsection>[printers]</smbconfsection> druckbar ist.</para></listitem>
-	<listitem><para>Wir haben Samba nicht gesagt, welches Spooling-Verzeichnis 
+    <listitem><para>Wir haben Samba nicht gesagt, welches Spooling-Verzeichnis 
 verwendet werden soll.</para></listitem>
 </itemizedlist>
 
@@ -485,7 +495,7 @@ standardmäßig gesetzt werden.
 </para>
 
 <para><smbconfexample id="extbsdpr">
-	<title>Erweiterte BSD-Druckerkonfiguration</title>
+    <title>Erweiterte BSD-Druckerkonfiguration</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>printing</name><value>bsd</value></smbconfoption>
 <smbconfoption><name>load printers</name><value>yes</value></smbconfoption>
@@ -555,105 +565,105 @@ jeder Freigabe dürfen Sie diese global gesetzten Freigabeeinstellungen allerding
 </para>
 
 <variablelist>
-	<varlistentry><term><smbconfoption><name>printing</name><value>bsd </value></smbconfoption></term>
-		<listitem><para>Bewirkt, dass Samba die Standarddruckbefehle verwendet,
-		die im BSD-Drucksystem (auch als RFC 1179 oder LPR/LPD bekannt)
-		vorgesehen sind. Im Allgemeinen informiert der Parameter 
-		<parameter>printing</parameter> Samba über das Drucksubsystem, mit
-		dem es rechnen soll. Samba unterstützt CUPS, LPD, LPRNG,
-		SYSV, HPUX, AIX, QNX und PLP. Jedes dieser Systeme hat seinen eigenen
-		<smbconfoption><name>Druckbefehl</name></smbconfoption> (sowie andere 
-		Befehle zur Steuerung der Druckerschlange).</para>
+    <varlistentry><term><smbconfoption><name>printing</name><value>bsd </value></smbconfoption></term>
+        <listitem><para>Bewirkt, dass Samba die Standarddruckbefehle verwendet,
+        die im BSD-Drucksystem (auch als RFC 1179 oder LPR/LPD bekannt)
+        vorgesehen sind. Im Allgemeinen informiert der Parameter 
+        <parameter>printing</parameter> Samba über das Drucksubsystem, mit
+        dem es rechnen soll. Samba unterstützt CUPS, LPD, LPRNG,
+        SYSV, HPUX, AIX, QNX und PLP. Jedes dieser Systeme hat seinen eigenen
+        <smbconfoption><name>Druckbefehl</name></smbconfoption> (sowie andere 
+        Befehle zur Steuerung der Druckerschlange).</para>
 
-		<caution><para>Der Parameter 
-		<smbconfoption><name>printing</name></smbconfoption> 
-		ist normalerweise ein Parameter der Serviceebene. Da er hier im
-		Abschnitt <smbconfsection>[global]</smbconfsection> enthalten ist, 
-		wird er für alle Druckerfreigaben wirksam, für die nichts anderes
-		definiert ist. Samba-3 unterstützt das Drucksystem SOFTQ nicht mehr.
-		</para></caution>
-	</listitem></varlistentry>
+        <caution><para>Der Parameter 
+        <smbconfoption><name>printing</name></smbconfoption> 
+        ist normalerweise ein Parameter der Serviceebene. Da er hier im
+        Abschnitt <smbconfsection>[global]</smbconfsection> enthalten ist, 
+        wird er für alle Druckerfreigaben wirksam, für die nichts anderes
+        definiert ist. Samba-3 unterstützt das Drucksystem SOFTQ nicht mehr.
+        </para></caution>
+    </listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>load printers</name><value>yes </value></smbconfoption></term>
-		<listitem><para>Weist Samba an, automatisch alle verfügbaren Druckerfreigaben
-		zu erstellen. Verfügbare Druckerfreigaben werden beim Scannen der Datei 
-		printcap entdeckt. Alle erstellten Druckerfreigaben werden auch zum Browsen
-		geladen. Falls Sie diesen Parameter verwenden, müssen Sie keine separaten
-		Freigaben für jeden Drucker angeben. Jede automatisch erstellte 
-		Druckerfreigabe macht einen Klon von den Konfigurationsoptionen im Abschnitt 
-		<smbconfsection>[printers]</smbconfsection>. (Die Einstellung 
-		<parameter>load printers = no</parameter> erlaubt Ihnen, jeden gemeinsam
-		genutzten UNIX-Drucker separat anzugeben, wobei Sie einige auslassen
-		können, bei denen Sie nicht möchten, dass sie öffentlich sichtbar und 
-		verfügbar sind).</para>
-	</listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>load printers</name><value>yes </value></smbconfoption></term>
+        <listitem><para>Weist Samba an, automatisch alle verfügbaren Druckerfreigaben
+        zu erstellen. Verfügbare Druckerfreigaben werden beim Scannen der Datei 
+        printcap entdeckt. Alle erstellten Druckerfreigaben werden auch zum Browsen
+        geladen. Falls Sie diesen Parameter verwenden, müssen Sie keine separaten
+        Freigaben für jeden Drucker angeben. Jede automatisch erstellte 
+        Druckerfreigabe macht einen Klon von den Konfigurationsoptionen im Abschnitt 
+        <smbconfsection>[printers]</smbconfsection>. (Die Einstellung 
+        <parameter>load printers = no</parameter> erlaubt Ihnen, jeden gemeinsam
+        genutzten UNIX-Drucker separat anzugeben, wobei Sie einige auslassen
+        können, bei denen Sie nicht möchten, dass sie öffentlich sichtbar und 
+        verfügbar sind).</para>
+    </listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>show add printer wizard</name><value>yes </value></smbconfoption></term>
-		<listitem><para>Diese Einstellung ist normalerweise standardmäßig aktiviert
-		(sogar dann, wenn der Parameter nicht in &smb.conf; angegeben ist).
-		Sie bewirkt, dass das Icon 
-		<guiicon>Assistent für die Druckerinstallation</guiicon> im
-		Verzeichnis <guiicon>Drucker</guiicon> der Freigabeliste des Samba-Hosts
-		(wie es in <guiicon>Netzwerkumgebung</guiicon> oder vom Befehl
-		<command>net view</command> gezeigt wird). Um sie zu deaktivieren müssen
-		Sie sie explizit auf <constant>no</constant> setzen (nur auskommentieren
-		reicht nicht). 
-		Mit dem <parameter>Assistenten für die Druckerinstallation</parameter>
-		können Sie
-		Druckertreiber auf die Freigabe <smbconfsection>[print$]</smbconfsection> 
-		hochladen und sie mit einem Drucker verbinden (falls die entsprechende
-		Schlange vorher schon existiert), oder den Treiber eines Drucker gegen 
-		einen anderen vorher hochgeladenen Treiber austauschen.</para>
-	</listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>show add printer wizard</name><value>yes </value></smbconfoption></term>
+        <listitem><para>Diese Einstellung ist normalerweise standardmäßig aktiviert
+        (sogar dann, wenn der Parameter nicht in &smb.conf; angegeben ist).
+        Sie bewirkt, dass das Icon 
+        <guiicon>Assistent für die Druckerinstallation</guiicon> im
+        Verzeichnis <guiicon>Drucker</guiicon> der Freigabeliste des Samba-Hosts
+        (wie es in <guiicon>Netzwerkumgebung</guiicon> oder vom Befehl
+        <command>net view</command> gezeigt wird). Um sie zu deaktivieren müssen
+        Sie sie explizit auf <constant>no</constant> setzen (nur auskommentieren
+        reicht nicht). 
+        Mit dem <parameter>Assistenten für die Druckerinstallation</parameter>
+        können Sie
+        Druckertreiber auf die Freigabe <smbconfsection>[print$]</smbconfsection> 
+        hochladen und sie mit einem Drucker verbinden (falls die entsprechende
+        Schlange vorher schon existiert), oder den Treiber eines Drucker gegen 
+        einen anderen vorher hochgeladenen Treiber austauschen.</para>
+    </listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>total print jobs</name><value>100 </value></smbconfoption></term>
-		<listitem><para>Setzt die obere Grenze der gleichzeitig auf dem
-		Samba-Server aktiven Druckaufträge auf 100. Sollte ein Client einen
-		Auftrag mit einer höheren Nummer absetzen, erhält er von Samba eine 
-		Fehlermeldung der Art <quote>no more space available on server</quote>. 
-		Der Wert Null (die Voreinstellung) bedeutet, es gibt 
-		<emphasis>keine</emphasis> Beschränkung.
-	</para></listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>total print jobs</name><value>100 </value></smbconfoption></term>
+        <listitem><para>Setzt die obere Grenze der gleichzeitig auf dem
+        Samba-Server aktiven Druckaufträge auf 100. Sollte ein Client einen
+        Auftrag mit einer höheren Nummer absetzen, erhält er von Samba eine 
+        Fehlermeldung der Art <quote>no more space available on server</quote>. 
+        Der Wert Null (die Voreinstellung) bedeutet, es gibt 
+        <emphasis>keine</emphasis> Beschränkung.
+    </para></listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>printcap name</name><value>/etc/printcap </value></smbconfoption></term>
-		<listitem><para>Sagt Samba, wo es nach einer Liste verfügbarer Druckernamen
-		suchen soll. Wenn CUPS verwendet wird, sollten Sie sicherstellen, dass eine
-		printcap-Datei geschrieben wird, was mit der Direktive 
-		<constant>Printcap</constant> in der Datei <filename>cupsd.conf</filename>
-		gesteuert wird.
-	</para></listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>printcap name</name><value>/etc/printcap </value></smbconfoption></term>
+        <listitem><para>Sagt Samba, wo es nach einer Liste verfügbarer Druckernamen
+        suchen soll. Wenn CUPS verwendet wird, sollten Sie sicherstellen, dass eine
+        printcap-Datei geschrieben wird, was mit der Direktive 
+        <constant>Printcap</constant> in der Datei <filename>cupsd.conf</filename>
+        gesteuert wird.
+    </para></listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>printer admin</name><value>@ntadmin </value></smbconfoption></term>
-		<listitem><para>Mitglieder der Gruppe ntadmin sollten in der Lage sein,
-		Treiber hizuzufügen und Druckereigenschaften zu setzen 
-		(<constant>ntadmin</constant> ist lediglich ein Beispielname, es muss 
-		der Name einer gültigen UNIX-Gruppe sein); root ist implizit immer ein
-		<smbconfoption><name>printer admin</name></smbconfoption>. 
-		Das Zeichen @ steht vor Gruppennamen in <filename>/etc/group</filename>. 
-		Ein printer admin kann mit den MS-RPC-Schnittstellen für die 
-		Fernwartung (siehe unten) alles mögliche mit Druckern anstellen. 
-		In größeren Installationen ist der Parameter 
-		<smbconfoption><name>printer admin</name></smbconfoption> normalerweise 
-		einer pro Freigabe. Damit können alle Druckerfreigaben von verschiedenen 
-		Gruppen verwaltet werden.
-	</para></listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>printer admin</name><value>@ntadmin </value></smbconfoption></term>
+        <listitem><para>Mitglieder der Gruppe ntadmin sollten in der Lage sein,
+        Treiber hizuzufügen und Druckereigenschaften zu setzen 
+        (<constant>ntadmin</constant> ist lediglich ein Beispielname, es muss 
+        der Name einer gültigen UNIX-Gruppe sein); root ist implizit immer ein
+        <smbconfoption><name>printer admin</name></smbconfoption>. 
+        Das Zeichen @ steht vor Gruppennamen in <filename>/etc/group</filename>. 
+        Ein printer admin kann mit den MS-RPC-Schnittstellen für die 
+        Fernwartung (siehe unten) alles mögliche mit Druckern anstellen. 
+        In größeren Installationen ist der Parameter 
+        <smbconfoption><name>printer admin</name></smbconfoption> normalerweise 
+        einer pro Freigabe. Damit können alle Druckerfreigaben von verschiedenen 
+        Gruppen verwaltet werden.
+    </para></listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>lpq cache time</name><value>20 </value></smbconfoption></term>
-		<listitem><para>Gibt die Cache-Zeit für die Ergebnisse des Befehls
-		lpq an. Sie verhindert, dass der lpq-Befehl zu oft aufgerufen wird, und
-		reduziert so die Last auf einem stark ausgelastetem Druckserver.
-	</para></listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>lpq cache time</name><value>20 </value></smbconfoption></term>
+        <listitem><para>Gibt die Cache-Zeit für die Ergebnisse des Befehls
+        lpq an. Sie verhindert, dass der lpq-Befehl zu oft aufgerufen wird, und
+        reduziert so die Last auf einem stark ausgelastetem Druckserver.
+    </para></listitem></varlistentry>
 
-	<varlistentry><term><smbconfoption><name>use client driver</name><value>no </value></smbconfoption></term>
-		<listitem><para>Falls auf <constant>yes</constant> gesetzt, wirkt 
-		sich dieser Parameter nur auf Windows NT/200x/XP-Clients aus (und 
-		nicht auf Win 95/98/ME). Sein Standardwert ist <constant>No</constant>
-		(oder <constant>False</constant>). Er darf bei Druckerfreigaben, 
-		für die auf dem Samba-Server gültige Treiber installiert sind,
-		<emphasis>nicht</emphasis> aktiviert werden (mit der Einstellung 
-		<constant>yes</constant> oder <constant>true</constant>). Eine
-		detailliertere Erklärung finden Sie in der Manpage zu &smb.conf;.
-	</para></listitem></varlistentry>
+    <varlistentry><term><smbconfoption><name>use client driver</name><value>no </value></smbconfoption></term>
+        <listitem><para>Falls auf <constant>yes</constant> gesetzt, wirkt 
+        sich dieser Parameter nur auf Windows NT/200x/XP-Clients aus (und 
+        nicht auf Win 95/98/ME). Sein Standardwert ist <constant>No</constant>
+        (oder <constant>False</constant>). Er darf bei Druckerfreigaben, 
+        für die auf dem Samba-Server gültige Treiber installiert sind,
+        <emphasis>nicht</emphasis> aktiviert werden (mit der Einstellung 
+        <constant>yes</constant> oder <constant>true</constant>). Eine
+        detailliertere Erklärung finden Sie in der Manpage zu &smb.conf;.
+    </para></listitem></varlistentry>
 </variablelist>
 
 </sect3>
@@ -674,103 +684,103 @@ Parameter auf der Ebene der Freigabe sein.
 </para>
 
 <variablelist>
-	<varlistentry><term><smbconfoption><name>comment</name><value>Alle Drucker </value></smbconfoption></term>
-		<listitem><para>
-		Der <smbconfoption><name>Kommentar</name></smbconfoption> wird neben der 
-		Freigabe angezeigt, wenn ein Client beim Server anfragt, entweder mittels 
-		<guiicon>Netzwerkumgebung</guiicon> oder oder mit dem Befehl 
-		<command>net view</command>, der verfügbare Freigaben auflistet.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>comment</name><value>Alle Drucker </value></smbconfoption></term>
+        <listitem><para>
+        Der <smbconfoption><name>Kommentar</name></smbconfoption> wird neben der 
+        Freigabe angezeigt, wenn ein Client beim Server anfragt, entweder mittels 
+        <guiicon>Netzwerkumgebung</guiicon> oder oder mit dem Befehl 
+        <command>net view</command>, der verfügbare Freigaben auflistet.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Der Dienst <smbconfsection>[printers]</smbconfsection> 
-		<emphasis>muss</emphasis> muss als printable, d.h. druckbar deklariert
-		werden. Anderenfalls weigert sich smbd, beim Hochfahren etwas zu laden.
-		Dieser Parameter ermöglicht verbundenen Clients, Sppol-Dateien zu öffnen,
-		darin zu schreiben und sie in das Verzeichnis zu übertragen, das mit dem
-		Parameter <smbconfoption><name>path</name></smbconfoption> für diesen 
-		Dienst angegeben wird. Samba verwendet ihn, um Druckerfreigaben von 
-		Dateifreigaben zu unterscheiden. 
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Der Dienst <smbconfsection>[printers]</smbconfsection> 
+        <emphasis>muss</emphasis> muss als printable, d.h. druckbar deklariert
+        werden. Anderenfalls weigert sich smbd, beim Hochfahren etwas zu laden.
+        Dieser Parameter ermöglicht verbundenen Clients, Sppol-Dateien zu öffnen,
+        darin zu schreiben und sie in das Verzeichnis zu übertragen, das mit dem
+        Parameter <smbconfoption><name>path</name></smbconfoption> für diesen 
+        Dienst angegeben wird. Samba verwendet ihn, um Druckerfreigaben von 
+        Dateifreigaben zu unterscheiden. 
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>path</name><value>/var/spool/samba </value></smbconfoption></term>
-		<listitem><para>
-		Muss der Name eines Verzeichnisses sein, das Samba beim Spoolen ankommender
-		Druckdateien verwendet. <emphasis>Es darf nicht identisch sein mit mit dem 
-		Spooling-Verzeichnis, das in der Konfiguration Ihres UNIX-Drucksubsystems
-		angegeben ist!</emphasis> Der Pfad beschreibt normalerweise ein Verzeichnis, 
-		in dem alle Schreibrechte haben, und dessen <quote>sticky</quote>-Bit 
-		gesetzt ist.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>path</name><value>/var/spool/samba </value></smbconfoption></term>
+        <listitem><para>
+        Muss der Name eines Verzeichnisses sein, das Samba beim Spoolen ankommender
+        Druckdateien verwendet. <emphasis>Es darf nicht identisch sein mit mit dem 
+        Spooling-Verzeichnis, das in der Konfiguration Ihres UNIX-Drucksubsystems
+        angegeben ist!</emphasis> Der Pfad beschreibt normalerweise ein Verzeichnis, 
+        in dem alle Schreibrechte haben, und dessen <quote>sticky</quote>-Bit 
+        gesetzt ist.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>browseable</name><value>no </value></smbconfoption></term>
-		<listitem><para>
-		Ist immer auf <constant>no</constant> gesetzt, falls 
-		<smbconfoption><name>printable</name><value>yes</value></smbconfoption>.
-		Dadurch wird die Freigabe <smbconfsection>[printer]</smbconfsection> 
-		selbst unsichtbar in der Liste der verfügbaren Freigaben bei dem Befehl
-		<command>net view</command> oder in der Browserliste des Explorers.
-		(Natürlich können Sie die einzelnen Drucker noch sehen).
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>browseable</name><value>no </value></smbconfoption></term>
+        <listitem><para>
+        Ist immer auf <constant>no</constant> gesetzt, falls 
+        <smbconfoption><name>printable</name><value>yes</value></smbconfoption>.
+        Dadurch wird die Freigabe <smbconfsection>[printer]</smbconfsection> 
+        selbst unsichtbar in der Liste der verfügbaren Freigaben bei dem Befehl
+        <command>net view</command> oder in der Browserliste des Explorers.
+        (Natürlich können Sie die einzelnen Drucker noch sehen).
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>guest ok</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Falls dieser Parameter auf <constant>yes</constant> gesetzt ist, wird 
-		kein Passwort für eine Verbindung zu diesem Druckdienst benötigt. Der 
-		Zugang erfolgt mit den Rechten des 
-		<smbconfoption><name>Gast-Kontos</name></smbconfoption>. Auf vielen 
-		Systemen wird das Gast-Konto auf einen Benutzer namens 
-		<quote>nobody</quote> abgebildet. Für diesen Benutzer findet UNIX
-		normalerweise in der Datei passwd ein leeres Passwort vor, aber kein 
-		gültiges UNIX-Login. (Auf manchen Systemen hat das Gast-Konto 
-		evtl. keine Druckrechte. Testen Sie das, indem Sie sich als 
-		Gastbenutzer anmelden, mit <command>su - guest</command>, und geben 
-		Sie wie folgt einen Druckbefehl im System ein:
-		</para>
-	
-		<para>
-		<userinput>lpr -P printername /etc/motd</userinput>
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>guest ok</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Falls dieser Parameter auf <constant>yes</constant> gesetzt ist, wird 
+        kein Passwort für eine Verbindung zu diesem Druckdienst benötigt. Der 
+        Zugang erfolgt mit den Rechten des 
+        <smbconfoption><name>Gast-Kontos</name></smbconfoption>. Auf vielen 
+        Systemen wird das Gast-Konto auf einen Benutzer namens 
+        <quote>nobody</quote> abgebildet. Für diesen Benutzer findet UNIX
+        normalerweise in der Datei passwd ein leeres Passwort vor, aber kein 
+        gültiges UNIX-Login. (Auf manchen Systemen hat das Gast-Konto 
+        evtl. keine Druckrechte. Testen Sie das, indem Sie sich als 
+        Gastbenutzer anmelden, mit <command>su - guest</command>, und geben 
+        Sie wie folgt einen Druckbefehl im System ein:
+        </para>
+    
+        <para>
+        <userinput>lpr -P printername /etc/motd</userinput>
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>public</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Ist ein Synonym für 
-		<smbconfoption><name>guest ok</name><value>yes</value></smbconfoption>.
-		Da wir <smbconfoption><name>guest ok</name><value>yes</value></smbconfoption> haben, 
-		muss das hier nicht wirklich stehen. (Das führt zu der interessanten Frage: <quote>Was 
-		passiert, falls wir irrtümlicherweise zwei widersprüchliche Einstellungen für die
-		gleiche Freigabe haben?</quote> Die Antwort lautet, dass die letzte von Samba gefundene
-		Einstellung gewinnt. Testparm beschwert sich nicht über verschiedene Einstellungen
-		beim gleichen Parameter für eine Freigabe. Das können Sie testen, indem Sie mehrere
-		Zeilen für den Parameter <parameter>guest account</parameter> mit verschiedenen
-		Benutzernamen eintragen, und dann testparm ausführen, um zu sehen, welchen Samba 
-		tatsächlich benutzt.)
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>public</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Ist ein Synonym für 
+        <smbconfoption><name>guest ok</name><value>yes</value></smbconfoption>.
+        Da wir <smbconfoption><name>guest ok</name><value>yes</value></smbconfoption> haben, 
+        muss das hier nicht wirklich stehen. (Das führt zu der interessanten Frage: <quote>Was 
+        passiert, falls wir irrtümlicherweise zwei widersprüchliche Einstellungen für die
+        gleiche Freigabe haben?</quote> Die Antwort lautet, dass die letzte von Samba gefundene
+        Einstellung gewinnt. Testparm beschwert sich nicht über verschiedene Einstellungen
+        beim gleichen Parameter für eine Freigabe. Das können Sie testen, indem Sie mehrere
+        Zeilen für den Parameter <parameter>guest account</parameter> mit verschiedenen
+        Benutzernamen eintragen, und dann testparm ausführen, um zu sehen, welchen Samba 
+        tatsächlich benutzt.)
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>read only</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Verhindert normalerweise, d.h. bei anderen Arten von Freigaben, dass
-		Benutzer Dateien im Dienstverzeichnis erstellen oder modifizieren. Bei dem Dienst 
-		<quote>printable</quote> ist es allerdings <emphasis>immer</emphasis> erlaubt, ins 
-		Verzeichnis zu schreiben (falls die Rechte des Benutzers eine Verbindung erlauben), 
-		jedoch nur mit Hilfe von Drucker-Spooling-Operationen. Normale Schreiboperationen 
-		sind nicht erlaubt.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>read only</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Verhindert normalerweise, d.h. bei anderen Arten von Freigaben, dass
+        Benutzer Dateien im Dienstverzeichnis erstellen oder modifizieren. Bei dem Dienst 
+        <quote>printable</quote> ist es allerdings <emphasis>immer</emphasis> erlaubt, ins 
+        Verzeichnis zu schreiben (falls die Rechte des Benutzers eine Verbindung erlauben), 
+        jedoch nur mit Hilfe von Drucker-Spooling-Operationen. Normale Schreiboperationen 
+        sind nicht erlaubt.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
-		<listitem><para>
-		Ist ein Synonym für 
-		<smbconfoption><name>read only</name><value>yes</value></smbconfoption>.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
+        <listitem><para>
+        Ist ein Synonym für 
+        <smbconfoption><name>read only</name><value>yes</value></smbconfoption>.
+        </para></listitem>
+    </varlistentry>
 </variablelist>
 </sect3>
 
@@ -791,70 +801,70 @@ Drucker!
 </para>
 
 <variablelist>
-	<varlistentry><term><smbconfoption><name>comment</name><value>Drucker mit beschraenktem Zugriff </value></smbconfoption></term>
-		<listitem><para>
-		Der Kommentar sagt alles aus.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>comment</name><value>Drucker mit beschraenktem Zugriff </value></smbconfoption></term>
+        <listitem><para>
+        Der Kommentar sagt alles aus.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>path</name><value>/var/spool/samba_my_printer </value></smbconfoption></term>
-		<listitem><para>
-		Setzt den Spooling-Bereich für diesen Drucker auf ein Verzeichnis verschieden vom 
-		Standardwert. Man muss ihn nicht anders setzen, aber die Möglichkeit ist vorhanden.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>path</name><value>/var/spool/samba_my_printer </value></smbconfoption></term>
+        <listitem><para>
+        Setzt den Spooling-Bereich für diesen Drucker auf ein Verzeichnis verschieden vom 
+        Standardwert. Man muss ihn nicht anders setzen, aber die Möglichkeit ist vorhanden.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>printer admin</name><value>kurt </value></smbconfoption></term>
-		<listitem><para>
-		Die Definition von printer admin unterscheidet sich für diese explizit definierte
-		Druckerfreigabe von der allgemeinen Freigabe <smbconfsection>[printers]</smbconfsection>. 
-		Dies ist nicht notwendig, wir machen das nur, um zu zeigen, dass es möglich ist.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>printer admin</name><value>kurt </value></smbconfoption></term>
+        <listitem><para>
+        Die Definition von printer admin unterscheidet sich für diese explizit definierte
+        Druckerfreigabe von der allgemeinen Freigabe <smbconfsection>[printers]</smbconfsection>. 
+        Dies ist nicht notwendig, wir machen das nur, um zu zeigen, dass es möglich ist.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>browseable</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Damit kann man den Drucker aufstöbern, d.h. die Clients können ihn bequem finden,
-		wenn sie in der <guiicon>Netzwerkumgebung</guiicon> stöbern.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>browseable</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Damit kann man den Drucker aufstöbern, d.h. die Clients können ihn bequem finden,
+        wenn sie in der <guiicon>Netzwerkumgebung</guiicon> stöbern.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Siehe <link linkend="ptrsect">Der Abschnitt [printers]</link>.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Siehe <link linkend="ptrsect">Der Abschnitt [printers]</link>.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
-		<listitem><para>
-		Siehe <link linkend="ptrsect">Der Abschnitt [printers]</link>.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
+        <listitem><para>
+        Siehe <link linkend="ptrsect">Der Abschnitt [printers]</link>.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>hosts allow</name><value>10.160.50.,10.160.51. </value></smbconfoption></term>
-		<listitem><para>
-		Hier führen wir ein gewisses Maß an Zugangskontrolle aus, indem wir die Parameter
-		<smbconfoption><name>hosts allow</name></smbconfoption> und 
-		<smbconfoption><name>hosts deny</name></smbconfoption> verwenden. 
-		Das ist keinesfalls eine sichere Maßnahme. Es ist keine sichere Methode, Ihre
-		Drucker abzusichern. Mit dieser Zeile werden alle Clients aus einem bestimmten 
-		Subnetz in einer ersten Auswertung der Zugangskontrolle akzeptiert.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>hosts allow</name><value>10.160.50.,10.160.51. </value></smbconfoption></term>
+        <listitem><para>
+        Hier führen wir ein gewisses Maß an Zugangskontrolle aus, indem wir die Parameter
+        <smbconfoption><name>hosts allow</name></smbconfoption> und 
+        <smbconfoption><name>hosts deny</name></smbconfoption> verwenden. 
+        Das ist keinesfalls eine sichere Maßnahme. Es ist keine sichere Methode, Ihre
+        Drucker abzusichern. Mit dieser Zeile werden alle Clients aus einem bestimmten 
+        Subnetz in einer ersten Auswertung der Zugangskontrolle akzeptiert.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>hosts deny</name><value>turbo_xp,10.160.50.23,10.160.51.60 </value></smbconfoption></term>
-		<listitem><para>
-		Alle hier aufgeführten Hosts sind nicht erlaubt (auch dann nicht, wenn sie zu den
-		erlaubten Subnetzen gehören). Wie Sie sehen, können Sie hier IP-Adressen ebenso wie
-		NetBIOS-Hostnamen angeben.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>hosts deny</name><value>turbo_xp,10.160.50.23,10.160.51.60 </value></smbconfoption></term>
+        <listitem><para>
+        Alle hier aufgeführten Hosts sind nicht erlaubt (auch dann nicht, wenn sie zu den
+        erlaubten Subnetzen gehören). Wie Sie sehen, können Sie hier IP-Adressen ebenso wie
+        NetBIOS-Hostnamen angeben.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>guest ok</name><value>no </value></smbconfoption></term>
-		<listitem><para>
-		Der Drucker ist für das Gast-Konto nicht verfügbar.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>guest ok</name><value>no </value></smbconfoption></term>
+        <listitem><para>
+        Der Drucker ist für das Gast-Konto nicht verfügbar.
+        </para></listitem>
+    </varlistentry>
 </variablelist>
 </sect3>
 
@@ -897,79 +907,79 @@ enthält eine Übersicht der wichtigsten Druckoptionen mit Ausnahme des Spezialfal
 </para>
 
 <table frame='all' id="printOptions">
-	<title>Standardmäßige Druckereinstellungen</title>
-	<tgroup cols='2' align='left' colsep='1' rowsep='1'>
-		<colspec align="left"/>
-		<colspec align="left"/>
-	<thead>
-		<row>
-		<entry>Einstellung</entry>
-		<entry>Standardmäßige Druckbefehle</entry>
-		</row>
-	</thead>
-	<tbody>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
-		<entry>Druckbefehl ist <command>lpr -r -P%p %s</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
-		<entry>Druckbefehl ist <command>lp -c -P%p %s; rm %s</command></entry>
-		</row>
-		<row>
-		<entry> <smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
-		<entry>Druckbefehl ist <command>lp -r -P%p -s %s</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
-		<entry>lpq-Befehl ist <command>lpq -P%p</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
-		<entry>lpq-Befehl ist <command>lpstat -o%p</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
-		<entry>lpq-Befehl ist <command>lpq -P%p</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
-		<entry>lprm-Befehl ist <command>lprm -P%p %j</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
-		<entry>lprm-Befehl ist <command>cancel %p-%j</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
-		<entry>lprm-Befehl ist <command>cancel %p-%j</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
-		<entry>lppause-Befehl ist <command>lp -i %p-%j -H hold</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
-		<entry>lppause-Befehl   (...ist leer)</entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
-		<entry>lppause-Befehl   (...ist leer)</entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
-		<entry>lpresume-Befehl ist <command>lp -i %p-%j -H resume</command></entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
-		<entry>lpresume-Befehl   (...ist leer)</entry>
-		</row>
-		<row>
-		<entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
-		<entry>lpresume-Befehl   (...ist leer)</entry>
-		</row>
-	</tbody>
-	</tgroup>
+    <title>Standardmäßige Druckereinstellungen</title>
+    <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+        <colspec align="left"/>
+        <colspec align="left"/>
+    <thead>
+        <row>
+        <entry>Einstellung</entry>
+        <entry>Standardmäßige Druckbefehle</entry>
+        </row>
+    </thead>
+    <tbody>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
+        <entry>Druckbefehl ist <command>lpr -r -P%p %s</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
+        <entry>Druckbefehl ist <command>lp -c -P%p %s; rm %s</command></entry>
+        </row>
+        <row>
+        <entry> <smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
+        <entry>Druckbefehl ist <command>lp -r -P%p -s %s</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
+        <entry>lpq-Befehl ist <command>lpq -P%p</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
+        <entry>lpq-Befehl ist <command>lpstat -o%p</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
+        <entry>lpq-Befehl ist <command>lpq -P%p</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
+        <entry>lprm-Befehl ist <command>lprm -P%p %j</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
+        <entry>lprm-Befehl ist <command>cancel %p-%j</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
+        <entry>lprm-Befehl ist <command>cancel %p-%j</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
+        <entry>lppause-Befehl ist <command>lp -i %p-%j -H hold</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
+        <entry>lppause-Befehl   (...ist leer)</entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
+        <entry>lppause-Befehl   (...ist leer)</entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>bsd|aix|lprng|plp</value></smbconfoption></entry>
+        <entry>lpresume-Befehl ist <command>lp -i %p-%j -H resume</command></entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>sysv|hpux</value></smbconfoption></entry>
+        <entry>lpresume-Befehl   (...ist leer)</entry>
+        </row>
+        <row>
+        <entry><smbconfoption><name>printing</name><value>qnx</value></smbconfoption></entry>
+        <entry>lpresume-Befehl   (...ist leer)</entry>
+        </row>
+    </tbody>
+    </tgroup>
 </table>
 
 <para>
@@ -1017,11 +1027,11 @@ Drucken angeht, so sind folgende von besonderer Bedeutung:
 </para>
 
 <itemizedlist>
-	<listitem><para><parameter>%s, %f</parameter> &smbmdash; der Pfad zum Spool-Dateinamen.</para></listitem>
-	<listitem><para><parameter>%p</parameter> &smbmdash; der passende Druckername.</para></listitem>
-	<listitem><para><parameter>%J</parameter> &smbmdash; Der vom Client übermittelte Auftragsname.</para></listitem>
-	<listitem><para><parameter>%c</parameter> &smbmdash; die Anzahl der gedruckten Seiten des gespoolten Auftrags (falls bekannt).</para></listitem>
-	<listitem><para><parameter>%z</parameter> &smbmdash; die Größe des gespoolten Druckauftrags (in Bytes).</para></listitem>
+    <listitem><para><parameter>%s, %f</parameter> &smbmdash; der Pfad zum Spool-Dateinamen.</para></listitem>
+    <listitem><para><parameter>%p</parameter> &smbmdash; der passende Druckername.</para></listitem>
+    <listitem><para><parameter>%J</parameter> &smbmdash; Der vom Client übermittelte Auftragsname.</para></listitem>
+    <listitem><para><parameter>%c</parameter> &smbmdash; die Anzahl der gedruckten Seiten des gespoolten Auftrags (falls bekannt).</para></listitem>
+    <listitem><para><parameter>%z</parameter> &smbmdash; die Größe des gespoolten Druckauftrags (in Bytes).</para></listitem>
 </itemizedlist>
 
 <para>
@@ -1103,37 +1113,37 @@ zusätzliche Funktionalität:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Unterstützung beim Herunterladen von Druckertreiberdateien auf 
-	Windows 95/98/NT/2000-Clients bei Bedarf 
-	(<emphasis>Point'n'Print</emphasis>).
-	</para></listitem>
+    <listitem><para>
+    Unterstützung beim Herunterladen von Druckertreiberdateien auf 
+    Windows 95/98/NT/2000-Clients bei Bedarf 
+    (<emphasis>Point'n'Print</emphasis>).
+    </para></listitem>
 
-	<listitem><para>
-	Hochladen von Druckertreibern mit dem 
-	<emphasis>Assistenten für die Druckerinstallation</emphasis> (APW) 
-	von Windows NT oder den 
-	<ulink url="http://imprints.sourceforge.net/">Imprints</ulink>-Werkzeugen.
-	</para></listitem>
+    <listitem><para>
+    Hochladen von Druckertreibern mit dem 
+    <emphasis>Assistenten für die Druckerinstallation</emphasis> (APW) 
+    von Windows NT oder den 
+    <ulink url="http://imprints.sourceforge.net/">Imprints</ulink>-Werkzeugen.
+    </para></listitem>
 
-	<listitem><para>
-	Unterstützung der nativen MS-RPC-Druckaufrufe wie
-	StartDocPrinter, EnumJobs(), usw. (Siehe die 
-	<ulink url="http://msdn.microsoft.com/">MSDN-Dokumentation</ulink> 
-	für weitere Information zum Druck-API von Win32).
-	</para></listitem>
+    <listitem><para>
+    Unterstützung der nativen MS-RPC-Druckaufrufe wie
+    StartDocPrinter, EnumJobs(), usw. (Siehe die 
+    <ulink url="http://msdn.microsoft.com/">MSDN-Dokumentation</ulink> 
+    für weitere Information zum Druck-API von Win32).
+    </para></listitem>
 
-	<listitem><para>
-	Unterstützung von <emphasis>Access Control Lists</emphasis> (ACL) 
-	auf Druckern in NT.
-	</para></listitem>
+    <listitem><para>
+    Unterstützung von <emphasis>Access Control Lists</emphasis> (ACL) 
+    auf Druckern in NT.
+    </para></listitem>
 
-	<listitem><para>
-	Verbesserte Unterstützung der Manipulation von Druckerschlangen 
-	durch Verwendung von internen Datenbanken für Information zu
-	gespoolten Aufträgen (implementiert durch verschiedene Dateien
-	<filename>*.tdb</filename>).
-	</para></listitem>
+    <listitem><para>
+    Verbesserte Unterstützung der Manipulation von Druckerschlangen 
+    durch Verwendung von internen Datenbanken für Information zu
+    gespoolten Aufträgen (implementiert durch verschiedene Dateien
+    <filename>*.tdb</filename>).
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -1195,24 +1205,24 @@ kann mit verschiedenen Mitteln erreicht werden:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Ausführen des <emphasis>APW</emphasis> auf einem NT/200x/XP 
-	Professional-Client (das funktioniert nicht auf 95/98/ME-Clients).
-	</para></listitem>
+    <listitem><para>
+    Ausführen des <emphasis>APW</emphasis> auf einem NT/200x/XP 
+    Professional-Client (das funktioniert nicht auf 95/98/ME-Clients).
+    </para></listitem>
 
-	<listitem><para>
-	Verwenden der <emphasis>Imprints</emphasis>-Werkzeuge.
-	</para></listitem>
+    <listitem><para>
+    Verwenden der <emphasis>Imprints</emphasis>-Werkzeuge.
+    </para></listitem>
 
-	<listitem><para>
-	Verwenden der Kommandozeilenwerkzeuge <emphasis>smbclient</emphasis> 
-	und <emphasis>rpcclient</emphasis>.
-	</para></listitem>
+    <listitem><para>
+    Verwenden der Kommandozeilenwerkzeuge <emphasis>smbclient</emphasis> 
+    und <emphasis>rpcclient</emphasis>.
+    </para></listitem>
 
-	<listitem><para>
-	Verwenden von <emphasis>cupsaddsmb</emphasis> (funktioniert nur beim
-	CUPS-Drucksystem, nicht bei LPR/LPD, LPRng, usw.).
-	</para></listitem>
+    <listitem><para>
+    Verwenden von <emphasis>cupsaddsmb</emphasis> (funktioniert nur beim
+    CUPS-Drucksystem, nicht bei LPR/LPD, LPRng, usw.).
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -1231,38 +1241,38 @@ für die gesamte weitere Bearbeitung zuständig ist.
 <sect2>
 <title>Der veraltete Abschnitt [printer$]</title>
 
-	<para>
-	In Samba-Versionen vor 2.2 konnte eine Freigabe namens 
-	<parameter>[printer$]</parameter> verwendet werden. Dieser Name wurde
-	von dem gleichnamigen Dienst übernommen, der von Windows 9x/Me-Clients
-	erzeugt wird, die sich einen Drucker teilen. Windows 9x/Me-Druckerserver
-	verfügen immer über einen Dienst namens 
-	<smbconfsection>[printer$]</smbconfsection>, der einen nur lesenden
-	Zugang (ohne Passwort) zum Herunterladen von Druckertreibern bietet.
-	Allerdings erlaubte Sambas erste Implementation einen Parameter 
-	namens <parameter>printer driver location</parameter> pro Freigabe.
-	Dieser gab den Ort der Treiberdateien für diesen Drucker an. Ein
-	anderer Parameter namens <parameter>printer driver</parameter> 
-	bot die Möglichkeit, einen Namen für den Druckertreiber anzugeben, 
-	der an den Client übergeben wird.
-	</para>
+    <para>
+    In Samba-Versionen vor 2.2 konnte eine Freigabe namens 
+    <parameter>[printer$]</parameter> verwendet werden. Dieser Name wurde
+    von dem gleichnamigen Dienst übernommen, der von Windows 9x/Me-Clients
+    erzeugt wird, die sich einen Drucker teilen. Windows 9x/Me-Druckerserver
+    verfügen immer über einen Dienst namens 
+    <smbconfsection>[printer$]</smbconfsection>, der einen nur lesenden
+    Zugang (ohne Passwort) zum Herunterladen von Druckertreibern bietet.
+    Allerdings erlaubte Sambas erste Implementation einen Parameter 
+    namens <parameter>printer driver location</parameter> pro Freigabe.
+    Dieser gab den Ort der Treiberdateien für diesen Drucker an. Ein
+    anderer Parameter namens <parameter>printer driver</parameter> 
+    bot die Möglichkeit, einen Namen für den Druckertreiber anzugeben, 
+    der an den Client übergeben wird.
+    </para>
 
-	<para>
-	Diese Parameter, inklusive <parameter>printer driver file</parameter>
-	wurden nun entfernt und können in Samba-3-Installationen nicht mehr
-	verwendet werden. Der Freigabename 
-	<smbconfsection>[print$]</smbconfsection> wird nun für den Ort
-	von herunterladbaren Druckertreibern benutzt. Er wird von dem Dienst
-	<smbconfsection>[print$]</smbconfsection> übernommen, der von Windows 
-	NT-PCs erstellt wird, wenn sie sich einen Drucker teilen. Windows 
-	NT-Druckerserver verfügen immer über einen
-	<smbconfsection>[print$]</smbconfsection>-Dienst, der Lese- und 
-	Schreibzugriff bietet (im Kontext seiner ACLs), um das Herunter- und
-	Hochladen von Druckertreibern zu unterstützen. Das heisst nicht,
-	dass Windows 9x/Me-Clients ignoriert werden. Diese können die 
-	Samba-Unterstützung der Freigabe 
-	<smbconfsection>[print$]</smbconfsection> ganz normal benutzen.
-	</para>
+    <para>
+    Diese Parameter, inklusive <parameter>printer driver file</parameter>
+    wurden nun entfernt und können in Samba-3-Installationen nicht mehr
+    verwendet werden. Der Freigabename 
+    <smbconfsection>[print$]</smbconfsection> wird nun für den Ort
+    von herunterladbaren Druckertreibern benutzt. Er wird von dem Dienst
+    <smbconfsection>[print$]</smbconfsection> übernommen, der von Windows 
+    NT-PCs erstellt wird, wenn sie sich einen Drucker teilen. Windows 
+    NT-Druckerserver verfügen immer über einen
+    <smbconfsection>[print$]</smbconfsection>-Dienst, der Lese- und 
+    Schreibzugriff bietet (im Kontext seiner ACLs), um das Herunter- und
+    Hochladen von Druckertreibern zu unterstützen. Das heisst nicht,
+    dass Windows 9x/Me-Clients ignoriert werden. Diese können die 
+    Samba-Unterstützung der Freigabe 
+    <smbconfsection>[print$]</smbconfsection> ganz normal benutzen.
+    </para>
 </sect2>
 
 <sect2>
@@ -1327,93 +1337,93 @@ Folgende Parameter werden in diesem Freigabeabschnitt oft benötigt:
 </para>
 
 <variablelist>
-	<varlistentry><term><smbconfoption><name>comment</name><value>Druckertreiber Download-Bereich</value></smbconfoption></term>
-		<listitem><para>
-		Der Kommentar erscheint neben dem Freigabenamen, wenn er in der 
-		Freigabeliste aufgeführt wird (normalerweise werden 
-		Windows-Clients ihn nicht sehen, aber er erscheint auch oben in der
-		Ausgabe des Befehls <command>smbclient -L sambaserver</command>).
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>comment</name><value>Druckertreiber Download-Bereich</value></smbconfoption></term>
+        <listitem><para>
+        Der Kommentar erscheint neben dem Freigabenamen, wenn er in der 
+        Freigabeliste aufgeführt wird (normalerweise werden 
+        Windows-Clients ihn nicht sehen, aber er erscheint auch oben in der
+        Ausgabe des Befehls <command>smbclient -L sambaserver</command>).
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>path</name><value>/etc/samba/printers </value></smbconfoption></term>
-		<listitem><para>
-		Ist der Pfad zu dem Ort, an dem die Windows-Druckertreiber
-		aufbewahrt werden, aus der Sicht von UNIX.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>path</name><value>/etc/samba/printers </value></smbconfoption></term>
+        <listitem><para>
+        Ist der Pfad zu dem Ort, an dem die Windows-Druckertreiber
+        aufbewahrt werden, aus der Sicht von UNIX.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>browseable</name><value>no </value></smbconfoption></term>
-		<listitem><para>
-		Macht die Freigabe <smbconfsection>[print$]</smbconfsection>
-		für Clients aus der <guimenu>Netzwerkumgebung</guimenu> 
-		unsichtbar. Allerdings können Sie sie weiterhin von jedem
-		beliebigen Client aus mounten, indem Sie den Befehl
-		<command>net use g:\\sambaserver\print$</command> in einer 
-		DOS-Shell oder den Menüeintrag
-		<guimenu>Netzlaufwerk verbinden ...</guimenu> im Windows
-		Explorer verwenden.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>browseable</name><value>no </value></smbconfoption></term>
+        <listitem><para>
+        Macht die Freigabe <smbconfsection>[print$]</smbconfsection>
+        für Clients aus der <guimenu>Netzwerkumgebung</guimenu> 
+        unsichtbar. Allerdings können Sie sie weiterhin von jedem
+        beliebigen Client aus mounten, indem Sie den Befehl
+        <command>net use g:\\sambaserver\print$</command> in einer 
+        DOS-Shell oder den Menüeintrag
+        <guimenu>Netzlaufwerk verbinden ...</guimenu> im Windows
+        Explorer verwenden.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>guest ok</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Gibt allen Gastbenutzern nur Lesezugriff auf diese Freigabe.
-		Eventuell besteht die Möglichkeit, Druckertreiber auf Clients 
-		herunterzuladen und zu installieren. Ob der Parameter
-		<parameter>guest ok = yes</parameter> notwendig ist, hängt
-		davon ab, wie Ihre Site konfiguriert ist. Verfügen die Benutzer
-		auf jeden Fall über ein Konto auf dem Samba-Host, so ist das 
-		kein Problem.
-		</para>
+    <varlistentry><term><smbconfoption><name>guest ok</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Gibt allen Gastbenutzern nur Lesezugriff auf diese Freigabe.
+        Eventuell besteht die Möglichkeit, Druckertreiber auf Clients 
+        herunterzuladen und zu installieren. Ob der Parameter
+        <parameter>guest ok = yes</parameter> notwendig ist, hängt
+        davon ab, wie Ihre Site konfiguriert ist. Verfügen die Benutzer
+        auf jeden Fall über ein Konto auf dem Samba-Host, so ist das 
+        kein Problem.
+        </para>
 
-		<note><para> 
-		Falls all Ihre Windows NT-Benutzer garantiert vom Samba-Server
-		authentifiziert werden können, (z.B. wenn Samba eine 
-		Authentifizierung mittels eines NT-Domainservers vornimmt 
-		und der Benutzer vom Domain Controller beim Anmelden an eine
-		Windows NT-Sitzung bereits validiert wurde), so ist kein 
-		Gastzugang notwendig. Wenn Sie natürlich in der Umgebung einer
-		Arbeitsgruppe einfach nur drucken möchten, ohne sich um
-		dumme Konten und Sicherheitsfragen zu kümmern, dann konfigurieren
-		sie die Freigabe so, dass sie einen Gastzugriff erlaubt.
-		Eventuell sollten Sie sich überlegen, im Abschnitt
-		<smbconfsection>[global]</smbconfsection> auch 
-		<smbconfoption><name>map to guest</name><value>Bad
-		User</value></smbconfoption> hinzuzufügen. Vorher sollten Sie
-		aber verstanden haben, was dieser Parameter bewirkt.
-		</para></note>
-		</listitem>
-	</varlistentry>
+        <note><para> 
+        Falls all Ihre Windows NT-Benutzer garantiert vom Samba-Server
+        authentifiziert werden können, (z.B. wenn Samba eine 
+        Authentifizierung mittels eines NT-Domainservers vornimmt 
+        und der Benutzer vom Domain Controller beim Anmelden an eine
+        Windows NT-Sitzung bereits validiert wurde), so ist kein 
+        Gastzugang notwendig. Wenn Sie natürlich in der Umgebung einer
+        Arbeitsgruppe einfach nur drucken möchten, ohne sich um
+        dumme Konten und Sicherheitsfragen zu kümmern, dann konfigurieren
+        sie die Freigabe so, dass sie einen Gastzugriff erlaubt.
+        Eventuell sollten Sie sich überlegen, im Abschnitt
+        <smbconfsection>[global]</smbconfsection> auch 
+        <smbconfoption><name>map to guest</name><value>Bad
+        User</value></smbconfoption> hinzuzufügen. Vorher sollten Sie
+        aber verstanden haben, was dieser Parameter bewirkt.
+        </para></note>
+        </listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>read only</name><value>yes </value></smbconfoption></term>
-		<listitem><para>
-		Da wir nicht möchten, dass jeder Treiberdateien hochladen
-		(oder sogar Treibereinstellungen ändern) kann,
-		haben wir diese Freigabe als nicht schreibbar markiert.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>read only</name><value>yes </value></smbconfoption></term>
+        <listitem><para>
+        Da wir nicht möchten, dass jeder Treiberdateien hochladen
+        (oder sogar Treibereinstellungen ändern) kann,
+        haben wir diese Freigabe als nicht schreibbar markiert.
+        </para></listitem>
+    </varlistentry>
 
-	<varlistentry><term><smbconfoption><name>write list</name><value>@ntadmin, root </value></smbconfoption></term>
-		<listitem><para>
-		In der vorherigen Einstellung wurde 
-		<smbconfsection>[print$]</smbconfsection> nur lesbar gemacht,
-		damit wir auch den Eintrag <parameter>write list</parameter>
-		erstellen konnten. UNIX-Gruppen werden mit einem führenden
-		<quote>@</quote>-Zeichen angegeben. Die hier aufgeführten
-		Benutzer verfügen über Schreibrechte (eine Ausnahme zu den
-		Nurleserechten für die Allgemeinheit), die sie für die
-		Aktualisierung von Dateien in der Freigabe benötigen. 
-		Normalerweise werden Sie hier nur Benutzerkonten 
-		von Administratoren auflisten wollen. Prüfen Sie die Rechte im
-		Dateisystem, um sicher zu gehen, dass diese Konten Dateien
-		in die Freigabe kopieren dürfen. Falls dies ein von root
-		verschiedenes Konto ist, sollte das Konto im globalen
-		Parameter <smbconfoption><name>printer admin</name></smbconfoption> 
-		erwähnt werden. Siehe auch die Manpage zu &smb.conf; für
-		weitere Informationen zur Konfiguration von Dateifreigaben.
-		</para></listitem>
-	</varlistentry>
+    <varlistentry><term><smbconfoption><name>write list</name><value>@ntadmin, root </value></smbconfoption></term>
+        <listitem><para>
+        In der vorherigen Einstellung wurde 
+        <smbconfsection>[print$]</smbconfsection> nur lesbar gemacht,
+        damit wir auch den Eintrag <parameter>write list</parameter>
+        erstellen konnten. UNIX-Gruppen werden mit einem führenden
+        <quote>@</quote>-Zeichen angegeben. Die hier aufgeführten
+        Benutzer verfügen über Schreibrechte (eine Ausnahme zu den
+        Nurleserechten für die Allgemeinheit), die sie für die
+        Aktualisierung von Dateien in der Freigabe benötigen. 
+        Normalerweise werden Sie hier nur Benutzerkonten 
+        von Administratoren auflisten wollen. Prüfen Sie die Rechte im
+        Dateisystem, um sicher zu gehen, dass diese Konten Dateien
+        in die Freigabe kopieren dürfen. Falls dies ein von root
+        verschiedenes Konto ist, sollte das Konto im globalen
+        Parameter <smbconfoption><name>printer admin</name></smbconfoption> 
+        erwähnt werden. Siehe auch die Manpage zu &smb.conf; für
+        weitere Informationen zur Konfiguration von Dateifreigaben.
+        </para></listitem>
+    </varlistentry>
 </variablelist>
 
 </sect2>
@@ -1451,31 +1461,31 @@ einen Verzeichnisbaum unter der Freigabe
 </para>
 
 <important><title>Erforderliche Rechte</title>
-	<para>
-	Um einen neuen Treiber zu Ihrem Samba-Host hinzuzufügen, muss eine
-	von zwei Bedingungen erfüllt sein:
-	</para>
+    <para>
+    Um einen neuen Treiber zu Ihrem Samba-Host hinzuzufügen, muss eine
+    von zwei Bedingungen erfüllt sein:
+    </para>
 
-	<itemizedlist>
-		<listitem><para>
-		Das Konto, mit dem die Verbindung zum Samba-Host erfolgt,
-		muss eine UID mit dem Wert 0 haben (d.h. root sein).
-		</para></listitem>
+    <itemizedlist>
+        <listitem><para>
+        Das Konto, mit dem die Verbindung zum Samba-Host erfolgt,
+        muss eine UID mit dem Wert 0 haben (d.h. root sein).
+        </para></listitem>
 
-		<listitem><para>
-		Das Konto, mit dem die Verbindung zum Samba-Host erfolgt,
-		muss in der Liste <emphasis>printer admin</emphasis>
-		vorkommen.
-		</para></listitem>
-	</itemizedlist>
+        <listitem><para>
+        Das Konto, mit dem die Verbindung zum Samba-Host erfolgt,
+        muss in der Liste <emphasis>printer admin</emphasis>
+        vorkommen.
+        </para></listitem>
+    </itemizedlist>
 
-	<para>
-	Natürlich muss das Konto für die Verbindung außerdem Schreibrechte
-	haben, um Dateien in die Unterverzeichnisse von
-	<smbconfsection>[print$]</smbconfsection> hinzuzufügen. 
-	Denken Sie daran, dass alle Dateifreigaben per Voreinstellung
-	auf <quote>nur lesend</quote> gesetzt sind.
-	</para>
+    <para>
+    Natürlich muss das Konto für die Verbindung außerdem Schreibrechte
+    haben, um Dateien in die Unterverzeichnisse von
+    <smbconfsection>[print$]</smbconfsection> hinzuzufügen. 
+    Denken Sie daran, dass alle Dateifreigaben per Voreinstellung
+    auf <quote>nur lesend</quote> gesetzt sind.
+    </para>
 </important>
 
 <para>
@@ -1510,18 +1520,18 @@ zwei alternative Möglichkeiten, die Treiber in
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Mit dem Kommandozeilen-Samba-Utility <command>rpcclient</command> 
-	und verschiedenen Unterbefehlen davon (hier:
-	<command>adddriver</command> und <command>setdriver</command>) 
-	auf beliebigen UNIX-Workstations.
-	</para></listitem>
+    <listitem><para>
+    Mit dem Kommandozeilen-Samba-Utility <command>rpcclient</command> 
+    und verschiedenen Unterbefehlen davon (hier:
+    <command>adddriver</command> und <command>setdriver</command>) 
+    auf beliebigen UNIX-Workstations.
+    </para></listitem>
 
-	<listitem><para>
-	Mit Hilfe der GUI (<guiicon>Druckereigenschaften</guiicon> und des
-	<guiicon>Assistenten für die Druckerinstallation</guiicon>) auf einer 
-	beliebigen Windows NT/200x/XP-Client-Workstation.
-	</para></listitem>
+    <listitem><para>
+    Mit Hilfe der GUI (<guiicon>Druckereigenschaften</guiicon> und des
+    <guiicon>Assistenten für die Druckerinstallation</guiicon>) auf einer 
+    beliebigen Windows NT/200x/XP-Client-Workstation.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -1555,14 +1565,14 @@ die ein solcher <constant>NULL</constant>-Treiber voreingestellt ist.
 Das führt zu folgender Fehlermeldung:
 </para>
 
-	<para><errorname>
-	Die Geräteeinstellungen können nicht angezeigt werden.
-	Der Treiber für den angegebenen Drucker ist nicht installiert.
-	???
+    <para><errorname>
+    Die Geräteeinstellungen können nicht angezeigt werden.
+    Der Treiber für den angegebenen Drucker ist nicht installiert.
+    ???
 Device settings cannot be displayed. The driver for the specified
-	printer is not installed, only spooler properties will be displayed. 
-	Do you want to install the driver now?
-	</errorname></para>
+    printer is not installed, only spooler properties will be displayed. 
+    Do you want to install the driver now?
+    </errorname></para>
 
 <para>
 Klicken Sie nicht auf <guibutton>Ja</guibutton>! Klicken Sie stattdessen
@@ -1573,16 +1583,16 @@ Dabei haben Sie folgende Möglichkeiten:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Wählen Sie einen Treiber aus der Pop-Up-Liste der installierten
-	Treiber aus. Zu Beginn ist diese Liste leer.
-	</para></listitem>
+    <listitem><para>
+    Wählen Sie einen Treiber aus der Pop-Up-Liste der installierten
+    Treiber aus. Zu Beginn ist diese Liste leer.
+    </para></listitem>
 
-	<listitem><para>
-	Klicken Sie auf <guibutton>Neuer Treiber ...</guibutton>, um einen
-	neuen Druckertreiber zu installieren (daraufhin wird der APW
-	gestartet).
-	</para></listitem>
+    <listitem><para>
+    Klicken Sie auf <guibutton>Neuer Treiber ...</guibutton>, um einen
+    neuen Druckertreiber zu installieren (daraufhin wird der APW
+    gestartet).
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -1621,26 +1631,26 @@ Dazu gehören vier verschiedene Schritte:
 </para>
 
 <orderedlist>
-	<listitem><para>
-	Verschaffen Sie sich Information über die benötigten Treiberdateien
-	und besorgen Sie sich diese Dateien.
-	</para></listitem>
+    <listitem><para>
+    Verschaffen Sie sich Information über die benötigten Treiberdateien
+    und besorgen Sie sich diese Dateien.
+    </para></listitem>
 
-	<listitem><para>
-	Legen Sie die Treiberdateien in die korrekten Unterverzeichnisse
-	der Freigabe <smbconfsection>[print$]</smbconfsection> 
-	(evtl. mit dem Befehl <command>smbclient</command>).
-	</para></listitem>
+    <listitem><para>
+    Legen Sie die Treiberdateien in die korrekten Unterverzeichnisse
+    der Freigabe <smbconfsection>[print$]</smbconfsection> 
+    (evtl. mit dem Befehl <command>smbclient</command>).
+    </para></listitem>
 
-	<listitem><para>
-	Führen Sie das Kommandozeilen-Utility <command>rpcclient</command>
-	mit dem Unterbefehl <command>adddriver</command> einmal aus.
-	</para></listitem>
+    <listitem><para>
+    Führen Sie das Kommandozeilen-Utility <command>rpcclient</command>
+    mit dem Unterbefehl <command>adddriver</command> einmal aus.
+    </para></listitem>
 
-	<listitem><para>
-	Führen Sie <command>rpcclient</command> ein zweites mal mit dem
-	Unterbefehl <command>setdriver</command> aus.
-	</para></listitem>
+    <listitem><para>
+    Führen Sie <command>rpcclient</command> ein zweites mal mit dem
+    Unterbefehl <command>setdriver</command> aus.
+    </para></listitem>
 </orderedlist>
 
 <para>
@@ -1710,7 +1720,7 @@ werden:
 
 <para><screen>
 &rootprompt;<userinput>rpcclient -U'Danka%xxxx' -c \
-	'getdriver "Heidelberg Digimaster 9110 (PS)" 3' TURBO_XP</userinput>
+    'getdriver "Heidelberg Digimaster 9110 (PS)" 3' TURBO_XP</userinput>
 cmd = getdriver "Heidelberg Digimaster 9110 (PS)" 3
 
 [Windows NT x86]
@@ -1841,17 +1851,17 @@ Treiberdateien an folgende Orte gelangen:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Für alle Windows NT, 2000 und XP-Clients nach 
-	<filename>/etc/samba/drivers/W32X86/</filename> aber (noch)
-	nicht in das Verzeichnis <filename>2</filename>.
-	</para></listitem>
+    <listitem><para>
+    Für alle Windows NT, 2000 und XP-Clients nach 
+    <filename>/etc/samba/drivers/W32X86/</filename> aber (noch)
+    nicht in das Verzeichnis <filename>2</filename>.
+    </para></listitem>
 
-	<listitem><para>
-	Für alle Windows 95, 98 und ME-Clients nach 
-	<filename>/etc/samba/drivers/WIN40/</filename> aber (noch)
-	nicht in das Verzeichnis <filename>0</filename>.
-	</para></listitem>
+    <listitem><para>
+    Für alle Windows 95, 98 und ME-Clients nach 
+    <filename>/etc/samba/drivers/WIN40/</filename> aber (noch)
+    nicht in das Verzeichnis <filename>0</filename>.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -1911,7 +1921,7 @@ auch die Dateien für die Windows 9x/Me-Architektur in das Unterverzeichnis
 </sect3>
 
 <sect3>
-<title>Bestätigen der Treiberinstallation mit <command>smbclient</command></title>
+<title>Überprüfen der Treiberinstallation mit <command>smbclient</command></title>
 
 <para>
 Im Moment überprüfen wir nur, dass unsere Dateien vorhanden sind. Das kann
@@ -1922,7 +1932,7 @@ Zugriff über eine UNIX-Shell erledigen):
 
 <para><screen>
 &rootprompt;<userinput>smbclient //SAMBA-CUPS/print\$ -U 'root%xxxx' \
-	-c 'cd W32X86; pwd; dir; cd 2; pwd; dir'</userinput>
+    -c 'cd W32X86; pwd; dir; cd 2; pwd; dir'</userinput>
  added interface ip=10.160.51.60 bcast=10.160.51.255 nmask=255.255.252.0
 Got a positive name query response from 10.160.51.162 ( 10.160.51.162 )
 Domain=[CUPS-PRINT] OS=[UNIX] Server=[Samba 2.2.8a]
@@ -2021,7 +2031,7 @@ solche brauchen sollten.
 </sect3>
 
 <sect3>
-<title>Ende von <command>adddriver</command> überprüfen</title>
+<title>Abschluss von <command>adddriver</command> überprüfen</title>
 
 <para>
 Ein Hinweis darauf, dass Samba die Dateien als Treiberdateien erkennt, ist die
@@ -2033,7 +2043,7 @@ Sie erneut mit <command>smbclient</command> überprüfen:
 
 <para><screen>
 &rootprompt;<userinput>smbclient //SAMBA-CUPS/print\$ -Uroot%xx \
-	-c 'cd W32X86;dir;pwd;cd 2;dir;pwd'</userinput>
+    -c 'cd W32X86;dir;pwd;cd 2;dir;pwd'</userinput>
  added interface ip=10.160.51.162 bcast=10.160.51.255 nmask=255.255.252.0
  Domain=[CUPS-PRINT] OS=[UNIX] Server=[Samba 2.2.7a]
 
@@ -2077,7 +2087,7 @@ nun aktualisiert ist (und evtl. ob deren Dateigröße zugenommen hat).
 </sect3>
 
 <sect3>
-<title>Treibererkennung in Samba überprüfen</title>
+<title>Treibererkennung in Samba nachprüfen</title>
 
 <para>
 Nun sollte der Treiber in Samba registriert sein. Das können wir leicht
@@ -2087,75 +2097,75 @@ können wir auf mindestens dreierlei Weise überprüfen:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Stöbern Sie auf einem beliebigen Windows-Client in der Netzwerkumgebung,
-	finden Sie dort den Samba-Host und öffnen den Samba-Ordner
-	<guiicon>Drucker und Faxgeräte</guiicon>. Wählen Sie ein beliebiges
-	Drucker-Icon und führen Sie einen Rechtsklick zur Auswahl der
-	Drucker-<guimenuitem>Eigenschaften</guimenuitem>. Klicken Sie den
-	Reiter <guilabel>Erweitert</guilabel>. Dort ist ein Feld, das den
-	Treiber für diesen Drucker angibt. In einem Drop-Down-Menü können Sie
-	diesen Treiber ändern (achten Sie aber darauf, das nicht unabsichtlich
-	zu tun). 
-	Mit dieser Liste haben Sie eine Übersicht aller Treiber, die Samba
-	kennt. Ihr neuer Treiber sollte nun auch darunter sein. (Dabei sieht 
-	jede Sorte von Client nur die Liste für seine eigene Architektur. Wenn
-	Sie nicht alle Treiber für alle Plattformen installiert haben, sieht
-	die Liste unterschiedlich aus, je nachdem, ob Sie sie unter 
-	Windows95/98/ME oder Windows NT/2000/XP anschauen.)
-	</para></listitem>
+    <listitem><para>
+    Stöbern Sie auf einem beliebigen Windows-Client in der Netzwerkumgebung,
+    finden Sie dort den Samba-Host und öffnen den Samba-Ordner
+    <guiicon>Drucker und Faxgeräte</guiicon>. Wählen Sie ein beliebiges
+    Drucker-Icon und führen Sie einen Rechtsklick zur Auswahl der
+    Drucker-<guimenuitem>Eigenschaften</guimenuitem>. Klicken Sie den
+    Reiter <guilabel>Erweitert</guilabel>. Dort ist ein Feld, das den
+    Treiber für diesen Drucker angibt. In einem Drop-Down-Menü können Sie
+    diesen Treiber ändern (achten Sie aber darauf, das nicht unabsichtlich
+    zu tun). 
+    Mit dieser Liste haben Sie eine Übersicht aller Treiber, die Samba
+    kennt. Ihr neuer Treiber sollte nun auch darunter sein. (Dabei sieht 
+    jede Sorte von Client nur die Liste für seine eigene Architektur. Wenn
+    Sie nicht alle Treiber für alle Plattformen installiert haben, sieht
+    die Liste unterschiedlich aus, je nachdem, ob Sie sie unter 
+    Windows95/98/ME oder Windows NT/2000/XP anschauen.)
+    </para></listitem>
 
-	<listitem><para>
-	Stöbern Sie auf einem Windows 200x/XP-Client (nicht Windows NT) die
-	<guiicon>Netzwerkumgebung</guiicon> auf, suchen Sie den 
-	Samba-Server, öffnen Sie den Ordner <guiicon>Drucker</guiicon>
-	des Servers und führen Sie einen Rechtsklick auf dem weißen Hintergrund
-	aus (ohne markierten Drucker). Wählen Sie  
-	<guimenuitem>Server-Eigenschaften</guimenuitem> im Menü aus. Unter dem Reiter
-	<guilabel>Treiber</guilabel> werden Sie den neuen Treiber aufgelistet
-	sehen. In dieser Ansicht können Sie auch die Liste der zu diesem
-	Treiber gehörenden Dateien inspizieren, (das funktioniert nicht unter
-	Windows NT, sondern nur unter Windows 2000 und Windows XP; Windows NT
-	verfügt nicht über den Reiter <guimenuitem>Treiber</guimenuitem>). 
-	Eine alternative und wesentlich schnellere Methode, dieses Dialogfeld
-	unter Windows 2000/XP zu starten, besteht darin, in einer DOS-Shell 
-	folgendes einzugeben (natürlich müssen Sie 
-	<replaceable>SAMBA-CUPS</replaceable> mit dem Namen Ihres Samba-Servers
-	ersetzen):
-	</para>
+    <listitem><para>
+    Stöbern Sie auf einem Windows 200x/XP-Client (nicht Windows NT) die
+    <guiicon>Netzwerkumgebung</guiicon> auf, suchen Sie den 
+    Samba-Server, öffnen Sie den Ordner <guiicon>Drucker</guiicon>
+    des Servers und führen Sie einen Rechtsklick auf dem weißen Hintergrund
+    aus (ohne markierten Drucker). Wählen Sie  
+    <guimenuitem>Server-Eigenschaften</guimenuitem> im Menü aus. Unter dem Reiter
+    <guilabel>Treiber</guilabel> werden Sie den neuen Treiber aufgelistet
+    sehen. In dieser Ansicht können Sie auch die Liste der zu diesem
+    Treiber gehörenden Dateien inspizieren, (das funktioniert nicht unter
+    Windows NT, sondern nur unter Windows 2000 und Windows XP; Windows NT
+    verfügt nicht über den Reiter <guimenuitem>Treiber</guimenuitem>). 
+    Eine alternative und wesentlich schnellere Methode, dieses Dialogfeld
+    unter Windows 2000/XP zu starten, besteht darin, in einer DOS-Shell 
+    folgendes einzugeben (natürlich müssen Sie 
+    <replaceable>SAMBA-CUPS</replaceable> mit dem Namen Ihres Samba-Servers
+    ersetzen):
+    </para>
 
-	<para><userinput>rundll32 printui.dll,PrintUIEntry /s /t2 /n\\<replaceable>SAMBA-CUPS</replaceable></userinput></para>
-	</listitem>
+    <para><userinput>rundll32 printui.dll,PrintUIEntry /s /t2 /n\\<replaceable>SAMBA-CUPS</replaceable></userinput></para>
+    </listitem>
 
-	<listitem><para>
-	Führen Sie unter einem UNIX-Prompt folgenden Befehl (oder eine Variante
-	davon) aus, wobei <replaceable>SAMBA-CUPS</replaceable> der Name des
-	Samba-Hosts ist und xxxx für das aktuelle an root zugewiesene 
-	Samba-Passwort steht:
-	</para>
+    <listitem><para>
+    Führen Sie unter einem UNIX-Prompt folgenden Befehl (oder eine Variante
+    davon) aus, wobei <replaceable>SAMBA-CUPS</replaceable> der Name des
+    Samba-Hosts ist und xxxx für das aktuelle an root zugewiesene 
+    Samba-Passwort steht:
+    </para>
 
-	<para><userinput>rpcclient -U'root%xxxx' -c 'enumdrivers' <replaceable>SAMBA-CUPS</replaceable></userinput></para>
+    <para><userinput>rpcclient -U'root%xxxx' -c 'enumdrivers' <replaceable>SAMBA-CUPS</replaceable></userinput></para>
 
-	<para>
-	Dann sehen Sie eine Liste aller Samba bekannten Treiber. Darunter 
-	sollte auch ihr neuer sein. Er wird allerdings nur unter der
-	Überschrift <parameter>[Windows NT x86]</parameter> aufgeführt, nicht
-	unter <smbconfsection>[Windows 4.0]</smbconfsection>, weil Sie diesen
-	Teil nicht installiert haben. Oder haben Sie doch?
-	In unserem Beispiel hat der Treiber den Namen 
-	<constant>dm9110</constant>. Beachten Sie, dass in der dritten Spalte
-	die anderen installierten Treiber doppelt erscheinen, je einmal für
-	jede unterstützte Architektur. Unser neuer Treiber erscheint nur unter
-	<application>Windows NT 4.0 oder 2000</application>. Um ihn auch unter
-	<application>Windows 95, 98 und ME</application> zu sehen müssen Sie
-	die gesamte Prozedur mit der WIN40-Architektur und dem 
-	WIN40-Unterverzeichnis wiederholen.
-	</para></listitem>
+    <para>
+    Dann sehen Sie eine Liste aller Samba bekannten Treiber. Darunter 
+    sollte auch ihr neuer sein. Er wird allerdings nur unter der
+    Überschrift <parameter>[Windows NT x86]</parameter> aufgeführt, nicht
+    unter <smbconfsection>[Windows 4.0]</smbconfsection>, weil Sie diesen
+    Teil nicht installiert haben. Oder haben Sie doch?
+    In unserem Beispiel hat der Treiber den Namen 
+    <constant>dm9110</constant>. Beachten Sie, dass in der dritten Spalte
+    die anderen installierten Treiber doppelt erscheinen, je einmal für
+    jede unterstützte Architektur. Unser neuer Treiber erscheint nur unter
+    <application>Windows NT 4.0 oder 2000</application>. Um ihn auch unter
+    <application>Windows 95, 98 und ME</application> zu sehen müssen Sie
+    die gesamte Prozedur mit der WIN40-Architektur und dem 
+    WIN40-Unterverzeichnis wiederholen.
+    </para></listitem>
 </itemizedlist>
 </sect3>
 
 <sect3>
-<title>Spezifische Flexibilität von Treibernamen</title>
+<title>Spezifische Flexibilität bei Treibernamen</title>
 
 <para>
 Sie können den Treiber nennen, wie Sie möchten. Wenn Sie den Schritt
@@ -2293,26 +2303,26 @@ Sie folgende Schritte auf der Windows-Workstation aus:
 </para>
 
 <procedure>
-	<step><para>
-	Öffnen Sie die <guiicon>Netzwerkumgebung</guiicon>.
-	</para></step>
+    <step><para>
+    Öffnen Sie die <guiicon>Netzwerkumgebung</guiicon>.
+    </para></step>
 
-	<step><para>
-	Gehen Sie zum Samba-Server.
-	</para></step>
+    <step><para>
+    Gehen Sie zum Samba-Server.
+    </para></step>
 
-	<step><para>
-	Öffnen Sie dessen Ordner <guiicon>Drucker und Faxgeräte</guiicon>.
-	</para></step>
+    <step><para>
+    Öffnen Sie dessen Ordner <guiicon>Drucker und Faxgeräte</guiicon>.
+    </para></step>
 
-	<step><para>
-	Wählen Sie den Drucker und führen Sie einen Rechtsklick darauf aus.
-	</para></step>
+    <step><para>
+    Wählen Sie den Drucker und führen Sie einen Rechtsklick darauf aus.
+    </para></step>
 
-	<step><para>
-	Wählen Sie <guimenuitem>Verbinden</guimenuitem> (unter Windows NT4/200x
-	heisst es evtl. <guimenuitem>Installieren</guimenuitem>).
-	</para></step>
+    <step><para>
+    Wählen Sie <guimenuitem>Verbinden</guimenuitem> (unter Windows NT4/200x
+    heisst es evtl. <guimenuitem>Installieren</guimenuitem>).
+    </para></step>
 </procedure>
 
 <para>
@@ -2351,16 +2361,16 @@ kann, muss er über folgendes verfügen:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Einen gültigen <emphasis>Device-Modus</emphasis>, der von dem 
-	Druckertreiber generiert wird (und Dinge wie die Papiergröße,
-	-ausrichtung und Duplex-Einstellungen definiert).
-	</para></listitem>
+    <listitem><para>
+    Einen gültigen <emphasis>Device-Modus</emphasis>, der von dem 
+    Druckertreiber generiert wird (und Dinge wie die Papiergröße,
+    -ausrichtung und Duplex-Einstellungen definiert).
+    </para></listitem>
 
-	<listitem><para>
-	Einen kompletten Satz an <emphasis>Druckertreiberdaten</emphasis> 
-	der vom Treiber generiert wird.
-	</para></listitem>
+    <listitem><para>
+    Einen kompletten Satz an <emphasis>Druckertreiberdaten</emphasis> 
+    der vom Treiber generiert wird.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -2409,59 +2419,59 @@ von Windows NT/200x/XP auf einem Window-Client benutzen:
 </para>
 
 <procedure>
-	<step><para>
-	Stöbern Sie in der <guiicon>Netzwerkumgebung.</guiicon>
-	</para></step>
+    <step><para>
+    Stöbern Sie in der <guiicon>Netzwerkumgebung.</guiicon>
+    </para></step>
 
-	<step><para>
-	Finden Sie den Samba-Server.
-	</para></step>
+    <step><para>
+    Finden Sie den Samba-Server.
+    </para></step>
 
-	<step><para>
-	Öffnen Sie den Ordner <guiicon>Drucker und Faxgeräte</guiicon> des 
-	Samba-Servers.
-	</para></step>
+    <step><para>
+    Öffnen Sie den Ordner <guiicon>Drucker und Faxgeräte</guiicon> des 
+    Samba-Servers.
+    </para></step>
 
-	<step><para>
-	Selektieren Sie den entsprechenden freigegebenen Drucker.
-	</para></step>
+    <step><para>
+    Selektieren Sie den entsprechenden freigegebenen Drucker.
+    </para></step>
 
-	<step><para>
-	Führen Sie einen Rechtsklick auf dem Drucker aus (wenn Sie die 
-	Beschreibung im letzten Abschnitt befolgt haben, sind Sie evtl. 
-	schon hier).
-	</para></step>
+    <step><para>
+    Führen Sie einen Rechtsklick auf dem Drucker aus (wenn Sie die 
+    Beschreibung im letzten Abschnitt befolgt haben, sind Sie evtl. 
+    schon hier).
+    </para></step>
 
-	<step><para>
-	Selektieren Sie unten im Kontextmenü <guimenu>Eigenschaften</guimenu> 
-	(wenn das Menü weiter oben noch den Eintrag 
-	<guimenuitem>Verbinden</guimenuitem> müssen Sie zuerst darauf klicken,
-	um die Treiberinstallation so durchzuführen, wie im letzten Abschnitt
-	gezeigt).
-	</para></step>
+    <step><para>
+    Selektieren Sie unten im Kontextmenü <guimenu>Eigenschaften</guimenu> 
+    (wenn das Menü weiter oben noch den Eintrag 
+    <guimenuitem>Verbinden</guimenuitem> müssen Sie zuerst darauf klicken,
+    um die Treiberinstallation so durchzuführen, wie im letzten Abschnitt
+    gezeigt).
+    </para></step>
 
-	<step><para>
-	Klicken Sie den Reiter <guilabel>Erweitert</guilabel>, dann auf
-	<guibutton>Standardwerte</guibutton>.
-	</para></step>
+    <step><para>
+    Klicken Sie den Reiter <guilabel>Erweitert</guilabel>, dann auf
+    <guibutton>Standardwerte</guibutton>.
+    </para></step>
 
-	<step><para>
-	Ändern Sie die Seiteneinstellungen für 
-	<guimenuitem>Hochformat</guimenuitem> auf 
-	<guimenuitem>Querformat</guimenuitem> (und zurück).
-	</para></step>
+    <step><para>
+    Ändern Sie die Seiteneinstellungen für 
+    <guimenuitem>Hochformat</guimenuitem> auf 
+    <guimenuitem>Querformat</guimenuitem> (und zurück).
+    </para></step>
 
-	<step><para>
-	Vergewissern Sie sich, dass Sie die Änderungen zwischen dem Umschalten
-	der Seitenausrichtung auch anwenden, damit die Änderung auch wirksam
-	wird.
-	</para></step>
+    <step><para>
+    Vergewissern Sie sich, dass Sie die Änderungen zwischen dem Umschalten
+    der Seitenausrichtung auch anwenden, damit die Änderung auch wirksam
+    wird.
+    </para></step>
 
-	<step><para>
-	Wenn Sie schon dabei sind möchten Sie hier evtl. auch die gewünschten 
-	Druckvoreinstellungen setzen, die dann bei allen zukünftigen
-	Treiberinstallationen auf den verbleibenden Clients angewendet werden.
-	</para></step>
+    <step><para>
+    Wenn Sie schon dabei sind möchten Sie hier evtl. auch die gewünschten 
+    Druckvoreinstellungen setzen, die dann bei allen zukünftigen
+    Treiberinstallationen auf den verbleibenden Clients angewendet werden.
+    </para></step>
 </procedure>
 
 <para>
@@ -2534,15 +2544,15 @@ folgendes garantiert:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Ein erster gültiger <emphasis>Device Mode</emphasis> wird tatsächlich
-	initialisiert (siehe oben für erklärende Details).
-	</para></listitem>
+    <listitem><para>
+    Ein erster gültiger <emphasis>Device Mode</emphasis> wird tatsächlich
+    initialisiert (siehe oben für erklärende Details).
+    </para></listitem>
 
-	<listitem><para>	
-	Die Standarddruckeinstellungen Ihres Druckers sind für alle weiteren 
-	Client-Installationen so, wie Sie es wünschen.
-	</para></listitem>
+    <listitem><para>    
+    Die Standarddruckeinstellungen Ihres Druckers sind für alle weiteren 
+    Client-Installationen so, wie Sie es wünschen.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -2561,7 +2571,7 @@ um sich als root mit einem Samba-Drucker zu verbinden:
 
 <para><screen>
 &dosprompt;<userinput>runas /netonly /user:root "rundll32 printui.dll,PrintUIEntry /p /t3 /n 
-	\\<replaceable>SAMBA-SERVER</replaceable>\<replaceable>printername</replaceable>"</userinput>
+    \\<replaceable>SAMBA-SERVER</replaceable>\<replaceable>printername</replaceable>"</userinput>
 </screen>
 </para>
 
@@ -2628,63 +2638,63 @@ sein. Auf folgende Weise kann ich es unter XP Professional reproduzieren:
 </para>
 
 <orderedlist numeration="upperalpha">
-	<listitem><para>Der erste <quote>falsche</quote> Weg:
-	<orderedlist numeration="arabic">
-		<listitem><para>Öffnen Sie den Ordner <guiicon>Drucker</guiicon>.</para></listitem>
+    <listitem><para>Der erste <quote>falsche</quote> Weg:
+    <orderedlist numeration="arabic">
+        <listitem><para>Öffnen Sie den Ordner <guiicon>Drucker</guiicon>.</para></listitem>
 
-		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
-		wählen Sie im Kontextmenü <guimenu>Druckereinstellungen...</guimenu>
-		aus.</para></listitem>.
+        <listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
+        aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
+        wählen Sie im Kontextmenü <guimenu>Druckereinstellungen...</guimenu>
+        aus.</para></listitem>.
 
-		<listitem><para>Sehen Sie sich dieses Dialogfeld genau an, 
-		und prägen Sie sich ein, wie es aussieht.</para></listitem>
-	</orderedlist></para></listitem>
+        <listitem><para>Sehen Sie sich dieses Dialogfeld genau an, 
+        und prägen Sie sich ein, wie es aussieht.</para></listitem>
+    </orderedlist></para></listitem>
 
-	<listitem><para>Der zweite <quote>falsche</quote> Weg:
-	<orderedlist numeration="arabic">
-		<listitem><para>Öffnen Sie den Ordner 
-		<guimenu>Drucker</guimenu>.</para></listitem>
+    <listitem><para>Der zweite <quote>falsche</quote> Weg:
+    <orderedlist numeration="arabic">
+        <listitem><para>Öffnen Sie den Ordner 
+        <guimenu>Drucker</guimenu>.</para></listitem>
 
-		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
-		wählen Sie im Kontextmenü <guimenu>Einstellungen</guimenu>
-		aus.</para></listitem>.
+        <listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
+        aus (<emphasis>entfernterdrucker auf cupshost</emphasis>) und
+        wählen Sie im Kontextmenü <guimenu>Einstellungen</guimenu>
+        aus.</para></listitem>.
 
-		<listitem><para>Klicken Sie den Reiter <guilabel>Allgemein</guilabel>
-		tab</para></listitem>.
+        <listitem><para>Klicken Sie den Reiter <guilabel>Allgemein</guilabel>
+        tab</para></listitem>.
 
-		<listitem><para>Klicken Sie auf 
-		<guibutton>Druckereigenschaften...</guibutton></para></listitem>.
+        <listitem><para>Klicken Sie auf 
+        <guibutton>Druckereigenschaften...</guibutton></para></listitem>.
 
-		<listitem><para>Ein neues Dialogfeld wird geöffnet. Halten Sie es
-		geöffnet und gehen Sie zurück zu seinem 
-		Elterndialogfeld.</para></listitem>
-	</orderedlist></para></listitem>
+        <listitem><para>Ein neues Dialogfeld wird geöffnet. Halten Sie es
+        geöffnet und gehen Sie zurück zu seinem 
+        Elterndialogfeld.</para></listitem>
+    </orderedlist></para></listitem>
 
-	<listitem><para>
-	Der dritte und korrekte Weg: (sollten Sie das von Anfang an tun, 
-	führen Sie einfach die Schritte 1 und 2 aus der obigen zweiten 
-	Methode aus).
-	</para>
+    <listitem><para>
+    Der dritte und korrekte Weg: (sollten Sie das von Anfang an tun, 
+    führen Sie einfach die Schritte 1 und 2 aus der obigen zweiten 
+    Methode aus).
+    </para>
 
-	<orderedlist numeration="arabic">
-		<listitem><para>Klicken Sie den Reiter <guilabel>Erweitert</guilabel>
-		(Falls alles <quote>grau hinterlegt</quote> ist, so sind Sie nicht
-		als Benutzer mit ausreichenden Rechten angemeldet).</para></listitem>
+    <orderedlist numeration="arabic">
+        <listitem><para>Klicken Sie den Reiter <guilabel>Erweitert</guilabel>
+        (Falls alles <quote>grau hinterlegt</quote> ist, so sind Sie nicht
+        als Benutzer mit ausreichenden Rechten angemeldet).</para></listitem>
 
-		<listitem><para>Klicken Sie auf 
-		<guibutton>Standardwerte</guibutton>.</para></listitem>
+        <listitem><para>Klicken Sie auf 
+        <guibutton>Standardwerte</guibutton>.</para></listitem>
 
-		<listitem><para>Klicken Sie auf einem beliebigen der beiden neuen
-		Reiter auf den Knopf <guilabel>Erweitert</guilabel>.</para></listitem>
+        <listitem><para>Klicken Sie auf einem beliebigen der beiden neuen
+        Reiter auf den Knopf <guilabel>Erweitert</guilabel>.</para></listitem>
 
-		<listitem><para>Ein neues Dialogfeld wird geöffnet. Vergleichen Sie
-		dieses mit dem anderen. Sehen Sie gleich aus, wenn Sie den einen aus
-		<quote>B.5</quote> mit dem aus <quote>A.3</quote> 
-		vergleichen?</para></listitem>
-	</orderedlist>
-	</listitem>
+        <listitem><para>Ein neues Dialogfeld wird geöffnet. Vergleichen Sie
+        dieses mit dem anderen. Sehen Sie gleich aus, wenn Sie den einen aus
+        <quote>B.5</quote> mit dem aus <quote>A.3</quote> 
+        vergleichen?</para></listitem>
+    </orderedlist>
+    </listitem>
 </orderedlist>
 
 <para>
@@ -2853,27 +2863,27 @@ in Windows NT. Der APW wird nur dann gezeigt, wenn:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Der verbundene Benutzer erfolgreich ein 
-	<command>OpenPrinterEx(\\server)</command> mit Administratorrechten, d.h. 
-	als root oder <smbconfoption><name>printer admin</name></smbconfoption>
-	ausführen kann.
-	</para>
+    <listitem><para>
+    Der verbundene Benutzer erfolgreich ein 
+    <command>OpenPrinterEx(\\server)</command> mit Administratorrechten, d.h. 
+    als root oder <smbconfoption><name>printer admin</name></smbconfoption>
+    ausführen kann.
+    </para>
 
-	<tip><para>Versuchen Sie folgendes beim Prompt einer DOS-Shell 
-	unter Windows 200x/XP:
-	</para>
+    <tip><para>Versuchen Sie folgendes beim Prompt einer DOS-Shell 
+    unter Windows 200x/XP:
+    </para>
 
-	<para><userinput>
-	runas /netonly /user:root rundll32 printui.dll,PrintUIEntry /p /t0 /n \\<replaceable>SAMBA-SERVER</replaceable>\<replaceable>printersharename</replaceable>
-	</userinput></para>
+    <para><userinput>
+    runas /netonly /user:root rundll32 printui.dll,PrintUIEntry /p /t0 /n \\<replaceable>SAMBA-SERVER</replaceable>\<replaceable>printersharename</replaceable>
+    </userinput></para>
 
-	<para>
-	Klicken Sie auf <guibutton>Druckereinstellungen</guibutton>.
-	</para></tip></listitem>
+    <para>
+    Klicken Sie auf <guibutton>Druckereinstellungen</guibutton>.
+    </para></tip></listitem>
 
-	<listitem><para>... enthält die Einstellung
-	<smbconfoption><name>show add printer wizard</name><value>yes</value></smbconfoption> (der Vorgabewert).</para></listitem>
+    <listitem><para>... enthält die Einstellung
+    <smbconfoption><name>show add printer wizard</name><value>yes</value></smbconfoption> (der Vorgabewert).</para></listitem>
 </itemizedlist>
 
 <para>
@@ -2881,30 +2891,30 @@ Der APW kann verschiedene Dinge erledigen:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Einen Treiber auf der Freigabe <smbconfsection>[print$]</smbconfsection>
-	von Samba hochladen.
-	</para></listitem>
+    <listitem><para>
+    Einen Treiber auf der Freigabe <smbconfsection>[print$]</smbconfsection>
+    von Samba hochladen.
+    </para></listitem>
 
-	<listitem><para>
-	Einen hochgeladenen Treiber mit einer vorhandenen (noch treiberlosen) 
-	Druckerschlange verbinden.
-	</para></listitem>
+    <listitem><para>
+    Einen hochgeladenen Treiber mit einer vorhandenen (noch treiberlosen) 
+    Druckerschlange verbinden.
+    </para></listitem>
 
-	<listitem><para>
-	Austauschen des aktuell verwendeten Treibers für eine vorhandene
-	Druckerschlange mit einem zuvor hochgeladenen Treiber.
-	</para></listitem>
+    <listitem><para>
+    Austauschen des aktuell verwendeten Treibers für eine vorhandene
+    Druckerschlange mit einem zuvor hochgeladenen Treiber.
+    </para></listitem>
 
-	<listitem><para>
-	Einen völlig neuen Drucker auf dem Samba-Host hinzufügen (nur in 
-	Verbindung mit einem funktionierenden 
-	<smbconfoption><name>add printer command</name></smbconfoption>. 
-	Ein entsprechendes
-	<smbconfoption><name>delete printer command</name></smbconfoption> 
-	zum Entfernen von Einträgen aus dem Ordner
-	<guiicon>Drucker</guiicon> wird etvtl. auch angeboten).
-	</para></listitem>
+    <listitem><para>
+    Einen völlig neuen Drucker auf dem Samba-Host hinzufügen (nur in 
+    Verbindung mit einem funktionierenden 
+    <smbconfoption><name>add printer command</name></smbconfoption>. 
+    Ein entsprechendes
+    <smbconfoption><name>delete printer command</name></smbconfoption> 
+    zum Entfernen von Einträgen aus dem Ordner
+    <guiicon>Drucker</guiicon> wird etvtl. auch angeboten).
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -2944,24 +2954,24 @@ schließen und vielleicht einen Neustart durchzuführen.
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Der Befehl <command>net use \\SAMBA-SERVER\sharename /user:root</command>
-	gibt Ihnen die Fehlermeldung:
-	<quote>Multiple connections to a server or a shared resource by the 
-	same user utilizing the several user names are not allowed. Disconnect 
-	all previous connections to the server, esp. the shared resource, 
-	and try again.</quote>
-	</para></listitem>
+    <listitem><para>
+    Der Befehl <command>net use \\SAMBA-SERVER\sharename /user:root</command>
+    gibt Ihnen die Fehlermeldung:
+    <quote>Multiple connections to a server or a shared resource by the 
+    same user utilizing the several user names are not allowed. Disconnect 
+    all previous connections to the server, esp. the shared resource, 
+    and try again.</quote>
+    </para></listitem>
 
-	<listitem><para>
-	Jeder Versuch einer <quote>Verbindung eines Netzwerklaufwerks</quote> von
-	<filename>\\SAMBASERVER\\print$</filename> mit <constant>z:</constant> 
-	wird mit dieser hartnäckigen Meldung quittiert: <quote>This network 
-	folder is currently connected under different credentials (username 
-	and password). Disconnect first any existing connection to this network 
-	share in order to connect again under a different username and 
-	password</quote>.
-	</para></listitem>
+    <listitem><para>
+    Jeder Versuch einer <quote>Verbindung eines Netzwerklaufwerks</quote> von
+    <filename>\\SAMBASERVER\\print$</filename> mit <constant>z:</constant> 
+    wird mit dieser hartnäckigen Meldung quittiert: <quote>This network 
+    folder is currently connected under different credentials (username 
+    and password). Disconnect first any existing connection to this network 
+    share in order to connect again under a different username and 
+    password</quote>.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -3131,7 +3141,7 @@ erkennen können:
 &rootprompt;<userinput>for i in cns3g.hlp cns3gui.dll cns3g.dll; do                  \
            smbclient //10.160.50.8/print\$ -U 'Administrator%xxxx' \
            -c "cd W32X86/3; dir $i; cd .. ; cd 2; dir $i";      \
-		   done</userinput>
+           done</userinput>
 
   CNS3G.HLP               A   122981  Thu May 30 02:31:00 2002
   CNS3G.HLP               A    99948  Thu May 30 02:31:00 2002
@@ -3229,22 +3239,22 @@ Imprints ist eine Sammlung von Werkzeugen, die folgende Ziele unterstützen:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Bereitstellen einer zentralen Informationsstelle für Druckertreiberpakete
-	zu Windows NT und 95/98.
-	</para></listitem>
+    <listitem><para>
+    Bereitstellen einer zentralen Informationsstelle für Druckertreiberpakete
+    zu Windows NT und 95/98.
+    </para></listitem>
 
-	<listitem><para>
-	Bereitstellen der notwendigen Werkzeuge zum Erstellen von 
-	Imprints-Druckertreiberpaketen.
-	</para></listitem>
+    <listitem><para>
+    Bereitstellen der notwendigen Werkzeuge zum Erstellen von 
+    Imprints-Druckertreiberpaketen.
+    </para></listitem>
 
-	<listitem><para>
-	Bereitstellen eines Installationsprogramms, das Druckertreiber von einer
-	zentralen Internet- (oder Intranet-) Datenbank eines Imprints-Servers
-	erhält und sie auf entfernten Samba- und Windows NT4-Druckerservern
-	installiert.
-	</para></listitem>
+    <listitem><para>
+    Bereitstellen eines Installationsprogramms, das Druckertreiber von einer
+    zentralen Internet- (oder Intranet-) Datenbank eines Imprints-Servers
+    erhält und sie auf entfernten Samba- und Windows NT4-Druckerservern
+    installiert.
+    </para></listitem>
 </itemizedlist>
 </sect2>
 
@@ -3285,8 +3295,8 @@ in zwei verschiedenen Ausführungen:
 </para>
 
 <itemizedlist>
-	<listitem><para>Eine Anzahl von Perl-Kommandozeilenskripte.</para></listitem>
-	<listitem><para>Eine grafische Schnittstelle basierend auf GTK+ zu den 
+    <listitem><para>Eine Anzahl von Perl-Kommandozeilenskripte.</para></listitem>
+    <listitem><para>Eine grafische Schnittstelle basierend auf GTK+ zu den 
 Perl-Kommandozeilenskripten.</para></listitem>
 </itemizedlist>
 
@@ -3303,18 +3313,18 @@ ist um smbclient und rpcclient herum aufgebaut.
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Für jede unterstützte Architektur eines gegebenen Druckers:
-	<orderedlist>
-		<listitem><para>rpcclient: Hole das passende Verzeichnis zum
-		Hochladen auf dem entfernten Server.</para></listitem>
-		<listitem><para>smbclient: Lade die Treiberdateien hoch.</para></listitem>
-		<listitem><para>rpcclient: Setze ein AddPrinterDriver() MS-RPC ab.</para></listitem>
-	</orderedlist>
-	</para></listitem>
+    <listitem><para>
+    Für jede unterstützte Architektur eines gegebenen Druckers:
+    <orderedlist>
+        <listitem><para>rpcclient: Hole das passende Verzeichnis zum
+        Hochladen auf dem entfernten Server.</para></listitem>
+        <listitem><para>smbclient: Lade die Treiberdateien hoch.</para></listitem>
+        <listitem><para>rpcclient: Setze ein AddPrinterDriver() MS-RPC ab.</para></listitem>
+    </orderedlist>
+    </para></listitem>
 
-	<listitem><para>rpcclient: Setze ein AddPrinterEx() MS-RPC ab, um den 
-	Drucker tatsächlich zu erstellen.</para></listitem>
+    <listitem><para>rpcclient: Setze ein AddPrinterEx() MS-RPC ab, um den 
+    Drucker tatsächlich zu erstellen.</para></listitem>
 </itemizedlist>
 
 <para>
@@ -3393,53 +3403,53 @@ Dies ist eine Liste der verwendeten Kommandozeilen-Parameter:
 </para>
 
 <variablelist>
-	<varlistentry><term>/dn</term>
-		<listitem><para>löscht einen Netzwerkdrucker</para></listitem>
-	</varlistentry>
-	<varlistentry><term>/q</term>
-		<listitem><para>stiller Modus</para></listitem>
-	</varlistentry>
-	<varlistentry><term>/n</term>
-		<listitem><para>benennt einen Drucker</para></listitem>
-	</varlistentry>
-	<varlistentry><term>/in</term>
-		<listitem><para>fügt eine Netzwerkdruckerverbindung hinzu</para></listitem>
-	</varlistentry>
-	<varlistentry><term>/y</term>
-		<listitem><para>stellt den Drucker als Standarddrucker ein</para></listitem>
-	</varlistentry>
+    <varlistentry><term>/dn</term>
+        <listitem><para>löscht einen Netzwerkdrucker</para></listitem>
+    </varlistentry>
+    <varlistentry><term>/q</term>
+        <listitem><para>stiller Modus</para></listitem>
+    </varlistentry>
+    <varlistentry><term>/n</term>
+        <listitem><para>benennt einen Drucker</para></listitem>
+    </varlistentry>
+    <varlistentry><term>/in</term>
+        <listitem><para>fügt eine Netzwerkdruckerverbindung hinzu</para></listitem>
+    </varlistentry>
+    <varlistentry><term>/y</term>
+        <listitem><para>stellt den Drucker als Standarddrucker ein</para></listitem>
+    </varlistentry>
 </variablelist>
 
 <itemizedlist>
-	<listitem><para>
-	Zeile 1 löscht einen vorher evtl. vorhandenen Netzwerkdrucker 
-	<emphasis>infotec2105-IPDS</emphasis>
-	(der native Windows-Treiber mit LPRng benutzt hatte, die vom Server entfernt
-	wurden, der auf CUPS umgestellt wurde). Das <command>/q</command> am Ende
-	verhindert, dass Bestätigungs- oder Fehlerdialogfelder eingeblendet werden.
-	Diese sollten bei einem Benutzer nicht erscheinen, der sich gerade anmeldet.
-	</para></listitem>
+    <listitem><para>
+    Zeile 1 löscht einen vorher evtl. vorhandenen Netzwerkdrucker 
+    <emphasis>infotec2105-IPDS</emphasis>
+    (der native Windows-Treiber mit LPRng benutzt hatte, die vom Server entfernt
+    wurden, der auf CUPS umgestellt wurde). Das <command>/q</command> am Ende
+    verhindert, dass Bestätigungs- oder Fehlerdialogfelder eingeblendet werden.
+    Diese sollten bei einem Benutzer nicht erscheinen, der sich gerade anmeldet.
+    </para></listitem>
 
-	<listitem><para>	
-	Zeile 2 fügt den neuen Drucker
-	<emphasis>infotec2105-PS</emphasis> hinzu (der tatsächlich das gleiche
-	physische Gerät ist, aber nun vom neuen CUPS-Drucksystem betrieben wird
-	und mit den CUPS/Adobe-PS-Treibern verbunden ist). Der Drucker und sein
-	Treiber müssen in Samba hinzugefügt worden sein, bevor der Benutzer sich 
-	anmeldet (z.B. durch eine Prozedur wie sie oben in diesem Kapitel 
-	diskutiert wurde, oder durch die Ausführung von
-	<command>cupsaddsmb</command>). Der Treiber wird nun automatisch 
-	auf den Client-PC heruntergeladen, auf dem der Benutzer sich gerade
-	anmeldet.
-	</para></listitem>
+    <listitem><para>    
+    Zeile 2 fügt den neuen Drucker
+    <emphasis>infotec2105-PS</emphasis> hinzu (der tatsächlich das gleiche
+    physische Gerät ist, aber nun vom neuen CUPS-Drucksystem betrieben wird
+    und mit den CUPS/Adobe-PS-Treibern verbunden ist). Der Drucker und sein
+    Treiber müssen in Samba hinzugefügt worden sein, bevor der Benutzer sich 
+    anmeldet (z.B. durch eine Prozedur wie sie oben in diesem Kapitel 
+    diskutiert wurde, oder durch die Ausführung von
+    <command>cupsaddsmb</command>). Der Treiber wird nun automatisch 
+    auf den Client-PC heruntergeladen, auf dem der Benutzer sich gerade
+    anmeldet.
+    </para></listitem>
 
-	<listitem><para>
-	Zeile 3 setzt den Standarddrucker auf diesen neuen Netzwerkdrucker (es
-	mag mehrere andere auf die gleiche Art installierte Drucker geben und 
-	einige können auch lokal sein, daher haben wir uns für einen 
-	Standarddrucker entschieden). Die Wahl des Standarddruckers darf 
-	für verschiedene Benutzer natürlich unterschiedlich sein.
-	</para></listitem>
+    <listitem><para>
+    Zeile 3 setzt den Standarddrucker auf diesen neuen Netzwerkdrucker (es
+    mag mehrere andere auf die gleiche Art installierte Drucker geben und 
+    einige können auch lokal sein, daher haben wir uns für einen 
+    Standarddrucker entschieden). Die Wahl des Standarddruckers darf 
+    für verschiedene Benutzer natürlich unterschiedlich sein.
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -3467,15 +3477,15 @@ Weitere Vorteile hiervon sind:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Alle Änderungen an den Standardeinstellungen des Druckers werden 
-	automatisch bei jeder Benutzeranmeldung weitergegeben.
-	</para></listitem>
+    <listitem><para>
+    Alle Änderungen an den Standardeinstellungen des Druckers werden 
+    automatisch bei jeder Benutzeranmeldung weitergegeben.
+    </para></listitem>
 
-	<listitem><para>
-	Benutzer haben die gleichen Einstellungen auch bei der Anmeldung von
-	verschiedenen Workstations in die Domäene (<quote>roaming</quote>).
-	</para></listitem>
+    <listitem><para>
+    Benutzer haben die gleichen Einstellungen auch bei der Anmeldung von
+    verschiedenen Workstations in die Domäene (<quote>roaming</quote>).
+    </para></listitem>
 </itemizedlist>
 
 <para>
@@ -3522,55 +3532,55 @@ einschlagen. Hier sind einige mögliche Migrationsszenarien:
 </para>
 
 <itemizedlist>
-	<listitem><para>
-	Sie müssen die neue Drucker- und Treiberunterstützung für Windows NT 
-	studieren und anwenden. Die vorher benutzten Parameter 
-	<parameter>printer driver file</parameter>, 
-	<parameter>printer driver</parameter> und 
-	<parameter>printer driver location</parameter> werden nicht mehr unterstützt.
-	</para></listitem>
+    <listitem><para>
+    Sie müssen die neue Drucker- und Treiberunterstützung für Windows NT 
+    studieren und anwenden. Die vorher benutzten Parameter 
+    <parameter>printer driver file</parameter>, 
+    <parameter>printer driver</parameter> und 
+    <parameter>printer driver location</parameter> werden nicht mehr unterstützt.
+    </para></listitem>
 
-	<listitem><para>
-	Wenn Sie von der Druckertreiberunterstützung in Windows NT profitieren
-	möchten, müssen Sie auch die Windows 9x/Me-Treiber auf die neuen
-	Einstellungen migrieren.
-	</para></listitem>
+    <listitem><para>
+    Wenn Sie von der Druckertreiberunterstützung in Windows NT profitieren
+    möchten, müssen Sie auch die Windows 9x/Me-Treiber auf die neuen
+    Einstellungen migrieren.
+    </para></listitem>
 
-	<listitem><para>
-	Eine vorhandene Datei <filename>printers.def</filename> (die in dem nun
-	entfernten Parameter <parameter>printer driver file</parameter> angegeben
-	wird), wird in Samba-3 nicht mehr funktionieren. In 3.0 versucht smbd, 
-	Treiberdateien für Windows 9x/Me für den Drucker in 
-	<smbconfsection>[print$]</smbconfsection> sowie weitere Einstellungen
-	in der TDB zu finden, und nur dort. Schlägt das fehl, weicht es 
-	<emphasis>nicht</emphasis> darauf aus, ein <filename>printers.def</filename>
-	(und alle dazugehörigen Parameter) zu benutzen (so wie es in 2.2.x der 
-	Fall war). Das Werkzeug make_printerdef ist entfernt worden, und es gibt
-	dafür nichts, was rückwärtskompatibel wäre.
-	</para></listitem>
+    <listitem><para>
+    Eine vorhandene Datei <filename>printers.def</filename> (die in dem nun
+    entfernten Parameter <parameter>printer driver file</parameter> angegeben
+    wird), wird in Samba-3 nicht mehr funktionieren. In 3.0 versucht smbd, 
+    Treiberdateien für Windows 9x/Me für den Drucker in 
+    <smbconfsection>[print$]</smbconfsection> sowie weitere Einstellungen
+    in der TDB zu finden, und nur dort. Schlägt das fehl, weicht es 
+    <emphasis>nicht</emphasis> darauf aus, ein <filename>printers.def</filename>
+    (und alle dazugehörigen Parameter) zu benutzen (so wie es in 2.2.x der 
+    Fall war). Das Werkzeug make_printerdef ist entfernt worden, und es gibt
+    dafür nichts, was rückwärtskompatibel wäre.
+    </para></listitem>
 
-	<listitem><para>Sie müssen einen Windows 9x/Me-Treiber in die Freigabe
-	<smbconfsection>[print$]</smbconfsection> für einen Drucker auf Ihrem 
-	Samba-Host installieren. Die Treiberdateien werden in dem Unterverzeichnis
-	<quote>WIN40/0</quote> von <smbconfsection>[print$]</smbconfsection>
-	gespeichert, und einige andere Einstellungen und Informationen gehen
-	in die druckrelevanten TDBs ein.</para></listitem>
+    <listitem><para>Sie müssen einen Windows 9x/Me-Treiber in die Freigabe
+    <smbconfsection>[print$]</smbconfsection> für einen Drucker auf Ihrem 
+    Samba-Host installieren. Die Treiberdateien werden in dem Unterverzeichnis
+    <quote>WIN40/0</quote> von <smbconfsection>[print$]</smbconfsection>
+    gespeichert, und einige andere Einstellungen und Informationen gehen
+    in die druckrelevanten TDBs ein.</para></listitem>
 
-	<listitem><para>Wenn Sie eine vorhandene Datei 
-	<filename>printers.def</filename> in die neue Einstellung migrieren 
-	möchten, besteht die einzige aktuelle Lösung darin, den APW von 
-	Windows NT für die Installation der NT- und 9x/Me-Treibern zu benutzen. 
-	Mit smbclient und rpcclient kann das auch aus Skripten heraus geschehen. 
-	Siehe das Imprints-Installationsprogramm hier:
-	</para>
+    <listitem><para>Wenn Sie eine vorhandene Datei 
+    <filename>printers.def</filename> in die neue Einstellung migrieren 
+    möchten, besteht die einzige aktuelle Lösung darin, den APW von 
+    Windows NT für die Installation der NT- und 9x/Me-Treibern zu benutzen. 
+    Mit smbclient und rpcclient kann das auch aus Skripten heraus geschehen. 
+    Siehe das Imprints-Installationsprogramm hier:
+    </para>
 
-	<para>
-		<ulink noescape="1" url="http://imprints.sourceforge.net/">http://imprints.sourceforge.net/</ulink>
-	</para>
+    <para>
+        <ulink noescape="1" url="http://imprints.sourceforge.net/">http://imprints.sourceforge.net/</ulink>
+    </para>
 
-	<para>
-	für ein Beispiel. Siehe auch die Diskussion zur Benutzung von rpcclient
-	im Abschnitt <quote>Unterstützung des CUPS-Drucksystems</quote>.</para></listitem>
+    <para>
+    für ein Beispiel. Siehe auch die Diskussion zur Benutzung von rpcclient
+    im Abschnitt <quote>Unterstützung des CUPS-Drucksystems</quote>.</para></listitem>
 </itemizedlist>
 </sect1>
 
@@ -3618,6 +3628,128 @@ führt aber nur zu Problemen. Die zwei Verzeichnisse müssen verschieden sein.
 </para>
 
 </sect2>
+</sect1>
+
+
+<sect1>
+<title>Aktualisierung</title>
+
+
+<para>Seit Erst-Veröffentlichung dieses Buches in Englisch haben die 
+Samba-Versionen 3.0.1 bis 3.0.7 wichtige Aktualisierungen und Änderungen 
+erfahren. Die Entwickler beseitigten verschiedene Fehler und schlossen 
+Sicherheitslücken. Viele Modifikationen betrafen auch die 
+Druckfunktionen. Hier eine kurze Übersicht:
+</para>
+
+<variablelist>
+<varlistentry><term><smbconfoption><name>'rpcclient adddriver'</name></smbconfoption></term>
+    <listitem>
+    <para>akzeptiert jetzt die Angabe der Treiber-Version. Dies ermöglicht die
+    kontrollierte Installation von 'Kernel Mode'- und 'User Mode'-Druckertreibern. 
+    (Änderung seit 3.0.1)</para>
+    <para>Beispiel: 
+    <screen>
+ &rootprompt;rpcclient localhost -N   \
+            -U'root%secret' \
+            -c 'adddriver "Windows NT x86"  \
+            "infotec_2105:cupsdrv5.dll:infotec_2105.ppd:\
+            cupsui5.dll:cups5.hlp:NULL:RAW:NULL" \
+            2'
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'printing = .....'</name></smbconfoption></term> 
+    <listitem>
+    <para>ist jetzt nicht mehr 'globaler', sondern 'service level'-Parameter. Dies
+    erlaubt mehr Flexibilität und eine bequemere Verwirklichung eigener
+    Druckbefehle ('print command' in smb.conf), unterschiedlich pro 
+    Druckerwarteschlange. 
+    (Änderung seit 3.0.3)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>printing = sysv</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'cups options = .....'</name></smbconfoption></term>
+    <listitem>
+    <para>erlaubt die Angabe von Druckuptionen wie z.B '-o raw' ohne in die Konfiguration
+    des CUPS-Servers eingreifen zu müssen.
+    (neuer Parameter seit 3.0.3)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>cups options = 'raw,media=a4,job-sheets=secret,secret'</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'printcap cache time = .....'</name></smbconfoption></term>
+    <listitem>
+    <para>legt das Zeitintervall in Sekunden fest, in dem Samba die 'printcap' nach
+    neu hinzugekommenen (oder gelöschten) Druckerwarteschlangen untersucht.
+    (neuer Parameter seit 3.0.6)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>printcap cache time = 60</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'rpcclient setprintername'</name></smbconfoption></term>
+    <listitem>
+    <para>ermöglicht die Zuordnung eines anderen Namens zu einer Druckerwarteschlange.
+    Dieser Name wird den Windows-Clients gezeigt (Unix-Benutzer sehen den 
+    ursprünglichen Namen).
+    (neuer Parameter seit 3.0.6)</para>
+    <para>Beispiel: 
+    <screen>
+&rootprompt;rpcclient localhost -N   \
+    -U'root%secret' \
+    -c 'setprintername cups_printer "Drucker für Gruppe Marketing"'
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'cups server = .....'</name></smbconfoption></term>
+    <listitem>
+    erlaubt die Verwendung eines von 'localhost' unterschiedlichen CUPS-Servers.
+    Unterschiedliche virtuellen smbds können sogar unterschiedliche cups server
+    verwenden.
+    (neuer Parameter seit 3.0.6)
+    <para>Beispiele: 
+    <screen>
+ <smbconfoption><name>cups server = 10.160.61.60</name></smbconfoption>
+ <smbconfoption><name>cups server = cups2.domain.com</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'VampireDriverFunctions'</name></smbconfoption></term>
+    <listitem>
+    <para>ist ein neues Migrationstool seit 3.0.3 zum zeitsparenden Klonen und Transfer 
+    von Windows-Druckertreibern von einem (Windows- oder Samba-)Printserver zu
+    einem anderen.
+    (neu enthalten seit 3.0.3)</para>
+    <para>Nähere Erläuterungen siehe unten.
+    </para>
+    </listitem>
+    </varlistentry>
+
+</variablelist>
+
+<para>Eine ausführliche Beschreibung zu den einzelnen Punkten finden Sie am 
+Ende des nächsten Kapitels, 'Ünterstützung des CUPS-Drucksystems'.
+</para> 
+
 </sect1>
 
 </chapter>
