@@ -9,10 +9,10 @@
 <title>SWAT &smbmdash; Das Samba-Administrations-Werkzeug</title>
 
 <para>
-Es gibt viele und verschiedene Meinungen bezüglich des Nutzens von SWAT. Gleichgültig
-wieviel Mühe man sich gibt, ein perfektes Konfigurationswerkzeug zu erstellen, ist die
-Benutzung eine Frage des persönlichen Geschmacks. SWAT ist ein Werkzeug, das eine
-Web-basierte Konfiguration von Samba ermöglicht. Es beinhaltet einen Wizard zur schnellen
+Es gibt viele und verschiedene Meinungen über den Nutzen von SWAT. Gleichgültig
+wie viel Mühe man sich gibt, ein perfektes Konfigurationswerkzeug zu erstellen; die
+Benutzung ist eine Frage des persönlichen Geschmacks. SWAT ist ein Werkzeug, das eine
+web-basierte Konfiguration von Samba ermöglicht. Es beinhaltet einen Wizard zur schnellen
 Konfiguration von Samba, besitzt eine kontextabhängige Hilfe für jeden Parameter der &smb.conf;,
 überwacht den aktuellen Zustand der Verbindung und erlaubt eine netzwerkweite
 Passwortverwaltung für MS Windows.
@@ -23,30 +23,30 @@ Passwortverwaltung für MS Windows.
 
 <para>
 SWAT ist Teil der Samba-Suite. Das Hauptprogramm heißt <command>swat</command> und wird
-über xinetd gestartet (siehe <link linkend="xinetd"/> fuer Einzelheiten). 
+über <command>xinetd</command> gestartet (siehe <link linkend="xinetd"/> für Einzelheiten). 
 </para>
 
 <para>
 SWAT verwendet Samba-eigene Komponenten, um die von der jeweiligen Samba-Version unterstützten
 Parameter zu lokalisieren. Anders als externe Werkzeuge und Hilfsmittel bleibt SWAT bei
-Parameteränderungen auf dem aktuellsten Stand. SWAT bietet kontextabhängige Hilfe fuer jeden
-Konfigurationsparameter direkt aus <command>man</command>-page-Einträgen heraus.
+Parameteränderungen auf dem aktuellsten Stand. SWAT eine bietet kontextabhängige Hilfe fuer jeden
+Konfigurationsparameter direkt aus Manpage-Einträgen heraus.
 </para>
 
 <para>
 Manche Netzwerkadministratoren schreiben Dokumentationen in Form von Kommentaren innerhalb
 von Konfigurationsdateien. Für diese wird SWAT ein eher unbeliebtes Werkzeug sein.
-SWAT speichert die Konfigurationsdatei in keiner Mischform, sondern speichert ausschliesslich
+SWAT speichert die Konfigurationsdatei in keiner Mischform, sondern speichert ausschließlich
 Parameterwerte. Wenn SWAT also die &smb.conf; schreibt, schreibt es nur jene Parameter, die von
 den Standardwerten abweichen. Das bedeutet, dass Kommentare und nicht unterstützte Parameter
-nicht mehr in der &smb.conf; aufscheinen werden. Hinzu werden die Parameter in ein interne
-Ordnung geschrieben.
+nicht mehr in der &smb.conf; erscheinen werden. Dazu werden die Parameter in eine interne
+Reihenfolge geschrieben.
 </para>
 
 <note><para>
-Vor dem Benutzen von SWAT &smbmdash; SWAT ersetzt eine bereits im System vorhandene &smb.conf;
-mit einer von SWAT optimierten Version, die von allen vorher eingefügten Kommentaren und
-Nicht-Standardwerten bereinigt ist.
+Eine Warnung, bevor Sie SWAT benutzen: SWAT ersetzt eine bereits im System vorhandene &smb.conf;
+durch eine von SWAT optimierte Version, aus der alle vorher eingefügten Kommentare und
+Nicht-Standardwerte entfernt worden sind.
 </para></note>
 
 </sect1>
@@ -56,37 +56,37 @@ Nicht-Standardwerten bereinigt ist.
 
 <para>
 Dieser Abschnitt erklärt, wie man SWAT aktiviert, wie man es sicherer macht
-und wie man Probleme bei der Mehrsprachenunterstützung löst.
+und wie man Probleme bei der Internationalisierung löst.
 </para>
 
 <sect2>
 <title>Überprüfen der SWAT-Installation</title>
 
 <para>
-Bevor man beginnt, einen Rechner für SWAT zu konfigurieren, ist zu überprüfen, ob es
+Bevor Sie beginnen, einen Rechner für SWAT zu konfigurieren, sollten Sie überprüfen, ob es
 überhaupt installiert ist. Dies mag einigen trivial erscheinen, dennoch installieren
 einige Distributionen SWAT nicht standardmäßig, obwohl es auf den Medien des
 Distributors vorhanden ist.
 </para>
 
 <para>
-Ist man sich sicher, dass SWAT installiert ist, ist es notwendig, zu überprüfen,
-dass die Installation das Binary <command>swat</command>, sowie alle
-unterstützenden Text- und Webseiten enthält. Bei einer Reihe von Linux-Distributoren
+Wenn Sie sich sicher sind, dass SWAT installiert ist, müssen Sie überprüfen,
+dass die Installation das Binary <command>swat</command> sowie alle
+unterstützenden Text- und Webseiten enthält. Bei einer Reihe von Linux-Distributionen
 fehlten diese vollständig, obwohl das <command>swat</command>-Binary installiert war.
 </para>
 
 <para>
-Nachdem man sich sicher ist, dass wirklich alles installiert ist, stellt man sicher,
+Wenn Sie sich davon überzeugt haben, dass wirklich alles installiert ist, müssen Sie prüfen, 
 dass SWAT in der Kontrolldatei von inetd oder xinetd aktiviert ist, je nachdem, welcher
-von beiden Daemons vom Betriebsystem verwendet wird.
+von beiden Daemons vom Betriebssystem verwendet wird.
 </para>
 
 <sect3>
 <title>Lokalisieren der Datei <command>swat</command></title>
 
 <para>
-Um sicher zu stellen, dass SWAT installiert ist, lokalisiert man das 
+Um sicherzustellen, dass SWAT installiert ist, lokalisiert man das 
 Binary <command>swat</command>
 im System. Es könnte in folgenden Verzeichnissen liegen:
 <simplelist>
@@ -97,13 +97,12 @@ im System. Es könnte in folgenden Verzeichnissen liegen:
 </para>
 
 <para>
-Der aktuelle Ort ist abhängig von der Wahl des Distributors oder des vom Administrator gewählten
-Installationspfades.
+Der tatsächliche Speicherort hängt von der Wahl des Bestriebssystemdistributors ab oder davon, welchen Installationspfad der Administrator gewählt hat.
 </para>
 
 <para>
-Es gibt eine Anzahl verschiedener Methoden, den Ort der Installation des 
-<command>swat</command>-Binaries
+Es gibt eine Anzahl verschiedener Methoden, um den Ort der Installation des 
+<command>swat</command>-Binarys
 festzustellen. Die folgenden Methoden können hilfreich sein:
 </para>
 
@@ -121,9 +120,9 @@ Help options:
   --usage                              Zeigt eine kurze Benutzerhilfe an
 
 Common samba options:
-  -d, --debuglevel=DEBUGLEVEL          Setzt debug level
-  -s, --configfile=CONFIGFILE          Benutze alternative Konfigurationsdatei
-  -l, --log-basename=LOGFILEBASE       Basisname für log/debug Dateien
+  -d, --debuglevel=DEBUGLEVEL          Setzt den Debug-Level
+  -s, --configfile=CONFIGFILE          Benutzt eine alternative Konfigurationsdatei
+  -l, --log-basename=LOGFILEBASE       Basisname für Log/Debug-Dateien
   -V, --version                        Gibt die Version aus
 </screen>
 </para>
@@ -134,8 +133,8 @@ Common samba options:
 <title>Lokalisieren der Hilfedateien zu SWAT</title>
 
 <para>
-Da man nun herausgefunden hat, dass <command>swat</command> im Suchpfad ist, ist es einfach,
-es im System zu identifizieren. Hier ist ein anderer einfacher Weg, dies zu bewerkstelligen:
+Nachdem Sie herausgefunden haben, dass <command>swat</command> im Suchpfad ist, ist es einfach,
+es im System zu identifizieren. Hier ist eine andere einfache Methode, dies zu bewerkstelligen:
 <screen>
 frodo:~ # whereis swat
 swat: /usr/sbin/swat /usr/share/man/man8/swat.8.gz
@@ -156,7 +155,7 @@ frodo:/ #
 
 <para>
 Die Ausgabe zeigt, dass eine Kontrolldatei für <command>xinetd</command> auf der Maschine
-vorhanden ist. Der Ort der SWAT-Binary-Datei ist <filename>/usr/sbin/swat</filename> und die
+vorhanden ist. Der Ort der SWAT-Binary-Datei ist <filename>/usr/sbin/swat</filename>, und die
 Hilfedateien befinden sich im Verzeichnis <filename>/usr/share/samba/swat</filename>.
 </para>
 
@@ -175,7 +174,7 @@ frodo:/ #
 <para>
 Der Eintrag <filename>/usr/share/samba/swat/</filename> ist der Ort, an dem sich die von SWAT
 benötigten Dateien befinden. Um sicherzustellen, dass alle Dateien in diesem Verzeichnis vorhanden
-sind, gibt man folgendes ein:
+sind, gibt man Folgendes ein:
 <screen>
 jht@frodo:/> find /usr/share/samba/swat -print
 /usr/share/samba/swat
@@ -211,7 +210,7 @@ jht@frodo:/>
 </para>
 
 <para>
-Wenn die oben aufgelisteten Dateien nicht vorhanden sind, ist es notwendig, diese zu
+Wenn die oben aufgelisteten Dateien nicht vorhanden sind, müssen Sie diese 
 installieren, da sich SWAT sonst nicht verwenden lässt.
 </para>
 
@@ -222,13 +221,13 @@ installieren, da sich SWAT sonst nicht verwenden lässt.
 <title>SWAT aktivieren</title>
 
 <para>
-SWAT sollte installiert werden, um es via inetd oder xinetd starten zu können. Abhängig vom
+SWAT sollte installiert werden, um es über den Netzwerk-Daemon starten zu können. Je nach 
 UNIX/Linux-System ist dies entweder <command>inetd</command> oder <command>xinetd</command>. 
 </para>
 
 <para>
-Die Handhabung und der Ort variiert hierbei je nach verwendetem Betriebssystem. 
-Die Kontrolldatei (oder Dateien) findet man im Allgemeinen unter
+Die Vorgehensweise und der Ort variieren hierbei je nach verwendetem Betriebssystem. 
+Die Kontrolldatei (oder -dateien) finden Sie im Allgemeinen unter
 <filename>/etc/inetd.conf</filename> oder (für xinetd)
 im Verzeichnis <filename>/etc/[x]inet[d].d</filename>.
 </para>
@@ -245,7 +244,7 @@ Der Eintrag für den älteren Typ der Kontrolldatei kann sein:
 </programlisting></para>
 
 <para>
-Ein Eintrag für die neuere Variante der Kontrolldatei in xinetd könnte sein:
+Ein Eintrag für die neuere Variante der Kontrolldatei in xinetd könnte so aussehen:
 </para>
 
 <para>
@@ -270,10 +269,10 @@ service swat
 </para>
 
 <para>
-Beide der oben angegebenen Beispiele bedingen, dass <command>swat</command> im
+Beide der oben angegebenen Beispiele setzen voraus, dass <command>swat</command> im
 <filename>/usr/sbin</filename> Verzeichnis liegt. Zusätzlich benötigt SWAT ein
-Verzeichnis, in dem es die Hilfedateien wie auch die Kontrollinformationen findet.
-Der Standardpfad für diese ist auf den meisten Linux-Systemen 
+Verzeichnis, in dem es sowohl die Hilfedateien als auch die Kontrollinformationen findet.
+Der Standardpfad für dieses Verzeichnis ist auf den meisten Linux-Systemen 
 <filename>/usr/share/samba/swat</filename>. Der Pfad für die Samba-Standards
 ist <filename>/usr/local/samba/swat</filename>.
 </para>
@@ -281,9 +280,9 @@ ist <filename>/usr/local/samba/swat</filename>.
 <para>
 Bei einem Zugriff auf SWAT wird nach einer Anmeldung gefragt. Wenn man sich in SWAT
 als Nicht-Root-Benutzer anmeldet, ist man ausschließlich dazu berechtigt, einige bestimmte
-Konfigurationsoptionen nur zu lesen sowie auf die Passwortverwaltung zuzgreifen. Die
+Konfigurationsoptionen nur zu lesen sowie auf die Passwortverwaltung zuzugreifen. Die
 für Nicht-Root-Benutzer angezeigten Buttons sind: <guibutton>HOME</guibutton>,
-<guibutton>STATUS</guibutton>, <guibutton>VIEW</guibutton>, <guibutton>PASSWORD</guibutton>.
+<guibutton>STATUS</guibutton>, <guibutton>VIEW</guibutton> und <guibutton>PASSWORD</guibutton>.
 Die einzige Seite, die Änderungen erlaubt, ist <guibutton>PASSWORD</guibutton>.
 </para>
 
@@ -291,7 +290,7 @@ Die einzige Seite, die Änderungen erlaubt, ist <guibutton>PASSWORD</guibutton>.
 Meldet man sich als Benutzer <emphasis>root</emphasis> an, erhält man volle Kontrolle über
 sämtliche Funktionen in SWAT. Die angezeigten Buttons sind: <guibutton>HOME</guibutton>,
 <guibutton>GLOBALS</guibutton>, <guibutton>SHARES</guibutton>, <guibutton>PRINTERS</guibutton>, 
-<guibutton>WIZARD</guibutton>, <guibutton>STATUS</guibutton>, <guibutton>VIEW</guibutton>,
+<guibutton>WIZARD</guibutton>, <guibutton>STATUS</guibutton>, <guibutton>VIEW</guibutton> und
 <guibutton>PASSWORD</guibutton>.
 </para>
 
@@ -302,22 +301,22 @@ sämtliche Funktionen in SWAT. Die angezeigten Buttons sind: <guibutton>HOME</gui
 
 <para>
 <indexterm><primary>swat</primary><secondary>security</secondary></indexterm>
-Viele Leute haben angefragt, wie man SWAT mit SSL aufsetzt, um so eine sichere
-Fernadministration zu erlauben. Hier ist eine funktionierende Methode, zur
-Verfügung gestellt von Markus Krieger.
+Viele Leute haben gefragt, wie man SWAT mit SSL aufsetzt, um so eine sichere
+Fernadministration zu erlauben. Hier ist eine funktionierende Methode, die von Markus Krieger zur
+Verfügung gestellt worden ist.
 </para>
 
 <para>
-Die Modifikationen der SWAT-Installation, wie folgt:
+Nehmen Sie folgende Modifikationen bei der SWAT-Installation vor:
 </para>
 
 <procedure>
 	<step><para>
-	Installieren von OpenSSL.
+	Installieren Sie OpenSSL.
 	</para></step>
 
 	<step><para>
-	Generieren eines Zertifikats und eines privaten Schlüssels.
+	Generieren Sie ein Zertifikat und einen privaten Schlüssel.
 
 <screen>
 &rootprompt;<userinput>/usr/bin/openssl req -new -x509 -days 365 -nodes -config \
@@ -326,11 +325,11 @@ Die Modifikationen der SWAT-Installation, wie folgt:
 </screen></para></step>
 
 	<step><para>
-	Entfernen des swat-Eintrages aus [x]inetd.
+	Entfernen Sie den swat-Eintrag aus [x]inetd.
 	</para></step>
 
 	<step><para>
-	Ausführen von <command>stunnel</command>.
+	Führen Sie <command>stunnel</command> aus.
 
 <screen>
 &rootprompt;<userinput>stunnel -p /etc/stunnel/stunnel.pem -d 901 \
@@ -339,20 +338,20 @@ Die Modifikationen der SWAT-Installation, wie folgt:
 </procedure>
 
 <para>
-Danach einfach mit swat über die URL
-<ulink noescape="1" url="https://myhost:901">https://myhost:901</ulink> verbinden,
-das Zertifikat akzeptieren, und die SSL-Verbindung steht.
+Danach verbinden Sie sich einfach mit SWAT über die URL
+<ulink noescape="1" url="https://myhost:901">https://myhost:901</ulink>,
+akzeptieren das Zertifikat, und die SSL-Verbindung steht.
 </para>
 
 </sect2>
 
 <sect2>
-<title>SWAT Mehrsprachenunterstützung aktivieren</title>
+<title>Die Mehrsprachenunterstützung von SWAT aktivieren</title>
 
 <para>
 SWAT kann so konfiguriert werden, dass es seine Nachrichten in der Sprache
-anzeigt, die im Webbrowser eingestellt ist. Dies wird SWAT im Accept-Language-Header
-der HTTP-Antwort übergeben.
+anzeigt, die in Ihrem Webbrowser eingestellt ist. Diese Anweisung wird SWAT im Accept-Language-Header
+der HTTP-Anfrage übergeben.
 <para>
 
 <para>
@@ -361,31 +360,31 @@ Um dieses Feature zu aktivieren, tun Sie Folgendes:
 
 <itemizedlist>
 	<listitem><para>
-	Installieren der passenden <command>msg</command>-Dateien aus dem
-	Samba <filename>source/po</filename>-Verzeichnis nach $LIBDIR.
+	Installieren Sie die passenden <command>msg</command>-Dateien aus dem
+	Samba-<filename>source/po</filename>-Verzeichnis nach $LIBDIR.
 	</para></listitem>
 
 	<listitem><para>
-	Setzen des korrekten Werts für <smbconfoption><name>display charset</name></smbconfoption>.
+	Setzen Sie den korrekten Wert für <smbconfoption><name>display charset</name></smbconfoption>.
 	</para></listitem>
 
 	<listitem><para>
-	Setzen der Sprache im Browser.
+	Stellen Sie die Sprache im Browser ein.
 	</para></listitem>
 </itemizedlist>
 
 <para>
-Der Name der msg Datei ist gleich der Sprach-ID vom Browser. Zum Beispiel
-en für <quote>English</quote>, de für <quote>Deutsch</quote>, ja für <quote>Japanisch</quote>, fr für <quote>Französisch</quote>.
+Der Name der msg-Datei entspricht der Sprach-ID des Browsers, zum Beispiel
+en für <quote>English</quote>, de für <quote>Deutsch</quote>, ja für <quote>Japanisch</quote> oder fr für <quote>Französisch</quote>.
 </para>
 
 <para>
-Wenn einem einige der Nachrichten nicht gefallen, oder gar keine <command>msg</command>-
-Dateien für die eigene oder präferierte Sprache vorhanden ist, kann man einfach die
+Wenn Ihnen einige der Nachrichten nicht gefallen oder keine <command>msg</command>-
+Dateien für Ihre eigene oder Ihre präferierte Sprache vorhanden sind, können Sie einfach die
 <command>en.msg</command>-Dateien in das Verzeichnis für <quote>Meine Sprache ID.msg</quote>
 kopieren und passende Nachrichten zu jedem <quote>msgstr</quote> eintragen.
 Zum Beispiel trägt man für
-<filename>it.msg</filename>, die <command>msg</command>-Datei für Italienisch, ein:
+<filename>it.msg</filename> (die <command>msg</command>-Datei für Italienisch) Folgendes ein:
 <screen>
 msgid "Set Default"
 msgstr "Imposta Default"
@@ -396,12 +395,11 @@ bereitstellen können.
 </para>
 
 </para>
-Anmerkend sei erwähnt, dass, wenn dieses Feature aktiviert wird, und
+Zusätzlich sei erwähnt, dass die Ausgabe von SWAT durcheinander geraten kann, wenn dieses Feature aktiviert wird, aber
 <smbconfoption><name>display charset</name></smbconfoption> nicht mit der im Browser
-eingestellten Sprache übereinstimmt, 
-die Ausgabe von SWAT durcheinander geraten kann.
+eingestellten Sprache übereinstimmt.
 In einer
-zukünftigen Samba-Version wird SWAT immer UTF-8 kodierte Nachrichten anzeigen. Es wird dann
+zukünftigen Samba-Version wird SWAT immer UTF-8-kodierte Nachrichten anzeigen. Es wird dann
 nicht mehr nötig sein, den &smb.conf;-Parameter für die Sprache zu setzen.
 </para>
 
@@ -413,9 +411,9 @@ nicht mehr nötig sein, den &smb.conf;-Parameter für die Sprache zu setzen.
 <title>Übersicht und ein Schnelldurchlauf</title>
 
 <para>
-SWAT ist ein Werkzeug, das von vielen genutzt wird, um Samba zu konfigurieren oder um
-auf die nützlichen Links zu wichtigen Inhalten und Referenzmaterial, wie auf den Inhalt
-dieser Dokumentation, zuzugreifen. Wie auch anderes Nützliches, um Probleme mit dem
+SWAT ist ein Werkzeug, das von vielen genutzt wird, um Samba zu konfigurieren. Sie können damit aber auch einfach
+auf die nützlichen Links zu wichtigem Referenzmaterial (z.B. auf den Inhalt
+dieser Dokumentation) oder auf andere Dokumente zugreifen, die Ihnen dabei helfen können, Probleme mit dem
 Windows-Netzwerk zu lösen.
 </para>
 
@@ -426,23 +424,23 @@ Windows-Netzwerk zu lösen.
 Die SWAT-Titelseite bietet Zugriff auf die aktuellste Samba-Dokumentation. Von dieser Seite
 aus kann auf die Manual-Pages jeder Samba-Komponente zugegriffen werden,
 auf die Samba HOWTO-Sammlung (dieses Buch)
-und auf das Buch <quote>Using Samba.</quote> von O'Reilly.
+und auf das Buch <quote>Samba</quote> von O'Reilly.
 </para>
 
 <para>
-Administratoren, die ihre Samba-Konfiguration überprüfen möchten, finden nützliche Hilfe in
+Administratoren, die ihre Samba-Konfiguration überprüfen möchten, finden nützliche Informationen in
 den Manpages der einzelnen Diagnose-Werkzeuge, die auch auf der SWAT-Homepage im Internet
-verfügbar sind. Ein nicht erwähntes, aber teils nützliches Diagnose-Werkzeug findet man hier
+verfügbar sind. Ein nicht erwähntes, aber teils nützliches Diagnose-Werkzeug finden Sie unter
 <ulink url="http://www.ethereal.com/"><command>ethereal</command>.</ulink>
 </para>
 
 <warning><para>
 SWAT kann so konfiguriert werden, dass es in einem <emphasis>Demo</emphasis>-Modus läuft.
-Dieser Modus ist nicht empfohlen, da es SWAT ohne Authentifizierung, aber mit sämtlichen
-administrativen Möglichkeiten ausführt. Es erlaubt Änderungen an der &smb.conf;, wie auch
+Dieser Modus wird nicht empfohlen, da er SWAT ohne Authentifizierung, aber mit sämtlichen
+administrativen Möglichkeiten ausführt. Er erlaubt Änderungen an der &smb.conf; wie auch
 alle anderen Tätigkeiten mit root-Rechten. Die Option, die dies erlaubt, ist das
-<option>-a</option> Flag für swat. <emphasis>Dies sollte man nicht in einer
-Produktionsumgebung verwenden!</emphasis>
+<option>-a</option> Flag für swat. <emphasis>Verwenden Sie diesen Modus nicht in einer
+Produktionsumgebung!</emphasis>
 </para></warning>
 
 </sect2>
@@ -451,7 +449,7 @@ Produktionsumgebung verwenden!</emphasis>
 <title>Globale Einstellungen</title>
 
 <para>
-Der <guibutton>GLOBALS</guibutton> Button öffnet die Seite, auf der es möglich ist, die
+Der <guibutton>GLOBALS</guibutton>-Button öffnet die Seite, auf der es möglich ist, die
 globalen Parameter in der &smb.conf; zu konfigurieren. Es gibt zwei Arten, wie diese
 Parameter angezeigt werden:
 </para>
@@ -468,22 +466,22 @@ Parameter angezeigt werden:
 </itemizedlist>
 
 <para>
-Um die Optionen im erweiterten Modus zu editieren, klickt man auf
+Um die Optionen im erweiterten Modus zu editieren, klicken Sie auf
 <guibutton>Advanced</guibutton>, im anderen Fall auf <guibutton>Basic</guibutton>.
-Dies kann auch erreicht werden, wenn man zuerst auf den Radio-Button drückt und dann auf den
+Sie können auch zuerst auf den Radio-Button klicken und dann auf den
 <guibutton>Commit Changes</guibutton>-Button.
 </para>
 
 <para>
-Nachdem man Änderungen an Konfigurationsparametern vorgenommen hat, sollte man sicher gehen,
-dass man auf den <guibutton>Commit Changes</guibutton>-Button gedrückt hat, bevor man diese
-Seite verlässt, da sonst alle Änderungen verloren gehen.
+Nachdem Sie Änderungen an Konfigurationsparametern vorgenommen haben, sollten Sie noch einmal prüfen,
+dass Sie auf den <guibutton>Commit Changes</guibutton>-Button gedrückt haben, bevor Sie die
+Seite verlassen, da sonst alle Änderungen verloren gehen.
 </para>
 
 <note><para>
 SWAT besitzt eine kontextabhängige Hilfe. Um herauszufinden, wofür jeder Parameter steht
 und welchen
-Zweck er erfüllt, drückt man auf den Link <guibutton>Help</guibutton> links neben dem
+Zweck er erfüllt, klicken Sie auf den Link <guibutton>Help</guibutton> links neben dem
 Konfigurationsparameter.
 </para></note>
 
@@ -493,17 +491,17 @@ Konfigurationsparameter.
 <title>Einstellungen zur Freigabe (Share)</title>
 
 <para>
-Um eine bereits konfigurierte Freigabe zu bearbeiten, drückt man auf das Pull-Down-Menü
+Um eine bereits konfigurierte Freigabe zu bearbeiten, klicken Sie auf das Pulldown-Menü
 zwischen <guibutton>Choose Share</guibutton> und <guibutton>Delete Share</guibutton> und
-wählt die Freigabe aus, mit der man arbeiten will. Um die Einstellungen zu editieren,
-wählt man den Button <guibutton>Choose Share</guibutton>. Um die Freigabe zu löschen,
-drückt man den Button
+wählen die Freigabe aus, mit der man arbeiten will. Um die Einstellungen zu editieren,
+klicken Sie auf den Button <guibutton>Choose Share</guibutton>. Um die Freigabe zu löschen,
+klicken Sie auf den Button
 <guibutton>Delete Share</guibutton>.
 </para>
 
 <para>
-Um eine neue Freigabe zu erzeugen, befindet sich neben dem mit <guibutton>Create Share</guibutton>
-bezeichneten Button ein Textfeld, in das man den Namen der Freigabe eingibt. Die Freigabe
+Um eine neue Freigabe zu erzeugen, geben Sie den Namen der Freigabe in ein Textfeld ein, das sich neben dem mit <guibutton>Create Share</guibutton>
+beschrifteten Button befindet. Die Freigabe
 erzeugt man schließlich mit <guibutton>Create Share</guibutton>.
 </para>
 
@@ -513,17 +511,16 @@ erzeugt man schließlich mit <guibutton>Create Share</guibutton>.
 <title>Druckereinstellungen</title>
 
 <para>
-Einen bereits eingerichteten Drucker bearbeitet man mit dem Pull-Down-Menü zwischen
-<guibutton>Choose Printer</guibutton> und <guibutton>Delete Printer</guibutton>, aus dem
-man den zu bearbeitenden Drucker auswählt. Um die Einstellungen zu bearbeiten, benutzt man
-den Button <guibutton>Choose Printer</guibutton>, um den Drucker aus der Liste zu löschen
+Einen bereits eingerichteten Drucker bearbeiten Sie mit dem Pulldown-Menü zwischen
+<guibutton>Choose Printer</guibutton> und <guibutton>Delete Printer</guibutton>. Wählen Sie hier den Drucker aus, den Sie bearbeiten wollen. Um die Einstellungen zu bearbeiten, benutzen Sie
+den Button <guibutton>Choose Printer</guibutton>; um den Drucker aus der Liste zu löschen, klicken Sie auf 
 <guibutton>Delete Printer</guibutton>.
 </para>
 
 <para>
-Einen neuen Drucker legt man in dem Textfeld neben dem Button <guibutton>Create Printer</guibutton>
-an, indem man den Namen des freizugebenden Druckers eingibt. Man gibt ihn ihn schließlich
-frei durch Klicken auf <guibutton>Create Printer</guibutton>.
+Einen neuen Drucker legen Sie in dem Textfeld neben dem Button <guibutton>Create Printer</guibutton>
+an, indem Sie den Namen des freizugebenden Druckers eingeben. Sie geben ihn schließlich
+frei, indem Sie auf <guibutton>Create Printer</guibutton> klicken.
 </para>
 
 </sect2>
@@ -538,23 +535,23 @@ Konfiguration von Samba so einfach wie möglich zu machen.
 
 <para>
 Die Wizard-Seite bietet ein Werkzeug, um die Datei &smb.conf; in einem optimierten Format
-zurückzuschreiben. Genau dies geschieht auch, wenn man den Button <guibutton>Commit</guibutton>
-drückt. Der Unterschied zwischen dem <guibutton>Rewrite</guibutton>-Button und dem
+zurückzuschreiben. Genau dies geschieht auch, wenn Sie auf den Button <guibutton>Commit</guibutton>
+klicken. Der Unterschied zwischen dem <guibutton>Rewrite</guibutton>-Button und dem
 <guibutton>Commit</guibutton>-Button ist, dass <guibutton>Rewrite</guibutton> alle
-Änderungen ignoriert und <guibutton>Commit</guibutton> sämtliche gemachten Änderungen
-vornimmt.
+Änderungen ignoriert und <guibutton>Commit</guibutton> sämtliche vorgenommenen Änderungen
+umsetzt.
 </para>
 
 <para>
-Der <guibutton>edit</guibutton>-Button erlaubt das Editieren der Minimaloptionen, die
-notwendig sind, einen funktionsfähigen Samba-Server zu konfigurieren.
+Der <guibutton>Edit</guibutton>-Button erlaubt das Editieren der Minimaloptionen, die
+notwendig sind, um einen funktionsfähigen Samba-Server zu konfigurieren.
 </para>
 
 <para>
 Schließlich gibt es noch eine begrenzte Anzahl von Optionen, die bestimmen, wofür der
-Samba-Server konfiguriert werden soll: Ob als WINS-Server, anteilig als WINS-Client, oder
-ob er ohne WINS-Unterstützung arbeiten soll. Mit einem Klick kann man auswählen, ob man
-die Heimatverzeichnisse der Benutzer freigeben will.
+Samba-Server konfiguriert werden soll: ob er als WINS-Server dienen soll, als WINS-Client am Netz teilnimmt oder
+ob er ohne WINS-Unterstützung arbeiten soll. Mit einem Klick können Sie auswählen, ob Sie
+die Heimatverzeichnisse der Benutzer freigeben wollen.
 </para>
 
 </sect2>
@@ -564,21 +561,19 @@ die Heimatverzeichnisse der Benutzer freigeben will.
 
 <para>
 Die Status-Seite erfüllt nur einen geringen Nutzen. Sie erlaubt die Überwachung der Samba-Daemons,
-wobei die Haupt-Daemons, aus denen der Samba-Server besteht, &smbd;, &nmbd;, &winbindd;
+wobei die Hauptdaemons, aus denen der Samba-Server besteht, &smbd;, &nmbd; und  &winbindd;
 sind.
 </para>
 
 <para>
-Die Daemons können individuell überwacht werden oder als eine zusammenhängende Gruppe.
-Hinzu kann man eine automatische Aktualisierung der Seite einstellen. Wenn MS Windows
-Clients mit Samba interagieren, werden kontinuierlich neue smbd-Prozesse eingepflegt.
-Mit minimalem Aufwand lassen sich über die automatische Aktualisierung sich ändernde
+Die Daemons können individuell oder als eine zusammenhängende Gruppe überwacht werden.
+Zusätzlich kann man eine automatische Aktualisierung der Seite einstellen. Wenn MS Windows-Clients mit Samba interagieren, werden kontinuierlich neue smbd-Prozesse eingepflegt.
+Mit minimalem Aufwand können Sie über die automatische Aktualisierung sich ändernde
 Zustände verfolgen.
 </para>
 
 <para>
-Zuletzt lässt sich die Status-Seite dazu benutzen, bestimmte smbd-Clientverbindungen zu unterbrechen,
-und um Dateien freizugeben, die u.U. gesperrt sind.
+Zuletzt können Sie die Status-Seite auch dazu benutzen, bestimmte smbd-Clientverbindungen zu unterbrechen, um Dateien freizugeben, die u.U. gesperrt sind.
 </para>
 
 </sect2>
@@ -587,30 +582,30 @@ und um Dateien freizugeben, die u.U. gesperrt sind.
 <title>Die Übersichtsseite</title>
 
 <para>
-Sie ermöglicht es dem Administrator, sich die optimierte &smb.conf;-Datei anzusehen und
-erlaubt den Masochisten unter uns die Ansicht aller möglichen globalen
-Konfigurationsparameter und ihrer Einstellungen.
+Sie ermöglicht es dem Administrator, sich die optimierte &smb.conf;-Datei anzusehen, und
+erlaubt es den Masochisten unter uns, alle möglichen globalen
+Konfigurationsparameter und ihre Einstellungen anzuschauen.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Die Passwortänderungs-Seite</title>
+<title>Die Seite zur Passwortänderung</title>
 
 <para>
-Die Passwortänderungs-Seite ist ein sehr beliebtes Werkzeug, das das Erstellen, Löschen,
+Die Seite zur Passwortänderung ist ein sehr beliebtes Werkzeug, das das Erstellen, Löschen,
 De- und Reaktivieren von MS-Windows-Benutzern auf der lokalen Maschine erlaubt. Alternativ
 kann man es zur Änderung von lokalen Passwörtern verwenden.
 </para>
 
 <para>
-Ist er als Nicht-Root-Benutzer angemeldet, muss der Benutzer von SWAT bei Änderungen von
-Passwörtern das alte und zweimal das neue Passwort eingeben. Als <emphasis>root</emphasis>
+Wenn der Benutzer als Nicht-Root-Benutzer angemeldet ist, muss er bei Änderungen von
+Passwörtern das alte und zweimal das neue Passwort eingeben. Ist er als <emphasis>root</emphasis> angemeldet,
 wird nur das neue Passwort benötigt.
 </para>
 
 <para>
-Eine weitere bekannte Nutzung des Werkzeugs ist es, Benutzerpasswörter über eine Reihe von
+Das Werkzeug wird auch oft dazu genutzt, Benutzerpasswörter über eine Reihe von
 MS Windows-Servern hinweg zu ändern.
 </para>
 
@@ -624,12 +619,13 @@ MS Windows-Servern hinweg zu ändern.
 Wenn sich die Parameter <parameter>display charset</parameter> und <parameter>dos charset</parameter>
 voneinander unterscheiden, wird die Übersichtsseite fehlerhaft angezeigt. Der
 Parameter <parameter>display charset</parameter> muss dieselbe Kodierung wie die msg-Datei
-besitzen. Für Japan bedeutet das, dass <parameter>display charset</parameter> auf 
-<parameter>CP932</parameter> gesetzt sein muss.
+besitzen. 
+Falls Sie eine japanische Schrift brauchen, müssen Sie <parameter>display charset</parameter> auf 
+<parameter>CP932</parameter> setzen.
 </para>
 
 <para>
-Das Setzen von <parameter>unix charset = EUCJP-MS</parameter> erzeugt das Problem.
+Das Problem entsteht auf, wenn Sie <parameter>unix charset = EUCJP-MS</parameter> setzen.
 </para>
 
 </sect1>
