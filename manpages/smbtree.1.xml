@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbtree</refname>
-	<refpurpose>A text based smb network browser
+	<refpurpose>Ein textbasierter smb-Netzwerk-Browser
 	</refpurpose>
 </refnamediv>
 
@@ -27,44 +27,44 @@
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbtree</command> is a smb browser program 
-	in text mode. It is similar to the "Network Neighborhood" found 
-	on Windows computers. It prints a tree with all 
-	the known domains, the servers in those domains and 
-	the shares on the servers.
+	<para><command>smbtree</command> ist ein smb-Browserprogramm 
+	im Textmodus. Es ist ähnlich zu der "Netzwerkumgebung", die man
+	auf Windows-Rechnern finden kann, und gibt einen Baum mit allen 
+	bekannten Domänen, den Servern in diesen Domänen und den Freigaben 
+	auf diesen Servern aus.
 	</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term>-b</term>
-		<listitem><para>Query network nodes by sending requests 
-		as broadcasts instead of querying the local master browser.
+		<listitem><para>Fragt die Netzwerkknoten ab, indem Anfragen als
+		Broadcasts gesendet werden, statt den lokalen Master Browser
+		abzufragen.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-D</term>
-		<listitem><para>Only print a list of all 
-		the domains known on broadcast or by the 
-		master browser</para></listitem>
+		<listitem><para>Gibt nur eine Liste aller Domänen aus, die beim
+		Broadcast oder die dem Master Browser bekannt sind.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>Only print a list of 
-		all the domains and servers responding on broadcast or 
-		known by the master browser. 
-		</para></listitem>
+		<listitem><para>Gibt nur eine Liste aller Domänen und Server aus, 
+		die beim Broadcast antworten oder die dem Master Browser bekannt 
+		sind.</para></listitem>
 		</varlistentry>
 
 		&popt.common.samba;
