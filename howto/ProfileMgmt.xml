@@ -649,77 +649,92 @@ Dieser Befehl ist dem Samba-Befehl <command>profiles</command> ähnlich.
 Sie können die SID bestimmen, indem Sie das Programm <command>GetSID.exe</command> aus dem
 Windows NT Server 4.0 Resource Kit verwenden.</para>
 
-<para> Windows NT 4.0 stores the local profile information in the registry under the following key:
+<para>Windows NT 4.0 speichert die lokalen Profil-Informationen in der Registry, an folgender Stelle:
 <filename>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</filename> </para>
 
-<para> Under the ProfileList key, there will be subkeys named with the SIDs of the users who have logged
-on to this computer. (To find the profile information for the user whose locally cached profile you want
-to move, find the SID for the user with the <command>GetSID.exe</command> utility.) Inside the appropriate user's subkey,
-you will see a string value named <parameter>ProfileImagePath</parameter>. </para>
+<para>
+Im Schlüssel "ProfileList" gibt es Sub-Schlüssel, die nach den SIDs der Benutzer benannt sind, die
+sich an diesem Computer angemeldet haben. (Um die Informationen zu dem Benutzer zu finden, dessen
+lokal zwischengespeichertes Profil sie verschieben wollen, bestimmen Sie dessen SID mit dem Werkzeug
+<command>GetSID.exe</command>.) Innerhalb des entsprechenden Sub-Schlüssel des Benutzers werden Sie
+einen String-Wert namens <parameter>ProfileImagePath</parameter>finden.</para>
 
 </sect3> </sect2> </sect1>
 
-<sect1> <title>Mandatory Profiles</title>
+<sect1> <title>Zwingende Profile</title>
 
 <para>
 <indexterm><primary>mandatory profiles</primary></indexterm>
-A Mandatory Profile is a profile that the user does not have the ability to overwrite. During the
-user's session, it may be possible to change the desktop environment, however, as the user logs out all changes
-made will be lost. If it is desired to not allow the user any ability to change the desktop environment,
-then this must be done through policy settings. See the previous chapter. </para>
+Ein zwingendes Profil ("Mandatory Profile") ist ein Profil, das der Benutzer nicht überschreiben kann.
+Während der einzelnen Sitzung des Benutzers sind Änderungen an der Desktop-Umgebung möglich, jedoch
+sind alle diese Änderungen beim Abmelden des Benutzers verloren. Wenn es erwünscht ist, dem Benutzer
+keinerlei Möglichkeit zur Veränderung der Desktop-Umgebung zu erlauben, muß dies durch Setzen von
+Richtlinien erfolgen. Sehen Sie dazu das vorhergehende Kapitel. </para>
 
 <note><para>
-Under NO circumstances should the profile directory (or its contents) be made read-only
-as this may render the profile un-usable. Where it is essential to make a profile read-only
-within the UNIX file system, this can be done but then you absolutely must use the <command>fake-permissions</command>
-VFS module to instruct MS Windows NT/200x/XP clients that the Profile has write permission for the user. See <link linkend="fakeperms"/>.
+Das Profil-Verzeichnis (oder dessen Inhalte) sollten unter KEINEN Umständen read-only gesetzt werden,
+da dies das Profil unbenutzbar machen kann. Wo es essentiell wichtig ist, ein Profil innerhalb des
+UNIX-Dateisystems read-only zu setzen, kann dies gemacht werden, in diesem Fall müssen Sie jedoch
+JEDENFALLS das VFS-Modul <command>fake-permissions</command> benutzen, um die MS Windows NT/200x/XP
+Clients anzuweisen, daß der Benutzer Schreibberechtigung hat. Siehe <link linkend="fakeperms"/>.
 </para></note>
 
-<para> For MS Windows NT4/200x/XP, the above method can also be used to create mandatory profiles. To
-convert a group profile into a mandatory profile, simply locate the <filename>NTUser.DAT</filename> file in the copied profile
-and rename it to <filename>NTUser.MAN</filename>. </para>
+<para>
+Für MS Windows NT4/200x/XP kann die obige Methode auch zum Anlegen zwingender Profile verwendet
+werden. Um ein Gruppen-Profil in ein zwingendes Profil zu wandeln, suchen Sie einfach nach der Datei
+<filename>NTUser.DAT</filename> im kopierten Profil und benennen es auf 
+<filename>NTUser.MAN</filename> um.</para>
 
-<para> For MS Windows 9x/ME, it is the <filename>User.DAT</filename> file that must be renamed to
-<filename>User.MAN</filename> to effect a mandatory profile. </para>
+<para>
+Für MS Windows 9x/ME ist es die Datei <filename>User.DAT</filename>, die auf
+<filename>User.MAN</filename> umbenannt werden muß, um ein zwingendes Profil zu erhalten.</para>
 
 </sect1>
 
 <sect1>
-<title>Creating and Managing Group Profiles</title>
+<title>Das Anlegen und Verwalten von Gruppen-Profilen</title>
 
 <para>
 <indexterm><primary>group profiles</primary></indexterm>
-Most organizations are arranged into departments. There is a nice benefit in this fact since usually
-most users in a department require the same desktop applications and the same desktop layout. MS
-Windows NT4/200x/XP will allow the use of Group Profiles. A Group Profile is a profile that is created
-first using a template (example) user. Then using the profile migration tool (see above), the profile is
-assigned access rights for the user group that needs to be given access to the group profile. </para>
+Die meisten Organisationen sind in Abteilungen gegliedert. Darin liegt ein angenehmer Nebeneffekt,
+da üblicherweise die meisten Benutzer innerhalb einer Abteilung dieselben Desktop-Anwendungen
+und dasselbe Desktop-Layout benötigen. MS Windows NT4/200x/XP erlaubt die Verwendung von 
+Gruppen-Profilen. Ein Gruppen-Profil ist ein Profil, das ursprünglich unter Verwendung eines
+Beispiel-Anwenders angelegt wird. Danach werden unter Verwendung des Profil-Migrations-Tools
+(siehe oben) dem Profil Rechte für diejenige Benutzergruppe zugewiesen, die Zugriff auf das
+Gruppen-Profil benötigt.</para>
 
-<para> The next step is rather important. Instead of assigning a group profile to users (Using User Manager)
-on a <quote>per user</quote> basis, the group itself is assigned the now modified profile. </para>
+<para>
+Der nächste Schritt ist wichtig: Anstatt das Gruppen-Profil Benutzern auf einer
+<quote>per user</quote>-Basis zuzuweisen (mittels User Manager), wird die Gruppe selbst dem nunmehr
+modifizierten Profil zugewiesen.</para>
 
 <note>
-<para> Be careful with Group Profiles. If the user who is a member of a group also has a personal
-profile, then the result will be a fusion (merge) of the two. </para>
+<para>
+Seien Sie vorsichtig mit Gruppen-Profilen. Wenn der Benutzer, der Mitglied der Gruppe ist. auch ein
+persönliches Profil hat, wird das Ergebnis eine Vereinigung (Merge) dieser beiden Profile sein.</para>
 </note>
 
 </sect1>
 
 <sect1>
-<title>Default Profile for Windows Users</title>
+<title>Standard-Profile für Windows-Benutzer</title>
 
 <para>
 <indexterm><primary>default profile</primary></indexterm>
-MS Windows 9x/Me and NT4/200x/XP will use a default profile for any user for whom a profile
-does not already exist. Armed with a knowledge of where the default profile is located on the Windows
-workstation, and knowing which registry keys effect the path from which the default profile is created,
-it is possible to modify the default profile to one that has been optimized for the site. This has
-significant administrative advantages.	</para>
+MS Windows 9x/Me und NT4/200x/XP benutzen ein Standard-Profil für jeden Benutzer, für den noch kein
+Profil existiert. Bewaffnet mit dem Wissen, wo das Standard-Profil auf einer Windows-Workstation
+zu finden ist, und wissend, welche Registrierungs-Schlüssel den Pfad beeinflussen, aus dem heraus das
+Standard-Profil angelegt wird, ist es möglich, das Standard-Profil für die jeweilige Installation
+zu optimieren. Dies hat signifikante administrative Vorteile.</para>
 
 <sect2>
 <title>MS Windows 9x/Me</title>
 
-<para> To enable default per use profiles in Windows 9x/ME, you can either use the <application>Windows
+<para>Um ...
+
+
+ To enable default per use profiles in Windows 9x/ME, you can either use the <application>Windows
 98 System Policy Editor</application> or change the registry directly.	</para>
 
 <para> To enable default per user profiles in Windows 9x/ME, launch the <application>System Policy
