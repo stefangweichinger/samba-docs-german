@@ -1234,171 +1234,157 @@ werden können.
 <title>Die Unterstützung des Browsing in Samba</title>
 
 <para>
-Samba facilitates browsing. The browsing is supported by &nmbd;
-and is also controlled by options in the &smb.conf; file.
-Samba can act as a local browse master for a workgroup and the ability
-to support domain logons and scripts is now available.
+Samba unterstützt Browsing. Das Browsing wird von &nmbd; bereitgestellt und wird auch von Optionen in der Datei
+&smb.conf; gesteuert. Samba kann als Lokaler Master Browser für eine Arbeitsgruppe arbeiten und die Fähigkeit,
+Domänenanmeldungen und Domänenskripts zu unterstützen, ist jetzt verfügbar.
 </para>
 
 <para>
-Samba can also act as a Domain Master Browser for a workgroup. This
-means that it will collate lists from Local Master Browsers into a
-wide area network server list. In order for browse clients to
-resolve the names they may find in this list, it is recommended that
-both Samba and your clients use a WINS server.
+Samba kann auch als Domänen Master Browser für eine Arbeitsgruppe arbeiten. Das bedeutet, daß es die Listen der
+Lokalen Master Browser sammelt, und sie zu einer Serverliste für ein gesamtes WAN zusammenfügt. Um es den Clients
+zu ermöglichen, die Namen, die sie in der Liste finden, auch aufzulösen, wird empfohlen, daß sowohl Samba wie
+auch die Clients einen WINS-Server verwenden.
 </para>
 
 <para>
-Do not set Samba to be the Domain Master for a workgroup that has the same
-name as an NT Domain. On each wide area network, you must only ever have one
-Domain Master Browser per workgroup, regardless of whether it is NT, Samba
-or any other type of domain master that is providing this service.
+Konfigurieren Sie Samba nicht als Domänen Master für eine Arbeitsgruppe, die denselben Namen wie eine NT Domäne
+hat. In jedem WAN dürfen Sie immer nur einen Domänen Master Browser pro Arbeitsgruppe haben, egal ob es NT, 
+Samba, oder sonst ein Typ von Domänen Master ist, der diesen Dienst anbietet.
 </para>
 
 <note><para>
-<command>nmbd</command> can be configured as a WINS server, but it is not
-necessary to specifically use Samba as your WINS server. MS Windows
-NT4, Server or Advanced Server 200x can be configured as
-your WINS server. In a mixed NT/200x server and Samba environment on
-a Wide Area Network, it is recommended that you use the Microsoft
-WINS server capabilities. In a Samba-only environment, it is
-recommended that you use one and only one Samba server as the WINS server.
+<command>nmbd</command> kann als WINS-Server konfiguriert werden, aber es nicht notwendig, Samba im Speziellen
+als WINS-Server zu verwenden. MS Windows NT4, Server oder Advanced Server 200x können als Ihr WINS-Server
+eingerichtet werden. In einer gemischten NT/200x-Server- und Samba-Umgebung in einem WAN wird empfohlen, daß
+Sie die MS WINS-Server-Fähigkeiten einsetzen. In einem reinen Samba-Umfeld wird empfohlen, einen und nur einen
+Samba-Server als WINS-Server zu verwenden.
 </para></note>
 
 <para>
-To get browsing to work you need to run nmbd as usual, but will need
-to use the <smbconfoption><name>workgroup</name></smbconfoption> option in &smb.conf;
-to control what workgroup Samba becomes a part of.
+Um Browsing zu aktivieren, müssen Sie nmbd wie üblich ausführen, aber müssen auch die Option
+<smbconfoption><name>workgroup</name></smbconfoption> &smb.conf; verwenden, um zu bestimmen, welcher
+Arbeitsgruppe Samba angehören soll.
 </para>
 
 <para>
-Samba also has a useful option for a Samba server to offer itself for
-browsing on another subnet. It is recommended that this option is only
-used for <quote>unusual</quote> purposes: announcements over the Internet, for
-example. See <smbconfoption><name>remote announce</name></smbconfoption> in the 
-&smb.conf; man page. 
-</para>
-</sect2>
-
-<sect2>
-<title>Problem Resolution</title>
-
-<para>
-If something does not work, the <filename>log.nmbd</filename> file will help
-to track down the problem. Try a <smbconfoption><name>log level</name><value></value></smbconfoption> of 2 or 3 for finding
-problems. Also note that the current browse list usually gets stored
-in text form in a file called <filename>browse.dat</filename>.
-</para>
-
-<para>
-If it does not work, you should still be able to
-type the server name as <filename>\\SERVER</filename> in <command>filemanager</command>, then
-press enter and <command>filemanager</command> should display the list of available shares.
-</para>
-
-<para>
-Some people find browsing fails because they do not have the global
-<smbconfoption><name>guest account</name></smbconfoption> set to a valid account. Remember that the
-IPC$ connection that lists the shares is done as guest and, thus, you must have a valid guest account.
-</para>
-
-<para>
-MS Windows 2000 and later (as with Samba) can be configured to disallow
-anonymous (i.e., guest account) access to the IPC$ share. In that case, the
-MS Windows 2000/XP/2003 machine acting as an SMB/CIFS client will use the
-name of the currently logged-in user to query the IPC$ share. MS Windows
-9x/Me clients are not able to do this and thus will not be able to browse
-server resources.
-</para>
-
-<para>
-The other big problem people have is that their broadcast address,
-netmask or IP address is wrong (specified with the <smbconfoption><name>interfaces</name><value></value></smbconfoption> option
-in &smb.conf;)
+Samba hat auch eine nützliche Option, um es einem Samba-Server zu ermöglichen, sich selbst für das Browsing in
+einem anderen Subnetz anzubieten. Es wird empfohlen, daß diese Option nur für <quote>ungewöhnliche</quote>
+Zwecke eingesetzt wird: Verlautbarungen über das Internet, zum Beispiel. Sehen Sie nach der Option
+<smbconfoption><name>remote announce</name></smbconfoption> in der manpage zu
+&smb.conf;. 
 </para>
 </sect2>
 
 <sect2>
-<title>Cross-Subnet Browsing</title>
+<title>Problemlösung</title>
 
 <para>
-<indexterm><primary>replication</primary><secondary>browse lists</secondary></indexterm>
-Since the release of Samba 1.9.17 (alpha1), Samba has supported the
-replication of browse lists across subnet boundaries. This section
-describes how to set this feature up in different settings.
+Wenn etwas nicht funktioniert, hilft Ihnen die Datei <filename>log.nmbd</filename>, das Problem zu lokalisieren.
+Versuchen Sie ein <smbconfoption><name>log level</name></smbconfoption> von 2 oder 3, um Probleme zu finden.
+Beachten Sie auch, daß die aktuelle Browselist üblicherweise in Textform in einer Datei namens
+<filename>browse.dat</filename> gespeichert wird.
 </para>
 
 <para>
-To see browse lists that span TCP/IP subnets (i.e., networks separated
-by routers that do not pass broadcast traffic), you must set up at least
-one WINS server. The WINS server acts as a DNS for NetBIOS names. This will
-allow NetBIOS name-to-IP address translation to be completed by a direct
-query of the WINS server. This is done via a directed UDP packet on
-port 137 to the WINS server machine. The WINS server avoids the necessity
-of default NetBIOS name-to-IP address translation, which is done
-using UDP broadcasts from the querying machine. This means that machines
-on one subnet will not be able to resolve the names of machines on
-another subnet without using a WINS server.
+Wenn es nicht funktioniert, sollten Sie noch immer den Servernamen als <filename>\\SERVER</filename> im
+<command>Dateimanager</command> eingeben können, und dieser sollte eine Liste der dort verfügbaren Freigaben
+anzeigen.
 </para>
 
 <para>
-Remember, for browsing across subnets to work correctly, all machines,
-be they Windows 95, Windows NT or Samba servers, must have the IP address
-of a WINS server given to them by a DHCP server, or by manual configuration 
-(for Windows 9x/Me and Windows NT/200x/XP, this is in the TCP/IP Properties, under Network 
-settings); for Samba, this is in the &smb.conf; file.
+Manche Anwender haben beobachtet, daß das Browsing scheitert, weil sie die globale Option
+<smbconfoption><name>guest account</name></smbconfoption> nicht auf ein gültiges Konto gesetzt haben.
+Erinnern Sie sich, daß die IPC$-Verbindung, die die Freigaben auflistet, als guest hergestellt wird, und dafür
+brauchen Sie den gültigen <smbconfoption><name>guest account</name></smbconfoption>.
+</para>
+
+<para>
+MS Windows 2000 und spätere Versionen (wie auch Samba) können so konfiguriert werden, daß sie anonymen Zugriff
+(also mit dem guest account) auf die IPC$-Freigabe verbieten. In diesem Fall verwendet die
+MS Windows 2000/XP/2003 Maschine den Namen des gerade angemeldeten Benutzers zur Verbindung mit der
+IPC$-Freigabe. MS Windows 9x/Me Clients können das nicht, und werden dann auch nicht die Resourcen des Servers
+browsen können.
+</para>
+
+<para>
+Das andere grosse Problem, das viele Leute haben, ist, daß ihre Broadcast-Adresse, Netmask oder IP-Adresse falsch
+ist 
+(angegeben mit der Option <smbconfoption><name>interfaces</name><value></value></smbconfoption> in &smb.conf;).
+</para>
+</sect2>
+
+<sect2>
+<title>Cross-Subnetz-Browsing</title>
+
+<para>
+<indexterm><primary>Replikation</primary><secondary>Browselists</secondary></indexterm>
+Seit der Veröffentlichung von Samba 1.9.17 (alpha1) unterstützt Samba die Replikation von Browselists über
+die Subnetz-Grenzen hinweg. Dieser Abschnitt beschreibt, wie man dieses Feature in verschiedenen Arten 
+einrichtet.
+</para>
+
+<para>
+Um Broswelists zu sehen, die TCP/IP-Subnetze umspannen (d.h. Netzwerke, die von Routern getrennt sind, die keinen
+Broadcast-Verkehr weiterleiten), müssen Sie zumindest einen WINS-Server einrichten. Der WINS-Server fungiert als
+DNS für NetBIOS-Namen. Dies erlaubt die Auflösung von NetBIOS-Namen auf IP-Adressen mittels einer direkten 
+Abfrage des WINS-Servers. Es geschieht mittels eines gerichteten UDP-Pakets auf Port 137 der 
+WINS-Server-Maschine. Der WINS-Server vermeidet die Notwendigkeit der Standard-Namensauflösung, die mittels
+UDP-Broadcasts von der Client-Maschine aus geschehen würde. Das bedeutet, daß Maschinen in einem Subnetz nicht
+imstande sind, die Namen von Maschinen in einem anderen Subnetz ohne Verwendung eines WINS-Servers aufzulösen.
+</para>
+
+<para>
+Erinnern Sie sich, um das Browsing über Subnetze hinweg korrekt funktionieren zu lassen, müssen alle Maschinen,
+egal ob Windows 95, Windows NT oder Samba, die IP-Adresse einen WINS-Servers mittels DHCP-Server oder manueller
+Konfiguration erhalten (für Windows 9x/Me und Windows NT/200x/XP ist dies in den TCP/IP-Eigenschaften, unter
+den Netzwerkeinstellungen); für Samba ist dies in der Datei &smb.conf;.
 </para>
 
 <sect3>
-<title>Behavior of Cross-Subnet Browsing</title>
+<title>Das Verhalten des Cross-Subnetz-Browsing</title>
 
 <para>
-Cross-subnet Browsing is a complicated dance, containing multiple
-moving parts. It has taken Microsoft several years to get the code
-that achieves this correct, and Samba lags behind in some areas.
-Samba is capable of cross-subnet browsing when configured correctly.
+Cross-subnet Browsing ist ein <quote>komplizierter Tanz</quote>, mit vielen bewegten Teilen. Es hat Microsoft
+einige Jahre gekostet, den Code dafür korrekt zu erstellen, und Samba hängt in einigen Bereichen nach. Samba
+ist jedoch bei korrekter Konfiguration zu Cross-Subnetz-Browsing imstande.
 </para>
 
 <para>
-Consider a network set up as in <link linkend="browsing1">Cross-Subnet Browsing Example</link>.
+Nehmen wir an, ein Netzwerk sei so konfiguriert wie im folgenden 
+<link linkend="browsing1">Cross-Subnetz-Browsing Beispiel</link>.
 </para>
 
-<image id="browsing1" scale="40"><imagedescription>Cross-Subnet Browsing Example.</imagedescription><imagefile>browsing1</imagefile></image>
+<image id="browsing1" scale="40"><imagedescription>Cross-Subnetz-Browsing Beispiel.</imagedescription><imagefile>browsing1</imagefile></image>
 	
 <para>
-This consists of 3 subnets (1, 2, 3) connected by two routers
-(R1, R2) which do not pass broadcasts. Subnet 1 has five machines
-on it, subnet 2 has four machines, subnet 3 has four machines. Assume
-for the moment that all machines are configured to be in the
-same workgroup (for simplicity's sake). Machine N1_C on subnet 1
-is configured as Domain Master Browser (i.e., it will collate the
-browse lists for the workgroup). Machine N2_D is configured as
-WINS server and all the other machines are configured to register
-their NetBIOS names with it.
+Dieses besteht aus 3 Subnetzen (1, 2, 3), verbunden durch zwei Router (R1, R2), die keine Broadcasts 
+weiterleiten. Subnetz 1 beinhaltet fünf Maschinen, Subnetz 2 vier Maschinen, Subnetz 3 vier Maschinen. Nehmen wir
+an, daß alle Maschinen so konfiguriert sind, daß sie in der gleichen Arbeitsgruppe sind (der Einfachheit halber).
+Die Maschine N1_C im Subnetz 1 ist als der Domänen Master Browser konfiguriert (d.h. diese Maschine sammelt
+die Browselists für die Arbeitsgruppe). Die Maschine N2_D ist als der WINS-Server eingerichtet und alle anderen
+Maschinen sind so konfiguriert, daß sie ihre jeweiligen NetBIOS-Namen an diesem WINS-Server registrieren.
 </para>
 
 <para>
-As these machines are booted up, elections for master browsers
-will take place on each of the three subnets. Assume that machine
-N1_C wins on subnet 1, N2_B wins on subnet 2, and N3_D wins on
-subnet 3. These machines are known as Local Master Browsers for
-their particular subnet. N1_C has an advantage in winning as the
-Local Master Browser on subnet 1 as it is set up as Domain Master
-Browser.
+Wenn dies Maschinen gebootet werden, finden die Wahlen zum Master Browser in jedem der drei Subnetze statt.
+Nehmen wir an, daß die Maschine N1_C im Subnetz 1 gewinnt, N2_B im Subnetz 2, und N3_D im Subnetz 3. Diese
+Maschinen sind sodann als Lokale Master Browser in ihrem jeweiligen Subnetz bekannt. N1_C hat einen Vorteil
+bei der Wahl zum Lokalen Master Browser im Subnetz 1, da sie als der Domänen Master Browser konfiguriert ist.
 </para>
 
 <para>
-On each of the three networks, machines that are configured to 
-offer sharing services will broadcast that they are offering
-these services. The Local Master Browser on each subnet will
-receive these broadcasts and keep a record of the fact that
-the machine is offering a service. This list of records is
-the basis of the browse list. For this case, assume that
-all the machines are configured to offer services, so all machines
-will be on the browse list.
+In jedem der drei Netzwerke werden Maschinen, auf denen Freigaben eingerichtet sind, mittels Broadcast mitteilen,
+daß sie diese Dienste anbieten. Der Lokale Master Browser in jedem Subnetz wird diese Broadcasts empfangen, und
+einen Eintrag bezüglich der Tatsache, daß die Maschine diesen Dienst anbietet, festhalten. Die Liste dieser
+Einträge ist die Grundlage für die Browselist. Nehmen Sie für diesen Fall an, daß alle Maschinen eingerichtete
+Freigaben haben, so daß alle Maschinen in der Browselist sind.
 </para>
 
 <para>
+Für jedes Netzwerk wird der Lokale Master Browser als <quote>authoritativ</quote> für all die Namen betrachtet,
+die er via Broadcasts empfängt. 
+
+
 For each network, the Local Master Browser on that network is
 considered <quote>authoritative</quote> for all the names it receives via
 local broadcast. This is because a machine seen by the Local Master
@@ -1651,7 +1637,7 @@ valid.
 	<title>I get an <errorname>`Unable to browse the network'</errorname> error</title>
 
 	<para>This error can have multiple causes:
-<indexterm><primary>browsing problems</primary></indexterm>
+<indexterm><primary>Browsing Probleme</primary></indexterm>
 	</para>
 	
 	<itemizedlist>
@@ -1668,7 +1654,7 @@ valid.
 <title>Browsing of Shares and Directories is Very Slow</title>
 
 <para><quote>
-<indexterm><primary>slow browsing</primary></indexterm>
+<indexterm><primary>langsames Browsing</primary></indexterm>
 There are only two machines on a test network. One a Samba server, the other a Windows XP machine.
 Authentication and logons work perfectly, but when I try to explore shares on the Samba server, the
 Windows XP client becomes unresponsive. Sometimes it does not respond for some minutes. Eventually,
@@ -1689,7 +1675,7 @@ Here are a few possibilities:
 	<varlistentry>
 		<term>Bad Networking Hardware</term>
 		<listitem><para>
-<indexterm><primary>bad hardware</primary></indexterm>
+<indexterm><primary>Schlechte Hardware</primary></indexterm>
 <indexterm><primary>WebClient</primary></indexterm>
 		Most common defective hardware problems center around low cost or defective HUBs, routers,
 		Network Interface Controllers (NICs) and bad wiring. If one piece of hardware is defective
