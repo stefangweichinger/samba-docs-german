@@ -151,7 +151,7 @@ eingeben muss.
 
 
 <para>
-<indexterm><primary>Interdomain Vertrauens</primary><secondary>Möglichkeiten</secondary></indexterm>
+<indexterm><primary>Interdomain-Vertrauensstellungen</primary><secondary>Möglichkeiten</secondary></indexterm>
 Eine zwei Wege Vertrauensstellung ist erstellt wenn zwei Ein-Weg Vertrauensstellungen erstellt sind,
 in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windows NT4 Domänen besteht
 (nennen wir sie DomA und DomB), wurden folgende Möglichkeiten hergestellt.

@@ -30,7 +30,7 @@ tun, um Ihnen eine Lösung anzubieten.
 </para>
 
 <para>
-<indexterm><primary>SAM backend</primary><secondary>LDAP</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>LDAP</secondary></indexterm>
 Samba-3 ist fähig, als Backup-Domänen-Controller (BDC) für einen Samba Primary-Domänen-Controller (PDC)
 zu arbeiten. Ein Samba-3 PDC kann mit einem LDAP-Konten-Backend arbeiten. Das LDAP-Backend kann
 entweder ein gängiger Master-LDAP-Server, oder ein LDAP-Slave-Server sein. Die Benutzung eines 
@@ -50,7 +50,7 @@ BDC zum Master erlauben. Nur LDAP kann dies zum gegenwärtigen Zeitpunkt.
 </para>
 
 <para>
-<indexterm><primary>SAM backend</primary><secondary>non-LDAP</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>non-LDAP</secondary></indexterm>
 Die Verwendung einer Nicht-LDAP-backend SAM-Datenbank ist teilweise problematisch, weil 
 Domänen-Mitglieds-Server und -Workstations regelmässig das Passwort ihres Maschinen-Vertrauens-Kontos
 ändern. Das neue Passwort wird dann nur lokal gespeichert. Das bedeutet, daß bei Fehlen einer 
@@ -66,8 +66,8 @@ Wenn man die Anzahl der Kommentare und Fragen bedenkt, die sich um die Konfigura
 macht es Sinn, jede mögliche Option zu bedenken und deren Vor- und Nachteile abzuwägen.
 <link linkend="pdc-bdc-table"/> listet mögliche Konfigurationen für eine PDC/BDC Infrastruktur.
 <indexterm><primary>net</primary><secondary>rpc</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>tdbsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>ldapsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>tdbsam</secondary></indexterm>
 <indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
 </para>
 

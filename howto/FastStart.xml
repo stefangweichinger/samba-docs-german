@@ -25,14 +25,14 @@ Medizin ist.
 <para>
 Samba braucht sehr wenig Konfiguration um ein arbeitsfähiges Basissystem zu erzeugen.
 In diesem Kapitel gehen wir vom einfachen zum komplexen vor, für jeden stellen wir alle
-Schritte und Konfigurationsdateien vor, die benötigt werden um es zum Laufen zu bekommen.
+Schritte und Konfigurationsdateien vor, die benötigt werden, um es zum Laufen zu bekommen.
 Bitte beachten Sie, dass ein umfassend konfiguriertes System wahrscheinlich zusätzliche
-praktische Möglichkeiten ergeben. Die zusätzlichen Möglichkeiten werden im Rest dieses
+praktische Möglichkeiten ergibt. Die zusätzlichen Möglichkeiten werden im Rest dieses
 Dokumentes behandelt.
 </para>
 
 <para>
-Die Beispiele, die hier benutzt werden, wurden von Leuten genomen, die
+Die Beispiele, die hier benutzt werden, wurden von Leuten genommen, die
 Anfragen zu Beispielkonfigurationen gestellt hatten. Alle Identitäten wurden zu deren
 Schutz verschleiert, die Ähnlichkeit zu unrealistischen und nicht existierenden Seiten
 ist beabsichtigt.
@@ -585,7 +585,7 @@ smb: \> <userinput>q</userinput>
 
 
 	<para>
-	<indexterm><primary>Servertyp</primary><secondary>Domänen-Mitglied</secondary></indexterm>
+	<indexterm><primary>Server-Typ</primary><secondary>Domänen-Mitglied</secondary></indexterm>
 	In dieser Abhandlung werden wir uns die einfachstmögliche Serverkonfiguration ausdenken, die
 	man erstellen kann um ein Vertriebsbüro glücklich zu machen. Seien Sie gewarnt, die Anwender
 	sind Vetriebsleute und haben demenstprechend schlimme Anforderungen. Es gibt ein Budget für nur
@@ -811,7 +811,7 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 
 
 	<para>
-	<indexterm><primary>Servertyp</primary><secondary>Domänen Controller</secondary></indexterm>
+	<indexterm><primary>Server-Typ</primary><secondary>Domänen Controller</secondary></indexterm>
 	Für den Rest dieses Kapitels liegt der Fokus auf der Konfiguration der Domänenkontrolle.
 	Die folgenden Beispiele sind für zwei Implementierungsstrategien ausgelegt. Erinnern Sie sich:
 	unsere Aufgabe ist eine einfache aber funktionerende Lösung. Der Rest dieses Buches soll helfen,

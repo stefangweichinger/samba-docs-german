@@ -429,7 +429,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	</para>
 
 	<para>
-<indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>ldapsam</secondary></indexterm>
 <smbconfexample id="idmapbackendexample">
 <title>Beispiel-Konfiguration mit dem LDAP idmap Backend</title>
 <indexterm><primary>SAM Backend</primary><secondary>xmlsam</secondary></indexterm>
@@ -712,7 +712,7 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 	<title>smbpasswd &smbmdash;-Datenbank für verschlüsselte Passwörter</title>
 
 		<para>
-<indexterm><primary>SAM backend</primary><secondary>smbpasswd</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>smbpasswd</secondary></indexterm>
 		Traditionellerweise wurden Benutzer-Konten-Informationen wie Benutzername, LM/NT Passwort-Hashes,
 		Passwort-Änderungszeiten, und Konten-Flags in der Datei <filename>smbpasswd(5)</filename>
 		gespeichert. Es gibt einige Nachteile an diesem Ansatz, besonders für Installationen mit
@@ -761,7 +761,7 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 	<title>tdbsam</title>
 
 	<para>
-<indexterm><primary>SAM backend</primary><secondary>tdbsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>tdbsam</secondary></indexterm>
 		Samba kann Daten von Benutzer- und Maschinen-Konten in einer <quote>TDB</quote>
 		(Trivial Database) abspeichern. Die Verwendung dieses Backends erfordert keine weitere
 		Konfiguration. Dieses Backend wird für neue Installationen empfohlen, die kein LDAP
@@ -788,7 +788,7 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 	<title>ldapsam</title>
 
 		<para>
-<indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>ldapsam</secondary></indexterm>
 		Es gibt ein paar Punkte zu erwähnen, die ldapsam nicht anbietet. Die LDAP-Unterstützung, auf
 		die sich diese Dokumentation bezieht, inkludiert nicht:
 		</para>
@@ -1537,7 +1537,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	<title>MySQL</title>
 
 	<para>
-<indexterm><primary>SAM backend</primary><secondary>mysqlsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>mysqlsam</secondary></indexterm>
 	Immer wieder kommt jemand mit einer grossartigen neuen Idee daher. Das Speichern von Benutzerkonten
 	in einem SQL-Backend ist eine solche. Jene, die dies tun wollen, sind wohl in der besten Lage, zu
 	beurteilen, welche spezifischen Vorteile dies für sie hat. Dies klingt wohl nach Rückzug, aber
@@ -1768,7 +1768,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	<title>XML</title>
 
 	<para>
-<indexterm><primary>SAM backend</primary><secondary>xmlsam</secondary></indexterm>
+<indexterm><primary>SAM Backend</primary><secondary>xmlsam</secondary></indexterm>
 		Dieses Modul setzt voraus, daß libxml2 installiert ist.</para>
 
 		<para>Die Verwendung von pdb_xml ist ziemlich geradlinig. Um Daten zu exportieren, verwenden Sie:
