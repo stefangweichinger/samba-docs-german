@@ -372,7 +372,7 @@ begründet:
 
 <smbconfexample><title>VFS CAP</title>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>dos charset</name><value>CP932<footnote><para>Der Name des locale "CP932" könnte auch anders lauten</para></footnote></value></smbconfoption>
+<smbconfoption><name>dos charset</name><value>CP932<footnote><para>Der Name des locale <quote>CP932</quote> könnte auch anders lauten</para></footnote></value></smbconfoption>
 <smbconfoption><name>unix charset</name><value>CP932</value></smbconfoption>
 
 <member><para>...</para></member>

@@ -204,7 +204,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<title>Technische Information</title>
 
 	<para>
-	Alte Windows-Clients senden Klartext-Passwörter über "den Draht". Samba kann diese
+	Alte Windows-Clients senden Klartext-Passwörter über <quote>den Draht</quote>. Samba kann diese
 	Passwörter prüfen, indem es sie verschlüsselt und mit dem Hash-Wert, der in der
 	UNIX-Benutzer-Datenbank gespeichert ist, vergleicht.
 	</para>
@@ -286,8 +286,10 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		</para>
 
 		<itemizedlist>
-			<listitem>MS DOS Network Client 3.0 mit installiertem "basic network redirector".</listitem>
-			<listitem>Windows 95 mit installiertem "network redirector update".</listitem>
+			<listitem>MS DOS Network Client 3.0 mit installiertem 
+			<quote>basic network redirector</quote>.</listitem>
+			<listitem>Windows 95 mit installiertem 
+				<quote>network redirector update</quote>.</listitem>
 			<listitem>Windows 98 [Second Edition].</listitem>
 			<listitem>Windows Me.</listitem>
 		</itemizedlist>
@@ -467,8 +469,9 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		<listitem>
 		<para>
 		<emphasis>idmap_ad:</emphasis>
-		Ein IDMAP-Backend, das das Schema "Microsoft Services for
-		UNIX RFC 2307" unterstützt, das unter
+		Ein IDMAP-Backend, das das Schema 
+		<quote>Microsoft Services for UNIX RFC 2307</quote>
+		unterstützt, das unter
 		<ulink url="http://www.padl.com/download/xad_oss_plugins.tar.gz"></ulink>zu finden ist.
 		</para>
 		</listitem>
@@ -721,7 +724,8 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 
 		<itemizedlist>
 		<listitem><para>
-		Das erste Problem ist, dass alle Suchen ("lookups") sequentiell ausgeführt werden müssen.
+		Das erste Problem ist, dass alle Suchen 
+		(<quote>lookups</quote>) sequentiell ausgeführt werden müssen.
 		Dadurch, dass durchschnittlich zwei Lookups pro Domänen-Anmeldung ausgeführt werden
 		(einer für die normale Verbindung wie beim Verbinden eines Netzwerk-Laufwerks oder -Drucker)
 		ist dies performance-mässig ein Flaschenhals für grosse Installationen. Was hier gebraucht wird,
@@ -1152,7 +1156,8 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 <smbconfcomment>Definieren der DN, mit der die Verbindung zu den Verzeichnis-Servern hergestellt wird</smbconfcomment>
 <smbconfcomment>Das Passwort für diese DN wird nicht in smb.conf gespeichert. Es muß mittels</smbconfcomment>
 <smbconfcomment>'smbpasswd -w <replaceable>secretpw</replaceable>'</smbconfcomment>
-<smbconfcomment>in der Datei secrets.tdb gespeichert werden. Wenn sich der Wert "ldap admin dn" ändert,</smbconfcomment>
+<smbconfcomment>in der Datei secrets.tdb gespeichert werden. Wenn sich der Wert 
+<quote>ldap admin dn</quote> ändert,</smbconfcomment>
 <smbconfcomment>muß dieses Passwort zurückgesetzt werden.</smbconfcomment>
 <smbconfoption><name>ldap admin dn</name><value>"cn=Manager,dc=quenya,dc=org"</value></smbconfoption>
 
@@ -1636,7 +1641,8 @@ access to attrs=sambaLMPassword,sambaNTPassword
 				<row><entry>logoff time column</entry><entry>int(9)</entry>
 				<entry>UNIX Zeit-Stempel der letzten Abmeldung des Benutzers</entry></row>
 				<row><entry>kickoff time column</entry><entry>int(9)</entry>
-				<entry>UNIX Zeit-Stempel des Zeitpunkts, zu dem der Benutzer von der Workstation "gekickt" werden soll (nicht erzwungen)</entry></row>
+				<entry>UNIX Zeit-Stempel des Zeitpunkts, zu dem der Benutzer von der Workstation 
+				<quote>gekickt</quote> werden soll (nicht erzwungen)</entry></row>
 				<row><entry>pass last set time column</entry><entry>int(9)</entry>
 				<entry>UNIX Zeit-Stempel des Zeitpunkts, zu dem das Passwort zuletzt gesetzt wurde</entry></row>
 				<row><entry>pass can change time column</entry><entry>int(9)</entry>
@@ -1714,7 +1720,8 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			<smbconfcomment>Samba sollte niemals in die Passwort-Spalten schreiben</smbconfcomment>
 			<smbconfoption><name>foo:lanman pass column</name><value>lm_pass:</value></smbconfoption>
 			<smbconfoption><name>foo:nt pass column</name><value>nt_pass:</value></smbconfoption>
-			<smbconfcomment>Die Spalte "unknown 3 column" wird nicht gespeichert</smbconfcomment>
+			<smbconfcomment>Die Spalte <quote>unknown 3 column</quote> wird nicht gespeichert
+			</smbconfcomment>
 			<smbconfoption><name>foo:unknown 3 column</name><value>NULL</value></smbconfoption>
 			</smbconfexample>
 		</sect3>

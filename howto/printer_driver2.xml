@@ -2701,7 +2701,7 @@ die sie vom Administrator erhalten, bevor die Benutzer ihre eigenen einstellen.
 Die Dialogfelder, die diesen identisch aussehenden Dialogfelder vorausgehen, 
 unterscheiden sich geringfügig in den Namen ihrer Fenster: eines heisst 
 <computeroutput>Default Print Values for 
-Printer Foo on Server Bar"</computeroutput>??? 
+Printer Foo on Server Bar</computeroutput>??? 
 (das ist das Fenster, das Sie benötigen) und ein anderes heisst 
 <quote><computeroutput>Print Settings for 
 Printer Foo on Server Bar</computeroutput></quote> ???. 

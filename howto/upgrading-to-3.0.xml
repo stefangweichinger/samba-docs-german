@@ -487,7 +487,7 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		Das alte sambaAccount-Schema kann weiterhin verwendet werden, indem man
 		das Passdb-Backend <parameter>ldapsam_compat</parameter> spezifiziert.
 		Wie auch immer, sambaAccount und zugehörige Attribute wurden in den
-		"historical"-Abschnitt der Schema-Datei verschoben und müssen
+		<quote>historical</quote>-Abschnitt der Schema-Datei verschoben und müssen
 		erst auskommentiert werden, um sie verwenden zu können.
 		Die Samba-2.2 Objektklassen-Deklaration für einen sambaAccount hat sich
 		in der Samba-3 samba.schema-Datei nicht verändert.
@@ -565,8 +565,8 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		<para>
 		Samba-3 unterstützt ein LDAP-Backend für das idmap-Subsystem. Die
 		folgenden Optionen informieren Samba, daß die idmap-Tabelle auf
-		dem Verzeichnis-Server "onterose" gespeichert werden soll, in der
-		Partition "ou=idmap,dc=quenya,dc=org".
+		dem Verzeichnis-Server <quote>onterose</quote> gespeichert werden soll, in der
+		Partition <quote>ou=idmap,dc=quenya,dc=org</quote>.
 		</para>
 
 		<smbconfblock>

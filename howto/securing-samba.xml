@@ -60,7 +60,8 @@ zur Herstellung von TCP/IP-Verbindungen.
 </para>
 
 <para>
-Eine andere Methode, um Samba abzusichern, ist das Setzen von "Access Control Entries" (ACEs) in einer
+Eine andere Methode, um Samba abzusichern, ist das Setzen von 
+<quote>Access Control Entries</quote> (ACEs) in einer
 Zugriffs-Kontroll-Liste (ACL) auf den Freigaben selbst. Dies wird in <link linkend="AccessControls"/>
 diskutiert.
 </para>
@@ -72,7 +73,7 @@ diskutiert.
 
 <para>
 Die eigentliche Herausforderung der Sicherheit ist die Tatsache, daß Schutzmaßnahmen nur
-dazu ausreichen, die Tür für bekannte "exploit"- und "breach"-Techniken zu schliessen.
+dazu ausreichen, die Tür für bekannte <quote>exploit</quote>- und <quote>breach</quote>-Techniken zu schliessen.
 Nehmen Sie niemals an, daß weil Sie diese paar Maßnahmen befolgt haben, der Samba-Server
 nun eine uneinnehmbare Festung ist! Wenn man die bisherige Geschichte von Informations-Systemen
 anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkeit findet.
