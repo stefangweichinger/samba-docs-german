@@ -16,16 +16,16 @@ jedoch, ohne einen Wertverlust zu bekommen, schwierig zu erfüllen wenn man von e
 Produktionssystem nur Teile herausnimmt. Dies ist es, was der Rest dieses Dokumentes macht.
 Es wird dies dadurch erfüllen, indem es ausführliche Beschreibungen der Konfigurationsmöglichkeiten
 innerhalb des Kontextes des betroffenen Kapitels zeigt. Wir hoffen, dass dieses Kapitel die verlangte
-Medizin ist.
+<quote>Medizin</quote> ist.
 </para>
 
 <sect1>
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Samba braucht sehr wenig Konfiguration um ein arbeitsfähiges Basissystem zu erzeugen.
-In diesem Kapitel gehen wir vom einfachen zum komplexen vor, für Jeden stellen wir alle
-Schritte und Konfigurationsdateien vor, die benötigt werden, um es zum Laufen zu bekommen.
+Samba braucht sehr wenig Konfiguration, um ein arbeitsfähiges Basissystem zu erzeugen.
+In diesem Kapitel gehen wir vom einfachen zum komplexen vor, für jeden stellen wir alle
+Schritte und Konfigurationsdateien vor, die benötigt werden, um Samba zum Laufen zu bekommen.
 Bitte beachten Sie, dass ein umfassend konfiguriertes System wahrscheinlich zusätzliche
 praktische Möglichkeiten ergibt. Die zusätzlichen Möglichkeiten werden im Rest dieses
 Dokumentes behandelt.
@@ -45,21 +45,22 @@ ist beabsichtigt.
 
 <para>
 Im ersten Fall von Konfigurationsbeispielen gehen wir vom Fall einer äusserst einfachen
-Systemvoraussetzung aus. Es gibt manchmal das wirkliche Bestreben, etwas zu kompliziert
+Systemvoraussetzung aus. Es gibt manchmal wirklich das Bestreben, etwas zu kompliziert
 zu machen, als so einfach wie möglich mit geringstem Aufwand.
 </para>
 
 <para>
-<link linkend="anon-ro"></link> dokumentiert den Servertyp, der vielleicht der richtige ist für CD-ROM Freigaben
+<link linkend="anon-ro"></link> dokumentiert den Servertyp, der vielleicht der richtige für CD-ROM Freigaben ist
 oder der auf Dokumente für Netzwerk-Benutzer verweist. Diese Konfiguration wird ebenfalls in 
 <link linkend="StandAloneServer"></link>, <link linkend="RefDocServer"></link> diskutiert.
-Der Zweck dieser Konfiguration ist es, ein Freigabe-Laufwerk zur Verfügung zu stellen, welches von jedem, auch von Gästen,
-lesend zugegriffen werden kann.
+Der Zweck dieser Konfiguration ist es, ein Freigabe-Laufwerk zur Verfügung zu stellen, auf welches von jedem,
+auch von Gästen, lesend zugegriffen werden kann.
 </para>
 
 <para>
-Das zweite Beispiel zeigt eine Minimal-Konfiguration eines Druckserver, sodass jedermann drucken kann, der die richtigen
-Druckertreiber auf seinem Rechner installiert hat. Dies ist ein Abbild des System welches in
+Das zweite Beispiel zeigt eine Minimal-Konfiguration eines Druckservers, sodass jedermann drucken kann, 
+der die richtigen
+Druckertreiber auf seinem Rechner installiert hat. Dies ist ein Abbild des Systems, welches in
  <link linkend="StandAloneServer"></link>, <link linkend="SimplePrintServer"></link> beschrieben ist.
 </para>
 
@@ -75,8 +76,8 @@ Anmelde-Möglichkeiten, keinen Domänencontroller, ist also nur ein Netzwerk Attac
 Schlussendlich betrachten wir noch ein etwas komplexeres System, welches sowohl in ein Microsoft Windows Netzwerk integriert 
 ist als auch dieses komplett ersetzen kann. 
 Die zur Verfügung gestellten Beispiele decken sowohl Domänen-Mitgliedsserver ab
-als auch Samba Domänencontroller (PDC/BDC) und schlussendlich beschreiben Sie detailliert ein grosses verteiltes Netzwerk
-mit Aussenstellen in Filialen.
+als auch Samba Domänencontroller (PDC/BDC) und schlussendlich beschreiben wir detailliert ein grosses verteiltes 
+Netzwerk mit Aussenstellen in Filialen.
 </para>
 
 </sect1>
@@ -85,9 +86,9 @@ mit Aussenstellen in Filialen.
 <title>Arbeitsbeispiele</title>
 
 <para>
-Die Konfigurationsbeispiele sind so angelegt, dass sie alles enthalten um Samba zum Laufen zu bekommen.
-Sie beinhalten keine grundlegenden Konfigurationen von Betriebsystem-Plattformen, welche ausserhalb des Rahmens
-dieses Textes ist.
+Die Konfigurationsbeispiele sind so angelegt, dass sie alles enthalten, um Samba zum Laufen zu bekommen.
+Sie beinhalten keine grundlegenden Konfigurationen von Betriebsystem-Plattformen, dies liegt ausserhalb des 
+Rahmens dieses Texts.
 </para>
 
 <para>
@@ -99,9 +100,10 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 	<title>Stand-alone Server</title>
 
 	<para>
-	<indexterm><primary>Server Type</primary><secondary>Stand-alone</secondary></indexterm>
+	<indexterm><primary>Server-Typ</primary><secondary>Stand-alone</secondary></indexterm>
 	Ein Stand-alone Server beinhaltet nichts anderes, als die Tatsache, dass es sich nicht um einen Domänen-Controller
-	handelt und nicht in einer Domänenkontrolle teilhält. Es kann ein sehr einfacher Arbeitsgruppen-ähnlicher Server
+	handelt und er nicht an der Domänenkontrolle teilnimmt. 
+	Es kann ein sehr einfacher Arbeitsgruppen-ähnlicher Server
 	sein oder es kann auch ein etwas komplexerer Server als Mitglied eines Domänensicherheits-Kontextes sein.
 	</para>
 
@@ -111,14 +113,14 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 		<para>
 		<indexterm><primary>Nur-Lese</primary><secondary>Server</secondary></indexterm>
 		Das Ziel dieses Servertyps ist es, jedem Benutzer jedes Dokument oder jede Datei
-		zugänglich zu machen, welche auf den Freigaberesourcen liegen. Die Freigaberesourcen
+		zugänglich zu machen, welche(s) auf den Freigaberesourcen liegen. Die Freigaberesourcen
 		können dabei ein CD-ROM Laufwerk, ein CD-ROM Image oder eine Dateispeicherebene sein.
 		</para>
 
 		<para>
 		Als die Beispiele entwickelt wurden, wurde Wert darauf gelegt, dass das System
-		wachsen und mehr Möglichkeiten bieten wird, so als wie es im echten Arbeitsalltag 
-		passiert, wenn das Geschäft in seiner Grösse und Bedürfnissen wächst und Veränderung
+		wachsen und mehr Möglichkeiten bieten kann, so als wie es im echten Arbeitsalltag 
+		passiert, wenn eine Firma in ihrer Grösse und Bedürfnissen wächst und Veränderung
 		braucht.
 		</para>
 
@@ -128,12 +130,12 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 				<title>Konfiguration Anonymer Nur-Lese Server</title>
 		<smbconfcomment>Global parameters</smbconfcomment>
 		<smbconfsection>[global]</smbconfsection>
-		<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+		<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 		<smbconfoption><name>netbios name</name><value>HOBBIT</value></smbconfoption>
 		<smbconfoption><name>security</name><value>share</value></smbconfoption>
 
 		<smbconfsection>[data]</smbconfsection>
-		<smbconfoption><name>comment</name><value>Data</value></smbconfoption>
+		<smbconfoption><name>comment</name><value>Daten</value></smbconfoption>
 		<smbconfoption><name>path</name><value>/export</value></smbconfoption>
 		<smbconfoption><name>read only</name><value>Yes</value></smbconfoption>
 		<smbconfoption><name>guest ok</name><value>Yes</value></smbconfoption>
@@ -149,22 +151,22 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 			Alle Dateien werden von einem Benutzer namens Jack Baumbach gehalten.
 			Jack's Anmeldename wird <emphasis>jackb</emphasis> sein. Sein Passwort wird
 			<emphasis>m0r3pa1n</emphasis> &smbmdash; sein, natürlich ist das nur das
-			Beispiel wleches wir benutzen; benutzen Sie es nicht in einer Produktionsumgebung,
-			da alle Leser dieses Dokumentes dieses wissen werden.
+			Beispiel, welches wir benutzen; benutzen Sie es nicht in einer Produktionsumgebung,
+			da alle Leser dieses Dokumentes dies wissen werden.
 			</para></listitem>
 		</itemizedlist>
 
 		<procedure>
 		<title>Installationsprozedur &smbmdash; Nur-Lese Server</title>
 			<step><para>
-			Fügen Sie den Benutzer dem System zu (mit Erzeugung des Benutzer Homeverzeichnisses):
+			Fügen Sie den Benutzer dem System hinzu (mit Erzeugung des Benutzer-Homeverzeichnisses):
 <screen>
 &rootprompt;<userinput>useradd -c "Jack Baumbach" -m -g users -p m0r3pa1n jackb</userinput>
 </screen>
 			</para></step>
 
 			<step><para>
-			Erzeugen Sie das Verezichnis und setzen Sie die Rechte und Mitgliedschaft:
+			Erzeugen Sie das Verzeichnis und setzen Sie die Rechte und Mitgliedschaft:
 <screen>
 &rootprompt;<userinput>mkdir /export</userinput>
 &rootprompt;<userinput>chmod u+rwx,g+rx,o+rx /export</userinput>
@@ -173,7 +175,7 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 			</para></step>
 
 			<step><para>
-			Kopieren Sie die Dateien, welche freigegeben werden sollen nach <filename>/export</filename>.
+			Kopieren Sie die Dateien, welche freigegeben werden sollen, nach <filename>/export</filename>.
 			</para></step>
 
 			<step><para>
@@ -187,7 +189,7 @@ welche vom Betriebssystem-Provider zur Verfügung gestellt wurden oder auf andere
 &rootprompt;<userinput>testparm</userinput>
 </screen>
 			Beachten Sie alle Fehlermeldungen, welche evtl. angezeigt werden. Fahren Sie nicht fort,
-			bevor Sie nicht eine fehlerfreie Rückmeldung erhalten. Ein Beispiel der Rückmeldungen mit
+			bevor Sie nicht eine fehlerfreie Rückmeldung erhalten. Ein Beispiel der Rückmeldungen 
 			der folgenden Datei wird die Datei anzeigen.
 <screen>
 Load smb config files from /etc/samba/smb.conf
@@ -199,7 +201,7 @@ Press enter to see a dump of your service definitions
 
 # Global parameters
 [global]
-	workgroup = MIDEARTH
+	workgroup = MITTELERDE
 	netbios name = HOBBIT
 	security = share
 
@@ -217,19 +219,19 @@ Press enter to see a dump of your service definitions
 
 			<step><para>
 			Konfigurieren Sie Ihren Microsoft Windows Client für die Arbeitsgruppe
-			<emphasis>MIDEARTH</emphasis>, setzen Sie den Maschinennamen auf ROBBINS, sterten
+			<emphasis>MITTELERDE</emphasis>, setzen Sie den Maschinennamen auf ROBBINS, sterten
 			Sie den PC neu und warten Sie ein paar (2 - 5) Minuten, dann öffnen Sie den Windows Explorer
 			und betrachten Sie die Netzwerkumgebung.
 			Die Maschine HOBBIT sollte sichtbar sein. Wenn Sie auf das Icon dieser Maschine klicken
-			sollte es sich öffnen und Zugriff auf die <emphasis>data</emphasis> Freigabe ermöglichen.
+			sollte es sich öffnen und Zugriff auf die Freigabe <emphasis>data</emphasis> ermöglichen.
 			Danach klicken Sie auf diese Freigabe und es sollte sich der Zugriff auf die Dateien, die 
 			wir vorher im <filename>/export</filename> Verzeichnis abgelegt hatten, ermöglichen.
 			</para></step>
 		</procedure>
 
 		<para>
-		Die vormals genannten Informationen (die nachstehenden #Global Parameter) stellen den kompletten
-		Inhalt der <filename>/etc/samba/smb.conf</filename> Datei zur Verfügung.
+		Die oben genannten Informationen (die nachstehenden #Global Parameter) stellen den kompletten
+		Inhalt der <filename>/etc/samba/smb.conf</filename> Datei dar. 
 		</para>
 
 		</sect3>
@@ -242,7 +244,7 @@ Press enter to see a dump of your service definitions
 		Wir sollten diese Konfiguration als eine Erweiterung des vorstehenden Beispiels ansehen.
 		Der Unterschied ist, dass der Freigabezugriff nun mit der Benutzeridentität von jackb und der
 		primären Gruppe, welcher jackb angehört, zusammenhängt. Eine weitere Verbesserung, die wir machen
-		können ist den Benutzer <emphasis>jackb</emphasis> zu der <filename>smbpasswd</filename> Datei
+		können, ist, den Benutzer <emphasis>jackb</emphasis> zu der Datei <filename>smbpasswd</filename> 
 		hinzuzufügen.
 		Um dies zu erledigen machen Sie folgendes:
 <screen>
@@ -251,7 +253,7 @@ New SMB password: <userinput>m0r3pa1n</userinput>
 Retype new SMB password: <userinput>m0r3pa1n</userinput>
 Added user jackb.
 </screen>
-		Das Hinzufügen dieses Benutzers zu der <filename>smbpasswd</filename> Datei erlaubt es, dass
+		Das Hinzufügen dieses Benutzers zu der Datei <filename>smbpasswd</filename> erlaubt es, dass
 		alle Dateien, die in den Explorereigenschaften angezeigt werden, als zu <emphasis>jackb</emphasis>
 		angehörend angezeigt werden, anstatt Sie mit <emphasis>Unbekannter Benutzer</emphasis> anzuzeigen.
 		</para>
@@ -264,12 +266,12 @@ Added user jackb.
 <smbconfexample id="anon-rw"><title>Geänderte anonyme Schreib-Lese smb.conf</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>HOBBIT</value></smbconfoption>
 <smbconfoption><name>security</name><value>SHARE</value></smbconfoption>
 
 <smbconfsection>[data]</smbconfsection>
-<smbconfoption><name>comment</name><value>Data</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Daten</value></smbconfoption>
 <smbconfoption><name>path</name><value>/export</value></smbconfoption>
 <smbconfoption><name>force user</name><value>jackb</value></smbconfoption>
 <smbconfoption><name>force group</name><value>users</value></smbconfoption>
@@ -309,7 +311,7 @@ Added user jackb.
 		</para>
 
 		<para>
-		In dieser Konfiguration ist es nicht gewünscht, den Druckerwizard anzuzeigen und wir
+		In dieser Konfiguration ist es nicht erwünscht, den Druckerwizard anzuzeigen und wir
 		wollen auch keinen automatischen Treiberdownload haben, also werden wir dies in der
 		folgenden Konfiguration auch abschalten.
 		<link linkend="anon-print"></link> ist die daraus entstandene &smb.conf; Datei.
@@ -319,7 +321,7 @@ Added user jackb.
 <smbconfexample id="anon-print"><title>Anonymer Druckserver smb.conf</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>LUTHIEN</value></smbconfoption>
 <smbconfoption><name>security</name><value>share</value></smbconfoption>
 <smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
@@ -328,7 +330,7 @@ Added user jackb.
 <smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 
 <smbconfsection>[printers]</smbconfsection>
-<smbconfoption><name>comment</name><value>All Printers</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Alle Drucker</value></smbconfoption>
 <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
 <smbconfoption><name>guest ok</name><value>Yes</value></smbconfoption>
 <smbconfoption><name>printable</name><value>Yes</value></smbconfoption>
@@ -355,7 +357,8 @@ Added user jackb.
 
 		<itemizedlist>
 			<listitem><para>
-			Das Verzeichnis muss durch den superuser (root) Benutzer und die Gruppe gehalten werden:
+			Das Verzeichnis muss durch den superuser (root) Benutzer und dessen 
+			Gruppe gehalten werden:
 <screen>
 &rootprompt;<userinput>chown root.root /var/spool/samba</userinput>
 </screen>
@@ -374,17 +377,21 @@ Added user jackb.
 		<note><para>
 		<indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
 		<indexterm><primary>raw printing</primary></indexterm>
-		Auf CUPS-aktivierten Systemen gibt es eine Möglichkeit, raw-Daten direkt auf den Drucker auszugeben, ohne
-		diese durch CUPS Druckerfilter hindurch zu leiten. An Stellen, an denen diese Methode gewünscht ist, muss
+		Auf CUPS-aktivierten Systemen gibt es eine Möglichkeit, raw-Daten direkt auf den Drucker 
+		auszugeben, ohne
+		diese durch CUPS Druckerfilter hindurch zu leiten. An Stellen, an denen diese Methode 
+		erwünscht ist, muss
 		ein sogenanntes raw-printing Device konfiguriert sein.
-		Es ist ausserdem notwendig, den raw mime-Handler in den Dateien <filename>/etc/mime.conv</filename> und 
-		<filename>/etc/mime.types</filename> einzuschalten. Sehen Sie nach auf <link linkend="cups-raw"></link>.
+		Es ist ausserdem notwendig, den raw mime-Handler in den Dateien 
+		<filename>/etc/mime.conv</filename> und 
+		<filename>/etc/mime.types</filename> einzuschalten. Sehen Sie nach auf 
+		<link linkend="cups-raw"></link>.
 		</para></note>
 
 		</sect3>
 
 		<sect3>
-		<title>Sichere Lese-Schreib Datei- und Druck-Server</title>
+		<title>Sicherer Lese-Schreib Datei- und Druck-Server</title>
 
 		<para>
 		Wir schreiten nun von einem einfachen System zu einem etwas komplexeren Server fort.
@@ -405,15 +412,14 @@ Added user jackb.
 		<para>
 		Die Benutzer werden sein: Jack Baumbach, Mary Orville und Amed Sehkah. Jeder wird ein Passwort haben
 		(werden in weiteren Beispielen dann nicht nochmals aufgeführt). 
-		Mary wird der Druckeradministrator sein und wird alle Dateien in dem öffentlichen Bereich innehalten.
+		Mary wird der Druckeradministrator sein und wird alle Dateien in dem öffentlichen Bereich halten.
 		</para>
 
 		<para>
-		
 		Diese Konfiguration wird auf der <emphasis>User Level Security</emphasis> basieren,
 		welche den Standard darstellt und die standardmässig Microsoft Windows-kompatible
-		verschlüsselte Passwörter in einer Datei <filename>/etc/samba/smbpasswd</filename> ablegen.
-		Der Standard &smb.conf; Eintrag, der dies ermöglicht ist:
+		verschlüsselte Passwörter in einer Datei <filename>/etc/samba/smbpasswd</filename> ablegt.
+		Der Standard &smb.conf; Eintrag, der dies ermöglicht, ist:
 		<smbconfoption><name>passdb backend</name><value>smbpasswd, guest</value></smbconfoption>. 
 		Da dies der Standard ist, ist es nicht notwendig ihn in die Konfigurationsdatei zu schreiben.
 		Beachten Sie dabei bitte, dass der Gast-Backend automatisch in die Liste der aktiven passdb backends
@@ -439,7 +445,7 @@ Added user jackb.
 <title>Secure Office Server smb.conf</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>OLORIN</value></smbconfoption>
 <smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
 <smbconfoption><name>disable spoolss</name><value>Yes</value></smbconfoption>
@@ -527,7 +533,7 @@ Added user ameds.
 			Überprüfen Sie, dass Samba korrekt läuft:
 <screen>
 &rootprompt;<userinput>smbclient -L localhost -U%</userinput>
-Domain=[MIDEARTH] OS=[UNIX] Server=[Samba-3.0.0]
+Domain=[MITTELERDE] OS=[UNIX] Server=[Samba-3.0.0]
 
 Sharename      Type      Comment
 ---------      ----      -------
@@ -542,7 +548,7 @@ OLORIN               Samba-3.0.0
 
 Workgroup            Master
 ---------            -------
-MIDEARTH             OLORIN
+MITTELERDE             OLORIN
 </screen>
 			</para></step>
 
@@ -573,8 +579,8 @@ smb: \> <userinput>q</userinput>
 
 	<para>
 	Bis hierher sollten Sie die Konfigurationsgrundlagen mitbekommen haben. Ehrlich, jetzt ist es 
-	an der Zeit, etwas komplexere Beispiele zu erfahren. Für den Rest dieses Kapitels werden wir
-	die Anleitungen abkÃ¼rzen, da sie vorher bereits behandelt wurden.
+	an der Zeit, etwas komplexere Beispiele kennenzulernen. Für den Rest dieses Kapitels werden wir
+	die Anleitungen abkürzen, da sie vorher bereits behandelt wurden.
 	</para>
 
 	</sect2>
@@ -586,7 +592,7 @@ smb: \> <userinput>q</userinput>
 	<para>
 	<indexterm><primary>Server-Typ</primary><secondary>Domänen-Mitglied</secondary></indexterm>
 	In dieser Abhandlung werden wir uns die einfachstmögliche Serverkonfiguration ausdenken, die
-	man erstellen kann um ein Vertriebsbüro glücklich zu machen. Seien Sie gewarnt, die Anwender
+	man erstellen kann, um ein Vertriebsbüro glücklich zu machen. Seien Sie gewarnt, die Anwender
 	sind Vetriebsleute und haben demenstprechend schlimme Anforderungen. Es gibt ein Budget für nur
 	einen Server für diese Einrichtung.
 	</para>
@@ -596,8 +602,8 @@ smb: \> <userinput>q</userinput>
 	Interne Regeln sind typisch für eine mittelständische Organisation; die Menschen sind der Meinung, dass
 	Sie die ISG deshalb bezahlen, weil diese ständig Benutzer hinzufügen oder löschen.
 	Desweiteren müssen die Abteilungsleiter zähnefletschend kämpfen, damit Sie einen Netzwerkzugang erhalten
-	für Ihre Mannschaft. Der Vertrieb ist natürlich ebenfalls wieder anders, Sie bekommen stets was Sie brauchen.
-	Dies also soll unser Schema sein.
+	für Ihre Mannschaft. Der Vertrieb ist natürlich ebenfalls wieder anders, 
+	er bekommt stets was er braucht. Dies sollte vorerst die Situation beschreiben.
 	</para>
 
 	<para>
@@ -621,8 +627,8 @@ smb: \> <userinput>q</userinput>
 	eine getrennte Dateiablage für Formbriefe (nastygrams). Der Bereich für die Formbriefe soll für
 	alle Vertriebsmitarbeiter ausser der Managerin selbst nur lesbar sein. Das allgemein zugängliche 
 	Dateisystem muss ein strukturiertes Layout haben, sowohl mit einem zentralen Bereich für alle
-	Mitarbeiter um allgemeine Dokumente zu speichern, als auch einen getrennten Bereich für den jeweiligen
-	Mitarbeiter selbst, in dem er private Dinge ablegen kann, aber Sie möchte auf alle diese Bereiche
+	Mitarbeiter, um allgemeine Dokumente zu speichern, als auch einen getrennten Bereich für den jeweiligen
+	Mitarbeiter selbst, in dem er private Dinge ablegen kann, aber sie möchte auf alle diese Bereiche
 	vollen Zugriff haben. Die Benutzer haben ein privates Home-Verzeichnis für persönliche Dateien, die
 	arbeitsgebunden sind und für Materialien, die nichts mit Ihrer Arbeit zu tun haben.
 	</para>
@@ -638,7 +644,7 @@ smb: \> <userinput>q</userinput>
 
 		<procedure>
 			<step><para>
-			Fügen Sie keine Benutzer zu den UNIX/Linux Servern hinzu, dies wird auf der
+			Fügen Sie keine Benutzer zu den UNIX/Linux Servern hinzu, dies wird in der
 			zentralen Domäne gemacht.
 			</para></step>
 
@@ -649,10 +655,10 @@ smb: \> <userinput>q</userinput>
 
 			<para>
 			<smbconfexample id="fast-member-server">
-			<title>Mitglieds-Server server smb.conf (globales)</title>
+			<title>Mitglieds-Server server smb.conf (globale)</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>VALINOR</value></smbconfoption>
 <smbconfoption><name>security</name><value>DOMAIN</value></smbconfoption>
 <smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
@@ -705,12 +711,12 @@ smb: \> <userinput>q</userinput>
 			Der Domäne beitreten. Beachte: Starten Sie Samba nicht, bevor dieser Schritt abgeschlossen ist!
 <screen>
 &rootprompt;<userinput>net rpc join -Uroot%'bigsecret'</userinput>
-Joined domain MIDEARTH.
+Joined domain MITTELERDE.
 </screen>
 			</para></step>
 
 			<step><para>
-			Stellen Sie unbedingt sicher, dass der <command>nscd</command> Daemon auf allen Systemen
+			Stellen Sie unbedingt sicher, dass der <command>nscd</command> Daemon auf allen Systemen,
 			auf welchen <command>winbind</command> lauffähig konfiguriert ist, abgeschaltet oder
 			heruntergefahren ist.
 			</para></step>
@@ -730,7 +736,8 @@ Joined domain MIDEARTH.
 			</para></step>
 
 			<step><para>
-			Konfigurieren Sie die Nameservice Switchcontrol Datei auf Ihrem System um Benutzer- und
+			Konfigurieren Sie die Nameservice-Switch-Konfigurationsdatei auf Ihrem System,
+			 um Benutzer- und
 			Gruppennamen durch winbind aufzulösen. Ändern Sie die folgenden Zeilen in <filename>/etc/nsswitch.conf</filename>:
 <programlisting>
 passwd: files winbind
@@ -752,27 +759,28 @@ hosts:  files dns winbind
 
 <screen>
 &rootprompt;<userinput>wbinfo -u</userinput>
-MIDEARTH+maryo
-MIDEARTH+jackb
-MIDEARTH+ameds
+MITTELERDE+maryo
+MITTELERDE+jackb
+MITTELERDE+ameds
 ...
-MIDEARTH+root
+MITTELERDE+root
 
 &rootprompt;<userinput>wbinfo -g</userinput>
-MIDEARTH+Domain Users
-MIDEARTH+Domain Admins
-MIDEARTH+Domain Guests
+MITTELERDE+Domain Users
+MITTELERDE+Domain Admins
+MITTELERDE+Domain Guests
 ...
-MIDEARTH+Accounts
+MITTELERDE+Accounts
 </screen>
 			</para></step>
 
 			<step><para>
 			Überprüfen Sie, dass <command>winbind</command> läuft. Das folgende demonstriert die
-			korrekte Auflösung des Benutzernamens durch das <command>getent</command> System-Dienstprogramm:
+			korrekte Auflösung des Benutzernamens durch das 
+			System-Dienstprogramm <command>getent</command>:
 <screen>
 &rootprompt;<userinput>getent passwd maryo</userinput>
-maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
+maryo:x:15000:15003:Mary Orville:/home/MITTELERDE/maryo:/bin/false
 </screen>
 			</para></step>
 
@@ -820,8 +828,9 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 	<para>
 	Eine Domänen Controller Konfiguration kann durch eine einfache Konfiguration durch Nutzung der neuen
 	tdbsam Passwort-Backend erreicht werden. Dieser Konfigurationstyp ist gut für kleine Büros, hat aber
-	eine beschränkte Skalierungsmöglichkeit (Replizierung geht nicht) und die Performance kann vermutlich
-	fallen, wenn die Grösse und Komplexität der Domäne steigt.
+	eine beschränkte Skalierungsmöglichkeit (Replikation funktioniert nicht) und die Performance kann 
+	vermutlich
+	sinken, wenn die Grösse und Komplexität der Domäne zunehmen.
 	</para>
 
 	<para>
@@ -834,7 +843,7 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 
 	<itemizedlist>	
 		<listitem><para>
-		 Domänen-Anmeldungen schlagen sporadisch fehl.
+		Domänen-Anmeldungen schlagen sporadisch fehl.
 		</para></listitem>
 
 		<listitem><para>
@@ -844,16 +853,16 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 	</itemizedlist>
 
 	<para>
-	Eine besser skalierende Option für Domänencontroller Authentifizierungsbackends mag 
-	Microsoft Active Directory oder ein LDAP-basierendes backend nutzen. Samba-3 stellt dies für beide
-	Optionen als ein Domänen-Mitgleidsserver zur Verfügung. Als ein PDC ist Samba-3 nicht in der Lage
+	Eine besser skalierende Option für Domänencontroller-Authentifizierungsbackends mag 
+	Microsoft Active Directory oder ein LDAP-basierendes Backend nutzen. Samba-3 stellt dies für beide
+	Optionen als ein Domänen-Mitgliedsserver zur Verfügung. Als ein PDC ist Samba-3 nicht in der Lage,
 	eine genaue Alternative der Funktionalitäten zur Verfügung zu stellen, die Active Directory bietet.
 	Samba-3 kann eine skalierende LDAP-basierende PDC/BDC Lösung zur Verfügung stellen.
 	</para>
 
 	<para>
-	Der tdbsam Authentifizierungs-Backend stellt keine Funktion zum Replizieren der Datenbankinhalte, ausser
-	für externe Wege, zur Verfügung (z.B. gibt es kein autarkes Protokoll in Samba-3 für die Security Account
+	Das tdbsam Authentifizierungs-Backend bietet keine Funktion zum Replizieren der Datenbankinhalte, ausser
+	für externe Möglichkeiten (z.B. gibt es kein autarkes Protokoll in Samba-3 für die Security Account
 	Manager (SAM) Datenbank-Replikation). 
 	</para>
 
@@ -865,16 +874,17 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 		<title>Beispiel: Ingenieur-Büro</title>
 
 		<para>
-		Den Netzwerkserver des Ingenierubüros, welchen wir hier präsentieren, ist dazu gedacht, den neuen
+		Der Netzwerkserver des Ingenieurbüros, welchen wir hier präsentieren, ist dazu gedacht, das neue
 		tdbsam Passwort-Backend zu demonstrieren. Die tdbsam Funktion ist neu in Samba-3. Sie wurde  
-		dazu designed, viele Benutzer- und Maschinenkonten zur Verfügung zu stellen, die mit Microsoft Windows NT4
+		dazu entworfen, viele Benutzer- und Maschinenkonten zur Verfügung zu stellen, die mit Microsoft Windows NT4
 		möglich sind. Es ist sicher, dies in kleineren Netzwerken zu benutzen.
 		</para>
 
 		<procedure>
 			<step><para>
-			Eine PDC Konfiguration in Produktion, welche das tdbsam Passwort-Backend benutzt, können Sie
-			zusammen mit <link linkend="fast-engoffice-shares"></link> hier sehen
+			Eine PDC Konfiguration in Produktion, 
+			welche das tdbsam Passwort-Backend benutzt, können Sie
+			<link linkend="fast-engoffice-shares"></link> hier sehen
 			<link linkend="fast-engoffice-shares"></link>:
 			</para>
 			
@@ -883,7 +893,7 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 			<smbconfexample id="fast-engoffice-global">
 			<title>Ingenieurbüro smb.conf (Globales)</title>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>FRODO</value></smbconfoption>
 <smbconfoption><name>passdb backend</name><value>tdbsam</value></smbconfoption>
 <smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
@@ -894,10 +904,10 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 <smbconfoption><name>add user to group script</name><value>/usr/sbin/usermod -G %g %u</value></smbconfoption>
 <smbconfoption><name>add machine script</name><value>/usr/sbin/useradd -s /bin/false \</value></smbconfoption>
 <member><parameter>        -d /dev/null %u</parameter></member>
-<smbconfcomment>Hinweis: Das folgende spezifiziert den Standard Logon Skript.</smbconfcomment>
-<smbconfcomment>Pro Benutzer Logonskripte können im Benutzerkonto spezifiziert werden durch pdbedit </smbconfcomment>
+<smbconfcomment>Hinweis: Das folgende spezifiziert das Standard Logon Skript.</smbconfcomment>
+<smbconfcomment>Pro-Benutzer-Logonskripte können im Benutzerkonto spezifiziert werden, durch pdbedit </smbconfcomment>
 <smbconfoption><name>logon script</name><value>scripts\logon.bat</value></smbconfoption>
-<smbconfcomment>Dies setzt den Standard-Profilpfad. Setzen Sie Pro Benutzerpfade mit pdbedit</smbconfcomment>
+<smbconfcomment>Dies setzt den Standard-Profilpfad. Setzen Sie Pro-Benutzerpfade mit pdbedit</smbconfcomment>
 <smbconfoption><name>logon path</name><value>\\%L\Profiles\%U</value></smbconfoption>
 <smbconfoption><name>logon drive</name><value>H:</value></smbconfoption>
 <smbconfoption><name>logon home</name><value>\\%L\%U</value></smbconfoption>
@@ -918,7 +928,7 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 <smbconfoption><name>read only</name><value>No</value></smbconfoption>
 <smbconfoption><name>browseable</name><value>No</value></smbconfoption>
 
-<smbconfcomment>Drucker Auto-Share (stellt Drucker durch CUPS zur Verfügung)</smbconfcomment>
+<smbconfcomment>Drucker Auto-Freigabe (stellt Drucker durch CUPS zur Verfügung)</smbconfcomment>
 <smbconfsection>[printers]</smbconfsection>
 <smbconfoption><name>comment</name><value>Alle Drucker</value></smbconfoption>
 <smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
@@ -929,7 +939,7 @@ maryo:x:15000:15003:Mary Orville:/home/MIDEARTH/maryo:/bin/false
 <smbconfoption><name>browseable</name><value>No</value></smbconfoption>
 
 <smbconfsection>[print$]</smbconfsection>
-<smbconfoption><name>comment</name><value>Druckertreiber Share</value></smbconfoption>
+<smbconfoption><name>comment</name><value>Druckertreiber-Freigabe</value></smbconfoption>
 <smbconfoption><name>path</name><value>/var/lib/samba/drivers</value></smbconfoption>
 <smbconfoption><name>write list</name><value>maryo, root</value></smbconfoption>
 <smbconfoption><name>printer admin</name><value>maryo, root</value></smbconfoption>
@@ -1004,7 +1014,7 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=1114
 <screen>
 &rootprompt;<userinput>mkdir -p /var/lib/samba/netlogon/scripts</userinput>
 </screen>
-			Ablageort der Anmelde-Skripte (Batch- oder cmd-Skripte) die in diesem Verzeichnis benutzt werden.
+			Ablageort der Anmelde-Skripte (Batch- oder cmd-Skripte), die in diesem Verzeichnis benutzt werden.
 			</para></step>
 		</procedure>
 
@@ -1020,9 +1030,11 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=1114
 
 		<para>
 		In diesem Kapitel wollen wir kurz einen Überblick über eine Samba-3 Konfiguration bekommen,
-		welchen einen Light Weight Directory Access (LDAP)-basierenden Authentifizierungs-Backend nutzt.
-		Die Hauptgründe für diese Wahl waren, die Möglichkeit einen primären und Backup Domaincontroller 
-		(BDC) zur Verfügung zu stellen, genauso wie ein grösseres Mass an Skalierbarkeit um den Anforderungen
+		welche ein Light Weight Directory Access (LDAP)-basierendes Authentifizierungs-Backend nutzt.
+		Die Hauptgründe für diese Wahl waren sowohl die Möglichkeit, einen primären und 
+		einen Backup-Domaincontroller 
+		(BDC) zur Verfügung zu stellen, genauso wie ein grösseres Mass an Skalierbarkeit,
+		um den Anforderungen
 		an eine sehr verteilte Umgebung gerecht zu werden.
 		</para>
 
@@ -1036,11 +1048,11 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=1114
 			</para>
 
 			<para>
-			Die Idealx Skripte (oder gleichwertige) werden benötigt, um LDAP basierende Posix und/oder
+			Die Idealx-Skripte (oder gleichwertige) werden benötigt, um LDAP-basierende Posix und/oder
 			SambaSamAccounts zu verwalten.
 			Die Idealx Skripte können von dieser <ulink url="http://www.idealx.org">
 			Idealx</ulink> Webseite heruntergeladen werden. Sie können ebenfalls vom Samba tarball genommen
-			werden. Linux-Distributionen installieren die Idealx Skripte meist in dem Verzeichnis
+			werden. Linux-Distributionen installieren die Idealx-Skripte meist in dem Verzeichnis
 			<filename>/usr/share/doc/packages/sambaXXXXXX/examples/LDAP/smbldap-tools</filename>.
 			Idealx Skriptversionen <constant>smbldap-tools-0.8.2</constant> sind bekanntermassen eine gute
 			Arbeitsgrundlage.
@@ -1053,8 +1065,8 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=1114
 				</para></step>
 
 				<step><para>
-				Setzen Sie den LDAP Server auf. Dieses Beispiel passt zu OpenLDAP 2.1.x.
-				Die <filename>/etc/openldap/slapd.conf</filename> Datei:
+				Setzen Sie den LDAP-Server auf. Dieses Beispiel passt zu OpenLDAP 2.1.x.
+				Die Datei <filename>/etc/openldap/slapd.conf</filename>:
 <indexterm><primary>/etc/openldap/slapd.conf</primary></indexterm>
 <smbfile name="slapd.conf"><title>Beispieldatei slapd.conf</title>
 <programlisting>
@@ -1105,7 +1117,7 @@ dc: quenya
 o: SambaXP Demo
 description: Der SambaXP Demo LDAP Tree
 
-# Organizational Role for Directory Management
+# Organisatorische Rolle für die Verwaltung des Verzeichnisses
 dn: cn=Manager,dc=quenya,dc=org
 objectclass: organizationalRole
 cn: Manager
@@ -1137,8 +1149,8 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 				</para></step>
 
 				<step><para>
-				Starten des LDAP Servers durch das für Ihre Betriebssystem-Plattform bevorzugte
-				Werkzeug oder Methode, auf welcher dies installiert wurde.
+				Starten des LDAP-Servers durch das für die Betriebssystem-Plattform bevorzugte
+				Werkzeug oder Methode, auf welcher dieser installiert wurde.
 				</para></step>
 
 				<step><para>
@@ -1147,7 +1159,7 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 				</para></step>
 
 				<step><para>
-				Die &smb.conf; Datei, die diesen Backend steuert, ist beispielhaft hier <link linkend="fast-ldap"/>.
+				Die Datei &smb.conf;, die diesen Backend steuert, kann hier gefunden werden <link linkend="fast-ldap"/>.
 				</para>
 
 				<para>
@@ -1155,7 +1167,7 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 <title>LDAP Backend smb.conf für einen PDC</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>FRODO</value></smbconfoption>
 <smbconfoption><name>passdb backend</name><value>ldapsam:ldap://localhost</value></smbconfoption>
 <smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption>
@@ -1196,7 +1208,7 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 				</para></step>
 
 				<step><para>
-				Fügen Sie das LDAP Passwort zu der Datei <filename>secrets.tdc</filename> hinzu, 
+				Fügen Sie das LDAP Passwort zu der Datei <filename>secrets.tdb</filename> hinzu, 
 				sodass Samba die LDAP Datenbank aktualisieren kann:
 <screen>
 &rootprompt;<userinput>smbpasswd -w mordonL8</userinput>
@@ -1230,7 +1242,7 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 <title>Remote LDAP BDC smb.conf</title>
 <smbconfcomment>Globale Parameter</smbconfcomment>
 <smbconfsection>[global]</smbconfsection>
-<smbconfoption><name>workgroup</name><value>MIDEARTH</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>MITTELERDE</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>GANDALF</value></smbconfoption>
 <smbconfoption><name>passdb backend</name><value>ldapsam:ldap://frodo.quenya.org</value></smbconfoption>
 <smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption>
@@ -1260,7 +1272,7 @@ userPassword: {SSHA}0jBHgQ1vp4EDX2rEMMfIudvRMJoGwjVb
 				</para></step>
 
 				<step><para>
-				Konfigurieren Sie die NETLOGON und PROFILES Verzeichnisse für den PDC wie hier <link linkend="fast-bdc"/>.
+				Konfigurieren Sie die Verzeichnisse NETLOGON und PROFILES für den PDC wie hier <link linkend="fast-bdc"/>.
 				</para></step>
 			</procedure>
 
