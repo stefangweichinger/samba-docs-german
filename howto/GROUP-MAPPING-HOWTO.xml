@@ -229,27 +229,29 @@
 	</para>
 
 	<para>
-	Viele UNIX-Administratoren fragen wiederholt beim Samba Team an, ob es nicht möglich wäre, 
-	Windows Arbeitsstationen
-	oder die Möglichkeit Benutzerkonten hinzuzufügen/zu löschen ohne <constant>root</constant> Privilegien voraus zu setzen.
-	Solch ein Verlangen verletzt jedes Verständnis von grundlegender UNIX Systemsicherheit.
+	Viele UNIX-Administratoren fragen wiederholt beim Samba-Team an, es zu ermöglichen, 
+	ohne <constant>root</constant>-Rechte Windows-Arbeitsstationen 
+	oder Benutzerkonten hinzuzufügen und zu löschen.
+	Eine solche Anfrage verletzt jedes Verständnis von grundlegender UNIX Systemsicherheit.
 	</para>
 
 	<para>
-	Es gibt keinen sicheren Weg Zugriff auf ein UNIX/Linux System ohne <constant>root</constant> Level Privilegien
-	zur Verfügung zu stellen. Die Bereitstellung von <constant>root</constant> Privilegien kann entweder durch
-	Anmelden als <constant>root</constant> an der Domäne erfolgen oder es bestimmten Benutzern erlauben, ein UNIX-Konto
-	welches Mitglied einer UNIX-Gruppe ist die eine GID=0 als primäre Gruppe in der <filename>/etc/passwd</filename>
-	Datenbank hat, zu benutzen.
-	Benutzer solcher Konten können Werkzeuge wie den NT 4 Domänen-Benutzermanager benutzen und den NT 4 Domänen-Servermanager
-	um Benutzer- und Gruppenkonten zu verwalten, genauso wie Domänen-Mitgliedsserver und Client-Konten. Diese Privilegienebene
-	wird ebenfalls benutzt, um ACLs auf Freigabeebene zu verwalten.
+	Es gibt keinen sicheren Weg, Zugriff auf ein UNIX/Linux-System ohne <constant>root</constant>-Privilegien
+	zur Verfügung zu stellen. Die Bereitstellung von <constant>root</constant>-Privilegien kann entweder durch
+	Anmelden als <constant>root</constant> an der Domäne erfolgen oder es bestimmten Benutzern erlauben, 
+	ein UNIX-Konto zu benutzen,
+	welches Mitglied der UNIX-Gruppe ist, die GID=0 als primäre Gruppe in der Datenbank 
+	<filename>/etc/passwd</filename> hat.
+	Benutzer solcher Konten können Werkzeuge wie den NT 4 Domänen-Benutzermanager und den NT 4 
+	Domänen-Servermanager verwenden, 
+	um Benutzer- und Gruppenkonten zu verwalten, genauso wie Domänen-Mitgliedsserver und Client-Konten. 
+	Diese Privilegienebene wird ebenfalls benötigt, um ACLs auf Freigabeebene zu verwalten.
 	</para>
 
 	<para>
-	Administrative Aufgaben auf einer Windows-Arbeitsstation die Domänenmitglied ist, können durch jeden, der Mitglied der
-	<constant>Domänen Administratoren</constant> Gruppe ist durchgeführt werden. Diese Gruppe kann zu jeder passenden UNIX-Gruppe
-	gemappt werden.
+	Administrative Aufgaben auf einer Windows-Arbeitsstation, die Domänenmitglied ist, können durch jeden, 
+	der Mitglied der Gruppe <constant>Domänen Administratoren</constant> ist, durchgeführt werden.
+	Diese Gruppe kann auf jede passende UNIX-Gruppe gemappt werden.
 	</para>
 
 	</sect2>
@@ -260,38 +262,43 @@
 	<para>
 <indexterm><primary>Relative Bezeichner</primary><see>RID</see></indexterm>
 <indexterm><primary>RID</primary></indexterm>
-	Beim ersten Installieren wird Microsoft Windows NT4/200x/XP mit einigen Benutzer-, Gruppen- und Alias-Einheiten
-	vorkonfiguriert. Jeder hat einen bekannten Relativen Bezeichner (RID). Dieser muss für weitergehende
-	Integrität von Operationen eindeutig bleiben. Samba muss mit gewissen lebensnotwendigen Domänengruppen ausgestattet
+	Beim ersten Installieren wird Microsoft Windows NT4/200x/XP mit einigen Benutzer-, Gruppen- und 
+	Alias-Einheiten
+	vorkonfiguriert. Jede hat einen bekannten Relativen Bezeichner (RID). Dieser muss für die weitergehende
+	Integrität von Operationen eindeutig bleiben. Samba muss mit gewissen lebensnotwendigen Domänengruppen 
+	ausgestattet
 	werden, die den entsprechenden RID-Wert verlangen. Wenn Samba-3 so konfiguriert wird, dass es <constant>tdbsam</constant> 
-	nutzt werden die lebensnotwendigen Domänengruppen automatisch angelegt. Es ist dann die Verantwortung des LDAP
-	Administrators die Standard NT Gruppen zu erzeugen (diese auszustatten).
+	nutzt, werden die lebensnotwendigen Domänengruppen automatisch angelegt. Es ist dann die Verantwortung 
+	des LDAP-Administrators, die Standard-NT-Gruppen zu erzeugen (diese auszustatten).
 	</para>
 
 	<para>
-	Jede grundlegende Domänengruppe muss zu Ihrer zugehörigen bekannten RID zugeordnet werden. Die Standard-Benutzer,
-	Gruppen, Aliase und RIDs werden in der <link linkend="WKURIDS">Bekannte Standardbenutzer RIDs</link> Tabelle angezeigt.
+	Jede grundlegende Domänengruppe muss Ihrer zugehörigen bekannten RID zugeordnet werden. Die 
+	Standard-Benutzer, Gruppen, Aliases und RIDs werden in der Tabelle
+	<link linkend="WKURIDS">Bekannte Standardbenutzer RIDs</link> angezeigt.
 	</para>
 
 	<para><note>
-	Wenn der <parameter>passdb backend</parameter> LDAP (<constant>ldapsam</constant>) benutzt, ist es die Verantwortung
-	des Administrators die notwendigen Domänengruppen zu erzeugen und diese jeder Ihrer RID zuzuweisen.
+	Wenn das <parameter>passdb backend</parameter> LDAP (<constant>ldapsam</constant>) benutzt, ist es die 
+	Verantwortung des Administrators, die notwendigen Domänengruppen zu erzeugen und diese ihrer
+	jeweiligen RID zuzuweisen.
 	</note></para>
 
 	<para>
-	Es ist zulässig, jede Domänengruppe welche benötigt wird zu erzeugen, stellen Sie lediglich sicher, dass die
-	notwendige Domänengruppe (bekanntgegebene) erzeugt wurde und Ihrer Standard-RID zugewiesen wurde. Andere Gruppen
-	die Sie anlegen können Sie jeder beliebigen RID zuordnen, die Sie benutzen möchten.
+	Es ist zulässig, jede Domänengruppe, welche benötigt wirdi, zu erzeugen, stellen Sie lediglich sicher, 
+	dass die notwendige (bekanntgegebene) Domänengruppe erzeugt wurde und Ihrer Standard-RID
+	zugewiesen wurde. Andere Gruppen, die Sie anlegen, können Sie jeder beliebigen RID zuordnen, 
+	die Sie benutzen möchten.
 	</para>
 
 	<para>
-	Stellen Sie sicher, dass jede Domänengruppe zu einer UNIX Systemgruppe gemappt wird. Dies ist der einzige Weg
-	sicherzustellen, dass die Gruppe als eine NT Domänengruppe verfügbar sein wird.
+	Stellen Sie sicher, dass jede Domänengruppe auf eine UNIX-Systemgruppe gemappt wird. Dies ist der 
+	einzige Weg, um sicherzustellen, dass die Gruppe als eine NT-Domänengruppe verfügbar sein wird.
 	</para>
 
 	<para>
 	<table frame="all" id="WKURIDS">
-	<title>Bekannte Standardbenutzer RIDs</title>
+	<title>Bekannte Standardbenutzer-RIDs</title>
 		<tgroup cols="4" align="left">
 			<colspec align="left"/>
 			<colspec align="left"/>
@@ -307,13 +314,13 @@
 			</thead>
 			<tbody>
 				<row>
-					<entry>Domänen Administrator</entry>
+					<entry>Domänen-Administrator</entry>
 					<entry>500</entry>
 					<entry>Benutzer</entry>
 					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domänen Gast</entry>
+					<entry>Domänen-Gast</entry>
 					<entry>501</entry>
 					<entry>Benutzer</entry>
 					<entry>Nein</entry>
@@ -325,7 +332,7 @@
 					<entry>Nein</entry>
 				</row>
 				<row>
-					<entry>Domänen Administratoren</entry>
+					<entry>Domänen-Administratoren</entry>
 					<entry>512</entry>
 					<entry>Gruppe</entry>
 					<entry>Ja</entry>
@@ -476,16 +483,16 @@ Domänen Gäste (S-1-5-21-2547222302-1596225915-2414751004-514) -> domguest
 <title>Konfigurationskripts</title>
 
 	<para>
-	Jeder braucht Werkzeuge. Manche von uns machen Ihre gerne selbst, andere bevorzugen Werkzeuge aus der Konserve
-	(z.B. welche, die von jemandem für bestimmte Zwecke vorbereitet wurden). 
+	Jeder braucht Werkzeuge. Manche von uns machen Ihre gerne selbst, andere bevorzugen Werkzeuge aus 
+	der Konserve (z.B. welche, die von jemandem für bestimmte Zwecke vorbereitet wurden).
 	</para>
 
 	<sect2>
-	<title>Beispiel &smb.conf; Skript zum Gruppen hinzufügen</title>
+	<title>Beispiel für ein &smb.conf;-Skript zum Hinzufügen von Gruppen</title>
 
 		<para>
-		Ein Skript um übereinstimmende Gruppennamen für die Nutzung durch das Samba Gruppeninterface wird
-		in <link linkend="smbgrpadd.sh">smbgrpadd.sh</link> zur Verfügung gestellt.
+		Ein Skript, um übereinstimmende Gruppennamen für die Nutzung durch das Samba-Gruppeninterface
+		wird in <link linkend="smbgrpadd.sh">smbgrpadd.sh</link> zur Verfügung gestellt.
 		</para>
 
 <indexterm><primary>smbgrpadd.sh</primary></indexterm>
@@ -513,7 +520,8 @@ exit 0
 </para>
 
 		<para>
-		Der &smb.conf; Eintrag für obiges Skript kann etwas wie in <link linkend="smbgrpadd">Das folgende Beispiel</link> sein.
+		Der &smb.conf;-Eintrag für obiges Skript kann etwas wie in 
+		<link linkend="smbgrpadd">dem folgenden Beispiel</link> sein.
 <smbconfexample id="smbgrpadd">
 <title>Konfiguration von &smb.conf; für das Skript zum Gruppen hinzufügen.</title>
 <smbconfsection>[global]</smbconfsection>
@@ -526,21 +534,24 @@ exit 0
 	</sect2>
 	
 	<sect2>
-	<title>Skript um Gruppen-Mappings zu konfigurieren</title>
+	<title>Skript zum Konfigurieren von Gruppen-Mappings</title>
 
 	<para>
-		In unserem Beispiel haben wir eine UNIX/Linux-Gruppe erzeugt namens <ntgroup>ntadmin</ntgroup>.
-		Unser Skript wird die zusätzlichen Gruppen <ntgroup>Orks</ntgroup>, <ntgroup>Elfen</ntgroup> und <ntgroup>Gnome</ntgroup> anlegen.
-		Es ist eine gute Idee dieses Shellskript für spätere erneute Nutzung abzuspeichern, auch für den Fall, dass Sie später Ihre
+		In unserem Beispiel haben wir eine UNIX/Linux-Gruppe namens <ntgroup>ntadmin</ntgroup> erzeugt.
+		Unser Skript wird die zusätzlichen Gruppen <ntgroup>Orks</ntgroup>, <ntgroup>Elfen</ntgroup> 
+		und <ntgroup>Gnome</ntgroup> anlegen.
+		Es ist eine gute Idee, dieses Shellskript für spätere erneute Nutzung abzuspeichern, auch 
+		für den Fall, dass Sie später Ihre
 		Mapping-Datenbank einmal neu anlegen müssen.
-		Aus praktischen Gründen wählen wir, dieses Skript als eine Datei namens <filename>initGroups.sh</filename> zu speichern.
-		Dieses Skript ist hier <link linkend="set-group-map">intGroups.sh</link>.
+		Aus praktischen Gründen wählen wir, dieses Skript als eine Datei namens 
+		<filename>initGroups.sh</filename> zu speichern.
+		Dieses Skript ist hier <link linkend="set-group-map">initGroups.sh</link>.
 	</para>
 
 <para>
 <indexterm><primary>initGroups.sh</primary></indexterm>
 <example id="set-group-map">
-	<title>Skript um Gruppen-Mappings zu setzen</title>
+	<title>Skript zum Setzen von Gruppen-Mappings</title>
 <programlisting>
 #!/bin/bash
 
@@ -560,9 +571,9 @@ net groupmap add ntgroup="Gnome"  unixgroup=Gnome  type=d
 </para>
 
 	<para>
-	Natürlich wird vorausgesetzt, dass der Administrator dies für lokale Zwecke anpassen wird.
-	Für Informationen hinsichtlich der Nutzung des <command>net groupmap</command> Werkzeuges sehen Sie bitte in der
-	man page nach.
+	Natürlich wird vorausgesetzt, dass der Administrator dies für lokale Zwecke anpasst.
+	Für Informationen hinsichtlich der Nutzung des Werkzeuges <command>net groupmap</command> 
+	sehen Sie bitte in der man page nach.
 	</para>
 
 	</sect2>
@@ -570,19 +581,22 @@ net groupmap add ntgroup="Gnome"  unixgroup=Gnome  type=d
 </sect1>
 
 <sect1>
-<title>Allgemeine Fehler</title>
+<title>Gängige Fehler</title>
 
 <para>
-Zur Zeit gibt es eine Menge kleiner Überraschungen für den unachtsamen Administrator. In gewisser Weise ist es erforderlich, 
-dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet wurde, bevor diese aktive Anwendung finden.
+Zur Zeit gibt es eine Menge kleiner Überraschungen für den unachtsamen Administrator. In gewisser Weise ist es 
+erforderlich, dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet wird,
+bevor diese aktive Anwendung finden.
 </para>
 
 	<sect2>
 	<title>Hinzufügen von Gruppen schlägt fehl</title>
 
 		<para>
-		Dies ist ein häufiges Problem wenn das <command>groupadd</command> direkt von dem Samba Interface-Skript
-		für das <smbconfoption><name>add group script</name></smbconfoption> in der &smb.conf; Datei aufgerufen wurde.
+		Dies ist ein häufiges Problem, wenn <command>groupadd</command> direkt von dem 
+		Samba Interface-Skript
+		für <smbconfoption><name>add group script</name></smbconfoption> 
+		(Parameter in der Datei &smb.conf;) aufgerufen wurde.
 		</para>
 
 		<para>
@@ -591,12 +605,12 @@ dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet w
 		</para>
 
 		<para>
-		Es gibt drei mögliche Workarounds. Erstens: benutzen Sie nur Gruppennamen die mit den
-		Einschränkungen des UNIX/Linux <command>groupadd</command> Systemwerkzeuges zurecht kommen.
-		Der zweite betrifft die Benutzung des Skript, welches früher hier im Kapitel erwähnt wurde und
-		der dritte ist die Option, ein UNIX/Linux Gruppenkonto manuell anzulegen, welches zu dem MS Windows
-		Gruppennamen passt, dann benutzen Sie den Ablauf der vorher beschrieben wurde, diese Gruppe zu einer
-		MS Windows-Gruppe zu mappen.
+		Es gibt drei mögliche Workarounds. Erstens: benutzen Sie nur Gruppennamen, die mit den
+		Einschränkungen des UNIX/Linux-Systemwerkzeuges <command>groupadd</command> zurecht kommen.
+		Der zweite betrifft die Benutzung des Skripts, welches früher hier im Kapitel erwähnt wurde und
+		der dritte ist die Option, ein UNIX/Linux Gruppenkonto manuell anzulegen, welches zu dem 
+		MS Windows-Gruppennamen passt, dann benutzen Sie den obig beschriebenen Ablauf, um
+		diese Gruppe auf eine MS Windows-Gruppe zu mappen.
 		</para>
 
 	</sect2>
@@ -604,16 +618,16 @@ dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet w
 	<sect2>
 	<title>Hinzufügen von MS Windows-Gruppen zu MS Windows-Gruppen schlägt fehl</title>
 
-	<indexterm><primary>Gruppen</primary><secondary>versteckt</secondary></indexterm>
+	<indexterm><primary>Gruppen</primary><secondary>verschachtelt</secondary></indexterm>
 
 		<para>
-		Samba-3 unterstützt keine versteckten Gruppen aus der MS Windows Kontrollumgebung.
+		Samba-3 unterstützt keine verschachtelten Gruppen aus der MS Windows Kontrollumgebung.
 		</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Hinzufügen von <emphasis>Domänen Benutzern</emphasis> zu der <emphasis>Hauptbenutzer</emphasis> Gruppe</title>
+	<title>Hinzufügen von <emphasis>Domänen Benutzern</emphasis> zu der Gruppe <emphasis>Hauptbenutzer</emphasis></title>
 
 		<para><quote>
 		Was muss ich machen, um Domänenbenutzer zu der Hauptbenutzer-Gruppe hinzuzufügen ?
@@ -622,10 +636,10 @@ dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet w
 <indexterm><primary>Domänen Benutzergruppe</primary></indexterm>
 
 		<para>
-		Die Hauptbenutzer-Gruppe ist eine Gruppe die lokal auf jeder Windows 200x/XP Professional Arbeitsstation vorhanden ist.
+		Die Hauptbenutzer-Gruppe ist eine Gruppe, die lokal auf jeder Windows 200x/XP Professional Arbeitsstation vorhanden ist.
 		Sie können die Domänen Benutzergruppe nicht automatisch zu der Hauptbenutzer-Gruppe hinzufügen, dies muss auf jeder 
-		Arbeitsstation durch Anmelden als der lokale Arbeitsstations <emphasis>Administrator</emphasis> und durch Nutzung 
-		des folgenden Ablaufs gemacht werden:
+		Arbeitsstation durch Anmelden als der lokale Arbeitsstations-<emphasis>Administrator</emphasis> 
+		und durch folgende Prozedur erfolgen:
 		</para>
 
 		<procedure>
@@ -634,11 +648,11 @@ dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet w
 			</para></step>
 
 			<step><para>
-			Klicken Sie die <guimenuitem>Erweitert</guimenuitem> Registerkarte.
+			Klicken Sie die Registerkarte <guimenuitem>Erweitert</guimenuitem>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie den <guibutton>Erweitert</guibutton> Knopf.
+			Klicken Sie den Knopf <guibutton>Erweitert</guibutton>.
 			</para></step>
 
 			<step><para>
@@ -647,26 +661,27 @@ dass jeder Schritt automatisierter Kontrollskripte sorgfältig manuell getestet w
 
 			<step><para>
 			Doppelklicken Sie <constant>Hauptbenutzer</constant>. Dies wird das Feld zum Hinzufügen von Benutzern und Gruppen
-			zu der lokalen <constant>Hauptbenutzer</constant> Gruppe erscheinen lassen.
+			zu der lokalen Gruppe <constant>Hauptbenutzer</constant> erscheinen lassen.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf den <guibutton>Hinzufügen</guibutton> Knopf.
+			Klicken Sie auf den Knopf <guibutton>Hinzufügen</guibutton>.
 			</para></step>
 
 			<step><para>
-			Wählen Sie die Domäne aus, von der Sie die <constant>Domänen Benutzer</constant> Gruppe hinzufügen.
+			Wählen Sie die Domäne aus, von der Sie die Gruppe <constant>Domänen Benutzer</constant> hinzufügen.
 			</para></step>
 
 			<step><para>
-			Doppelklicken Sie die <constant>Domänen Benutzer</constant> Gruppe.
+			Doppelklicken Sie die Gruppe <constant>Domänen Benutzer</constant>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie den <guibutton>Ok</guibutton> Knopf. Falls während dieses Prozesses eine Anmeldebox
-			erscheint denken Sie bitte daran, die Anmeldung als <constant>Domäne\Benutzername</constant>
-			durchzuführen. Z.B. für die Domäne <constant>MIDEARTH</constant> und den Benutzer <constant>root</constant> geben Sie
-			<constant>MIDEARTH\root</constant> ein.
+			Klicken Sie den Knopf <guibutton>Ok</guibutton>. Falls während dieses Prozesses eine 
+			Anmeldebox erscheint, denken Sie bitte daran, die Anmeldung als
+			<constant>Domäne\Benutzername</constant>
+			durchzuführen. Z.B. für die Domäne <constant>MITTELERDE</constant> und den Benutzer <constant>root</constant> geben Sie
+			<constant>MITTELERDE\root</constant> ein.
 			</para></step>
 		</procedure>
 	</sect2>
