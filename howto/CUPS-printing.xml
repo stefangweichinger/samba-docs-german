@@ -2980,27 +2980,18 @@ Vorstellung zu erhalten. Sehen Sie sich die druckbezogenen Sub-Befehle an.
 <command>enumprinters</command>,
 <command>enumdrivers</command>, <command>enumports</command>,
 <command>adddriver</command>, <command>setdriver</command> sind unter den interessantesten davon.
-<parameter>rpcclient</parameter> implementiert einen wichtigen
-
-
-We are going to do this now. First, read the man page on <parameter>rpcclient</parameter>
-to get a first idea. Look at all the printing related
-subcommands. <command>enumprinters</command>,
-<command>enumdrivers</command>, <command>enumports</command>,
-<command>adddriver</command>, <command>setdriver</command> are among
-the most interesting ones. <parameter>rpcclient</parameter> implements an important part of
-the MS-RPC protocol. You can use it to query (and command) a Windows NT
-(or 200x/XP) PC, too. MS-RPC is used by Windows clients, among other
-things, to benefit from the Point'n'Print features. Samba can now
-mimic this as well.
+<parameter>rpcclient</parameter> implementiert einen wichtigen Teil des MS-RPC-Protokolls. Sie können es 
+verwenden, um einen Windows NT (oder 200x/XP) PC abzufragen und zu steuern. MS-RPC wird von Windows-Clients
+verwendet (neben anderen Dingen), um die Point'n'Print-Features zu nutzen. Samba kann dies mittlerweile auch
+"nachahmen".
 </para>
 
 <sect2>
-<title>A Check of the rpcclient man Page</title>
+<title>Ein Blick in die man-page zu rpcclient</title>
 
 <para>
-	First let's check the <parameter>rpcclient</parameter> man page. Here are
-two relevant passages:
+Lassen Sie uns zuerst die man-page zu <parameter>rpcclient</parameter> prüfen. Hier sind zwei relevante
+Abschnitte:
 </para>
 
 <para>
