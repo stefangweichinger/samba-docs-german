@@ -13,63 +13,66 @@
 
 <refnamediv>
 	<refname>smbsh</refname>
-	<refpurpose>Allows access to remote SMB shares
-	using UNIX commands</refpurpose>
+	<refpurpose>Erlaubt den Zugriff mit UNIX-Befehlen auf 
+	entfernte SMB-Freigaben</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbsh</command>
-		<arg choice="opt">-W workgroup</arg>
-		<arg choice="opt">-U username</arg>
-		<arg choice="opt">-P prefix</arg>
-		<arg choice="opt">-R &lt;name resolve order&gt;</arg>
-		<arg choice="opt">-d &lt;debug level&gt;</arg>
-		<arg choice="opt">-l logdir</arg>
-		<arg choice="opt">-L libdir</arg>
+		<arg choice="opt">-W Arbeitsgruppe</arg>
+		<arg choice="opt">-U Benutzername</arg>
+		<arg choice="opt">-P Präfix</arg>
+		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-l Log-Verzeichnis</arg>
+		<arg choice="opt">-L Lib-Verzeichnis</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbsh</command> allows you to access an NT filesystem 
-	using UNIX commands such as <command>ls</command>, <command>
-	egrep</command>, and <command>rcp</command>. You must use a 
-	shell that is dynamically linked in order for <command>smbsh</command> 
-	to work correctly.</para>
+	<para>Dank <command>smbsh</command> können Sie mit UNIX-Befehlen 
+	wie <command>ls</command>, <command>egrep</command> und 
+	<command>rcp</command> auf ein NT-Dateisystem zugreifen. Sie 
+	müssen nur eine Shell verwenden, die dynamisch gelinkt ist, damit
+	<command>smbsh</command> korrekt funktioniert.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 	    <varlistentry>
-		<term>-W WORKGROUP</term>
-		<listitem><para>Override the default workgroup specified in the 
-		workgroup parameter of the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file 
-		for this session. This may be needed to connect to some 
-		servers. </para></listitem>
+		<term>-W Arbeitsgruppe</term>
+		<listitem><para>Überschreibt die Standard-Arbeitsgruppe, die im
+		Parameter workgroup der Datei 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> für diese Sitzung 
+		angegeben ist. Das ist eventuell notwendig, um sich mit einigen
+		Servern verbinden zu können.</para></listitem>
 	    </varlistentry>
 		
 	    <varlistentry>
-		<term>-U username[%pass]</term>
-		<listitem><para>Sets the SMB username or username and password.
-		If this option is not specified, the user will be prompted for 
-		both the username and the password.  If %pass is not specified, 
-		the user will be prompted for the password.
+		<term>-U Benutzername[%Passwort]</term>
+		<listitem><para>Setzt den SMB-Benutzernamen oder den Benutzernamen 
+		und das Passwort. Falls diese Option nicht angegeben ist, wird der
+		Benutzer sowohl nach einem Benutzernamen wie auch nach einem 
+		Passwort gefragt. Falls %Passwort nicht angegeben wird, wird der 
+		Benutzer nach einem Passwort gefragt.
 		</para></listitem>
 	    </varlistentry>
 
 	    <varlistentry>
-		<term>-P prefix</term>
-		<listitem><para>This option allows
-		the user to set the directory prefix for SMB access. The 
-		default value if this option is not specified is 
+		<term>-P Präfix</term>
+		<listitem><para>Mit dieser Option kann der Benutzer den
+		Verzeichnispräfix für den SMB-Zugriff setzen. Ohne Angabe dieser
+		Option lautet der Vorgabewert für diesen Wert 
 		<emphasis>smb</emphasis>.
 		</para></listitem>
 	    </varlistentry>
@@ -79,10 +82,10 @@
 		&stdarg.resolve.order;
 
 	    <varlistentry>
-		<term>-L libdir</term>
-		<listitem><para>This parameter specifies the location of the 
-		shared libraries used by <command>smbsh</command>. The default
-		value is specified at compile time.
+		<term>-L Lib-Verzeichnis</term>
+		<listitem><para>Dieser Parameter gibt den Ort der Shared Libraries 
+		an, die von <command>smbsh</command> benutzt werden. Der Vorgabewert
+		dafür wird zum Zeitpunkt des Kompilierens angegeben.
 		</para></listitem>
 	    </varlistentry>
 
@@ -90,29 +93,30 @@
 </refsect1>
 
 <refsect1>
-	<title>EXAMPLES</title>
+	<title>BEISPIELE</title>
 
-	<para>To use the <command>smbsh</command> command, execute <command>
-	smbsh</command> from the prompt and enter the username and password 
-	that authenticates you to the machine running the Windows NT 
-	operating system.
+	<para>Um den Befehl <command>smbsh</command> zu benutzen, führen Sie
+	vom Prompt <command>smbsh</command> aus und geben Sie den Benutzernamen 
+	und das Passwort ein, das sie auf dem Rechner authentifiziert, auf dem 
+	das Betriebssystem Windows NT läuft.
 <programlisting>
 <prompt>system% </prompt><userinput>smbsh</userinput>
-<prompt>Username: </prompt><userinput>user</userinput>
+<prompt>Username: </prompt><userinput>benutzer</userinput>
 <prompt>Password: </prompt><userinput>XXXXXXX</userinput>
 </programlisting></para>
 
 
-	<para>Any dynamically linked command you execute from 
-	this shell will access the <filename>/smb</filename> directory 
-	using the smb protocol. For example, the command <command>ls /smb
-	</command> will show a list of workgroups. The command 
-	<command>ls /smb/MYGROUP </command> will show all the machines in 
-	the  workgroup MYGROUP. The command 
-	<command>ls /smb/MYGROUP/&lt;machine-name&gt;</command> will show the share 
-	names for that machine. You could then, for example, use the <command>
-	cd</command> command to change directories, <command>vi</command> to 
-	edit files, and <command>rcp</command>  to copy files.</para>
+	<para>Jeder dynamisch gelinkte Befehl, den Sie von dieser Shell aus
+	aufrufen, wird auf das Verzeichnis <filename>/smb</filename> zugreifen 
+	und dabei das smb-Protokoll verwenden. Zum Beispiel zeigt der Befehl 
+	<command>ls /smb</command> eine Liste der Arbeitsgruppen an. Der Befehl 
+	<command>ls /smb/MEINEGRUPPE</command> zeigt alle Rechner in der  
+	Arbeitsgruppe MEINEGRUPPE an. Der Befehl 
+	<command>ls /smb/MEINEGRUPPE/&lt;Rechner-Name&gt;</command> zeigt die
+	Namen der Freigaben auf diesem Rechner an. dann könnten Sie z.B. den
+	Befehl <command>cd</command> benutzen, um Verzeichnisse zu wechseln,
+	<command>vi</command> um Dateien zu editieren, und <command>rcp</command>,
+	um Dateien zu kopieren.</para>
 </refsect1>
 
 <refsect1>
@@ -123,7 +127,7 @@
 </refsect1>
 
 <refsect1>
-	<title>BUGS</title>
+	<title>FEHLER</title>
 	
 	<para><command>smbsh</command> works by intercepting the standard 
 	libc calls with the dynamically loaded versions in <filename>
@@ -139,7 +143,7 @@
 
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry></para>
