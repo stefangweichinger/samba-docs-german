@@ -55,7 +55,7 @@
 		</varlistentry>
 
 		<varlistentry>
-		<term>-c commandfile</term>
+		<term>-c Befehlsdatei</term>
 		<listitem><para>Liest Befehle, die auf die <filename>Registrierungsdatei</filename>
 		angewandt werden sollen, aus der Datei <filename>Befehlsdatei</filename>.
 		Derzeit noch nicht unterstützt!

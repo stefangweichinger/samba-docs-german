@@ -143,7 +143,7 @@ IP ADDR         NETBIOS NAME   WORKGROUP/OS/VERSION
 	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die Umwandlung ins
 	DocBook-Format wurde von Gerald Carter für Samba 2.2 durchgeführt.
 	Die Umwandlung in Docbook für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
-	durchgeführt.
+	durchgeführt.</para>
 
 	<para>Übersetzung ins Deutsche: Stefan G. Weichinger.</para>
 </refsect1>
