@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="StandAloneServer">
+<chapterinfo>
+	&author.jht;
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+</chapterinfo>
+<title>Stand-alone-Server</title>
+
+<para>
+Stand-alone-Server sind im Netzwerk unabhängig von Domänen-Controllern.
+Sie sind keine Domänen-Mitglieder und funktionieren eher wie
+Arbeitsgruppen-Server. In vielen Fällen wird ein Stand-alone-Server mit einem
+Minimum an Sicherheits-Kontrolle konfiguriert, mit der Absicht, daß alle Daten
+für alle Benutzer frei zugänglich sein sollen.
+</para>
+
+<sect1>
+<title>Eigenschaften und Vorteile</title>
+
+<para>
+Stand-alone-Server können so sicher oder so unsicher gemacht werden, wie es die
+Anforderungen vorgeben. Sie können simple oder komplexe Konfigurationen haben.
+Generell, trotz all dem Trara um Domänen-Sicherheit, bleiben sie eine sehr gängige
+Installationsform.
+</para>
+
+<para>
+Wenn alles, was gebraucht wird, ein Server mit read-only-Dateien ist, oder ein Server
+nur für Drucker, dann macht es keinen Sinn, eine komplexe Installation aufzusetzen.
+Zum Beispiel: Ein Zeichenbüro muß alte Zeichnungen und Referenz-Standard-Dateien speichern.
+Niemand kann Dateien auf den Server schreiben, da es gesetzgebend wichtig ist, daß alle
+Dokumente unverändert bleiben. Ein Stand-alone-Server im read-only Freigaben-Modus ist
+eine ideale Lösung.
+</para>
+
+<para>
+Eine andere Situation, die Einfachheit garantiert, ist ein Büro, das viele Drucker hat,
+die von einem einzelnen zentralen Server angesteuert werden. Jeder muß auf die Drucker
+drucken können, es gibt keinen Grund, irgendwelche Zugriffskontrolle einzusetzen,
+und keine Dateien werden vom Druckserver bereitgestellt. Wieder ist ein Stand-alone-Server
+im Freigaben-Modus (share) eine großartige Lösung.
+</para>
+</sect1>
+
+<sect1>
+<title>Hintergrund</title>
+
+<para>
+Der Begriff <emphasis>Stand-alone-Server</emphasis> bedeutet, daß er
+lokale Authentifikation und Zugriffs-Kontrolle für alle Ressourcen, die über ihn 
+zugänglich sind, anbietet. Allgemein bedeutet das, daß es eine lokale Benutzer-Datenbank
+geben wird. In mehr technischen Begriffen bedeutet es, daß Ressourcen auf der Maschine
+entweder im SHARE- oder im USER-Modus verfügbar gemacht werden.
+</para>
+
+<para>
+Es ist nichts weiter nötig als das Anlegen von Benutzerkonten.
+Stand-alone-Server bieten keine Netzwerk-Anmelde-Dienste an. Das bedeutet, daß Maschinen, die
+diesen Server benutzen, keine Domänen-Anmeldung auf ihm durchführen. Welchem Anmeldedienst
+diese Workstations unterstellt sind, ist unabhängig von dieser Maschine. Es ist aber notwendig,
+jeden Netzwerk-Benutzer dahingehend "unterzubringen", daß der zur Anmeldung benutzte Namen lokal
+auf dem Samba-Stand-alone-Server auf einen lokal bekannten Benutzernamen übersetzt (mapped) wird.
+Es gibt verschiedene Arten, auf die dies geschehen kann.
+</para>
+
+<para>
+Samba neigt dazu, die Unterscheidung etwas zu verwischen, was den Begriff des Stand-alone-Servers 
+angeht. Dies rührt daher, daß die Authentifikations-Datenbank lokal oder auf einem Netzwerk-Server
+liegen kann, sogar wenn der Samba-Server aus der SMB-Protokoll-Perspektive kein Mitglied des
+Domänen-Sicherheits-Kontexts ist.
+</para>
+
+<para>
+Durch die Verwendung von Pluggable Authentication Modules (PAM) und dem Namens-Service-Switcher
+(NSSWITCH, welcher die UNIX-Benutzer-Datenbank verwaltet) kann die Wurzel der Authentifikation
+auf einem anderen Server liegen. Wir würden dies den Authentifikations-Server nennen.
+Das bedeutet, daß der Samba-Server die lokale UNIX/Linux-Passwort-DB verwenden kann
+(<filename>/etc/passwd</filename> oder <filename>/etc/shadow</filename>), die lokale Datei
+smbpasswd, oder ein LDAP-Backend, oder sogar via PAM und Winbind einen anderen CIFS/SMB-Server.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Beispiel-Konfiguration</title>
+
+<para>
+Die Beispiele, <link linkend="simplynice"/>, and link linkend="SimplePrintServer"/>,
+wurden entworfen, um Einfachheit zu inspirieren. Es ist oft gar zu leicht, einen hohen
+Grad an Kreativität anzustreben, und damit zu viel Komplexität ins Design von Server und
+Netzwerk zu bringen.
+</para>
+
+<sect2 id="RefDocServer">
+<title>Referenz-Dokumentations-Server</title>
+
+<para>
+Die Konfiguration eines Read-Only Datenservers, auf den jeder zugreifen kann, ist sehr einfach.
+<link linkend="simplynice"/> ist die &smb.conf;-Datei, die dies tut. Nehmen wir an, daß all die
+Referenz-Dokumente im Verzeichnis <filename>/export</filename> gespeichert werden, und daß die
+Dokumente einem anderen User als nobody gehören. Keine home-Verzeichnisse werden freigegeben, und es
+gibt keine Benutzer in der <filename>/etc/passwd</filename> UNIX-System-Datenbank. Dies ist einfach
+zu administrierendes System.
+</para>
+
+<smbconfexample id="simplynice">
+<title>smb.conf für den Referenz-Dokumentations-Server</title>
+<smbconfcomment> Global parameters</smbconfcomment>
+<smbconfsection>[global]</smbconfsection>
+<smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
+<smbconfoption><name>netbios name</name><value>&example.server.samba;</value></smbconfoption>
+<smbconfoption><name>security</name><value>SHARE</value></smbconfoption>
+<smbconfoption><name>passdb backend</name><value>guest</value></smbconfoption>
+<smbconfoption><name>wins server</name><value>192.168.1.1</value></smbconfoption>
+<smbconfsection>[data]</smbconfsection>
+<smbconfoption><name>comment</name><value>Data</value></smbconfoption>
+<smbconfoption><name>path</name><value>/export</value></smbconfoption>
+<smbconfoption><name>guest only</name><value>Yes</value></smbconfoption>
+</smbconfexample>
+
+<para>
+In obigem Beispiel <link linkend="simplynice"/> ist der Hostname auf &example.server.samba; gesetzt,
+die Arbeitsgruppe auf den Namen der lokalen Arbeitsgruppe (&example.workgroup;), so daß die Maschine
+gemeinsam mit Maschinen aufscheint, die den Benutzern vertraut sind. Das einzige Passwort-Backend, das
+benötigt wird, ist das <quote>guest</quote>-Backend, um die Verwendung von standardmässigen unprivilegierten
+Benutzernamen zu erlauben. Da es einen WINS-Server im Netz gibt, machen wir natürlich Gebrauch davon.
+</para>
+
+</sect2>
+
+<sect2 id="SimplePrintServer">
+<title>Zentrales Druck-Serving</title>
+
+<para>
+Die Konfiguration eines einfachen Druckservers ist einfach, wenn Sie die richtigen Tools auf Ihrem
+System haben.
+</para>
+
+<orderedlist>
+<title> Annahmen:</title>
+	<listitem><para>
+	Der Druck-Server darf keine Administration erfordern.
+	</para></listitem>
+
+	<listitem><para>
+	Das Druck-Spooling- und Verarbeitungs-System auf unserem Druck-Server wird CUPS sein.
+	(Siehe <link linkend="CUPS-printing"></link> für mehr Informationen).
+	</para></listitem>
+
+	<listitem><para>
+	Der Druck-Server wird nur Netzwerk-Drucker bedienen. Der Netzwerk-Administrator wird
+	die CUPS-Umgebung korrekt für die Unterstützung der Drucker konfigurieren.
+	</para></listitem>
+
+	<listitem><para>
+	Alle Workstations werden nur Postscript-Treiber verwenden. Der gewählte Druckertreiber
+	ist der mit MS Windows mitgelieferte Treiber für den Apple Color LaserWriter.	
+	</para></listitem>
+</orderedlist>
+
+<para>
+In diesem Beispiel wird unser Druck-Server alle hereinkommenden Druckaufträge in der Datei
+<filename>/var/spool/samba</filename> spoolen, bis der Job von Samba an den CUPS-Druck-Prozessor
+weitergegeben werden kann. Da alle hereinkommenden Verbindungen unter dem anonymen (Gast-) Benutzer
+laufen werden, sind zwei Dinge erforderlich:
+</para>
+
+<itemizedlist>
+<title>Anonymes Drucken aktivieren</title>
+	<listitem><para>
+	Das UNIX/Linux-System muß ein <command>guest</command>-Konto haben.
+	Der Standard hiefür ist üblicherweise das Konto <command>nobody</command>.
+	Um den korrekten Namen zu finden, der für Ihr System zu verwenden ist,
+	führen Sie folgendes aus:	
+<screen>
+&prompt;<userinput>testparm -s -v | grep "guest account"</userinput>
+</screen>
+	Stellen Sie sicher, daß dieses Konto in Ihrer System-Passwort-Datenbank
+	existiert (<filename>/etc/passwd</filename>).
+	</para></listitem>
+
+	<listitem><para>
+	Das Verzeichnis, in welches Samba die Datei spoolen wird, muß
+	Schreibrechte für das Gast-Konto aufweisen. Die folgenden Befehle stellen
+	sicher, daß dieses Verzeichnis benutzbar wird:
+	this directory is available for use:
+<screen>
+&rootprompt;<userinput>mkdir /var/spool/samba</userinput>
+&rootprompt;<userinput>chown nobody.nobody /var/spool/samba</userinput>
+&rootprompt;<userinput>chmod a+rwt /var/spool/samba</userinput>
+</screen>
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Der Inhalt von &smb.conf; wird in <link linkend="AnonPtrSvr"/> gezeigt.
+</para>
+
+<para>
+<smbconfexample id="AnonPtrSvr">
+<title>&smb.conf; for Anonymous Printing</title>
+<smbconfcomment> Global parameters</smbconfcomment>
+<smbconfsection>[global]</smbconfsection>
+<smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
+<smbconfoption><name>netbios name</name><value>&example.server.samba;</value></smbconfoption>
+<smbconfoption><name>security</name><value>SHARE</value></smbconfoption>
+<smbconfoption><name>passdb backend</name><value>guest</value></smbconfoption>
+<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
+<smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
+
+<smbconfsection>[printers]</smbconfsection>
+<smbconfoption><name>comment</name><value>All Printers</value></smbconfoption>
+<smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
+<smbconfoption><name>printer admin</name><value>root</value></smbconfoption>
+<smbconfoption><name>guest ok</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>printable</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>use client driver</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>browseable</name><value>No</value></smbconfoption>
+</smbconfexample>
+</para>
+
+
+<note><para>
+<indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
+<indexterm><primary>raw printing</primary></indexterm>
+Auf CUPS-Systemen gibt es eine Funktionalität, um "raw"-Daten direkt an den Drucker weiterzugeben,
+ohne zwischenzeitliches Verarbeiten durch CUPS-Druck-Filter. Wo die Verwendung dieses Modus gewünscht
+ist, ist es notwendig, ein raw-Druck-Device zu konfigurieren. Es ist weiters notwendig, den 
+raw mime handler in den Dateien <filename>/etc/mime.conv</filename> und <filename>/etc/mime.types</filename>
+zu aktivieren. Sehen Sie dazu auch <link linkend="cups-raw"></link>.
+</para></note>
+
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Gängige Fehler</title>
+
+<para>
+Der größte Fehler ist meist, die Netzwerk-Konfiguration zu komplex zu gestalten.
+Es bewährt sich, die einfachste Lösung zu wählen, die die momentanen Anforderungen erfüllt.
+</para>
+
+</sect1>
+</chapter>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="53"
+   name="svn:this_dir"
+   committed-date="2004-04-29T03:35:00.926430Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/guide"
+   last-author="jht"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="Chap10-KerberosFastStart.xml"
+   text-time="2004-05-22T14:17:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7fee91d91f1d87e3540d5f20ace3e85d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="front-matter.xml"
+   text-time="2004-05-22T14:17:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f4bda63d1034eeef0fe026c79db00cd8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="gpl.xml"
+   text-time="2004-05-22T14:17:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6b791d7111ba7771bd2d09f5820d572d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap12-Appendix.xml"
+   text-time="2004-05-22T14:17:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9669747b7a8494790fee48b2d13a8d57"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap11-HighAvailability.xml"
+   text-time="2004-05-22T14:17:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="62f0fb418484c228fb038cc72a646613"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap08-MigrateNT4Samba3.xml"
+   text-time="2004-05-22T14:17:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b8e6436fd47a66a6fb93a9bc8c60f04a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="foreword.xml"
+   text-time="2004-05-22T14:17:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e3091fff182c5144239af5483bc3e405"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="inside-cover.xml"
+   text-time="2004-05-22T14:17:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="81bc7ab92fa5c9b249bba6c2561ee8f1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="acknowledgements.xml"
+   text-time="2004-05-22T14:17:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="56e9c8c05fc9a52ee169704b9f7f8adf"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap01-WindowsNetworkingPrimer.xml"
+   text-time="2004-05-22T14:17:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="03206356b970ef7d0506cb53a1d73f88"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap05-500UserNetwork.xml"
+   text-time="2004-05-22T14:17:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ddf56315b2da9b89580e38500c5d353a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:07.000000Z"/>
+<entry
+   committed-rev="53"
+   name="Chap09-AddingUNIXClients.xml"
+   text-time="2004-05-22T14:17:08.000000Z"
+   committed-date="2004-04-29T03:35:00.926430Z"
+   checksum="7f8f474559eec5a7745ddc32c12d5207"
+   last-author="jht"
+   kind="file"
+   prop-time="2004-05-22T14:17:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap03-TheSmallOffice.xml"
+   text-time="2004-05-22T14:17:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="85a247041872d79fc5570cc677eb0157"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="glossary.xml"
+   text-time="2004-05-22T14:17:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4fa84683a34ac19b2405916eecb0fb72"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:09.000000Z"/>
+<entry
+   committed-rev="30"
+   name="Chap10b-DomainAppsSupport.xml"
+   text-time="2004-05-22T14:17:09.000000Z"
+   committed-date="2004-04-23T14:12:19.385604Z"
+   checksum="db84b79c2b0ba2bd4051d1ba7d716721"
+   last-author="abartlet"
+   kind="file"
+   prop-time="2004-05-22T14:17:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="conventions.xml"
+   text-time="2004-05-22T14:17:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4d1f6762ebcf0423b421fcb39ef2d812"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="preface.xml"
+   text-time="2004-05-22T14:17:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="488287f6888c0a79279754f9f98e1f6e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap04-SecureOfficeServer.xml"
+   text-time="2004-05-22T14:17:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="78bc46bdf5714d666351be6122e49972"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:11.000000Z"/>
+<entry
+   name="images"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="Chap02-SimpleOfficeServer.xml"
+   text-time="2004-05-22T14:18:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7cdf1657bb1ac45c2180bc890035a5f9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:03.000000Z"/>
+<entry
+   committed-rev="46"
+   name="Chap06-MakingHappyUsers.xml"
+   text-time="2004-05-22T14:18:04.000000Z"
+   committed-date="2004-04-27T15:03:17.028770Z"
+   checksum="4011bed124fcbd25bf2f51a2fca0f879"
+   last-author="jht"
+   kind="file"
+   prop-time="2004-05-22T14:18:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Chap07-2000UserNetwork.xml"
+   text-time="2004-05-22T14:18:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="035674d47eb329d75075b6f0d4aae452"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="guide-main.xml"
+   text-time="2004-05-22T14:18:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1e0d8529e2e371661ef3f9951396dc4e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:05.000000Z"/>
+</wc-entries>

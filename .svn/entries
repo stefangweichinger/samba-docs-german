@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="75"
+   name="svn:this_dir"
+   committed-date="2004-05-21T23:46:38.877829Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="74"
+   name="Makefile.in"
+   text-time="2004-05-22T14:16:42.000000Z"
+   committed-date="2004-05-20T21:04:57.445962Z"
+   checksum="1dd3c3c6d7e9b28159ab439140005ba2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:42.000000Z"/>
+<entry
+   name="entities"
+   kind="dir"/>
+<entry
+   committed-rev="73"
+   name="configure.in"
+   text-time="2004-05-22T14:16:43.000000Z"
+   committed-date="2004-05-20T20:33:00.491789Z"
+   checksum="3f98b7b7a17ed647b71f780fd3054147"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:43.000000Z"/>
+<entry
+   name="scripts"
+   kind="dir"/>
+<entry
+   name="xslt"
+   kind="dir"/>
+<entry
+   name="manpages"
+   kind="dir"/>
+<entry
+   name="guide"
+   kind="dir"/>
+<entry
+   name="smbdotconf"
+   kind="dir"/>
+<entry
+   committed-rev="65"
+   name="docbook.txt"
+   text-time="2004-05-22T14:18:05.000000Z"
+   committed-date="2004-05-14T16:36:04.635546Z"
+   checksum="db37631d199b4a09ea001c0c7972cbd0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:05.000000Z"/>
+<entry
+   name="devel"
+   kind="dir"/>
+<entry
+   name="output"
+   kind="dir"/>
+<entry
+   name="howto"
+   kind="dir"/>
+<entry
+   name="archives"
+   kind="dir"/>
+<entry
+   name="registry"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="settings.xsl.in"
+   text-time="2004-05-22T14:20:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6cf90ef31a20f70917c2c7581101c92c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:07.000000Z"/>
+<entry
+   committed-rev="69"
+   name="aclocal.m4"
+   text-time="2004-05-22T14:20:07.000000Z"
+   committed-date="2004-05-15T16:36:15.183923Z"
+   checksum="413dd3b4934b1df7e954d66028fcde5a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:07.000000Z"/>
+</wc-entries>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="compiling">
+<chapterinfo>
+	&author.jelmer;
+	&author.jht;
+	&author.tridge;
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>	
+	<pubdate> 22 May 2001 </pubdate>
+	<pubdate> 18 March 2003 </pubdate>
+</chapterinfo>
+
+<title>Wie man Samba kompiliert</title>
+
+<para>
+Der Source-Text von Samba kann auf der <ulink url="http://samba.org/">Samba Website.</ulink>
+bezogen werden. Um eine Entwickler-Version zu beziehen, kann man Samba mittels CVS oder
+<command>rsync</command> herunterladen.
+</para>
+
+<sect1>
+<title>Der Zugriff auf Samba Source Code via CVS</title>
+
+
+<sect2>
+<title>Einführung</title>
+
+<para>
+<indexterm><primary>CVS</primary></indexterm>
+Samba wird in einer offenen Umgebung entwickelt. Die Entwickler benutzen
+das Concurrent Versioning System (CVS), um mittels <quote>checkin</quote>,
+(auch als <quote>commit</quote> bekannt), neuen Quelltext einzufügen.
+Auf die verschiedenen CVS-Zweige von Samba kann mittels anonymem CVS
+zugegriffen werden, dies unter Verwendung der in diesem Kapitel
+enthaltenen Anleitungen.
+</para>
+
+<para>
+Dieses Kapitel ist eine geänderte Fassung der Instruktionen, die man unter
+<ulink noescape="1" url="http://samba.org/samba/cvs.html">http://samba.org/samba/cvs.html</ulink>
+findet.
+</para>
+
+</sect2>
+
+<sect2>
+<title>CVS-Zugriff auf samba.org</title>
+
+<para>
+Die Maschine samba.org führt ein offen zugängliches CVS-repository.
+Damit ermöglicht sie den Zugriff auf den Quelltext mehrerer Packages,
+einschließlich Samba, rsync, distcc, ccache, und jitterbug.
+Es gibt zwei hauptsächliche Arten, um auf den CVS-server auf diesem host
+zuzugreifen:
+</para>
+
+<sect3>
+<title>Zugriff via CVSweb</title>
+
+
+<para>
+<indexterm><primary>CVS</primary><secondary>web</secondary></indexterm>
+Sie können so unter Verwendung Ihres bevorzugten WWW-Browsers auf den QUelltext
+zugreifen. Dies erlaubt den Zugriff auf einzelne Dateien im Repository genauso wie
+auf den Verlauf der Revisionen und die Commit-logs der einzelnen Dateien.
+Man kann damit auch diff-listings zwischen zwei Versionen erstellen.
+</para>
+
+<para>
+Verwenden Sie die URL:
+<ulink noescape="1" url="http://samba.org/cgi-bin/CVSweb">http://samba.org/cgi-bin/CVSweb</ulink>
+</para>
+</sect3>
+
+<sect3>
+<title>Zugriff via CVS</title>
+
+<para>
+Sie können auf den Quelltext auch mittels eines normalen CVS-clients zugreifen.
+Dies gibt Ihnen mehr Kontrolle darüber, was Sie mit dem Repository tun können,
+und erlaubt Ihnen, ganze Quelltext-Bäume mittels checkout abzuholen, und sie mittels
+normaler CVS-Befehle am Stand zu halten. Dies ist die bevorzugte Variante des Zugriffs,
+wenn Sie ein Entwickler sind, und nicht nur ein gelegentlicher Besucher.
+</para>
+
+<para>
+Um den letzten CVS-Quelltext herunterzuladen, geben Sie folgende URL in Ihren Browser ein:
+<ulink noescape="1" url="http://www.cyclic.com/">http://www.cyclic.com/</ulink>.
+und klicken SIe auf den Link <quote>How to get CVS</quote>. CVS ist freie Software
+unter der GNU GPL (so wie auch Samba). Wir machen Sie darauf aufmerksam, daß es auch
+einige graphische CVS-clients gibt, die eine graphische Oberfläche für die manchmal
+sehr nüchternen CVS-Befehle anbieten. Links zu diesen clients sind auch auf der
+Cyclic Web site verfügbar.
+</para>
+
+<para>
+Um Zugriff via anonymem CVS zu erlangen, führen Sie die folgenden Schritte durch.
+In diesem Beispiel wird angenommen, daß Sie eine Kopie des Samba-Quelltexts haben
+wollen. Für die anderen Quelltext-Repositories auf diesem System ersetzen sie einfach
+den Package-Namen.
+</para>
+
+<procedure>
+	<title>Samba über CVS beziehen</title>
+
+	<step>
+	<para>
+	Installieren Sie eine aktuelle Version von CVS.
+	Alles was Sie brauchen, ist eine Kopie des CVS-client-Programmes.
+	</para>
+	</step>
+
+	<step>
+	<para>
+	Führen Sie folgenden Befehl aus:
+	</para>
+
+	<para>
+	<userinput>cvs -d :pserver:cvs@samba.org:/cvsroot login</userinput>
+	</para>
+	</step>
+
+	<step>
+	
+	<para>
+	Wenn Sie nach dem Passwort gefragt werden, tippen Sie <userinput>cvs</userinput>.	
+	</para>
+	</step>
+
+	<step>
+	<para>
+	Führen Sie folgenden Befehl aus:	
+	</para>
+	
+	<para>
+	<userinput>cvs -d :pserver:CVS@samba.org:/cvsroot co samba</userinput>.
+	</para>
+	
+	<para>
+	Dies wird ein Verzeichnis namens <filename>samba</filename> anlegen, das
+	den neuesten Samba-Quelltext (den CVS-Zweig namens HEAD) enthält.
+	Dies entspricht momentan dem Entwicklungs-Code für Samba 3.0.	
+	</para>
+	
+	<para>
+	CVS-Zweige, die nicht HEAD sind, können bezogen werden, indem man die
+	Option <option>-r</option> mit einem tag-Namen verwendet. Eine Liste 
+	von tag-Namen kann auf der Seite <quote>Development</quote> der Samba-Web-Site
+	gefunden werden. Eine gebräuchliche Anfrage ist die nach dem letzten 3.0
+	Release-Code. Dies könnte wie folgt geschehen:
+	</para>
+	
+	<para>
+	<userinput>cvs -d :pserver:cvs@samba.org:/cvsroot co -r SAMBA_3_0 samba</userinput>.
+	</para>
+	</step>
+
+	<step>
+	<para>
+	Wann immer Sie die letzten Code-Änderungen übernehmen wollen, verwenden Sie
+	folgenden Befehl innerhalb des Samba-Verzeichnisses:	
+	</para>
+	
+	<para>
+	<userinput>cvs update -d -P</userinput>
+	</para>
+	</step>
+</procedure>
+	
+</sect3>
+</sect2>
+
+</sect1>
+
+<sect1>
+	<title>Zugriff auf die Samba-Quelltexte via rsync und ftp</title>
+
+
+	<para>
+	<indexterm><primary>rsync</primary></indexterm>
+	<indexterm><primary>ftp</primary></indexterm>
+	<parameter>pserver.samba.org</parameter> exportiert auch ungepackte Kopien der meisten Teile des CVS-Baums
+	unter <ulink noescape="1" url="ftp://pserver.samba.org/pub/unpacked">ftp://pserver.samba.org/pub/unpacked</ulink> und auch via anonymem rsync unter 
+	<ulink noescape="1" url="rsync://pserver.samba.org/ftp/unpacked/">rsync://pserver.samba.org/ftp/unpacked/</ulink>. Wir empfehlen, rsync anstatt ftp zu verwenden.
+	Sehen Sie <ulink noescape="1" url="http://rsync.samba.org/">the rsync homepage</ulink> für mehr Informationen zu rsync.
+	</para>
+
+	<para>
+	Der Nachteil der ungepackten Bäume ist, daß sie kein automatisches "Merge" von lokalen
+	Änderungen zulassen, wie es CVS tut. <command>rsync</command>-Zugriff ist das praktischste
+	Verfahren bei einer frischen Installation.
+	</para>
+</sect1>
+
+<sect1>
+<title>Überprüfen der PGP-Signatur von Samba</title>
+
+<para>
+<indexterm><primary>GPG</primary></indexterm>
+Es wird wärmstens empfohlen, daß Sie die PGP-Signatur jeder Quelltext-Datei vor der Installation
+überprüfen. Sogar wenn Sie die Datei nicht von einem Mirror-Server laden, sollte das Prüfen der
+PGP-Signatur zum Reflex werden. Viele nutzen heute das GNU-GPG-Package anstatt von PGP.
+GPG kann anstatt PGP eingesetzt werden.
+</para>
+
+
+<para>
+Nachdem dies gesagt wurde, laden Sie bitte folgende Dateien aus dem Netz:
+</para>
+
+<para><screen>
+&prompt;<userinput>wget http://us1.samba.org/samba/ftp/samba-2.2.8a.tar.asc</userinput>
+&prompt;<userinput>wget http://us1.samba.org/samba/ftp/samba-pubkey.asc</userinput>
+</screen></para>
+
+
+<para>
+<indexterm><primary>PGP</primary></indexterm>
+Die erste Datei ist die PGP-Signatur für die Samba-Quelltext-Datei; die andere ist der öffentliche
+Samba-PGP-Schlüssel selbst. Importieren Sie den öffentlichen PGP-Schlüssel mittels:
+</para>
+
+<screen>
+&prompt;<userinput>gpg --import samba-pubkey.asc</userinput>
+</screen>
+
+<para>
+und überprüfen Sie die Integrität des Samba-Quelltexts mittels:
+</para>
+
+<screen>
+&prompt;<userinput>gzip -d samba-2.2.8a.tar.gz</userinput>
+&prompt;<userinput>gpg --verify samba-2.2.8a.tar.asc</userinput>
+</screen>
+
+<para>
+Wenn Sie eine Meldung wie <quote>Good signature from Samba Distribution Verification Key...</quote>
+erhalten, ist alles OK. Die Warnungen bezüglich <quote>trust relationships</quote> können ignoriert
+werden. Ein Beispiel für etwas, das Sie nicht sehen wollen:
+</para>
+
+<para><screen>
+     gpg: BAD signature from <quote>Samba Distribution Verification Key</quote>
+</screen></para>
+
+</sect1>
+
+<sect1>
+	<title>Kompilieren der Binärdateien</title>
+	
+
+	<para>
+<indexterm><primary>configure</primary></indexterm>
+Um die Binärdateien mittels "build" zu erhalten, führen Sie zuerst das Programm 
+<userinput>./configure</userinput> im Quellverzeichnis aus. Dies sollte Samba automatisch für Ihr
+Betriebssystem konfigurieren. Sollten Sie darüber hinausgehende Wünsche haben, dann können Sie
+folgendes tun:</para>
+	
+<para><screen>&rootprompt;<userinput>./configure --help
+</userinput></screen></para>
+	
+<para>So sehen Sie, welche speziellen Optionen aktiviert werden können.
+Nun können Sie <userinput>./configure</userinput> mit jeglichen gewünschten Agrumenten ausführen:</para>
+
+<para><screen>&rootprompt;<userinput>./configure <replaceable>[... arguments ...]</replaceable></userinput></screen></para>
+	
+	<para>Das Ausführen von</para>
+
+	
+	<para>
+<indexterm><primary>make</primary></indexterm>
+		<screen>&rootprompt;<userinput>make</userinput></screen></para>
+	
+	<para>wird die Binärdateien erstellen. Sobald diese erfolgreich kompiliert wurden,
+	können Sie</para>
+	
+<para><screen>&rootprompt;<userinput>make install</userinput></screen></para>
+	
+	<para>verwenden, um die Binärdateien (=Programme) und Man-pages zu installieren.
+	Sie können Programme und Man-pages separat installieren:</para>
+	
+<para><screen>&rootprompt;<userinput>make installbin
+</userinput></screen></para>
+	
+	<para>und</para>
+	
+	<para><screen>&rootprompt;<userinput>make installman
+	</userinput></screen></para>
+
+	<para>Bitte beachten Sie, daß Sie beim Upgrade von einer vorigen Version
+	möglicherweise wissen wollen, daß dabei die alten Programme umbenannt werden,
+	und zwar durch das Anhängen von <quote>.old</quote>. Sie können dann zur
+	alten Version zurückkehren,</para>
+	
+<para><screen>&rootprompt;<userinput>make revert
+</userinput></screen></para>
+	
+	<para>wenn Sie die neue Version als Desaster empfinden!</para>
+
+	<sect2>
+	<title>Das Kompilieren von Samba mit Active Directory Support</title>
+	
+	<para>Um Samba mit ADS-Support zu kompilieren, müssen Sie folgendes
+	auf Ihrem System installiert haben:</para>
+	
+	<itemizedlist>
+	
+	    <listitem><para>Die MIT- oder Heimdal-Kerberos development libraries
+	    (entweder selbst kompiliert oder aus einem Package).</para></listitem>
+	
+	    <listitem><para>Die OpenLDAP development libraries.</para></listitem>
+	    
+	</itemizedlist>
+
+	<para>Wenn Ihre Kerberos libraries an einem vom Standard-Verzeichnis abweichenden Ort liegen,
+		fügen Sie die configure option 
+		<option>--with-krb5=<replaceable>DIR</replaceable></option> hinzu.</para>
+
+	<para>Nachdem Sie configure ausgeführt haben, prüfen Sie, ob die entstandene Datei
+		<filename>include/config.h</filename> Zeilen wie diese enthält: </para>
+
+<para><programlisting>
+#define HAVE_KRB5 1
+#define HAVE_LDAP 1
+</programlisting></para>
+
+	<para>Falls dem nicht so ist, hat configure Ihre KRB5 libraries oder LDAP libraries
+	nicht gefunden. Konsultieren Sie <filename>config.log</filename>, um den Grund dafür
+	zu finden und zu beheben.</para>
+
+	<sect3>
+	<title>Die Installation der erforderlichen Packages für Debian</title>
+
+	<para>Unter Debian müssen Sie folgende Packages installieren:</para>
+	<para>
+		<itemizedlist>
+			<listitem>libkrb5-dev</listitem>
+			<listitem>krb5-user</listitem>
+		</itemizedlist>
+	</para>
+	</sect3>
+
+	<sect3>
+	<title>>Die Installation der erforderlichen Packages für Red Hat Linux</title>
+
+	<para>Auf Red Hat Linux bedeutet das, daß Sie zumindest das brauchen: </para>
+	<para>
+		<itemizedlist>
+			<listitem>krb5-workstation (für kinit)</listitem>
+			<listitem>krb5-libs (für das Linken)</listitem>
+			<listitem>krb5-devel (weil Sie aus den Quellen kompilieren)</listitem>
+		</itemizedlist>
+	</para>
+
+	<para>(dies zusätzlich zur Standard-Entwicklungs-Umgebung.)</para>
+
+	<para>Wenn diese Dateien nicht auf Ihrem System installiert sind, sollten Sie die
+	Installations-CDs überprüfen, um herauszufinden, wo diese Packages zu finden sind,
+	und sie mit einem Werkzeug Ihrer Wahl installieren. Wenn Sie unsicher sind, welches
+	Werkzeug zu verwenden ist, konsultieren Sie bitte die Red Hat Linux Dokumentation.</para>
+
+	</sect3>
+
+	<sect3>
+	<title>SuSE Linux Package Erfordernisse</title>
+
+	<para>SuSE Linux installiert Heimdal-Packages, die erforderlich sein könnten, um 
+	Binary-packages erstellen zu können. Sie sollten überprüfen, ob diese development-libraries
+	auf Ihrem System installiert wurden.
+	</para>
+
+	<para>SuSE Linux Samba RPMs unterstützen Kerberos. Bitte beziehen Sie sich auf die Dokumentation
+	Ihres SuSE Linux Systems für Informationen zur SuSE-spezifischen Konfiguration.
+	Weiters ist SuSE sehr aktiv in der Pflege von Samba-Packages, die alle verfügbaren Fähigkeiten 
+	von Samba bereitstellen. Sie sollten die Verwendung von SuSE-Samba-Packages in Erwägung
+	ziehen, wo dies möglich ist.
+	</para>
+
+	</sect3>
+	
+	</sect2>
+			  
+</sect1>
+
+<sect1>
+	<title>Starten von &smbd; und &nmbd;</title>
+
+
+	<para>
+	<indexterm><primary>inetd</primary></indexterm>
+	Sie müssen sich entscheiden, &smbd; und &nmbd; entweder als "daemons" oder
+	mittels <application>inetd</application> zu starten. Versuchen Sie nicht, beides zu tun!
+	Sie können sie entweder in <filename>inetd.conf</filename> eintragen und bei Bedarf
+	von <application>inetd</application> oder <application>xinetd</application> starten lassen,
+	oder sie als daemons entweder von der Befehlszeile oder in <filename>/etc/rc.local</filename>
+	starten. Lesen Sie die Man-pages für Details zu den Befehls-Optionen.
+	Lesen Sie im Besonderen den Abschnitt über den Benutzer, den Sie brauchen, um Samba zu starten.
+	In vielen Fällen müssen Sie dazu root sein.</para>
+
+
+	<para>Der hauptsächliche Vorteil des Startens von &smbd; und &nmbd; mittels der empfohlenen
+	daemon-Methode ist, daß sie dann etwas schneller auf die erste Verbindungs-Anfrage reagieren
+	werden.</para>
+
+	<sect2>
+		<title>Starten aus der inetd.conf</title>
+
+		<indexterm><primary>inetd</primary></indexterm>
+		
+		<note>
+		<para>Das Folgende ist unterschiedlich, je nachdem, ob Sie
+		NIS, NIS+ oder LDAP zur Verteilung Ihrer Dienst-Listen verwenden.</para>
+		</note>
+		
+		<para>Sehen Sie sich <filename>/etc/services</filename> an. 
+		Was ist für port 139/tcp definiert? Wenn nichts definiert ist,
+		fügen Sie eine Zeile wie diese hinzu:</para>
+
+		<para><programlisting>netbios-ssn     139/tcp</programlisting></para>
+
+		<para>Ähnlich für 137/udp, Sie sollten einen Eintrag haben wie:</para>
+
+		<para><programlisting>netbios-ns	137/udp</programlisting></para>
+
+		<para>Als nächstes editieren Sie Ihre <filename>/etc/inetd.conf</filename> 
+		und fügen zwei Zeilen wie diese hinzu:</para>
+
+		<para><programlisting>
+		netbios-ssn stream tcp nowait root /usr/local/samba/bin/smbd smbd 
+		netbios-ns dgram udp wait root /usr/local/samba/bin/nmbd nmbd 
+		</programlisting></para>
+
+		<para>Die exakte Syntax von <filename>/etc/inetd.conf</filename> 
+		variiert zwischen UNIX's. Nehmen Sie sich andere Einträge in inetd.conf 
+		zur Vorlage. </para>
+
+	<para>
+		<indexterm><primary>xinetd</primary></indexterm>
+		Manche Distributionen verwenden xinetd anstatt von inetd.
+		Konsultieren Sie das xinetd-Manual für Informationen zur Konfiguration.</para>
+
+		<note><para>Manche UNIX's haben bereits Einträge wie netbios_ns (beachten Sie
+		den Unterstrich) in <filename>/etc/services</filename>. Sie müssen
+		<filename>/etc/services</filename> oder <filename>/etc/inetd.conf</filename>
+		editieren, um beide konsistent zu erhalten.</para></note>
+
+		<note><para>
+		<indexterm><primary>ifconfig</primary></indexterm>
+		Auf vielen Systemen müssen Sie eventuell die Option
+		<smbconfoption><name>interfaces</name></smbconfoption> in &smb.conf; verwenden,
+		um die IP-Adresse und Netzmaske Ihrer Netz-Interfaces anzugeben.
+		Führen Sie <application>ifconfig</application> als root aus, wenn Sie die
+		Broadcast-Adresse Ihres Netzes nicht kennen. &nmbd; versucht diese bei seiner
+		Ausführung zu bestimmen, scheitert aber auf manchen UNIX's.
+                </para></note>
+
+		<warning><para>Viele UNIX's akzeptieren nur ungefähr fünf Parameter
+		auf der Befehlszeile in <filename>inetd.conf</filename>. Das bedeutet, daß
+		Sie keine Leerzeichen zwischen Optionen und Argumenten verwenden sollten, bzw.
+		daß Sie ein Skript verwenden und dies mittels <command>inetd</command> starten
+		sollten.</para></warning>
+
+		<para>Starten Sie <application>inetd</application> neu, bzw. senden Sie
+		das Signal HUP.</para>
+
+		<screen>
+			&rootprompt;<userinput>killall -HUP inetd</userinput>
+		</screen>
+		
+	</sect2>
+	
+	<sect2>
+		<title>Alternative: &smbd; als Daemon starten</title>
+
+		
+		<para>
+		<indexterm><primary>daemon</primary></indexterm>
+		Um den Server als daemon zu starten, sollten Sie ein Skript wie das Folgende
+		anlegen, zum Beispiel mit dem Namen <filename>startsmb</filename>.</para>
+
+		<para><programlisting>
+		#!/bin/sh
+		/usr/local/samba/bin/smbd -D 
+		/usr/local/samba/bin/nmbd -D 
+		</programlisting></para>
+
+		<para>Machen sie es ausführbar mittels <command>chmod +x startsmb</command></para>
+
+		<para>Dann können <command>startsmb</command> von Hand starten oder in der Datei
+		<filename>/etc/rc.local</filename>.
+                </para>
+
+		<para>Um die Daemonen zu beenden, senden Sie ein KILL-Signal and die Prozesse
+		&nmbd; and &smbd;.</para>
+
+		<note><para>Wenn Sie das init-System in der Art von SVR4 verwenden, wollen Sie
+		vielleicht das Beispiel-Skript <filename>examples/svr4-startup</filename> lesen,
+		um Samba an Ihr System anzupassen.</para></note>
+	</sect2>
+</sect1>
+
+</chapter>

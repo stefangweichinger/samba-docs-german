@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="73"
+   name="svn:this_dir"
+   committed-date="2004-05-20T20:33:00.491789Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/printing"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="printable.xml"
+   text-time="2004-05-22T14:18:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="389be74733b29bf406d214b2167ee7bc"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:21.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maxprintjobs.xml"
+   text-time="2004-05-22T14:18:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0acef00a486f95770c1c5bbfa7aff09f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:21.000000Z"/>
+<entry
+   committed-rev="3"
+   name="printcapname.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c2a22103367023d0ec77c9449d04957d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="queuepausecommand.xml"
+   text-time="2004-05-22T14:18:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c443c646fd6f9f85ba9b3efee11595f0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:21.000000Z"/>
+<entry
+   committed-rev="73"
+   name="printcapcachetime.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-05-20T20:33:00.491789Z"
+   checksum="fbb4f6595693ef9860a9a5e9ef37a29b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="printername.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="08dd9f3b029677a80fbfca438d521e24"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maxreportedprintjobs.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="76dc6476977b96ea0ceec587d09c8fa0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="disablespoolss.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="376acd4db15c10675fefbd9473b09d15"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="63"
+   name="cupsoptions.xml"
+   text-time="2004-05-22T14:18:22.000000Z"
+   committed-date="2004-05-10T13:26:20.051088Z"
+   checksum="2885d5b356a6908e5b637acd6ba3a707"
+   last-author="samba-bugs"
+   kind="file"
+   prop-time="2004-05-22T14:18:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="defaultdevmode.xml"
+   text-time="2004-05-22T14:18:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="caf387a67ad01e271cff6e63a2607131"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="printing.xml"
+   text-time="2004-05-22T14:18:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b2bd33a202717e93668c9f9d64bb7a5b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="addprintercommand.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7f058823e06aea3e34af0e014979e8f8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="enumportscommand.xml"
+   text-time="2004-05-22T14:18:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e0c214697df13071249e02cc913f1fa0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lpqcommand.xml"
+   text-time="2004-05-22T14:18:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ab89241cf5bb0025e024b06f6f18d311"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="printcommand.xml"
+   text-time="2004-05-22T14:18:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d9c729313a46cb167d7e3fc9b1bc5e4c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lpresumecommand.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="74ddb9f3af87a8df02294c82479759d5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lpqcachetime.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="408c85a57f5c4b9fb4b83917ac03f62d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="queueresumecommand.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a78b66d2b592cf2dedeab305225bf132"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="deleteprintercommand.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ad5695072e6a5d3bd10b3e4e9bba1559"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="loadprinters.xml"
+   text-time="2004-05-22T14:18:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="597ae833641f2ca94495a1d2d12b818d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="useclientdriver.xml"
+   text-time="2004-05-22T14:18:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="be3e80d1cedfcc89a68c31aa4796bc9f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lppausecommand.xml"
+   text-time="2004-05-22T14:18:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c0494e2ac7ed32f89e886cd172d73252"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lprmcommand.xml"
+   text-time="2004-05-22T14:18:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e284b437e6b9acf4a585595b0823a016"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="os2drivermap.xml"
+   text-time="2004-05-22T14:18:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6cdc373c2c1a32adb867a2f22a5afc90"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="showaddprinterwizard.xml"
+   text-time="2004-05-22T14:18:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="dd243fffbb7d6dcb27c506034f18fc91"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:25.000000Z"/>
+</wc-entries>

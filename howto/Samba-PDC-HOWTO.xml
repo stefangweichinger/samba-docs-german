@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="samba-pdc">
+
+<chapterinfo>
+	&author.jht;
+	&author.jerry;
+	&author.dbannon;
+	<author>&person.gd; <contrib>LDAP updates</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+</chapterinfo>
+
+<title>Die Kontrolle über eine Domäne</title>
+
+<para>
+Viele nähern sich der Thematik der MS-Windows-Netzwerke mit falschen Vorstellungen.
+Das ist ok so, weil es uns anderen viele Möglichkeiten dazu gibt, Hilfe zu geben.
+Diejenigen, die wirklich helfen wollen, sind gut beraten, sich mit der bereits 
+vorhandenen Information und Dokumentation vertraut zu machen.
+</para>
+
+<para>
+Der Leser ist gut beraten, diesen Abschnitt der Samba-Dokumentation gar nicht erst anzugehen, solange er nicht einige Grundlagen beherrscht. MS-Windows-Netzwerke sind nicht gerade tolerant gegenüber Fehl-Konfigurationen. Anwender von MS-Windows-Netzwerken beschweren sich oft über dauernde Unannehmlichkeiten infolge "kaputter" Netzwerk-Konfigurationen.
+Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänen-Controller, von dem erwartet wird, daß er auf irgendeine magische Art alle Netzwerk-Probleme lösen kann.
+</para>
+
+<para>
+Das Diagramm in <link linkend="domain-example"/> zeigt eine klassische Umgebung unter Verwendung einer MS-Windows-Sicherheits-Domäne (MS Windows Domain Security network environment). Die Workstations A, B und C repräsentieren eine Vielzahl physischer MS-Windows-Netzwerk-Clients.
+</para>
+
+<figure id="domain-example"><title>Eine Beispiel-Domäne.</title>
+<mediaobject>
+<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/domain" width="4in" height="3in" scalefit="1"/></imageobject>
+<imageobject><imagedata fileref="projdoc/imagefiles/domain.png" scale="50" scalefit="1"/></imageobject>
+</mediaobject>
+</figure>
+
+
+<?latex \newpage ?>
+
+<para>
+In der Samba-mailing-list kann man leicht viele weit verbreitete Netzwerk-Themen erkennen.
+Wenn Sie mit den folgenden Themen nicht vertraut sind, wird es helfen, die entsprechenden Abschnitte dieses HOWTOs zu lesen. Dies sind die häufigsten Ursachen für Probleme mit MS-Windows-Netzwerken:
+</para>
+
+<itemizedlist>
+	<listitem><para>Grundlegende TCP/IP-Konfiguration.</para></listitem>
+	<listitem><para>NetBIOS Namens-Auflösung.</para></listitem>
+	<listitem><para>Authentifizierungs-Konfiguration.</para></listitem>
+	<listitem><para>Benutzer- und Gruppen-Konfiguration.</para></listitem>
+	<listitem><para>Grundlegende Datei- und Verzeichnis-Rechte in UNIX/Linux.</para></listitem>
+	<listitem><para>Verstehen, wie MS-Windows-Clients in einer Netzwerkumgebung zusammenarbeiten.</para></listitem>
+</itemizedlist>
+
+<para>
+Lassen Sie sich nicht abschrecken; an der Oberfläche erscheint ein MS-Windows-Netzwerk so simpel, daß es jeder schafft. Tatsächlich ist es aber keine gute Idee, ein MS-Windows-Netzwerk ohne entsprechende Übung und Vorbereitung aufzusetzen. Aber lassen Sie uns unser erstes unauslöschliches Prinzip aus dem Weg räumen:
+<emphasis>Es ist in Ordnung, Fehler zu machen!</emphasis>
+Am richtigen Ort, zur richtigen Zeit, sind Fehler die Essenz des Lernens. Es ist jedoch ganz und gar nicht in Ordnung, Fehler zu machen, die Produktivitäts-Einbussen verursachen und einer Organisation einen vermeidbaren finanziellen Verlust zufügen.
+</para>
+
+<para>
+Wo ist der rechte Ort für Fehler? Nur dort, wo kein Schaden entstehen kann. Wenn Sie Fehler machen wollen, dann machen Sie diese bitte in einer Test-Umgebung, abseits von anderen Benutzern, auf eine Art, die anderen keine Probleme macht.
+Lernen Sie in einem Test-Netzwerk.
+</para>
+
+<sect1>
+<title>Eigenschaften und Nutzen</title>
+
+<para>
+<indexterm><primary>Domänen-Sicherheit</primary></indexterm>
+<emphasis>Was ist der Hauptnutzen von Microsoft-Domänen-Sicherheit?</emphasis>
+</para>
+
+<para>
+In einem Wort, <emphasis>Single Sign On</emphasis>, oder noch kürzer, SSO.
+Für viele ist dies der "Heilige Gral" des Windows-NT-Netzwerks und darüber hinaus. SSO erlaubt Benutzern eines gut konzipierten Netzwerks, sich auf jeder Workstation anzumelden, die Mitglied jener Domäne ist, zu der ihr Benutzer-Konto gehört (bzw. auf einer Workstation, die Mitglied einer Domäne ist, die ein geeignetes Vertrauensverhältnis zur eigenen Domäne hat). Dadurch können sie sich am Netzwerk anmelden und auf dessen Resourcen zugreifen (Freigaben, Dateien und Drucker) als ob sie an ihrem Stamm-Rechner sitzen würden. Dies ist ein Merkmal des Domänen-Sicherheits-Protokolls.
+</para>
+
+<para>
+<indexterm><primary>SID</primary></indexterm>
+Die Vorzüge von Domänen-Sicherheit eröffnen sich jenen, die einen Samba-PDC verwenden.
+Eine Domäne stellt einen eindeutigen Netzwerk-Sicherheits-Identifizierungs-Schlüssel (network security identifier), kurz SID, zur Verfügung. Domänen-Benutzer- und -Gruppen-Sicherheits-Identifizierungs-Schlüssel umfassen den SID plus einem relativen Identifizierungs-Schlüssel (RID), der sich eindeutig auf das jeweilige Konto bezieht.
+Benutzer- und Gruppen-SIDs (Netzwerk-SID plus RID) können dazu verwendet werden, sogenannte Zugriffs-Kontroll-Listen, besser bekannt als ACLs (Access Control Lists) zu erstellen, die, bezogen auf einzelne Netzwerk-Resourcen, organisationsweite Zugriffs-Kontrolle ermöglichen. UNIX-Systeme erkennen nur lokale SIDs.
+</para>
+
+<note><para>
+Netzwerk-Clients einer MS-Windows-Sicherheits-Domänen-Umgebung müssen Domänen-Mitglieder sein, um Zugriff auf die erweiterten Funktionalitäten zu erlangen. Domänen-Mitgliedschaft beinhaltet mehr als das Setzen des Arbeitsgruppen-Namens auf den Domänen-Namen. Sie erfordert das Anlegen eines Domänen-Kontos für die Workstation (genannt Maschinen-Konto). Sehen Sie <link linkend="domain-member"></link> für mehr Informationen dazu.
+</para></note>
+
+<para>
+Die folgenden Funktionalitäten sind in der Release Samba 3 neu:
+</para>
+
+<itemizedlist>
+	<listitem><para>
+	Windows NT4 Vertrauens-Domänen.
+	</para></listitem>
+
+	<listitem><para>
+	<indexterm><primary>Nexus.exe</primary></indexterm>
+	Das Hinzufügen von Benutzern via "User Manager for Domains". Dies kann von jedem MS-Windows-Client mittels dem <filename>Nexus.exe</filename> toolkit für Windows 9x/Me, oder mittels dem SRVTOOLS.EXE-Paket für MS Windows NT4/200x/XP-Plattformen durchgeführt werden. Diese Pakete sind auf der Microsoft-Website verfügbar.
+	</para></listitem>
+
+	<listitem><para>
+	Die Einführung mehrerer austauschbarer Benutzer-Konten-Backends (Authentifizierungs-Backends).
+	Im Falle der Verwendung von LDAP als Backend profitiert Samba-3 von den Vorzügen eines Backends, das verteilt und repliziert werden kann, sowie hochgradig skalierbar ist.
+	</para></listitem>
+
+	<listitem><para>
+	Die Einführung voller Unicode-Unterstützung.
+	Dies vereinfacht die Unterstützung internationaler locales. Es eröffnet weiters die Verwendung von Protokollen, die Samba-2.2.x bereits unterstützte, jedoch mangels voller Unicode-Unterstützung nicht verwenden konnte.
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Die folgenden Funktionalitäten werden von Samba-3 NICHT zur Verfügung gestellt:
+</para>
+<itemizedlist>
+	<listitem><para>
+<indexterm><primary>SAM</primary></indexterm>
+<indexterm><primary>Replikation</primary></indexterm>
+	SAM-Replikation mit MS-Windows-NT4-Domänen-Controllern
+	(z.B., ein Samba PDC und ein Windows NT BDC oder vice versa).
+
+	Dies bedeutet, daß Samba NICHT als BDC arbeiten kann, wenn der PDC Microsoft-basiert ist.
+	Weiters bedeutet es, daß Samba Kontodaten NICHT auf MS-BDCs replizieren.
+	</para></listitem>
+
+	<listitem><para>
+	Das Arbeiten als Windows 2000 Domain Controller
+	(z.B., Kerberos und Active Directory).
+
+	Tatsächlich hat Samba-3 einige AD-Domänen-Kontroll-Fähigkeiten, die zum jetzigen Zeitpunkt rein experimenteller Natur sind. Diese werden sicherlich zu voll unterstützten Features ausgebaut, sei es während der Existenz von Samba-3 oder zu einem späteren Zeitpunkt. Wie dem auch sei, Active Directory ist mehr als nur SMB &smbmdash;, es ist weiters LDAP, Kerberos, DHCP, und andere Protokolle (selbstverständlich mit proprietären Erweiterungen).
+	</para></listitem>
+
+	<listitem><para>
+	Die Windows 200x/XP MMC (Computer Management) Console kann NICHT zum Betrieb eines Samba-3 Servers verwendet werden.
+	Dazu können nur der MS Windows NT4 Domain Server Manager und der MS Windows NT4 Domain User Manager verwendet werden. Beide sind Bestandteil des später erwähnten SVRTOOLS.EXE-Pakets.
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Windows 9x/Me/XP Home-Clients sind keine vollwertigen Domänen-Mitglieder, aus den hier erwähnten Gründen. Das Protokoll zur Unterstützung von Windows 9x/Me-Netzwerk(-Domänen)-logons unterscheidet sich völlig von dem zur Unterstützung von NT4/Windows 200x-Netzwerk(-Domänen)-logons und wurde einige Zeit offiziell unterstützt. Diese Clients verwenden die alten LanMan-Netzwerk-Logon-Mechanismen, die in Samba ungefähr seit Serie Samba-1.9.15 unterstützt werden.
+</para>
+
+<para>
+Samba-3 implementiert die Zuweisung von Gruppen zwischen Windows-NT-Gruppen und UNIX-Gruppen (dies ist wirklich sehr schwierig in kurzen Worten zu erklären). Dies wird umfassender in <link linkend="groupmapping"></link> behandelt.
+</para>
+
+<para>
+<indexterm><primary>Maschinen-Vertrauens-Konten</primary></indexterm>
+Samba-3 muß (wie ein MS Windows NT4 PDC oder ein Windows 200x AD) Benutzer- und Maschinen-Vertrauens-Konten in einem passenden Daten-Backend ablegen. Siehe <link linkend="machine-trust-accounts"></link>. Mit Samba-3 können dazu mehrere Backends verwendet werden. Eine vollständige Diskussion von Konten-Datenbank-Backends finden Sie in <link linkend="passdb"></link>.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Grundlagen der Domänen-Verwaltung</title>
+
+<para>
+Im Laufe der Jahre hat die allgemeine Auffassung von Domänen-Verwaltung eine fast schon mystische Gestalt angenommen. Bevor wir zu einem kurzen Überblick über Domänen-Verwaltung verzweigen, beschreiben wir die drei grundsätzlichen Typen von Domänen-Controllern.
+</para>
+
+<sect2>
+<title>Typen von Domänen-Controllern</title>
+
+<itemizedlist>
+	<listitem><para>Primary Domain Controller</para></listitem>
+	<listitem><para>Backup Domain Controller</para></listitem>
+	<listitem><para>ADS Domain Controller</para></listitem>
+</itemizedlist>
+
+<para>
+Der <emphasis>Primary Domain Controller</emphasis> oder PDC spielt eine wichtige Rolle in MS Windows NT4. In der Windows 200x-Domänenverwaltungs-Architektur wird diese Rolle von Domänen-Controllern übernommen. Die "Folklore" schreibt vor, daß dies wegen seiner Rolle im MS Windows Netzwerk der stärkste und schnellste Rechner im Netz sein sollte. So seltsam das an dieser Stelle klingen mag, der Wunsch nach guter allgemeiner Netzwerk-Performance erfordert zwingend, daß die gesamte Infrastruktur ausgewogen gestaltet wird. Es ist ratsam, mehr in Stand-alone(Domänen-Mitglieds-)-Server zu investieren als in die DCs.
+</para>
+
+<para>
+<indexterm><primary>SAM</primary></indexterm>
+Im Falle von MS Windows NT4-Domänen ist es der PDC, der eine neue Domänen-Verwaltungs-Datenbank initiiert. Diese bildet einen Teil der Windows-Registrierung namens Security Account Manager (SAM). Sie spielt eine Schlüsselrolle in NT4-artiger Domänen-Benutzer-Authentifizierung und in der Synchronisation der Domänen-Authentifizierungs-Datenbank mit Backup-Domänen-Controllern.
+</para>
+
+<para>
+In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden "downstream controller" zu übergehen, jedoch hat ein "downline controller" nur Kontrolle über seine "downline" (WEICHINGER: Wie übersetzen?) Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
+</para>
+
+<para>
+Neu in Samba-3 ist die mögliche Verwendung einer Backend-Datenbank, die dieselben Daten enthält wie eine NT4-artige SAM-Datenbank (eines der Registrierungs-files)<footnote>Siehe auch <link linkend="passdb"/>.</footnote>.
+</para>
+
+<para>
+
+Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schlüsselrolle in der Beantwortung von Netzwerk-Authentifizierungs-Anfragen. Der BDC ist darauf ausgerichtet, logon-Anfragen vor dem PDC zu beantworten. In einem Netzwerk-Segment, das sowohl einen BDC wie auch einen PDC beinhaltet, wird der BDC meist die Netzwerk-logon-Anfragen bedienen. Der PDC wird diese dann beantworten, wenn der BDC überlastet ist. EIn BDC kann zum PDC ernannt werden. Wenn der PDC online ist, wenn der BDC zum PDC ernannt wird, wird der vorige PDC automatisch zum BDC zurückgestuft. Mit Samba-3 ist dieser Vorgang nicht automatisch; der PDC und der BDC müssen händisch konfiguriert werden.
+</para>
+
+<para>
+Bei der Installation von NT 4 wird die Entscheidung darüber getroffen, welcher Art von Maschine der Server angehören soll. Es ist möglich, einen BDC zu einem PDC zu ernennen und umgekehrt. Die einzige Möglichkeit, einen DC in einen Domänen-Mitglieds-Server oder einen Stand-Alone-Server umzuwandeln, ist, ihn neu zu installieren.
+
+Die Wahlmöglichkeiten bei der Installation sind:
+</para>
+
+<itemizedlist>
+	<listitem><para><emphasis>Primärer Domänen-Controller / PDC </emphasis> &smbmdash; der Server, der die Domänen-SAM begründet.</para></listitem>
+	<listitem><para><emphasis>Backup Domänen-Controller / BDC </emphasis> &smbmdash; ein Server, der eine Kopieder Domänen-SAM anlegt.</para></listitem>
+	<listitem><para><emphasis>Domänen-Mitglieds-Server</emphasis> &smbmdash;  ein Server, der keine Kopie der Domänen-SAM hält, jedoch seine Authentifizierungsinformationen von einem Domänen-Controller bezieht.</para></listitem>
+	<listitem><para><emphasis>Stand-alone Server</emphasis> &smbmdash;  ein Server, der keine Rolle in der Sysnchronisation der Domänen-SAM spielt, seine eigene Authentifizierungs-Datenbank führt und auch keine Rolle in der Domänen-Sicherheit übernimmt.</para></listitem>
+</itemizedlist>
+
+<para>
+Bei der Verwendung von MS Windows 2000 wird die Konfiguration der Domänen-Verwaltung nach der Installation des Servers vorgenommen. Samba-3 kann als vollwertiges Mitglied einer Windows-200x-Server-Active-Directory-Domäne arbeiten.
+</para>
+
+<para>
+<indexterm><primary>Replikation</primary><secondary>SAM</secondary></indexterm>
+Neu in Samba-3 ist die Fähigkeit, als vollwertiger MS-Windows-NT4-Domänen-Controller zu arbeiten, ausgenommen die SAM-Replikations-Komponenten. Bitte beachten Sie, daß Samba-3 auch die MS Windows 200x Domänen-Verwaltungs-Protokolle unterstützt.
+</para>
+
+<para>
+Zum jetzigen Zeitpunkt ist jegliches Anzeichen dafür, daß Samba-3 als <emphasis>Domänen Controller</emphasis> im nativen ADS-Modus arbeiten kann, begrenzt und völlig experimentell. Diese Funktionalität sollte nicht verwendet werden, bis das Samba-Team formal die Unterstützung dafür anbietet. Sobald dies erfolgt, wird die Dokumentation revidiert werden, um alle Konfigurations- und Verwaltungs-Erfordernisse vollständig widerzuspiegeln. Samba kann als NT4-DC in einem Windows 2000/XP-Umgebung arbeiten. Jedoch gibt es einige Kompromisse:
+
+<itemizedlist>
+	<listitem>Keine Maschinen-Policy-Dateien.</listitem>
+	<listitem>Keine Gruppen-Policy-Objekte.</listitem>
+	<listitem>Keine synchron ausgeführten AD-logon-Skripts.</listitem>
+	<listitem>Active Directory management tools können nicht zur Benutzer- und Maschinen-Verwaltung verwendet werden.</listitem>
+	<listitem>Registrierungs-Änderungen prägen die Haupt-Registrierung, während mit AD keine bleibenden Veränderungen hinterlassen werden.</listitem>
+	<listitem>Ohne AD kann die Funktion, spezifische Applikationen für spezifische Benutzer/Gruppen zu exportieren, NICHT genutzt werden.</listitem>
+</itemizedlist>
+</para>
+
+</sect2>
+
+<sect2>
+<title>Vorbereitungen für Domänen-Verwaltung</title>
+
+<para>
+Es gibt zwei Arten, auf die MS Windows-Maschinen miteinander, mit anderen Servern und DCs zusammenarbeiten können: entweder als <emphasis>Stand-alone</emphasis>-Systeme, gebräuchlich bezeichnet als <emphasis>Workgroup</emphasis>-Mitglieder, oder als vollwertige Teilnehmer eines Sicherheits-Systems, gebräuchlich bezeichnet als <emphasis>Domain</emphasis>-Mitglieder.
+</para>
+
+<para>
+Es sollte beachtet werden, daß <emphasis>Workgroup</emphasis>-Mitgliedschaft keine spezielle Konfiguration erfordert, außer daß die Maschine so konfiguriert wird, daß die Netzwerk-Konfiguration einen gebräuchlichen Namen für den workgroup-Eintrag enthält. oft wird hiefür der Name WORKGROUP verwendet. In dieser Konfigurations-Art gibt es keine Maschinen-Vertrauens-Konten und jegliches Konzept von Mitgliedschaft ist darauf beschränkt, daß alle in der Netzwerkumgebung aufscheinenden Maschinen als logische Gruppe erscheinen. Zur Wiederholung und Klärung: <emphasis>Workgroup Modus beinhaltet keine Maschinen-Sicherheits-Konten</emphasis>.
+</para>
+
+<para>
+Domänen-Mitglieds-Maschinen haben ein Maschinen-Konto in der Domänen-Konten-Datenbank. Eine spezielle Prozedur muß auf jeder Maschine ausgeführt werden, um Domänen-Mitgliedschaft zu erwirken. Diese Prozedur, welche nur vom lokalen Administrator-Konto aus erfolgen kann, legt das Domänen-Maschinen-Konto an (falls es noch nicht existiert), und initialisiert dieses Konto. Wenn der Client sich erstmals in der Domäne anmeldet, wird ein Maschinen-Passwort-Wechsel ausgelöst.
+</para>
+
+<note><para>
+Wird Samba als Domänen-Controller konfiguriert, müssen alle MS Windows NT4/200x/XP Professional Clients als Domänen-Mitglieder konfiguriert werden, um den sicheren Betrieb des Netzwerks zu gewährleisten. Wenn eine Maschine nicht zum Domänen-Mitglied gemacht wird, wird sie sich wie eine Arbeitsgruppen(Standalone)-Maschine verhalten. Siehe <link linkend="domain-member"></link> für Informationen zur Domänen-Mitgliedschaft.
+</para></note>
+
+<para>
+Folgendes ist nötig, um Samba-3 als einen MS Windows NT4-artigen PDC für MS-Windows-NT4/200x/XP-Clients zu konfigurieren:
+</para>
+
+<itemizedlist>
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
+	<listitem><para>Konsistente Konfiguration der Namensauflösung <footnote><para>Siehe <link linkend="NetworkBrowsing"></link>, und
+		<link linkend="integrate-ms-networks"></link>.</para></footnote>.</para></listitem>
+	<listitem><para>Domänen-Logins für Windows NT4/200x/XP Professional Clients.</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles oder explizite Konfiguration, um die Verwendung lokaler Profile zu erzwingen.</para></listitem>
+	<listitem><para>Konfiguration von Netzwerk/System-Policies.</para></listitem>
+	<listitem><para>Hinzufügen und Verwalten von Domänen-Benutzer-Konten.</para></listitem>
+	<listitem><para>Konfiguration von MS Windows Clients als Domänen-Mitglieder.</para></listitem>
+</itemizedlist>
+
+<para>
+Die folgenden Voraussetzungen sind erforderlich, um MS Windows 9x/Me-Clients bedienen zu können:
+</para>
+
+<itemizedlist>
+	<listitem><para>Konfiguration der Basisdienste TCP/IP und MS Windows Netzwerk.</para></listitem>
+	<listitem><para>Korrekte Zuweisung der Server-Rolle (<smbconfoption><name>security</name><value>user</value></smbconfoption>).</para></listitem>
+	<listitem><para>Netzwerk-Login-Konfiguration (da Windows 9x/Me/XP Home technisch gesehen keine Domänen-Mitglieder sind, nehmen sie auch nicht wirklich als solches an den Sicherheits-Aspekten von Domänen Anteil) .</para></listitem>
+	<listitem><para>Konfiguration von Roaming Profiles.</para></listitem>
+	<listitem><para>Konfiguration von System Policy handling.</para></listitem>
+	<listitem><para>Installation des Netzwerk-Treibers <quote>Client for MS Windows Networks</quote> und dessen Konfiguration, um sich in der Domäne anzumelden.</para></listitem>
+	<listitem><para>Setzen der Windows 9x/Me-Clients auf User Level Security &smbmdash; wenn es erwünscht ist, jeglichen Client-Zugriff auf Freigaben entsprechend der Domänen-Benutzern/Gruppen zu verwalten.</para></listitem>
+	<listitem><para>Hinzufügen und Verwalten von Domänen-Benutzer-Konten.</para></listitem>
+</itemizedlist>
+
+<note><para>
+Roaming Profiles und System/Network policies sind fortgeschrittene Netzwerk-Verwaltungs-Themen die in den Kapiteln <link linkend="ProfileMgmt"></link> und <link linkend="PolicyMgmt"></link> behandelt werden. Jedoch sind diese Themen für einen Samba-PDC nicht so entscheidend, da sie eng mit den Windows NT-Netzwerk-Konzepten zusammenhängen.
+</para></note>
+
+<para>
+Ein Domänen-Controller ist ein SMB/CIFS-Server, der:
+</para>
+
+<itemizedlist>
+	<listitem><para>
+	sich selbst als Domänen Controller registriert und anbietet (sowohl durch
+	NetBIOS broadcasts wie auch durch verschiedene Namensregistrierungen,
+	entweder durch Mailslot Broadcasts über UDP broadcast, einem WINS-Server
+	über UDP unicast, oder über DNS und Active Directory).	
+	</para></listitem>
+
+	<listitem><para>
+	den NETLOGON-Dienst anbietet. (Dies ist tatsächlich eine Sammlung von Diensten,
+	die über mehrere Protokolle laufen. Diese inkludieren den LanMan-Logon-Dienst,
+	den Netlogon-Dienst, den Local-Security-Account-Dienst, und Abwandlungen dieser.)
+	</para></listitem>
+
+	<listitem><para>
+	eine Freigabe namens NETLOGON anbietet.
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Es ist ziemlich einfach, Samba so zu konfigurieren, daß er all dies zur Verfügung stellt. Jeder Samba Domain Controller muß den NETLOGON-Dienst anbieten, welcher von Samba als <smbconfoption><name>domain logons</name></smbconfoption>-Funktionalität bezeichnet wird (nach dem Parameter in der &smb.conf;-Datei). Weiters muß ein Server in einer Samba-3-Domäne sich selbst als Domain Master Browser bekanntgeben <footnote>Siehe <link linkend="NetworkBrowsing"/>.</footnote>.
+Dies veranlaßt den PDC dazu, einen Domänen-spezifischen NetBIOS-Namen zu beanspruchen, der ihn als Domain Master Browser für die gegebene Domäne/Workgroup identifiziert. Lokale Master Browser in derselben Domäne/Workgroup und broadcast-isolierten Subnetzen erfragen dann eine komplette Kopie der "browse list" für das gesamte WAN. Browser Clients kontaktieren darauf ihren Lokalen Master Browser, und erhalten die "browse list" der gesamten Domäne, anstatt nur der Liste für ihr broadcast-isoliertes Subnetz.
+</para>
+
+</sect2>
+</sect1>
+
+<sect1>
+<title>Domänen-Verwaltung &smbmdash; Beispiel-Konfiguration</title>
+
+<para>
+Der erste Schritt, um einen funktionierenden Samba PDC zu erstellen, ist, die nötigen Parameter in &smb.conf; zu verstehen. Ein Beispiel einer &smb.conf; für einen PDC finden Sie unter <link linkend="pdc-example"/>.
+</para>
+
+<para>
+<smbconfexample id="pdc-example">
+<title>smb.conf for being a PDC</title>
+<smbconfsection>[global]</smbconfsection>
+<smbconfoption><name>netbios name</name><value><replaceable>BELERIAND</replaceable></value></smbconfoption>
+<smbconfoption><name>workgroup</name><value><replaceable>&example.workgroup;</replaceable></value></smbconfoption>
+<smbconfoption><name>passdb backend</name><value>tdbsam</value></smbconfoption>
+<smbconfoption><name>os level</name><value>33</value></smbconfoption>
+<smbconfoption><name>preferred master</name><value>yes</value></smbconfoption>
+<smbconfoption><name>domain master</name><value>yes</value></smbconfoption>
+<smbconfoption><name>local master</name><value>yes</value></smbconfoption>
+<smbconfoption><name>security</name><value>user</value></smbconfoption>
+<smbconfoption><name>domain logons</name><value>yes</value></smbconfoption>
+<smbconfoption><name>logon path</name><value>\\%N\profiles\%u</value></smbconfoption>
+<smbconfoption><name>logon drive</name><value>H:</value></smbconfoption>
+<smbconfoption><name>logon home</name><value>\\homeserver\%u\winprofile</value></smbconfoption>
+<smbconfoption><name>logon script</name><value>logon.cmd</value></smbconfoption>
+
+<smbconfsection>[netlogon]</smbconfsection>
+<smbconfoption><name>path</name><value>/var/lib/samba/netlogon</value></smbconfoption>
+<smbconfoption><name>read only</name><value>yes</value></smbconfoption>
+<smbconfoption><name>write list</name><value><replaceable>ntadmin</replaceable></value></smbconfoption>
+
+<smbconfsection>[profiles]</smbconfsection>
+<smbconfoption><name>path</name><value>/var/lib/samba/profiles</value></smbconfoption>
+<smbconfoption><name>read only</name><value>no</value></smbconfoption>
+<smbconfoption><name>create mask</name><value>0600</value></smbconfoption>
+<smbconfoption><name>directory mask</name><value>0700</value></smbconfoption>
+</smbconfexample>
+</para>
+
+<para>
+Die grundlegenden Optionen, die in <link linkend="pdc-example"/> gezeigt werden, werden wie folgt erklärt:
+</para>
+
+<variablelist>
+	<varlistentry><term>passdb backend </term>
+		<listitem><para>
+		Dies enthält sämtliche Information zu Benutzer- und Gruppenkonten. Akzeptable Werte für einen PDC sind: <emphasis>smbpasswd, tdbsam, and ldapsam</emphasis>. Der <quote>guest</quote>-Eintrag stellt Standard-Konten zur Verfügung und ist standard-mässig inkludiert, es besteht keine Notwendigkeit, ihn explizit hinzuzufügen.
+Wo der Einsatz von Backup-Domänen-Controllern (BDCs) beabsichtigt ist, ist die einzige logische Wahl die Verwendung von LDAP, sodaß die passdb verteilt werden kann. Die tdbsam und smbpasswd-Dateien können nicht effektiv verteilt werden und sollten daher nicht verwendet werden.		
+		</para>
+</listitem>
+	</varlistentry>
+	<varlistentry><term>Domänen-Verwaltungs-Parameter </term>
+		<listitem><para>
+		Die Parameter <emphasis>os level, preferred master, domain master, security,
+		encrypt passwords, und domain logons</emphasis> spielen eine wichtige Rolle bei der Unterstützung für Domänen-Kontrolle und Netzwerk-Anmeldung.</para>
+
+		<para>
+		Das <emphasis>os level</emphasis> muß auf einen Wert von mindestens 32 gesetzt werden. 
+		Ein Domänen-Controller muß auch der Domänen-Master-Browser sein, muß auf <emphasis>user</emphasis>
+		mode security gesetzt sein, muß MS-kompatibel verschlüsselte Passwörter unterstützen, und muß den Nettwerk-Anmelde-Dienst (Domänen-Anmeldungen) anbieten. Verschlüsselte Passwörter müssen aktiviert sein.
+		Für mehr Details dazu, siehe <link linkend="passdb"></link>.
+		</para></listitem>
+	</varlistentry>
+	<varlistentry><term>Umgebungs-Parameter</term>
+		<listitem><para>
+		Die Parameter <emphasis>logon path, logon home, logon drive, and logon script</emphasis> sind 
+		Umgebungs-Einstellungen, die dabei helfen, Client-Anmeldungen zu ermöglichen, und die
+		automatisierte Kontrollmechanismen zur Verfügung stellen, um Overheads im Netzwerk-Management
+		zu verringern. Siehe die man-page für Informationen zu diesen Parametern.
+		</para></listitem>
+	</varlistentry>
+	<varlistentry><term>NETLOGON-Freigabe</term>
+		<listitem><para>
+		Die NETLOGON-Freigabe spielt eine zentrale Rolle in der Unterstützung von Domänen-Anmeldungen
+		und Domänen-Mitgliedschaft. Diese Freigabe wird von allen MS-Domänen-Controllern zur
+		Verfügung gestellt. Sie wird dazu verwendet, um Anmelde-Skripts bereit zu stellen, um
+		Group Policy files (wie NTConfig.POL) zu speichern, aber auch, um andere gängige
+		Werkzeuge zur Verfügung zu stellen, die für den Anmelde-Vorgang gebraucht werden.
+		Dies ist eine essentielle Freigabe auf einem Domänen-Controller.
+		</para></listitem>
+	</varlistentry>
+	<varlistentry><term>PROFILE-Freigabe</term>
+		<listitem><para>
+		Diese Freigabe wird zur Speicherung von Benutzer-Desktop-Profilen verwendet.
+		Jeder Benutzer muß ein Verzeichnis im root-Verzeichnis dieser Freigabe haben.
+		Dieses Verzeichnis muß für den Benutzer Schreibrechte haben und global lesbar sein.
+		Samba-3 hat ein VFS-Modul namens <quote>fake_permissions</quote>, das auf dieser
+		Freigabe installiert werden kann. Das erlaubt es einem Samba-Administrator, das
+		Verzeichnis read-only für jeden zu setzen. Natürlich ist dies nur sinnvoll, nachdem
+		das Profil richtig erstellt wurde.
+		</para></listitem>
+	</varlistentry>
+</variablelist>
+
+<note><para>
+Die obigen Parameter bilden einen vollständigen Satz von Parametern, der den Arbeitsmodus des Servers definiert.
+Die folgenden &smb.conf;-Parameter sind die essentiell notwendigen:
+</para>
+
+<para>
+<smbconfblock>
+<smbconfoption><name>netbios name</name><value>BELERIAND</value></smbconfoption>
+<smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
+<smbconfoption><name>domain logons</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>domain master</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>security</name><value>User</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<para>
+Die zusätzlichen Parameter, die in der längeren Auflistung oben gezeigt werden, bedürfen einer weitergehenden Erklärung.
+</para></note>
+
+</sect1>
+
+<sect1>
+<title>Samba ADS Domänen-Verwaltung</title>
+
+<para>
+Samba-3 ist kein, und kann sich nicht verhalten wie ein Active Directory Server.
+Samba-3 kann nicht wirklich wie ein Active Directory Primary Domain Controller funktionieren.
+Die Protokolle für einige Funktionalitäten von AD-DCs wurden teilweise auf experimenteller Basis
+implementiert. Bitte erwarten Sie nicht, daß Samba-3 diese Protokolle unterstützt.
+Verlassen Sie nicht auf irgendeine derartige Funktionalität, weder jetzt noch in der Zukunft.
+Das Samba-Team könnte diese experimentellen Features entfernen oder deren Verhalten verändern.
+Dies wird erwähnt, um jenen zu helfen, die "geheime" Fähigkeiten von Samba-3 entdeckt haben und
+danach gefragt haben, wann diese Funktionalitäten vervollständigt sein werden.
+Die Antwort darauf ist: "Vielleicht. Vielleicht nie!"
+</para>
+
+<para>
+Um sicher zu sein, Samba-3 wurde entworfen, um den größten Teil der Funktionalität zur Verfügung zu
+stellen, die MS Windows NT4-artige Domänen-Controller anbieten. Samba-3 hat nicht alle Fähigkeiten von
+Windows NT4, aber es hat einige Eigenschaften, die Windows NT4-DCs nicht haben. 
+Kurz gesagt, Samba-3 ist nicht NT4, Samba-3 ist nicht Windows Server 200x, Samba-3 ist kein AD-Server.
+Wir hoffen, daß dies kurz und einfach genug ist, um für alle verständlich zu sein.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Konfiguration von Domänen- und Netzwerk-Anmeldung</title>
+
+<para>
+Das Thema der Domänen- oder Netzwerk-Anmeldungen wird hier diskutiert, weil es einen integralen Teil
+der essentiellen Funktionen eines Domänen-Controllers darstellt.
+</para>
+
+<sect2>
+<title>Domänen-Netzwerks-Anmelde-Dienst</title>
+
+<para>
+Alle Domänen-Controller müssen den netlogon-Dienst ausführen (<emphasis>domain logons</emphasis> in Samba).
+Ein Domänen-Controller muß mit <smbconfoption><name>domain master</name><value>Yes</value></smbconfoption>
+konfiguriert werden (der PDC); auf allen BDCs muß <smbconfoption><name>domain master</name><value>No</value></smbconfoption> gesetzt werden.
+</para>
+
+<sect3>
+<title>Beispiel einer Konfiguration</title>
+
+<smbconfexample id="PDC-config">
+<title>smb.conf for being a PDC</title>
+<smbconfsection>[global]</smbconfsection>
+<smbconfoption><name>domain logons</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>domain master</name><value>(Yes on PDC, No on BDCs)</value></smbconfoption>
+
+<smbconfsection>[netlogon]</smbconfsection>
+<smbconfoption><name>comment</name><value>Network Logon Service</value></smbconfoption>
+<smbconfoption><name>path</name><value>/var/lib/samba/netlogon</value></smbconfoption>
+<smbconfoption><name>guest ok</name><value>Yes</value></smbconfoption>
+<smbconfoption><name>browseable</name><value>No</value></smbconfoption>
+</smbconfexample>
+
+</sect3>
+<sect3>
+<title>Der spezielle Fall von MS Windows XP Home Edition</title>
+
+<para>
+Um es unmißverständlich auszudrücken:
+Wenn Sie MS Windows XP Home Edition in ihre MS Windows NT4- oder ADS-Domäne integrieren wollen,
+müssen Sie verstehen, daß dies NICHT MÖGLICH ist. Die einzige Möglichkeit ist der Erwerb eines
+Upgrades von MS Windows XP Home Edition auf MS Windows XP Professional.
+</para>
+
+<note><para>
+MS Windows XP Home Edition hat keine Fähigkeiten, sich jeglicher Art von Domäne anzuschliessen.
+Im Unterschied zu MS Windows 9x/Me fehlt MS Windows XP Home Edition auch völlig die Fähigkeit,
+sich an einem Netz anzumelden.
+</para></note>
+
+<para>
+Nun, da dies ausgesprochen wurde, fragen Sie bitte NICHT auf der Samba-Mailing-Liste oder
+mailen Sie auch NICHT an die Mitglieder des Samba-Teams, um zu erfragen, wie dies machbar wäre.
+Es ist NICHT MÖGLICH. Wenn es möglich ist, dann würde es Ihr Software-Lizenz-Abkommen mit Microsoft
+verletzen, und wir empfehlen, dies NICHT zu tun.
+</para>
+
+</sect3>
+
+<sect3>
+<title>Der spezielle Fall von Windows 9x/Me</title>
+
+<para>
+Eine Domäne und eine Arbeitsgruppe sind in den Begriffen des Netzwerk-Suchdienstes
+exakt dasselbe. Der Unterschied ist, daß mit einer Domäne eine verteilbare
+Anmelde-Datenbank verknüpft ist, für sichere Anmeldungen an einem Netzwerk.
+Weiters können andere Zugriffs-Berechtigungen an Benutzer vergeben werden, wenn
+sie sich erfolgreich an einem Domänen-Anmeldungs-Server anmelden.
+Samba-3 tut dies nun in derselben Weise wie MS Windows NT/200x.
+</para>
+
+<para>
+Der SMB-Client, der sich an einer Domäne anmeldet, hat die Erwartung, daß jeder
+beliebige Server in der Domäne dieselbe Anmelde-Information akzeptieren sollte.
+Die Netzwerk-Such-Funktionalität von Domänen und Arbeitsgruppen ist identisch und
+wird in dieser Dokumentation unter den Diskussionen zum Browsing erklärt.
+Es sollte bemerkt werden, daß Browsing sich völlig orthogonal zur Unterstützung
+von Anmeldungen verhält.
+</para>
+
+<para>
+Themen in Bezug auf das Single-Logon-Netzwerk-Modell werden in diesem Abschnitt
+behandelt. Samba unterstützt Domänen-Anmeldungen, Netzwerk-Anmelde-Skripts und
+Benutzerprofile für MS Windows for Workgroups und MS Windows 9X/ME Clients, die
+im Mittelpunkt dieses Abschnitts stehen.
+</para>
+
+<para>
+Wenn ein SMB-Client sich in einer Domäne anmelden will, sendet er Anfragen nach einem
+Anmelde-Server aus. Der erste, der antwortet, bekommt den Job, und überprüft das 
+Passwort unter Verwendung jenes Mechanismus, den der Samba-Administrator installiert hat.
+Es ist möglich (aber nicht empfohlen), eine Domäne anzulegen, in der die Benutzerdatenbank
+nicht von den Servern geteilt wird, d.h., sie sind effektiv Arbeitsgruppen-Server, die sich
+als Teilnehmer an einer Domäne bewerben. Dies demonstriert, wie Authentifikation einerseits
+sehr unterschiedlich von Domänen ist, andererseits aber eng mit ihnen verknüpft ist.
+</para>
+
+<para>
+Unter Verwendung dieser Eigenschaften können Sie Ihre Clients ihre Anmeldung via
+Samba-Server überprüfen lassen, sie dazu veranlassen, bei der Netzwerkanmeldung
+ein Skript auszuführen und ihre Einstellungen, Desktops und Startmenüs herunterzuladen.
+</para>
+
+<para><emphasis>
+MS Windows XP Home edition ist nicht fähig, sich einer Domäne anzuschliessen, und
+erlaubt keine Verwendung von Domänenanmeldungen.
+</emphasis></para>
+
+<para>
+Bevor wir mit den Konfigurations-Anleitungen beginnen, lohnt es sich, sich anzusehen,
+wie ein Windows 9x/Me-Client eine Anmeldung durchführt:
+</para>
+
+<orderedlist>
+<listitem>
+	<para>
+	Der Client versendet mittels Broadcasts (an die IP-broadcast-Adresse des
+	Subnetzes, in dem er sich befindet) eine NetLogon-Anfrage. Diese wird an den 
+	NetBIOS-Namen DOMÄNE&lt;#1c&gt; auf dem NetBIOS-Layer gesandt. Der Client
+	wählt die erste Antwort, die er erhält, welche den NetBIOS-Namen des 
+	zu verwendenden Anmeldeservers im Format <filename>\\SERVER</filename> enthält.
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client verbindet sich mit diesem Server, meldet sich an (führt ein SMBsessetupX aus)
+	und verbindet sich dann mit der IPC$-Freigabe (unter Verwendung eines SMBtconX).
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client führt eine Anfrage vom Typ NetWkstaUserLogon aus, welche den Namen des
+	Anmeldeskripts des Benutzers zurückgibt.	
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client verbindet sich dann mit der Netlogon-Freigabe und sucht nach dem angegebenen
+	Skript. Wenn es gefunden wird und gelesen werden kann, wird es geladen und vom Client
+	ausgeführt. Danach trennt der Client die Verbindung mit der Netlogon-Freigabe.
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client sendet eine Anfrage vom Typ NetUserGetInfo an den Server, um die Home-Freigabe
+	des Benutzers zu erhalten, welche dazu benutzt wird, um nach Profilen zu suchen. Da die
+	Antwort auf die NetUserGetInfo-Anfrage nicht viel mehr enthält als die Home-Freigabe des
+	Benutzers, müssen Profile für Windows 9x clients im Home-Verzeichnis des Benutzers liegen.
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client verbindet sich mit der Home-Freigabe des Benutzers und sucht nach dem Benutzerprofil.
+	Wie sich herausstellt, können Sie die Home-Freigabe als Freigabe und Pfas angeben.
+	Zum Beispiel, <filename>\\server\fred\.winprofile</filename>.
+	Wenn die Profile gefunden werden, werden sie eingebunden.
+	</para>
+</listitem>
+
+<listitem>
+	<para>
+	Der Client trennt die Verbindung mit der Home-Freigabe des Benutzers und verbindet sich wieder
+	mit der Netlogon-Freigabe und sucht nach <filename>CONFIG.POL</filename>, der Policies-Datei.
+	Wenn diese gefunden wird, wird sie gelesen und eingebunden.	
+	</para>
+</listitem>
+</orderedlist>
+
+<para>
+Der Hauptunterschied zwischen einem PDC und einem Windows 9x/Me-Anmelde-Server ist:
+</para>
+
+<itemizedlist>
+<listitem><para>
+	Die Verschlüsselung von Passwörtern ist für einen Windows 9x/Me-Anmelde-Server
+	nicht notwendig. Aber bemerken Sie, daß seit MS Windows 98 die Standardeinstellung
+	besagt, daß die Unterstützung von Klartext-Passwörtern deaktiviert ist. Sie kann
+	mit den unter <link linkend="PolicyMgmt"/> beschriebenen Änderungen aktiviert werden.
+	</para></listitem>
+
+	<listitem><para>
+	Windows 9x/Me Clients benötigen und benutzen KEINE Maschinen-Vertrauens-Kontos.
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Ein Samba PDC wird sich wie ein Windows 9x/Me-Anmelde-Server verhalten; endlich stellt er
+all die Anmelde-Dienste zur Verfügung, die MS Windows 9x/Me erwartet.
+</para>
+
+<note><para>
+Von der Verwendung von Klartext-Passwörtern wird stärkstens abgeraten. Wo immer sie verwendet werden,
+können sie einfachst durch Verwendung von Netzwerk-Sniffern abgehört werden.
+</para></note>
+
+</sect3>
+</sect2>
+
+<sect2>
+<title>Sicherheits-Modus und Master Browser</title>
+
+<para>
+Es gibt ein paar Anmerkungen, die zu machen sind, um einige offene Fragen zu klären.
+Es gab viele Diskussionen darüber, ob es okay ist, Samba als Domänen-Controller in anderen
+Sicherheits-Modi als "user" zu konfigurieren. Der einzige Modus, der aus technischen Gründen
+nicht funktionieren wird, ist der Modus der Freigaben-Sicherheit. Domänen- und Server-Modus-Sicherheit
+sind in Wirklichkeit einfach nur Abwandlungen der SMB-Benutzer-Ebenen-Sicherheit.
+</para>
+
+<para>
+Tatsächlich hängt dieses Thema auch eng mit der Debatte zusammen, ob Samba der Domänen-Master-Browser
+für seine Domäne sein muß, wenn er als DC arbeitet. Während es technisch möglich sein mag, einen Server so
+zu konfigurieren (schließlich sind Browsing und Domänenanmeldungen zwei völlig verschiedene Funktionen), 
+is es doch keine gute Idee, dies zu tun. Sie sollten sich daran erinnern, daß der DC den 
+DOMAIN&lt;#1b&gt; NetBIOS-Namen registrieren muß. Dies ist der Name, der von den Windows-Clients verwendet
+wird, um den DC ausfindig zu machen. Windows Clients unterscheiden nicht zwischen dem DC und dem DMB
+(Ein DMB ist ein Domänen-Master-Browser &smbmdash; siehe <link linkend="DMB"></link>). Aus diesem Grund
+ist es ratsam, den Samba DC auch als DMB zu konfigurieren.
+</para>
+
+<para>
+Nun zurück zum Thema der Konfiguration eines Samba DC zur Verwendung eines Modus abweichend von
+<smbconfoption><name>security</name><value>user</value></smbconfoption>. 
+Wenn ein Samba-Rechner so konfiguriert ist, daß er einen anderen SMB-server oder -DC verwendet, um
+Benutzeranmeldungen zu prüfen, dann ist es ein Faktum, daß irgendeine andere Maschine in diesem Netz
+(der <smbconfoption><name>password server</name></smbconfoption>) mehr über den Benutzer weiß, als der
+Samba-Rechner. In ungefähr 99% der Fälle ist dieser Rechner ein DC. Um nun im Domänen-Sicherheits-Modus zu
+arbeiten, ist es notwendig, den <smbconfoption><name>workgroup</name></smbconfoption>-Parameter auf den
+Namen der Windows NT-Domäne zu setzen (welche bereits einen DC hat). Wenn die Domäne noch keinen DC hat,
+haben Sie noch keine Domäne.
+</para>
+
+<para>
+Das Konfigurieren von Samba als DC für eine Domäne, die (per Definition) bereits einen PDC hat, ist reinste
+Problembeschaffung. Deshalb sollten Sie den Samba DC immer als DMB für seine Domäne konfigurieren, und
+<smbconfoption><name>security</name><value>user</value></smbconfoption> setzen. Dies ist der einzige offiziell
+unterstützte Arbeits-Modus.
+</para>
+
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Häufige Fehler</title>
+
+<sect2>
+	<title><quote>$</quote> darf nicht im Maschinen-Namen vorkommen</title>
+<para>
+Ein Maschinenkonto, üblicherweise in <filename>/etc/passwd</filename> gespeichert, hat die Form des
+Maschinennamens, mit einem <quote>$</quote> angehängt. FreeBSD (und andere BSD-Systeme) legen keinen
+Benutzer mit einem <quote>$</quote> im Namen an.
+</para>
+
+<para>
+Das Problem liegt nur im Programm, das zum Anlegen des Eintrags verwendet wird. Einmal angelegt, funktioniert
+es perfekt. Legen Sie einen Benutzer ohne das <quote>$</quote> an. Benutzen Sie dann den Befehl 
+<command>vipw</command>, um den Eintrag zu editieren, bzw. das <quote>$</quote> hinzuzufügen. Oder legen Sie den
+ganzen Eintrag mit <command>vipw</command> an, wenn Sie wollen; stellen Sie sicher, daß sie eine einmalige
+Benutzer-ID (UID) verwenden.
+</para>
+
+<para><note>Das Maschinen-Konto muß exakt den gleichen Namen wie die Workstation haben.</note></para>
+
+<note><para>
+Das UNIX-tool <command>vipw</command> ist ein übliches Werkzeug für das direkte Editieren der Datei <filename>/etc/passwd</filename>.
+</para></note>
+
+</sect2>
+
+<sect2>
+<title>Der Anschluß an die Domäne scheitert an einem bereits existierenden Maschinen-Konto</title>
+
+<para>
+<quote>Ich bekomme `You already have a connection to the Domain....' oder `Cannot join domain, the
+credentials supplied conflict with an existing set...' wenn ich ein Maschinen-Vertrauens-Konto anlegen will.</quote>
+</para>
+
+<para>
+Dies passiert, wenn Sie versuchen, ein Maschinen-Vertrauens-Konto von der betreffenden Maschine aus anlegen wollen, und bereits eine bestehende Verbindung (wie z.B. ein verbundenes Netzlaufwerk) zu einer Freigabe (oder zu IPC$) auf dem Samba PDC haben. Der folgende Befehl trennt alle bestehenden Netzlaufwerksverbindungen:
+<screen>
+&dosprompt;<userinput>net use * /d</userinput>
+</screen>
+</para>
+
+<para>
+Weiters: Wenn die Maschine bereits ein <quote>Mitglied einer Arbeitsgruppe</quote> ist, die denselben Namen hat wie die Domäne, der Sie sich anschliessen wollen (schlechte Idee), werden Sie dieselbe Meldung erhalten. Ändern Sie den Namen der Arbeitsgruppe auf etwas anderes, egal was, rebooten Sie, und versuchen Sie es erneut.
+</para>
+</sect2>
+
+<sect2>
+<title>Das System kann Sie nicht anmelden (C000019B)</title>
+
+<para><quote>Ich schloß mich erfolgreich der Domäne an, aber nach dem Upgrade auf eine neue Samba-Release bekomme ich die Meldung <errorname>`The system cannot log you on (C000019B), Please try again or consult your system administrator</errorname>, wenn ich versuche, mich anzumelden.</quote>
+</para>
+
+<para>
+<indexterm><primary>SID</primary></indexterm>
+Dies geschieht, wenn der Domänen-SID, der in der secrets.tdb-Datenbank gespeichert ist, geändert wird. Die häufigste Ursache für eine Änderung ist die Änderung des Domänen-Namens und/oder des Server-Namens (NetBIOS-Namen). Die einzige Lösung ist es, den originale Domänen-SID wiederherzustellen oder den Domänen-Client aus der Domäne zu entfernen und neu einzubinden. Der Domänen-SID kann mittels net- oder rpcclient-Werkzeug zurückgesetzt werden.
+</para>
+
+<para>
+Zum Zurücksetzen oder Ändern des Domänen-SID können Sie den net-Befehl wie folgt verwenden:
+
+<screen>
+&rootprompt;<userinput>net getlocalsid 'OLDNAME'</userinput>
+&rootprompt;<userinput>net setlocalsid 'SID'</userinput>
+</screen>
+</para>
+
+<para>
+Maschinen-Vertrauens-Konten von Workstations arbeiten nur mit dem Domänen-SID (Netzwerk-SID). Wenn dieser SID sich ändert, können sich Domänen-Mitglieder (Workstations) nicht in der Domäne anmelden. Der originale Domänen-SID kann aus der secrets.tdb-Datenbank wiederhergestellt werden. Die Alternative ist es, jede einzelne Workstation aufzusuchen und neu der Domäne anzuschliessen.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Das Maschinen-Vertrauens-Konto ist nicht erreichbar</title>
+
+<para>
+<quote>Wenn ich versuche, mich der Domäne anzuschliessen, bekomme ich die Nachricht <errorname>`The machine account
+for this computer either does not exist or is not accessible'</errorname>. Was ist falsch?</quote>
+</para>
+
+<para>
+Dieses Problem wird dadurch verursacht, daß der PDC kein passendes Maschinen-Vertrauens-Konto bereitstellt. Wenn Sie die <smbconfoption><name>add machine script</name></smbconfoption>-Methode zum Anlegen von Konten verwenden, ist dies ein Zeichen dafür, daß diese Methode nicht funktioniert hat. Stellen Sie sicher, daß das Domänen-Administratoren-Benutzer-System richtig arbeitet.
+</para>
+
+<para>
+Andererseits, wenn Sie Konten händisch erstellen, dann wurden diese nicht korrekt erstellt. Stellen Sie sicher, daß Sie den Eintrag für das Maschinen-Vertrauens-Konto in der Datei <filename>smbpasswd</filename> auf dem Samba PDC korrekt erstellt haben. Wenn Sie den Eintrag unter Verwendung eines Editors anstatt des Programms smbpasswd erstellt haben, kontrollieren Sie, daß der Name des Kontos dem NetBIOS-Namen der Maschine, gefolgt von einem <quote>$</quote>, ist (z.B. computer_name$). Es muß je einen Eintrag in /etc/passwd und der Datei smbpasswd geben.
+</para>
+
+<para>
+Manche Benutzer haben auch berichtet, daß inkonsistente Subnetz-Masken zwischen dem Samba-Server und dem NT-Client dieses Problem verursachen können. Stellen Sie sicher, daß diese für Client und Server übereinstimmen.
+</para>
+</sect2>
+
+<sect2>
+<title>Konto deaktiviert</title>
+
+<para><quote>Wenn ich versuche, mich einer Domäne von einer NT4/W200x-Workstation aus anzuschliessen, bekomme ich die Nachricht, daß mein Konto deaktiviert wird.</quote></para>
+
+<para>
+Aktivieren Sie die Benutzer-Konten mittels <userinput>smbpasswd -e <replaceable>Benutzername</replaceable>
+</userinput>. Dies wird normalerweise beim Anlegen eines Kontos ausgeführt.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Domänen-Controller nicht verfügbar</title>
+
+<para><quote>Ein paar Minuten, nachdem Samba gestartet worden ist, bekommen die Clients den Fehler `Domain Controller Unavailable'</quote></para>
+
+<para>
+Ein Domänen-Controller muß seine Rolle im Netzwerk bekanntgeben. Dies braucht üblicherweise eine Weile. Haben Sie Geduld für bis zu 15 Minuten, versuchen Sie es dann nochmals.
+</para>
+</sect2>
+
+<sect2>
+<title>Ich kann mich nicht an einer Domänen-Mitglieds-Workstation anmelden, nachdem ich mich einer Domäne angeschlossen habe</title>
+
+<para>
+<indexterm><primary>schannel</primary></indexterm>
+<indexterm><primary>signing</primary></indexterm>
+Nach dem erfolgreichen Beitreten zu einer Domäne scheitern Benutzeranmeldungen mit einer von zwei Meldungen: die eine aus dem Grund, daß der DC nicht gefunden werden kann; die andere behauptet, daß das Konto nicht in der Domäne existiert, bzw. daß das Passwort falsch ist. Dies kann durch imkompatible Einstellungen zwischen dem Windows-Client und dem Samba-3-Server verursacht werden: <emphasis>schannel</emphasis> (secure channel) oder <emphasis>smb signing</emphasis>-Einstellungen. Prüfen Sie die Einstellungen <emphasis> client schannel, server schannel, client signing, server signing</emphasis> durch das Ausführen von:
+<screen>
+<command>testparm -v | more</command>
+</screen>
+ und das Prüfen der Werte dieser Parameter.
+</para>
+
+<para>
+Benutzen Sie auch die  Microsoft Management Console &smbmdash; Local Security Settings. Dieses Werkzeug ist in der Systemsteuerung verfügbar. Die Policy-Einstellungen findet man im Bereich "Local Policies/Security Options", sie sind erkennbar am Prefix <emphasis>Secure Channel: ..., and Digitally sign ....</emphasis>.
+</para>
+
+<para>
+Es ist wichtig, daß diese Einstellungen konsistent mit denen des Samba-3-Servers gesetzt sind.
+</para>
+
+</sect2>
+
+</sect1>
+</chapter>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/logon"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="deleteuserscript.xml"
+   text-time="2004-05-22T14:19:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a1e9ed0561e9d1b49f71a9e5aa6aa8ab"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="deleteuserfromgroupscript.xml"
+   text-time="2004-05-22T14:19:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6f7349b76811dc1d0f08bcf63e06fd1b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="logonhome.xml"
+   text-time="2004-05-22T14:19:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="300e792661585e93dc6578abda36b62f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="abortshutdownscript.xml"
+   text-time="2004-05-22T14:19:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7073c60a22889a6cf06eb04dedf05bfc"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="domainlogons.xml"
+   text-time="2004-05-22T14:19:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0f73013e2eb8a7fc98018de80016b5c1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="addgroupscript.xml"
+   text-time="2004-05-22T14:19:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="019b099252c062e70b0b013d47bc1c47"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="logonpath.xml"
+   text-time="2004-05-22T14:19:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f7952bbd8b19750beb0e91cb4261e05e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="addusertogroupscript.xml"
+   text-time="2004-05-22T14:19:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="fc527267d76944bdef842d4243690da2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="shutdownscript.xml"
+   text-time="2004-05-22T14:19:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="65ce0adb365df0c3ffbc98d93428897f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:02.000000Z"/>
+<entry
+   committed-rev="3"
+   name="setprimarygroupscript.xml"
+   text-time="2004-05-22T14:19:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="dac439568791fde59158994f6908c885"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:02.000000Z"/>
+<entry
+   committed-rev="3"
+   name="addmachinescript.xml"
+   text-time="2004-05-22T14:19:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0c0e64f816b185cc935b7f5059bb46de"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:02.000000Z"/>
+<entry
+   committed-rev="3"
+   name="logonscript.xml"
+   text-time="2004-05-22T14:19:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="63b56c84366a559b17de3fc760cd44df"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:02.000000Z"/>
+<entry
+   committed-rev="3"
+   name="deletegroupscript.xml"
+   text-time="2004-05-22T14:19:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="fb8ddb7f1da467911a77f49727ad61e6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:02.000000Z"/>
+<entry
+   committed-rev="3"
+   name="logondrive.xml"
+   text-time="2004-05-22T14:19:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="335cda588d16c5655b9fa7e371a8280f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="adduserscript.xml"
+   text-time="2004-05-22T14:19:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a10ce374eb39df6d20e2844e62184afe"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:04.000000Z"/>
+</wc-entries>

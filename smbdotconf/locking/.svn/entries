@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/locking"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="oplockbreakwaittime.xml"
+   text-time="2004-05-22T14:18:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="882197e45b505effa6465245f25b27d5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lockspintime.xml"
+   text-time="2004-05-22T14:18:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="74563a65637876682a51540d911c973b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="fakeoplocks.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ec9ed63a0b800dcbf973cf1bca540b8a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="blockinglocks.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bf009d39fcbb0ef875b830529bdad161"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="level2oplocks.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bf71f67a2b2abb841f09e5e069a9ac8a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="locking.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ad8a9b4ad5dee672e82619560987e7e8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="oplockcontentionlimit.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9f14d46fdd87d111675f7443b3122094"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="cscpolicy.xml"
+   text-time="2004-05-22T14:18:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5438df20c8780cc74fe07977a3227e09"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="posixlocking.xml"
+   text-time="2004-05-22T14:18:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d6f53f822a8f04200349bb228e0c7875"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="oplocks.xml"
+   text-time="2004-05-22T14:18:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e21c4f08da613eeda3edc7dfb1f8afa9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="sharemodes.xml"
+   text-time="2004-05-22T14:18:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8c4e9be8ee9fabac73166632e75569dd"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="kerneloplocks.xml"
+   text-time="2004-05-22T14:18:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="aa1aedd17831d2273b633dc80a042cfc"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lockspincount.xml"
+   text-time="2004-05-22T14:18:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="46a570c40a2e8e4def87bd50d3fb137e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="strictlocking.xml"
+   text-time="2004-05-22T14:18:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d1bf23c0c1e341ae39117c6617749c60"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:18.000000Z"/>
+</wc-entries>

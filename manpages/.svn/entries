@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="75"
+   name="svn:this_dir"
+   committed-date="2004-05-21T23:46:38.877829Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/manpages"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="42"
+   name="smbget.1.xml"
+   text-time="2004-05-22T14:16:51.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="9bba24d50e11c98ceb5deac00bb54e19"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:51.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbcquotas.1.xml"
+   text-time="2004-05-22T14:16:51.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="1170452ac0f546595dfc6434b380709b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:51.000000Z"/>
+<entry
+   committed-rev="75"
+   name="editreg.1.xml"
+   text-time="2004-05-22T14:16:52.000000Z"
+   committed-date="2004-05-21T23:46:38.877829Z"
+   checksum="edaedc6b6d7f7bb8ce00dead05d71dfa"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:52.000000Z"/>
+<entry
+   committed-rev="42"
+   name="profiles.1.xml"
+   text-time="2004-05-22T14:16:52.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="d8f7896d2b5d08ec5e5efb9d155a73b1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:52.000000Z"/>
+<entry
+   committed-rev="42"
+   name="rpcclient.1.xml"
+   text-time="2004-05-22T14:16:52.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="118f0a3745bfca3cc055733b54ea48f6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:52.000000Z"/>
+<entry
+   committed-rev="42"
+   name="wbinfo.1.xml"
+   text-time="2004-05-22T14:16:52.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="ee03d90be2fa0784563852a005d5653c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:52.000000Z"/>
+<entry
+   committed-rev="57"
+   name="swat.8.xml"
+   text-time="2004-05-22T14:16:53.000000Z"
+   committed-date="2004-05-04T15:00:45.369560Z"
+   checksum="cd8a7acdf26ceb5cd0a9a0c784dd33cc"
+   last-author="jerry"
+   kind="file"
+   prop-time="2004-05-22T14:16:53.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbcacls.1.xml"
+   text-time="2004-05-22T14:16:53.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="6222d3787f6588ddd3715e600ff003ce"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:53.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbtar.1.xml"
+   text-time="2004-05-22T14:16:53.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="cebcea44db6af29e5365aa92a3e0089a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:53.000000Z"/>
+<entry
+   committed-rev="42"
+   name="ntlm_auth.1.xml"
+   text-time="2004-05-22T14:16:54.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="225dc05c7f81f4a688be47f6ab1f74a9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:54.000000Z"/>
+<entry
+   committed-rev="45"
+   name="smbd.8.xml"
+   text-time="2004-05-22T14:16:54.000000Z"
+   committed-date="2004-04-27T14:59:45.227829Z"
+   checksum="006e11dbf78074b94ccb6a7600dbe384"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:54.000000Z"/>
+<entry
+   committed-rev="42"
+   name="lmhosts.5.xml"
+   text-time="2004-05-22T14:16:54.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="299d477fc990322d3c65695e396cd54a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:54.000000Z"/>
+<entry
+   committed-rev="42"
+   name="testparm.1.xml"
+   text-time="2004-05-22T14:16:55.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="5ec2f214a6ecd88996331487078c85b7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:55.000000Z"/>
+<entry
+   committed-rev="8"
+   name="smbumount.8.xml"
+   text-time="2004-05-22T14:16:55.000000Z"
+   committed-date="2004-04-08T11:18:59.354756Z"
+   checksum="1b30c47222076265bee8b9b25182c2b9"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:16:55.000000Z"/>
+<entry
+   committed-rev="42"
+   name="winbindd.8.xml"
+   text-time="2004-05-22T14:16:55.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="56d34c7f87408fba1f15c8b4a833e2f3"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:55.000000Z"/>
+<entry
+   committed-rev="42"
+   name="tdbdump.8.xml"
+   text-time="2004-05-22T14:16:55.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="2fc5c3a3e93737b275fae173cbda6412"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:55.000000Z"/>
+<entry
+   committed-rev="42"
+   name="log2pcap.1.xml"
+   text-time="2004-05-22T14:16:56.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="dbc19128714e48fe54141f5b13d4f4e8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:56.000000Z"/>
+<entry
+   committed-rev="56"
+   name="smbgetrc.5.xml"
+   text-time="2004-05-22T14:16:56.000000Z"
+   committed-date="2004-05-01T16:46:35.841836Z"
+   checksum="fd901473ecc91f11b2d84cf7a8559f4d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:56.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbsh.1.xml"
+   text-time="2004-05-22T14:16:56.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="475b125c53dad631487f8e718e8c337f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:56.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbclient.1.xml"
+   text-time="2004-05-22T14:16:57.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="059419d0ce43007eb04b41e67d091e3b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:57.000000Z"/>
+<entry
+   committed-rev="42"
+   name="pdbedit.8.xml"
+   text-time="2004-05-22T14:16:58.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="c065194b070af48f961f845475d14651"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:58.000000Z"/>
+<entry
+   committed-rev="42"
+   name="testprns.1.xml"
+   text-time="2004-05-22T14:16:57.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="8d09e41396de1e31438fea262fe2a8b7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:57.000000Z"/>
+<entry
+   committed-rev="42"
+   name="findsmb.1.xml"
+   text-time="2004-05-22T14:16:57.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="816798d17cd87e1d8f024bdc7d0dbf18"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:57.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbcontrol.1.xml"
+   text-time="2004-05-22T14:16:57.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="564484954570947c4c5c4001f674db16"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:57.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbstatus.1.xml"
+   text-time="2004-05-22T14:16:58.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="e52347a45c0024ce5362142cb610bb2d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:58.000000Z"/>
+<entry
+   committed-rev="42"
+   name="nmbd.8.xml"
+   text-time="2004-05-22T14:16:58.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="98f1d0bf19ab50e2822c565965e56945"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:58.000000Z"/>
+<entry
+   committed-rev="42"
+   name="samba.7.xml"
+   text-time="2004-05-22T14:16:59.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="28a4158679c401746b0da433c278321d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:59.000000Z"/>
+<entry
+   committed-rev="60"
+   name="mount.cifs.8.xml"
+   text-time="2004-05-22T14:16:59.000000Z"
+   committed-date="2004-05-06T20:48:35.074461Z"
+   checksum="798a81fab1a00952f1ed6fb61891a03f"
+   last-author="sfrench"
+   kind="file"
+   prop-time="2004-05-22T14:16:59.000000Z"/>
+<entry
+   committed-rev="42"
+   name="net.8.xml"
+   text-time="2004-05-22T14:17:00.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="44d0b3033183d5be63c78a3f59244213"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:00.000000Z"/>
+<entry
+   committed-rev="42"
+   name="vfstest.1.xml"
+   text-time="2004-05-22T14:17:00.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="944aebe654570964ed38e7f51543fef6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:00.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbtree.1.xml"
+   text-time="2004-05-22T14:17:00.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="c71cde092cdc8e461b84b96708dfde35"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:00.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbspool.8.xml"
+   text-time="2004-05-22T14:17:00.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="59a9315f409eccb9443d8178d2cf840a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:00.000000Z"/>
+<entry
+   committed-rev="42"
+   name="nmblookup.1.xml"
+   text-time="2004-05-22T14:17:00.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="3de6814bf9082b89e1dcf04b4d0b8621"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:00.000000Z"/>
+<entry
+   committed-rev="42"
+   name="tdbbackup.8.xml"
+   text-time="2004-05-22T14:17:01.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="0e1f6ffde1dcdc9a6684111d35dd74d2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:01.000000Z"/>
+<entry
+   committed-rev="8"
+   name="smbmnt.8.xml"
+   text-time="2004-05-22T14:17:01.000000Z"
+   committed-date="2004-04-08T11:18:59.354756Z"
+   checksum="031e1d17fb57ceca7990e5cb3ba10a70"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:17:01.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbpasswd.5.xml"
+   text-time="2004-05-22T14:17:01.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="c80de5eb1f01c81493d69d88dfc8dbff"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:01.000000Z"/>
+<entry
+   committed-rev="42"
+   name="smbpasswd.8.xml"
+   text-time="2004-05-22T14:17:02.000000Z"
+   committed-date="2004-04-27T14:43:44.221526Z"
+   checksum="73b71cd048f2b60366d4d7f5f1788d90"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:02.000000Z"/>
+<entry
+   committed-rev="8"
+   name="smbmount.8.xml"
+   text-time="2004-05-22T14:17:02.000000Z"
+   committed-date="2004-04-08T11:18:59.354756Z"
+   checksum="372c1eaa56cc2d04d904e4f22ae219fb"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:17:02.000000Z"/>
+</wc-entries>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/xslt/figures"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="5"
+   name="tip.eps"
+   text-time="2004-05-22T14:16:47.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="1530e09fee9164ab7d74275ddee28e4e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:47.000000Z"/>
+<entry
+   committed-rev="5"
+   name="important.eps"
+   text-time="2004-05-22T14:16:47.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="83c54f6638f3ccadf48d1f2fbe7e04b7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:47.000000Z"/>
+<entry
+   committed-rev="5"
+   name="caution.eps"
+   text-time="2004-05-22T14:16:48.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="83c54f6638f3ccadf48d1f2fbe7e04b7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:48.000000Z"/>
+<entry
+   committed-rev="5"
+   name="warning.eps"
+   text-time="2004-05-22T14:16:48.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="83c54f6638f3ccadf48d1f2fbe7e04b7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:48.000000Z"/>
+<entry
+   committed-rev="5"
+   name="note.eps"
+   text-time="2004-05-22T14:16:48.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="4be6d6bfb336822cba7a67d33198386b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:48.000000Z"/>
+</wc-entries>

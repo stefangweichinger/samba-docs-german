@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/ldap"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="ldapidmapsuffix.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="82cac9e1b13dcab7da4a9021acc8d30c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapssl.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ec67cc46e420f7bfcfa76672b2e38768"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapgroupsuffix.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6a6a0b04052c243b9d93bf27f5b5fa4f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapreplicationsleep.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="139dcae67325cd978296945626645211"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapusersuffix.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9dacd0b43b11efe07146d310b7c21b3f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapdeletedn.xml"
+   text-time="2004-05-22T14:18:07.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9893da5e30c795d2ccd7f67a3c8ba94b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:07.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapport.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d15a8a97fa0cddfe7bd19c478118f701"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapsuffix.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="caeaab720963efa36f61d5073cbb1d8e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapfilter.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ef6ce2d6e66bfdcf9840c1ca65eceb23"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapserver.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="998a294d0e8b48d89037f039de85a966"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapmachinesuffix.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ae728a4a0bed1f3bbcc1a06d77e40eda"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldapadmindn.xml"
+   text-time="2004-05-22T14:18:08.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e4403c4ba686063fbfcf30fbbb0998b5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:08.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ldappasswdsync.xml"
+   text-time="2004-05-22T14:18:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="80aa9d02531611a936752d3d8c317828"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:09.000000Z"/>
+</wc-entries>

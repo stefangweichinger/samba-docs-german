@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/vfs"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="msdfsroot.xml"
+   text-time="2004-05-22T14:18:34.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c0dcfac11b0924c958fa649510b11806"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:34.000000Z"/>
+<entry
+   committed-rev="3"
+   name="setquotacommand.xml"
+   text-time="2004-05-22T14:18:34.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="997dd8946ec55d0ef6c924800080dbb4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:34.000000Z"/>
+<entry
+   committed-rev="3"
+   name="vfsobjects.xml"
+   text-time="2004-05-22T14:18:34.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1ce22f6cf8df8492f55effe0a61200ca"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:34.000000Z"/>
+<entry
+   committed-rev="3"
+   name="getquotacommand.xml"
+   text-time="2004-05-22T14:18:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3ac106ce43d2076fa41c200e8f90f183"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="aclcompatibility.xml"
+   text-time="2004-05-22T14:18:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="14e48814ebed358ea4e70744213e0dd3"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hostmsdfs.xml"
+   text-time="2004-05-22T14:18:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b6eb16db20fbfdcc4b150cec50945c1f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="msdfsproxy.xml"
+   text-time="2004-05-22T14:18:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4db54918524c9872b4ad3fbeec074600"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:35.000000Z"/>
+</wc-entries>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="16"
+   name="svn:this_dir"
+   committed-date="2004-04-09T20:13:21.659109Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/filename"
+   last-author="jra"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="defaultcase.xml"
+   text-time="2004-05-22T14:18:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d68ba1bc68f71decef707537524f09a0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="mangleprefix.xml"
+   text-time="2004-05-22T14:18:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3a287d306b513f75cbfd6336ecc7fd4f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="mapsystem.xml"
+   text-time="2004-05-22T14:18:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8ea29c9491c86263bde750ead8d40993"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="deletevetofiles.xml"
+   text-time="2004-05-22T14:18:09.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="936173310063e170e44d8c73157a09b9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:09.000000Z"/>
+<entry
+   committed-rev="3"
+   name="preservecase.xml"
+   text-time="2004-05-22T14:18:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b17199970c3243c05681b0af26585878"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maphidden.xml"
+   text-time="2004-05-22T14:18:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bfa5354cedce3044cae08f8f79bd23ad"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="manglingchar.xml"
+   text-time="2004-05-22T14:18:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ca4c5db5a5123c3557acf390e29496f1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="manglednames.xml"
+   text-time="2004-05-22T14:18:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="969123134604c329a3794d2cdd658cc3"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hidefiles.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e56db93962cae6bc52a754b0a72260d1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hideunreadable.xml"
+   text-time="2004-05-22T14:18:10.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="036f3e55217cf28a01e7d39489f1e9e9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:10.000000Z"/>
+<entry
+   committed-rev="3"
+   name="manglingmethod.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="26a493545feb707b4df6e8aeeecc7879"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hidespecialfiles.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bcb5e700e8eb64d8a730a430df0e2514"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hideunwriteablefiles.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e326e8d876416584cae20b82ba7e3ee1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="manglecase.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a770aeb53ae60834bb827d04eecb5e8f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="statcache.xml"
+   text-time="2004-05-22T14:18:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1e02d430bf400e01974005454119793c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="vetofiles.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7a2b90f4f36b5e1e906b1cf184584b37"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hidedotfiles.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a04e4c5f028cd728befdd8b6fb4aadb3"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="mangledmap.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="32ee7be9052a22a96af107d4d835202c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="casesensitive.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="66418d7a6d5280a664ce63a155158519"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="shortpreservecase.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cce7434d1e12da58935dccbc80a224b0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="vetooplockfiles.xml"
+   text-time="2004-05-22T14:18:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5af19cb7d5c20d383e0345180acf3e6c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:12.000000Z"/>
+<entry
+   committed-rev="16"
+   name="storedosattributes.xml"
+   text-time="2004-05-22T14:18:13.000000Z"
+   committed-date="2004-04-09T20:13:21.659109Z"
+   checksum="f2df1042d1f432321662cedb328b833d"
+   last-author="jra"
+   kind="file"
+   prop-time="2004-05-22T14:18:13.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maparchive.xml"
+   text-time="2004-05-22T14:18:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8c9a8aba4139917eefbcb905bd68adc2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:13.000000Z"/>
+</wc-entries>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="70"
+   name="svn:this_dir"
+   committed-date="2004-05-15T18:08:19.662721Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/scripts"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="neatquotes.pl"
+   text-time="2004-05-22T14:16:43.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4576f0fa4cfe2fa11b10c6304f39c896"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:43.000000Z"/>
+<entry
+   committed-rev="69"
+   name="find_missing_doc.pl"
+   text-time="2004-05-22T14:16:43.000000Z"
+   committed-date="2004-05-15T16:36:15.183923Z"
+   checksum="ad951a9bab79f27302a28ce9fdbcf2ec"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:43.000000Z"/>
+<entry
+   committed-rev="70"
+   name="find_missing_manpages.pl"
+   text-time="2004-05-22T14:16:43.000000Z"
+   committed-date="2004-05-15T18:08:19.662721Z"
+   checksum="e24ce31381698d86f12c33f69a0cc159"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:43.000000Z"/>
+<entry
+   committed-rev="3"
+   name="indent-smb.conf.pl"
+   text-time="2004-05-22T14:16:44.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="028b7dfa3964718b37e447db14de5462"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:44.000000Z"/>
+</wc-entries>

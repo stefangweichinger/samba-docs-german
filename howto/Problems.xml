@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="problems">
+
+<chapterinfo>
+	&author.jerry;
+	&author.jelmer;
+	&author.dbannon;
+	&author.danshearer;
+	<pubdate>8 Apr 2003</pubdate>
+        <author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+</chapterinfo>
+
+<title>Analyse und Lösung von Problemen mit Samba</title>
+
+<para>
+Es gibt viele Informationsquellen in Form von Mailing-Listen, RFCs und Dokumentation.
+Die Dokumentation, die mit der Samba-Distribution geliefert wird, enthält gute
+Erklärungen zu allgemeinen Samba-Themen wie Browsing.</para>
+	
+<sect1>
+<title>Diagnose-Tools</title>
+
+<para>
+Beim Netzwerken mit Samba ist es oft nicht sofort klar, was der Grund für ein bestimmtes
+Problem ist. Samba selbst bietet ziemlich hilfreiche Informationen an, aber in manchen
+Fällen werden Sie möglicherweise auf einen <emphasis>Sniffer</emphasis> zurückgreifen
+müssen. Ein Sniffer ist ein Programm, das in Ihrem LAN lauscht, die empfangenen Daten
+analysiert, und sie am Schirm anzeigt.
+</para>
+
+<sect2>
+<title>Das Debuggen mit Samba selbst</title>
+
+<para>
+Eines der besten Diagnose-Tools, um Probleme zu debuggen, ist Samba selbst.
+Sie können die Option <option>-d</option> für &smbd; und &nmbd; verwenden, um
+den <smbconfoption><name>debug level</name></smbconfoption> festzulegen, auf dem sie
+ausgeführt werden sollen. Siehe auch die manpages für <command>smbd, nmbd</command>
+und &smb.conf; für mehr Information zu den debugging-Optionen. Der debug level
+reicht von 1 (Standard) bis zu 10 (100 zum Debuggen von Passwörtern).
+</para>
+	
+<para>
+Eine weitere hilfreiche Methode des Debugging ist es, Samba mit dem Flag
+<command>gcc -g </command> zu kompilieren. Dies wird Debug-Information in den Binaries
+einschliessen, und erlaubt es, gdb an die laufenden <command>smbd/nmbd</command>-Prozesse
+anzudocken. Um dies auf einer NT-Workstation zu tun, lassen Sie zuerst die Workstation
+die Verbindung herstellen. Das Drücken von ctrl-alt-delete und Gehen auf den Domänen-Eintrag
+sollte ausreichen (zumindest beim ersten Anmelden an der Domäne), um den Parameter
+<parameter>LsaEnumTrustedDomains</parameter> zu generieren. Danach hält die Workstation
+eine offene Verbindung und es wird ein smbd-Prozess laufen (unter der Annahme, daß Sie
+keinen wirklich kurzen smbd-Timeout gesetzt haben). Also können Sie zwischen dem Drücken
+von <command>ctrl-alt-delete</command> und dem tatsächlichen Eingeben Ihres Passworts
+<command>gdb</command> starten und fortsetzen.
+</para>
+
+<para>
+Einige Samba-Befehle, die nähere Betrachtung verdienen, sind:
+</para>
+	
+<screen>
+&prompt;<userinput>testparm | more</userinput>
+&prompt;<userinput>smbclient -L //{Netbios-Name des Servers}</userinput>
+</screen>
+
+</sect2>
+
+<sect2>
+	<title>Tcpdump</title>
+  
+<para>
+<ulink url="http://www.tcpdump.org/">Tcpdump</ulink> war der erste
+UNIX sniffer mit SMB-Support. Es ist ein Befehlszeilen-Tool, und mittlerweile hängt seine
+SMB-Unterstützung etwas hinter der von <command>ethereal</command> und <command>tethereal</command>
+nach.
+</para>
+
+</sect2>
+
+<sect2>
+	<title>Ethereal</title>
+
+<para>
+<ulink url="http://www.ethereal.com/">Ethereal</ulink> ist ein grafischer Sniffer, verfügbar sowohl
+für UNIX (Gtk) und Windows. Ethereal's SMB-Unterstützung ist ziemlich gut.
+Für Details zu <command>ethereal</command>, lesen Sie den gutgeschriebenen Ethereal User Guide.
+</para>
+
+<image id="ethereal1"><imagefile>ethereal1</imagefile><imagedescription>Start eines Capture.</imagedescription></image>
+
+<para>
+Überwachen der Daten auf den Ports 137, 138, 139, und 445. Zum Beispiel, verwenden Sie den Filter
+<userinput>port 137, port 138, port 139, oder port 445</userinput>, wie in <link linkend="ethereal1"/>
+zu sehen.
+</para>
+
+<para>
+Eine Consolen-Version von ethereal ist auch verfügbar, namens <command>tethereal</command>.</para>
+
+<image id="ethereal2"><imagefile>ethereal2</imagefile><imagedescription>Hauptansicht von ethereal.</imagedescription></image>
+
+</sect2>
+
+<sect2>
+<title>Der Windows Netzwerk-Monitor.</title>
+	
+<para>
+Um Dinge unter Microsoft Windows NT zu verfolgen, ist der Netzwerk-Monitor (auch bekannt als Netmon)
+auf den Microsoft Developer Network CDs verfügbar, sowie auf der Installations-CD des Windows NT Servers,
+und auf den SMS CDs. Die mit SMS gelieferte Version erlaubt es, Pakete zwischen zwei Rechnern zu dumpen
+(die Netzwerkkarte im promiscuous mode zu betreiben). Die Version auf der Windows-NT-Server-CD erlaubt
+nur das Monitoring von Netzwerkverkehr zur lokalen NT-Box, und Broadcasts im lokalen Subnetz. Beachten Sie,
+daß Ethereal Dateien im Netmon-Format lesen und schreiben kann.
+</para>
+
+<sect3>
+<title>Installieren des Netzwerk-Monitors auf einer NT-Workstation</title>
+
+<para>
+Das Installieren von Netmon auf einer NT-Workstation erfordert einige Schritte.
+Die folgenden Anweisungen gelten für die Installation von Netmon V4.00.349, welcher mit dem
+Microsoft Windows NT Server 4.0 geliefert wird, auf Microsoft Windows NT Workstation 4.0.
+Der Ablauf sollte für andere Versionen von Netmon für Windows NT sein. Sie werden sowohl die
+NT Server 4.0 Installations-CD, wie auch die Workstation 4.0 Installations-CD dazu brauchen.
+</para> 
+
+<para>
+Zuerst müssen Sie <application>Network Monitor Tools and Agent</application> auf dem NT-Server
+installieren:
+</para>
+
+<itemizedlist>
+	<listitem><para>Gehen Sie auf <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
+	<guibutton>Network</guibutton> -> <guibutton>Services</guibutton> -> <guibutton>Add</guibutton>.</para></listitem>
+	
+	<listitem><para>Wählen Sie <guilabel>Network Monitor Tools and Agent</guilabel> und klicken Sie auf <guibutton>OK</guibutton>.</para></listitem> 
+	
+	<listitem><para>Klicken Sie auf <guibutton>OK</guibutton> im Network Control Panel.</para></listitem> 
+	
+	<listitem><para>Legen Sie die NT Server 4.0 Installations-CD ein, wenn Sie dazu aufgefordert werden.</para></listitem> 
+</itemizedlist>
+
+<para>
+An diesem Punkt sollten die Netmon files in <filename>%SYSTEMROOT%\System32\netmon\*.*</filename> existieren.
+Es gibt auch zwei Unterverzeichnisse, <filename>parsers\</filename>, welches die notwendigen DLLs enthält, um
+den Netmon-Paket-dump zu parsen, und <filename>captures\</filename>.
+</para>
+
+<para>
+Um die Netmon-tools auf einer NT Workstation zu installieren, müssen Sie zuerst den Network Monitor Agent von
+der Workstation 4.0 Installations-CD installieren.
+</para>
+
+<itemizedlist>
+	<listitem><para>Gehen Sie auf <guibutton>Start</guibutton> -> <guibutton>Settings</guibutton> -> <guibutton>Control Panel</guibutton> -> 
+			<guibutton>Network</guibutton> -> <guibutton>Services</guibutton> -> <guibutton>Add</guibutton>.</para></listitem> 
+
+	<listitem><para>Wählen Sie <guilabel>Network Monitor Agent</guilabel>und klicken Sie auf <guibutton>OK</guibutton>.</para></listitem> 
+	
+	<listitem><para>Klicken Sie auf <guibutton>OK</guibutton> im Network Control Panel.
+	</para></listitem> 
+	
+	<listitem><para>Legen Sie die NT Server 4.0 Installations-CD ein, wenn Sie dazu aufgefordert werden.</para></listitem> 
+</itemizedlist>
+
+<para>
+Kopieren Sie jetzt die Dateien vom NT Server in <filename>%SYSTEMROOT%\System32\netmon</filename> nach
+<filename>%SYSTEMROOT%\System32\netmon</filename> auf der Workstation, und setzen Sie die Berechtigungen
+so, wie Sie sie für Ihre Installation angemessen halten. Sie brauchen Administrator-Rechte auf der NT-Box,
+um Netmon auszuführen.
+</para>
+
+</sect3>
+<sect3>
+<title>Installieren des Netzwerk-Monitors unter Windows 9x/Me</title>
+<para>
+Um Netmon unter Windows 9x/Me zu installieren, installieren Sie den Network Monitor Agent von der
+Windows 9x/Me CD (<filename>\admin\nettools\netmon</filename>).
+Es gibt eine README-Datei bei den Netmon-Treiber-Dateien auf der CD, wenn Sie Informationen dazu
+brauchen. Kopieren Sie die Dateien von einer bestehenden Netmon-Installation.
+</para>
+</sect3>
+</sect2>
+</sect1>
+
+<sect1>
+<title>Hilfreiche URLs</title>
+<itemizedlist>
+
+<listitem><para>Sehen Sie, wie Scott Merrill das Verhalten eines BDCs simuliert:
+       <ulink noescape="1" url="http://www.skippy.net/linux/smb-howto.html">
+       http://www.skippy.net/linux/smb-howto.html</ulink>. </para></listitem>
+
+<listitem><para>FTP site für ältere SMB-Spezifikationen:
+       <ulink noescape="1" url="ftp://ftp.microsoft.com/developr/drg/CIFS/">
+       ftp://ftp.microsoft.com/developr/drg/CIFS/</ulink></para></listitem>
+
+</itemizedlist>
+
+</sect1>
+
+<sect1>
+<title>Hilfe aus Mailing-Listen erhalten</title>
+
+<para>
+Es gibt eine Anzahl von Mailing-Listen im Zusammenhang mit Samba. Gehen Sie auf
+<ulink noescape="1" url="http://samba.org">http://samba.org</ulink>, klicken Sie Ihren
+nächsten Mirror, dann auf <command>Support</command>, und auf <command>Samba-related mailing lists</command>.
+</para>
+
+<para>
+Für Fragen im Zusammenhang mit Samba TNG, gehen Sie auf
+<ulink noescape="1" url="http://www.samba-tng.org/">http://www.samba-tng.org/.</ulink> 
+Es wurde gefordert, Fragen zu Samba-TNG nicht in die Main-Stream-Samba-Listen zu posten.
+</para>
+
+<para>
+Wenn Sie eine Nachricht an eine der Listen senden, beachten Sie bitte folgende Richtlinien:
+</para>
+
+<itemizedlist>
+
+	<listitem><para>
+	Erinnern Sie sich immer daran, daß die Entwickler Freiwillige sind, sie werden nicht
+	bezahlt, und sie garantieren niemals, ein bestimmtes Feature in einer bestimmten
+	Zeit zu produzieren. Alle Zeitangaben sind <quote>best guess</quote> und nicht mehr.
+	</para></listitem>
+
+	<listitem><para>
+	Erwähnen Sie immer, welche Version von Samba Sie einsetzen, und unter welchem Betriebssystem
+	diese läuft. Sie sollten die relevanten Abschnitte Ihrer &smb.conf;-Datei auflisten,
+	zumindest die Optionen in <smbconfsection>[global]</smbconfsection>, die den PDC-Betrieb
+	beeinflussen.
+	</para></listitem>
+
+	<listitem><para>
+	Wenn Sie Samba via CVS bezogen haben, erwähnen Sie bitte zusätzlich zur Version das
+	Datum, an dem Sie zuletzt ein "cvs checkout" durchgeführt haben.
+	</para></listitem>
+
+	<listitem><para> 
+	Versuchen Sie, Ihre Fragen klar und kurz zu halten. Viele langatmige Konvolute werden
+	gelöscht, bevor sie überhaupt ganz gelesen werden! Senden Sie keine HTML-codierten
+	Nachrichten. Die meisten Leute auf Mailing-Listen löschen diese einfach.
+	</para></listitem>
+
+	<listitem><para> 
+	Wenn Sie eines dieser hübschen <quote>Ich bin auf Urlaub!</quote>-Dinger verwenden,
+	während Sie weg sind, stellen Sie sicher, daß es so konfiguriert ist, nicht auf
+	Mailing-Listen-Verkehr zu antworten. Auto-Responses auf Mailing-Listen ärgern 
+	tausende Leute, die mit solch schlechter Netiquette konfrontiert werden.
+	</para></listitem> 
+
+	<listitem><para>
+	Vermeiden Sie "cross-posting". Finden Sie heraus, welche die beste Liste für Ihre
+	Fragen ist und sehen Sie, was passiert. Posten Sie nicht auf samba-ntdom UND samba-technical.
+	Viele der Leute, die in diesen Listen aktiv sind, haben mehrere Listen abonniert, und
+	sind verärgert darübere, dieselbe Nachricht zweimal oder noch öfter zu sehen.
+	Oft wird jemand eine Nachricht sehen, sich denken, daß diese besser in einer anderen
+	Liste behandelt würde, und die Nachricht für Sie weiterleiten.		
+	</para></listitem>
+
+	<listitem><para>
+	Sie könnten <emphasis>auszugsweise</emphasis> log-Dateien einschliessen, die auf einem
+	debug level bis zu 20 geschrieben wurden. Bitte senden Sie nicht die ganze Log-Datei,
+	sondern nur so viel, um den Kontext für die Fehlermeldungen zu schaffen.
+	</para></listitem>
+
+	<listitem><para>
+	Wenn Sie einen kompletten Netmon-Trace haben (vom Öffnen der pipe bis zum Fehler),
+	können Sie auch die *.CAP-Datei senden.
+	</para></listitem>
+
+	<listitem><para>
+	Bitte überlegen Sie sorgfältig, bevor Sie ein Dokument an eine email hängen.
+	Erwägen Sie, die relevanten Teile in die Email zu kopieren. Die Samba-Mailing-Listen
+	gehen an eine riesige Zahl von Menschen. Brauchen diese alle eine Kopie Ihrer
+	&smb.conf; in Ihrem Attachment-Verzeichnis?
+	</para></listitem>
+
+</itemizedlist>
+
+</sect1>
+
+<sect1>
+<title>Wie man aus Mailing-Listen rauskommt.</title>
+
+<para>
+Um Ihren Namen von einer Samba-Mailing-Liste löschen zu lassen, gehen Sie dorthin, wo Sie ihn
+in die Liste eintragen lassen haben. Gehen Sie auf
+<ulink noescape="1" url="http://lists.samba.org/">http://lists.samba.org</ulink>,
+klicken Sie auf Ihren nächsten Mirror, klicken Sie auf <command>Support</command> und dann auf
+<command> Samba related mailing lists</command>.
+</para>
+
+<para>
+Bitte senden Sie keine Nachrichten an die Liste, in denen Sie danach fragen, von der Liste
+entfernt zu werden. Sie werden nur an obige Adresse verwiesen werden (außer dieser Prozeß ist
+aus irgendeinem Grund gescheitert).
+</para>
+
+</sect1>
+
+</chapter>

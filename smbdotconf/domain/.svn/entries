@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/domain"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="machinepasswordtimeout.xml"
+   text-time="2004-05-22T14:18:46.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="21a17755c4c649bb5c13e7b47bd04504"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:46.000000Z"/>
+</wc-entries>

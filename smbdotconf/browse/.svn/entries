@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/browse"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="enhancedbrowsing.xml"
+   text-time="2004-05-22T14:18:40.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e34109edc608110472388c50640e67a1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:40.000000Z"/>
+<entry
+   committed-rev="3"
+   name="domainmaster.xml"
+   text-time="2004-05-22T14:18:40.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e4ab0210b20d9e51e39099a952cf853c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:40.000000Z"/>
+<entry
+   committed-rev="3"
+   name="browseable.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="267859e24812eb3ec86cc780ec494fbb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="localmaster.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2092a7b04daa8a70bfaa64692cc95cd5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="oslevel.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="fa50a04a437db7a6d294c5297f2f862d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="preferredmaster.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="90c37d1658af7051746b208f397caa7d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="browselist.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ff69e4091f1745c0c68c8a809d686d4f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lminterval.xml"
+   text-time="2004-05-22T14:18:41.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0278d2f6031079406179ccca31fb42f4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:41.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lmannounce.xml"
+   text-time="2004-05-22T14:18:42.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="36aa3481d811c3e767a2953024585aa5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:42.000000Z"/>
+</wc-entries>

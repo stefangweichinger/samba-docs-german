@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="51"
+   name="svn:this_dir"
+   committed-date="2004-04-27T15:36:10.133308Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/base"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="realm.xml"
+   text-time="2004-05-22T14:18:59.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="86789ead3b1434dec76882fd2de7d316"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:59.000000Z"/>
+<entry
+   committed-rev="3"
+   name="comment.xml"
+   text-time="2004-05-22T14:18:59.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d1d508aa3e485a132d38ccc6152aaa49"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:59.000000Z"/>
+<entry
+   committed-rev="3"
+   name="bindinterfacesonly.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="84c1835edfa95e211d46a91c2e9c2497"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="interfaces.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e1b073c31db01ad5bad87aa2b81e83b2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="netbiosname.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4ae5ec7560ffe0fdacde3b861f11bdcd"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="netbiosaliases.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0b9b8e87906c9aee6c70f94bc7c36ea5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="path.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="49094f358c88615c5e2fd453bf4a0c04"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="51"
+   name="unixcharset.xml"
+   text-time="2004-05-22T14:19:00.000000Z"
+   committed-date="2004-04-27T15:36:10.133308Z"
+   checksum="9b5b2006ae08cb4074451e1fa5375521"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="netbiosscope.xml"
+   text-time="2004-05-22T14:19:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="80492cbfda885ba2b59e7eb445be5b39"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="serverstring.xml"
+   text-time="2004-05-22T14:19:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5010d0be6a11bc6ec015fac85020145b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="doscharset.xml"
+   text-time="2004-05-22T14:19:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1a13af366935fed9f97932c10d25627f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="displaycharset.xml"
+   text-time="2004-05-22T14:19:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="42ea41a9ad8c4e663d9aaa4b28a73844"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="workgroup.xml"
+   text-time="2004-05-22T14:19:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="146495c375356315f06b4dbc62ed7437"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:01.000000Z"/>
+</wc-entries>

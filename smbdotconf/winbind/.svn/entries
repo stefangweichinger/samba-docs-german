@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="26"
+   name="svn:this_dir"
+   committed-date="2004-04-21T12:08:44.003088Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/winbind"
+   last-author="vlendec"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="winbindtrusteddomainsonly.xml"
+   text-time="2004-05-22T14:18:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="29aa2f2c150d17451a49556699ec7017"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:18.000000Z"/>
+<entry
+   committed-rev="3"
+   name="templatehomedir.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="68289b8babbc0299f826b83f1ac3c3b2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="templateprimarygroup.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5b7b4b153ba268d5ee461e8c0dadaf18"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="idmapuid.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d7a667584659b0ace4941d0b06db4a5e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="enableridalgorithm.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="64760b01122ae2badd959c2f5479d4af"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindcachetime.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3072d78126ef96482a7f3517a8a95513"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="26"
+   name="winbindnestedgroups.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-21T12:08:44.003088Z"
+   checksum="b2ec2f28b57e042d9e60679ce6eda5ff"
+   last-author="vlendec"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindenumusers.xml"
+   text-time="2004-05-22T14:18:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5cf7e5080ad58a4146fca1d669469a8d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:18.000000Z"/>
+<entry
+   committed-rev="3"
+   name="idmapbackend.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d8a32761fc0039bd2874902a4cf355be"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="templateshell.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9a13486ffdc2592b141b481feafa0706"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindusedefaultdomain.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9a6b75bc5c54a13e8497abcf9fa23352"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindseparator.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9fb2a4792c7329baaf71560909d2e76e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindenablelocalaccounts.xml"
+   text-time="2004-05-22T14:18:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="94056aa1e61b1a5c5bbf3af56a7a9e11"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="idmapgid.xml"
+   text-time="2004-05-22T14:18:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d5ebe5a144fb108d9a42a95c5fe10d5a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winbindenumgroups.xml"
+   text-time="2004-05-22T14:18:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b72682efaa91b5df41156465c3c30609"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:21.000000Z"/>
+</wc-entries>

@@ -1,0 +1,102 @@
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Änderungen am Inhaltsverzeichniss
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+Sollten Änderungen am Inhaltsverzeichniss gemacht werden wollen, so muss zunächst die
+
+docbook/projdoc/samba-doc.xml
+
+geändert werden, aus dieser wird später die 
+
+Samba-HOWTO-Collection.xml erstellt die wiederum das Inhaltsverzeichnis und sehr wahrscheinlich noch 
+die Basis zu einigen anderen Files darstellt.
+
+hb, 02.03.04
+
+###########################################################################################################
+
+Dieses README soll laufend auftretende Fragen zur Formatierung und Uebersetzung der xml-Seiten beantworten.
+
+Für Newbies: Wenn Dich der Inhalt dieser Datei abschreckt, kontaktiere mich einfach, und ich werde die
+notwendigen Edits für Dich vornehmen, damit Du mit der Übersetzungsarbeit beginnen kannst.
+
+###########################################################################################################
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Editor
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+Generell ist für die Übersetzungsarbeit KEIN XML-Editor erforderlich,
+im Gegenteil ist von der Verwendung eines solchen sogar abzuraten, da
+dieser die XML-tags ändert, bzw. neue einfügt, was zu Problemen beim
+Generieren der diversen Output-Formate führt.
+
+Verwendet einen Texteditor wie vim, emacs oder Ähnliches. Mit dem z.B.
+in vim verfügbaren Syntax-Highlighting ist das Bearbeiten des XML-Codes
+sehr gut möglich.
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Format der Author-entities in docbook/global.ent
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+Nach Rueckfrage bei John H Terpstra sollte sich an folgendes Format gehalten werden.
+
+# global.ent
+
+<!ENTITY person.stefanw '
+<firstname>Stefan[C</firstname><othername>G.</othername><surname>Weichinger</surname><othername>R.</othername>
+<affiliation>
+        <orgname>The German Translation Team</orgname>
+        <address><email>monitor@oops.co.at</email></address>
+</affiliation>'>
+
+<!ENTITY author.stefanw '<author>&person.stefanw;</author>'>
+
+sowie in der header-section der jeweiligen uebersetzten xml-file:
+
+# x.xml
+
+<author>&person.stefanw;<contrib>German Translator</contrib></author>
+
+Bitte verwendet den "German Translator"-Eintrag, wir wollen nicht dadurch auffallen, uns mit fremden Federn zu schmuecken.
+
+sgw, 18.11.03
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+- Sonderzeichen, Zeichensatz
+
+---===---===---===---===---===---===---===---===---===---===---===---===
+
+
+- Durch das Einfügen folgenden headers können Umlaute sowie ß, kurz
+der gesamte ISO-8859-1 Zeichensatz verwendet werden.
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+Dabei ist zu beachten, daß der verwendete Editor dies unterstützt.
+
+Beispiel vi(m):
+
+Check mittels
+
+:set encoding
+
+Setzen mittels
+
+:set encoding=latin1
+
+Wer (wie ich) per putty auf einer Linux-Maschine arbeitet, sollte
+darauf achten, daß auch das Terminal-Programm auf ISO-8859-1 arbeitet.
+
+sgw, 18.11.03
+
+Dieser Header ist ZWINGEND einzufügen!
+
+---===---===---===---===---===---===---===---===---===---===---===---===

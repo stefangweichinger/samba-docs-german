@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="Backup">
+<chapterinfo>
+	&author.jht;
+	<author>&person.hba;<contrib>Deutsche Übersetzung</contrib></author>
+</chapterinfo>
+
+<title>Samba Backup Techniken</title>
+
+<sect1>
+<title>Hinweis</title>
+
+<para>
+Dieses Kapitel konnte nicht mehr in dieser Ausgabe veröffentlicht werden.
+Die Veröffentlichung ist für die nächsten Ausgaben geplant.
+</para>
+
+</sect1>
+
+<sect1>
+<title>Besonderheiten und Vorteile</title>
+
+<para>
+Das Samba Entwicklungsteam benötigt Feedback von Personen die ihre Samba Server
+sichern, also eine Sicherungskopie erstellt haben. Sie möchten wissen welche Art von Software
+Sie verwendet haben und wie die Rücksicherung funktioniert hat.
+</para>
+
+<para>
+Wenn Sie im einzelnen Erfolg oder Fehler beim Backup von Samba Servern hatten,
+teilen Sie diese Information bitte mit dem Samba Team.
+</para>
+
+</sect1>
+
+</chapter>

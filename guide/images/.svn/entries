@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/guide/images"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="ch7-singleLDAP.png"
+   text-time="2004-05-22T14:17:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d6d9b5fde9234d679171ce4ad7d43ae6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Charity-Network.dia"
+   text-time="2004-05-22T14:17:11.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2c460d0517c2264a77a98dce5c9230cb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:11.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2.png"
+   text-time="2004-05-22T14:17:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="da8d52e07a257162b3fd40e27fb95b52"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:13.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-dual-additive-LDAP.png"
+   text-time="2004-05-22T14:17:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="09491f971dbccff607ddf9825529999e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch8-migration.png"
+   text-time="2004-05-22T14:17:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ddb9ea1d4efd281da9aab108ec1dbbe5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-idresol.dia"
+   text-time="2004-05-22T14:17:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="654a775d5f9870ecdf690e191e2189b4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net-A.dia"
+   text-time="2004-05-22T14:17:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="971669414472b4815de59d4c19562363"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp001.png"
+   text-time="2004-05-22T14:17:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="46493100f6721a90a09ae06188693e53"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="LocalMasterAnnouncement.png"
+   text-time="2004-05-22T14:17:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3f0e0083ced85253cb96921df52d2852"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:16.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp004.png"
+   text-time="2004-05-22T14:17:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="742782ded8c2de0b50d2ea5302f6d53d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:18.000000Z"/>
+<entry
+   committed-rev="3"
+   name="UNIX-Samba-and-LDAP.png"
+   text-time="2004-05-22T14:17:17.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="53ae48a9ec9f4ec1ebde44fae32de95c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:17.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WINREPRESSME-Capture.png"
+   text-time="2004-05-22T14:17:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7ee2a4d5c1a02647705b5787cc25b9a8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp006.png"
+   text-time="2004-05-22T14:17:19.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="00f46f40c8a77b563cb0c3a9099939af"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:19.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp007.png"
+   text-time="2004-05-22T14:17:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bc35c66d0f621bd7f256f4c657f62e8b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp008.png"
+   text-time="2004-05-22T14:17:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="599a3e83d746c09ece9922e8f7474beb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-dual-additive-LDAP-Ok.dia"
+   text-time="2004-05-22T14:17:20.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="90c88664285a784704b5854f8a04a707"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:20.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2r.png"
+   text-time="2004-05-22T14:17:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="dd7f72e7aa4ef161e172d12cee3f779a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WindowsXP-NullConnection.png"
+   text-time="2004-05-22T14:17:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a6282d83d83089ec331da2fc258fe2ba"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2-B.dia"
+   text-time="2004-05-22T14:17:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e8069c921b777b52fd729c5eb0c97ffa"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-fail-overLDAP.png"
+   text-time="2004-05-22T14:17:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c3d5e1692d13abcb0c9be183506b0565"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap9-SambaDC.dia"
+   text-time="2004-05-22T14:17:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="577c6f352982d3e46d85857cdc5aa241"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-hosts.png"
+   text-time="2004-05-22T14:17:26.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bdfa36466a05dae961a60ded4e9884ac"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:26.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-config.png"
+   text-time="2004-05-22T14:17:27.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b4ec3fc904ea7c6093f0a6cb36725046"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:27.000000Z"/>
+<entry
+   committed-rev="3"
+   name="acct2net.dia"
+   text-time="2004-05-22T14:17:28.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a72cf59f7368cd7ee6d148eb6b15720e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:28.000000Z"/>
+<entry
+   committed-rev="3"
+   name="AccountingNetwork.dia"
+   text-time="2004-05-22T14:17:28.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="58aa1c0238aca13a341d36bbec29d980"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:28.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-login.png"
+   text-time="2004-05-22T14:17:29.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="337698cce7a3c863da3b97f4408d8aee"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:29.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp010.png"
+   text-time="2004-05-22T14:17:30.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a252188ac0fa76ab9f234c7557d5fa8a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:30.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap9-ADSDC.png"
+   text-time="2004-05-22T14:17:31.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4d0171c92d67559c08dacbfea5ded265"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:31.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp011.png"
+   text-time="2004-05-22T14:17:31.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="045b2a448ad6fb7fdb561fd5c2af1441"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:31.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp012.png"
+   text-time="2004-05-22T14:17:31.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="27a8df2438a5b9475047e8a4f6a6fa4b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:31.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp013.png"
+   text-time="2004-05-22T14:17:32.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1fe148d3de027f94bae2427ef2b12d49"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:32.000000Z"/>
+<entry
+   committed-rev="3"
+   name="wxpp015.png"
+   text-time="2004-05-22T14:17:33.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e74dadc9dc7d596a5de4ead1e48cf298"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:33.000000Z"/>
+<entry
+   committed-rev="3"
+   name="openmag.png"
+   text-time="2004-05-22T14:17:33.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="042de566bad5e592bfd5027cb3427641"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:33.000000Z"/>
+<entry
+   committed-rev="3"
+   name="UserConnect.png"
+   text-time="2004-05-22T14:17:34.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c5012ff945bcca4b0d8eedcdf308792c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:34.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Charity-Network.png"
+   text-time="2004-05-22T14:17:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bf5a8619a3535012e7e68e8d9138cf49"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Windows-ME-WINEPRESSME-Startup-30min-ProtocolStats.png"
+   text-time="2004-05-22T14:17:34.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ab6b516d781ac75f4343df96b7c82c92"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:34.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap4-net.dia"
+   text-time="2004-05-22T14:17:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="96d14e1d0bf841cdbf2878ff1dda9488"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap5-net.dia"
+   text-time="2004-05-22T14:17:35.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9bbf4860fcfc2c87258328e6ba3b0b06"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:35.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap6-net.dia"
+   text-time="2004-05-22T14:17:36.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c3a99f18799b223fe3597b5bfb0b10b0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:36.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net.dia"
+   text-time="2004-05-22T14:17:36.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7929eb907f7301d6e5ca3f8e21ad4af6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:36.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-idresol.png"
+   text-time="2004-05-22T14:17:37.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ce4f47459da73ee94befb3ac6e1eb2c1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:37.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net-A.png"
+   text-time="2004-05-22T14:17:39.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="461f51aa4d0349c443fa00486ace408d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:39.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-netr.png"
+   text-time="2004-05-22T14:17:40.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cbc0800e9c3a92c449d99085a4fb7a85"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:40.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2-Br.png"
+   text-time="2004-05-22T14:17:42.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f95d7d0007ebe534109d8a3c8a41a5f6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:42.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-singleLDAP.dia"
+   text-time="2004-05-22T14:17:43.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1b95b3476e58ae6b1ab6b63b11894a6b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:43.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-dual-additive-LDAP-Ok.png"
+   text-time="2004-05-22T14:17:43.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c2251166c9256648344f409db78f1d36"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:43.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2.dia"
+   text-time="2004-05-22T14:17:43.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="79374bc7404ceb7325f309e3f9b0bf24"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:43.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch8-migration.dia"
+   text-time="2004-05-22T14:17:44.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="31c654173509948bb51f54b1b0b7de3c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:44.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-dual-additive-LDAP.dia"
+   text-time="2004-05-22T14:17:43.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2d51072b6eeeae697a1e4ada078cc1e5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:43.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net-Ar.png"
+   text-time="2004-05-22T14:17:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4e07d1e64a0769e02c4e600aab9fc7c8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-groups.png"
+   text-time="2004-05-22T14:17:45.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d64e7e4a3adba1f4d94b0d70e2bc3f6b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:45.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net2-B.png"
+   text-time="2004-05-22T14:17:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="aae3fdeedb2f0860eadd3a484a4cc263"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="UNIX-Samba-and-LDAP.dia"
+   text-time="2004-05-22T14:17:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8c5a58648055c913f90a56bb87cbf9e8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap9-SambaDC.png"
+   text-time="2004-05-22T14:17:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8a3be445edb9f61ad6787506ebe10afb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WindowsXP-UserConnection.png"
+   text-time="2004-05-22T14:17:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="fab64ab911250453b4ed7112d94a5573"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="acct2net.png"
+   text-time="2004-05-22T14:17:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ee129ea7b73b5ee978d2f63ea303ebc5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="AccountingNetwork.png"
+   text-time="2004-05-22T14:17:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e252d39e36ecd701be21911c2bcaca95"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WINREPRESSME-Capture2.png"
+   text-time="2004-05-22T14:17:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c9a7ddb40fdc679fd98515bd4abeb485"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-users.png"
+   text-time="2004-05-22T14:17:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f427ab33500689ed62bdf01c8e75a48d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="UserMgrNT4.png"
+   text-time="2004-05-22T14:17:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="821bfd72dbaacc4db191f4e4e5dde71e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ch7-fail-overLDAP.dia"
+   text-time="2004-05-22T14:17:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a9454e2a5101a7922ec04c19156d38cf"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Domain-WorkgroupAnnouncement.png"
+   text-time="2004-05-22T14:17:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="40b5b02e84c5997b46981b23340da1f5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap4-net.png"
+   text-time="2004-05-22T14:17:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a021902ea2037a8a901a733ecbafaab1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="HostAnnouncment.png"
+   text-time="2004-05-22T14:17:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5d0d5a6d364f981fd909c5a1bffc26c0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="NullConnect.png"
+   text-time="2004-05-22T14:17:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="272d21d27751fbb24ee1d2625dc73def"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap5-net.png"
+   text-time="2004-05-22T14:17:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bf31785e2ad0983a606e29d2937a92ec"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:58.000000Z"/>
+<entry
+   committed-rev="3"
+   name="XP-screen001.png"
+   text-time="2004-05-22T14:17:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4c32ffc460960ea6d8e2f2e796573509"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:58.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap6-net.png"
+   text-time="2004-05-22T14:17:59.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="674b4eb1f0c28ae2f9f6d58c39c499af"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:17:59.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap7-net.png"
+   text-time="2004-05-22T14:18:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="84a48d9d3e3800f119e8cf7cda94d1b8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Windows-ME-WINEPRESSME-Startup-30min-TraceStats.png"
+   text-time="2004-05-22T14:18:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3998c6b762b75c0bceba7e2738f64377"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="chap9-ADSDC.dia"
+   text-time="2004-05-22T14:18:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3d2a5fe896a4db68f3af7c126cbdeaca"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lam-group-members.png"
+   text-time="2004-05-22T14:18:02.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d0ed3206648edc86c79c504cd72edd23"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:02.000000Z"/>
+</wc-entries>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="5"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/xslt/latex"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="5"
+   name="sambadoc.cls"
+   text-time="2004-05-22T14:16:51.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="e92c9e6ccbc0654743334f31de6c4878"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:50.000000Z"/>
+</wc-entries>

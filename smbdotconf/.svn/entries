@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="73"
+   name="svn:this_dir"
+   committed-date="2004-05-20T20:33:00.491789Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   name="filename"
+   kind="dir"/>
+<entry
+   name="ldap"
+   kind="dir"/>
+<entry
+   name="wins"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="generate-context.xsl"
+   text-time="2004-05-22T14:18:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5b89b792994865753ddf0e846d88aaaf"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:13.000000Z"/>
+<entry
+   name="locking"
+   kind="dir"/>
+<entry
+   name="logging"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="generate-file-list.sh"
+   text-time="2004-05-22T14:18:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1ea9611df7542672b9591fa47b16e9f2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:18.000000Z"/>
+<entry
+   name="printing"
+   kind="dir"/>
+<entry
+   name="winbind"
+   kind="dir"/>
+<entry
+   name="misc"
+   kind="dir"/>
+<entry
+   name="vfs"
+   kind="dir"/>
+<entry
+   name="browse"
+   kind="dir"/>
+<entry
+   name="protocol"
+   kind="dir"/>
+<entry
+   name="tuning"
+   kind="dir"/>
+<entry
+   name="domain"
+   kind="dir"/>
+<entry
+   name="security"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="smb.conf.5.xml"
+   text-time="2004-05-22T14:18:59.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="002f9f6ca0392dfddc331adff8fbfbd0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:59.000000Z"/>
+<entry
+   name="base"
+   kind="dir"/>
+<entry
+   name="logon"
+   kind="dir"/>
+</wc-entries>

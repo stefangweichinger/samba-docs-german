@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/security"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="nullpasswords.xml"
+   text-time="2004-05-22T14:18:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3e12d67640298fa459361a8f280ed290"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="authmethods.xml"
+   text-time="2004-05-22T14:18:48.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cde1c4a86e6a99126d6137356fe12133"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:48.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwordlevel.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4e8ef0985d49cbb6b3c07f6fa85edad6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="encryptpasswords.xml"
+   text-time="2004-05-22T14:18:48.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="27e1a3c68702dd1aa0a43645d36c9331"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:48.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hostsallow.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e594e746c8b1ea28aa57dd1959dc65e5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwdchat.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bd9a82b15878dc1e33c323f9e96d7588"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="inheritacls.xml"
+   text-time="2004-05-22T14:18:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a30ab848a7d88331cc3b4f03edfbb581"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="obeypamrestrictions.xml"
+   text-time="2004-05-22T14:18:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="098b9e5b0bfc45231f6fec1766c6fa94"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="security.xml"
+   text-time="2004-05-22T14:18:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ebd38bf1e4f8e6879cf550dc30841923"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="directorysecuritymask.xml"
+   text-time="2004-05-22T14:18:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="acb0e815d03da4b09d7d2d812f85c1a7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="privatedir.xml"
+   text-time="2004-05-22T14:18:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="19aef726058105cdc6aa7887644e7840"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forcegroup.xml"
+   text-time="2004-05-22T14:18:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6fa7baa5a6f00b094aa37890004a11f4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="username.xml"
+   text-time="2004-05-22T14:18:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8883e9af65a0943a17ad5d41a5880cf5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="preloadmodules.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e1a33d0a9be469ce29b0305ebc9b4436"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forcedirectorysecuritymode.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7ccf91f23b6f89d423deda2226d2db1b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hostsdeny.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4f0961d502969d572ce70eff02697d0a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passdbbackend.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7786e4603f30f3640d62d61b0904c425"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maptoguest.xml"
+   text-time="2004-05-22T14:18:53.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2f7e293671ea30a50112d5faf7a7cd53"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:53.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwordserver.xml"
+   text-time="2004-05-22T14:18:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b17d1f19f87c1b623feb27072a185c4b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="clientschannel.xml"
+   text-time="2004-05-22T14:18:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="eaa09924c2de89d2aac044485941ef6c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ntlmauth.xml"
+   text-time="2004-05-22T14:18:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f1b1731e86a8e499f15999582b49dc4f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="inheritpermissions.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="639aebc4ed39bcf09560a4b7ec350a13"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="unixpasswordsync.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cafe25b8d06791f413605f2d133d511b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="guestaccount.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="876a0295500ba607462275a9d11d0eb1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="pampasswordchange.xml"
+   text-time="2004-05-22T14:18:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="eb08620e24889938bf35a39ea434e0aa"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="usernamelevel.xml"
+   text-time="2004-05-22T14:18:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b007e1eb2f918a93e1da965606fd7c2e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwdchattimeout.xml"
+   text-time="2004-05-22T14:18:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b272923775e403d16afb29723e184187"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="adminusers.xml"
+   text-time="2004-05-22T14:18:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="179582dfa2f750e0ca83efd62b7de01c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="usernamemap.xml"
+   text-time="2004-05-22T14:18:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cb43ec6170d34ad718ef56666c70b813"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:58.000000Z"/>
+<entry
+   committed-rev="3"
+   name="onlyuser.xml"
+   text-time="2004-05-22T14:18:46.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="df86741cf0a3a26817a45db10ee07099"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:46.000000Z"/>
+<entry
+   committed-rev="3"
+   name="guestok.xml"
+   text-time="2004-05-22T14:18:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ce64a306efc535716ca82d49b033bb31"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="validusers.xml"
+   text-time="2004-05-22T14:18:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="76cf935e1349bdcff980c96c115b762b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="serverschannel.xml"
+   text-time="2004-05-22T14:18:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5225f98a0d1b9ba32d39e00379e47ca6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="securitymask.xml"
+   text-time="2004-05-22T14:18:47.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e3b182ead5fc00a18b5f49169b84dc69"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:47.000000Z"/>
+<entry
+   committed-rev="3"
+   name="clientlanmanauth.xml"
+   text-time="2004-05-22T14:18:48.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e49cc42695dd66e481747f6aa8a891fd"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:48.000000Z"/>
+<entry
+   committed-rev="3"
+   name="lanmanauth.xml"
+   text-time="2004-05-22T14:18:48.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2eadf0c8d53218d131d11c36eac9fd56"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:48.000000Z"/>
+<entry
+   committed-rev="3"
+   name="clientplaintextauth.xml"
+   text-time="2004-05-22T14:18:48.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0073d32d60b9d6f40ea6c749c0e2df03"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:48.000000Z"/>
+<entry
+   committed-rev="3"
+   name="algorithmicridbase.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3f153966303069f27110708d08d7da9a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="clientsigning.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6e26773ba2fca7a1e4e01fb459b7706b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="updateencrypted.xml"
+   text-time="2004-05-22T14:18:49.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7371ea370665b598db97d8b4d223ab4d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:49.000000Z"/>
+<entry
+   committed-rev="3"
+   name="clientntlmv2auth.xml"
+   text-time="2004-05-22T14:18:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="24b5df6776c4833f10004a466294ef26"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="rootdirectory.xml"
+   text-time="2004-05-22T14:18:50.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c3e30c6b31d3bc98a87c809395dfe43e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:50.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwdchatdebug.xml"
+   text-time="2004-05-22T14:18:51.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4ccb28ef51a37a84f35f4b3c57654977"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:51.000000Z"/>
+<entry
+   committed-rev="3"
+   name="directorymask.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="5eb4625c34cfbd91613df2c31be79314"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="serversigning.xml"
+   text-time="2004-05-22T14:18:52.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d7f353fe5f14a85db72693617c11cab2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:52.000000Z"/>
+<entry
+   committed-rev="3"
+   name="writelist.xml"
+   text-time="2004-05-22T14:18:53.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c5d3877e3d4fd03d4c414415ba378afb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:53.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forcecreatemode.xml"
+   text-time="2004-05-22T14:18:53.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="34b1883aee47d97406d7b08d049c4529"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:53.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forcedirectorymode.xml"
+   text-time="2004-05-22T14:18:53.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cfe3a0faf9197bcfcace281b95161ef5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:53.000000Z"/>
+<entry
+   committed-rev="3"
+   name="passwdprogram.xml"
+   text-time="2004-05-22T14:18:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6e2fcce3617e55a8df93439107bf9dd1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="guestonly.xml"
+   text-time="2004-05-22T14:18:53.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="39ec783bb6e433b75964fc0521eefe08"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:53.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forcesecuritymode.xml"
+   text-time="2004-05-22T14:18:54.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f1280ae5e99af4842184c3c3e5571d8d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:54.000000Z"/>
+<entry
+   committed-rev="3"
+   name="printeradmin.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="694e9d00827060fce5ba41de3bce9d94"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="forceuser.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="dcf0e67ff4dcc6e607212bb00ccb2683"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="smbpasswdfile.xml"
+   text-time="2004-05-22T14:18:55.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ee5525f21c9a01415fb38771fe160493"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:55.000000Z"/>
+<entry
+   committed-rev="3"
+   name="allowtrusteddomains.xml"
+   text-time="2004-05-22T14:18:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6b35088d97a5f4fe60fe3e3f5d70b422"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="readlist.xml"
+   text-time="2004-05-22T14:18:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4f5608ae5bcac766e66e99e012cb9fd9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="invalidusers.xml"
+   text-time="2004-05-22T14:18:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4a41662b96e1fb00522511d9b5e59d7a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="minpasswordlength.xml"
+   text-time="2004-05-22T14:18:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="43981af94633ba0da64027a4a65a7dcc"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="restrictanonymous.xml"
+   text-time="2004-05-22T14:18:56.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2065fe57f31377b1847f047287423336"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:56.000000Z"/>
+<entry
+   committed-rev="3"
+   name="hostsequiv.xml"
+   text-time="2004-05-22T14:18:57.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="83f9c6f7d4489261ace52e26829753f5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:57.000000Z"/>
+<entry
+   committed-rev="3"
+   name="readonly.xml"
+   text-time="2004-05-22T14:18:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0db5d59c9543aef51b25a428b9c6e7f0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:58.000000Z"/>
+<entry
+   committed-rev="3"
+   name="writeable.xml"
+   text-time="2004-05-22T14:18:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8f2a129356df65f2ee7e8ff972f36cfa"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:58.000000Z"/>
+<entry
+   committed-rev="3"
+   name="createmask.xml"
+   text-time="2004-05-22T14:18:58.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ad1f5a88f450c99ec8c02bb3e285bdea"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:58.000000Z"/>
+</wc-entries>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="74"
+   name="svn:this_dir"
+   committed-date="2004-05-20T21:04:57.445962Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/xslt"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="5"
+   name="html-chunk.xsl"
+   text-time="2004-05-22T14:16:44.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="51fb5181f6e47d82ce84d8e24c83a9aa"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:44.000000Z"/>
+<entry
+   committed-rev="5"
+   name="unicode.mapping.xml"
+   text-time="2004-05-22T14:16:44.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="cf503e21d231997fe4936503169b0e17"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:44.000000Z"/>
+<entry
+   committed-rev="65"
+   name="man.xsl"
+   text-time="2004-05-22T14:16:44.000000Z"
+   committed-date="2004-05-14T16:36:04.635546Z"
+   checksum="a1e9382fe34e74c42b8490d5079a7e83"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:44.000000Z"/>
+<entry
+   committed-rev="5"
+   name="lists.mod.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="223d2d9f79fc19edc48c3fe33b80b178"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="20"
+   name="extract-smbfiles.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-04-11T18:54:15.604995Z"
+   checksum="b539a84c23397e28a6711456bd7b11f5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="5"
+   name="latex.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="24609d96687304931b4fa7e0520d68d9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="74"
+   name="generate-attributions.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-05-20T21:04:57.445962Z"
+   checksum="c1e3a94d1dcf6f406efe1effaabe3bca"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="5"
+   name="docbook.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="6d9af671fc88c173b37a68e3b1a56af8"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="6"
+   name="genchangelog.xsl"
+   text-time="2004-05-22T14:16:45.000000Z"
+   committed-date="2004-04-07T10:44:02.402481Z"
+   checksum="ff7dcd4e361946b1fd7ee6fe5fa0e24a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:45.000000Z"/>
+<entry
+   committed-rev="5"
+   name="unicode.mapping.dtd"
+   text-time="2004-05-22T14:16:46.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="b3be65d528b5bd216c2b4296cb271c70"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:46.000000Z"/>
+<entry
+   committed-rev="74"
+   name="expand-sambadoc.xsl"
+   text-time="2004-05-22T14:16:46.000000Z"
+   committed-date="2004-05-20T21:04:57.445962Z"
+   checksum="c9391ec5ae7c136b32697f68f4b5ffa1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:46.000000Z"/>
+<entry
+   committed-rev="5"
+   name="extract-examples.xsl"
+   text-time="2004-05-22T14:16:46.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="00bb7c04bb260d2b85aae0f179b54006"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:46.000000Z"/>
+<entry
+   committed-rev="5"
+   name="html-common.xsl"
+   text-time="2004-05-22T14:16:46.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="aef8f0fbe615deb3dcb36b18f2c1692e"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:46.000000Z"/>
+<entry
+   name="html"
+   kind="dir"/>
+<entry
+   name="figures"
+   kind="dir"/>
+<entry
+   committed-rev="5"
+   name="html.xsl"
+   text-time="2004-05-22T14:16:49.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="98aee65511a2db618ff4db8fd8ff3b96"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:49.000000Z"/>
+<entry
+   committed-rev="5"
+   name="table.mod.xsl"
+   text-time="2004-05-22T14:16:50.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="eae6e53d8d46940da68ff2f55b5f3238"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:50.000000Z"/>
+<entry
+   committed-rev="5"
+   name="normalize-scape.mod.xsl"
+   text-time="2004-05-22T14:16:50.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="2bc055afec9504a6e7a241c5fb667c78"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:16:50.000000Z"/>
+<entry
+   name="latex"
+   kind="dir"/>
+</wc-entries>

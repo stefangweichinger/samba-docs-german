@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="9"
+   name="svn:this_dir"
+   committed-date="2004-04-08T11:55:42.259665Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/entities"
+   last-author="ab"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="9"
+   name="global.entities"
+   text-time="2004-05-22T14:16:42.000000Z"
+   committed-date="2004-04-08T11:55:42.259665Z"
+   checksum="95a00144644adc5440076e63c9731786"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:16:42.000000Z"/>
+<entry
+   committed-rev="8"
+   name="xinclude.dtd"
+   text-time="2004-05-22T14:16:42.000000Z"
+   committed-date="2004-04-08T11:18:59.354756Z"
+   checksum="8094798c4fc4a585d1864fea636555f0"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:16:42.000000Z"/>
+</wc-entries>

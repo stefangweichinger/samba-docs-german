@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="62"
+   name="svn:this_dir"
+   committed-date="2004-05-10T10:40:24.042409Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/howto"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="Diagnosis.xml"
+   text-time="2004-05-22T14:19:12.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f34f884616c71561831fe8f20b8c3700"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:12.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Other-Clients.xml"
+   text-time="2004-05-22T14:19:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="cfd8e7dc37065033619104bafff93b0a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:13.000000Z"/>
+<entry
+   committed-rev="3"
+   name="PolicyMgmt.xml"
+   text-time="2004-05-22T14:19:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6da9a5bee59548ac20131fd7dfb200a0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:13.000000Z"/>
+<entry
+   committed-rev="49"
+   name="Group-Mapping.xml"
+   text-time="2004-05-22T14:19:14.000000Z"
+   committed-date="2004-04-27T15:19:28.198898Z"
+   checksum="01323ce7615122ed030513886d817f50"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="AccessControls.xml"
+   text-time="2004-05-22T14:19:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="121bf6cddb614e26b64607539257a9f1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ProfileMgmt.xml"
+   text-time="2004-05-22T14:19:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2ef11b03aa2042ab5af68a58a7918e80"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="locking.xml"
+   text-time="2004-05-22T14:19:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="afc632d7a26b43c8cbf4abb66494a8a2"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Unicode.xml"
+   text-time="2004-05-22T14:19:16.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="ecd17d8498c63f5ca09a042969580660"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:16.000000Z"/>
+<entry
+   committed-rev="48"
+   name="Winbind.xml"
+   text-time="2004-05-22T14:19:16.000000Z"
+   committed-date="2004-04-27T15:15:18.773743Z"
+   checksum="c73c66bd20eeebf8d7f46e448b362746"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:16.000000Z"/>
+<entry
+   committed-rev="24"
+   name="Printing.xml"
+   text-time="2004-05-22T14:19:18.000000Z"
+   committed-date="2004-04-19T20:28:44.412118Z"
+   checksum="eddc94a9824551ad8cc8dfabeed99390"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:18.000000Z"/>
+<entry
+   committed-rev="50"
+   name="VFS.xml"
+   text-time="2004-05-22T14:19:18.000000Z"
+   committed-date="2004-04-27T15:33:01.457956Z"
+   checksum="e2a55b3607206d50ff8a91b68b53527b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:18.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Bugs.xml"
+   text-time="2004-05-22T14:19:18.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="e67b1685959b7ea3e8eb9b1bd824c49d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:18.000000Z"/>
+<entry
+   committed-rev="3"
+   name="CUPS-printing.xml"
+   text-time="2004-05-22T14:19:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="1471de1e4ed5224191d534ee33c3668f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:21.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Portability.xml"
+   text-time="2004-05-22T14:19:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6733e07b11f709be8addc90f2d2369f9"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:21.000000Z"/>
+<entry
+   committed-rev="3"
+   name="foreword-tridge.xml"
+   text-time="2004-05-22T14:19:21.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="7954fb15fb9c2ecd495da1c1cd81cac7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:21.000000Z"/>
+<entry
+   committed-rev="3"
+   name="NetworkBrowsing.xml"
+   text-time="2004-05-22T14:19:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="445e42f089a89ff219ab66b2ccec224c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="DNS-DHCP-Configuration.xml"
+   text-time="2004-05-22T14:19:22.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bc2639eb6a5f8b0ff39d9549b5d5d48c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:22.000000Z"/>
+<entry
+   committed-rev="8"
+   name="index.xml"
+   text-time="2004-05-22T14:19:22.000000Z"
+   committed-date="2004-04-08T11:18:59.354756Z"
+   checksum="88687929b01e76d87eab1a0d40e6d6a5"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:19:22.000000Z"/>
+<entry
+   committed-rev="3"
+   name="HighAvailability.xml"
+   text-time="2004-05-22T14:19:23.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="54ae24b8fda743d597428e3dc7dc09c5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:23.000000Z"/>
+<entry
+   committed-rev="62"
+   name="FastStart.xml"
+   text-time="2004-05-22T14:19:23.000000Z"
+   committed-date="2004-05-10T10:40:24.042409Z"
+   checksum="fa9f3b406feba9d36ab5df5490f90c32"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:23.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Passdb.xml"
+   text-time="2004-05-22T14:19:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="16fbee0d5f81890beb0eef45e6b7cd41"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:24.000000Z"/>
+<entry
+   committed-rev="3"
+   name="msdfs.xml"
+   text-time="2004-05-22T14:19:24.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="0954971db06d6c739d2a898734183fd1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:24.000000Z"/>
+<entry
+   committed-rev="5"
+   name="PAM.xml"
+   text-time="2004-05-22T14:19:25.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="eab1dd392b6ad8e13b042cd0ca5f2a41"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="SWAT.xml"
+   text-time="2004-05-22T14:19:25.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4dad02f3cc95e23f87c9ecdb9d55669c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:25.000000Z"/>
+<entry
+   committed-rev="3"
+   name="NT4Migration.xml"
+   text-time="2004-05-22T14:19:26.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b49ccaa735a9bcae3e1722ee948afb1a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:26.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Securing.xml"
+   text-time="2004-05-22T14:19:26.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="be137e92d034385096d8c5b09ccc507d"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:26.000000Z"/>
+<entry
+   committed-rev="23"
+   name="Compiling.xml"
+   text-time="2004-05-22T14:19:26.000000Z"
+   committed-date="2004-04-19T14:48:09.614063Z"
+   checksum="8f4f68f8595451fb414813a1179100c1"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:26.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Problems.xml"
+   text-time="2004-05-22T14:19:27.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="6b422b48139969b2a51a92cb5cdff564"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:27.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Further-Resources.xml"
+   text-time="2004-05-22T14:19:27.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="995239ca3a206e9b423ec14537a3caf6"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:27.000000Z"/>
+<entry
+   committed-rev="3"
+   name="BDC.xml"
+   text-time="2004-05-22T14:19:28.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="41bbd19e78c16147ea13c0991403e97b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:28.000000Z"/>
+<entry
+   committed-rev="3"
+   name="AdvancedNetworkAdmin.xml"
+   text-time="2004-05-22T14:19:27.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9238433458f4e9bdf9394e6f8ecac7ce"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:27.000000Z"/>
+<entry
+   committed-rev="3"
+   name="IntroSMB.xml"
+   text-time="2004-05-22T14:19:28.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2f6dddcee3a32bbd16d98ba441682811"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:28.000000Z"/>
+<entry
+   committed-rev="3"
+   name="upgrading-to-3.0.xml"
+   text-time="2004-05-22T14:19:28.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="553668e1803f7f814e2c7ba4b1833ae3"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:28.000000Z"/>
+<entry
+   committed-rev="3"
+   name="InterdomainTrusts.xml"
+   text-time="2004-05-22T14:19:29.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d087bb8e26fe40c71b46822b09af44e5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:29.000000Z"/>
+<entry
+   committed-rev="5"
+   name="DomainMember.xml"
+   text-time="2004-05-22T14:19:29.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="a7f5b4252e9ed3ee812d4edd176b5da4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:29.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Speed.xml"
+   text-time="2004-05-22T14:19:30.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9c3b437a3ba5656855692686e07efc7a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:30.000000Z"/>
+<entry
+   committed-rev="3"
+   name="glossary.xml"
+   text-time="2004-05-22T14:19:31.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b39d393949b0798363783d8dbff99b4a"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:31.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Backup.xml"
+   text-time="2004-05-22T14:19:31.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="03254130bcdfb6857ba8eb7c2779d646"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:19:31.000000Z"/>
+<entry
+   name="imagefiles"
+   kind="dir"/>
+<entry
+   committed-rev="12"
+   name="PDC.xml"
+   text-time="2004-05-22T14:20:00.000000Z"
+   committed-date="2004-04-08T13:18:48.279948Z"
+   checksum="6e62306762a80674ba4b0197766fcc1e"
+   last-author="ab"
+   kind="file"
+   prop-time="2004-05-22T14:20:00.000000Z"/>
+<entry
+   committed-rev="5"
+   name="Install.xml"
+   text-time="2004-05-22T14:20:00.000000Z"
+   committed-date="2004-04-07T10:40:50.261753Z"
+   checksum="a769f2432ade64bd16814abaea044235"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="ServerType.xml"
+   text-time="2004-05-22T14:20:00.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="fc2e979e69cdf3a12c73f13e5f2ce8e7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:00.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Integrating-with-Windows.xml"
+   text-time="2004-05-22T14:20:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="9fbde75560916091ca3569256ecd6f62"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="StandAloneServer.xml"
+   text-time="2004-05-22T14:20:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bc58e9eac1b0eb2a2ec7e4bb94ff33c5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:01.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WindowsClientConfig.xml"
+   text-time="2004-05-22T14:20:01.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="eb31d75d3ec7ec5f72cf7a043b65a655"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:01.000000Z"/>
+</wc-entries>

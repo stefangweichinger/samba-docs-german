@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/registry"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="Win2000_PlainPassword.reg"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="3f56cb596171377ae64259d5b42b0785"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Win-NT-DeleteRoamingProfile.reg"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2b8a6cc182aa2c8ec60e6cb41793d3c7"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="NT4_PlainPassword.reg"
+   text-time="2004-05-22T14:20:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="69f317abd5a711636b88eb60f17e68ad"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WinXP_PlainPassword.reg"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="d4e0275778910c1bb33de49573234984"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WindowsTerminalServer.reg"
+   text-time="2004-05-22T14:20:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="901b16a407b3518b00071aa9fc791ad0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:05.000000Z"/>
+<entry
+   name="CVS"
+   kind="dir"/>
+<entry
+   committed-rev="3"
+   name="Win95_PlainPassword.reg"
+   text-time="2004-05-22T14:20:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a4f6f6d2d92a59fc67e2c3475ab3d3f4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Win98_PlainPassword.reg"
+   text-time="2004-05-22T14:20:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a4f6f6d2d92a59fc67e2c3475ab3d3f4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Win9X-CacheHandling.reg"
+   text-time="2004-05-22T14:20:03.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4d62b63d8644130319b109de0068ad23"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:03.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WinME_PlainPassword.reg"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="a4f6f6d2d92a59fc67e2c3475ab3d3f4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="FolderRedir.adm"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f7803d5010c64c743d1de60dd691f4a5"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="NT4-Locking.reg"
+   text-time="2004-05-22T14:20:04.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2258740996cd30b0a544ded52e9fe85b"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:04.000000Z"/>
+<entry
+   committed-rev="3"
+   name="WinXP_SignOrSeal.reg"
+   text-time="2004-05-22T14:20:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="2c9c551213a7d33ef3cc3e4a4dae6ea4"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Win-2Kx-XPP-ForceLocalProfile.reg"
+   text-time="2004-05-22T14:20:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="bfbdae2a71abdc0dab531de9c448dcdf"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="Win-2Kx-XPP-DeleteCachedProfiles.reg"
+   text-time="2004-05-22T14:20:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f5c7354025e313c994fc41a9d752f1ab"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:20:06.000000Z"/>
+</wc-entries>

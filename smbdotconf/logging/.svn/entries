@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/logging"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="syslog.xml"
+   text-time="2004-05-22T14:18:13.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="08b454ac579acf5eff1351455c251678"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:13.000000Z"/>
+<entry
+   committed-rev="3"
+   name="logfile.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="4e3924eb78ab1a40868b9f02375a9d3c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="syslogonly.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="dadcce7140abc4b97a3d41b9b09a66bb"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="maxlogsize.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="23e82141afc8f8ebed34b6d806c8ec2c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="debugpid.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b70f31f2a2ed06b2b86b17b707258300"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="debughirestimestamp.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="b06c55fe440cfaf5adab020dc414bd59"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="debuguid.xml"
+   text-time="2004-05-22T14:18:14.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="237e1ea7cd665d8771325d9d1f68118f"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:14.000000Z"/>
+<entry
+   committed-rev="3"
+   name="loglevel.xml"
+   text-time="2004-05-22T14:18:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="91fed26b0e377493825766dc2189461c"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:15.000000Z"/>
+<entry
+   committed-rev="3"
+   name="debugtimestamp.xml"
+   text-time="2004-05-22T14:18:15.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="8954472d73513f0290f21ef462e7d8db"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:15.000000Z"/>
+</wc-entries>

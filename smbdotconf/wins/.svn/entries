@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="3"
+   name="svn:this_dir"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/smbdotconf/wins"
+   last-author="jelmer"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="3"
+   name="winshook.xml"
+   text-time="2004-05-22T14:18:05.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="73933dfce1bbedee516d8f2d69e23772"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:05.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winsproxy.xml"
+   text-time="2004-05-22T14:18:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="c8c7dbab2a12176f4090dbe9b284b3d0"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="dnsproxy.xml"
+   text-time="2004-05-22T14:18:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="12355a07231eae665d466f5e16573978"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winsserver.xml"
+   text-time="2004-05-22T14:18:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="f0eb718b73c327b5505412d0e3ff88ae"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:06.000000Z"/>
+<entry
+   committed-rev="3"
+   name="winssupport.xml"
+   text-time="2004-05-22T14:18:06.000000Z"
+   committed-date="2004-04-07T10:15:11.133588Z"
+   checksum="126b7ac14544d2b6abb245bf9da7b5ca"
+   last-author="jelmer"
+   kind="file"
+   prop-time="2004-05-22T14:18:06.000000Z"/>
+</wc-entries>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+
+<!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
+]>
+
+<book id="Samba-HOWTO-Sammlung" lang="de">
+<title>Samba HOWTO Collection</title>
+
+<bookinfo>
+	<authorgroup>
+	<editor>&person.jelmer;</editor>
+	<editor>&person.jht;</editor>
+	<editor>&person.jerry;</editor>
+	<pubdate>November 15, 2003</pubdate>
+	<editor>&person.gertrans;<contrib>German Translation Team</contrib></editor>
+	</authorgroup>
+
+<abstract>
+<para>
+Dieses Buch ist eine Sammlung von HOWTOs, welche über die Jahre hinweg der Samba-Dokumentation
+hinzugefügt wurden. Samba ist immer unter Weiterentwicklung und so auch die Dokumentation dazu.
+Diese Veröffentlichung der Dokumentation stellt eine große Veränderung der Dokumentation bzw. des Layouts dar.
+Die aktuelle Version dieser Dokumentation (englisch) finden Sie unter
+<ulink url="http://www.samba.org/">http://www.samba.org/</ulink>
+auf der "Documentation" Seite. Bitte senden Sie Neuigkeiten an
+<ulink url="mailto:jelmer@samba.org">Jelmer Vernooij</ulink>,
+<ulink url="mailto:jht@samba.org">John H. Terpstra</ulink> oder
+<ulink url="mailto:jerry@samba.org">Gerald (Jerry) Carter</ulink>.
+</para>
+
+<para>
+Das Samba-Team möchte den vielen Personen seinen aufrichtigen Dank ausdrücken, die
+durch ihr Wissen oder Unwissen zu diesem Update der Doku beigetragen haben. Die Größe und
+der Umfang dieses Projekts hätten ohne die wichtigen Beiträge der Community niemals solche Ausmaße 
+angenommen. Eine nicht bedeutungslose Anzahl von Ideen kamen aus einer Anzahl
+von inoffiziellen HOWTOs - an jeden Autor dieser HOWTOs auch ein recht herzliches Dankeschön.
+Bitte macht weiter mit der Veröffentlichung eurer inoffiziellen HOWTOs - sie sind eine
+Quelle der Inspiration und des Erfahrungs-Austauschs von vielen Samba-Benutzern und -Administratoren.
+</para>
+
+</abstract>
+</bookinfo>
+
+<preface>
+	<title>Copyright Informationen</title>
+<para>
+Diese Dokumentation wird unter der GNU General Public License (GPL) Version 2 veröffentlicht.
+Eine Kopie dieser Lizenzbestimmung ist in den Samba-Quelldateien enthalten und kann ebenfalls
+unter <ulink url="http://www.fsf.org/licenses/gpl.txt">http://www.fsf.org/licenses/gpl.txt</ulink>
+eingesehen werden.
+</para>
+</preface>
+
+<preface>
+	<title>Zuschreibung</title>
+		&attributions;
+</preface>
+
+<!-- Contents -->
+<toc/>
+
+<!-- Chapters -->
+<part id="introduction">
+<title>Grundlegende Installation</title>
+<partintro>
+<title>Vorbereitung zur Samba-Konfiguration</title>
+<para>Dieser Abschnitt der Samba-HOWTO-Sammlung beinhaltet grundlegende Informationen darüber,
+ wie man die Teile von Samba installiert und konfiguriert, die Sie am meisten nutzen.
+BITTE lesen Sie dies.
+</para>
+</partintro>
+&IntroSMB;
+&UNIX-INSTALL;
+&FastStart;
+</part>
+
+<part id="type">
+<title>Basiswissen zur Server-Konfiguration</title>
+<partintro>
+<title>Erste Schritte bei der Konfiguration</title>
+<para>
+Samba kann in verschiedenen Modi in SMB-Netzwerken operieren. Dieser HOWTO-Abschnitt beinhaltet
+Informationen darüber, wie  Samba unter Berücksichtigung ihrer Netzwerkanforderungen einzurichten ist. Bitte lesen Sie dies aufmerksam durch.
+</para>
+</partintro>
+&ServerType;
+&Samba-PDC-HOWTO;
+&Samba-BDC-HOWTO;
+&DOMAIN-MEMBER;
+&StandAloneServer;
+&ClientConfig;
+</part>
+
+<part id="optional">
+<title>Erweiterte Konfiguration</title>
+<partintro>
+<title>Wertvolle "Nuß und Bolzen" Informationen - Valuable Nuts and Bolts Information</title>
+<para>
+Samba hat verschiedene Merkmale die Sie vielleicht nutzen möchten.
+Dieses Kapitel behandelt ausgewählte Merkmale.
+</para>
+</partintro>
+&NetworkBrowsing;
+&Passdb;
+&GROUP-MAPPING-HOWTO;
+&AccessControls;
+&locking;
+&SecuringSamba;
+&Trusts;
+&MS-Dfs-Setup;
+&PRINTER-DRIVER2;
+&CUPS;
+&VFS;
+&WINBIND;
+&AdvancedNetworkAdmin;
+&PolicyMgmt;
+&ProfileMgmt;
+&Samba-PAM;
+&IntegratingWithWindows;
+&unicode;
+&Backup;
+&HighAvailability;
+</part>
+
+<part id="migration">
+<title>Migration und Updating</title>
+&upgrading;
+&NT4Migration;
+&SWAT;
+</part>
+
+<part id="troubleshooting">
+<title>Troubleshooting</title>
+
+&Diagnosis;
+&problems;
+&BUGS;
+</part>
+
+<part id="Appendixes">
+	<title>Anhang</title>
+&Compiling;
+&Portability;
+&Other-Clients;
+&SPEED;
+&DNS-DHCP-Configuration;
+&Further-Resources;
+</part>
+
+<index/>
+
+</book>

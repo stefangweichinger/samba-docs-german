@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="pam">
+<chapterinfo>
+	&author.jht;
+	<author>
+		<firstname>Stephen</firstname><surname>Langasek</surname>
+		<affiliation>
+			<address><email>vorlon@netexpress.net</email></address>
+		</affiliation>
+	</author>
+	<author>&person.flex;<contrib>Deutsche Übersetzung</contrib></author>
+    <pubdate>May 31, 2003</pubdate>
+</chapterinfo>
+ 
+<title>PAM-basierte verteilte Authentifizierung</title>
+
+<para>
+Dieses Kapitel hilft Ihnen bei der Verwendung von Winbind basierender Authentifikation auf jedem PAM-fähigen 
+UNIX/Linux-System. Winbind kann verwendet werden, um Programm-Zugriffs-Authentifizierung auf 
+Benutzerebene von jeder
+MS Windows NT Domäne, MS Windows 200x Active Director-basierenden Domäne oder einer 
+Samba-basierten Domänen-Umgebung zu erlauben.
+
+Es sollte ihnen auch helfen, PAM-basierte lokale Host-Zugriffs-Kontrollen, die Ihrer Samba-Konfiguration entsprechen,
+zu konfigurieren.
+</para>
+
+<para>
+Zusätzlich zur Konfiguration von Winbind in PAM, werden Sie die PAM-Management-Möglichkeiten 
+kennenlernen, wie z.B.
+die Verwendung von Werkzeugen wie <filename>pam_smbpass.so</filename> zu Ihrem Vorteil.
+</para>
+
+<note><para>
+Die Verwendung von Winbind erfordert mehr als nur die Konfiguration von PAM alleine.
+Für mehr Informationen zu Winbind schauen Sie sich bitte <link linkend="winbind"/> an.
+</para></note>
+
+<sect1>
+<title>Eigenschaften und Vorteile</title>
+
+<para>
+Eine Vielzahl von UNIX Systemen (z.B. Sun Solaris), sowie die xxxxBSD Familie und Linux
+benutzen inzwischen die Pluggable Authentication Modules (PAM) Dienste, um die gesamten
+Dienste für Authentifikation, Authorisation
+und Ressourcen-Kontrolle anzubieten. Wollte man vor PAM eine Alternative zur systeminternen Passworddatenbank
+(<filename>/etc/passwd</filename>), musste man auch Änderungen oder Alternativen zu allen Programmen finden, die
+Sicherheitsdienste anbieten wie z.B.  <command>login</command>, <command>passwd</command>, <command>chown</command>
+usw.
+</para>
+
+<para>
+PAM liefert einen Mechanismus, der diese Sicherheitsprogramme von der darunterliegenden Authentifizierung/Authorisierung
+trennt. PAM wird konfiguriert, in dem man Änderungen an <filename>/etc/pam.conf</filename> vornimmt (Solaris), oder indem
+man die einzelnen Dateien, die in <filename>/etc/pam.d</filename> aufgelistet sind, anpasst bzw. verändert.
+</para>
+
+<para>
+Auf PAM-fähigen UNIX/Linux-Systemen ist es ein einfaches Unterfangen, irgendein 
+Authentifizierungs-Backend
+zu konfigurieren, solange die entsprechenden dynamisch ladbaren Modul-Bibliotheken vorhanden sind.
+Das Backend kann auf dem lokalen System vorhanden sein oder zentralisiert, auf einem entfernten Server.
+</para>
+
+<para>
+PAM unterstützte Module sind vorhanden für:
+</para>
+
+<variablelist>
+	<varlistentry><term><filename>/etc/passwd</filename></term><listitem>
+		<para>
+		Es gibt mehrere PAM Module, die mit dieser Standard UNIX Benutzer Datenbank interagieren.
+		Die bekanntesten sind <filename>pam_unix.so</filename>, <filename>pam_unix2.so</filename>, <filename>pam_pwdb.so</filename>
+		und <filename>pam_userdb.so</filename>.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>Kerberos</term><listitem>
+		<para>
+		Das Modul <filename>pam_krb5.so</filename> erlaubt die Nutzung von jedem Kerberos-fähigem Server.
+		Dieses Tool kann mit MIT Kerberos, Heimdal Kerberos, und möglicherweise mit Microsoft Active Directory
+		(falls eingeschaltet) benutzt werden.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>LDAP</term><listitem>
+		<para>
+		Das <filename>pam_ldap.so</filename> Modul erlaubt die Benutzung von jedem 
+		LDAP v2 oder v3 kompatiblem
+		Backend-Server. Weit verbreitete LDAP-Backend-Server sind z.B. OpenLDAP v2.0 und v2.1,
+		Sun ONE iDentity Server, Novell eDirectory Server, Microsoft Active Directory. 
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>NetWare Bindery</term><listitem>
+		<para>
+		Das Modul <filename>pam_ncp_auth.so</filename> erlaubt die Authentifizierung 
+		auf jedem Bindery-fähigen NetWare Core Protokoll basierenden Server.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>SMB Password</term><listitem>
+		<para>
+		Dieses Modul, namentlich <filename>pam_smbpass.so</filename>, erlaubt die Benutzerauthentifizierung
+		mit dem passdb Backend, das in der Datei &smb.conf; angegeben ist.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>SMB Server</term><listitem>
+		<para>
+		Das Modul <filename>pam_smb_auth.so</filename> ist das original MS Windows 
+		Netzwerk Authentifizierungs-Werkzeug.
+		Dieses Modul ist eigentlich überholt, seit es das Winbind-Modul gibt.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>Winbind</term><listitem>
+		<para>
+		Das Modul <filename>pam_winbind.so</filename> erlaubt Samba, sich an
+		jedem MS Windows Domain-Controller zu authentifizieren.
+		Es kann genauso benutzt werden, um Benutzern den Zugang zu irgendeiner
+		PAM-fähigen Applikation zu erlauben.
+		</para>
+	</listitem></varlistentry>
+
+	<varlistentry><term>RADIUS</term><listitem>
+		<para>
+		Es gibt auch ein PAM RADIUS (Remote Access Dial-In User Service) Authentifizierungs
+		Modul. In den meisten Fällen muss der Administrator den Quellcode suchen und 
+		dieses Modul selbst kompilieren und installieren.
+		RADIUS-Protokolle werden von vielen Routern und Terminal Servern
+		benutzt.
+		</para>
+	</listitem></varlistentry>
+</variablelist>
+
+<para>
+Von diesen Modulen stellt Samba nur das <filename>pam_smbpasswd.so</filename> und das <filename>pam_winbind.so</filename> Modul zur Verfügung.
+</para>
+
+<para>
+Einmal konfiguriert erlauben diese Module einen bemerkenswerte Zuwachs an Flexibilität und 
+die Benutzung von verteilten Samba-Domänen-Controllern, die wiederum eine effiziente 
+Ausnutzung der Bandbreite in grossen Netzwerken mit PAM-fähigen Systemen erlauben.
+Richtig eingesetzt erlaubt dies eine zentrale Administration einer verteilten 
+Authentifizierung von einer Einzelbenutzer-Datenbank aus.  
+</para>
+
+</sect1>
+
+<sect1>
+<title>Technische Ausarbeitung</title>
+
+<para>
+PAM wurde entworfen, um dem Systemverwalter eine grosse Flexibilität in der Konfiguration von
+Programmzugriffen auf das System zu geben. Die lokale Konfiguration der Systemsicherheit,
+die von PAM überwacht wird, liegt an einem dieser zwei Orte: Entweder in der einzelnen System-Datei
+<filename>/etc/pam.conf</filename>, oder dem Verzeichnis <filename>/etc/pam.d/</filename>.
+</para>
+
+<sect2>
+<title>PAM Konfigurations-Syntax</title>
+
+<para>
+In diesem Kapitel sehen wir uns die richtige Syntax und die verschiedenen Optionen der Einträge in diesen
+Dateien an. Bei PAM-spezifischen Zeichen ist die Gross- und Kleinschreibung egal. 
+Die Modul-Pfade hingegen 
+sind empfindlich gegenüber der Gross- und Kleinschreibung, da sie auf Dateinamen
+verweisen und diese die Schreibweise des Dateisystems wiedergeben. 
+Die Empfindlichkeit der Argumente der einzelnen Module gegenüber der Gross- und Kleinschreibung 
+wird für jedes Modul eigens festgelegt.
+</para>
+
+<para>
+Zusätzlich zu den unten beschriebenen Zeilen gibt es noch zwei zusätzliche Zeichen,
+die dem Systemadministrator die Arbeit erleichtern: Auszukommentierende Zeilen werden
+mit einem <quote>#</quote> eingeleitet, welches 
+in der nächsten Zeile die Gültigkeit verliert; um Zeilen in einer Modulbeschreibung über den
+Zeilenumbruch zu verlängern, kann ein <quote>\</quote> Zeichen verwendet werden.
+</para>
+
+<para>
+Befindet sich das PAM-Authentifizierungs-Modul (dynamisch ladbare Programmbibliothek)
+im Standardpfad, so ist es nicht nötig, den Pfad nochmals anzugeben. Befindet sich das
+Modul ausserhalb dieses Pfades (unter Linux <filename>/lib/security</filename>), muss
+dieser wie folgt angegeben werden:
+</para>
+
+<para>
+<programlisting>
+auth  required  /anderer_pfad/pam_fremdes_modul.so
+</programlisting>
+</para>
+
+<sect3>
+<title>Eigenschaften der Einträge in <filename>/etc/pam.d</filename></title>
+
+<para>
+Die restlichen Informationen in diesem Unterkapitel sind dem Linux-PAM-Dokumentations-Projekt
+entnommen. Für mehr Informationen zu PAM, besuchen Sie diesen Link:
+<ulink url="http://ftp.kernel.org/pub/linux/libs/pam/">The Official Linux-PAM home page.</ulink>
+</para>
+
+<para>
+Eine allgemeine Konfigurationszeile der Datei <filename>/etc/pam.conf</filename> hat folgende Form:
+</para>
+
+<para>
+<programlisting>
+Service-name	Modul-type	control-flag	Modul-path	Args.
+</programlisting>
+</para>
+
+<para>
+Hier beschreiben wir die Bedeutung dieser einzelnen Zeichen. Die zweite (und öfters angewendete)
+Methode der Konfiguration von Linux-PAM ist durch Änderung des Inhalts des Ordners
+<filename>/etc/pam.d/</filename>.
+Nachdem wir die obigen Zeichen erklärt haben, werden wir näher auf diese Methode eingehen.
+</para>
+
+<variablelist>
+	<varlistentry><term>Service-name</term><listitem>
+		<para>
+		Der Name des Dienstes, der mit diesem Eintrag verbunden ist. 
+		Meistens ist dies der herkömmliche Name
+		der Anwendung. Zum Beispiel <command>ftpd</command>, <command>rlogind</command>, 
+		<command>su</command>
+		usw.
+		</para>
+
+		<para>
+		Es gibt einen speziellen Dienste-Namen, der für einen 
+		Standard-Authentifizierungs-Mechanismus reserviert ist,
+		und zwar mit dem Namen <parameter>OTHER</parameter>, wobei es egal ist ob man 
+		ihn gross oder klein schreibt.
+		Beachten Sie, dass, falls bereits ein Modul für einen Dienst namentlich angegeben 
+		ist, dieser Parameter ignoriert wird.
+		</para>
+		</listitem>
+	</varlistentry>
+
+	<varlistentry><term>module-type</term><listitem>
+                <para>
+		Einer von (momentan) vier Typen von Modulen, die da wären:
+		</para>
+
+		<itemizedlist>
+			<listitem><para>
+			<parameter>auth:</parameter> 
+			Dieser Modul-Typ stellt zwei Aspekte der Benutzerauthentifizierung zur Verfügung.
+			Erstens wird festgestellt, dass der Benutzer der ist, der er angibt zu sein,
+			indem er von der Applikation aufgefordert wird, ein Password anzugeben
+			oder sich sonst irgendwie zu authentifizieren.
+			Zweitens kann dieses Modul Gruppenzugehörigkeiten erlauben 
+			(unabhängig vom Inhalt von <filename>/etc/groups</filename>,
+			welcher oben behandelt wurde) oder andere Privilegien, da es befähigt ist,
+			diese zu vergeben.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>account:</parameter>
+			Dieses Modul führt nicht-authentifizierungs-basiertes Benutzermanagement aus.
+			Normalerweise wird es benutzt, um den Zugang zu Diensten aufgrund der Tageszeit,
+			momentan verfügbaren Systemressourcen
+			(maximale gleichzeitige Benutzer) oder vielleicht der Lage des
+			<quote>root</quote>-Logins auf der Konsole zu
+			erlauben oder verweigern.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>session:</parameter> 
+			Dieses Modul wird vor allem dazu verwendet, um festzulegen, was ausgeführt
+			werden sollte, bevor ein Benutzer einen Dienst benutzt oder beendet.
+			Dies könnte zum Beispiel das Aufzeichnen
+			von Information bezüglich dem Datenaustausch mit dem Benutzer oder das 
+			Mounten von Ordnern usw. sein.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>password:</parameter>
+			Dieser letzte Modultyp wird gebraucht, um das mit dem Benutzer verbundene
+			Authentisierungstoken zu aktualisieren. Normalerweise gibt es ein Modul 
+			für jeden <quote>challenge/response</quote>
+			-basierten Authentifizierungs <parameter>(auth)</parameter>-Modul-Typus.
+			</para></listitem>
+		</itemizedlist>
+		</listitem>
+	</varlistentry>
+
+	<varlistentry><term>control-flag</term><listitem>
+                <para>
+		Die control-flag wird benutzt, um festzulegen, wie die PAM-Bibliothek auf einen Erfolg oder Misserfolg
+		des mit ihr verbundenen Moduls reagiert. Seit Module gestapelt werden können (Module des gleichen Typs 
+		nacheinander geschaltet, sodass eins nach dem anderen ausgeführt wird), legen die control-flags auch die
+		relative Wichtigkeit dieser fest. Der Applikation wird nicht der Erfolg oder Misserfolg jedes Moduls in der 
+		<filename>/etc/pam.conf</filename> Datei mitgeteilt, sondern sie erhält eine Zusammenfassung des Erfolgs
+		oder Misserfolgs von der Linux-PAM-Bibliothek. Die Reihenfolge, in der diese Module ausgeführt werden ist
+		die der Einträge in <filename>/etc/pam.conf</filename>; der erste Eintrag wird als erstes ausgeführt und
+		der Letzte zum Schluss. Ab Linux-PAM v0.60 kann dieser control-flag mit einer von zwei Syntaxes angegeben
+		werden.
+		</para>
+		
+
+		<para>
+		Die einfachere (und historische) Syntax für das control-flag ist ein einzelnes Schlüsselwort, welches
+		die Wichtigkeit des Erfolgs oder Misserfolgs des Moduls festlegt. Es gibt vier solcher Schlüsselworte:
+		<parameter>required, requisite, sufficient und optional</parameter>.
+		</para>
+
+		<para>
+		Die Linux-PAM-Bibliothek interpretiert diese Schlüsselwörter wie folgt:
+		</para>
+
+		<itemizedlist>
+			<listitem><para>
+			<parameter>required:</parameter> Dies gibt an, dass der Efolg dieses Moduls essentiell für den Erfolg
+			des mit diesem Modul verbunden Dienstes ist. Ein Misserfolg dieses Moduls wird dem Benutzer nicht
+			mitgeteilt, bevor nicht alle anderen Module (des selben Modul-Typs) ausgeführt wurden.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>requisite:</parameter> Gleich wie required, nur dass im Falle eines Misserfolges die
+			Kontrolle direkt an die Applikation zurückgegeben wird. Der Rückgabewert ist der gleiche wie bei einem
+			Misserfolg des ersten Moduls. Diese Flag kann gesetzt werden, um dem Benutzer die Möglichkeit zu nehmen,
+			über ein unsicheres Medium das Passwort einzugeben. Es wäre möglich, dass dies einem Angreifer Informationen
+			über Benutzernamen geben könnte. Dieser Möglichkeit sollte aber entgegengehalten werden, da sonst eventuell
+			Passwörter durch eine unsichere Umgebung gehen könnten.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>sufficient:</parameter> Der Erfolg dieses Moduls genügt, damit die Linux-PAM-Bibliothek ausgibt, dass
+			dieses Modul erfolgreich in seinem Zweck war. Im Fall, dass kein vorhergehendes wichtiges (<parameter> required</parameter>)
+			Modul Misserfolg zurückgab, wird kein weiteres <quote>gestapeltes</quote> Modul ausgeführt (in diesem Fall werden auch keine
+			weiteren wichtigen Module mehr ausgeführt). Ein Fehlschlagen dieses Moduls allein genügt nicht für das Fehlschlagen des
+			Stapels.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>optional:</parameter> Wie der Name schon sagt, bedeutet dieses Flag, dass das zugehörige Modul
+			keinen kritischen Einfluss auf den Erfolg der Applikation des Benutzers hat. Wenn Linux-PAM festlegen muss,
+			ob ein Modul-Stapel erfolgreich war, werden diese Module normalwerweise ignoriert. Gibt jedoch kein vorhergehendes
+			oder nachfolgendes Modul des Stapels eine definitve Rückgabe über den Erfolg, ist der Rückgabewert dieses Moduls ausschlaggebend
+			für den Erfolg des Modul-Stapels. Ein Beispiel für diesen Fall wäre, wenn die anderen Module eine Rückgabe wie 
+			PAM_IGNORE geben würden.
+			</para></listitem>
+		</itemizedlist>
+
+		<para>
+		Die besser ausgearbeitete (und neuere) Syntax ist viel spezifischer und gibt dem Administrator mehr Möglichkeiten
+		und Kontrolle darüber, wie der Benutzer authentifiziert wird. Diese Form der Kontroll-Flags wird mit eckigen Klammern
+		abgegrenzt und besteht aus einer Serie von <parameter>value=action</parameter>-Paaren.
+		</para>
+
+<para><programlisting>
+[value1=action1 value2=action2 ...]
+</programlisting></para>
+
+		<para>
+		Hier, ist <parameter>value1</parameter> einer der folgenden Rückgabewerte:
+<screen>
+<parameter>success; open_err; symbol_err; service_err; system_err; buf_err;</parameter>
+<parameter>perm_denied; auth_err; cred_insufficient; authinfo_unavail;</parameter>
+<parameter>user_unknown; maxtries; new_authtok_reqd; acct_expired; session_err;</parameter>
+<parameter>cred_unavail; cred_expired; cred_err; no_module_data; conv_err;</parameter>
+<parameter>authtok_err; authtok_recover_err; authtok_lock_busy;</parameter>
+<parameter>authtok_disable_aging; try_again; ignore; abort; authtok_expired;</parameter>
+<parameter>module_unknown; bad_item;</parameter> and <parameter>default</parameter>.
+</screen>
+</para>
+
+		<para>
+		Der letzte dieser <parameter>(default)</parameter>-Parameter kann dafür benutzt 
+		werden, die Aktion für Rückgabewerte festzulegen, für die dies nicht explizit angegeben wurde.
+		</para>
+
+		<para>
+		Der Parameter <parameter>action1</parameter> kann ein positiver Integer-Wert sein oder eines der folgenden Zeichen:
+		<parameter>ignore; ok; done; bad; die;</parameter> und <parameter>reset</parameter>. Ein positiver Integer J,
+		wenn als Aktion festgelegt, kann benutzt werden, um anzugeben, dass die nächsten J Module vom momentanen Modul-Stapel
+		übersprungen werden. Wird dies richtig angewendet kann der Administrator einen hoch entwickelten Modul-Stapel mit
+		mehreren Ausführungsmöglichkeiten bauen. Welche Möglichkeit schlussendlich gewählt wird, kann mit der Reaktion der
+		einzelnen Module bestimmt werden.
+		</para>
+
+		<itemizedlist>
+			<listitem><para>
+			<parameter>ignore:</parameter> Wird dieser Parameter mit in einem Modul-Stapel angewendet, beeinflusst
+			die Rückgabe dieses Moduls nicht den Rückgabewert, den die Applikation vom gesamten Stapel erhält.
+			</para></listitem>
+
+			<listitem><para>
+                        <parameter>bad:</parameter> Dies gibt an, dass der Rückgabewert dieses Modul ausschlaggebend ist für das
+			Fehlschlagen des Moduls. Wenn dieses Modul das erste ist, das erfolglos ausgeführt wird, wird sein Rückgabewert
+			für den Status des gesamten Modul-Stapels verwendet.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>die:</parameter> Gleich wie <parameter>bad</parameter>, nur mit dem Effekt, dass der Modul-Stapel und PAM sofort abgebrochen
+			werden und zur Anwendung zurückgekehrt wird.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>ok:</parameter> Dieser Parameter teilt PAM mit, dass der Administrator glaubt, dieser Rückgabewert
+			sollte direkt den des gesamten Modul-Stapels beeinflussen. In anderen Worten, wenn der vorherige Wert des
+			Stapels einen Rückgabewert PAM_SUCCESS enthalten hätte, wird er jetzt von dem dieses Moduls überschrieben.
+			Achtung, weist jedoch der vorherige Wert auf den Misserfolg eines Moduls hin, so wird der <parameter>ok</parameter>
+			nicht verwendet, um diesen zu überschreiben.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>done:</parameter> Gleich wie <parameter>ok</parameter>,mit dem Effekt dass der Modul-Stapel und PAM sofort
+			beendet werden und zur Anwendung zurückgekehrt wird.
+			</para></listitem>
+
+                        <listitem><para>
+                        <parameter>reset:</parameter> Löscht den Speicher des Rückgabewertes des Moduls und startet mit dem nächsten
+			gestapelten Modul neu.
+			</para></listitem>
+		</itemizedlist>
+
+		<para>
+		Jedes dieser vier Schlüsselworte: <parameter>required; requisite; sufficient;</parameter> und <parameter>optional</parameter>,
+		hat einen gleichwertigen Ausdruck in der [...] Syntax:
+		</para>
+
+		<para>
+		<itemizedlist>
+			<listitem><para>
+			<parameter>required</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=bad]</parameter>.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>requisite</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok ignore=ignore default=die]</parameter>.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>sufficient</parameter> ist gleichwertig zu <parameter>[success=done new_authtok_reqd=done<?latex \linebreak ?> default=ignore]</parameter>.
+			</para></listitem>
+
+			<listitem><para>
+			<parameter>optional</parameter> ist gleichwertig zu <parameter>[success=ok new_authtok_reqd=ok default=ignore]</parameter>.
+			</para></listitem>
+		</itemizedlist>
+		</para>
+
+		<para>
+		Um die Möglichkeiten im Umgang mit der neuen Syntax zu zeigen, hier ein paar Beispiele.
+		Mit Linux-PAM-0.63 wurde der
+		Begriff "Client Plug-in Agents" eingeführt. Dies macht es möglich, dass PAM eine
+		Rechner-zu-Rechner-Authentifizierung erlaubt,
+		die das Transportprotokoll der Client/Server-Applikation benützt.
+		Mit der <parameter>[ ... value=action ... ]</parameter>
+		Kontroll-Syntax ist es für eine Applikation möglich, so konfiguriert zu werden,
+		dass sie binäre Aufforderungen entsprechender
+		Clients unterstützt, jedoch ohne Probleme ältere Applikationen mit einer 
+		alternativen Methode authentifizieren kann.
+		</para>
+		</listitem>
+	</varlistentry>
+
+	<varlistentry><term>module-path</term><listitem>
+		<para>
+		Der Pfadname der dynamisch ladbaren Objekt-Datei; das Plug-in-Modul selbst.
+		Ist das erste Zeichen des Modulpfades ein
+		<quote>/</quote>, wird davon ausgegangen, dass es ein absoluter Pfad ist.
+		Ist dies nicht der Fall, wird der angegebene Pfad
+		an den Standard-Modul-Pfad angehängt: <filename>/lib/security</filename> (siehe oben).
+		</para>
+
+		<para>
+		Die Argumente sind eine Liste von Zeichen, die an das Modul weitergegeben werden,
+		wenn es aufgerufen wird, sehr ähnlich zu den Argumenten eines normalen 
+		Linux-Shell-Befehls.
+		Normalerweise sind gültige Argumente optional und spezifisch
+		für das angegebene Modul. Ungültige Argumente werden vom Modul ignoriert, 
+		es wird jedoch ein Fehler in die Syslog(3) 
+		geschrieben. Eine Liste der verschiedenen Optionen sehen Sie im nächsten Abschnitt. 
+		</para>
+
+		<para>
+		Wenn sie Leerzeichen in ein Argument einfügen möchten,
+		sollten Sie es mit eckigen Klammern umschliessen. Z.B.:
+		</para>
+
+<para><programlisting>
+squid auth required pam_mysql.so user=passwd_query passwd=mada \
+db=eminence [query=select user_name from internet_service where \
+user_name=<quote>%u</quote> und password=PASSWORD(<quote>%p</quote>) und service=<quote>web_proxy</quote>]
+</programlisting></para>
+
+		<para>
+		Wird dies so angewendet, kann man das Zeichen <quote>[</quote> in der Zeichenkette 
+		verwenden, möchte man das Zeichen <quote>]</quote>
+		in der Zeichenkette haben, welches die Argumentübergabe überlebt, sollten Sie 
+		<quote>\[</quote> verwenden. Mit anderen Worten:
+		</para>
+
+<para><programlisting>
+[..[..\]..]    -->   ..[..]..
+</programlisting></para>
+
+		<para>
+		Jede Zeile in einer der Konfigurationsdateien, die nicht richtig formatiert ist,
+		wird sehr wahrscheinlich dazu führen,
+		dass der Authentifizierungsprozess fehlschlägt. Ein dementsprechender Fehler wird 
+		in die System-Logs geschrieben,
+		mit einem Aufruf in der Syslog(3).
+		</para>
+		</listitem>
+	</varlistentry>
+</variablelist>
+
+</sect3>
+
+</sect2>
+
+<sect2>
+<title>Beispiel einer System-Konfiguration</title>
+
+<para>
+Folgend ein Beispiel der Konfigurationsdatei <filename>/etc/pam.d/login</filename>.
+Dieses Beispiel hat alle Optionen eingeschaltet und ist möglicherweise nicht brauchbar,
+weil zu viele Bedingungen gestapelt werden, bevor ein erfolgreicher Abschluss erlaubt wird. Im
+Wesentlichen kann man alle Bedingungen auskommentieren, ausser den Aufruf <filename>pam_pwdb.so</filename>.
+</para>
+
+<sect3>
+<title>PAM: Original Login Konfiguration</title>
+
+<para>
+	<smbfile name="pam-login-default">
+	<programlisting>
+#%PAM-1.0
+# The PAM configuration file for the <quote>login</quote> service
+#
+auth         required    pam_securetty.so
+auth         required    pam_nologin.so
+# auth       required    pam_dialup.so
+# auth       optional    pam_mail.so
+auth         required    pam_pwdb.so shadow md5
+# account    requisite   pam_time.so
+account      required    pam_pwdb.so
+session      required    pam_pwdb.so
+# session    optional    pam_lastlog.so
+# password   required    pam_cracklib.so retry=3
+password     required    pam_pwdb.so shadow md5
+</programlisting>
+</smbfile></para>
+
+</sect3>
+
+<sect3>
+<title>PAM: Login mit<filename>pam_smbpass</filename>Verwendug</title>
+
+<para>
+PAM erlaubt die Benützung von austauschbaren Modulen. 
+Auf einem Beispiel-System sollten folgende Module verfügbar sein:
+</para>
+
+<para><prompt>$</prompt><userinput>/bin/ls /lib/security</userinput>
+<programlisting>
+pam_access.so    pam_ftp.so          pam_limits.so     
+pam_ncp_auth.so  pam_rhosts_auth.so  pam_stress.so     
+pam_cracklib.so  pam_group.so        pam_listfile.so   
+pam_nologin.so   pam_rootok.so       pam_tally.so      
+pam_deny.so      pam_issue.so        pam_mail.so       
+pam_permit.so    pam_securetty.so    pam_time.so       
+pam_dialup.so    pam_lastlog.so      pam_mkhomedir.so  
+pam_pwdb.so      pam_shells.so       pam_unix.so       
+pam_env.so       pam_ldap.so         pam_motd.so       
+pam_radius.so    pam_smbpass.so      pam_unix_acct.so  
+pam_wheel.so     pam_unix_auth.so    pam_unix_passwd.so
+pam_userdb.so    pam_warn.so         pam_unix_session.so
+</programlisting></para>
+
+<para>
+Das folgende Beispiel für das login-Programm ersetzt die Benützung
+des Moduls <filename>pam_pwdb.so</filename>, welches die System-Passwort-
+Datenbank benützt, (<filename>/etc/passwd</filename>,<filename>/etc/shadow</filename>, 
+<filename>/etc/group</filename>) mit dem Modul <filename>pam_smbpass.so</filename>,
+das die Samba-Datenbank benutzt, welche die mit Microsoft-MD4 verschlüsselten Passwort- 
+Hashes enthält. Diese Datenbank wird entweder in
+<filename>/usr/local/samba/private/smbpasswd</filename>, 
+<filename>/etc/samba/smbpasswd</filename>, oder in <filename>/etc/samba.d/smbpasswd</filename>
+aufbewahrt, abhängig von der Samba-Implementation Ihres UNIX/Linux-Systems. Das
+Modul <filename>pam_smbpass.so</filename> wird ab Samba Version 2.2.1 mitgeliefert.
+Es kann mitkompiliert werden, indem man die Option <option>--with-pam_smbpass</option> einschaltet, wenn
+man Samba's <command>configure</command>-Skript aufruft. Für mehr Informationen zum
+Modul <filename>pam_smbpass</filename> kann mann in der Dokumentation im 
+Ordner <filename>source/pam_smbpass</filename> der Samba Quelldistribution nachschauen.
+</para>
+
+<para>
+	<smbfile name="pam-login-smbpass">
+	<programlisting>
+#%PAM-1.0
+# The PAM configuration file for the <quote>login</quote> service
+#
+auth        required    pam_smbpass.so nodelay
+account     required    pam_smbpass.so nodelay
+session     required    pam_smbpass.so nodelay
+password    required    pam_smbpass.so nodelay
+</programlisting></smbfile></para>
+
+<para>
+Folgendes ist eine PAM Konfiguration für ein bestimmtes Linux-System. Unter Normalbedingungen
+wird <filename>pam_pwdb.so</filename> verwendet.
+</para>
+
+<para>
+	<smbfile name="pam-samba-default">
+	<programlisting>
+#%PAM-1.0
+# The PAM configuration file for the <quote>samba</quote> service
+#
+auth       required     pam_pwdb.so nullok nodelay shadow audit
+account    required     pam_pwdb.so audit nodelay
+session    required     pam_pwdb.so nodelay
+password   required     pam_pwdb.so shadow md5
+</programlisting></smbfile></para>
+
+<para>
+Im folgenden Beispiel wurde die Entscheidung getroffen, die <command>smbpasswd</command>-
+Datenbank zu verwenden, auch für Standard-Samba-Authentifizierungen. So eine 
+Eintscheidung könnte auch für das Programm <command>passwd</command> getroffen werden 
+und würde so erlauben, dass <command>smbpasswd</command>-Passwörter mit dem <command>passwd</command>
+Programm geändert werden können.
+</para>
+
+<para><smbfile name="pam-samba-smbpass">
+		<programlisting>
+#%PAM-1.0
+# The PAM configuration file for the <quote>samba</quote> service
+#
+auth       required     pam_smbpass.so nodelay
+account    required     pam_pwdb.so audit nodelay
+session    required     pam_pwdb.so nodelay
+password   required     pam_smbpass.so nodelay smbconf=/etc/samba.d/smb.conf
+</programlisting>
+</smbfile></para>
+
+<note><para>PAM erlaubt das Stapeln von Authentifizierungs-Mechanismen. Es
+ist auch möglich, Informationen, die man in einem PAM-Modul erhalten hat, an
+das nächste Modul im PAM-Stapel weiterzugeben. Für Details zu den Fähigkeiten von
+PAM in Ihrem Umfeld, greifen Sie bitte auf die Dokumentation für Ihr spezifisches
+System zurück. Manche Linux-Implementationen enthalten ein Modul <filename>pam_stack.so</filename>,
+welches erlaubt, dass jede Authentifizierung in einer einzigen zentralen Datei konfiguriert wird.
+Die <filename>pam_stack.so</filename>-Methode hat einige Anhänger in der Basis
+so dass eine einfachere Administration möglich ist.
+Wie so oft im Leben sind Entscheidungen mit Kompromissen verbunden, deshalb sollten Sie für
+mehr Informationen die PAM-Dokumentation konsultieren.
+</para></note>
+
+</sect3>
+
+</sect2>
+
+<sect2>
+<title>Die Konfiguration von PAM in &smb.conf;</title>
+
+<para>
+Es gibt eine Option in &smb.conf;, die 
+<smbconfoption><name>obey pam restrictions</name></smbconfoption> heisst.
+Folgendes findet man zu dieser Option in der Online-Hilfe von SWAT:
+</para>
+
+<para>
+Wenn Samba mit PAM-Unterstützung konfiguriert wurde (<option>--with-pam</option>), gibt 
+dieser Parameter an, ob Samba den PAM Konto- und Sitzungs Richtlinien gehorchen soll oder nicht.
+Das Standard-Verhalten sieht vor, dass PAM nur für 
+Klartext-Authentifizierung verwendet wird und Konto- und Sitzungs-Management ignoriert werden.
+Samba ignoriert PAM vollkommen, falls die Option <smbconfoption><name>encrypt passwords</name>
+den Wert<value>yes</value></smbconfoption>hat.
+Dies aus dem Grund, da PAM-Module nicht den challenge/response-Authentifizierungs-Mechanismus
+unterstützen, der von Samba bei Passwort-Verschlüsselung verwendet wird.
+</para>
+
+<para>Standard: <smbconfoption><name>obey pam restrictions</name><value>no</value></smbconfoption></para>
+
+</sect2>
+
+<sect2>
+<title>Entfernte CIFS-Authentifizierung mit<filename>winbindd.so</filename></title>
+
+<para>
+Alle Betriebssysteme hängen von einer Bereitstellung von Benutzerdaten ab, die von der jeweiligen
+Plattform akzeptiert werden kann.
+UNIX benutzt dazu die Übergabe eines "User Identifier" (UID) sowie eines "Group Identifier" (GID).
+Dies sind beides Nummern vom Typ Integer, die von einem Password Backend
+wie <filename>/etc/passwd</filename> bezogen werden.
+</para>
+
+<para>
+Benutzer und Gruppen unter Windows NT Server werden relative IDs (RID) zugeteilt, welche einzigartig
+für die Domäne sind, wenn der Benutzer oder die Gruppe erstellt wird. Um die Windows NT Benutzer und
+Gruppen in UNIX Benutzer und Gruppen umzuwandeln, braucht es einen Abgleich zwischen den RIDs und UNIX
+Benutzer und Gruppen IDs. Dies ist eine der Aufgaben die Winbind ausführt.
+</para>
+
+<para>
+Sowie Winbind-Benutzer und -Gruppen von einem Server aufgelöst werden, werden Benutzer-
+und Gruppen-IDs aus einer bestimmten Gruppe von Zahlen ermittelt. Diese werden auf einer
+Basis ala "Wer zuerst kommt, kriegt zuerst" verteilt, obwohl alle bestehenden Benutzer und
+Gruppen gemappt werden, sobald ein Client einen Befehl zur Auflistung der Benutzer und 
+Gruppen gibt. Die zugeteilten UNIX-IDs werden in einer Datenbank-Datei im Samba-Lock-Verzeichnis
+gespeichert, um sie nachher wiederverwenden zu können.
+</para>
+
+<para>
+Aufmerksame Administratoren werden bemerkt haben, dass die Kombination von <filename>pam_smbpass.so</filename>, 
+<command>winbindd</command> und einem verteilten <smbconfoption><name>passdb backend</name><value></value></smbconfoption>
+wie  <parameter>ldap</parameter>die Einrichtung einer zentral verwalteten, verteilten 
+Benutzer/Passwort-Datenbank erlaubt, welche von allen PAM-fähigen (d.h. Linux) Programmen und 
+Anwendungen verwendet werden kann.
+Dieses System kann grosse Vorteile im Vergleich zu Microsofts Active Directory Service (ADS) haben,
+da es den Authentifizierungs-Verkehr in grossen Netzwerken reduziert.
+</para>
+
+<warning><para>
+Die RID zu UNIX-ID Datenbank ist der einzige Ort, wo die Benutzer- und Gruppen-Umwandlung von 
+<command>winbindd</command> gespeichert wird. Wenn diese Datei gelöscht oder kompromittiert wird, gibt
+es keinen Weg für <command>winbindd</command>, herauszufinden welche Benutzer- und Gruppen-ID zu 
+welcher Windows NT Benutzer- oder Gruppen-RID gehört.
+</para></warning>
+
+</sect2>
+
+<sect2>
+<title>Passwort-Synchronisation mit <filename>pam_smbpass.so</filename></title>
+
+<para>
+<filename>pam_smbpass</filename>ist ein PAM-Modul, das auf entsprechenden Systemen dazu verwendet werden kann,
+die <filename>smbpasswd</filename> (Samba Passwort) Datenbank mit der UNIX-Passwort-Datei laufend zu synchronisieren.
+PAM (Pluggable Athentication Modules) ist eine unter manchen UNIX Betriebssystemen wie Solaris, HPUX und Linux
+unterstützte API, welche den Authentifizierungsmechanismen eine generische Schnittstelle zur Verfügung stellt.
+</para>
+
+<para>
+Dieses Modul authentifiziert eine lokale Benutzer-Datenbank <filename>smbpasswd</filename>. Wenn Sie
+die Authentifizierung auf einem entfernten SMB-Server benötigen oder wenn Sie über Anwesenheit von SUID-
+root-Binärdateien auf Ihrem System besorgt sind, sollten Sie hingegen <filename>pam_winbind</filename> verwenden.
+</para>
+
+<para>
+Die Optionen, die von diesem Modul angenommen werden, finden Sie unter <link linkend="smbpassoptions"/>.
+<table frame="all" id="smbpassoptions">
+	<title>Gültige Optionen für <parameter>pam_smbpass</parameter></title>
+	<tgroup cols="2" align="left">
+		<colspec align="left"/>
+		<colspec align="justify" colwidth="1*"/>
+	<tbody>
+		<row><entry>debug</entry><entry>mehr debug-Informationen werden aufgezeichnet.</entry></row>
+		<row><entry>audit</entry><entry>gleich wie debug, es werden aber zusätzlich noch unbekannte Benutzernamen geloggt.</entry></row>
+		<row><entry>use_first_pass</entry><entry>den Benutzer nicht nach dem Passwort fragen, sondern aus den Elementen von PAM_ auslesen.</entry></row>
+		<row><entry>try_first_pass</entry><entry>Versuch, das Passwort von einem vorhergehenden PAM Modul zu holen, Benutzer fragen.</entry></row>
+		<row><entry>use_authtok</entry>
+			<entry>wie try_first_pass, aber *fail* wenn die neue PAM_AUTHTOK nicht vorher gesetzt wurde(nur vorgesehen, um Password-Module zu stapeln).</entry></row>
+		<row><entry>not_set_pass</entry><entry>Passwörter die dieses Modul verwendet, nicht für andere Module verfügbar machen.</entry></row>
+		<row><entry>nodelay</entry><entry>keine Wartezeit von ~1 Sekunde bei Authentifizierungsfehlern.</entry></row>
+		<row><entry>nullok</entry><entry>Null-Passwörter sind erlaubt.</entry></row>
+		<row><entry>nonull</entry><entry>Null-Passwörter sind nicht erlaubt. Wird benutzt, um die Sambakonfiguration zu übergehen.</entry></row>
+		<row><entry>migrate</entry><entry>nur sinnvoll in einem <quote>auth</quote> Kontext; wird benutzt, um die smbpasswd-Datei mit einem Passwort für die erfolgreiche Authentifizierung zu aktualisieren.</entry></row>
+		<row><entry>smbconf=<replaceable>file</replaceable></entry><entry>legt einen alternativen Pfad zur Datei &smb.conf; fest.</entry></row>
+	</tbody>
+</tgroup>
+</table>
+</para>
+
+<para>
+Folgend ein paar Beispiele für die Anwendung von <filename>pam_smbpass.so</filename> im Format von Linux
+<filename>/etc/pam.d/</filename> Dateistrukturen.
+Möchte jemand dieses Werkzeug auch auf anderen Plattformen verwenden, muss er es passend adaptieren.
+</para>
+
+<sect3>
+<title>Konfiguration der Passwort-Synchronisation</title>
+
+<para>
+Ein Beispiel einer PAM-Konfiguration, die die Verwendung von pam_smbpass zeigt,
+so dass <filename>private/smbpasswd</filename> mit 
+<filename>/etc/passwd (/etc/shadow)</filename> synchronisiert bleibt, wenn diese verändert wird.
+Nützlich, wenn z.B. ein verfallenes Passwort möglicherweise von einem Programm geändert wird
+(z.B. <command>ssh</command>).
+</para>
+
+<para>
+	<smbfile name="pam-synchronised-password">
+	<programlisting>
+#%PAM-1.0
+# password-sync
+#
+auth       requisite    pam_nologin.so
+auth       required     pam_unix.so
+account    required     pam_unix.so
+password   requisite    pam_cracklib.so retry=3
+password   requisite    pam_unix.so shadow md5 use_authtok try_first_pass
+password   required     pam_smbpass.so nullok use_authtok try_first_pass
+session    required     pam_unix.so
+</programlisting></smbfile></para>
+</sect3>
+
+<sect3>
+<title>Konfiguration der Passwort-Migration</title>
+
+<para>
+Ein Beispiel einer PAM-Konfiguration, die die Benützung von <filename>pam_smbpass</filename> zeigt,
+um von Klartext- zu verschlüsselten Passwörtern zu migrieren. Im Gegensatz zu anderen Methoden
+kann dies auch für Benutzer gemacht werden, die sich noch nie mit Samba-Freigaben verbunden haben:
+Die Passwort-Migration findet statt, sobald der Benutzer eine <command>ftp</command> Verbindung herstellt,
+sich per <command>ssh</command> einloggt, seine mails holt, usw...
+</para>
+
+<para><smbfile name="pam-password-migration">
+	<programlisting>
+#%PAM-1.0
+# password-migration
+#
+auth       requisite   pam_nologin.so
+# pam_smbpass is called IF pam_unix succeeds.
+auth       requisite   pam_unix.so
+auth       optional    pam_smbpass.so migrate
+account    required    pam_unix.so
+password   requisite   pam_cracklib.so retry=3
+password   requisite   pam_unix.so shadow md5 use_authtok try_first_pass
+password   optional    pam_smbpass.so nullok use_authtok try_first_pass
+session    required    pam_unix.so
+</programlisting></smbfile></para>
+</sect3>
+
+<sect3>
+<title>Ausgereifte Passwort-Konfiguration</title>
+
+<para>
+Ein Beispiel einer Konfiguration für eine ausgereifte <filename>smbpasswd</filename>-Installation.
+<filename>private/smbpasswd</filename> ist mit Benutzern "gefüllt" und wir betrachten es als Fehler,
+wenn kein SMB-Passwort vorhanden ist oder wenn es nicht mit dem UNIX-Passwort übereinstimmt.
+</para>
+
+<para><smbfile name="pam-fallback">
+<programlisting>
+#%PAM-1.0
+# password-mature
+#
+auth       requisite    pam_nologin.so
+auth       required     pam_unix.so
+account    required     pam_unix.so
+password   requisite    pam_cracklib.so retry=3
+password   requisite    pam_unix.so shadow md5 use_authtok try_first_pass
+password   required     pam_smbpass.so use_authtok use_first_pass
+session    required     pam_unix.so
+</programlisting></smbfile></para>
+</sect3>
+
+<sect3>
+<title>Kerberos Passwort Integrations Konfiguration</title>
+
+<para>
+Ein Beispiel einer PAM-Konfiguration, die die Benützung von <parameter>pam_smbpass</parameter> mit
+<parameter>pam_krb5</parameter>zusammen zeigt. Dies kann für einen Samba-PDC nützlich sein, der zugleich
+Mitglied in einer Kerberos-REALM ist.
+</para>
+
+<para><smbfile name="pam-krb">
+		<programlisting>
+#%PAM-1.0
+# kdc-pdc
+#
+auth       requisite   pam_nologin.so
+auth       requisite   pam_krb5.so
+auth       optional    pam_smbpass.so migrate
+account    required    pam_krb5.so
+password   requisite   pam_cracklib.so retry=3
+password   optional    pam_smbpass.so nullok use_authtok try_first_pass
+password   required    pam_krb5.so use_authtok try_first_pass
+session    required    pam_krb5.so
+</programlisting></smbfile></para>
+
+</sect3>
+
+</sect2>
+
+</sect1>
+
+<sect1>
+<title>Häufige Fehler</title>
+
+<para>
+PAM kann sehr unbeständig und empfindlich gegenüber Ausrutschern bei der Konfiguration sein.
+Wir schauen uns hier ein paar Fälle aus der Samba Mailing List an.
+</para>
+
+<!-- shouldn't this be in the Winbind chapter - Jelmer -->
+	<sect2>
+	<title>pam_winbind Problem</title>
+
+	<para>
+	Ein Benutzer berichtet: Ich habe folgende PAM-Konfiguration:
+	</para>
+
+<para>
+	<smbfile name="pam-winbind-erratic">
+<programlisting>
+auth required /lib/security/pam_securetty.so
+auth sufficient /lib/security/pam_winbind.so
+auth sufficient /lib/security/pam_unix.so use_first_pass nullok
+auth required /lib/security/pam_stack.so service=system-auth
+auth required /lib/security/pam_nologin.so
+account required /lib/security/pam_stack.so service=system-auth
+account required /lib/security/pam_winbind.so
+password required /lib/security/pam_stack.so service=system-auth
+</programlisting></smbfile>
+</para>
+
+	<para>
+	Wenn ich mit [ctrl][alt][F1] eine neue Konsole aufmache, kann ich nicht mit meinem 
+	Benutzer <quote>pitie</quote> 
+	einsteigen. Ich habe es auch mit dem Benutzer <quote>scienceu+pitie</quote> versucht.
+	</para>
+
+	<para>
+	<emphasis>Antwort:</emphasis> Das Problem könnte bei der Einbindung von <parameter>pam_stack.so
+	service=system-auth</parameter>liegen. Diese Datei enthält oft eine Menge Zeilen,
+	die Sachen doppelt machen, die man eigentlich schon macht.
+	Versuche, die <parameter>pam_stack</parameter>-
+	Zeilen für <parameter>auth</parameter> und <parameter>account</parameter> auszukommentieren, 
+	und probiersdann nochmal. Falls es so funktioniert, sieh dir die Datei
+	<filename>/etc/pam.d/system-auth</filename> an
+	und kopiere nur das nötige in deine <filename>/etc/pam.d/login</filename>-Datei.
+	Alternativ könntest du, wenn du für alle Dienste Winbind benutzen möchtest, das
+	Winbind-bezogene Material nach <filename>/etc/pam.d/system-auth
+	</filename> verschieben.
+	</para>
+
+	</sect2>
+
+	<sect2>
+	<title>Winbind löst Benutzer und Gruppen nicht auf</title>
+
+	<para>
+	<quote>
+	Meine &smb.conf; ist richtig konfiguriert. Ich habe folgendes festgelegt:
+	<smbconfoption><name>idmap uid</name><value>12000</value></smbconfoption>, 
+	und <smbconfoption><name>idmap gid</name><value>3000-3500</value></smbconfoption>,
+	<command>winbind</command> läuft. Wenn ich folgendes mache, funktioniert alles perfekt.
+	</quote>
+	</para>
+
+<para><screen>
+&rootprompt;<userinput>wbinfo -u</userinput>
+MITTELERDE+maryo
+MITTELERDE+jackb
+MITTELERDE+ameds
+...
+MITTELERDE+root
+
+&rootprompt;<userinput>wbinfo -g</userinput>
+MITTELERDE+Domain Users
+MITTELERDE+Domain Admins
+MITTELERDE+Domain Guests
+...
+MITTELERDE+Accounts
+
+&rootprompt;<userinput>getent passwd</userinput>
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/bin/bash
+...
+maryo:x:15000:15003:Mary Orville:/home/MITTELERDE/maryo:/bin/false
+</screen></para>
+
+	<para>
+	<quote>
+	Aber folgender Befehl schlägt fehl:
+	</quote>
+<screen>
+&rootprompt;<userinput>chown maryo a_file</userinput>
+chown: 'maryo': invalid user
+</screen>
+	<quote>Das macht mich noch verrückt! Was könnte hier falsch sein?</quote>
+	</para>
+
+	<para>
+	<emphasis>Antwort:</emphasis> Auf deinem System läuft wahrscheinlich <command>nscd</command>,
+	der name service caching daemon. Schalte in aus, nicht nochmal starten! Dies sollte dein Problem
+	lösen.
+	</para>
+
+	</sect2>
+</sect1>
+
+</chapter>

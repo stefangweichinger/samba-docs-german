@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="domain-member">
+
+<chapterinfo>
+	&author.jht;
+	&author.jeremy;
+	&author.jerry;
+	&author.tridge;
+	&author.jelmer;
+	<author>&person.gd;<contrib>LDAP updates</contrib></author>
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+</chapterinfo>
+
+<title>Domänen-Mitgliedschaft</title>
+
+<para>
+Domänen-Mitgliedschaft ist ein Thema von regem Interesse. Samba muß fähig
+sein, als ein Mitglieds-Server in einem Microsoft-Domänen-Sicherheits-Kontext
+teilzunehmen, und Samba muß dazu fähig sein, Maschinen-Vertrauens-Konten für
+Domänen-Maschinen anzubieten, anderenfalls wäre es keine erwägenswerte
+Option für viele Anwender.
+</para>
+
+<para>
+Dieses Kapitel umfaßt Hintergrund-Informationen zur Domänen-Mitgliedschaft,
+der dazu notwendigen Samba-Konfiguration, und MS-Windows-Client-Prozeduren
+zum Beitreten zu einer Domäne. Warum dies notwendig ist? Weil beide Bereiche solche sind,
+in denen sowohl in der MS-Windows-Netzwerk-Welt, wie auch im Speziellen in der UNIX/Linux-
+Netzwerk- und Administrations-Welt, ein bemerkenswertes Level an Uninformiertheit,
+falschem Verständnis und fehlendem Wissen existiert. Es ist zu hoffen, daß dieses Kapitel
+die Lücken füllt.
+</para>
+
+<sect1>
+<title>Eigenschaften und Vorzüge</title>
+
+<para>
+MS-Windows-Workstations und -Server, die an Domänen-Sicherheit teilhaben wollen, müssen zu
+Domänen-Mitgliedern gemacht werden. Das Teilnehmen an Domänen-Sicherheit wird oft
+<emphasis>Single Sign On</emphasis> oder kurz <acronym>SSO</acronym> genannt.
+Dieses Kapitel beschreibt den Prozeß, der durchgeführt werden muß, um eine Workstation
+(oder einen anderen Server &smbmdash; sei es ein <application>MS Windows NT4 / 200x</application>-
+Server) oder einen Samba-Server zu einem Mitglied in einem Microsoft-Domänen-Sicherheits-Kontext
+zu machen.
+</para>
+
+<para>
+<indexterm><primary>Server Type</primary><secondary>Domain Member</secondary></indexterm>
+Samba-3 kann sich einer MS-Windows-artigen Domäne als nativer Mitglieds-Server anschliessen,
+oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorteile: 
+</para>
+
+<itemizedlist>
+	<listitem><para>
+<indexterm><primary>SAM</primary></indexterm>
+	MS-Windows-Workstation-Benutzer erhalten die Vorteile von SSO.
+	</para></listitem>
+
+	<listitem><para>
+	Zugriffsrechte von Domänen-Benutzern und Datei-Benutzer/Zugriffs-Kontrollen
+	können über die einzelne "Domain Security Account Manager" (SAM) Datenbank
+	gesetzt werden (arbeitet genauso mit Domänen-Mitglieds-Serveren wie auch mit
+	MS-Windows-Workstations, die Domänen-Mitglieder sind).
+	</para></listitem>
+
+	<listitem><para>
+	Nur <application>MS Windows NT4/200x/XP Professional</application>
+	Workstations, die Domänen-Mitglieder sind, können Netzwerk-Anmeldedienste benutzen.
+	</para></listitem>
+
+	<listitem><para>
+	Domänen-Mitglieds-Workstations können durch die Verwendung von Policy-Dateien 
+	(<filename>NTConfig.POL</filename>) und Desktop-Profilen besser
+	kontrolliert werden.
+	</para></listitem>
+
+	<listitem><para>
+	Durch die Verwendung von Anmelde-Skripts können Benutzer transparenten Zugriff auf
+	Netz-Anwendungen erhalten, die auf Applikations-Servern laufen.
+	</para></listitem>
+
+	<listitem><para>
+	Netzwerk-Administratoren erhalten bessere Möglichkeiten zum Management von
+	Applikations- und Benutzer-Zugriffen, da kein Bedarf mehr besteht, Benutzer-Konten
+	auf irgendeinem Netzwerk-Client oder -Server zu verwalten, außer in der zentralen
+	Domänen-Datenbank (entweder NT4/Samba-SAM-artig, eine NT4-Domäne, die durch ein
+	LDAP-Backend ergänzt wird, oder eine Active Directory Infrastruktur).
+	</para></listitem>
+</itemizedlist>
+
+</sect1>
+
+<sect1 id="machine-trust-accounts">
+<title>MS Windows Workstation/Server Maschinen-Vertrauens-Konten</title>
+
+<para>
+<indexterm><primary>Maschinen-Vertrauens-Konto</primary></indexterm>
+Ein Maschinen-Vertrauens-Konto ist ein Konto, das dazu verwendet wird, eine Client-Maschine
+(und nicht einen Benutzer) am Domänen-Controller zu authentifizieren. In der Windows-
+Terminologie ist dies als <quote>Maschinen-Konto</quote> bekannt. Der Zweck des 
+Maschinen-Kontos ist es, zu verhindern, daß ein schurkischer Benutzer mit einem 
+Domänen-Controller konspiriert,
+um Zugriff auf eine Domänen-Mitglieds-Workstation zu erhalten.
+</para>
+
+<para>
+Das Passwort eines Maschinen-Vertrauens-Kontos fungiert als "gemeinsames Geheimnis" für
+sichere Kommunikation mit dem Domänen-Controller. Dies ist ein Sicherheits-Feature, um eine
+nicht authorisierte Maschine mit dem selben NetBIOS-Namen davon abzuhalten, sich der Domäne
+anzuschliessen und Zugriff auf Benutzer/Gruppen-Konten der Domäne zu erhalten.
+Windows NT/200x/XP Professional-Clients nutzen Maschinen-Vertrauens-Konten, aber
+Windows 9x/Me/XP Home Clients tun das nicht. Daher ist ein Windows 9x/Me/XP Home Client nie
+ein vollwertiges Domänen-Mitglied, da er kein Maschinen-Vertrauens-Konto besitzt, und daher
+kein "gemeinsames Geheimnis" mit dem Domänen-Controller teilt.
+</para>
+
+<para>
+Ein Windows NT4 PDC speichert jedes Maschinen-Vertrauens-Konto in der Windows-Registrierung.
+Die Einführung von MS Windows 2000 brachte auch die Einführung des Active Directory, dem
+neuen Repository für Maschinen-Vertrauens-Konten. Ein Samba-PDC speichert jedoch jedes
+Maschinen-Vertrauens-Konto in zwei Teilen, wie folgt:
+
+<itemizedlist>
+	<listitem><para>
+	Ein Domänen-Sicherheits-Konto (gespeichert in dem
+	<smbconfoption><name>passdb backend</name></smbconfoption>, das in der Datei &smb.conf;
+	konfiguriert wurde. Die exakte Form der gespeicherten Konten-Information ist vom
+	Typ des gewählten Backends abhängig.
+	</para>
+
+	<para>
+	Das ältere Format dieser Daten ist die Datenbank <filename>smbpasswd</filename>, die
+	die UNIX Login-ID, den UNIX user identifier (UID), die LanMan- und die verschlüsselten
+	NT-Passwörter enthält. Es gibt noch weitere Informationen zu dieser Datei, die uns jedoch
+	an dieser Stelle nicht interessiert.
+	</para>
+
+	<para>
+	Die zwei neueren Datenbank-Typen heissen ldapsam und tdbsam. Beide speichern bei weitem
+	mehr Daten als das ältere <filename>smbpasswd</filename>. Die zusätzliche Information
+	ermöglicht das Implementieren neuer Funktionen für Benutzer-Konten.	
+	</para></listitem>
+
+	<listitem><para>
+	Ein entsprechendes UNIX-Konto, meist in <filename>/etc/passwd</filename> gespeichert.
+	Es wird daran gearbeitet, eine vereinfachte Betriebsart zu erlauben, die keine
+	UNIX-Konten erfordert, jedoch wird dies kein Feature der ersten Samba-3-Releases sein.	
+	</para></listitem>
+</itemizedlist>
+</para>
+
+<para>
+<indexterm><primary>Maschinen-Vertrauens-Konten</primary><secondary>anlegen</secondary></indexterm>
+Es gibt drei Möglichkeiten, Maschinen-Vertrauens-Konten anzulegen:
+</para>
+
+<itemizedlist>
+	<listitem><para>
+	Manuelles Anlegen auf der UNIX/Linux-Befehlszeile.
+	Hier werden sowohl das Samba-, wie auch das zugehörige UNIX-Konto von Hand angelegt.
+	</para></listitem>
+
+	<listitem><para>
+	<indexterm><primary>Server Manager</primary></indexterm>
+	Das Verwenden vom MS Windows NT4 Server Manager, entweder auf einem
+	NT4 Domain Member Server, oder unter Verwendung des Nexus-Toolkits, das auf der
+	Microsoft Website verfügbar ist. Dieses Tool kann von jeder MS Windows Maschine aus
+	verwendet werden, solange der Benutzer als Administrator angemeldet ist.
+	</para></listitem>
+	
+	<listitem><para>
+	<quote>On-the-fly</quote> anlegen. Das Samba Maschinen-Vertrauens-Konto wird
+	automatisch von Samba angelegt, wenn sich der Client der Domäne anschließt.
+	(Aus Sicherheitsgründen ist dies die empfohlene Methode.) Das zugehörige
+	UNIX-Konto kann automatisch oder manuell angelegt werden.
+	</para></listitem>
+</itemizedlist>
+
+<sect2>
+<title>Manuelles Anlegen von Maschinen-Vertrauens-Konten</title>
+
+<para>
+Der erste Schritt beim manuellen Anlegen eines Maschinen-Vertrauens-Kontos ist das manuelle
+Anlegen des zugehörigen UNIX-Kontos in der Datei <filename>/etc/passwd</filename>.
+Dies kann mittels <command>vipw</command> oder einem anderen <quote>add user</quote>-Befehl
+geschehen, der normalerweise zum Anlegen von UNIX-Benutzern verwendet wird. Hier ein Beispiel
+für einen Linux-basierenden Samba-Server:
+</para>
+
+<para>
+<indexterm><primary>useradd</primary></indexterm>
+<indexterm><primary>vipw</primary></indexterm>
+<screen>
+&rootprompt;<userinput>/usr/sbin/useradd -g machines -d /dev/null -c <replaceable>"machine nickname"</replaceable> \
+   -s /bin/false <replaceable>machine_name</replaceable>$ </userinput>
+
+&rootprompt;<userinput>passwd -l <replaceable>machine_name</replaceable>$</userinput>
+</screen>
+</para>
+
+<para>In obigem Beispiel gibt es eine System-Gruppe <quote>machines</quote>, welche als primäre Gruppe
+für alle Maschinen-Konten verwendet wird. In den folgenden Beispielen hat die Gruppe
+<quote>machines</quote> eine numerische GID von 100.</para>
+
+<para>
+<indexterm><primary>chpass</primary></indexterm>
+Auf *BSD-Systemen kann dies mit dem Utility <command>chpass</command> geschehen:
+</para>
+
+<para>
+<screen>
+&rootprompt;<userinput>chpass -a \
+'<replaceable>machine_name</replaceable>$:*:101:100::0:0:Windows <replaceable>machine_name</replaceable>:/dev/null:/sbin/nologin'</userinput>
+</screen>
+</para>
+
+<para>
+Der Eintrag in <filename>/etc/passwd</filename> wird den Maschinen-Namen enthalten, mit einem
+angefügten <quote>$</quote>, ohne Passwort, mit einer Null-Shell und ohne home-Verzeichnis.
+Zum Beispiel würde eine Maschine namens <quote>doppy</quote> diesen Eintrag haben:
+</para>
+
+<programlisting>
+doppy$:x:505:100:<replaceable>machine_nickname</replaceable>:/dev/null:/bin/false
+</programlisting>
+
+<para>
+In obigem Beispiel kann <replaceable>machine_nickname</replaceable> eine beliebige Beschreibung
+des Clients sein, z.B. RechnerSekretariat.
+<replaceable>machine_name</replaceable> muß definitiv der NetBIOS-Namen des Clients sein, der der
+Domäne angeschlossen werden soll. Das Zeichen <quote>$</quote> muß an den NetBIOS-Namen des Clients
+angefügt werden, oder Samba wird dieses Konto nicht als Maschinen-Vertrauens-Konto erkennen.
+</para>
+
+<para>
+Jetzt, wo das zugehörige UNIX-Konto angelegt wurde, ist der nächste Schritt das Anlegen
+des Samba-Kontos für den Client, mit dem wohlbekannten ursprünglichen Passwort des
+Maschinen-Vertrauens-Kontos. Dies kann mit dem Befehl <command>smbpasswd</command> geschehen,
+wie hier gezeigt:
+</para>
+
+<para>
+<screen>
+&rootprompt;<userinput>smbpasswd -a -m <replaceable>machine_name</replaceable></userinput>
+</screen>
+</para>
+
+<para>
+wobei <replaceable>machine_name</replaceable> der NetBIOS-Namen der Maschine ist.
+Die RID des neuen Maschinen-Kontos wird aus der UID des zugehörigen UNIX-Kontos generiert.
+</para>
+
+<warning>
+<title>Schliessen Sie den Client unverzüglich der Domäne an</title>
+
+<para>
+Das manuelle Anlegen eines Maschinen-Vertrauens-Kontos mit dieser Methode ist gleichwertig
+zum Anlegen eines Maschinen-Vertrauens-Kontos auf einem Windows NT PDC mittels des
+<indexterm><primary>Server Manager</primary></indexterm><application>Server Manager</application>.
+Vom Zeitpunkt des Anlegens des Kontos bis zum Anschliessen des Clients an die Domäne und des
+Ändern des Passworts ist Ihre Domäne verletzlich gegenüber einem Eindringling, der sich mittels
+einer Maschine mit dem gleichen NetBIOS-Namen der Domäne anschliesst. Ein PDC vertraut
+Mitgliedern der Domäne und wird ein grosses Maß an Benutzer-Informationen an solche Clients
+weitergeben. Sie wurden gewarnt!
+</para>
+</warning>
+</sect2>
+
+<sect2>
+<title>Das Verwalten von Domänen-Maschinen-Konten mittels des Server Managers</title>
+
+<para>
+Ein funktionierendes <smbconfoption><name>add machine script</name></smbconfoption>-Skript
+ist essentiell notwendig, um Maschinen-Vertrauens-Konten automatisch anlegen zu können. Dies
+gilt unabhängig davon, ob man automatisches Anlegen der Konten verwendet oder dern
+NT4 Domain Server Manager.
+</para>
+
+<para>
+<indexterm><primary>SRVTOOLS.EXE</primary></indexterm>
+Wenn die Maschine, von der aus Sie versuchen, die Domäne zu verwalten, eine 
+<application>MS Windows NT4 Workstation oder MS Windows 200x/XP Professional</application> ist,
+ist das zu wählende Werkzeug das Package namens <command>SRVTOOLS.EXE</command>.
+Wenn es im Zielverzeichnis ausgeführt wird, entpackt es <command>SrvMgr.exe</command> und
+<command>UsrMgr.exe</command>, beides sind Domänen-Management-Werkzeuge für 
+MS Windows NT4 Workstation.
+</para>
+
+<para>
+<indexterm><primary>Nexus.exe</primary></indexterm>
+Wenn Ihre Workstation ein Produkt der <application>Microsoft Windows 9x/Me</application>-Familie ist,
+sollten Sie das Package <command>Nexus.exe</command> von der Microsoft Website laden.
+Auch dies wird dieselben Tools entpacken, aber eben für die Windows 9x/Me-Plattformen.
+</para>
+
+<para>
+Weitere Informationen zu diesen Tools kann von folgenden Stellen bezogen werden:
+</para>
+
+<para>
+<simplelist>
+<member><ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;173673"/></member>
+<member><ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;172540"/></member>
+</simplelist>
+</para>
+
+<para>
+Starten Sie <command>srvmgr.exe</command> (Server Manager für Domänen) und folgen Sie diesen Schritten:
+</para>
+
+<procedure>
+<title>Verwaltung von Maschinen-Konten mittels Server Manager</title>
+	<step><para>
+	Wählen Sie den Eintrag <guimenu>Computer</guimenu> aus dem Menü.
+	</para></step>
+
+	<step><para>
+	Klicken Sie auf <guimenuitem>Select Domain</guimenuitem>.
+	</para></step>
+
+	<step><para>
+	Klicken Sie im Panel <guilabel>Select Domain</guilabel> auf den Namen der Domäne, 
+	die Sie administrieren wollen, und dann auf <guibutton>OK</guibutton>.
+	</para></step>
+
+	<step><para>
+	Wählen Sie nochmals das Menu <guimenu>Computer</guimenu>.
+	</para></step>
+
+	<step><para>
+	Wählen Sie <guimenuitem>Add to Domain</guimenuitem>.
+	</para></step>
+
+	<step><para>
+	Klicken Sie den Radio-Button <guilabel>Add NT Workstation of Server</guilabel> 
+	in der folgenden Dialogbox, dann geben Sie den Maschinen-Namen im vorgegebenen Feld ein,
+	und klicken auf <guibutton>Add</guibutton>.
+	</para></step>
+</procedure>
+
+</sect2>
+
+<sect2>
+<title>"On-the-Fly" Anlegen von Maschinen-Konten</title>
+
+<para>
+Die zweite (und empfohlene) Art, Maschinenkonten anzulegen, ist, es einfach dem Samba-Server zu
+erlauben, diese Konten bei Bedarf anzulegen, wenn der Client der Domäne angeschlossen wird.
+</para>
+
+<para>Da jedes Maschinen-Vertrauens-Konto unter Samba ein zugehöriges UNIX-Konto benötigt,
+wird üblicherweise eine Methode zum automatischen Anlegen eines UNIX-Kontos bereitgestellt;
+dies erfordert die Konfiguration der Option "add machine script" in der Datei &smb.conf;.
+Diese Methode ist jedoch nicht erforderlich, die benötigten UNIX-Konten können auch händisch
+angelegt werden.
+</para>
+
+
+<para>
+Hier ein Beispiel für ein Red Hat Linux System.
+</para>
+
+<para><smbconfblock>
+<smbconfsection>[global]</smbconfsection>
+<smbconfcomment>&lt;...Erinnerung an Parameter...&gt;</smbconfcomment>
+<smbconfoption><name>add machine script</name><value>/usr/sbin/useradd -d /dev/null -g 100 \</value></smbconfoption>
+<member><parameter>  -s /bin/false -M %u</parameter></member>
+</smbconfblock></para>
+
+
+</sect2>
+
+
+<sect2><title>Eine MS Windows Workstation oder einen MS Windows Server zum Domänen-Mitglied machen</title>
+
+<para>
+Die Vorgehensweise, um eine MS Windows Workstation oder einen MS Windows Server zum Domänen-Mitglied
+zu machen, ist abhängig von der Version von Windows.
+</para>
+
+<sect3>
+	<title>Windows 200x/XP Professional Client</title>
+
+	<para>
+	Wenn der Benutzer den Client dazu "erwählt", ein Domänen-Mitglied zu werden, fragt
+	Windows 200x nach einer Konto/Passwort-Kombination, die dazu berechtigt ist, Maschinen-Konten
+	in der Domäne anzulegen. Ein Samba-Administrator-Konto (also ein Samba-Konto, das
+	<constant>root</constant>-Rechte auf dem Samba-Server hat) muß hier verwendet werden;
+	der Vorgang wird scheitern, wenn ein normales Benutzerkonto verwendet wird.
+	</para>
+
+	<para>
+	Aus Sicherheitsgründen sollte das Passwort für dieses Administrator-Konto auf ein anderes
+	Passwort gesetzt werden als jenes, das für den Benutzer root in <filename>/etc/passwd</filename>
+	verwendet wird.
+	</para>
+
+	<para>
+	Der Name des Kontos, das zum Anlegen von Domänenmitglieds-Maschinen-Konten verwendet wird,
+	kann etwas beliebiges sein, das der Netzwerk-Administrator wählt. Wenn dieser Name etwas anderes
+	als <constant>root</constant> ist, wird es einfach auf den dem Benutzer
+	<constant>root</constant> zugehörigen Eintrag in der 
+	vom Parameter
+	<smbconfoption><name>username map</name><value>/etc/samba/smbusers</value></smbconfoption> 
+	in der Datei &smb.conf; bezeichneten Datei "gemappt".
+	</para>
+
+	<para>
+	Der "Session-Key" des Samba-Administrator-Kontos fungiert als Verschlüsselungs-Schlüssel
+	zum Setzen des Passworts für das Maschinen-Vertrauens-Konto. Das Maschinen-Vertrauens-Konto
+	wird on-the-fly angelegt, oder aktualisiert, falls es bereits existiert.
+	</para>
+</sect3>
+
+<sect3>
+	<title>Windows NT4 Client</title>
+
+	<para>
+	Wenn das Maschinen-Vertrauens-Konto manuell angelegt wurde, geben Sie im Menu
+	"Identification Changes" den Domänen-Namen an, aber aktivieren Sie NICHT die Box
+	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird
+	das bereits existierende Maschinen-Vertrauens-Konto verwendet, um die Maschine der
+	Domäne anzuschliessen.
+	</para>
+
+	<para>
+	Wenn das Maschinen-Vertrauens-Konto on-the-fly angelegt werden soll, geben Sie im Menu
+	"Identification Changes" den Domänen-Namen an, und aktivieren die Box
+	<guilabel>Create a Computer Account in the Domain</guilabel>. In diesem Fall wird der Anschluß
+	an die Domäne wie oben fortgesetzt, wie oben für Windows 2000 beschrieben (d.h., Sie müssen
+	ein Samba-Administrator-Konto angeben, wenn danach verlangt wird).
+	</para>
+</sect3>
+
+<sect3>
+	<title>Samba Client</title>
+
+	<para>Das Anschliessen eines Samba-Clients an eine Domäne wird in
+	<link linkend="domain-member-server">Domänen-Mitglieds-Server</link> beschrieben.
+	</para>
+</sect3>
+
+</sect2>
+</sect1>
+
+<sect1 id="domain-member-server">
+<title>Domänen-Mitglieds-Server</title>
+
+<para>
+Diese Server-Betriebsart beinhaltet, daß die Samba-Maschine zum Domänen-Mitglied gemacht wird.
+Das bedeutet per Definition, daß jegliche Benutzer-Authentifikation von einem zentral bestimmten
+Authentifikations-Regime erfolgen wird. Das Authentifikations-Regime kann von einem NT3/4-artigen
+(alte Domänen-Technologie) Server kommen, oder es kann von einem Active Directory Server (ADS)
+bereitgestellt werden, der unter MS Windows 2000 oder einem neueren MS Windows läuft.
+</para>
+
+<para>
+<emphasis>
+Es sollte natürlich klar sein, daß das Authentifikations-Backend selbst ein Server von jeder
+Verzeichnis-Dienst-Architektur sein kann, die von Samba unterstützt wird. Es kann LDAP (von
+OpenLDAP) sein, oder Sun's iPlanet, ein NetWare Directory Server, und so weiter.
+</emphasis>
+</para>
+
+<para><note>
+Wenn Samba für die Verwendung von LDAP konfiguriert ist, oder eine andere Identitäts-Verwaltung
+und/oder einen Verzeichnisdienst, dann ist es Samba, das die Authentifikation von Benutzern und
+Maschinen weiter ausführt. Es sollte beachtet werden, daß der LDAP-Server die Authentifikation
+nicht anstatt Samba ausführt.
+</note></para>
+
+<para>
+Bitte besuchen Sie <link linkend="samba-pdc">Domain Control</link> für mehr Informationen darüber,
+wie man ein Domänen-Maschinen-Konto anlegt, aber auch darüber, wie man eine Samba-Maschine, die
+Domänen-Mitglied ist, dazu befähigt, sich der Domäne anzuschliessen, und deren volles Vertrauen
+zu gewinnen ...
+</para>
+
+<sect2>
+<title>Sich mit Samba-3 einer NT4-Domäne anschliessen</title>
+
+<para><link linkend="assumptions">Die nächste Tabelle</link> enthält eine Liste von Namen, die im Rest dieses Kapitels verwendet wurden.</para>
+
+<table frame="all" id="assumptions"><title>Annahmen</title>
+	<tgroup cols="2">
+		<colspec align="right"/>
+		<colspec align="left"/>
+	<tbody>
+			<row>
+				<entry>NetBIOS-Namen:</entry><entry>SERV1</entry>
+			</row>
+			<row>
+				<entry>Windows 200x/NT Domänen-Namen:</entry><entry>&example.workgroup;</entry>
+			</row>
+			<row>
+				<entry>NetBIOS-Namen des Domänen-PDC:</entry><entry>DOMPDC</entry>
+			</row>
+			<row>
+				<entry>NetBIOS-Namen der Domänen-BDCs:</entry><entry>DOMBDC1 und DOMBDC2</entry>
+			</row>
+	</tbody>
+	</tgroup>
+</table>
+
+<para>
+Als erstes müssen Sie Ihre Datei &smb.conf; editieren, um Samba mitzuteilen, daß es ab jetzt 
+Domänen-Sicherheit verwenden soll.
+</para>
+
+<para>
+Ändern (oder fügen Sie sie hinzu) Sie die Zeile
+<smbconfoption><name>security</name></smbconfoption> im Abschnitt [global] 
+Ihrer &smb.conf; auf
+</para>
+
+<para>
+<smbconfblock>
+<smbconfoption><name>security</name><value>domain</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<para>
+Als nächstes ändern Sie die Zeile <smbconfoption><name>workgroup</name></smbconfoption> im
+Abschnitt <smbconfsection>[global]</smbconfsection> auf
+</para>
+
+<para>
+<smbconfblock>
+<smbconfoption><name>workgroup</name><value>&example.workgroup;</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<para>
+Dies ist der Name der Domäne, der wir uns anschliessen.
+</para>
+
+<para>
+Sie müssen auch den Parameter <smbconfoption><name>encrypt passwords</name></smbconfoption> auf
+<constant>yes</constant> setzen, um Ihren Benutzern die Authentifikation am NT-PDC zu ermöglichen.
+Dies ist die Standard-Einstellung, falls dieser Parameter nicht gesetzt wird. Es gibt keinen Grund,
+diesen Parameter zu setzen, aber wenn er in der Datei &smb.conf; gesetzt wird, muß er auf
+<constant>Yes</constant> gesetzt werden.
+</para>
+
+<para>
+Zuletzt fügen Sie dem Abschnitt [global] die Zeile 
+<smbconfoption><name>password server</name></smbconfoption> hinzu (oder ändern sie), sodaß sie lautet:
+</para>
+
+<para>
+<smbconfblock>
+<smbconfoption><name>password server</name><value>DOMPDC DOMBDC1 DOMBDC2</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<para>
+Dies sind der PDC und die BDCs, die Samba kontaktieren wird, um Benutzer zu authentifizieren.
+Samba wird versuchen, jeden dieser Server in der angegebenen Reihenfolge zu kontaktieren, daher
+können Sie durch die Reihung der Server die Last auf die einzelnen Domänen-Controller verteilen.
+</para>
+
+<para>
+Wenn Sie andererseits wollen, daß smbd automatisch die Liste der zu verwendenden Domänen-Controller
+bestimmt, können Sie diese Zeile auf folgendes setzen:
+</para>
+
+<para>
+<smbconfblock>
+<smbconfoption><name>password server</name><value>*</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<para>
+Diese Methode erlaubt es Samba, genau denselben Mechanismus wie NT zu verwenden.
+Sie verwendet entweder Namensauflösung, die auf Broadcasts basiert, führt eine WINS-Datenbank-Abfrage
+durch, um einen Domänen-Controller zu finden, oder lokalisiert einen Domänen-Controller mittels
+DNS-Namensauflösung.
+</para>
+
+<para>
+Zum Anschluß an eine Domäne geben Sie diesen Befehl:
+</para>
+
+<para>
+<screen>
+&rootprompt;<userinput>net join -S DOMPDC -U<replaceable>Administrator%Passwort</replaceable></userinput>
+</screen>
+</para>
+
+<para>
+Wenn das Argument <option>-S DOMPDC</option> nicht angegeben wird, wird der Domänen-Name aus der Datei
+&smb.conf; gelesen.
+</para>
+
+<para>
+Die Maschine schließt sich der Domäne DOM an, und der PDC für diese Domäne (die einzige Maschine, die
+Schreib-Zugriff auf die SAM-Datenbank der Domäne hat) ist DOMPDC, daher benutzen Sie die Option
+<option>-S</option>. <replaceable>Administrator%Passwort</replaceable> ist das Benutzer/Passwort-Paar
+für ein Konto, das die nötigen Privilegien hat, um Maschinen der Domäne hinzuzufügen. Wenn dies
+erfolgreich ist, werden Sie die Nachricht in Ihrem Terminal-Fenster sehen, die unten gezeigten Text
+enthält. Wo alte NT4-artige Domänen-Architektur eingesetzt wird:
+<screen>
+<computeroutput>ÜBERSETZUNG VON Joined domain DOM.</computeroutput>
+</screen>
+</para>
+
+<para>
+Wo Active Directory eingesetzt wird:
+<screen>
+<computeroutput>ÜBERSETZUNG VON Joined SERV1 to realm MYREALM.</computeroutput>
+</screen>
+</para>
+
+<para>
+Lesen Sie die <command>net</command> man page für mehr Informationen.
+</para>
+
+<para>
+Dieser Prozess schließt den Server der Domäne an, ohne davor das Maschinen-Konto auf dem
+PDC anlegen zu müssen.
+</para>
+
+<para>
+Dieser Befehl durchläuft das Protokoll zum Ändern des Maschinen-Konto-Passworts, dann schreibt
+er das neue (zufällige) Maschinen-Konto-Passwort für diesen Samba-Server in eine Datei im selben
+Verzeichnis, in welchem normalerweise die Datei smbpasswd gespeichert würde:
+<screen>
+<filename>/usr/local/samba/private/secrets.tdb</filename>
+oder 
+<filename>/etc/samba/secrets.tdb</filename>.
+</screen>
+</para>
+
+<para>
+Diese Datei wird von root angelegt, gehört root und ist nicht von einem anderen Benutzer lesbar.
+Sie ist der Schlüssel zur Domänen-Sicherheit Ihres Systems, und sollte genauso umsichtige behandelt
+werden wie eine Shadow-Passwort-Datei.
+</para>
+
+<para>
+Zuletzt starten Sie Ihre Samba-Daemonen neu und machen sich bereit für die Clients, die die neue
+Domänen-Sicherheit zu benutzen beginnen. Die Art, auf die Sie die Samba-Daemonen neu starten, hängt
+von Ihrer Distribution ab, aber in den meisten Fällen wird folgendes ausreichen:
+<screen>
+&rootprompt;/etc/init.d/samba restart
+</screen>
+</para>
+
+</sect2>
+
+<sect2>
+<title>Warum ist dies besser als <parameter>security = server</parameter>?</title>
+
+<para>
+Derzeit befreit Sie die Domänen-Sicherheit in Samba nicht von der Notwendigkeit, lokale 
+UNIX-Benutzer anlegen zu müssen, um die Benutzer, die sich an Ihrem Server anmelden, zu repräsentieren.
+Das bedeutet, daß wenn sich der Domänen-Benutzer <constant>DOM\fred</constant> an Ihrem
+Samba-Domänen-Server anmeldet, es einen lokalen UNIX-Benutzer fred geben muß, um diesen Benutzer
+im UNIX-Datei-System zu repräsentieren. Dies ist ähnlich zum früheren Samba-Betriebsmodus
+<smbconfoption><name>security</name><value>server</value></smbconfoption>, wo Samba die
+Authentifizierungs-Anfrage an einen Windows NT Server weitergeleitet hat, genau wie es ein
+Windows-95- oder Windows-98-Server tun würde.
+</para>
+
+<para>
+Lesen Sie das Kapitel <link linkend="winbind">Winbind: Verwendung von Domänen-Konten</link> für
+Informationen darüber, wie ein System automatisch UNIX UIDs und GIDs auf Windows NT Domänen-Benutzer
+und -Gruppen zuweisen kann.
+</para>
+
+<para>
+Der Vorteil der Domänen-Level-Security ist, daß die Authentifikation in der Domänen-Level-Security
+über der authentifizierten RPC-Channel läuft, in exakt derselben Art, wie sie ein NT-Server ausführen
+würde. Das bedeutet, daß Samba-Server nunmehr an Domänen-Vertrauens-Verhältnissen in genau derselben
+Art teilnehmen wie es NT-Server tun (z.B. können Sie Samba-Server einer Resource-Domäne hinzufügen,
+und die Authentifikation vom Resource-Domänen-Controller auf einen Konten-Domänen-PDC weiterleiten).
+</para>
+
+<para>
+Zusätzlich dazu muß jeder Samba-Daemon bei gesetzter Option 
+<smbconfoption><name>security</name><value>server</value></smbconfoption> eine Verbindung zum
+Authentifikations-Server offenhalten, solange der Daemon läuft. Das kann die Ressourcen eines
+Microsoft NT Servers stark belasten, und es kann passieren, daß er nicht genügend verfügbare
+Verbindungen öffnen kann. Mit <smbconfoption><name>security</name><value>domain</value></smbconfoption>
+verbinden sich die Samba-Daemons nur so lange mit dem PDC/BDC, wie es zum Authentifizieren des
+Benutzers nötig ist, und trennen dann die Verbindung, schonen damit die Ressourcen des PDCs.
+</para>
+
+<para>
+Zuletzt führt das idente Verhalten zu einem NT Server dazu, daß beim Authentifizieren am PDC
+der Samba-Server als Teil der Authentifikations-Antwort Benutzer-Informationen wie
+die Benutzer-SID, die Liste der Gruppen, der er angehört, und so weiter, erhält.
+</para>
+
+<note>
+<para>
+Ein grosser Teil dieses Dokuments wurde zuerst im Web-Magazin
+<ulink url="http://www.linuxworld.com">LinuxWorld</ulink> veröffentlicht,
+als der Artikel
+<ulink url="http://www.linuxworld.com/linuxworld/lw-1998-10/lw-10-samba.html"/>
+url="http://www.linuxworld.com/linuxworld/lw-1998-10/lw-10-samba.html"/>
+<emphasis>Doing the NIS/NT Samba</emphasis>.
+</para>
+</note>
+
+</sect2>
+</sect1>
+
+<sect1 id="ads-member">
+<title>Samba ADS Domänen-Mitgliedschaft</title>
+
+<para>
+<indexterm significance="preferred"><primary>Active Directory</primary></indexterm>
+<indexterm significance="preferred"><primary>ADS</primary><see>Active Directory</see></indexterm>
+<indexterm><primary>KDC</primary></indexterm>
+<indexterm><primary>Kerberos</primary></indexterm>
+Dies ist eine grobe Anleitung für das Setup von Samba-3 mit Kerberos-Authentifikation an einem
+Windows 200x KDC. Vertrautheit mit Kerberos wird vorausgesetzt.
+</para> 
+
+<sect2>
+<title>Das Konfigurieren von &smb.conf;</title>
+
+<para>
+Sie müssen zumindest die folgenden drei Optionen in &smb.conf; verwenden:
+</para>
+
+<para><smbconfblock>
+<smbconfoption><name>realm</name><value>ihre.kerberos.realm</value></smbconfoption>
+<smbconfoption><name>security</name><value>ADS</value></smbconfoption>
+<smbconfcomment>Der folgende Parameter muß nur gesetzt werden, wenn er vorhanden ist.</smbconfcomment>
+<smbconfcomment>Der Standard-Wert, wenn er nicht vorhanden ist, ist yes.</smbconfcomment>
+<smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption>
+</smbconfblock></para>
+
+<para>
+Im Falle, daß Samba den entsprechenden ADS-Server nicht korrekt über den Realm-Namen identifizieren
+kann, verwenden Sie die Option
+<smbconfoption><name>password server</name></smbconfoption> in &smb.conf;:
+<smbconfblock>
+<smbconfoption><name>password server</name><value>ihr.kerberos.server</value></smbconfoption>
+</smbconfblock>
+</para>
+
+<note><para>
+Sie brauchen <emphasis>keine</emphasis> smbpasswd-Datei, und ältere Clients werden authentifiziert,
+als ob <smbconfoption><name>security</name><value>domain</value></smbconfoption> gesetzt wäre,
+obwohl es nicht schadet, und es Ihnen erlaubt, lokale Benutzer zu haben, die nicht in der Domäne sind.
+</para></note>
+
+</sect2>
+  
+<sect2>
+<title>Das Konfigurieren von <filename>/etc/krb5.conf</filename></title>
+
+<para>
+<indexterm><primary>/etc/krb5.conf</primary></indexterm>
+<indexterm><primary>Kerberos</primary><secondary>/etc/krb5.conf</secondary></indexterm>
+Sowohl mit MIT und Heimdal Kerberos ist es unnötig, <filename>/etc/krb5.conf</filename> zu
+konfigurieren, es kann sogar schädlich sein.
+</para>
+
+<para>
+Microsoft Active Directory Server legen automatisch SRV-Einträge in der DNS-Zone
+<parameter>_kerberos.REALM.NAME</parameter> an, für jeden KDC in der Realm. Dies ist Teil des
+Installations- und Konfigurationsprozesses zum Anlegen einer Active Directory Domäne.
+</para>
+
+<para>
+Sowohl MIT's, wie auch Heimdal's aktuelle KRB5-Libraries prüfen per Standard auf SRV-Einträge,
+werden also automatisch die KDCs finden. Zusätzlich gilt, daß <filename>krb5.conf</filename> nur
+die Angabe eines einzelnen KDC erlaubt, sogar wenn es mehr als einen gibt. Die Verwendung von
+DNS-Lookups erlaubt es den KRB5-Libraries, jeden verfügbaren KDC zu verwenden.
+</para>
+
+<para>
+Beim manuellen Konfigurieren von <filename>krb5.conf</filename> ist die minimale Konfiguration:
+</para>
+
+<para><programlisting>
+[libdefaults]
+	default_realm = IHRE.KERBEROS.REALM
+
+[realms]
+	IHRE.KERBEROS.REALM = {
+	kdc = ihr.kerberos.server
+	}
+
+[domain_realms]
+	.kerberos.server = IHRE.KERBEROS.REALM
+</programlisting></para>
+
+<para>
+Bei der Verwendung von Heimdal-Versionen vor 0.6 sind folgende Einstellungen zu treffen:
+<screen>
+[libdefaults]
+	default_realm      = IHRE.KERBEROS.REALM
+	default_etypes     = des-cbc-crc des-cbc-md5
+	default_etypes_des = des-cbc-crc des-cbc-md5
+
+[realms]
+        IHRE.KERBEROS.REALM = {
+        kdc = ihr.kerberos.server
+	}
+
+[domain_realms]
+        .kerberos.server = IHRE.KERBEROS.REALM
+</screen>
+</para>
+
+<para>
+<indexterm><primary>kinit</primary></indexterm>
+Prüfen Sie Ihre Konfiguration mittels <userinput>kinit <replaceable>BENUTZERNAME</replaceable>@<replaceable>REALM</replaceable></userinput>
+und stellen Sie sicher, daß Ihr Passwort vom Win2000 KDC akzeptiert wird.
+</para>
+
+<para>
+Mit Heimdal-Versionen vor 0.6 können Sie nur neu in ADS angelegte Konten verwenden, oder Konten,
+deren Passwörter nach der Migration geändert wurden, bzw. im Falle des Kontos
+<constant>Administrator</constant> nach der Installation. Im Moment, kann ein Windows 2003 KDC
+nur mit Heimdal-Versionen nach 0.6 verwendet werden (und ohne default_etypes in krb5.conf).
+Unglücklicherweise ist dieser gesamte Bereich noch immer in Veränderung begriffen.
+</para>
+
+<note><para>
+Die Realm muß in GROSSBUCHSTABEN angegeben werden, sonst erhalten Sie den Fehler
+<quote><errorname>Cannot find KDC for requested realm while getting initial credentials</errorname></quote>
+(Kerberos ist case-sensitive!).
+</para></note>
+
+<note><para>
+Zwischen zwei Servern muß die Zeit synchronisiert werden. Sie erhalten
+<quote><errorname>kinit(v5): Clock skew too great while getting initial credentials</errorname></quote>,
+wenn die Zeitabweichung grösser als fünf Minuten beträgt.
+</para></note>
+
+<para>
+Die Limits für die Zeitabweichung sind in den Kerberos-Protokollen konfigurierbar. Die Voreinstellung
+beträgt fünf Minuten.
+</para>
+
+<para>
+Sie müssen auch sicherstellen, daß Sie einen Reverse-DNS-Lookup auf die IP-Adresse Ihres KDCs
+durchführen können. Weiters muß der Name, auf den dieser Reverse-Lookup zeigt, entweder der
+NetBIOS-Namen des KDCs (z.B. der Hostname ohne angehängte Domäne) sein, oder er kann der
+NetBIOS-Namen, gefolgt von der Realm, sein.
+</para>
+
+<para>
+Am leichtesten erreichen Sie dies, indem Sie einen Eintrag in <filename>/etc/hosts</filename>
+hinzufügen, der die IP-Adresse Ihres KDCs auf dessen NetBIOS-Namen zuweist. Wenn Sie dies nicht
+korrekt erstellen, erhalten Sie einen <errorname>local error</errorname>, wenn Sie versuchen, sich der
+Realm anzuschliessen.
+</para>
+
+<para>
+Wenn Sie nur Kerberos-Support in &smbclient; wollen, können Sie direkt zu
+<link linkend="ads-test-smbclient">Testen mit &smbclient;</link> springen.
+<link linkend="ads-create-machine-account">Anlegen des Maschinen-Kontos</link> und
+<link linkend="ads-test-server">Testen des Server-Setups</link> werden nur benötigt,
+wenn Sie Kerberos-Support für &smbd; und &winbindd; brauchen.
+</para>
+
+</sect2>
+
+<sect2 id="ads-create-machine-account">
+<title>Anlegen des Maschinen-Kontos</title>
+
+<para>
+Als Benutzer mit Schreib-Zugriff auf das Samba-Verzeichnis (üblicherweise root) führen Sie aus:
+<screen>
+&rootprompt; <userinput>net ads join -U Administrator%Passwort</userinput>
+</screen>
+</para>
+
+<para>
+Wenn Sie einen Windows-Client zum Mitglied einer ADS-Domäne innerhalb einer komplexen
+Organisation machen, wollen Sie vielleicht das Maschinen-Konto innerhalb einer bestimmten
+Organisations-Einheit anlegen. Samba-3 erlaubt dies mittels folgender Syntax:
+<screen>
+&rootprompt; <userinput>kinit Administrator@ihre.kerberos.REALM</userinput>
+&rootprompt; <userinput>net ads join <quote>Organisations-Einheit</quote></userinput>
+</screen>
+</para>
+
+<para>
+Zum Beispiel wollen Sie vielleicht das Maschinen-Konto innerhalb eines Containers namens
+<quote>Server</quote> unterhalb des organisatorischen Verzeichnisses
+<quote>Computer\Geschäftsstelle\Abteilung</quote> anlegen, wie folgt:
+
+<screen>
+&rootprompt; <userinput>net ads join "Computer\Geschäftsstelle\Abteilung\Server"</userinput>
+</screen>
+</para>
+
+<?latex \newpage ?>
+
+<sect3>
+<title>Mögliche Fehler</title>
+
+<para>
+<variablelist>
+	<varlistentry><term><errorname>ADS-Support nicht einkompiliert</errorname></term>
+	<listitem><para>Samba muß rekonfiguriert (entfernen von config.cache) und 
+	danach neu kompiliert werden, nachdem die Kerberos-Libraries und Header-Dateien
+	installiert wurden.
+	</para></listitem></varlistentry>
+
+	<varlistentry><term><errorname>net ads join fragt nach dem Benutzernamen</errorname></term>
+	<listitem><para>Sie müssen sich mit 
+	<userinput>kinit
+	<replaceable>BENUTZERNAME</replaceable>@<replaceable>REALM</replaceable></userinput>
+	an der Domäne anmelden.
+	<replaceable>BENUTZERNAME</replaceable> muß ein Benutzer sein, der berechtigt ist,
+	Maschinen zur Domäne hinzuzufügen.</para></listitem></varlistentry>
+
+	<varlistentry><term>Nicht unterstützte Verschlüsselungs- oder Prüfsummen-Arten</term>
+	<listitem><para>
+	Stellen Sie sicher, daß die Datei <filename>/etc/krb5.conf</filename> korrekt 
+	für Typ und Version des installierten Kerberos konfiguriert ist.
+	</para></listitem></varlistentry>
+</variablelist>
+</para>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="ads-test-server">
+<title>Testen des Server-Setups</title>
+
+<para>
+Wenn das Anschliessen an die Domäne erfolgreich war, werden Sie ein neues Maschinen-Konto im
+Active Directory sehen, mit dem NetBIOS-Namen Ihres Samba-Servers (im <quote>Computer</quote>
+-Folder unter Benutzer und Computer).
+</para>
+
+<para>
+Versuchen Sie auf einem Windows 2000 Client <userinput>net use * \\server\share</userinput>.
+Sie sollten mit Kerberos eingeloggt werden, ohne ein Passwort zu brauchen. Wenn dies scheitert,
+führen Sie <userinput>klist tickets</userinput> aus. Haben Sie ein Ticket für den Server bekommen?
+Hat es den Verschlüsselungstyp DES-CBC-MD5?
+</para>
+
+<para><note>
+Samba kann sowohl DES-CBC-MD5-Verschlüsselung wie auch ARCFOUR-HMAC-MD5-Encoding verwenden.
+</note></para>
+
+</sect2>
+
+<sect2 id="ads-test-smbclient">
+<title>Testen mit &smbclient;</title>
+
+
+<para>
+<indexterm><primary>smbclient</primary></indexterm>
+Versuchen Sie, sich auf Ihrem Samba-Server an einem Win2000-Server oder einem Samba-Server mittels
+&smbclient; und Kerberos anzumelden. Verwenden Sie &smbclient; wie gewohnt, aber geben Sie die Option
+<option>-k</option> an, um Kerberos-Authentifikation zu wählen.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Bemerkungen</title>
+
+<para>
+Sie müssen das Administrator-Passwort zumindest einmal ändern, nach der DC-Installation, um die
+richtigen Verschlüsselungs-Arten zu installieren.
+</para>
+
+<para>
+Windows 200x scheint die Parameter <parameter>_kerberos._udp</parameter> und
+<parameter>_ldap._tcp</parameter> nicht im standardmässigen DNS-Setup zu installieren. Vielleicht
+wird dies in späteren Service-Packs bereinigt werden.
+</para>
+
+</sect2>
+</sect1>
+
+<sect1>
+<title>Gemeinsames Nutzen von UID-Zuweisungen unter Samba-Domänen-Mitgliedern</title>
+
+<para>
+Samba weist UNIX Benutzer und Gruppen (gekennzeichnet durch UIDs und GIDs) auf Windows-Benutzer
+und Gruppen zu (gekennzeichnet durch SIDs).
+Diese Zuweisungen werden vom <parameter>idmap</parameter> Subsystem von Samba vorgenommen.
+</para>
+
+<para>
+In manchen Fällen ist es hilfreich, diese Zuweisungen unter Samba-Domänen-Mitgliedern zu teilen,
+damit die Zuweisung <emphasis>name->id</emphasis> auf allen Maschinen identisch ist.
+Dies kann im Speziellen benötigt werden, wenn man Dateien sowohl über CIFS als auch über NFS
+bereitstellt.
+</para>
+
+<para>Um <emphasis>LDAP</emphasis> <parameter>ldap idmap suffix</parameter> zu verwenden, 
+setzen Sie:</para>
+
+<smbconfblock>
+<smbconfoption><name>ldap idmap suffix</name><value>ou=Idmap,dc=quenya,dc=org</value></smbconfoption>
+</smbconfblock>
+
+<para>Lesen Sie den &smb.conf; man-page-Eintrag zum Parameter <smbconfoption><name>ldap idmap suffix</name><value></value></smbconfoption>
+für mehr Informationen dazu.</para>
+
+<para>
+Vergessen Sie auch nicht, die Option <smbconfoption><name>ldap admin dn</name></smbconfoption>
+anzugeben, und sicherzustellen, daß das LDAP-Administrations-Passwort in der Datei 
+<filename>secrets.tdb</filename> gesetzt ist, indem Sie dies ausführen:
+<screen>
+&rootprompt; smbpasswd -w ldap-admin-passwort
+</screen></para>
+
+</sect1>
+
+<sect1>
+<title>Gängige Fehler</title>
+
+<para>
+In dem Ablauf von Hinzufügen/Löschen/Wiederhinzufügen von Domänen-Maschinen-Konten gibt es
+viele Fallen für den unvorsichtigen Spieler, und viele <quote>kleine</quote> Dinge, die
+schiefgehen können. Es ist besonders interessant, wie oft Teilnehmer der Samba-Mailing-Liste
+nach wiederholten gescheiterten Versuchen, ein Maschinen-Konto hinzuzufügen, den Schluß
+gezogen haben, daß es nötig sei, MS Windows auf der betreffenden Maschine 
+<quote>neu zu installieren</quote>. In Wirklichkeit ist dies bei diesem Problem selten nötig.
+Die eigentliche Lösung ist oft ziemlich einfach, und mit einem Verständnis dafür, wie
+MS Windows Netzwerke funktionieren, leicht zu beheben.
+</para>
+
+<sect2>
+<title>Eine Maschine kann nicht noch einmal der Domäne hinzugefügt werden</title>
+
+<para>
+<quote>Eine Windows-Workstation wurde neu installiert. Das Original-Maschinen-Konto wurde
+gelöscht und unmittelbar hinzugefügt. Die Workstation schließt sich der Domäne nicht an, wenn
+ich denselben Maschinen-Namen verwende. Meine Versuche, die Maschine hinzuzufügen, scheitern mit
+der Meldung, daß die Maschine bereits im Netzwerk existiert &smbmdash; Ich weiß, daß sie dies nicht
+tut. Warum scheitert dies?</quote>
+</para>
+
+<para>
+Der Original-Name ist nach wie vor im NetBIOS-Namens-Cache und muß erst ablaufen, nachdem
+das Maschinen-Konto gelöscht wurde, bevor man denselben Namen wieder als Domänen-Mitglied
+hinzufügen kann. Der beste Tip dazu ist, das alte Konto zu löschen, und dann die Maschine mit
+einem neuen Namen wieder hinzuzufügen.
+</para>
+
+</sect2>
+
+<sect2>
+<title>Das Hinzufügen einer Maschine zur Domäne scheitert</title>
+
+<para>
+<quote>Das Hinzufügen einer Windows 200x oder XP Professional Maschine zur Domäne scheitert
+mit der Meldung <errorname>ÜBERSETZUNG VON `The machine could not be added at this time, there is a network problem.
+Please try again later.'</errorname> Warum?</quote>
+</para>
+
+<para>
+Sie sollten prüfen, daß es die Option <smbconfoption><name>add machine script</name></smbconfoption>
+in Ihrer Datei &smb.conf; gibt. Wenn es sie nicht gibt, fügen Sie bitte eine hinzu, die passend für
+Ihr Betriebssystem ist. Falls ein Skript definiert ist, werden Sie dessen Funktion prüfen müssen.
+Erhöhen Sie das <smbconfoption><name>log level</name><value></value></smbconfoption> in der
+&smb.conf;-Datei auf level 10, dann versuchen Sie nochmals, sich der Domäne anzuschliessen.
+Prüfen Sie die Log-Dateien, um zu sehen, welche Operation scheitert.
+</para>
+
+<para>
+Mögliche Ursachen sind:
+</para>
+
+<itemizedlist>
+	<listitem><para>
+	Das Skript existiert nicht, oder kann nicht in dem angegebenen Pfad gefunden werden.
+	</para>
+
+	<para>
+	<emphasis>Korrektur:</emphasis> Fixen Sie es. Stellen Sie sicher, daß das Skript
+	bei händischem Ausführen sowohl das UNIX-Konto, wie auch das Samba-SAM-Konto anlegt.
+	</para></listitem>
+
+	<listitem><para>
+	Die Maschine konnte nicht zur UNIX-Systemkonten-Datei <filename>/etc/passwd</filename>
+	hinzugefügt werden.	
+	</para>
+
+	<para>
+	<emphasis>Korrektur:</emphasis> Überprüfen Sie, daß der Maschinennamen ein gültiger
+	UNIX-Systemkonten-Name ist. Wenn das UNIX-Werkzeug <command>useradd</command>
+	aufgerufen wird, stellen Sie sicher, daß der Maschinen-Name, den Sie hinzufügen wollen,
+	auch mit diesem Werkzeug hinzugefügt werden kann. Auf manchen Systemen erlaubt
+	<command>useradd</command> keine Großbuchstaben oder Leerzeichen in dem Namen.
+	</para></listitem>
+</itemizedlist>
+
+<para>
+Das <smbconfoption><name>add machine script</name></smbconfoption> legt kein Maschinen-Konto
+in der Samba-Backend-Datenbank an, es ist nur dazu da, ein UNIX-System-Konto anzulegen, auf das
+ein Samba-Backend-Datenbank-Konto zugewiesen werden kann.
+</para>
+
+</sect2>
+
+<sect2>
+	<title>Ich kann mich keinem Windows 2003 PDC anschliessen</title>
+
+	<para>Windows 2003 erfordert SMB-signing. Client-seitiges SMB-signing wurde in
+	Samba-3.0 implementiert.
+	Setzen Sie <smbconfoption><name>client use spnego</name><value>yes</value></smbconfoption>, 
+	wenn Sie mit einem Windows 2003 Server kommunizieren.</para>
+</sect2>
+
+</sect1>
+</chapter>
