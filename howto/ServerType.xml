@@ -11,24 +11,24 @@
 <title>Server-Arten und Sicherheitsmodi</title>
 
 <para>
-Dieses Kapitel enthält Informationen betreffend der verschiedenen Server-Typen,
+Dieses Kapitel enthält Informationen zu den verschiedenen Server-Typen,
 die Sie im Samba-Server einstellen können. Ein Microsoft-Netzwerk-Administrator,
 der zu Samba migrieren bzw. Samba nutzen möchte, ist bestimmt interessiert daran, welche
-Samba-Konfigurationen er vornehmen muss, verglichen zu den Konfigurationen eines
-Windows-Servers. Es ist wichtig, die Sicherheits-Definitionen zu definieren, bevor
+Samba-Konfigurationen er vornehmen muss, verglichen mit den Konfigurationen eines
+Windows-Servers. Es ist wichtig, die Sicherheitsdefinitionen festzulegen, bevor
 man den Server selbst konfiguriert.
 </para>
 
 <para>
-Dieses Kapitel gibt einen Überblick über die Sicherheitsmodi von Samba und wie Sie
-im Vergleich zu Windows stehen.
+Dieses Kapitel gibt Ihnen einen Überblick über die Sicherheitsmodi von Samba und zeigt, wie sie
+sich zu denen von Windows verhalten.
 </para>
 
 <para>
 Eine Frage, die häufig gestellt wird, lautet: <quote>Warum will ich Samba nutzen?</quote>
 Die meisten Kapitel enthalten einen Abschnitt, die die positiven Merkmale und Vorteile hervorhebt.
-Wir hoffen, dass diese Informationen ihnen diese Frage beantworten können. Wir wollen fair
-und vernünftig bleiben, somit ist darauf zu achten, dass nicht alle Features für Samba
+Wir hoffen, dass diese Informationen Ihnen diese Frage beantworten können. Wir wollen fair
+und vernünftig bleiben, denken Sie also daran, dass nicht alle Features für Samba
 sprechen. Der Vorteil könnte auf unserer Seite sein.
 </para>
 
@@ -37,38 +37,37 @@ sprechen. Der Vorteil könnte auf unserer Seite sein.
 
 <para>
 Zwei Männer gehen eine staubige Straße entlang, als der eine plötzlich einen kleinen roten
-Stein weg schießt. Sein Zeh schmerzt durch den Stein und dieser wandert in die Sandale des
-einen Mannes. Er nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr verärgert.
+Stein lostritt. Der Stein setzt sich in seine Sandale und verletzt den Mann am Zeh. Der Mann nimmt den Stein unter zornigem Fluchen aus der Sandale und ist sehr verärgert.
 Der andere Mann schaut sich den Stein an und sagt: <quote>Dies ist ein Granat, ich könnte ihn
-zu Schmuck verarbeiten und eines Tages wird er einer Prinzessin viel Freude bereiten.</quote>
+zu Schmuck verarbeiten, und eines Tages wird er einer Prinzessin viel Freude bereiten.</quote>
 </para>
 
 <para>
 Und die Moral von dieser Geschichte: Zwei Männer, zwei verschiedene Betrachtungsweisen des
 gleichen Steins. Mögen oder hassen. Samba ist wie dieser Stein. Behandeln Sie es richtig, so
 kann es Ihnen einen großen Dienst erweisen, aber wenn Sie gezwungen sind, Samba zu benutzen, ohne
-seine Geheimnisse zu kennen, kann es eine Quelle des Unbehagen sein.
+seine Geheimnisse zu kennen, kann es eine Quelle des Unbehagens sein.
 </para>
 
 <para>
-Samba startete als Projekt, um zu versuchen, die Zusammenarbeit von MS Windows 3.x Clients und
-Unix-Servern zu gewährleisten. Es ist seit den Anfängen stark gewachsen und stellt jetzt Merkmale
-und Funktionen zur Verfügung, die es bereit für große Aufgaben macht. Es hat aber auch ein paar
-Nachteile, die wir in Sektionen wie dieser besprechen möchten.
+Samba startete als Projekt, mit dem die Zusammenarbeit von MS Windows 3.x Clients und
+Unix-Servern gewährleistet werden sollte. Es ist seit den Anfängen stark gewachsen und stellt jetzt Merkmale
+und Funktionen zur Verfügung, die es für große Aufgaben geeignet macht. Es hat aber auch ein paar
+Nachteile, die wir in Abschnitten wie diesem besprechen möchten.
 </para>
 
 <para>
-Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnt hatten?
+Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnen?
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Samba 3 kann einen MS Windows NT4 Domänen Controller ersetzen.
+	Samba 3 kann einen MS Windows NT4-Domänencontroller ersetzen.
 	</para></listitem>
 
 	<listitem><para>
-	Samba 3 bietet exzellente Kompatibilität mit MS Windows NT4 Domänen sowie
-	nativen Microsoft Active Directory Domänen.
+	Samba 3 bietet eine exzellente Kompatibilität mit MS Windows NT4-Domänen und mit
+	nativen Microsoft Active-Directory-Domänen.
 	</para></listitem>
 
 	<listitem><para>
@@ -76,8 +75,8 @@ Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnt hatt
 	</para></listitem>
 
 	<listitem><para>
-	Samba hat Sicherheitsmodi, die anpassungsfähigere Benutzer-Authentifikation
-	durchführen können als Windows NT4 Domänen Controller.
+	Samba hat Sicherheitsmodi, die eine anpassungsfähigere Benutzer-Authentifikation
+	durchführen können als Windows NT4-Domänencontroller.
 	</para></listitem>
 
 	<listitem><para>
@@ -87,120 +86,120 @@ Also, was sind die Vorteile und Merkmale, die wir in diesem Kapitel erwähnt hatt
 	<listitem><para>
 	Die Account- bzw. Passwort-Datenbanken können mit verschiedenen Methoden verteilt und
 	repliziert werden. Dies ermöglicht mit Samba 3 eine größere Flexibilität als mit MS
-	Windows NT4, und in vielen Fällen auch ein bedeutsam besseres Werkzeug als Active Directory
-	Domänen unter Windows 200x.
+	Windows NT4 - und stellt in vielen Fällen auch ein wesentlich besseres Werkzeug als Active-Directory-
+	Domänen unter Windows 200x dar.
 	</para></listitem>
 </itemizedlist>
 
 </sect1>
 
 <sect1>
-<title>Server Arten</title>
+<title>Server-Arten</title>
 
 
 <para>
-<indexterm><primary>Server Type</primary></indexterm>
-Administratoren von Microsoft Netzwerken beziehen sich oft auf drei verschiedene Serverarten:
+<indexterm><primary>Server-Typ</primary></indexterm>
+Administratoren von Microsoft-Netzwerken beziehen sich oft auf drei verschiedene Server-Arten:
 </para>
 
 <itemizedlist>
-	<listitem><para>Domänen Controller</para>
+	<listitem><para>Domänencontroller</para>
 		<itemizedlist>
-			<listitem>Primary Domain Controller</listitem>
-			<listitem>Backup Domain Controller</listitem>
-			<listitem>ADS Domain Controller</listitem>
+			<listitem>Primäre Domänencontroller</listitem>
+			<listitem>Backup-Domänencontroller</listitem>
+			<listitem>ADS-Domänencontroller</listitem>
 		</itemizedlist>
 	</listitem>
-	<listitem><para>Domänen Mitglieds-Server</para>
+	<listitem><para>Domänen-Mitgliedsserver</para>
 		<itemizedlist>
-			<listitem>Active Directory Domain Server</listitem>
-			<listitem>NT4 Style Domain Domain Server</listitem>
+			<listitem>Active-Directory-Domänenserver</listitem>
+			<listitem>Domänenserver im NT4-Stil</listitem>
 		</itemizedlist>
 	</listitem>
-	<listitem><para>Stand-alone Server</para></listitem>
+	<listitem><para>Stand-alone-Server</para></listitem>
 </itemizedlist>
 
 <para>
-Die Kapitel über Domänen-Controller, Backup-Domänen-Controller und Domänen-Mitgliedschaft
-enthalten sachdienliche Informationen für die Samba-Konfiguration für jede dieser Serverrollen.
-Wir möchten den Leser ermutigen, sich mit diesen Informationen vertraut zu machen.
+Die Kapitel über Domänencontroller, Backup-Domänencontroller und Domänen-Mitgliedschaft
+enthalten nützliche Informationen zur Samba-Konfiguration für jede dieser Serverrollen.
+Wir möchten Sie ermutigen, sich mit diesen Informationen vertraut zu machen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Samba Sicherheitsmodi</title>
+<title>Samba-Sicherheitsmodi</title>
 
 
 <para>
-<indexterm><primary>Security Mode</primary></indexterm>
-<indexterm><primary>security</primary></indexterm>
-In dieser Sektion werden die Funktionen und Zwecke der Samba-Sicherheitsmodi beschrieben.
-Es ist wichtig zu verstehen, wie jede der Sicherheits-Möglichkeiten, die Samba bietet, arbeitet
+<indexterm><primary>Sicherheitsmodi</primary></indexterm>
+<indexterm><primary>Sicherheit</primary></indexterm>
+In diesem Abschnitt werden die Funktionen und Zwecke der Samba-Sicherheitsmodi beschrieben.
+Es ist wichtig zu verstehen, wie jede der Sicherheitsmöglichkeiten, die Samba bietet, arbeitet
 und wie die Windows-Clients konfiguriert werden müssen, damit Sicherheit und
 Funktionstüchtigkeit gewährleistet sind.
 </para>
 
 <para>
 In der SMB/CIFS-Netzwerkwelt gibt es nur zwei Arten der Sicherheit: <emphasis>User Level</emphasis>
-und <emphasis>Share Level</emphasis>. Wir beziehen uns auf diese beiden Arten als: <emphasis>User
-Level</emphasis>. Durch Realisierung dieser beiden Security Arten bietet Samba Flexibilitäten, die
-nicht in Microsoft NT4/200x-Servern enthalten sind. Derzeit unterstützt Samba die <emphasis>Share
+und <emphasis>Share Level</emphasis>. Wir bezeichnen diese beiden Arten kollektiv als <emphasis>Sicherheits-
+Level</emphasis>. Durch Realisierung dieser beiden Security-Level bietet Samba Flexibilitäten, die
+nicht in Microsoft NT4/200x-Servern vorgesehen sind. Derzeit unterstützt Samba die <emphasis>Share
 Level</emphasis>-Sicherheit nur in einer Richtung, dafür aber vier Arten der <emphasis>User Level</emphasis>-Sicherheit.
 Zusammen gesehen nennen wir die Samba-Sicherheiten <emphasis>Sicherheitsmodi</emphasis>.
-Sie sind bekannt als: <emphasis>SHARE</emphasis>, <emphasis>USER</emphasis>,
-<emphasis>DOMAIN</emphasis>, <emphasis>ADS</emphasis>, und <emphasis>SERVER</emphasis>-Modi, die in diesem
-Kapitel behandelt werden.
+Sie sind bekannt als: <emphasis>SHARE-</emphasis>, <emphasis>USER-</emphasis>,
+<emphasis>DOMAIN-</emphasis>, <emphasis>ADS-</emphasis> und <emphasis>SERVER</emphasis>-Modi, und werden in diesem
+Kapitel behandelt.
 </para>
 
 <para>
-Ein SMB-Server sagt dem Client während des Startens, mit welcher Sicherheitsstufe der SMB-Server läuft,
-hierbei gibt es zwei Optionen: Share Level und User Level.
-So wie diese beiden Möglichkeiten den Client erreichen, beeinflussen sie ihn in der Art, wie er sich
-selbst authentifiziert. Es beeinflusst ihn nicht direkt die Art, wie der Samba-Server die Sicherheit
-handhabt. Klingt ein wenig merkwürdig, aber es passt zu dem Weg wie SMB arbeitet. Bei SMB wird alles
-vom Client initiiert und kontrolliert und der Server teilt dem Client nur mit, was verfügbar bzw. erlaubt ist.
+Ein SMB-Server sagt dem Client während des Startens, mit welcher Sicherheitsstufe der SMB-Server läuft.
+Hierbei gibt es zwei Optionen: Share Level und User Level.
+Diese beiden Optionen beeinflussen die Art, wie der Client sich
+selbst authentifiziert. Sie beeinflussen nicht direkt die Art, wie der Samba-Server die Sicherheit
+handhabt. Das klingt ein wenig merkwürdig, aber es passt zu der Weise, wie SMB arbeitet. Bei SMB wird alles
+vom Client initiiert und kontrolliert, und der Server teilt dem Client nur mit, was verfügbar bzw. erlaubt ist.
 </para>
 
 <sect2>
-<title>User Level Sicherheit</title>
+<title>User Level-Sicherheit</title>
 
 <para>
-Der Einfachheit halber möchten wir zuerst die User Level Sicherheit erläutern.
+Der Einfachheit halber möchten wir zuerst die User Level-Sicherheit erläutern.
 In dieser Sicherheitsstufe sendet der Client einen Session Setup Request und direkt darauf
-folgend eine Protokoll-Absprache. Diese Anfrage liefert einen Benutzernamen und ein Passwort,
-die der Server entweder akzeptiert oder die Benutzernamen/Passwort-Kombination verweigert.
+folgend eine Protokoll-Absprache. Diese Anfrage liefert einen Benutzernamen und ein Passwort.
+Der Server akzeptiert die Benutzernamen/Passwort-Kombination entweder, oder er verweigert sie.
 An diesem Punkt hat der Server keine Ahnung, welche Freigabe der Client eventuell aufrufen wollte,
-es wird nur durch folgende Punkte eine Entscheidung zur <emphasis>Annahme</emphasis> oder der
+es wird nur durch folgende Punkte eine Entscheidung für die <emphasis>Annahme</emphasis> oder die
 <emphasis>Verweigerung</emphasis> getroffen:
 
 </para>
 
 <orderedlist>
-<listitem><para>Durch den Benutzernamen/Passwort.</para></listitem>
-<listitem><para>Durch den Namen des Client-PCs.</para></listitem>
+<listitem><para>Durch den Benutzernamen/das Passwort</para></listitem>
+<listitem><para>Durch den Namen des Client-PCs</para></listitem>
 </orderedlist>
 
 <para>
 Wenn der Server den Benutzernamen mit dem entsprechenden Passwort akzeptiert,
-erwartet der Client, Freigaben zu binden (unter Verwendung einer <emphasis>Baum-
+erwartet der Client, Freigaben einzubinden (unter Verwendung einer <emphasis>Baum-
 Verbindung</emphasis>), ohne ein weiteres Mal das Passwort zu nennen. Der Client
-geht davon aus, dass alle Zugriffsrechte durch den Benutzernamen/Passwort aus
+geht davon aus, dass alle Zugriffsrechte durch den Benutzernamen/das Passwort aus
 dem <emphasis>Session Setup</emphasis> geregelt werden.
 </para>
 
 <para>
-Es ist ebenfalls möglich, dass ein Client verschiedene <emphasis>session setup</emphasis> Anfragen
-sendet. Wenn der Server darauf antwortet vergibt er an den Client eine <emphasis>uid</emphasis>
-als Authentifizierungs-Etikett. Der Client kann somit verschiedene Authentifizierungs-Kontexte
-aufrechterhalten (WinDD, als Beispiel, ist eine Applikation, die diese Verfahrensweise nutzt).
+Es ist ebenfalls möglich, dass ein Client verschiedene <emphasis>Session Setup</emphasis>-Anfragen
+sendet. Wenn der Server darauf antwortet, vergibt er an den Client eine <emphasis>uid</emphasis>
+als Authentifizierungsetikett. Der Client kann somit verschiedene Authentifizierungskontexte
+aufrechterhalten (WinDD, zum Beispiel, ist eine Applikation, die diese Verfahrensweise nutzt).
 </para>
 
 <sect3>
-<title>Beispiel Konfiguration</title>
+<title>Beispielkonfiguration</title>
 
 <para>
-Der &smb.conf;-Parameter, der die Sicherheitsstufe der security setzt, lautet:
+Der &smb.conf;-Parameter, der die Sicherheit auf <quote>User Level</quote> setzt, lautet:
 </para>
 
 <para><smbconfblock>
@@ -215,41 +214,41 @@ Dies ist die Standard-Einstellung seit Samba-2.2.x.
 
 </sect2>
 <sect2>
-<title>Share Level Sicherheit</title>
+<title>Share Level-Sicherheit</title>
 
 <para>
-Bei der Share Level Sicherheit authentifiziert sich der Client selbst bei jedem
+Bei der Share Level-Sicherheit authentifiziert sich der Client selbst bei jedem
 Aufruf einer Freigabe mit einem Passwort. Es wird nicht explizit ein Benutzername
-vom Client zum Server gesendet. Der Client erwartet ein Passwort, welches mit jeder
-Freigabe verbunden wird, somit hat Samba die Aufgabe, herauszufinden, welchen
+vom Client zum Server gesendet. Der Client erwartet ein Passwort, das mit jeder
+Freigabe verbunden wird; somit hat Samba die Aufgabe herauszufinden, welchen
 Benutzernamen der Client verwenden möchte. Einige kommerzielle SMB-Server wie NT
-assoziieren Passwörter bei der Share Level Sicherheit direkt mit Freigaben, Samba
-arbeitet im Gegensatz dazu mit dem UNIX-Authentifizierungs-Schema, welches ein Benutzer/Passwort-
-Paar statt einem Share/Passwort-Paar erwartet.
+assoziieren Passwörter bei der Share Level-Sicherheit direkt mit Freigaben; Samba
+arbeitet im Gegensatz dazu mit dem UNIX-Authentifizierungsschema, das ein Benutzer/Passwort-
+Paar statt eines Share/Passwort-Paars erwartet.
 </para>
 
 <para>
-Um die Parallele zum MS-Windows-Netzwerk zu verstehen, hier ein wichtiger Gedanke für die Bedingung
-von Windows 9x/Me, wo jemand einen Ordner freigeben kann, welcher Nur-Lese- oder Voll-Zugriff mit
-oder ohne Passwort haben kann.
+Um die Parallele zum MS-Windows-Netzwerk zu verstehen, sollte man in der Begrifflichkeit 
+von Windows 9x/Me denken, wo jemand einen gemeinsam genutzten Ordner freigeben kann, der Nur-Lese- oder Voll-Zugriff mit
+oder ohne Passwort gestattet.
 </para>
 
 <para>
-Viele Clients senden ein Session Setup auch dann, wenn der Server mit Share Level Sicherheit läuft.
+Viele Clients senden ein Session Setup auch dann, wenn der Server mit Share Level-Sicherheit läuft.
 Sie übergeben normalerweise einen gültigen Benutzernamen, den sich Samba in einer Liste der
-möglichen Benutzernamen merkt. Wenn nun der Client eine Tree-connection macht, nimmt der Samba-Server
-den Namen der Freigabe in seine Liste auf (nützlich für Freigaben des Heimat-Verzeichnisses) und jeder
+möglichen Benutzernamen merkt. Wenn nun der Client eine Verbindung zu einem Freigabe-Baum herstellt, nimmt der Samba-Server
+den Namen der Freigabe in seine Liste auf (nützlich für Freigaben des Heimat-Verzeichnisses), und jeder
 Benutzer des <smbconfoption><name>user</name></smbconfoption> Parameters in der &smb.conf; wird
-mit dem gesendeten Passworts überprüft. Wenn nun durch den anfänglich gesendeten Benutzernamen
-und dem für das Share gesendete Passwort eine Übereinstimmung gefunden wird, ist der Client
+mit dem gesendeten Passwort überprüft. Wenn nun eine Übereinstimmung des anfänglich gesendeten Benutzernamens
+mit dem für das Share gesendeten Passwort gefunden wird, ist der Client
 berechtigt, auf dieses Share zuzugreifen.
 </para>
 
 <sect3>
-<title>Beispiel Konfiguration</title>
+<title>Beispielkonfiguration</title>
 
 <para>
-Der &smb.conf;-Parameter, der die Sicherheitsstufe auf Share Level Sicherheit setzt:
+Der &smb.conf;-Parameter, der die Sicherheitsstufe auf Share Level-Sicherheit setzt, sieht so aus:
 </para>
 
 <para><smbconfblock>
@@ -257,34 +256,34 @@ Der &smb.conf;-Parameter, der die Sicherheitsstufe auf Share Level Sicherheit se
 </smbconfblock></para>
 
 <para>
-Es gibt Berichte, dass neue MS Windows Clients nicht mit Servern, die im Share Level Sicherheitsmodus
-laufen, arbeiten möchten. Wir möchten verstärkt davor warnen, im Share Level Modus zu arbeiten.
+Es gibt Berichte, dass neue MS Windows-Clients nicht mit Servern arbeiten möchten, die im Share Level-Sicherheitsmodus
+laufen. Wir möchten ausdrücklich davor warnen, im Share Level-Modus zu arbeiten.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>Domänen Sicherheitsmodus (User Level Security)</title>
+<title>Domänen-Sicherheitsmodus (User Level Security)</title>
 
 <para>
 <indexterm><primary>Domain Member</primary></indexterm>
 Wenn Samba im <smbconfoption><name>security</name><value>domain</value></smbconfoption>-Modus betrieben wird,
-hat der Server einen Trust Account (Maschinen Account) und reicht alle Authentifizierungs-Anfragen weiter
-zu den Domänen-Controllern. Mit anderen Worten: Diese Konfiguration macht den Samba-Server zu einem
+hat der Server einen Trust Account (Maschinen-Account) und reicht alle Authentifizierungsanfragen 
+an die Domänencontroller weiter. Mit anderen Worten: Diese Konfiguration macht den Samba-Server zu einem
 Domänen-Mitglied.
 </para>
 
 <sect3>
-<title>Beispiel Konfiguration</title>
+<title>Beispielkonfiguration</title>
 <para><emphasis>
-Samba als Domänen-Mitglieds-Server
+Samba als Domänen-Mitgliedsserver
 </emphasis></para>
 
 
 <para>
 <indexterm><primary>Server Type</primary><secondary>Domain Member</secondary></indexterm>
-Diese Art den Server zu betreiben benötigt folgende Parameter in der &smb.conf;:
+Diese Art, den Server zu betreiben, erfordert folgende Parameter in der &smb.conf;:
 </para>
 
 <para><smbconfblock>
@@ -293,18 +292,18 @@ Diese Art den Server zu betreiben benötigt folgende Parameter in der &smb.conf;:
 </smbconfblock></para>
 
 <para>
-Damit dies funktioniert, müssen folgende Schritte vorgenommen werden:
+Damit dies funktioniert, müssen folgende Schritte untergenommen werden:
 <indexterm><primary>net</primary><secondary>rpc</secondary></indexterm>
 <indexterm><primary>Domain Member</primary><secondary>joining</secondary></indexterm>
 </para>
 
 
 <procedure>
-        <step><para>Richten Sie einen Maschinen-Account für den Samba-Server ein, benutzen
+        <step><para>Richten Sie einen Maschinen-Account für den Samba-Server ein. Benutzen
         Sie dafür den Server Manager.
         </para></step>
 
-        <step><para>Auf dem UNIX/Linux-System führen Sie folgendes aus:</para>
+        <step><para>Auf dem UNIX/Linux-System führen Sie Folgendes aus:</para>
 
 			<para><screen>&rootprompt;<userinput>net rpc join -U administrator%password</userinput></screen></para>
 		</step>
@@ -316,7 +315,7 @@ Samba-2.2.4 und spätere Versionen können durch das Ausführen von folgendem Befeh
 &rootprompt;<userinput>smbpasswd -j <replaceable>DOMÄNEN-NAMEN</replaceable> -r <replaceable>PDC_NAME</replaceable> \
 	 -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
-Samba 3 kann das gleiche mit folgendem Kommando:
+Samba 3 kann das Gleiche mit folgendem Kommando:
 <screen>
 &rootprompt;<userinput>net rpc join -U Administrator%<replaceable>password</replaceable></userinput>
 </screen>
@@ -326,50 +325,50 @@ holt.
 </para></note>
 
 <para>
-Um diese Art der Authentifikation zu nutzen, benötigt man einen Standard Unix Account, damit für jeden
-User eine gültige UNIX UserID existiert, die vom entfernten Windows-Domänen-Controller authentisiert
-werden kann. Es spricht allerdings nichts dagegen, dass es diesem UNIX Account verboten wird, sich 
-einzuloggen, was bei MS Windows nicht möglich ist. Das Blocken eines solchen UNIX Accounts kann durch
-setzen einer nicht login-fähigen Shell in der <filename>/etc/passwd</filename> geschehen (z.B.
+Um diese Art der Authentifikation zu nutzen, benötigt man einen Standard-UNIX-Account, damit für jeden
+User eine gültige UNIX-UserID existiert, die vom entfernten Windows-Domänencontroller authentifiziert
+werden kann. Es spricht allerdings nichts dagegen, dass es diesem UNIX-Account verboten wird, sich 
+einzuloggen, was bei MS Windows nicht möglich ist. Um einen solchen UNIX-Account zu blocken, setzen Sie 
+eine nicht login-fähige Shell in der <filename>/etc/passwd</filename> (z.B.
 /bin/false als Shell).
 </para>
 
 <para>
-Eine Alternative zum Assoziieren von UIDs zu Windows Usern mit einem Samba-Mitgliedsserver wird
-im Kapitel <link linkend="winbind">Winbind</link> beschrieben.
+Eine Alternative zum Assoziieren von UIDs zu Windows-Usern mit einem Samba-Mitgliedsserver wird
+in Kapitel <link linkend="winbind">Winbind</link> beschrieben.
 </para>
 
 <para>
-Für weitere Informationen betreffend Domänen-Mitgliedschaft lesen Sie bitte
-<link linkend="domain-member">hier</link>.
+Für weitere Informationen zur Domänen-Mitgliedschaft lesen Sie bitte das Kapitel
+<link linkend="domain-member">Domänen-Mitgliedschaft</link>.
 </para>
 
 </sect3>
 </sect2>
 
 <sect2>
-<title>ADS Sicherheits Modus (User Level Security)</title>
+<title>ADS-Sicherheitsmodus (User Level Security)</title>
 
 <para>
-Sowohl Samba 2.2 als auch Samba 3 können einer ADS Domäne beitreten.
+Sowohl Samba 2.2 als auch Samba 3 können einer ADS-Domäne beitreten.
 Der Betriebsmodus der Domäne ist für Samba dafür nicht relevant.
-Zu beachten ist, daß Samba 2.2, sowie frühe Versionen von Samba 3.0 nicht einer Domäne mit einem
-unmodifizierten Windows Server 2003 Domänen-Controller beitreten können, da dieser in seiner
-Voreinstellung SMB-Signing voraussetzt. Seit Samba 3.0.3 wird dies jedoch unterstützt.
+Beachten Sie, dass Samba 2.2 sowie frühe Versionen von Samba 3.0 nicht einer Domäne mit einem
+unmodifizierten Windows Server-2003-Domänencontroller beitreten können, da dieser in seiner
+Voreinstellung das SMB-Signing voraussetzt. Seit Samba 3.0.3 wird dies jedoch unterstützt.
 </para>
 
 <para>
 Wenn Sie ADS benutzen und mit Samba 3 starten, können Sie der ADS als normales
 Active-Directory-Mitglied beitreten. Warum Sie das tun sollten? Ihre
-Sicherheits-Richtlinien könnten die NT-kompatiblen Authentifizierungs-Protokolle
-schlichtweg verweigern. Wenn alle Server in ihrem Netzwerk Windows 2000 und höher
+Sicherheitsrichtlinien könnten die NT-kompatiblen Authentifizierungsprotokolle
+schlichtweg verweigern. Wenn alle Server in Ihrem Netzwerk Windows 2000 und höher
 nutzen, würde Samba als NT4-artiges Domänen-Mitglied NT-kompatible
-Authentifizierungs-Daten benötigen. Samba im AD-Mitglieds Modus allerdings kann auch
+Authentifizierungsdaten benötigen. Samba im AD-Mitgliedsmodus allerdings kann auch
 Kerberos-Tickets auswerten.
 </para>
 
 <sect3>
-<title>Beispiel Konfiguration</title>
+<title>Beispielkonfiguration</title>
 
 <para><smbconfblock>
 <smbconfoption><name>realm</name><value>YOUR.KERBEROS.REALM</value></smbconfoption>
@@ -389,57 +388,56 @@ weiter.
 <title>Server Security (User Level Security)</title>
 
 <para>
-Der Server-Security-Modus ist noch aus den Zeiten, in denen Samba nicht als Domänen-Mitglied
-betrieben werden konnte, übrig geblieben. Sie sollten diesen Modus nicht verwenden, da er
+Der Server-Security-Modus ist noch aus den Zeiten übrig geblieben, in denen Samba nicht als Domänen-Mitglied
+betrieben werden konnte. Sie sollten diesen Modus nicht verwenden, da er
 viele Nachteile mit sich bringt. Zum Beispiel:
 </para>
 
 <itemizedlist>
-	<listitem><para>Potentielle Account-Sperren auf MS Windows NT4/200x Passwort-Servern.</para></listitem>
-	<listitem><para>Sicherheitslücke, dass der Passwortserver, der konfiguriert ist, nicht der ist, den man wirklich nutzen möchte.</para></listitem>
-	<listitem><para>Funktioniert nicht mit Winbind, was nötig ist, um Profile auf entfernten Systemen zu speichern.</para></listitem>
+	<listitem><para>Potenzielle Account-Sperren auf MS Windows NT4/200x Passwort-Servern.</para></listitem>
+	<listitem><para>Eine Sicherheitslücke, die dazu führt, dass der Passwortserver, der konfiguriert ist, nicht der ist, den man wirklich nutzen möchte.</para></listitem>
+	<listitem><para>Der Modus funktioniert nicht mit Winbind, was nötig ist, um Profile auf entfernten Systemen zu speichern.</para></listitem>
 	<listitem><para>Dieser Modus öffnet Verbindungen zum Passwort-Server und hält diese offen.</para></listitem>
-	<listitem><para>Die Sicherheit des Samba-Servers bricht auf's Schlimmste zusammen, wenn der Passwort-Server mittendrin abgeschaltet werden sollte.</para></listitem>
+	<listitem><para>Die Sicherheit des Samba-Servers bricht aufs Schlimmste zusammen, wenn der Passwort-Server mittendrin abgeschaltet werden sollte.</para></listitem>
 	<listitem><para>In diesem Modus gibt es KEINEN Sicherheits-Account in der Domäne, um sicherzustellen, dass der Passwort-Server, der von Samba befragt wird, auch zur Domäne gehört.</para></listitem>
 </itemizedlist>
 
 <para>
-Im Server-Sicherheits-Modus gibt der Samba-Server dem Client vor, im User-Level-Sicherheitsmodus
-zu agieren und der Client schickt daraufhin ein session setup wie zuvor beschrieben.
+Im Server-Sicherheitsmodus gibt der Samba-Server dem Client vor, im User-Level-Sicherheitsmodus
+zu agieren, und der Client schickt daraufhin ein Session Setup wie zuvor beschrieben.
 Der Samba-Server nimmt nun den Benutzernamen und das Passwort des Clients und schickt diese Daten
-exakt so, wie er sie bekommen hat, weiter zum <smbconfoption><name>password server</name></smbconfoption>.
-Wenn dieser Passwort-Server mit den Accountdaten einverstanden ist und in User Level Sicherheit
+exakt so, wie er sie bekommen hat, zum <smbconfoption><name>password server</name></smbconfoption> weiter.
+Wenn dieser Passwort-Server mit den Accountdaten einverstanden ist und in User Level-Sicherheit
 betrieben wird, akzeptiert der Samba-Server die Client-Verbindung. Dies erlaubt dem Samba-Server,
 einen anderen SMB-Server als <smbconfoption><name>password server</name></smbconfoption> zu nutzen.
 </para>
 
 <para>
 Sie sollten wissen, dass am Anfang all dessen der Server dem Client auch mitteilt, ob
-eine Verschlüsselung der Daten stattfinden soll, wenn dies auf dem Samba-Server konfiguriert ist,
+eine Verschlüsselung der Daten stattfinden soll. Wenn dies auf dem Samba-Server konfiguriert ist,
 sendet der Server dem Client einen Krypto-Schlüssel, mit dem dann die Daten vom Client
 verschlüsselt werden. Samba unterstützt diese Verschlüsselung als Standard.
 </para>
 
 <para>
 Der Parameter <smbconfoption><name>security</name><value>server</value></smbconfoption>
-bedeutet, dass der Samba-Server den Clients mitteilt, dass er im <emphasis>user Modus</emphasis> betrieben
-wird, aber alle Passwort-Anfragen an einen anderen <emphasis>user modus</emphasis>-Server
-weiterleitet. Hierzu benötigt man einen weiteren Parameter <smbconfoption><name>password
-server</name></smbconfoption>, der auf den echten Authentifizierungs-Server verweist.
+bedeutet, dass der Samba-Server den Clients mitteilt, dass er im <emphasis>user mode</emphasis> betrieben
+wird, aber alle Passwort-Anfragen an einen anderen <emphasis>user mode</emphasis>-Server
+weiterleitet. Hierzu benötigt man einen weiteren Parameter, <smbconfoption><name>password
+server</name></smbconfoption>, der auf den echten Authentifizierungsserver verweist.
 Dieser Passwort-Server kann ein anderer Samba-Server oder ein Windows-NT-Server sein.
 </para>
 
 <note><para>
-Falls Sie Samba im <emphasis>Server Sicherheitsmodus</emphasis> betreiben, ist es äußerst 
-wichtig, dass Sie den Parameter <emphasis>password server</emphasis> auf den genauen NetBIOS-
-Maschinen-Namen des Authentifizierungsservers setzen. Samba ist nicht in der Lage, dies über 
-NetBIOS Namens-Auflösung zu ermitteln, da die Auswahl des Authentifizierungsservers beliebig ist 
-und nicht aus einem Domain-Namen ermittelt werden kann. Ergebnis hieraus: Ein Samba-Server im 
-<emphasis>Server Security Mode</emphasis> arbeitet so, wie man es als workgroup mode kennt.
+Falls Sie Samba im <emphasis>Server-Sicherheitsmodus</emphasis> betreiben, ist es äußerst 
+wichtig, dass Sie den Parameter <emphasis>password server</emphasis> auf den genauen NetBIOS-Maschinen-Namen des Authentifizierungsservers setzen. Samba ist nicht in der Lage, dies über eine 
+NetBIOS-Namens-Auflösung zu ermitteln, da die Auswahl des Authentifizierungsservers beliebig ist 
+und nicht aus einem Domain-Namen ermittelt werden kann. Daraus folgt: Ein Samba-Server im 
+<emphasis>Server Security Mode</emphasis> arbeitet so, wie man es als <emphasis>workgroup mode</emphasis> kennt.
 </para></note>
 
 <sect3>
-<title>Beispiel Konfiguration</title>
+<title>Beispielkonfiguration</title>
 <para><emphasis>
 Benutzung von MS Windows NT als Authentifizierungsserver.
 </emphasis></para>
@@ -451,26 +449,25 @@ Diese Methode betrifft folgende Parameter in der &smb.conf;-Datei:
 <para><smbconfblock>
 <smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption>
 <smbconfoption><name>security</name><value>server</value></smbconfoption>
-<smbconfoption><name>password server</name><value>NetBIOS_name_of_a_DC</value></smbconfoption>
+<smbconfoption><name>password server</name><value>"NetBIOS_name_of_a_DC"</value></smbconfoption>
 </smbconfblock></para>
 
 
 <para>
-Es gibt zwei Wege, um ein Username/Passwort-Paar auf Gültigkeit zu überprüfen.
-Der eine nutzt die Information der Antwort, die als Teil der Authentisierungs-Nachricht bereitgestellt wird,
-und der andere Weg wertet nur den Fehlercode aus.
+Es gibt zwei Verfahren, um ein Username/Passwort-Paar auf Gültigkeit zu überprüfen.
+Das eine nutzt die Informationen aus der Antwort, die als Teil der Authentifizierungsnachricht bereitgestellt wird,
+und das andere Verfahren wertet nur den Fehlercode aus.
 </para>
 <para>
-Die Kehrseite dieser Art der Konfiguration ist die Tatsache, dass aufgrund der 
-Sicherheit Samba dem Passwort-Server einen Benutzernamen und Passwort sendet und 
-für den Fall, dass diese Accountdaten vom Passwort-Server abgelehnt werden, wechselt 
+Der Nachteil bei dieser Art der Konfiguration ist die Tatsache, dass  
+ Samba aus Sicherheitsgründen dem Passwort-Server einen erfundenen Benutzernamen und ein erfundenes Passwort sendet. Falls diese Accountdaten vom Passwort-Server abgelehnt werden, wechselt 
 Samba zu einem alternativen Modus der Identifikation. Sollte das Netzwerk einen 
 Benutzer nach einer gewissen Anzahl von fehlgeschlagenen Logins sperren, wird dies 
-in dieser Konfiguration der Fall sein können.
+in dieser Konfiguration der Fall sein können. Sollte eine Website die Passwort-Eingabe nach einer gewissen Anzahl von fehlgeschlagenen Logins sperren, werden bei dieser Art der Konfiguration die Benutzer ausgesperrt.
 </para>
 
 <para>
-Diese Art der Authentifizierung benötigt einen Standard Unix Account für den User, der 
+Diese Art der Authentifizierung benötigt einen Standard-UNIX-Account für den User, der 
 allerdings für andere System-Logins blockiert werden darf.
 </para>
 
@@ -483,11 +480,11 @@ allerdings für andere System-Logins blockiert werden darf.
 <title>Passwort-Prüfung</title>
 
 <para>
-MS Windows Clients können verschlüsselte Passwörter (bekannt als NTLMv1 und MTLMv2) 
-zur Anmeldung nutzen oder aber auch Klartext-Passwörter für einfache Passwort-basierende 
+MS Windows-Clients können verschlüsselte Passwörter (bekannt als NTLMv1 und MTLMv2) 
+zur Anmeldung nutzen oder aber auch Klartext-Passwörter für eine einfache passwort-basierende 
 Authentifizierung nutzen. Man sollte sich deutlich machen, dass das SMB-Protokoll nicht 
-vorsieht, dass sowohl Klartext als auch verschlüsselte Passwörter innerhalb einer 
-Authentifizierungs-Anfrage über ein Netzwerk verschickt werden.
+vorsieht, dass sowohl Klartext- als auch verschlüsselte Passwörter innerhalb einer 
+Authentifizierungsanfrage über ein Netzwerk verschickt werden.
 </para>
 
 <para>
@@ -497,44 +494,45 @@ zu verschlüsseln:
 
 <itemizedlist>
         <listitem><para>
-	Ein MD5 hash des Passworts (Unicode). Besser bekannt als NT hash.
+	Ein MD5-Hash des Passworts (Unicode), besser bekannt als NT-Hash.
         </para></listitem>
 
         <listitem><para>
-	Das Passwort wird in Großbuchstaben konvertiert, auf eine Länge von 
-	insgesamt 14 byte gekürzt oder verlängert. Anschließend wird dieser 
-	String mit 5 byte des NULL-Zeichens am Ende erweitert und zu zwei 
-	passenden 56-bit DES-Schlüsseln zur Verschlüsselung eines <quote>magic</quote> 
-	8-byte Wertes verwendet. Das Resultat hieraus ist der 16 byte LanMan hash.
+	Das Passwort wird in Großbuchstaben konvertiert und auf eine Länge von 
+	insgesamt 14 Byte gekürzt oder verlängert. Anschließend wird dieser 
+	String mit 5 Byte des NULL-Zeichens am Ende erweitert und geteilt, um zwei 56-Bit-DES-Schlüssel zu bilden, die zur Verschlüsselung eines <quote>magischen</quote> 
+	8-Byte-Wertes verwendet werden. Das Resultat hieraus ist der 16-Byte-LanMan-Hash.
         </para></listitem>
 </itemizedlist>
 
 <para>
-MS Windows 95 vor SP 1, MS Windows NT in den Versionen 3.x und 4.0 vor SP3 
+MS Windows 95 vor SP 1 und MS Windows NT in den Versionen 3.x und 4.0 vor SP3 
 unterstützen beide Arten der Passwort-Authentifizierung. Alle Versionen von 
 MS Windows nach den oben genannten Versionen unterstützen standardmäßig die Verwendung 
 von Klartext-Passwörtern nicht mehr.
 </para>
 
 <para>
-MS Windows Clients haben die Eigenart, Netzwerk Mappings zu verlieren, wenn diese 
+MS Windows-Clients haben die Eigenart, Netzwerk-Mappings zu verlieren, wenn diese 
 länger als 10 Minuten nicht mehr verwendet wurden. Wenn der User ein Mapping nach 
 dieser Zeit verwenden will, baut der Client die Verbindung erneut auf und verwendet 
 dabei eine zwischengespeicherte Kopie des Passworts.
 </para>
 
 <para>
+Als Microsoft den Standard-Passwort-Modus änderte, wurde die Unterstützung für das Cachen des Klartext-Passworts
+entfernt.
 Wenn man bei Windows durch Ändern der Registry-Einträge die Verwendung von 
 Klartext-Passwörtern wieder einschalten würde, entfällt allerdings der oben 
 beschriebene Support zum Zwischenspeichern der Passwörter. Dies hat zur Folge, 
-dass es nicht gelingen wird, wenn ein Client eine Verbindung nach dem o.g. 
-Timeout verworfen hat, diese wieder von alleine herstellen zu können. Es 
+dass es nicht gelingen wird, eine Verbindung von allein wiederherzustellen, wenn ein Client sie nach dem o.g. 
+Timeout verworfen hat. Es 
 ist also definitiv keine gute Idee, bei diesen Clients
 Klartext-Passwörter zu verwenden.
 </para>
 
 <para>
-Folgende Parameter können als Workaround für Windows 9x/Me Clients verwendet werden, 
+Folgende Parameter können als Workaround für Windows 9x/Me-Clients verwendet werden, 
 die die Benutzernamen und Passwörter in Großbuchstaben umwandeln, bevor sie zum SMB-
 Server verschickt werden (Nur bei Verwendung von Klartext-Passwörtern).
 </para>
@@ -546,27 +544,27 @@ Server verschickt werden (Nur bei Verwendung von Klartext-Passwörtern).
 
 <para>
 Samba wird standardmäßig den Benutzernamen in Kleinbuchstaben umwandeln, bevor versucht wird, 
-diesen in der lokalen Benutzerdatenbank zu authentisieren. Da UNIX-Benutzernamen üblicherweise 
+diesen in der lokalen Benutzerdatenbank zu authentifizieren. Da UNIX-Benutzernamen üblicherweise 
 nur Kleinbuchstaben enthalten, wird der <smbconfoption><name>username level</name></smbconfoption>-Parameter 
 nur selten verwendet.
 </para>
 
 <para>
-UNIX-Systeme machen oftmals Gebrauch von gemischter Groß/Kleinschreibung im Passwort. 
-Dies hat zur Folge, dass unter Benutzung von Klartext-Passwörtern bei Windows 9x/Me Systemen der Parameter 
-<smbconfoption><name>password level</name></smbconfoption> auf das Level der maximal vorkommenden Anzahl an 
-Großbuchstaben gesetzt werden muss, die in einem Passwort vorkommen <emphasis>können</emphasis>.
-Beachten Sie bitte, dass bei Verwendung der traditionellen DES-Verschlüsselung der crypt()-Funktion 
-eine Konfiguration <smbconfoption><name>password level</name></smbconfoption> von 8 sich 
-dahingehend äußert, dass für jede Möglichkeit, die das insensitive Passwort haben kann, der 
-Server erst das Passwort verschlüsseln und anschließend vergleichen muss. Dies kann lange 
-Login-Zeiten nach sich ziehen, bis ein Passwort angenommen bzw. alle Kombinationen fehlschlagen.
+UNIX-Systeme machen oftmals Gebrauch von gemischter Groß-/Kleinschreibung im Passwort. 
+Dies hat zur Folge, dass bei Benutzung von Klartext-Passwörtern auf Windows 9x/Me-Systemen der Parameter 
+<smbconfoption><name>password level</name></smbconfoption> auf die Anzahl an 
+Großbuchstaben gesetzt werden muss, die in einem Passwort maximal vorkommen <emphasis>können</emphasis>.
+Beachten Sie bitte Folgendes: Bei Verwendung der traditionellen DES-Verschlüsselung der crypt()-Funktion 
+hat eine Konfiguration <smbconfoption><name>password level</name></smbconfoption> von 8  
+case-insensitive Passwörter zur Folge, wie sie von Windows-Benutzern gesehen werden.
+Dies kann lange 
+Login-Zeiten nach sich ziehen, bis ein Passwort angenommen wird bzw. alle Kombinationen fehlgeschlagen sind.
 </para>
 
 <para>
 Die beste Lösung ist es, die Unterstützung von verschlüsselten Passwörtern zu aktivieren, wo immer 
-Samba genutzt wird. Die meisten Versuche, die Registrierung von Windows zu Klartext-Passwörtern 
-zu ändern, führten zur Verärgerung des Anwenders.
+Samba genutzt wird. Die meisten Versuche, die Registrierung von Windows dahingehend zu verändern, dass Klartext-Passwörter 
+verwndet werden können, führen zu Beschwerden und Verärgerung der Anwender.
 </para>
 
 </sect1>
@@ -575,18 +573,17 @@ zu ändern, führten zur Verärgerung des Anwenders.
 <title>Häufige Fehler</title>
 
 <para>
-Wir alle machen Fehler. Es ist okay Fehler, zu machen, solange man sie an den richtigen Stellen 
+Wir alle machen Fehler. Es ist okay Fehler zu machen, solange man sie an den richtigen Stellen 
 zum richtigen Zeitpunkt macht. Ein Fehler, der zu einem Produktivitätsausfall führt, wird selten toleriert, 
 wohingegen ein Fehler in einem Entwicklungslabor erwartet wird.
 </para>
 
 <para>
-An dieser Stelle werfen wir einen Blick auf häufige Fehler, die Thema aus Diskussionen der 
-Samba-Mailing-Liste sind. Viele dieser Fehler sind vermeidbar, wenn Sie ihre Hausaufgaben vor 
+An dieser Stelle werfen wir einen Blick auf häufige Fehler, die Thema in Diskussionen der 
+Samba-Mailing-Liste sind. Viele dieser Fehler sind vermeidbar, wenn Sie Ihre Hausaufgaben vor 
 der Einführung von Samba machen. Einige sind das Ergebnis von Missverständnissen in Bezug 
-auf die englische Sprache. Die englische Sprache hat viele Phrasen, die potentiell vage sind und 
+auf die englische Sprache. Die englische Sprache hat viele Phrasen, die potenziell vage sind und 
 die jemanden, dessen Muttersprache nicht Englisch ist, sehr verwirren können.
-(Anmerkung des Übersetzers: Ich hoffe dass Ihnen dies hier nicht passiert.)
 </para>
 
 <sect2>
@@ -595,7 +592,7 @@ die jemanden, dessen Muttersprache nicht Englisch ist, sehr verwirren können.
 <para>
 Es wird oftmals angenommen, dass <smbconfoption><name>security</name><value>server</value></smbconfoption> bedeutet, 
 dass Samba als Server agiert. Dies ist nicht so! Diese Einstellung bedeutet, dass Samba <emphasis>versucht</emphasis>,
-einen anderen SMB-Server für sich selbst als Quelle zur Authentisierung zu verwenden.
+einen anderen SMB-Server für sich selbst als Quelle zur Authentifizierung zu verwenden.
 </para>
 
 </sect2>
@@ -616,7 +613,7 @@ einem Domänencontroller, sondern besagt, dass der Samba-Server einer Domäne als 
 <para>
 Raten Sie! So machen es viele andere. Aber was auch immer Sie tun, glauben Sie nicht, dass 
 <smbconfoption><name>security</name><value>user</value></smbconfoption> Samba zu einem 
-Domänenmitglied werden lässt. Lesen Sie hier weiter: <link linkend="domain-member"></link>
+Domänen-Mitglied werden lässt. Lesen Sie hier weiter: <link linkend="domain-member"></link>
 </para>
 
 </sect2>
@@ -638,7 +635,7 @@ anders wäre, somit muss server_validate() an dieser Stelle abbrechen.
 <para>
 Genau! Das ist der Grund, warum <smbconfoption><name>security</name><value>server</value></smbconfoption> 
 ein gemeiner Hack ist. Bitte verwenden Sie <smbconfoption><name>security</name><value>domain</value></smbconfoption>;
-der <smbconfoption><name>security</name><value>server</value></smbconfoption>-Modus ist auch als pass-through Authentisierung 
+der <smbconfoption><name>security</name><value>server</value></smbconfoption>-Modus ist auch als Pass-through-Authentifizierung 
 bekannt.
 </para>
 
