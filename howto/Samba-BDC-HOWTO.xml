@@ -45,7 +45,7 @@ Zeitpunkt nicht erreichen kann, werden Sie Probleme mit dem Betrieb und der Stab
 <para>
 <indexterm><primary>replication</primary><secondary>SAM</secondary></indexterm>
 Während es möglich ist, einen Samba-3 BDC mit einem anderen Backend als LDAP zu betreiben,
-muß dieses Backend doch eine Form von '2-Weg'-propogration (sgw ???) von Veränderungen vom
+muß dieses Backend doch eine Form von '2-Weg'-propogration (FIXME ???) von Veränderungen vom
 BDC zum Master erlauben. Nur LDAP kann dies zum gegenwärtigen Zeitpunkt.
 </para>
 
