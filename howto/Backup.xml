@@ -11,11 +11,11 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Das Samba-Projekt ist nun über 10 Jahre alt. Während der frühen Geschichte von Samba waren
+Das Samba-Projekt ist nun über zehn Jahre alt. In der Frühzeit von Samba waren
 diejenigen, die es implementierten, meist UNIX-Administratoren. UNIX-Administratoren werden
-UNIX-Systemwerkzeuge verwenden, um UNIX-Systemdateien zu sichern. In den letzten 4 Jahren
+UNIX-Systemwerkzeuge verwenden, um UNIX-Systemdateien zu sichern. In den letzten vier Jahren
 interessiert sich eine stark zunehmende Anzahl von Microsoft-Netzwerk-Administratoren für
-Samba. Dies spiegelt sich in den allgemeinen Fragen zu Backups in den Samba-Mailing-Listen
+Samba. Dies spiegelt sich in den allgemeinen Fragen zu Backups in den Samba-Mailinglisten
 wider.
 </para>
 
@@ -26,28 +26,26 @@ wider.
 
 <para>
 Während einer Diskussion im Rahmen eines Microsoft Windows-Kurses erstaunte einer
-der pro-UNIX-Teilnehmer die Klasse, als er feststellte, daß Windows NT4 so limitierend im Vergleich
-zu UNIX sei. Er verglich UNIX mit einem Werkzeug-Set, das eine unbegrenzte Anzahl von Werkzeugen
-enthält, die simpel, effizient, und, in Kombination, imstande sind, jegliches Ergebnis zu erzielen.
+der Pro-UNIX-Teilnehmer die Klasse durch die Behauptung, dass Windows NT4 im Vergleich
+zu UNIX so limitierend sei. Er verglich UNIX mit einem Werkzeug-Set, das eine unbegrenzte Anzahl von Werkzeugen
+enthält, die simpel, effizient und, in Kombination verwendet, imstande seien, jegliches Ergebnis zu erzielen.
 </para>
 
 <para>
-Eine der Fürsprecher des Windows-Networkings erwiderte, daß sie, wenn sie ein Werkzeug-Set haben
-wollte, eines kaufen würde. Sie stellte heraus, daß ein einzelnes komplexes Werkzeug, das mehr tut,
-als notwendig, dies jedoch mit einem klaren Zweck und Ziel, von jemandem wie ihr bevorzugt wird.
+Eine Fürsprecherin des Windows-Networkings erwiderte, dass sie, wenn sie ein Werkzeug-Set haben
+wollte, eines kaufen würde. Sie betonte, dass sie ein einzelnes komplexes Werkzeug bevorzugen würde, das mehr tut als notwendig, dies jedoch mit einem klaren Zweck und Ziel.
 </para>
 
 <para>
-Bitte beachten Sie, daß alle Informationen hier nur wiedergegeben werden, ohne Empfehlungen in Hinsicht
-auf Leistungsfähigkeit oder Angemessenheit. Der Netzwerk-Administrator ist stärkstens dazu angehalten,
-sorgfältige Recherchen durchzuführen, bevor er jegliche Backup-Lösung implementiert, egal ob freie
+Bitte beachten Sie, dass alle Informationen hier nur wiedergegeben werden, ohne Empfehlungen in Hinsicht
+auf Leistungsfähigkeit oder Angemessenheit. Als Netzwerk-Administrator sollten Sie unbedingt 
+sorgfältige Recherchen durchführen, bevor Sie irgendeine Backup-Lösung implementieren, egal ob freie
 oder kommerzielle Software.
 </para>
 
 <para>
-Eine nützliche Website, über die ich unlängst gestolpert bin, an die Sie sich vielleicht wenden
-wollen, ist <ulink noescape="1" url="http://www.allmerchants.com/Software/Backup_Software/">
-www.allmerchants.com</ulink>.
+Eine nützliche Website, über die ich unlängst gestolpert bin, ist <ulink noescape="1" url="http://www.allmerchants.com/Software/Backup_Software/">
+www.allmerchants.com</ulink>. Sie sollten sie sich bei Gelegenheit ansehen.
 </para>
 
 <para>
@@ -62,13 +60,13 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 	<indexterm><primary>BackupPC</primary></indexterm>
 	BackupPC in der Version 2.0.0 wurde auf <ulink url="http://backuppc.sourceforge.net">SourceForge</ulink> veröffentlicht.
 	Neue Features beinhalten die Unterstützung von <command>rsync/rsyncd</command> und eine
-	Internationalisierung der CGI-Oberfläche (einschließlich Englisch, Französisch, Spanisch, und
+	Internationalisierung der CGI-Oberfläche (einschließlich Englisch, Französisch, Spanisch und
 	Deutsch).
 	</para>
 
 	<para>
-	BackupPC ist ein hoch-performantes Perl-basierendes Package zum Backup von Linux, UNIX oder
-	Windows-PCs oder Laptops auf die Festplatte eines Servers. Es ist hochgradig konfigurierbar,
+	BackupPC ist ein hoch-performantes Perl-basierendes Package zum Backup von Linux-, UNIX- oder
+	Windows-PCs oder -Laptops auf die Festplatte eines Servers. Es ist hochgradig konfigurierbar,
 	leicht zu installieren und zu warten. SMB (via smbclient),
         <command>tar</command> über <command>rsh/ssh</command> oder <command>rsync/rsyncd</command>
 	werden zum Lesen der Client-Daten verwendet.
@@ -76,20 +74,20 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 
 	<para>
 	Angesichts der sinkenden Kosten von Festplatten und RAID-Systemen ist es nunmehr praktisch
-	und kosteneffizient, eine grosse Anzahl von Maschinen auf die lokale Platte eines Servers
+	und kosteneffizient, eine große Anzahl von Maschinen auf die lokale Platte eines Servers
 	oder dessen Netzwerk-Laufwerke zu sichern. Dies tut BackupPC.	
 	</para>
 
 	<para>
-	Haupteigenschaften sind das <quote>Pooling</quote> identischer Dateien (grosse Ersparnisse an 
-	Plattenplatz am Server), Kompression, und eine umfassende CGI-Oberfläche, die es
+	Die Haupteigenschaften sind das <quote>Pooling</quote> identischer Dateien (große Ersparnisse an 
+	Plattenplatz auf dem Server), Kompression und eine umfassende CGI-Oberfläche, die es
 	Benutzern erlaubt, in Backups zu suchen und Dateien wiederherzustellen.
 	</para>
 
 	<para>
-	BackupPC ist freie Software, die unter der GNU GPL Lizenz vertrieben wird.
-	Es läuft auf Linux/UNIX/freenix-Servern, und wurde auf Clients unter
-	Linux, UNIX, Windows 9x/ME, Windows 98, Windows 200x, Windows XP, und Mac OSX getestet.
+	BackupPC ist freie Software, die unter der GNU GPL-Lizenz vertrieben wird.
+	Es läuft auf Linux/UNIX/freenix-Servern und wurde auf Clients unter
+	Linux, UNIX, Windows 9x/ME, Windows 98, Windows 200x, Windows XP und Mac OSX getestet.
 	</para>
 
 	</sect2>
@@ -102,13 +100,12 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 
 	<para><command>rsync</command>
 	 hat viele Optionen, um auszuwählen, welche Dateien kopiert werden und wie sie übermittelt
-	werden sollen. Es kann als Alternative zu <command>ftp, http, scp</command>, oder
+	werden sollen. Es kann als Alternative zu <command>ftp, http, scp</command> oder
 	<command>rcp</command> verwendet werden.</para>
 
 
 	<para>Das rsync <quote>remote-update</quote>-Protokoll erlaubt es dem Programm, nur die Unterschiede
-	zwischen zwei Dateibeständen über das Netzwerk transportieren zu müssen, unter Verwendung
-	eines effizienten Prüfsummen-Such-Algorithmus, der in dem technischen Report beschrieben wird,
+	zwischen zwei Dateibeständen über das Netzwerk transportieren zu müssen. Dazu wird ein effizienter Prüfsummen-Such-Algorithmus verwendet, der in dem technischen Report beschrieben wird,
 	der im rsync-Package enthalten ist.</para>
 
 	<para>Einige der zusätzlichen Features von rsync sind:</para>
@@ -117,32 +114,32 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 
 		<listitem>
 		  <para>
-		Unterstützung für das Kopieren von Links, Geräte-Dateien, Benutzer, Gruppen,
-		und Berechtigungen.		    
+		Unterstützung für das Kopieren von Links, Geräte-Dateien, Benutzern, Gruppen
+		und Berechtigungen	    
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		    Exclude- und exclude-from-Optionen ähnlich zu GNU tar.
+		    Exclude- und exclude-from-Optionen ähnlich zu GNU tar
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		Einen CVS-exclude-Modus, um dieselben Dateien zu ignorieren, die auch CVS ignoriert.
+		Ein CVS-exclude-Modus, um dieselben Dateien zu ignorieren, die auch CVS ignoriert
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		Kann jede transparente remote shell verwenden, inklusive rsh oder ssh.
+		rsync kann jede transparente Remote Shell verwenden, inklusive rsh oder ssh.
 		  </para>
 		</listitem>
 
 		<listitem>
 		  <para>
-		Erfordert keine root-Privilegien.		
+		rsync erfordert keine root-Privilegien.		
 		  </para>
 		</listitem>
 
@@ -154,7 +151,7 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 
 		<listitem>
 		  <para>
-		Unterstützung für anonyme oder authentifizierte rsync-Server (ideal für das Spiegeln).
+		Unterstützung für anonyme oder authentifizierte rsync-Server (ideal für das Spiegeln)
 		  </para>
 		</listitem>
 	</itemizedlist>
@@ -169,15 +166,15 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 	<indexterm><primary>AMANDA</primary></indexterm>
 	AMANDA, der Advanced Maryland Automatic Network Disk Archiver, ist ein Backup-System,
 	das es dem Administrator eines LANs erlaubt, einen einzelnen Master-Backup-Server
-	aufzusetzen, um mehrere Hosts auf ein einzelnes Bandlaufwerk grosser Kapazität zu sichern.
-	AMANDA verwendet die nativen Dienste von dump und/oder GNU tar und kann eine grosse Anzahl
+	aufzusetzen, um mehrere Hosts auf ein einzelnes Bandlaufwerk großer Kapazität zu sichern.
+	AMANDA verwendet die nativen Dienste von dump und/oder GNU tar und kann eine große Anzahl
 	von Workstations sichern, die unter verschiedenen Versionen von UNIX laufen. Neuere
 	Releases von AMANDA können auch Samba dazu verwenden, Microsoft Windows Hosts zu sichern.
 	</para>
 
 	<para>
 	Mehr Informationen zu AMANDA finden Sie auf der Projekt-Seite 
-	<ulink url="http://www.amanda.org/">www.amanda.org.</ulink>
+	<ulink url="http://www.amanda.org/">www.amanda.org</ulink>.
         </para>	
 
 	</sect2>
@@ -189,14 +186,14 @@ Die folgenden freien Software-Projekte könnten auch Ihre Beachtung finden.
 	<para>
 	<indexterm><primary>BOBS</primary></indexterm>
 	Browseable Online Backup System (BOBS) ist ein komplettes Online-Backup-System. Es
-	verwendet grosse Platten zum Speichern von Backups, und gestattet es Anwendern, die
-	gesicherten Dateien mittels Web-Browser zu durchsuchen. Es kann auch mit einigen speziellen
+	verwendet große Platten zum Speichern von Backups und gestattet es Anwendern, die
+	gesicherten Dateien mit einem Webbrowser zu durchsuchen. Es kann auch mit einigen speziellen
 	Dateien umgehen, wie AppleDouble- und icon-Dateien.
 	</para>
 
 	<para>
 	Die Homepage für BOBS ist <ulink url="http://bobs.sourceforge.net/">
-	bobs.sourceforge.net.</ulink>
+	bobs.sourceforge.net</ulink>.
 	</para>
 
 	</sect2>
