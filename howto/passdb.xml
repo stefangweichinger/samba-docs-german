@@ -572,53 +572,53 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 		</para>
 		
 		<para>
-		<command>smbpasswd</command> is designed to work in the way familiar to UNIX
-		users who use the <command>passwd</command> or <command>yppasswd</command> commands.
-		While designed for administrative use, this tool provides essential User Level
-		password change capabilities.
+		<command>smbpasswd</command> wurde so entworfen, daß seine Arbeitsweise der ähnelt,
+		die Benutzern der Befehle <command>passwd</command> oder <command>yppasswd</command>
+		vertraut ist. Während es für administrative Anwendung entworfen wurde, bietet dieses
+		Werkzeug die wichtige Fähigkeit, auf Benutzer-Ebene Passwörter zu ändern.
 		</para>
 
 		<para>
-		For more details on using <command>smbpasswd</command>, refer to the man page (the
-		definitive reference).
+		Sehen Sie die man page (die definitive Referenz) für mehr Details zur Verwendung von
+		<command>smbpasswd</command>.
 		</para>
 	</sect2>
 
 	<sect2 id="pdbeditthing">
-	<title>The <emphasis>pdbedit</emphasis> Command</title>
+	<title>Der Befehl <emphasis>pdbedit</emphasis>.</title>
 
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		<command>pdbedit</command> is a tool that can be used only by root. It is used to
-		manage the passdb backend. <command>pdbedit</command> can be used to:
-<indexterm><primary>User Management</primary></indexterm>
-<indexterm><primary>User Accounts</primary><secondary>Adding/Deleting</secondary></indexterm>
-
+		<command>pdbedit</command> ist ein Werkzeug, das nur von root verwendet werden kann.
+		Es wird zur Verwaltung des passdb-Backends verwendet. <command>pdbedit</command> kann
+		für Folgendes verwendet werden:
+		<indexterm><primary>Benutzerverwaltung</primary></indexterm>
+		<indexterm><primary>Benutzer-Konten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
 		</para>
 
 		<itemizedlist>
-			<listitem>add, remove or modify user accounts.</listitem>
-			<listitem>list user accounts.</listitem>
-			<listitem>migrate user accounts.</listitem>
+			<listitem>Hinzufügen, Löschen oder Ändern von Benutzerkonten.</listitem>
+			<listitem>Auflisten von Benutzerkonten.</listitem>
+			<listitem>Migrieren von Benutzerkonten.</listitem>
 		</itemizedlist>
 
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		The <command>pdbedit</command> tool is the only one that can manage the account
-		security and policy settings. It is capable of all operations that smbpasswd can
-		do as well as a super set of them.
+		Das Werkzeug <command>pdbedit</command> ist das einzige Werkzeug, das die Sicherheits- und
+		Richtlinien-Einstellungen der Konten verwalten kann. Es kann sowohl alle Operationen durchführen,
+		die smbpasswd beherrscht, wie auch ein Super-Set davon.
 		</para>
 
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		One particularly important purpose of the <command>pdbedit</command> is to allow
-		the migration of account information from one passdb backend to another. See the
-		<link linkend="XMLpassdb">XML</link> password backend section of this chapter.
+		Ein besonders wichtiger Zweck von <command>pdbedit</command> ist es, die Migration von
+		Konten-Information von einem passdb-Backend in ein anderes zu erlauben. Sehen Sie den Abschnitt
+		zum <link linkend="XMLpassdb">XML</link>-Backend in diesem Kapitel.		
 		</para>
 
 		<para>
-		The following is an example of the user account information that is stored in
-		a tdbsam password backend. This listing was produced by running:
+		Das Folgende ist ein Beispiel für die Benutzer-Konten-Information, die einem 
+		tdbsam-passdb-Backend gespeichert ist. Diese Liste wurde so erzeugt:
 		</para>
 
 <screen>
@@ -647,27 +647,26 @@ Password must change: Mon, 18 Jan 2038 20:14:07 GMT
 
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		The <command>pdbedit</command> tool allows migration of authentication (account)
-		databases from one backend to another. For example: To migrate accounts from an
-		old <filename>smbpasswd</filename> database to a <parameter>tdbsam</parameter>
-		backend:
+		<command>pdbedit</command> erlaubt die Migration von Authentifikations-Datenbanken (entspricht
+		Konten-Datenbanken) von einem Backend in ein anderes. Zum Beispiel: Um Konten von einem alten
+		<filename>smbpasswd</filename>-Backend in ein <parameter>tdbsam</parameter>-Backend zu migrieren:
 		</para>
 
 		<procedure>
 			<step><para>
-			Set the <smbconfoption><name>passdb backend</name><value>tdbsam, smbpasswd</value></smbconfoption>.
+			Setzen Sie den Parameter <smbconfoption><name>passdb backend</name><value>tdbsam, smbpasswd</value></smbconfoption>.
 			</para></step>
 
 			<step><para>
-			Execute:
+			Führen Sie dies aus:
 <screen>
 &rootprompt;<userinput>pdbedit -i smbpasswd -e tdbsam</userinput>
 </screen>
 			</para></step>
 
 			<step><para>
-			Now remove the <parameter>smbpasswd</parameter> from the passdb backend
-			configuration in &smb.conf;.
+			Jetzt entfernen Sie den Wert <parameter>smbpasswd</parameter> aus dem Parameter
+			<smbconfoption><name>passdb backend</name></smbconfoption> in &smb.conf;.
 			</para></step>
 		</procedure>
 
@@ -675,17 +674,17 @@ Password must change: Mon, 18 Jan 2038 20:14:07 GMT
 </sect1>
 
 <sect1>
-<title>Password Backends</title>
+<title>Passwort-Backends</title>
 
 <para>
-Samba offers the greatest flexibility in backend account database design of any SMB/CIFS server
-technology available today. The flexibility is immediately obvious as one begins to explore this
-capability.
+Samba bietet die größte Flexibilität im Design der Konten-Datenbank-Backends unter allen heute verfügbaren
+SMB/CIFS-Server-Technologien. Die Flexibilität wird unmittelbar sichtbar, sobald man beginnt, diese Fähigkeiten
+zu erforschen.
 </para>
 
 <para>
-It is possible to specify not only multiple different password backends, but even multiple
-backends of the same type. For example, to use two different tdbsam databases:
+Es ist nicht nur möglich, mehrere verschiedene Passwort-Backends zu spezifizieren, sondern auch mehrere Backends
+desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanken:
 </para>
 
 <para>
@@ -697,25 +696,31 @@ backends of the same type. For example, to use two different tdbsam databases:
 
 
 	<sect2>
-	<title>Plaintext</title>
+	<title>Klartext</title>
 
 		<para>
-		Older versions of Samba retrieved user information from the UNIX user database 
-		and eventually some other fields from the file <filename>/etc/samba/smbpasswd</filename>
-		or <filename>/etc/smbpasswd</filename>. When password encryption is disabled, no 
-		SMB specific data is stored at all. Instead all operations are conducted via the way
-		that the Samba host OS will access its <filename>/etc/passwd</filename> database.
-		Linux systems For example, all operations are done via PAM.
+		Ältere Samba-Versionen bezogen die Benutzer-Informationen aus der UNIX-Benutzer-Datenbank
+		und eventuell ein paar weiteren Feldern aus der Datei <filename>/etc/samba/smbpasswd</filename>
+		oder <filename>/etc/smbpasswd</filename>. Wenn Passwort-Verschlüsselung deaktiviert ist, werden
+		überhaupt keine SMB-spezifischen Daten gespeichert. Stattdessen werden alle Operationen auf
+		die Art durchgeführt, in der das Wirts-Betriebssystem auf seine Datenbank 
+		<filename>/etc/passwd</filename> zugreift. Auf Linux-System geschieht dies beispielsweise via
+		PAM.
 		</para>
 
 	</sect2>
 
 	<sect2>
-	<title>smbpasswd &smbmdash; Encrypted Password Database</title>
+	<title>smbpasswd &smbmdash;-Datenbank für verschlüsselte Passwörter</title>
 
 		<para>
 <indexterm><primary>SAM backend</primary><secondary>smbpasswd</secondary></indexterm>
-		Traditionally, when configuring <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption> in Samba's &smb.conf; file, user account
+		Traditionellerweise wurden Benutzer-Konten-Informationen wie Benutzername, LM/NT Passwort-Hashes,
+		Passwort-Änderungszeiten, und Konten-Flags in der Datei 		
+
+
+
+Traditionally, when configuring <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption> in Samba's &smb.conf; file, user account
 		information such as username, LM/NT password hashes, password change times, and account
 		flags have been stored in the <filename>smbpasswd(5)</filename> file. There are several
 		disadvantages to this approach for sites with large numbers of users (counted
