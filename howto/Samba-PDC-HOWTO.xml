@@ -179,7 +179,7 @@ Im Falle von MS Windows NT4-Domänen ist es der PDC, der eine neue Domänen-Verwal
 </para>
 
 <para>
-In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden "downstream controller" zu übergehen, jedoch hat ein "downline controller" nur Kontrolle über seine "downline" (WEICHINGER: Wie übersetzen?) Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
+In MS Windows 200x-Server-basierten Active-Directory-Domänen initiiert ein Domänen-Controller eine mögliche Hierarchie von Domänen-Controllern, von denen jeder seinen eigenen delegierten Verwaltungsbereich erhält. Der Master-Domänen-Controller hat die Möglichkeit, jeden "downstream controller" zu übergehen, jedoch hat ein "downline controller" nur Kontrolle über seine "downline". Mit Samba-3 kann diese Funktionalität durch Verwendung eines Konten-Backends auf LDAP-Basis implementiert werden.
 </para>
 
 <para>
@@ -188,7 +188,7 @@ Neu in Samba-3 ist die mögliche Verwendung einer Backend-Datenbank, die dieselbe
 
 <para>
 
-Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schlüsselrolle in der Beantwortung von Netzwerk-Authentifizierungs-Anfragen. Der BDC ist darauf ausgerichtet, logon-Anfragen vor dem PDC zu beantworten. In einem Netzwerk-Segment, das sowohl einen BDC wie auch einen PDC beinhaltet, wird der BDC meist die Netzwerk-logon-Anfragen bedienen. Der PDC wird diese dann beantworten, wenn der BDC überlastet ist. EIn BDC kann zum PDC ernannt werden. Wenn der PDC online ist, wenn der BDC zum PDC ernannt wird, wird der vorige PDC automatisch zum BDC zurückgestuft. Mit Samba-3 ist dieser Vorgang nicht automatisch; der PDC und der BDC müssen händisch konfiguriert werden.
+Der <emphasis>Backup Domain Controller</emphasis> oder BDC spielt eine Schlüsselrolle in der Beantwortung von Netzwerk-Authentifizierungs-Anfragen. Der BDC ist darauf ausgerichtet, logon-Anfragen vor dem PDC zu beantworten. In einem Netzwerk-Segment, das sowohl einen BDC wie auch einen PDC beinhaltet, wird der BDC meist die Netzwerk-logon-Anfragen bedienen. Der PDC wird diese dann beantworten, wenn der BDC überlastet ist. Ein BDC kann zum PDC ernannt werden. Wenn der PDC online ist, wenn der BDC zum PDC ernannt wird, wird der vorige PDC automatisch zum BDC zurückgestuft. Mit Samba-3 ist dieser Vorgang nicht automatisch; der PDC und der BDC müssen händisch konfiguriert werden.
 </para>
 
 <para>
@@ -388,7 +388,7 @@ Wo der Einsatz von Backup-Domänen-Controllern (BDCs) beabsichtigt ist, ist die e
 		Die NETLOGON-Freigabe spielt eine zentrale Rolle in der Unterstützung von Domänen-Anmeldungen
 		und Domänen-Mitgliedschaft. Diese Freigabe wird von allen MS-Domänen-Controllern zur
 		Verfügung gestellt. Sie wird dazu verwendet, um Anmelde-Skripts bereit zu stellen, um
-		Group Policy files (wie NTConfig.POL) zu speichern, aber auch, um andere gängige
+		NT Richtlinien-Dateien (wie NTConfig.POL) zu speichern, aber auch, um andere gängige
 		Werkzeuge zur Verfügung zu stellen, die für den Anmelde-Vorgang gebraucht werden.
 		Dies ist eine essentielle Freigabe auf einem Domänen-Controller.
 		</para></listitem>
