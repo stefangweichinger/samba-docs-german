@@ -359,7 +359,8 @@ retype new password
 		<term>-P Konto-Policy</term>
 		<listitem><para>Zeigt eine Konto-Policy an.</para>
 		<para>Gültige Policies sind: minimum password age (min. Passwortalter), 
-		reset count minutes (???), disconnect time (Trennungszeit), user must 
+		reset count minutes (Minutenzähler zurücksetzen), disconnect time 
+		(Trennungszeit), user must 
 		logon to change password (Benutzer muss sich anmelden um Passwort zu 
 		ändern), password history (Passwort-History), lockout duration
 		(Sperrzeit), min password length (min. Passwortlänge),
