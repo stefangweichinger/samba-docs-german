@@ -98,9 +98,8 @@ oder einem Samba-kontrollierten Netzwerk. Domänen-Mitgliedschaft hat viele Vorte
 Ein Maschinen-Vertrauens-Konto ist ein Konto, das dazu verwendet wird, eine Client-Maschine
 (und nicht einen Benutzer) am Domänen-Controller zu authentifizieren. In der Windows-
 Terminologie ist dies als <quote>Maschinen-Konto</quote> bekannt. Der Zweck des 
-Maschinen-Kontos ist es, zu verhindern, daß ein schurkischer Benutzer mit einem 
-Domänen-Controller konspiriert,
-um Zugriff auf eine Domänen-Mitglieds-Workstation zu erhalten.
+Maschinen-Kontos ist es, zu verhindern, daß ein böswilliger Benutzer einen 
+Domänen-Controller mißbraucht, um Zugriff auf eine Domänen-Mitglieds-Workstation zu erhalten.
 </para>
 
 <para>
