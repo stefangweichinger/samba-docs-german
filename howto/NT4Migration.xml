@@ -17,14 +17,14 @@ auf Samba-3-basierte Domänen-Verwaltung migrieren wollen.
 <title>Planung und Beginn</title>
 
 <para>
-In der IT-Welt gibt es den Satz, der besagt, daß alle Probleme infolge schlechter Planung entstehen.
-Der Folgesatz dazu ist, daß nicht alle Probleme vorweggenommen und eingeplant werden können.
-Jedoch wird gute Planung die meisten <quote>Show-Stopper</quote>-Situationen vorwegnehmen können.
+In der IT-Welt gibt es eine Redensart, die besagt, dass alle Probleme infolge schlechter Planung entstehen.
+Der Folgerung daraus ist, dass nicht alle Probleme vorweggenommen und eingeplant werden können.
+Jedoch wird gute Planung die meisten Situationen vorwegnehmen können, die für Unterbrechungen sorgen.
 </para>
 
 <para>
 Diejenigen, die von NT4-basierter Domänen-Verwaltung auf Samba-3-basierte 
-Domänen-Verwaltung migrieren wollen, tun gut daran, einen detaillierten Migrations-Plan zu
+Domänen-Verwaltung migrieren wollen, tun gut daran, einen detaillierten Migrationsplan zu
 entwickeln. Dazu gibt es in diesem Dokument einige Hinweise.
 </para>
 
@@ -32,37 +32,36 @@ entwickeln. Dazu gibt es in diesem Dokument einige Hinweise.
 <title>Zielsetzungen</title>
 
 <para>
-Die hauptsächliche Zielsetzung für die meisten Organisationen wird es sein, die Migration
-von NT4- auf Samba-3-Domänen-Verwaltung so reibungslos wie möglich zu gestalten. Eine der
-Herausforderungen, denen Sie in Ihrem Migrations-Prozeß begegnen werden, könnte sein, daß
-Sie das Management davon überzeugen müssen, daß die neue Umgebung bestehen bleiben sollte.
-Viele, die Open-Source-Technologie in Unternehmen eingebracht haben, haben es erlebt,
-beim ersten Anzeichen von Problemen unter Druck gesetzt zu werden, 
+Die hauptsächliche Zielsetzung für die meisten Organisationen wird darin bestehen, die Migration
+von der NT4- zur Samba-3-Domänen-Verwaltung so reibungslos wie möglich zu gestalten. Ein Problem, dem Sie in Ihrem Migrationsprozess begegnen werden, könnte sein, dass
+Sie das Management davon überzeugen müssen, an der neuen Umgebung festzuhalten.
+Viele, die OpenSource-Technologie in Unternehmen eingebracht haben, haben es erlebt,
+dass sie beim ersten Anzeichen von Problemen unter Druck gesetzt werden, 
 zu Microsoft-basierten Lösungen zurückzukehren.
 </para>
 
 <para>
-Bevor Sie eine Migration auf ein Samba-3-kontrolliertes Netz anstreben, unternehmen Sie
-jegliche Anstrengung, um dafür Unterstützung von allen Seiten zu erhalten.
-Vergewissern Sie sich, genau zu wissen, <emphasis>warum</emphasis> diese Veränderung
-wichtig für diese Organisation ist. Mögliche Motivationen zur Veränderung beinhalten:
+Bevor Sie eine Migration auf ein Samba-3-kontrolliertes Netz anstreben, sollten Sie
+jede Anstrengung unternehmen, um dafür Unterstützung von allen Seiten zu erhalten.
+Vergewissern Sie sich, dass Sie genau wissen, <emphasis>warum</emphasis> diese Veränderung
+wichtig für Ihre Organisation ist. Mögliche Motive für eine Veränderung sind:
 </para>
 
 <itemizedlist>
-    <listitem><para>Das Verbessern des Netzwerk-Managements.</para></listitem>
-    <listitem><para>Das Erreichen besserer Funktionalität auf Benutzer-Ebene.</para></listitem>
-    <listitem><para>Das Reduzieren der Kosten für das Betreiben des Netzwerks.</para></listitem>
-    <listitem><para>Das Reduzieren der Kosten durch den Wegfall des MS-NT4-Supports.</para></listitem>
-    <listitem><para>Das Vermeiden der Auswirkungen der MS Lizenz 6.</para></listitem>
-    <listitem><para>Das Verringern der Abhängigkeiten von Microsoft.</para></listitem>
+    <listitem><para>Sie wollen das Netzwerk-Management verbessern.</para></listitem>
+    <listitem><para>Sie wollen eine bessere Funktionalität auf Benutzer-Ebene erreichen.</para></listitem>
+    <listitem><para>Sie wollen die Kosten für das Betreiben des Netzwerks reduzieren.</para></listitem>
+    <listitem><para>Sie wollen Kosten durch den Wegfall des MS-NT4-Supports reduzieren.</para></listitem>
+    <listitem><para>Sie wollen die Auswirkungen der MS Lizenz 6 vermeiden.</para></listitem>
+    <listitem><para>Sie wollen Ihre Abhängigkeit von Microsoft verringern.</para></listitem>
 </itemizedlist>
 
 <para>
-Sorgen Sie dafür, daß jeder weiß, daß Samba-3 NICHT MS Windows NT4 ist. Samba-3 bietet eine
-alternative Lösung, die sich einerseits von MS Windows NT4 unterscheidet, und andererseits
-ihm gegenüber Vorteile bietet. Erreichen Sie, daß man erkennt, daß Samba-3 viele der Features
-fehlen, die Microsoft als Schlüsselwerte in der Migration von MS Windows NT4 auf MS Windows 2000,
-und darüber hinaus, beworben hat (mit oder ohne Active Directory-Dienste).
+Sorgen Sie dafür, dass jeder weiß, dass Samba-3 NICHT MS Windows NT4 ist. Samba-3 bietet eine
+alternative Lösung, die sich einerseits von MS Windows NT4 unterscheidet und andererseits
+Vorteile ihm gegenüber bietet. Erreichen Sie, dass die Verantwortlichen erkennen, dass Samba-3 viele der Features
+fehlen, die Microsoft als Schlüsselwerte in der Migration von MS Windows NT4 auf MS Windows 2000
+und darüber hinaus beworben hat (mit oder ohne Active Directory-Dienste).
 </para>
 
 <para>
@@ -70,67 +69,67 @@ Welche Features kann Samba-3 nicht bieten?
 </para>
 
 <itemizedlist>
-	<listitem><para>Active Directory Server.</para></listitem>
-	<listitem><para>Gruppen-Richtlinien-Objekte (im Active Directory).</para></listitem>
-	<listitem><para>Maschinen-Richtlinien-Objekte.</para></listitem>
-	<listitem><para>Anmelde-Skripts im Active Directory.</para></listitem>
-	<listitem><para>Software-Anwendungs- und Zugriffs-Kontrolle im Active Directory.</para></listitem>
+	<listitem><para>Active Directory Server</para></listitem>
+	<listitem><para>Gruppen-Richtlinien-Objekte (im Active Directory)</para></listitem>
+	<listitem><para>Maschinen-Richtlinien-Objekte</para></listitem>
+	<listitem><para>Anmelde-Skripten im Active Directory</para></listitem>
+	<listitem><para>Software-Anwendungs- und Zugriffskontrolle im Active Directory</para></listitem>
 </itemizedlist>
 
 <para>
-Die Features, die Samba-3 anbietet, und die von zwingendem Interesse für Ihre Installation
+Die Features, die Samba-3 anbietet und die von zwingendem Interesse für Ihre Installation
 sein können, sind:
 </para>
 
 <itemizedlist>
-	<listitem><para>Geringere Kosten (Total Cost of Ownership, TCO).</para></listitem>
-	<listitem><para>Globale Verfügbarkeit des Supports, ohne Verpflichtungen.</para></listitem>
-	<listitem><para>Dynamische SMB-Server (mehrere SMB/CIFS-Server per UNIX/Linux-System).</para></listitem>
-	<listitem><para>Anlegen von on-the-fly-Anmelde-Skripts.</para></listitem>
-	<listitem><para>Anlegen von on-the-fly-Richtlinien-Dateien.</para></listitem>
-	<listitem><para>Höhere Stabilität, Verläßlichkeit, Performance und Verfügbarkeit.</para></listitem>
-	<listitem><para>Administration über eine ssh-Verbindung.</para></listitem>
-	<listitem><para>Flexible Wahl der Back-End Authentifizierungs-Technologie (tdbsam, ldapsam, mysqlsam).</para></listitem>
-	<listitem><para>Mögliche Implementation einer vollen Single-Sign-On-Architektur.</para></listitem>
-	<listitem><para>Die mögliche Verteilung von Authentifizierungs-Systemen zur Minimierung des Bandbreiten-Bedarfs.</para></listitem>
+	<listitem><para>Geringere Kosten (Total Cost of Ownership, TCO)</para></listitem>
+	<listitem><para>Globale Verfügbarkeit des Supports ohne Verpflichtungen</para></listitem>
+	<listitem><para>Dynamische SMB-Server (mehrere SMB/CIFS-Server per UNIX/Linux-System)</para></listitem>
+	<listitem><para>Anlegen von On-the-fly-Anmelde-Skripten</para></listitem>
+	<listitem><para>Anlegen von On-the-fly-Richtlinien-Dateien</para></listitem>
+	<listitem><para>Höhere Stabilität, Verlässlichkeit, Performance und Verfügbarkeit</para></listitem>
+	<listitem><para>Administration über eine ssh-Verbindung</para></listitem>
+	<listitem><para>Flexible Wahl der Backend-Authentifizierungstechnologie (tdbsam, ldapsam, mysqlsam)</para></listitem>
+	<listitem><para>Mögliche Implementation einer vollen Single-Sign-On-Architektur</para></listitem>
+	<listitem><para>Die mögliche Verteilung von Authentifizierungssystemen zur Minimierung des Bandbreiten-Bedarfs</para></listitem>
 </itemizedlist>
 
 <para>
 Bedenken Sie vor der Migration eines Netzwerks von MS Windows NT4 auf Samba-3 alle notwendigen Faktoren.
-Die Benutzer sollten über die Änderungen, die Sie bemerken könnten, informiert werden, sodaß die
-Umstellung eine willkommene ist, und nicht ein Hindernis, das sie von ihrer Arbeit abhält.
-Folgende Faktoren tragen zur Gewährleistung einer erfolgreichen Migration bei:
+Die Benutzer sollten über die Änderungen, die Sie bemerken könnten, informiert werden, so dass ihnen die
+Umstellung willkommen und kein Hindernis, das sie von ihrer Arbeit abhält.
+Folgende Faktoren tragen dazu bei, eine erfolgreiche Migration zu gewährleisten:
 </para>
 
 <sect3>
 <title>Domänen-Entwurf</title>
 
 <para>
-Samba-3 kann als Domänen-Controller, als Backup-Domänen-Controller (vielleicht am besten als sekundärer
-Controller bezeichnet), als Domänen-Mitglieds-Server, oder als Stand-Alone-Server konfiguriert werden.
-Der Windows-Netzwerk-Domänen-Sicherheits-Kontext sollte dimensioniert und geprüft werden, und das
-vor der Migration. Besondere Aufmerksamkeit sollte auf die Plazierung des PDCs und der BDCs gelegt werden.
-Ein Unterschied zwischen Samba-3 und Microsoft-Technologie ist, daß man, wenn man sich für das
-LDAP-Authentifizierungs-Backend entscheidet, die selbe Datenbank für mehrere verschiedene Domänen
-benutzen kann. In einer komplexen Organisation kann es eine einzelne LDAP-Datenbank geben, welche
-selbst verteilt werden kann (durch Verwendung eines Master- und mehrerer Slave-LDAP-Server), und die
+Samba-3 kann als Domänencontroller, als Backup-Domänencontroller (vielleicht am besten als sekundärer
+Controller bezeichnet), als Domänen-Mitgliedsserver oder als Stand-alone-Server konfiguriert werden.
+Der Windows-Netzwerk-Domänen-Sicherheitskontext sollte dimensioniert und geprüft werden, und zwar
+vor der Migration. Besondere Aufmerksamkeit sollte auf die Platzierung des PDCs und der BDCs gelegt werden.
+Ein Unterschied zwischen der Samba-3- und der Microsoft-Technologie ist, dass man, wenn man sich für das
+LDAP-Authentifizierungs-Backend entscheidet, dieselbe Datenbank für mehrere verschiedene Domänen
+benutzen kann. In einer komplexen Organisation kann es eine einzelne LDAP-Datenbank geben, die
+selbst verteilt werden kann (durch Verwendung eines Master- und mehrerer Slave-LDAP-Server) und die
 mehrere Domänen bedienen kann.
 </para>
 
 <para>
-Aus der Perspektive des Designs sollte die Anzahl der Benutzer pro Server, ebenso wie die Anzahl
+In Hinblick auf das Design sollte die Anzahl der Benutzer pro Server, ebenso wie die Anzahl
 der Server pro Domäne, unter Berücksichtigung der Server-Kapazitäten und Netzwerk-Bandbreiten
 festgelegt werden.
 </para>
 
 <para>
-Ein physisches Netzwerk-Segment kann mehrere Domänen beinhalten. Jede kann wiederum mehrere 
-Netzwerk-Segmente umfassen. Wo Domänen geroutete Netzwerk-Segmente umfassen, bedenken und testen
-Sie die Auswirkungen auf die Performance, die der Entwurf und das Design des Netzwerks haben können.
-Ein zentral plazierter Domänen-Controller, der mehrere geroutete Netzwerk-Segmente bedienen soll, kann
+Ein physisches Netzwerk-Segment kann mehrere Domänen beinhalten. Jede Domäne kann wiederum mehrere 
+Netzwerk-Segmente umfassen. Wenn Domänen geroutete Netzwerk-Segmente umfassen, sollten
+Sie die Auswirkungen auf die Performance bedenken und testen, die der Entwurf und das Design des Netzwerks haben können.
+Ein zentral platzierter Domänencontroller, der mehrere geroutete Netzwerk-Segmente bedienen soll, kann
 ernsthafte Performance-Probleme verursachen. Prüfen Sie die Antwortzeiten (ping-Zeiten) zwischen
-dem entfernten Segment und dem PDC. Sind diese lang (> 100 ms), plazieren Sie einen BDC im entfernten
-Segment, um als lokaler Authentifikations- und Zugriffs-Kontroll-Server zu arbeiten.
+dem entfernten Segment und dem PDC. Sind diese lang (> 100 ms), platzieren Sie einen BDC im entfernten
+Segment, um als lokaler Authentifikations- und Zugriffskontrollserver zu arbeiten.
 </para>
 </sect3>
 
@@ -138,9 +137,9 @@ Segment, um als lokaler Authentifikations- und Zugriffs-Kontroll-Server zu arbei
 <title>Entwurf der Server-Freigaben und -Verzeichnisse</title>
 
 <para>
-Es gibt Kardinalregeln des effektiven Netzwerk-Designs, die nicht ungestraft verletzt werden können.
+Es gibt einige Grundregeln des effektiven Netzwerk-Designs, die nicht ungestraft verletzt werden können.
 Die wichtigste und erste Regel: Einfachheit siegt. Und das in jedem gut verwalteten Netzwerk.
-Jeder Teil der Infrastruktur muß verwaltet werden; je komplizierter diese ist, umso grösser ist die
+Jeder Teil der Infrastruktur muss verwaltet werden; je komplizierter diese ist, umso größer ist die
 Notwendigkeit, die Systeme sicher und funktional zu halten.
 </para>
 
@@ -148,44 +147,43 @@ Notwendigkeit, die Systeme sicher und funktional zu halten.
 Halten Sie sich vor Augen, welcher Natur die zu speichernden Daten sind. Das Layout des physischen
 Platten-Platzes sollte sorgfältig überlegt sein. Manche Daten müssen gesichert werden. Je einfacher 
 das Layout ist, umso einfacher wird es sein, den Backup-Anforderungen gerecht zu werden. Legen Sie fest,
-welche Backup-Medien Ihren Ansprüchen gerecht werden; erwägen Sie Backups auf Band, CD-ROM (oder DVD-ROM),
-bzw. andere Offline-Speicher-Medien. Planen und implementieren Sie im Hinblick auf minimalen Wartungsaufwand.
-Überlassen Sie nichts dem Zufall; zuallererst überlassen Sie die Backups nicht dem Zufall:
-Sichern, testen, und überprüfen Sie jedes Backup, schaffen Sie einen Disaster-Recovery-Plan und
-gehen Sie sicher, daß er auch funktioniert.
+welche Backup-Medien Ihren Ansprüchen gerecht werden; erwägen Sie Backups auf Band, CD-ROM (oder DVD-ROM)
+bzw. anderen Offline-Speicher-Medien. Planen und implementieren Sie im Hinblick auf minimalen Wartungsaufwand.
+Überlassen Sie nichts dem Zufall! Überlassen Sie vor allem nicht die Backups dem Zufall:
+Sichern, testen und überprüfen Sie jedes Backup, erstellen Sie einen Disaster-Recovery-Plan, und
+prüfen Sie, dass er auch funktioniert.
 </para>
 
 <para>
-Benutzer sollten nach ihren Bedürfnissen, was den Datenzugriff, bzw. dessen Einschränkung, betrifft,
-gruppiert werden. Datei- und Verzeichnis-Zugriff wird am besten mittels Gruppen-Rechten verwaltet und die
-Verwendung des <quote>sticky bits</quote> auf Gruppen-kontrollierte Verzeichnisse kann grundlegend
-vermeiden, daß Benutzer von Samba-Freigaben sich bezüglich Dateien-Zugriffen beschweren.
+Benutzer sollten nach ihren Bedürfnissen, was den Datenzugriff bzw. dessen Einschränkung betrifft,
+gruppiert werden. Der Datei- und Verzeichniszugriff wird am besten durch Gruppen-Rechte verwaltet, und die
+Verwendung des <quote>sticky bits</quote> auf gruppen-kontrollierte Verzeichnisse kann es grundlegend
+vermeiden, dass Benutzer von Samba-Freigaben sich über Probleme mit dem Datei-Zugriff beschweren.
 </para>
 
 <para>
-Unerfahrene Netzwerk-Administratoren versuchen oft, Techniken auszuarbeiten, um Zugriffs-Kontrollen
-auf Dateien, Verzeichnisse, Freigaben zu setzen, genauso wie in Definitionen von Freigaben.
-Halten Sie Ihr Design und Ihre Implementation einfach und dokumentieren Sie Ihr Design ausführlich.
+Unerfahrene Netzwerk-Administratoren versuchen oft mit komplizierten Techniken Zugriffskontrollen
+auf Dateien, Verzeichnisse, Freigaben zu setzen und Freigaben zu definieren.
+Halten Sie Ihr Design und Ihre Implementation einfach, und dokumentieren Sie Ihr Design ausführlich.
 Lassen Sie andere Ihre Dokumentation prüfen. Schaffen Sie kein komplexes Durcheinander, das kein
-Nachfolgender versteht. Erinnern Sie sich, Sicherheit durch komplexes Design und komplexe Implementation
-kann Betriebsausfall und Stillstand für die Benutzer verursachen, während der neue Adminístrator
-lernt, Ihre Knoten zu entwirren. Halten Sie die Zugriffskontrollen simpel und effektiv, und stellen Sie
-sicher, daß die Benutzer nie durch stumpfsinnige Komplexität unterbrochen werden.
+Nachfolgender versteht. Denken Sie daran, dass Sie Betriebsausfall und Stillstand für die Benutzer verursachen können, wenn Sie versuchen, Sicherheit durch komplexes Design und komplexe Implementation zu schaffen. Der neue Adminístrator
+muss nämlich erst lernen, Ihre Knoten zu entwirren. Halten Sie die Zugriffskontrollen simpel und effektiv, und stellen Sie
+sicher, dass die Benutzer nie durch dumme Komplexität unterbrochen werden.
 </para>
 </sect3>
 
 <sect3>
-<title>Anmelde-Skripts</title>
+<title>Anmelde-Skripten</title>
 
 <para>
-Anmelde-Skripts können dabei helfen, sicherzustellen, daß alle Benutzer die Freigabe- und 
+Anmelde-Skripten können dabei helfen, sicherzustellen, dass alle Benutzer die Freigabe- und 
 Drucker-Verbindungen erreichen können, die sie brauchen.
 </para>
 
 <para>
-Anmelde-Skripts können im Betrieb erzeugt werden, sodaß alle ausgeführten Befehle spezifisch für
+Anmelde-Skripten können im Betrieb erzeugt werden, so dass alle ausgeführten Befehle spezifisch für
 die Rechte und Privilegien sind, die dem Benutzer erteilt wurden. Die bevorzugten Kontrollen sollten
-von der Gruppen-Mitgliedschaft abhängig sein, sodaß die Gruppen-Information dazu benutzt werden kann,
+von der Gruppen-Mitgliedschaft abhängig sein, so dass die Gruppen-Information dazu benutzt werden kann,
 ein maßgeschneidertes Anmelde-Skript anzulegen. Dies kann durch Anwendung des Parameters
 <smbconfoption><name>root preexec</name></smbconfoption> in der Freigabe
 <smbconfsection>NETLOGON</smbconfsection> geschehen.
@@ -194,9 +192,8 @@ ein maßgeschneidertes Anmelde-Skript anzulegen. Dies kann durch Anwendung des Pa
 <para>
 Manche Organisationen bevorzugen es, ein Werkzeug wie <command>kixstart</command> zu verwenden, um
 eine kontrollierte Benutzer-Umgebung zu schaffen. Jedenfalls werden Sie vielleicht mittels Google
-nach Programmen für Anmelde-Skripts suchen wollen. Im Speziellen möchten Sie vielleicht die
-Anwendung des Artikels KB189105 in der Microsoft KnowledgeBase versuchen, der behandelt, wie man
-Drucker ohne Benutzer-Intervention hinzufügt, und das mittels des Anmelde-Skript-Vorgangs.
+nach Programmen für Anmelde-Skripten suchen wollen. Sie sollten sich vor allem den Artikel KB189105 in der Microsoft KnowledgeBase ansehen, der beschreibt, wie man über den Logon-Skript-Vorgang 
+Drucker ohne Benutzer-Intervention hinzufügt.
 </para>
 </sect3>
 
@@ -204,15 +201,15 @@ Drucker ohne Benutzer-Intervention hinzufügt, und das mittels des Anmelde-Skript
 <title>Anlegen und Migration von Profilen</title>
 
 <para>
-Benutzer- und Gruppen-Profile können unter Verwendung der Werkzeuge migriert werden, die in dem
-Abschnitt namens <quote>Desktop Profil Management</quote> beschrieben sind.
+Benutzer- und Gruppen-Profile können unter Verwendung der Werkzeuge migriert werden, die im
+Abschnitt <link linkend="ProfileMgmt">Das Management von Desktop-Profilen</link> beschrieben sind.
 </para>
 
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-Profile können auch mittels dem Samba-3-Werkzeug <command>profiles</command> verwaltet werden.
-Dieses Werkzeug erlaubt es, die Sicherheits-Identifier (SIDs) im MS Windows NT-Stil, die in der
+Profile können auch mit dem Samba-3-Werkzeug <command>profiles</command> verwaltet werden.
+Dieses Werkzeug erlaubt es, die Sicherheitsidentifier (SIDs) im MS Windows NT-Stil, die in der
 Profil-Datei <filename>NTuser.DAT</filename> gespeichert sind, auf den SID der Samba-3-Domäne
 zu ändern. 
 </para>
@@ -223,37 +220,37 @@ zu ändern.
 
 <para>
 Es ist möglich, alle Konten-Einstellungen von einer MS Windows NT4-Domäne auf Samba-3 zu migrieren.
-Bevor Sie versuchen, Benutzer- und Gruppen-Konten zu migrieren, ist es STÄRKSTENS empfohlen, in
-Samba die Gruppen anzulegen, die in der MS Windows NT4-Domäne vorhanden sind <emphasis>UND</emphasis>
-sie auf passende UNIX/Linux-Gruppen umzulegen (<quote>mappen</quote>). Durch das Befolgen dieses einfachen
-Ratschlags sollten alle Benutzer- und Gruppen-Attribute problemlos migrieren.
+Bevor Sie versuchen, Benutzer- und Gruppen-Konten zu migrieren, sollten Sie UNBEDINGT in
+Samba die Gruppen anlegen, die in der MS Windows NT4-Domäne vorhanden sind <emphasis>UND</emphasis>
+sie auf passende UNIX/Linux-Gruppen abbilden (<quote>mappen</quote>). Wenn Sie diesen einfachen
+Ratschlag befolgen, sollten alle Benutzer- und Gruppen-Attribute problemlos migrieren.
 </para>
 </sect3>
 
 </sect2>
 
 <sect2>
-<title>Schritte im Migrations-Prozess</title>
+<title>Schritte im Migrationprozess</title>
 
 <para>
-Der ungefähre Migrations-Prozess ist im Folgenden beschrieben.
+Migrationsprozess läuft ungefähr wie folgt ab:
 </para>
 
 <itemizedlist>
 <listitem><para>
-Sie haben einen NT4 PDC, der die Benutzer, Gruppen, Richtlinien und Profile hat, die migriert werden sollen.
+Sie haben einen NT4-PDC, der die Benutzer, Gruppen, Richtlinien und Profile hat, die migriert werden sollen.
 </para></listitem>
 
 <listitem><para>
-Samba-3 ist als DC eingerichtet, mit Netlogon-Freigabe, Profil-Freigabe, und so weiter.
+Samba-3 ist als DC mit Netlogon-Freigabe, Profil-Freigabe und so weiter eingerichtet.
 Editieren Sie die Datei &smb.conf;, um Samba-3 z.B. als BDC zu konfigurieren: <parameter>domain master = No</parameter>.
 </para></listitem>
 </itemizedlist>
 
-<procedure><title>Der Migrations-Prozess der Konten</title>
+<procedure><title>Der Migrationsprozess der Konten</title>
 	<step><para>
 <indexterm><primary>pdbedit</primary></indexterm>
-Legen Sie ein BDC-Konto für den Samba-Server in der alten NT4-Domäne an, unter Verwendung des NT-Server-Managers.</para>
+Legen Sie ein BDC-Konto für den Samba-Server in der alten NT4-Domäne an. Verwenden Sie dazu den NT-Server-Manager.</para>
 <substeps><step><para>Samba darf nicht laufen.</para></step></substeps></step>
 
 
@@ -264,18 +261,18 @@ Legen Sie ein BDC-Konto für den Samba-Server in der alten NT4-Domäne an, unter V
 <step><para><userinput>net rpc vampire -S <replaceable>NT4PDC</replaceable> -U administrator%<replaceable>passwd</replaceable></userinput></para></step>
 
 <step><para><userinput>pdbedit -L</userinput></para>
-<substeps><step><para>Beachten Sie &smbmdash;: Haben die Benutzer migriert?</para></step></substeps>
+<substeps><step><para>Achten Sie auf Folgendes: Haben die Benutzer migriert?</para></step></substeps>
 	</step>
 
 
 	<step><para>
 <indexterm><primary>net</primary><secondary>groupmap</secondary></indexterm>
 <indexterm><primary>initGroups.sh</primary></indexterm>
-Weisen Sie nun jede der UNIX-Gruppen einer NT-Gruppe zu:
-(Es könnte hilfreich sein, diesen Text in ein Skript namens <filename>initGroups.sh</filename> zu kopieren)
+Weisen Sie nun jede der UNIX-Gruppen einer NT-Gruppe zu.
+(Es könnte hilfreich sein, diesen Text in ein Skript namens <filename>initGroups.sh</filename> zu kopieren.)
 <programlisting>
 #!/bin/bash
-#### Behalten Sie sich dies als Shell-Skript für weitere Verwendung 
+#### Behalten Sie dies als Shell-Skript zur weiteren Verwendung 
 			
 # Zuerst die Zuweisung der wohlbekannten globalen Domänen-Gruppen
 net groupmap modify ntgroup="Domain Admins" unixgroup=root   rid=512
@@ -290,7 +287,7 @@ net groupmap add ntgroup="QA Team"   unixgroup=qateam    type=d rid=3220
 	</para></step>
 
 	<step><para><userinput>net groupmap list</userinput></para>
-		<substeps><step><para>Überprüfen Sie, daß alle Gruppen erkannt werden.</para></step></substeps>
+		<substeps><step><para>Überprüfen Sie, dass alle Gruppen erkannt werden.</para></step></substeps>
 	</step>
 </procedure>
 
@@ -302,14 +299,14 @@ Migrieren Sie alle Profile, dann migrieren Sie alle Richtlinien.
 </sect1>
 
 <sect1>
-<title>Migrations-Optionen</title>
+<title>Migrationsoptionen</title>
 
 <para>
-Organisationen, die von MS Windows NT4-Domänen-Verwaltung auf eine Samba-basierende Lösung migrieren
+Organisationen, die von der MS Windows NT4-Domänen-Verwaltung auf eine Samba-basierende Lösung migrieren
 wollen, fallen generell in drei grundlegende Kategorien. <link linkend="majtypes"/> zeigt die Möglichkeiten.
 </para>
 
-<table frame="all" id="majtypes"><title>Die drei Haupt-Typen von Installationen</title>
+<table frame="all" id="majtypes"><title>Die drei Haupttypen von Installationen</title>
 <tgroup cols="2">
 	<colspec align="left"/>
 	<colspec align="justify" colspec="1*"/>
@@ -319,36 +316,36 @@ wollen, fallen generell in drei grundlegende Kategorien. <link linkend="majtypes
 	<tbody>
 	<row><entry>&lt; 50</entry><entry><para>Wollen eine einfache Umstellung ohne Probleme.</para></entry></row>
 	<row><entry>50 - 250</entry><entry><para>Wollen neue Funktionen, wollen manche interne Komplexität besser managen.</para></entry></row>
-	<row><entry>&gt; 250</entry><entry><para>Lösung/Implementation muß gut skalieren, komplexe Anforderungen.
-Abteilungs-übergreifender Entscheidungs-Prozeß. Lokale Expertisen in den meisten Bereichen.</para></entry></row>
+	<row><entry>&gt; 250</entry><entry><para>Die Lösung/Implementation muss gut skalieren, es gibt komplexe Anforderungen.
+Abteilungsübergreifender Entscheidungsprozess. Lokale Expertisen in den meisten Bereichen.</para></entry></row>
 	</tbody>
 </tgroup>
 </table>
 
 <sect2>
-<title>Für den Erfolg planen</title>
+<title>Den Erfolg planen</title>
 
 <para>
 Es gibt drei grundlegende Wahlmöglichkeiten für Sites, die von MS Windows NT4
-auf Samba-3 migrieren wollen.
+auf Samba-3 migrieren wollen:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Einfache Konvertierung (komplettes Ersetzen).
+	Einfache Konvertierung (komplettes Ersetzen)
 	</para></listitem>
 
 	<listitem><para>
-	Erweiterte Konvertierung (könnte ein Weg der Integration sein).
+	Erweiterte Konvertierung (könnte ein Weg der Integration sein)
 	</para></listitem>
 
 	<listitem><para>
-	Komplettes Redesign (komplett neue Lösung).
+	Komplettes Redesign (komplett neue Lösung)
 	</para></listitem>
 </itemizedlist>
 
 <para>
-Minimieren Sie nachfolgende Probleme:
+Minimieren Sie spätere Probleme durch folgende Maßnahmen:
 </para>
 
 <itemizedlist>
@@ -365,14 +362,14 @@ Minimieren Sie nachfolgende Probleme:
 	</para></listitem>
 
 	<listitem><para>
-	Testen Sie das volle Einführungs-Programm, einschließlich der Workstations.
+	Testen Sie das volle Einführungsprogramm, einschließlich der Workstations.
 	</para></listitem>
 </itemizedlist>
 
-<para><link linkend="natconchoices"/> listet die Konversions-Möglichkeiten je nach angestrebtem Migrations-Typus.
+<para><link linkend="natconchoices"/> listet die Konvertierungsmöglichkeiten je nach angestrebtem Migrationstyp auf.
 </para>
 
-<table frame="all" id="natconchoices"><title>Eigenschaften der Konversions-Möglichkeiten</title>
+<table frame="all" id="natconchoices"><title>Eigenschaften der Konvertierungsmöglichkeiten</title>
 <tgroup cols="3">
 	<colspec align="justify" colwidth="1*"/>
 	<colspec align="justify" colwidth="1*"/>
@@ -382,14 +379,14 @@ Minimieren Sie nachfolgende Probleme:
 	</thead>
 	<tbody>
 	<row>
-	<entry><para>Anwendung der minimalen Features des OS.</para></entry>
-	<entry><para>Übersetzen der NT4-Features auf die Features des neuen OS.</para></entry>
+	<entry><para>Anwendung der minimalen Features des OS</para></entry>
+	<entry><para>Übersetzen der NT4-Features in die Features des neuen OS</para></entry>
 	<entry><para>Entscheide:</para></entry>
 	</row>
 	<row>
 	<entry><para>Bewegen aller Konten von NT4 auf Samba-3</para></entry>
 	<entry><para>Kopieren und verbessern</para></entry>
-	<entry><para>Authentifikations-Regime (Datenbank-Plazierung und -Zugriff)</para></entry>
+	<entry><para>Authentifikationsregelung (Datenbank-Platzierung und -Zugriff)</para></entry>
 	</row>
 	<row>
 	<entry><para>Nur die notwendigsten operationalen Änderungen</para></entry>
@@ -397,18 +394,18 @@ Minimieren Sie nachfolgende Probleme:
 	<entry><para>Desktop-Management-Methoden</para></entry>
 	</row>
 	<row>
-	<entry><para>Kürzeste Migrations-Zeit</para></entry>
+	<entry><para>Kürzeste Migrationszeit</para></entry>
 	<entry><para>Auswirkungen auf Benutzer minimieren</para></entry>
 	<entry><para>Bessere Kontrolle über Desktops/Benutzer</para></entry>
 	</row>
 	<row>
 	<entry><para>Live- versus isolierter Konvertierung</para></entry>
 	<entry><para>Maximieren der Funktionalität</para></entry>
-	<entry><para>Bestimmen Sie Bedarf an: <emphasis>Manageability, Skalierbarkeit, Sicherheit, Verfügbarkeit</emphasis></para></entry>
+	<entry><para>Bestimmen Sie Bedarf an: <emphasis>Verwaltung, Skalierbarkeit, Sicherheit, Verfügbarkeit</emphasis></para></entry>
 	</row>
 	<row>
 	<entry><para>Integration von Samba-3, dann migrieren, während Benutzer aktiv sind, dann Änderung der Verwaltung (swap out)</para></entry>
-	<entry><para>Nutzen des Vorteils des geringeren Wartungsaufwands</para></entry>
+	<entry><para>Den Vorteils des geringeren Wartungsaufwands nutzen</para></entry>
 	<entry><para></para></entry>
 	</row>
 	</tbody>
@@ -417,21 +414,21 @@ Minimieren Sie nachfolgende Probleme:
 </sect2>
 
 <sect2>
-<title>Samba-3 Implementations-Wahlmöglichkeiten</title>
+<title>Wahlmöglichkeiten bei der Samba-3-Implementation</title>
 
 <variablelist>
-	<varlistentry><term>Authentifikations-Datenbank/Backend</term><listitem>
+	<varlistentry><term>Authentifikationsdatenbank/-Backend</term><listitem>
 		<para>
-		Samba-3 kann ein externes Authentifikations-Backend verwenden:
+		Samba-3 kann ein externes Authentifikationsbackend verwenden:
 		</para>
 
 		<para>
 		<itemizedlist>
-			<listitem><para>Winbind (externer Samba oder NT4/200x-Server).</para></listitem>
-			<listitem><para>Externer Server, der Active Directory oder NT4 Domäne nutzt.</para></listitem>
+			<listitem><para>Winbind (externer Samba oder NT4/200x-Server)</para></listitem>
+			<listitem><para>Externer Server, der Active Directory oder NT4 Domäne nutzt</para></listitem>
 			<listitem><para>Kann pam_mkhomedir.so verwenden, um automatisch home-Verzeichnisse anzulegen.</para></listitem>
 			<listitem><para>
-					Samba-3 kann ein lokales Authentifikations-Backend verwenden: <parameter>smbpasswd, tdbsam, ldapsam, mysqlsam</parameter></para></listitem>
+					Samba-3 kann ein lokales Authentifikationsbackend verwenden: <parameter>smbpasswd, tdbsam, ldapsam, mysqlsam</parameter></para></listitem>
 	</itemizedlist>
 		</para>
 	</listitem></varlistentry>
@@ -441,23 +438,23 @@ Minimieren Sie nachfolgende Probleme:
 		Samba erlaubt es, Access Control Points zu setzen:
 		</para>
 		<itemizedlist>
-                        <listitem><para>Auf der Freigabe selbst &smbmdash; mittels Share ACLs.</para></listitem>
-                        <listitem><para>Auf dem Dateisystem &smbmdash; mittels UNIX permissions auf Dateien und Verzeichnissen.</para>
-				<para>Bemerkung: Kann auch Posix ACLs im Dateisystem aktivieren.</para></listitem>
+                        <listitem><para>Auf der Freigabe selbst &smbmdash; mittels Share ACLs</para></listitem>
+                        <listitem><para>Auf dem Dateisystem &smbmdash; mittels UNIX-Berechtigungen auf Dateien und Verzeichnissen</para>
+				<para>Bemerkung: Auf diese Weise können Sie auch Posix-ACLs im Dateisystem aktivieren.</para></listitem>
                         <listitem><para>Durch Samba-Freigaben-Parameter &smbmdash;. Nicht empfohlen, außer als letzte Möglichkeit.</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Richtlinien (migrieren Sie sie oder legen Sie neue an)</term><listitem>
+        <varlistentry><term>Richtlinien (migrieren Sie sie, oder legen Sie neue an)</term><listitem>
 		<para>
-		Üben Sie grosse Vorsicht, wenn Sie Änderungen an der Registry vornehmen, verwenden 
-		Sie das richtige Werkzeug und seien Sie sich dessen bewußt, daß Änderungen unter
-		Verwendung von Dateien im NT4-style <filename>NTConfig.POL</filename> dauerhafte
+		Seien Sie äußerst vorsichtig, wenn Sie Änderungen an der Registry vornehmen, verwenden 
+		Sie das richtige Werkzeug, und denken Sie daran, dass Änderungen unter
+		Verwendung von <filename>NTConfig.POL</filename>-Dateien im NT4-Stil dauerhafte
 		Änderungen verursachen können.
 		</para>
                 <itemizedlist>
-                        <listitem><para>Verwendung des Group Policy Editor (NT4).</para></listitem>
+                        <listitem><para>Verwendung des Group Policy Editor (NT4)</para></listitem>
                         <listitem><para>Achten Sie auf den <quote>Tattoo-Effekt</quote>.</para></listitem>
 		</itemizedlist>
                 </listitem>
@@ -465,16 +462,16 @@ Minimieren Sie nachfolgende Probleme:
 
         <varlistentry><term>Benutzer- und Gruppen-Profile</term><listitem>
                 <para>
-		Plattform-spezifisch, also benützen Sie ein Werkzeug dieser Plattform, um von einem lokalen
+		Diese sind plattform-spezifisch. Benutzen Sie also ein Werkzeug dieser Plattform, um von einem lokalen Profil 
 		auf ein Roaming-Profil zu wechseln.
-		Man kann das neue Profil-Tool verwenden, um SIDs zu ändern. (<filename>NTUser.DAT</filename>).
+		Man kann das neue Profil-Tool verwenden, um SIDs zu ändern (<filename>NTUser.DAT</filename>).
 		</para>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Anmelde-Skripts</term><listitem>
+        <varlistentry><term>Anmelde-Skripten</term><listitem>
                 <para>
-		Verständnis der Arbeitsweise.
+		Sie müssen wissen, wie diese Skripten arbeiten.
 		</para>
                 </listitem>
         </varlistentry>
@@ -484,18 +481,18 @@ Minimieren Sie nachfolgende Probleme:
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
 		Der Code zum Mapping von Benutzern und Gruppen ist neu. Viele Probleme sind aufgetaucht,
-		als Netzwerk-Administratoren, die mit Samba-2.2.x vertraut sind, auf Samba-3 migriert haben.
+		als Netzwerk-Administratoren, die mit Samba-2.2.x vertraut waren, auf Samba-3 migriert haben.
 		Lesen Sie sorgfältig die Kapitel, die das neue Verhalten des Passwort-Backends 
-		und die neue Gruppen-Mapping-Funktionalität dokumentiert.
+		und die neue Gruppen-Mapping-Funktionalität dokumentieren.
 		</para>
                 <itemizedlist>
                         <listitem><para>Die <parameter>username map</parameter>-Einrichtung könnte benötigt werden.</para></listitem>
-                        <listitem><para>Verwendung von <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
-                        <listitem><para>Verwendung von <command>pdbedit</command>, um Benutzer-Konfigurationen zu setzen und zu ändern.</para>
+                        <listitem><para>Verwenden Sie <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
+                        <listitem><para>Verwenden Sie <command>pdbedit</command>, um die Benutzer-Konfigurationen zu setzen und zu ändern.</para>
 
 				<para>
 				Beim Migrieren auf LDAP kann es einfacher sein, die anfängliche LDAP-Datenbank
-				als LDIF-Datei auszugeben, zu editieren, und wieder in LDAP einzulesen.	
+				als LDIF-Datei auszugeben, zu editieren und wieder in LDAP einzulesen.	
 				</para>
 			</listitem>
 		</itemizedlist>
@@ -505,28 +502,28 @@ Minimieren Sie nachfolgende Probleme:
         <varlistentry><term>OS-spezifische Skripten/Programme könnten benötigt werden</term><listitem>
 		<para>
 		Jedes Betriebssystem hat seine Besonderheiten. Diese sind das Ergebnis von Entscheidungen,
-		die auf den Erfahrungen des Designers beruhen, und die Nebeneffekte haben können, die nicht
-		beabsichtigt waren. Einschränkungen, die den Windows-Netzwerk-Administrator treffen können,
-		beinhalten:
+		die auf den Erfahrungen des Designers beruhen. Sie können Nebeneffekte haben, die nicht
+		beabsichtigt waren. Zu den Einschränkungen, die den Windows-Netzwerk-Administrator betreffen können,
+		zählen:
 		</para>
                 <itemizedlist>
-                        <listitem><para>Hinzufügen/Löschen von Benutzern: Beachten Sie die Limits des Betriebssystems in Hinblick auf Länge des Benutzernamens.
+                        <listitem><para>Hinzufügen/Löschen von Benutzern: Beachten Sie die Beschränkungen des Betriebssystems in Hinblick auf Länge des Benutzernamens
 				(Linux 8 Zeichen, NT4 bis zu 254 Zeichen).</para></listitem>
                         <listitem><para>Hinzufügen/Löschen von Maschinen: Betrifft nur Domänen-Mitglieder
 				(Bemerkung: Maschinen-Namen können auf 16 Zeichen beschränkt sein).</para></listitem>
                         <listitem><para>Verwendung von <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
-                        <listitem><para>Hinzufügen/Löschen von Gruppen: Beachten Sie OS-Limits bei Länge und Format.
-Das Limit in Linux ist 16 Zeichen, ohne Leerzeichen und Grossbuchstaben (<command>groupadd</command>).</para></listitem>
+                        <listitem><para>Hinzufügen/Löschen von Gruppen: Beachten Sie Beschränkungen des Betriebssystems bei Länge und Format.
+Das Limit in Linux sind 16 Zeichen ohne Leerzeichen und Großbuchstaben (<command>groupadd</command>).</para></listitem>
 		</itemizedlist>
                 </listitem>
         </varlistentry>
 
-        <varlistentry><term>Migrations-Werkzeuge</term><listitem>
+        <varlistentry><term>Migrationswerkzeuge</term><listitem>
                 <para>
 <indexterm><primary>pdbedit</primary></indexterm>
-		Domänenverwaltung (NT4 Style) Profile, Richtlinien, ACLs, Sicherheit
+		Domänenverwaltung (im NT4-Stil) Profile, Richtlinien, ACLs, Sicherheit
 		<itemizedlist>
-                        <listitem><para>Samba: <command>net, rpcclient, smbpasswd, pdbedit, profiles.</command></para></listitem>
+                        <listitem><para>Samba: <command>net, rpcclient, smbpasswd, pdbedit, profiles</command></para></listitem>
                         <listitem><para>Windows: <command>NT4 Domain User Manager, Server Manager (NEXUS)</command></para></listitem>
                 </itemizedlist>
 			</para>
