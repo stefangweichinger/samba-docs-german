@@ -308,7 +308,7 @@ in Releases vor Samba 2.2.2 formal ein globaler Parameter war.
 </para>
 
 <para><smbconfexample id="minimalprofile">
-<title>Minimal profile share</title>
+<title>Minimale Profil-Freigabe</title>
 <smbconfsection>[profile]</smbconfsection>
 <smbconfoption><name>path</name><value>/export/profile</value></smbconfoption>
 <smbconfoption><name>create mask</name><value>0600</value></smbconfoption>
