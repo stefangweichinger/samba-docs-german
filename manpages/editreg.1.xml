@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>editreg</refname>
-	<refpurpose>A utility for printing and editing NT4 registry files
+	<refpurpose>Ein Utility zum Drucken und Editieren von NT4-Registry-Dateien
 	</refpurpose>
 </refnamediv>
 
@@ -21,20 +21,19 @@
 	<cmdsynopsis>
 		<command>editreg</command>
 		<arg choice="opt">-v</arg>
-		<arg choice="opt">-c file</arg>
-		<arg choice="req">file</arg>
+		<arg choice="opt">-c Datei</arg>
+		<arg choice="req">Datei</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>editreg</command> is a utility that 
-	can visualize windows registry files (currently only NT4) and apply 
-	so-called commandfiles to them. 
+	<para><command>editreg</command> ist ein Werkzeug, das Windows Registrierungs-Dateien
+	visualisieren kann (derzeit nur NT4), und sogenannte "commandfiles" auf sie anwenden kann.
 	</para>
 </refsect1>
 
@@ -44,20 +43,22 @@
 
 	<variablelist>
 		<varlistentry>
-		<term>registry_file</term>
-		<listitem><para>Registry file to view or edit.  </para></listitem>
+		<term>Registrierungsdatei</term>
+		<listitem><para>Registrierungsdatei, die angesehen oder editiert werden soll.</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>-v,--verbose</term>
-		<listitem><para>Increases verbosity of messages. 
+		<listitem><para>Erhöht die Ausführlichkeit der Programm-Meldungen. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-c commandfile</term>
-		<listitem><para>Read commands to execute on <filename>registry_file</filename> from <filename>commandfile</filename>. Currently not yet supported!
+		<listitem><para>Liest Befehle, die auf die <filename>Registrierungsdatei</filename>
+		angewandt werden sollen, aus der Datei <filename>Befehlsdatei</filename>.
+		Derzeit noch nicht unterstützt!
 		</para></listitem>
 		</varlistentry>
 
@@ -69,19 +70,18 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>This man page is correct for version 3.0 of the Samba 
-	suite.</para>
+	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
 	
-	<para>The original Samba software and related utilities 
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar 
-	to the way the Linux kernel is developed.</para>
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge wurden von
+	Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
+	entwickelt, ähnlich wie der Linux-Kernel.</para>
 	
-	<para>The editreg man page was written by Jelmer Vernooij. </para>
+	<para>Die editreg man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Übersetzung ins Deutsche: Stefan G. Weichinger.</para>
 </refsect1>
 
 </refentry>
