@@ -57,7 +57,7 @@
 <!ENTITY author.jht '<author>&person.jht;</author>'>
 
 <!ENTITY person.gd '
-<firstname>Guenther</firstname><surname>Deschner</surname>
+<firstname>Günther</firstname><surname>Deschner</surname>
 <affiliation>
 	<orgname>SuSE</orgname>
 	<address><email>gd@suse.de</email></address>
@@ -187,7 +187,7 @@
 <!ENTITY author.yoshi '<author>&person.yoshi;</author>'>
 
 <!ENTITY person.rruegner '
-<firstname>Robert</firstname><othername>robowarp</othername><surname>Ruegner</surname>
+<firstname>Robert</firstname><othername>robowarp</othername><surname>Rügner</surname>
 <affiliation>
         <orgname>German Samba-3-Docs-Translation Team</orgname>
         <address><email>robowarp@gmx.de</email></address>
@@ -349,7 +349,7 @@ Client niemals entfernt.
 bei der Namensauflösung benutzt werden und in welcher Reihenfolge 
 Hostnamen auf IP-Adressen aufgelöst werden sollen. Diese Option erwartet 
 einen mit Leerzeichen getrennten String verschiedener 
-Auflösungsoptionen.</para>
+Auflösungsoptionen.</para></listitem>
 
 <para>Verfügbare Optionen sind: "lmhosts", "host", "wins" und "bcast".
 Sie bewirken, dass Namen wie folgt aufgelöst werden:</para>
@@ -401,7 +401,7 @@ oder ohne Eintrag in der Datei
 <citerefentry><refentrytitle>smb.conf</refentrytitle>
 <manvolnum>5</manvolnum></citerefentry> werden die Methoden der
 Namensauflösung in dieser Reihenfolge ausprobiert.</para></listitem>
-</varlistentry>
+</varlistentry>'>
 
 <!ENTITY stdarg.netbios.name '
 <varlistentry>
