@@ -11,117 +11,115 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-There are few subjects in the UNIX world that might raise as much contention as
-Domain Name System (DNS) and Dynamic Host Configuration Protocol (DHCP).
-Not all opinions held for or against particular implementations of DNS and DHCP
-are valid.
+Es gibt wenige Themen in der UNIX-Welt, die zu solchen Auseinandersetzungen 
+führen, wie das Domain Name System (DNS) und das Dynamic Host Configuration Protocol (DHCP).
+Nicht alle Argumente, die für oder gegen einzelne Implementationen von DNS und DHCP
+angeführt werden, sind gültig.
 </para>
 
 <para>
-We live in a modern age where many information technology users demand mobility
-and freedom. Microsoft Windows users in particular expect to be able to plug their
-notebook computer into a network port and have things <quote>just work.</quote>
+Wir leben in einem modernen Zeitalter, in dem viele Anwender von Informations-Technologie
+Mobilität und Freiheit anstreben. Besonders Nutzer von MS Windows erwarten sich, ihr Notebook
+einfach an eine Netzwerk-Buchse anstecken zu können, und <quote>es funktioniert einfach.</quote>
 </para>
 
 <para>
-UNIX administrators have a point. Many of the normative practices in the Microsoft
-Windows world at best border on bad practice from a security perspective.
-Microsoft Windows networking protocols allow workstations to arbitrarily register
-themselves on a network. Windows 2000 Active Directory registers entries in the DNS name space
-that are equally perplexing to UNIX administrators. Welcome to the new world!
+UNIX Administratoren haben ein Argument. 
+Vieles aus der normativen Praxis in der MS Windows Welt grenzt im besten Fall an schlechte
+Gwohnheiten aus der Sicht der Sicherheit. MS Windows Netzwerk-Protokolle erlauben es Workstations,
+sich willkürlich an einem Netzwerk anzumelden. Windows 2000 Active Directory registriert Einträge
+im DNS-Namensraum, die UNIX-Administratoren nur so erstaunen. Willkommen in der neuen Welt!
 </para>
 
 
 <para>
 <indexterm><primary>ISC</primary><secondary>DNS</secondary></indexterm>
 <indexterm><primary>ISC</primary><secondary>DHCP</secondary></indexterm>
-The purpose of this chapter is to demonstrate the configuration of the Internet
-Software Consortium (ISC) DNS and DHCP servers to provide dynamic services that are
-compatible with their equivalents in the Microsoft Windows 2000 Server products.
+Der Zweck dieses Kapitels ist, die Konfiguration von Internet Software Consortium (ISC) DNS
+und DHCP-Servern zu demonstrieren, um dynamische Dienste anzubieten, die kompatibel mit ihren
+Entsprechungen in den Microsoft Windows 2000 Server Produkten sind.
 </para>
 
 <para>
-The purpose of this chapter is to provide no more than a working example of
-configuration files for both DNS and DHCP servers. The examples used match
-configuration examples used elsewhere in this document.
+Der Zweck dieses Kapitels ist nicht mehr, als ein funktionierendes Beispiel für
+Konfigurations-Dateien anzubieten, sowohl für DNS- als auch für DHCP-Server.
+Die verwendeten Beispiele passen zu Konfigurations-Beispielen, die in anderen Bereichen
+dieses Buchs angeführt werden.
 </para>
 
 <para>
-This chapter explicitly does not provide a tutorial, nor does it pretend to be
-a reference guide on DNS and DHCP, as this is well beyond the scope and intent
-of this document as a whole. Anyone who wants more detailed reference materials
-on DNS or DHCP should visit the ISC Web sites at <ulink noescape="1" url="http://www.isc.org">
-http://www.isc.org</ulink>. Those wanting a written text might also be interested
-in the O'Reilly publications on these two subjects.
+Dieses Kapitel stellt ausdrücklich kein Tutorial dar, weiters soll es keine Referenz zu DNS und DHCP
+sein, da dies weit über den Horizont und die Zielsetzung dieses Buchs hinausgeht. Jeder, der
+detailliertere Materialien zu DNS oder DHCP braucht, sollte die ISC-Website auf
+<ulink noescape="1" url="http://www.isc.org">http://www.isc.org</ulink> besuchen. Jene, die eher
+gedruckten Text bevorzugen, könnten Interesse an den O'Reilly-Publikationen zu diesen Themen finden.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Example Configuration</title>
+<title>Beispiels-Konfiguration</title>
 
 <para>
-The domain name system is to the Internet what water is to life. By it nearly all
-information resources (host names) are resolved to their Internet protocol (IP) address.
-Windows networking tried hard to avoid the complexities of DNS, but alas, DNS won.
+Das Domain Name System ist für das Internet, was Wasser für das Leben ist. Durch dieses System
+werden fast alle Informations-Ressourcen (Host-Namen) auf ihre Internet Protokoll (IP) Adressen
+aufgelöst. Windows Netzwerk-Technologie versucht sehr stark, die Komplexitäten von DNS zu
+vermeiden, aber leider hat DNS gewonnen.
 <indexterm><primary>WINS</primary></indexterm>
-The alternative to DNS, the Windows Internet Name Service (WINS) an artifact of
-NetBIOS networking over the TCP/IP protocols, has demonstrated scalability problems as
-well as a flat non-hierarchical name space that became unmanageable as the size and
-complexity of information technology networks grew.
+Die Alternative zu DNS, das Windows Internet Name Service (WINS), ein Artefakt aus der Zeit, in der
+NetBIOS-Netzwerke über TCP/IP-Protokolle betrieben wurden, hat Skalierungs-Probleme ebenso
+aufgezeigt, wie auch einen flachen, nicht-hierarchischen Namensraum, der unverwaltbar wurde, als
+die Größe und Komplexität der Informations-Technologie-Netzwerke wuchs.
 </para>
 
 <para>
-WINS is a Microsoft implementation of the RFC1001/1002 NetBIOS Name Service (NBNS).
-It allows NetBIOS clients (like Microsoft Windows Machines) to register an arbitrary
-machine name that the administrator or user has chosen together with the IP
-address that the machine has been given. Through the use of WINS, network client machines
-could resolve machine names to their IP address.
+WINS ist eine Microsoft Implementation des RFC1001/1002 NetBIOS Name Service (NBNS).
+Es erlaubt NetBIOS-Clients (wie Microsoft Windows Maschinen), einen willkürlichen Maschinen-Namen
+den der Administrator oder Benutzer gewählt hat, gemeinsam mit der
+zugewiesenen IP-Adresse zu registrieren. Durch die Verwendung von WINS können Netzwerk-Client-Maschinen
+Maschinen-Namen auf ihre IP-Adressen auflösen.
 </para>
 
 <para>
-The demand for an alternative to the limitations of NetBIOS networking finally drove
-Microsoft to use DNS and Active Directory. Microsoft's new implementation attempts
-to use DNS in a manner similar to the way that WINS is used for NetBIOS networking.
-Both WINS and Microsoft DNS rely on dynamic name registration.
+Der Bedarf nach einer Alternative zu den Beschränkungen des NetBIOS-Netzwerks führte Microsoft
+schließlich dazu, DNS und Active Directory zu verwenden. Die neue Implementation von MS versucht,
+DNS in einer ähnlichen Weise zu verwenden, wie WINS für NetBIOS verwendet wird. Sowohl WINS wie
+auch Microsoft DNS basieren auf dynamischem Registrieren von Namen.
 </para> 
 
 <para>
-Microsoft Windows clients can perform dynamic name registration to the DNS server
-on start-up. Alternately, where DHCP is used to assign workstation IP addresses,
-it is possible to register host names and their IP address by the DHCP server as
-soon as a client acknowledges an IP address lease. Lastly, Microsoft DNS can resolve
-hostnames via Microsoft WINS.
+MS Windows Clients können beim Start dynamische Namens-Registrierung am DNS-Server durchführen.
+Alternativ ist es dort, wo DHCP zur Zuweisung der IP-Adressen verwendet wird, möglich, Hostnamen und
+deren IP-Adressen mittels DHCP-Server zu registrieren, sobald der Client ein sogenanntes IP-Lease
+akzeptiert. Zuletzt kann MS DNS Hostnamen via MS WINS auflösen.
 </para>
 
 <para>
-The following configurations demonstrate a simple insecure Dynamic DNS server and
-a simple DHCP server that matches the DNS configuration.
+Die folgenden Konfigurationen demonstrieren einen einfachen Dynamic DNS Server und einen einfachen
+DHCP-Server, passend zur DNS-Konfiguration.
 </para>
 
 	<sect2>
-	<title>Dynamic DNS</title>
+	<title>Dynamisches DNS</title>
 
 	<para>
 	<indexterm><primary>DNS</primary><secondary>Dynamic</secondary></indexterm>
-	The example DNS configuration is for a private network in the IP address
-	space for network 192.168.1.0/24. The private class network address space
-	is set forth in RFC1918.
+	Die Beispiels-DNS-Konfiguration ist für ein privates Netzwerk im IP-Adressraum
+	192.168.1.0/24. Der "private class" Netzwerk-Adress-Raum ist in der RFC1918 festgelegt.
 	</para>
 
 
 	<para>
 	<indexterm><primary>BIND</primary></indexterm>
-	It is assumed that this network will be situated behind a secure firewall.
-	The files that follow work with ISC BIND version 9. BIND is the Berkeley
-	Internet Name Daemon. The following configuration files are offered:
+	Es wird angenommen, daß dieses Netzwerk hinter einer sicheren Firewall liegen wird.
+	Die folgenden Dateien arbeiten mit ISC BIND version 9. BIND ist der Berkeley
+        Internet Name Daemon. Die folgenden Konfigurations-Dateien werden angeboten:
 	</para>
 
 	<para>
-	The master configuration file for <filename>/etc/named.conf</filename>
-	determines the location of all further configuration files used.
-	The location and name of this file is specified in the start-up script
-	that is part of the operating system.
+	Die Haupt-Konfigurations-Datei <filename>/etc/named.conf</filename> bestimmt
+	die Lage aller weiteren Konfigurations-Dateien. Die Lage und der Namen dieser Datei
+	wird im Start-Skript des Betriebssystems festgelegt.
 	<smbfile name="named.conf">
 <programlisting>
 # Quenya.Org configuration file
@@ -201,8 +199,8 @@ zone "1.168.192.in-addr.arpa" {
 	</para>
 
 	<para>
-	The following files are all located in the directory <filename>/var/named</filename>.
-	This is the <filename>/var/named/localhost.zone</filename> file:
+	Die folgenden Dateien liegen alle im Verzeichnis <filename>/var/named</filename>.
+	Dies ist die Datei <filename>/var/named/localhost.zone</filename>:	
 	<smbfile name="localhost.zone">
 <programlisting>
 $TTL 1W
@@ -220,7 +218,7 @@ $TTL 1W
 	</para>
 
 	<para>
-	The <filename>/var/named/127.0.0.zone</filename> file:
+	Die Datei <filename>/var/named/127.0.0.zone</filename>:
 	<smbfile name="127.0.0.0.zone">
 <programlisting>
 $TTL 1W
@@ -238,7 +236,7 @@ $TTL 1W
 	</para>
 
 	<para>
-		The <filename>/var/named/quenya.org.host</filename> file:
+		Die Datei <filename>/var/named/quenya.org.host</filename>:
 			<smbfile name="quenya.org.host">
 <programlisting>
 $ORIGIN .
@@ -263,7 +261,7 @@ www                     CNAME   marvel
 </para>
 
 <para>
-	The <filename>/var/named/192.168.1.0.rev</filename> file:
+	Die Datei <filename>/var/named/192.168.1.0.rev</filename>:
 	<smbfile name="192.168.1.0.rev">
 <programlisting>
 $ORIGIN .
@@ -284,21 +282,21 @@ $ORIGIN 1.168.192.in-addr.arpa.
 	</para>
 
 	<para>
-	The above were copied from a fully working system. All dynamically registered
-	entries have been removed. In addition to these files, BIND version 9 will
-	create for each of the dynamic registration files a file that has a 
-	<filename>.jnl</filename> extension. Do not edit or tamper with the configuration
-	files or with the <filename>.jnl</filename> files that are created.
+	Obige Dateien wurde von einem vollständig funktionierenden System kopiert.
+	Alle dynamisch registrierten Einträge wurden entfernt. Zusätzlich zu diesen Dateien
+	wird BIND version 9 für jede der dynamischen Registrations-Dateien eine Datei anlegen,
+	die die Endung <filename>.jnl</filename> hat. Machen Sie sich nicht an diesen Dateien
+	zu schaffen, auch nicht an den <filename>.jnl</filename>-Dateien!
 	</para>
 
 	</sect2>
 
 	<sect2 id="DHCP">
-	<title>DHCP Server</title>
+	<title>DHCP-Server</title>
 
 	<para>
-	The following file is used with the ISC DHCP Server version 3.
-	The file is located in <filename>/etc/dhcpd.conf</filename>:
+	Folgende Datei wir mit dem ISC DHCP Server version 3 verwendet.
+	Die Datei liegt in <filename>/etc/dhcpd.conf</filename>:
 	</para>
 
 	<para>
@@ -329,9 +327,10 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
 	</para>
 
 	<para>
-	In the above example, IP addresses between 192.168.1.1 and 192.168.1.59 are
-	reserved for fixed address (commonly called <constant>hard-wired</constant>) IP addresses. The
-	addresses between 192.168.1.60 and 192.168.1.254 are allocated for dynamic use.
+	Im obigen Beispiel werden IP-Adressen zwischen 192.168.1.1 und 192.168.1.59 für
+	fixe (üblicherweise als <constant>hard-wired</constant> bezeichnet) IP-Adressen reserviert.
+	Die Adressen zwischen 192.168.1.60 und 192.168.1.254 werden für dynamische Verwendung
+	belegt.
 	</para>
 
 	</sect2>
