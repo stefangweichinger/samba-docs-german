@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>mount.cifs</refname>
-	<refpurpose>mount using the Common Internet File System (CIFS)</refpurpose>
+	<refpurpose>mount unter Verwendung des Common Internet File System (CIFS)</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,51 +21,50 @@
 
 		<command>mount.cifs</command>
 		<arg choice="req">service</arg>	
-		<arg choice="req">mount-point</arg>	
-		<arg choice="opt">-o options</arg>	
+		<arg choice="req">mount-Punkt</arg>	
+		<arg choice="opt">-o Optionen</arg>	
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>mount.cifs mounts a Linux CIFS filesystem. It
-is usually invoked indirectly by
-the <citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry> command when using the 
-"-t cifs" option. This command only works in Linux, and the kernel must
-support the cifs filesystem. The CIFS protocol is the successor to the 
-SMB protocol and is supported by most Windows servers and many other
-commercial servers and Network Attached Storage appliances as well as 
-by the popular Open Source server Samba.
+	<para>mount.cifs bindet ein Linux CIFS Dateisystem ein. Es wird üblicherweise indirekt
+	aufgerufen, mittels des Befehls
+	<citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry>
+	und der Option "-t cifs". Dieser Befehl funktioniert nur unter Linux, und der Kernel muß
+	das CIFS-Dateisystem unterstützen. Das CIFS-Protokoll ist der Nachfolger des SMB-Protokolls
+	und wird von den meisten Windows-Servern unterstützt, von vielen anderen kommerziellen Servern
+	und NAS-Einrichtungen ebenso wie von dem populären Open-Source-Server Samba.
 	</para>
 
 	<para>
-	The mount.cifs utility attaches the UNC name (exported network resource) to
-	the local directory <emphasis>mount-point</emphasis>. It is possible to set the mode for mount.cifs to 
-setuid root to allow non-root users to mount shares to directories for which they
-have write permission.
+	Das Werkzeug mount.cifs hängt den UNC-Namen (exportierte Netzwerk-Ressource) an das
+	lokale Verzeichnis <emphasis>mount-Punkt</emphasis> an. Es ist möglich, den Modus für
+	mount.cifs auf setuid root zu setzen, um nicht-root-Benutzern zu erlauben, Verzeichnisse
+	einzubinden, zu denen sie Schreibberechtigungen besitzen.
 	</para>
 
 	<para>
-		Options to <emphasis>mount.cifs</emphasis> are specified as a comma-separated
-list of key=value pairs. It is possible to send options other
-than those listed here, assuming that cifs filesystem supports them.   
-Unrecognized cifs mount options passed to the cifs vfs kernel code will be logged to the
-kernel log.
-
+	Optionen für <emphasis>mount.cifs</emphasis> werden als eine List von durch Kommas getrennten 
+	Schlüssel=Wert Paaren angegeben. Es ist möglich, andere Optionen als die hier angegebenen
+	zu senden, unter der Annahme, daß das CIFS-Dateisystem sie unterstützt.
+	Nicht erkannte CIFS-mount-Optionen, die dem CIFS-VFS-Kernel-Code übergeben werden, werden
+	im Kernel-Log protokolliert.
 	</para>
 
-	<para><emphasis>mount.cifs</emphasis> causes the cifs vfs to launch a thread named cifsd. After mounting it keeps running until
-		the mounted resource is unmounted (usually via the umount utility).
+	<para><emphasis>mount.cifs</emphasis> veranlaßt das CIFS-VFS dazu, einen Thread namens cifsd
+	zu starten. Nach dem Einbinden/mounten läuft dieser weiter, bis die Einbindung der Ressource
+	wieder gelöst wird (üblicherweise mittels umount).
 	</para>
 
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 	<variablelist>
 		<varlistentry><term>user=<replaceable>arg</replaceable></term>
 
