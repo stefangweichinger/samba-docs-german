@@ -27,7 +27,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>tdbdump</command> ist ein sehr einfaches Werkzeug, das

@@ -34,7 +34,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para>Dank <command>smbsh</command> können Sie mit UNIX-Befehlen 
@@ -129,16 +129,16 @@
 <refsect1>
 	<title>FEHLER</title>
 	
-	<para><command>smbsh</command> works by intercepting the standard 
-	libc calls with the dynamically loaded versions in <filename>
-	smbwrapper.o</filename>. Not all calls have been "wrapped", so 
-	some programs may not function correctly under <command>smbsh
-	</command>.</para>
+	<para><command>smbsh</command> funktioniert so, dass es die 
+	Standardaufrufe zu libc abfängt und auf die dynamisch geladenen 
+	Versionen in <filename>smbwrapper.o</filename> umlenkt. Nicht alle 
+	Aufrufe wurden aber "umhüllt", d.h. einige Programme funktionieren 
+	unter <command>smbsh</command> evtl. nicht korrekt.</para>
 
-	<para>Programs which are not dynamically linked cannot make 
-	use of <command>smbsh</command>'s functionality. Most versions 
-	of UNIX have a <command>file</command> command that will 
-	describe how a program was linked.</para>
+	<para>Programme, die nicht dynamisch gelinkt sind, können diese 
+	Funktionalität von <command>smbsh</command> nicht benutzen. Die meisten
+	UNIX-Versionen verfügen über einen <command>file</command>-Befehl, der
+	beschreibt, wie ein Programm gelinkt wurde.</para>
 </refsect1>
 
 

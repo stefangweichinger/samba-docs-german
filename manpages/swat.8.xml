@@ -28,7 +28,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>swat</command> ermöglicht einem Samba-Administrator, die 
@@ -153,7 +153,7 @@
 	<para>Beachten Sie, dass Sie sich mit SWAT von einem beliebigen, über
 	IP verbundenen Rechner verbinden können, aber eine offene Verbindung 
 	von einem entfernten Rechner aus ist anfällig für Passwortschnüffeleien, 
-	da die Passworte im Klartext über die Leitung gehen.</para>
+	da die Passwörter im Klartext über die Leitung gehen.</para>
 </refsect1>
 
 <refsect1>

@@ -34,7 +34,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>testparm</command> ist ein sehr einfaches Testprogramm 
@@ -46,11 +46,11 @@
 
 	<para>Beachten Sie, dass dies <emphasis>KEINE</emphasis> Garantie 
 	dafür ist, dass die in der Konfigurationsdatei angegebenen Dienste
-	verfügbar sind oder wie erwartet funktionieren.</para>
+	verfügbar sind oder erwartungsgemäß funktionieren.</para>
 
 	<para>Falls der optionale Hostname und die Host-IP-Adresse auf der 
 	Kommandozeile angegeben werden, geht dieses Testprogramm durch die 
-	Diensteeinträge durch und gibt für jeden an, ob der angegebene Host 
+	Diensteinträge durch und gibt für jeden an, ob der angegebene Host 
 	Zugriff auf den Dienst hat.</para>
 
 	<para>Falls <command>testparm</command> einen Fehler in der Datei
@@ -67,7 +67,7 @@
 		<varlistentry>
 		<term>-s</term>
 		<listitem><para>Ohne diese Option verlangt 
-		<command>testparm</command> die Eingabe einen Wagenrücklaufs 
+		<command>testparm</command> die Eingabe eines Wagenrücklaufs 
 		nach der Ausgabe der Dienstenamen und vor der Ausgabe der
 		Dienstedefinitionen.</para></listitem>
 		</varlistentry>
@@ -154,7 +154,7 @@
 <refsect1>
 	<title>DIAGNOSEMELDUNGEN</title>
 
-	<para>Das Programm gibt eine Meldung aus, die angibt, ob die geladene
+	<para>Das Programm gibt eine Meldung aus, die besagt, ob die geladene
 	Konfigurationsdatei OK ist oder nicht. Dieser Meldung gehen eventuell 
 	Fehler und Warnungen voraus, falls die Datei nicht geladen werden konnte.
 	Wenn sie richtig geladen werden konnte, gibt das Programm alle bekannten 

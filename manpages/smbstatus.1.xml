@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbstatus</refname>
-	<refpurpose>gibt Info zu aktuellen Samba-Verbindungen aus</refpurpose>
+	<refpurpose>gibt Information zu aktuellen Samba-Verbindungen aus</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -36,7 +36,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbstatus</command> ist ein sehr einfaches Programm

@@ -32,7 +32,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para>smbspool ist ein sehr kleines Drucker-Spooling-Programm, das 
@@ -108,7 +108,7 @@
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> und <citerefentry><refentrytitle>samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>.</para>
 </refsect1>
 

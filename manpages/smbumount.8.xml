@@ -26,9 +26,9 @@
 <refsect1>
 	<title>BESCHREIBUNG</title>
 
-	<para>Mmit diesem Programm können normale Benutzer smb-Dateisysteme
+	<para>Mit diesem Programm können normale Benutzer smb-Dateisysteme
 	unmounten, vorausgesetzt, es ist suid root. <command>smbumount</command>
-	wurde geschrieben, damit normale Linux-Benutzer mehr Einfluss auf über 
+	wurde geschrieben, damit normale Linux-Benutzer mehr Einfluss auf 
 	ihre Ressourcen haben. Es ist sicher, dieses Programm als suid root
 	zu installieren, weil nur der Benutzer, der ein Dateisystem gemountet
 	hat, es auch wieder unmounten darf. Für root ist es nicht notwendig, 

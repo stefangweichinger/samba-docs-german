@@ -42,7 +42,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbtar</command> ist ein sehr kleines Shell-Skript,
@@ -126,7 +126,7 @@
 		<term>-b Blockgröße</term>
 		<listitem><para>Blockfaktor. Vorgabewert ist 20. Siehe
 		<command>tar(1)</command> für eine vollständigere 
-		Erklärung</para></listitem>
+		Erklärung.</para></listitem>
 		</varlistentry>
 
 

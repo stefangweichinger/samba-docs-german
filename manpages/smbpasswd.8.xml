@@ -63,7 +63,7 @@
 	Damit das funktionieren kann muss als Konsequenz der smbd-Daemon auf
 	dem lokalen Rechner laufen. Auf einem UNIX-Rechner werden die 
 	verschlüsselten SMB-Passwörter normalerweise in der Datei
-	the <citerefentry><refentrytitle>smbpasswd</refentrytitle>
+	<citerefentry><refentrytitle>smbpasswd</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry> gespeichert.</para>
 
 	<para>Wenn es von einem gewöhnlichen Benutzer ohne Optionen ausgeführt 
