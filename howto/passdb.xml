@@ -886,41 +886,40 @@ objectclass (1.3.6.1.4.1.7165.2.2.6 NAME 'sambaSamAccount' SUP top AUXILIARY
 			</para>
 
 			<para>
-			Genauso wie die Datei smbpasswd			
-
-
-Just as the smbpasswd file is meant to store information that provides information additional to  a
-			user's <filename>/etc/passwd</filename> entry, so is the sambaSamAccount object
-			meant to supplement the UNIX user account information. A sambaSamAccount is a
-			<constant>AUXILIARY</constant> objectclass so it can be used to augment existing
-			user account information in the LDAP directory, thus providing information needed
-			for Samba account handling. However, there are several fields (e.g., uid) that overlap
-			with the posixAccount objectclass outlined in RFC2307. This is by design.
+			Genauso wie die Datei smbpasswd	zum Speichern von Informationen gedacht ist, die über
+			die in der Datei <filename>/etc/passwd</filename> gespeicherten Information hinausgeht,
+			ist das Objekt sambaSamAccount zur Ergänzung der UNIX-Benutzerkonten-Information
+			gedacht. Ein sambaSamAccount ist eine <constant>AUXILIARY</constant> Objektklasse,
+			so daß sie zur Erweiterung existierender Benutzer-Konten-Information im LDAP-Verzeichnis
+			verwendet werden kann. Es gibt jedoch einige Felder (z.B., uid), die mit der
+			posixAccount-Objektklasse überlappen, die in RFC2307 beschrieben wird. Dies ist vom
+			Design her so vorgesehen.
 			</para>
 
 			<!--olem: we should perhaps have a note about shadowAccounts too as many
 			systems use them, isn'it ? -->
 
 			<para>
-			In order to store all user account information (UNIX and Samba) in the directory,
-			it is necessary to use the sambaSamAccount and posixAccount objectclasses in
-			combination. However, smbd will still obtain the user's UNIX account
-			information via the standard C library calls (e.g., getpwnam(), et al).
-			This means that the Samba server must also have the LDAP NSS library installed
-			and functioning correctly. This division of information makes it possible to
-			store all Samba account information in LDAP, but still maintain UNIX account
-			information in NIS while the network is transitioning to a full LDAP infrastructure.
+			Um die gesamte Benutzer-Konten-Information (UNIX und Samba) in dem Verzeichnis speichern
+			zu können, ist es notwendig, die beiden Objektklassen sambaSamAccount und posixAccount
+			in Kombination zu verwenden. Jedoch wird smbd die Benutzer-Konten-Information nach wie 
+			vor über die Standard-C-Bibliotheksaufrufe beziehen (z.B., getpwnam(), und andere).
+			Das bedeutet, daß der Samba-Server auch die LDAP NSS Bibliothek installiert haben muss,
+			und diese korrekt funktionieren muss. Diese Trennung von Information macht es möglich,
+			alle Samba-Information in LDAP zu speichern, aber weiterhin die UNIX-Konten-Information
+			in NIS zu verwalten, während das Netzwerk in eine vollständige LDAP-Infrastruktur
+			übergeführt wird.
 			</para>
 		</sect3>
 
 		<sect3>
-		<title>OpenLDAP Configuration</title>
+		<title>OpenLDAP Konfiguration</title>
 
 			<para>
-			To include support for the sambaSamAccount object in an OpenLDAP directory
-			server, first copy the samba.schema file to slapd's configuration directory.
-			The samba.schema file can be found in the directory <filename>examples/LDAP</filename>
-			in the Samba source distribution.
+			Um Unterstützung für das Objekt sambaSamAccount in einem OpenLDAP-Verzeichnis zu
+			inkludieren, kopieren Sie als erstes die Datei samba.schema in das
+			Konfigurationsverzeichnis von slapd. Die Datei samba.schema kann im Verzeichnis
+			<filename>examples/LDAP</filename> in der Samba Quelldistribution gefunden werden.
 			</para>
 
 <para>
@@ -930,13 +929,14 @@ Just as the smbpasswd file is meant to store information that provides informati
 </para>
 
 			<para>
-			Next, include the <filename>samba.schema</filename> file in <filename>slapd.conf</filename>.
-			The sambaSamAccount object contains two attributes that depend on other schema
-			files. The <parameter>uid</parameter> attribute is defined in <filename>cosine.schema</filename> and
-			the <parameter>displayName</parameter> attribute is defined in the <filename>inetorgperson.schema</filename>
-			file. Both of these must be included before the <filename>samba.schema</filename> file.
-			</para>
-
+			Als nächstes schliessen Sie die Datei <filename>samba.schema</filename> 
+			in <filename>slapd.conf</filename> ein.
+			Das Objekt sambaSamAccount enthält zwei Attribute, die auf anderen Schema-Dateien
+			basieren. Das Attribut <parameter>uid</parameter> wird in 
+			<filename>cosine.schema</filename> definiert, und das Attribut
+			<parameter>displayName</parameter> in der Datei 
+			<filename>inetorgperson.schema</filename>.
+			Beide müssen vor der Datei <filename>samba.schema</filename> inkludiert werden.
 <para>
 <programlisting>
 ## /etc/openldap/slapd.conf
@@ -954,26 +954,27 @@ include            /etc/openldap/schema/samba.schema
 </para>
 
 		<para>
-		It is recommended that you maintain some indices on some of the most useful attributes,
-		as in the following example, to speed up searches made on sambaSamAccount objectclasses
-		(and possibly posixAccount and posixGroup as well):
+		Es wird empfohlen, daß Sie einige Indizes von den wichtigsten Attributen pflegen, um
+		Suchen nach sambaSamAccount-Objektklassen zu beschleunigen (und eventuell auch
+		posixAccount und posixGroup). Zum Beispiel:
 		</para>
 
 <para>
 <programlisting>
-# Indices to maintain
-## required by OpenLDAP
+## Zu pflegende Indices 
+## von LDAP benötigt
 index objectclass             eq
 
 index cn                      pres,sub,eq
 index sn                      pres,sub,eq
-## required to support pdb_getsampwnam
+## zur Unterstützung von pdb_getsampwnam
 index uid                     pres,sub,eq
-## required to support pdb_getsambapwrid()
+## zur Unterstützung von pdb_getsambapwrid()
 index displayName             pres,sub,eq
 
-## uncomment these if you are storing posixAccount and
-## posixGroup entries in the directory as well
+## entfernen Sie hier die Kommentarzeichen, 
+## wenn Sie auch posixAccount und
+## posixGroup Einträge im Verzeichnis verwalten
 ##index uidNumber               eq
 ##index gidNumber               eq
 ##index memberUid               eq
@@ -986,7 +987,7 @@ index   default               sub
 </para>
 
 		<para>
-		Create the new index by executing:
+		Legen Sie den neuen Index an, indem Sie dies ausführen:
 		</para>
 
 <para>
@@ -996,7 +997,7 @@ index   default               sub
 </para>
 
 		<para>
-		Remember to restart slapd after making these changes:
+		Vergessen Sie nicht, slapd nach diesen Änderungen neu zu starten:
 		</para>
 
 <para>
@@ -1008,37 +1009,37 @@ index   default               sub
 		</sect3>
 
 		<sect3>
-		<title>Initialize the LDAP Database</title>
+		<title>Das Initialisieren der LDAP-Datenbank</title>
 
 		<para>
-		Before you can add accounts to the LDAP database you must create the account containers
-		that they will be stored in. The following LDIF file should be modified to match your
-		needs (DNS entries, and so on):
+		Bevor Sie Konten der LDAP-Datenbank hinzufügen können, müssen Sie die Konten-Container
+		anlegen, in denen diese gespeichert werden sollen. Die folgende LDIF-Datei sollte auf
+		Ihren Bedarf hin editiert werden (DNS-Einträge, usw.):
 		</para>
 		
 <para>
 <programlisting>
-# Organization for Samba Base
+# Organisation fuer Samba-Basis
 dn: dc=quenya,dc=org
 objectclass: dcObject
 objectclass: organization
 dc: quenya
-o: Quenya Org Network
-description: The Samba-3 Network LDAP Example
+o: Quenya Org Netzwerk
+description: Das Samba-3 Netzwerk LDAP Beispiel 
 
-# Organizational Role for Directory Management
+# Organisatorische Rolle fuer Verzeichnisverwaltung
 dn: cn=Manager,dc=quenya,dc=org
 objectclass: organizationalRole
 cn: Manager
-description: Directory Manager
+description: Verzeichnis Manager
 
-# Setting up container for users
+# Einrichten des Benutzer-Containers
 dn: ou=People,dc=quenya,dc=org
 objectclass: top
 objectclass: organizationalUnit
 ou: People
 
-# Setting up admin handle for People OU
+# Einrichten des Administrators fuer die People OU
 dn: cn=admin,ou=People,dc=quenya,dc=org
 cn: admin
 objectclass: top
@@ -1046,13 +1047,13 @@ objectclass: organizationalRole
 objectclass: simpleSecurityObject
 userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 
-# Setting up container for groups
+# Einrichten des Gruppen-Containers
 dn: ou=Groups,dc=quenya,dc=org
 objectclass: top
 objectclass: organizationalUnit
 ou: Groups
 
-# Setting up admin handle for Groups OU
+# Einrichten des Administrators fuer die Gruppen OU
 dn: cn=admin,ou=Groups,dc=quenya,dc=org
 cn: admin
 objectclass: top
@@ -1060,13 +1061,13 @@ objectclass: organizationalRole
 objectclass: simpleSecurityObject
 userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 
-# Setting up container for computers
+# Einrichten des Computer-Containers
 dn: ou=Computers,dc=quenya,dc=org
 objectclass: top
 objectclass: organizationalUnit
 ou: Computers
 
-# Setting up admin handle for Computers OU
+# Einrichten des Administrators fuer die Computer OU
 dn: cn=admin,ou=Computers,dc=quenya,dc=org
 cn: admin
 objectclass: top
@@ -1077,12 +1078,12 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 </para>
 
 		<para>
-		The userPassword shown above should be generated using <command>slappasswd</command>.
+		Das obig gezeigte userPassword sollte mittels <command>slappasswd</command>
+		generiert werden.
 		</para>
 
 		<para>
-		The following command will then load the contents of the LDIF file into the LDAP
-		database.
+		Der folgende Befehl lädt dann den Inhalt der LDIF-Datei in die LDAP-Datenbank.
 		</para>
 
 <para>
@@ -1092,14 +1093,14 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 </para>
 
 		<para>
-		Do not forget to secure your LDAP server with an adequate access control list
-		as well as an admin password.
+		Vergessen Sie nicht, Ihren LDAP-Server mit einer adäquaten ACL zu versehen, wie auch mit einem
+		Administrator-Passwort.	
 		</para>
 
 		<note>
 		<para>
-		Before Samba can access the LDAP server you need to store the LDAP admin password
-		into the Samba-3 <filename>secrets.tdb</filename> database by:
+		Bevor Samba auf den LDAP-Server zugreifen kann, müssen Sie das LDAP-Administrator-Passwort
+		in die Samba-3-Datenbank <filename>secrets.tdb</filename> speichern:		
 <screen>
 &rootprompt;<userinput>smbpasswd -w <replaceable>secret</replaceable></userinput>
 </screen>
@@ -1109,15 +1110,15 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 		</sect3>
 
 		<sect3>
-		<title>Configuring Samba</title>
+		<title>Die Konfiguration von Samba</title>
 
 			<para>
-			The following parameters are available in smb.conf only if your
-			version of Samba was built with LDAP support. Samba automatically builds with LDAP support if the
-			LDAP libraries are found.
+			Folgende Parameter sind nur dann in smb.conf verfügbar, wenn Ihre Version von Samba
+			mit LDAP-Unterstützung kompiliert wurde. Samba wird automatisch so konfiguriert, wenn
+			die LDAP-Bibliotheken vorgefunden werden. 
 			</para>
 
-			<para>LDAP related smb.conf options:
+			<para>LDAP-bezogene smb.conf Optionen:
 			<smbconfoption><name>passdb backend</name><value>ldapsam:url</value></smbconfoption>,
 			<smbconfoption><name>ldap admin dn</name></smbconfoption>,
 			<smbconfoption><name>ldap delete dn</name></smbconfoption>,
@@ -1132,41 +1133,42 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 		</para>
 
 			<para>
-			These are described in the &smb.conf; man
-			page and so will not be repeated here. However, a <link linkend="confldapex">sample &smb.conf; file</link> for
-			use with an LDAP directory could appear as shown below.
+			Diese Parameter werden in der manpage zu &smb.conf; beschrieben, dies wird hier nicht 
+			wiederholt. Hier jedoch eine
+			<link linkend="confldapex">Beispielsdatei &smb.conf;</link> für die Verwendung mit einem
+			LDAP-Verzeichnis.
 			</para>
 
 <para>
 <smbconfexample id="confldapex">
-<title>Configuration with LDAP</title>
+<title>Konfiguration mit LDAP</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>security</name><value>user</value></smbconfoption>
 <smbconfoption><name>encrypt passwords</name><value>yes</value></smbconfoption>
 <smbconfoption><name>netbios name</name><value>MORIA</value></smbconfoption>
 <smbconfoption><name>workgroup</name><value>NOLDOR</value></smbconfoption>
 
-<smbconfcomment>ldap related parameters</smbconfcomment>
+<smbconfcomment>ldap-bezogene Parameter</smbconfcomment>
 
-<smbconfcomment>define the DN to use when binding to the directory servers</smbconfcomment>
-<smbconfcomment>The password for this DN is not stored in smb.conf. Rather it</smbconfcomment>
-<smbconfcomment>must be set by using 'smbpasswd -w <replaceable>secretpw</replaceable>' to store the</smbconfcomment>
-<smbconfcomment>passphrase in the secrets.tdb file. If the "ldap admin dn" values</smbconfcomment>
-<smbconfcomment>change, this password will need to be reset.</smbconfcomment>
+<smbconfcomment>Definieren der DN, mit der die Verbindung zu den Verzeichnis-Servern hergestellt wird</smbconfcomment>
+<smbconfcomment>Das Passwort für diese DN wird nicht in smb.conf gespeichert. Es muß mittels</smbconfcomment>
+<smbconfcomment>'smbpasswd -w <replaceable>secretpw</replaceable>'</smbconfcomment>
+<smbconfcomment>in der Datei secrets.tdb gespeichert werden. Wenn sich der Wert "ldap admin dn" ändert,</smbconfcomment>
+<smbconfcomment>muß dieses Passwort zurückgesetzt werden.</smbconfcomment>
 <smbconfoption><name>ldap admin dn</name><value>"cn=Manager,dc=quenya,dc=org"</value></smbconfoption>
 
-<smbconfcomment>Define the SSL option when connecting to the directory</smbconfcomment>
+<smbconfcomment>Definieren der SSL-Option beim Verbinden zum Verzeichnis</smbconfcomment>
 <smbconfcomment>('off', 'start tls', or 'on' (default))</smbconfcomment>
 <smbconfoption><name>ldap ssl</name><value>start tls</value></smbconfoption>
 
 <smbconfcomment>syntax: passdb backend = ldapsam:ldap://server-name[:port]</smbconfcomment>
 <smbconfoption><name>passdb backend</name><value>ldapsam:ldap://frodo.quenya.org</value></smbconfoption>
 
-<smbconfcomment>smbpasswd -x delete the entire dn-entry</smbconfcomment>
+<smbconfcomment>smbpasswd -x löscht den ganzen dn-Eintrag</smbconfcomment>
 <smbconfoption><name>ldap delete dn</name><value>no</value></smbconfoption>
 
-<smbconfcomment>the machine and user suffix added to the base suffix</smbconfcomment>
-<smbconfcomment>wrote WITHOUT quotes. NULL suffixes by default</smbconfcomment>
+<smbconfcomment>Maschinen- und Benutzer-Suffix, die an den Basis-Suffix angehängt werden.</smbconfcomment>
+<smbconfcomment>Schreibweise OHNE Anführungszeichen. NULL suffixes als Standard</smbconfcomment>
 <smbconfoption><name>ldap user suffix</name><value>ou=People</value></smbconfoption>
 <smbconfoption><name>ldap group suffix</name><value>ou=Groups</value></smbconfoption>
 <smbconfoption><name>ldap machine suffix</name><value>ou=Computers</value></smbconfoption>
@@ -1174,10 +1176,10 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 <smbconfcomment>Trust UNIX account information in LDAP</smbconfcomment>
 <smbconfcomment> (see the smb.conf man page for details)</smbconfcomment>
 
-<smbconfcomment> specify the base DN to use when searching the directory</smbconfcomment>
+<smbconfcomment>Angabe der Base-DN, die beim Durchsuchen des Verzeichnisses verwendet wird</smbconfcomment>
 <smbconfoption><name>ldap suffix</name><value>dc=quenya,dc=org</value></smbconfoption>
 
-<smbconfcomment> generally the default ldap search filter is ok</smbconfcomment>
+<smbconfcomment>Im Allgemeinen ist der Standard-LDAP-Suchfilter OK</smbconfcomment>
 <smbconfoption><name>ldap filter</name><value>(&amp;(uid=%u)(objectclass=sambaSamAccount))</value></smbconfoption>
 </smbconfexample>
 </para>
@@ -1185,58 +1187,59 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 		</sect3>
 
 		<sect3>
-		<title>Accounts and Groups Management</title>
+		<title>Das Management von Benutzern und Gruppen</title>
 
 			<para>
-<indexterm><primary>User Management</primary></indexterm>
-<indexterm><primary>User Accounts</primary><secondary>Adding/Deleting</secondary></indexterm>
-
-			As user accounts are managed through the sambaSamAccount objectclass, you should
-			modify your existing administration tools to deal with sambaSamAccount attributes.
+<indexterm><primary>Benutzerverwaltung</primary></indexterm>
+<indexterm><primary>Benutzerkonten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
+			Da Benutzerkonten mittels der sambaSamAccount Objektklasse verwaltet werden, sollten
+			Sie Ihre bereits existierenden Administrationswerkzeuge so modifizieren, daß sie mit
+			sambaSamAccount-Attributen umgehen können.
 			</para>
 
 			<para>
-			Machine accounts are managed with the sambaSamAccount objectclass, just
-			like users accounts. However, it is up to you to store those accounts
-			in a different tree of your LDAP namespace. You should use
-			<quote>ou=Groups,dc=quenya,dc=org</quote> to store groups and
-			<quote>ou=People,dc=quenya,dc=org</quote> to store users. Just configure your
-			NSS and PAM accordingly (usually, in the <filename>/etc/openldap/sldap.conf</filename>
-			configuration file).
+			Maschinenkonten werden mittels der sambaSamAccount Objektklasse verwaltet, genauso
+			wie Benutzerkonten. Es ist jedoch Ihnen überlassen, diese Konten in einem anderen
+			Zweig Ihres LDAP-Namensraums zu speichern. Sie sollten
+			<quote>ou=Groups,dc=quenya,dc=org</quote> zum Speichern von Gruppen und
+			<quote>ou=People,dc=quenya,dc=org</quote> zum Speichern von Benutzern verwenden.
+			Konfigurieren Sie nur Ihr NSS und PAM dementsprechend (üblicherweise in der Datei
+			<filename>/etc/openldap/sldap.conf</filename>).
 			</para>
 
 			<para>
-			In Samba-3, the group management system is based on POSIX
-			groups. This means that Samba makes use of the posixGroup objectclass.
-			For now, there is no NT-like group system management (global and local
-			groups). Samba-3 knows only about <constant>Domain Groups</constant>
-			and, unlike MS Windows 2000 and Active Directory, Samba-3 does not
-			support nested groups.
+			In Samba-3 basiert die Gruppenverwaltung auf den POSIX-Gruppen. Das bedeutet, daß
+			Samba Verwendung von der posixGroup Objektklasse macht. Derzeit gibt es keine
+			NT-artige Gruppenverwaltung (globale und lokale Gruppen). Samba-3 kennt nur
+			<constant>Domänen-Gruppen</constant>, und, im Unterschied zu MS Windows 2000 und
+			Active Directory, unterstützt keine verschachtelten Gruppen.
 			</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Security and sambaSamAccount</title>
+		<title>Sicherheit und sambaSamAccount</title>
 
 
 			<para>
-			There are two important points to remember when discussing the security
-			of sambaSamAccount entries in the directory.
+			Es gibt zwei wichtige Punkte, an die man sich erinnern sollte, wenn man die
+			Sicherheit von sambaSamAccount-Einträgen im Verzeichnis diskutiert.
 			</para>
 
 			<itemizedlist>
-				<listitem><para><emphasis>Never</emphasis> retrieve the lmPassword or
-				ntPassword attribute values over an unencrypted LDAP session.</para></listitem>
-				<listitem><para><emphasis>Never</emphasis> allow non-admin users to
-				view the lmPassword or ntPassword attribute values.</para></listitem>
+				<listitem><para>Beziehen Sie <emphasis>niemals</emphasis> den Wert von 
+				lmPassword oder ntPassword Attributen über eine unverschlüsselte
+				LDAP-Sitzung.</para></listitem>
+				<listitem><para>Erlauben Sie <emphasis>niemals</emphasis> 
+				Nicht-Administrator-Benutzern, die Attributswerte von
+				lmPassword oder ntPassword zu sehen.</para></listitem>
 			</itemizedlist>
 
 			<para>
-			These password hashes are clear-text equivalents and can be used to impersonate
-			the user without deriving the original clear-text strings. For more information
-			on the details of LM/NT password hashes, refer to the
-			<link linkend="passdb">Account Information Database</link> section of this chapter.
+			Diese Passwort-Hashes sind Klartext-Äquivalente und können dazu verwendet werden,
+			den Benutzer zu verkörpern, ohne die originalen Klartext-Strings zu beziehen.
+			Lesen Sie den Abschnitt <link linkend="passdb">Die Account-Datenbank</link>
+			um mehr Informationen und Details zu LM/NT Passwort-Hashes zu erhalten.
 			</para>
 
 			<para>
