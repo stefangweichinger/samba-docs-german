@@ -300,104 +300,89 @@ FIXME ---
                 <para>
 		PAM wird über die Bereitstellung von Steuerdateien im Verzeichnis	
 		<filename>/etc/pam.d/</filename> gesteuert. für jeden Dienst, der Authentifikation
-                benötigt. Wenn eine Authentifikations-Anfrage von einer Anwendung gestellt wird, 
-
-
-
- for each of the services that 
-		require authentication. When an authentication request is made 
-		by an application, the PAM code in the C library looks up this
-		control file to determine what modules to load to do the 
-		authentication check and in what order. This interface makes adding 
-		a new authentication service for Winbind very easy. All that needs 
-		to be done is that the <filename>pam_winbind.so</filename> module 
-		is copied to <filename>/lib/security/</filename> and the PAM 
-		control files for relevant services are updated to allow 
-		authentication via Winbind. See the PAM documentation
-		in <link linkend="pam"/> for more information.</para>
+                benötigt. Wenn eine Authentifikations-Anfrage von einer Anwendung gestellt wird, liest der
+		PAM-Code in der C-Library aus dieser Steuerdatei, welche Module für diese Authentifikation
+		geladen werden müssen, und in welcher Reihenfolge. Das Interface vereinfacht das
+		Hinzufügen neuer Authentifikations-Dienste zu Winbind. Alles, was getan werden muß, ist
+		das Kopieren des Moduls <filename>pam_winbind.so</filename> in das Verzeichnis 
+		<filename>/lib/security/</filename>, und daß die Steuerdateien der relevanten Dienste
+		aktualisiert werden, um Authentifikation via Winbind zu erlauben. Sehen Sie die PAM-Dokumentation
+		in <link linkend="pam"/> für mehr Informationen dazu.</para>
 	</sect2>
 	
 	
 	<sect2>
-		<title>User and Group ID Allocation</title>
+		<title>Zuordnung von Benutzer- und Gruppen-IDs</title>
 		
-		<para>When a user or group is created under Windows NT/200x 
-		it is allocated a numerical relative identifier (RID). This is 
-		slightly different from UNIX which has a range of numbers that are 
-		used to identify users, and the same range in which to identify 
-		groups. It is Winbind's job to convert RIDs to UNIX ID numbers and
-		vice versa. When Winbind is configured, it is given part of the UNIX 
-		user ID space and a part of the UNIX group ID space in which to 
-		store Windows NT users and groups. If a Windows NT user is 
-		resolved for the first time, it is allocated the next UNIX ID from 
-		the range. The same process applies for Windows NT groups. Over 
-		time, Winbind will have mapped all Windows NT users and groups
-		to UNIX user IDs and group IDs.</para>
+		<para>Wenn ein Benutzer oder eine Gruppe unter Windows NT/200x angelegt wird, wird ihm/ihr ein
+		<quote>numerical relative identifier</quote> (RID) zugeordnet. Das ist etwas anders als in UNIX,
+		welches einen Nummernbereich für Benutzer und denselben Nummernbereich für Gruppen hat.
+		Es ist die Aufgabe von Winbind, die RIDs in UNIX-IDs zu konvertieren und vice versa. Wenn Winbind
+		konfiguriert wird, wird ihm ein Teil des UNIX-Benutzer-ID-Namensraums und ein Teil des
+		UNIX-Gruppen-ID-Namensraums zugewiesen, um darin die Windows NT Benutzer und Gruppen zu 
+		speichern. Wenn ein Windows-NT-Benutzer zum ersten Mal aufgelöst werden soll, wird ihm die
+		nächste freie UNIX-ID aus dem Bereich zugewiesen. Der selbe Prozess wird für Windows-NT-Gruppen
+		angewendet. Im Laufe der Zeit hat Winbind dann alle Windows-NT-Benutzer und -Gruppen
+		entsprechenden UNIX-Benutzer und -Gruppen zugewiesen.</para>
 
-		<para>The results of this mapping are stored persistently in 
-		an ID mapping database held in a tdb database). This ensures that 
-		RIDs are mapped to UNIX IDs in a consistent way.</para>
+		<para>Die Ergebnisse dieser Zuordnung wird dauerhaft in einer ID-Zuordnungs-Datenbank
+		abgelegt (gespeichert in einer tdb-Datenbank). Das gewährleistet die konsistente Zuordnung
+		von RIDs auf UNIX-IDs.</para>
 	</sect2>
 	
 	
 	<sect2>
-		<title>Result Caching</title>
+		<title>Das Cachen der Resultate</title>
 
 		<para>
 <indexterm><primary>SAM</primary></indexterm>
-			An active system can generate a lot of user and group 
-		name lookups. To reduce the network cost of these lookups, Winbind 
-		uses a caching scheme based on the SAM sequence number supplied 
-		by NT Domain Controllers. User or group information returned 
-		by a PDC is cached by Winbind along with a sequence number also 
-		returned by the PDC. This sequence number is incremented by 
-		Windows NT whenever any user or group information is modified. If 
-		a cached entry has expired, the sequence number is requested from 
-		the PDC and compared against the sequence number of the cached entry. 
-		If the sequence numbers do not match, then the cached information 
-		is discarded and up-to-date information is requested directly 
-		from the PDC.</para>
+		Ein aktives System kann sehr viele Anfragen nach Benutzer- und Gruppen-Namen generieren.
+		Um die Netzwerklast dieser Anfragen zu reduzieren, verwendet Winbind ein Caching-Schema, das
+		auf der SAM-Sequenznummer beruht, die von NT-Domänen-Controllern zur Verfügung gestellt wird.
+		Benutzer- oder Gruppen-Information, die von einem PDC zurückgegeben wird, wird von Winbind 
+		gemeinsam mit einer auch vom PDC vergebenen Sequenznummer gepuffert. Diese Sequenznummer
+		wird von Windows NT erhöht, wann immer irgendeine Benutzer- und Gruppen-Information
+		verändert wird. Wenn ein gepufferter Eintrag veraltet ist, wird die Sequenznummer vom PDC
+		abgefragt, und mit der Sequenznummer des Cache-Eintrags verglichen. Stimmen die beiden nicht
+		überein, wird die gepufferte Information verworfen, und die aktuelle Information direkt
+		vom PDC abgefragt.</para>
 	</sect2>
 </sect1>
 
 
 <sect1>
-	<title>Installation and Configuration</title>
+	<title>Installation und Konfiguration</title>
 	
 <sect2>
-<title>Introduction</title>
+<title>Einführung</title>
 
 <para>
-This section describes the procedures used to get Winbind up and 
-running. Winbind is capable of providing access 
-and authentication control for Windows Domain users through an NT 
-or Windows 200x PDC for regular services, such as telnet and ftp, as
-well for Samba services.
+Dieser Abschnitt beschreibt die Abläufe, die notwendig sind, um Winbind in Betrieb zu nehmen. Winbind kann
+Zugriffs- und Authentifikations-Verwaltung für Windows-Domänen-Benutzer zur Verfügung stellen, durch Verwendung
+eines Windows NT oder Windows 200x PDC, für normale Dienste wie telnet und ftp genauso wie für Samba.
 </para>
 
 <itemizedlist>
 <listitem>
 	<para>
-	<emphasis>Why should I do this?</emphasis>
+	<emphasis>Warum sollte ich das tun?</emphasis>
 	</para>
 	
-	<para>This allows the Samba administrator to rely on the 
-	authentication mechanisms on the Windows NT/200x PDC for the authentication 
-	of Domain Members. Windows NT/200x users no longer need to have separate 
-	accounts on the Samba server.
+	<para>Dies erlaubt dem Samba-Administrator, auf dem Authentifikations-Mechanismus am Windows NT/200x PDC
+	für die Authentifikation von Domänen-Mitgliedern aufzubauen. Windows NT/200x-Benutzer müssen nicht länger
+	Konten auf dem Samba-Server haben.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	<emphasis>Who should be reading this document?</emphasis>
+	<emphasis>Wer sollte dieses Dokument lesen?</emphasis>
 	</para>
 	
 	<para>
-	This document is designed for system administrators. If you are 
-	implementing Samba on a file server and wish to (fairly easily) 
-	integrate existing Windows NT/200x users from your PDC onto the
-	Samba server, this document is for you.
+	Dieses Dokument ist für System-Administratoren gedacht. Wenn Sie Samba auf einem Datei-Server
+	implementieren und Sie wollen (ziemlich einfach) bestehende Windows NT/200x-Benutzer von Ihrem
+	PDC auf dem Samba-Server integrieren, ist dieses Dokument das richtige für Sie.
 	</para>
 </listitem>
 </itemizedlist>
@@ -405,50 +390,55 @@ well for Samba services.
 
 
 <sect2>
-<title>Requirements</title>
+<title>Erfordernisse</title>
 
 <para>
-If you have a Samba configuration file that you are currently using, <emphasis>BACK IT UP!</emphasis>
-If your system already uses PAM, <emphasis>back up the <filename>/etc/pam.d</filename> directory
-contents!</emphasis> If you haven't already made a boot disk, <emphasis>MAKE ONE NOW!</emphasis>
+Wenn Sie eine Samba-Konfigurationsdatei haben, die Sie momentan benutzen, 
+<emphasis>SICHERN SIE DIE DATEI!</emphasis>
+Wenn Ihr System bereits PAM verwendet <emphasis>SICHERN SIE</emphasis> die Inhalte des Verzeichnisses
+<filename>/etc/pam.d</filename>! Wenn Sie noch keine Bootdiskette angelegt haben, 
+<emphasis>ERSTELLEN SIE JETZT EINE!</emphasis>
 </para>
 
 <para>
-Messing with the PAM configuration files can make it nearly impossible to log in to your machine. That's
-why you want to be able to boot back into your machine in single user mode and restore your
-<filename>/etc/pam.d</filename> back to the original state they were in if you get frustrated with the
-way things are going.
+Das Herumdrehen an den PAM-Konfigurationsdateien kann es nahezu unmöglich machen, sich an Ihrer Maschine
+anzumelden. Darum wollen Sie imstande sein, im <quote>single user mode</quote> Ihre Maschine neu zu booten, und
+Ihr Verzeichnis <filename>/etc/pam.d</filename> in den Urzustand zu versetzen, wenn Sie irgendwie frustriert
+mit Ihren Fortschritten sind.
 </para>
 
 <para>
-The latest version of Samba-3 includes a functioning winbindd daemon. Please refer to the <ulink
-url="http://samba.org/">main Samba Web page</ulink> or, better yet, your closest Samba mirror site for
-instructions on downloading the source code.
+Die letzte Version von Samba-3 beinhaltet einen funktionierenden Winbind-Daemon. Bitte besuchen Sie die
+<ulink url="http://samba.org/">Samba Website</ulink>, oder, noch besser, Ihren nächsten Samba-Mirror, um
+Anleitungen zum Download des Quellcodes zu erhalten.
 </para>
 
 <para>
-To allow domain users the ability to access Samba shares and files, as well as potentially other services
-provided by your Samba machine, PAM must be set up properly on your
-machine. In order to compile the Winbind modules, you should have at least the PAM development libraries installed
-on your system. Please refer the PAM web site <ulink url="http://www.kernel.org/pub/linux/libs/pam/"/>.
+Um Domänen-Benutzern die Fähigkeit zu verleihen, auf Samba-Freigaben und -Dateien zuzugreifen, wie auch
+auf möglicherweise andere von Ihrer Samba-Maschine angebotenen Dienste, muß PAM auf dieser Maschine ordnungsgemäß
+auf dieser Maschine eingerichtet sein. Um die Winbind-Module zu kompilieren, sollten Sie zumindest die 
+PAM-Entwickler-Bibliotheken auf Ihrem System installiert haben. Bitte sehen Sie dazu auch die PAM-Website
+<ulink url="http://www.kernel.org/pub/linux/libs/pam/"/>.
 </para>
 </sect2>
 
 <sect2>
-<title>Testing Things Out</title>
+<title>Testen</title>
 
 <para>
-Before starting, it is probably best to kill off all the Samba-related daemons running on your server.
-Kill off all &smbd;, &nmbd;, and &winbindd; processes that may be running. To use PAM,
-make sure that you have the standard PAM package that supplies the <filename>/etc/pam.d</filename>
-directory structure, including the PAM modules that are used by PAM-aware services, several pam libraries,
-and the <filename>/usr/doc</filename> and <filename>/usr/man</filename> entries for pam. Winbind built
-better in Samba if the pam-devel package is also installed. This package includes the header files
-needed to compile PAM-aware applications.
+Bevor Sie beginnen, ist es möglicherweise das Beste, all die Samba-bezogenen Daemons zu killen, die auf Ihrem
+Server laufen. Killen Sie all die &smbd;, &nmbd;, und &winbindd; -Prozesse, die da laufen. Um PAM zu verwenden,
+stellen Sie sicher, daß Sie das Standard-PAM-Paket haben, das die Verzeichnis-Struktur 
+<filename>/etc/pam.d</filename> unterstützt, das die PAM-Module beinhaltet, die von PAM-fähigen Diensten
+verwendet werden, einige PAM-Bibliotheken, und die Einträge in <filename>/usr/doc</filename> und
+<filename>/usr/man</filename> für PAM. Winbind kann besser in Samba kompiliert werden, wenn auch das Paket
+pam-devel installiert ist. Dieses Paket beinhaltet die Header-Dateien, die zum Kompilieren PAM-fähiger
+Anwendungen benötigt werden.
 </para>
 
 <sect3>
-<title>Configure <filename>nsswitch.conf</filename> and the Winbind Libraries on Linux and Solaris</title>
+<title>Konfigurieren Sie <filename>nsswitch.conf</filename> und die 
+Winbind-Bibliotheken unter Linux und Solaris</title>
 
 <para>
 PAM is a standard component of most current generation UNIX/Linux systems. Unfortunately, few systems install
