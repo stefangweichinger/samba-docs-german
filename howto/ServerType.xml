@@ -351,12 +351,11 @@ Für weitere Informationen betreffend Domänen-Mitgliedschaft lesen Sie bitte
 <title>ADS Sicherheits Modus (User Level Security)</title>
 
 <para>
-Sowohl Samba 2.2 als auch Samba 3 können einer ADS Domäne beitreten. Dies ist
-allerdings nur dann möglich, wenn die ADS im Ursprungs-Modus betrieben wird.
-Active Directory im ursprünglichen Modus erlaubt gänzlich die Mitgliedschaft
-von NT4-artigen Mitgliedern. Dies ist widersprüchlich zum verbreiteten Glauben.
-Active Directory in diesem Zustand verhindert nur den Einsatz von Backup-Domänen-
-Controllern auf NT4-Basis.
+Sowohl Samba 2.2 als auch Samba 3 können einer ADS Domäne beitreten.
+Der Betriebsmodus der Domäne ist für Samba dafür nicht relevant.
+Zu beachten ist, daß Samba 2.2, sowie frühe Versionen von Samba 3.0 nicht einer Domäne mit einem
+unmodifizierten Windows Server 2003 Domänen-Controller beitreten können, da dieser in seiner
+Voreinstellung SMB-Signing voraussetzt. Seit Samba 3.0.3 wird dies jedoch unterstützt.
 </para>
 
 <para>
