@@ -13,8 +13,7 @@
 
 <refnamediv>
 	<refname>nmblookup</refname>
-	<refpurpose>NetBIOS over TCP/IP client used to lookup NetBIOS 
-	names</refpurpose>
+	<refpurpose>NetBIOS über TCP/IP-Client für Abfragen von NetBIOS-Namen</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,28 +25,29 @@
 		<arg choice="opt">-r</arg>
 		<arg choice="opt">-A</arg>
 		<arg choice="opt">-h</arg>
-		<arg choice="opt">-B &lt;broadcast address&gt;</arg>
-		<arg choice="opt">-U &lt;unicast address&gt;</arg>
-		<arg choice="opt">-d &lt;debug level&gt;</arg>
-		<arg choice="opt">-s &lt;smb config file&gt;</arg>
-		<arg choice="opt">-i &lt;NetBIOS scope&gt;</arg>
+		<arg choice="opt">-B &lt;Broadcast-Adresse&gt;</arg>
+		<arg choice="opt">-U &lt;Unicast-Adresse&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Level&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Config-Datei&gt;</arg>
+		<arg choice="opt">-i &lt;NetBIOS-Scope&gt;</arg>
 		<arg choice="opt">-T</arg>
 		<arg choice="opt">-f</arg>
-		<arg choice="req">name</arg>
+		<arg choice="req">Name</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>nmblookup</command> is used to query NetBIOS names 
-	and map them to IP addresses in a network using NetBIOS over TCP/IP 
-	queries. The options allow the name queries to be directed at a 
-	particular IP broadcast area or to a particular machine. All queries 
-	are done over UDP.</para>
+	<para><command>nmblookup</command> wird zur Abfrage von NetBIOS-Namen 
+	und ihrer Abbildung auf IP-Adressen in einem Netzwerk verwendet, das 
+	NetBIOS über TCP/IP-Abfragen benutzt. 
+	Mit den Optionen können Namensabfragen an einen bestimmten 
+	IP-Broadcast-Bereich oder an eine bestimmten Rechner gerichtet werden.
+	Alle Abfragen erfolgen über UDP.</para>
 </refsect1>
 
 <refsect1>
@@ -56,53 +56,57 @@
 	<variablelist>
 		<varlistentry>
 		<term>-M</term>
-		<listitem><para>Searches for a master browser by looking 
-		up the  NetBIOS name <replaceable>name</replaceable> with a 
-		type of <constant>0x1d</constant>. If <replaceable>
-		name</replaceable> is "-" then it does a lookup on the special name 
-		<constant>__MSBROWSE__</constant>. Please note that in order to 
-		use the name "-", you need to make sure "-" isn't parsed as an 
-		argument, e.g. use : 
+		<listitem><para>Sucht einen Master Browser indem der NetBIOS-Name 
+		<replaceable>name</replaceable> mit dem Type 
+		<constant>0x1d</constant> gesucht wird. Falls <replaceable>
+		name</replaceable> gleich "-" ist, führt es eine Suche nach dem
+		speziellen Namen <constant>__MSBROWSE__</constant> durch. Beachten
+		Sie bitte folgendes: wenn Sie den Namen "-" benutzen möchten müssen
+		Sie sicherstellen, dass "-" nicht als Argument geparst wird, d.h.
+		benutzen Sie z.B.: 
 		<userinput>nmblookup -M -- -</userinput>.</para></listitem> 
 		</varlistentry>
 		
 		<varlistentry>
 		<term>-R</term>
-		<listitem><para>Set the recursion desired bit in the packet 
-		to do a recursive lookup. This is used when sending a name 
-		query to a machine running a WINS server and the user wishes 
-		to query the names in the WINS server.  If this bit is unset 
-		the normal (broadcast responding) NetBIOS processing code 
-		on a machine is used instead. See RFC1001, RFC1002 for details.
+		<listitem><para>Setze im Paket das Bit Rekursion erwünscht, um eine 
+		rekursives Lookup durchzuführen. Das wird dann gemacht, wenn eine
+		Namensabfrage an einen Rechner geschickt wird, auf dem ein WINS-Server
+		läuft, und der Benutzer die Namen im WINS-Server abfragen möchte. 
+		Falls das Bit nicht gesetzt ist, wird stattdessen der normale 
+		NetBIOS-Verarbeitungscode (Broadcast-Antwort) auf dem Rechner benutzt
+		Siehe RFC1001, RFC1002 für weitere Details.
 		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>Once the name query has returned an IP 
-		address then do a node status query as well. A node status 
-		query returns the NetBIOS names registered by a host.
+		<listitem><para>Führe auch eine Abfrage des Node-Status durch, nachdem
+		die Namensabfrage eine IP-Adresse zurückgegeben hat. Eine Abfrage des 
+		Node-Status gibt die von einem Host registrierten NetBIOS-Namen zurück.
 		</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>-r</term> 
-		<listitem><para>Try and bind to UDP port 137 to send and receive UDP
-		datagrams. The reason for this option is a bug in Windows 95 
-		where it ignores the source port of the requesting packet 
-	 	and only replies to UDP port 137. Unfortunately, on most UNIX 
-		systems root privilege is needed to bind to this port, and 
-		in addition, if the <citerefentry><refentrytitle>nmbd</refentrytitle>
-		<manvolnum>8</manvolnum></citerefentry> daemon is running on this machine it also binds to this port.
+		<listitem><para>Versuche den UDP-Port 137 beim Senden und Empfangen von 
+		UDP-Datagrammen zu verwenden. Der Grund für diese Option ist ein Fehler in 
+		Windows 95, das den Ursprungs-Port des Abfragepakets ignoriert und nur auf 
+		dem UDP-Port 137 antwortet. Unglücklicherweise sind auf den meisten 
+		UNIX-Systemen root-Rechte nötig, um sich mit diesem Port zu verbinden, und 
+		außerdem verbindet sich auch der 
+		<citerefentry><refentrytitle>nmbd</refentrytitle>
+		<manvolnum>8</manvolnum></citerefentry>-Daemon mit diesem Port, wenn er auf
+		diesem Rechner läuft.
 		</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>-A</term>
-		<listitem><para>Interpret <replaceable>name</replaceable> as 
-		an IP Address and do a node status query on this address.</para>
+		<listitem><para>Interpretiere <replaceable>name</replaceable> als 
+		IP-Adresse und führe auf dieser Adresse eine Node-Statusabfrage durch.</para>
 		</listitem>
 		</varlistentry>
 
@@ -112,25 +116,25 @@
 		&stdarg.help;
 
 		<varlistentry>
-		<term>-B &lt;broadcast address&gt;</term> 
-		<listitem><para>Send the query to the given broadcast address. Without 
-		this option the default behavior of nmblookup is to send the 
-		query to the broadcast address of the network interfaces as 
-		either auto-detected or defined in the <ulink 
+		<term>-B &lt;Broadcast-Adresse&gt;</term> 
+		<listitem><para>Sende die Abfrage an die gegebene Broadcast-Adresse. Ohne 
+		diese Option verhält sich nmblookup standardmäßig so, dass es die Abfrage 
+		an die Broadcast-Adresse der Netzwerkschnittstelle sendet, die es entweder 
+		automatisch findet oder die im Parameter <ulink 
 		url="smb.conf.5.html#INTERFACES"><parameter>interfaces</parameter>
-		</ulink> parameter of the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> file.
+		</ulink> der Datei <citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry> definiert ist.
 		</para></listitem>
 		</varlistentry>
 
 
 
 		<varlistentry>
-		<term>-U &lt;unicast address&gt;</term>
-		<listitem><para>Do a unicast query to the specified address or 
-		host <replaceable>unicast address</replaceable>. This option 
-		(along with the <parameter>-R</parameter> option) is needed to 
-		query a WINS server.</para></listitem>
+		<term>-U &lt;Unicast-Adresse&gt;</term>
+		<listitem><para>Führe eine Unicast-Abfrage auf der angegebenen Adresse oder 
+		dem Host <replaceable>unicast address</replaceable> durch. Diese Option 
+		(zusammen mit der Option <parameter>-R</parameter>) wird benötigt, um einen 
+		WINS-Server abzufragen.</para></listitem>
 		</varlistentry>
 		
 		
@@ -138,54 +142,55 @@
 
 		<varlistentry>
 		<term>-T</term> 
-		<listitem><para>This causes any IP addresses found in the 
-		lookup to be looked up via a reverse DNS lookup into a 
-		DNS name, and printed out before each</para>
+		<listitem><para>Hierdurch werden alle beim Lookup gefundenen IP-Adressen 
+		mit einem Reverse DNS-Lookup in einen DNS-Namen abgefragt und vor jedem
+		Paar
+		</para>
 		
 		<para><emphasis>IP address .... NetBIOS name</emphasis></para>
 		
-		<para> pair that is the normal output.</para></listitem>
+		<para>ausgegeben, was die normale Ausgabe ist.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-f</term>
 		<listitem><para>
-		Show which flags apply to the name that has been looked up. Possible 
-		answers are zero or more of: Response, Authoritative, 
+		Zeige an, welche Flags auf den abgefragten Namen zutreffen. Mögliche 
+		Antworten sind Null oder mehr aus der Liste: Response, Authoritative, 
 		Truncated, Recursion_Desired, Recursion_Available, Broadcast.
 		</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
-		<term>name</term>
-		<listitem><para>This is the NetBIOS name being queried. Depending 
-		upon the previous options this may be a NetBIOS name or IP address. 
-		If a NetBIOS name then the different name types may be specified 
-		by appending '#&lt;type&gt;' to the name. This name may also be
-		'*', which will return all registered names within a broadcast 
-		area.</para></listitem>
+		<term>Name</term>
+		<listitem><para>Dies ist der abgefragte NetBIOS-Name. Abhängig von den 
+		vorherigen Optionen kann das ein NetBIOS-Name oder eine IP-Adresse sein. 
+		Bei einem NetBIOS-Namen können die verschiedenen Namenstypen durch  
+		Anhängen von '#&lt;type&gt;' an den Namen angegeben werden. Dieser Name
+		darf auch'*' sein, was dann alle registrierten Namen eines 
+		Broadcast-Bereichs zurückgibt.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
 
 
 <refsect1>
-	<title>EXAMPLES</title>
+	<title>BEISPIELE</title>
 
-		<para><command>nmblookup</command> can be used to query 
-		a WINS server (in the same way <command>nslookup</command> is 
-		used to query DNS servers). To query a WINS server, <command>nmblookup</command> 
-		must be called like this:</para>
+		<para>Mit <command>nmblookup</command> kann ein WINS-Server abgefragt
+		werden (genau so wie <command>nslookup</command> für die Abfrage von 
+		DNS-Servern benutzt wird). Um einen WINS-Server abzufragen muss
+		<command>nmblookup</command> wie folgt aufgerufen werden:</para>
 
 		<para><command>nmblookup -U server -R 'name'</command></para>
 
-		<para>For example, running :</para>
+		<para>Die Ausführung des folgenden Beispiels:</para>
 
 		<para><command>nmblookup -U samba.org -R 'IRIX#1B'</command></para>
 
-		<para>would query the WINS server samba.org for the domain 
-		master browser (1B name type) for the IRIX workgroup.</para>
+		<para>würde den WINS-Server samba.org nach dem Domain Master Browser 
+		(Namenstyp 1B) der IRIX-Arbeitsgruppe fragen.</para>
 </refsect1>
 
 <refsect1>
@@ -196,7 +201,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>nmbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>, and <citerefentry><refentrytitle>smb.conf</refentrytitle>
