@@ -82,7 +82,7 @@ Benutzer- und Gruppen-SIDs (Netzwerk-SID plus RID) können dazu verwendet werden,
 </para>
 
 <note><para>
-Netzwerk-Clients einer MS-Windows-Sicherheitsdomänen-Umgebung müssen Domänen-Mitglieder sein, um Zugriff auf die erweiterten Funktionalitäten zu erlangen. Eine Domänen-Mitgliedschaft beinhaltet mehr, als den Arbeitsgruppen-Namen auf den Domänen-Namen zu setzen. Sie erfordert das Anlegen eines Domänen-Kontos für die Workstation (genannt Maschinen-Konto). Lesen Sie <link linkend=Domänen-Mitgliedschaft></link> für mehr Informationen dazu.
+Netzwerk-Clients einer MS-Windows-Sicherheitsdomänen-Umgebung müssen Domänen-Mitglieder sein, um Zugriff auf die erweiterten Funktionalitäten zu erlangen. Eine Domänen-Mitgliedschaft beinhaltet mehr, als den Arbeitsgruppen-Namen auf den Domänen-Namen zu setzen. Sie erfordert das Anlegen eines Domänen-Kontos für die Workstation (genannt Maschinen-Konto). Lesen Sie <link linkend="domain-member"></link> für mehr Informationen dazu.
 </para></note>
 
 <para>
