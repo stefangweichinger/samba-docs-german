@@ -5543,7 +5543,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 
 <variablelist>
 
-<varlistentry><term><smbconfoption><name>fetchenumdrivers3listfromNThost</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'fetchenumdrivers3listfromNThost'.</name></smbconfoption></term>
     <listitem>
     <para>Diese Funktion holt erstmal eine komplette Liste aller auf dem Quellserver
         vorrätigen Treiber samt der zugehörigen Treiberdateien. (Achtung, eventuell müssen
@@ -5554,7 +5554,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>createdrivernamelist</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'createdrivernamelist'.</name></smbconfoption></term>
     <listitem>
     <para>Die nächste Funktion ist eine Hilfsfunktion. Sie arbeitet auf der soeben 
         gewonnenen Datei mit den
@@ -5564,7 +5564,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>splitenumdrivers3list</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'splitenumdrivers3list'.</name></smbconfoption></term>
     <listitem>
     <para>Eine weitere Hilfsfunktion zerlegt die Komplettliste in separate Teile für
         'Version 2' und 'Version 3' Treiber.</para>
@@ -5572,7 +5572,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>makesubdirsforW32X86driverlist</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'makesubdirsforW32X86driverlist'.</name></smbconfoption></term>
     <listitem>
     <para>Dieser Schritt legt für jeden Treiber und jede Version ('2' oder '3') ein 
         eigenes Unterverzeichnis an, und zwar unterhalb des aktuellen Arbeitsverzeichnisses..</para>
@@ -5580,7 +5580,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>splitW32X86fileintoindividualdriverfiles</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'splitW32X86fileintoindividualdriverfiles'</name></smbconfoption></term>
     <listitem>
     <para>Hier wird pro Treiber eine Liste aller zugehörigen Dateien angelegt mitsamt den 
         'UNC-Pfaden', wo sie auf dem Quellserver gespeichert sind.</para>
@@ -5588,7 +5588,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>fetchallW32X86driverfiles</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'fetchallW32X86driverfiles'.</name></smbconfoption></term>
     <listitem>
     <para>Jetzt wird es wieder Ernst: anhand der zuvor geschaffenene Listen, holt dieses
         Funktion jetzt mittles 'smbclient' die einzelnen Treiberdateien ab und speichert sie
@@ -5597,7 +5597,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </varlistentry>
 
 
-<varlistentry><term><smbconfoption><name>uploadallW32X86drivers</name></smbconfoption></term>
+<varlistentry><term><smbconfoption><name>'uploadallW32X86drivers'.</name></smbconfoption></term>
     <listitem>
     <para>Zuletzt werden die zuvor gewonnenen Treiberdateien auf den Zielserver hochgeladen.
         Für die Datenübertragung kommt wieder 'smbclient' zum Einsatz, die Ernennung zu 
