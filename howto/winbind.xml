@@ -26,8 +26,8 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	<pubdate>27 June 2002</pubdate>
 	<author>&author.yoshi;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Winbind: Benutzung von Domänenkonten</title>
@@ -89,7 +89,7 @@
 	ohne eine dynamische Zuordnung zurückgreifen.
 	</para></note>
 
-
+FIXME --- 
 	<!--	<figure id="winbind_idmap"><title></title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap_winbind_no_loop" scale="50" scalefit="1"/></imageobject>
