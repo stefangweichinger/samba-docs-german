@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+
 <chapter id="ClientConfig">
+
 <chapterinfo>
 	&author.jht;
-	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author> 
+	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Anleitung zur MS Windows Netzwerkkonfiguration</title>
@@ -31,7 +33,7 @@ Kapitels interessiert sein.
 
 <para>
 Dieses Kapitel beschäftigt sich mit der Konfiguration des TCP/IP Protokolls und auch mit der Netzwerkumgebung für die meisten
-aktuell verwendeten Plattformen. Diese sind: 
+aktuell verwendeten Plattformen. Diese sind:
 </para>
 
 <itemizedlist>
@@ -51,19 +53,19 @@ aktuell verwendeten Plattformen. Diese sind:
 
 	<para>
 	Ein Bauherr muss sicherstellen, dass die gesamte Konstruktion auf Basis einer festen Grundlage entsteht.
-	Dasselbe gilt für TCP/IP-basiertes Vernetzen. Grundlegende Probleme mit Netzwerkkonfigurationen plagen alle 
+	Dasselbe gilt für TCP/IP-basiertes Vernetzen. Grundlegende Probleme mit Netzwerkkonfigurationen plagen alle
 	Benutzer eines Netzwerkes bis zu deren Lösung.
 	</para>
 
 	<para>
 	Microsoft Windows Arbeitsstationen und Server können entweder mit fixen IP-Adressen oder per DHCP konfiguriert werden.
-	Die folgenden Beispiele zeigen die Anwendung von DHCP und beschäftigen sich nur am Rande mit 
+	Die folgenden Beispiele zeigen die Anwendung von DHCP und beschäftigen sich nur am Rande mit
 	jenen Situationen, in denen fixe IP-Settings verwendet werden können.
 	</para>
 
 	<para>
 	Es ist möglich, Shortcuts oder gespeicherte Tastatureingaben zu verwenden, um zu einem bestimmten Konfigurationsbildschim
-	zu gelansgen. Wir haben uns entschieden, alle Beispiele dieses Kapitels auf Basis des <guibutton>Start</guibutton> Knopfes 
+	zu gelansgen. Wir haben uns entschieden, alle Beispiele dieses Kapitels auf Basis des <guibutton>Start</guibutton> Knopfes
 	zu erläutern.
 	</para>
 
@@ -80,7 +82,7 @@ aktuell verwendeten Plattformen. Diese sind:
 		</para>
 
 		<para>
-		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie  
+		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie 
 		<guimenu>Meine Netzwerkverbindungen</guimenu>, dann wählen Sie
 		<guimenuitem>Eigenschaften</guimenuitem>
 		</para>
@@ -91,20 +93,20 @@ aktuell verwendeten Plattformen. Diese sind:
 
 		<procedure>
 			<step><para>
-			Bei manchen Installationen nennt sich das Interface 
+			Bei manchen Installationen nennt sich das Interface
 			<guimenu>Lokale Verbindungen</guimenu>, bei anderen
 			werden diese <guimenu>Netzwerkverbindungen</guimenu> genannt.
 			Auf unserem System heissen Sie <guimenu>Netzwerkverbindungen</guimenu>.
-			Rechtsklicken Sie auf <guimenu>Netzwerkverbindungen -> Eigenschaften</guimenu>. 
+			Rechtsklicken Sie auf <guimenu>Netzwerkverbindungen -> Eigenschaften</guimenu>.
 			Siehe auch <link linkend="WXPP002"/>.
 			<image id="WXPP002"><imagedescription>Konfiguration Netzwerkverbindungen</imagedescription><imagefile>WXPP002</imagefile></image>
 			</para>
 			</step>
-
+			
 			<step><para>
-			Das Menü zur Konfiguration der Netzwerkverbindungen oder LAN-Verbindungen wird für die Einstellungen des 
+			Das Menü zur Konfiguration der Netzwerkverbindungen oder LAN-Verbindungen wird für die Einstellungen des
 			TCP/IP Protokolles benutzt.
-			In der Box <guimenuitem>Diese Verbindung verwendet folgende Elemente:</guimenuitem> klicken Sie auf 
+			In der Box <guimenuitem>Diese Verbindung verwendet folgende Elemente:</guimenuitem> klicken Sie auf
 			<guimenu>Internetprotokoll (TCP/IP)</guimenu> dann auf <guibutton>Eigenschaften</guibutton>.
 			</para>
 
@@ -117,22 +119,22 @@ aktuell verwendeten Plattformen. Diese sind:
 
 			<para>
 			Viele Netzwerkadministratoren nutzen gerne DHCP, um die Client-seitigen TCP/IP-Protokoll-Einstellungen zu setzen.
-			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet, sehen 
+			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet, sehen
 			Sie bitte <link linkend="DHCP"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
+			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton> um mit der 
+			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton> um mit der
 			TCP/IP-Konfiguration fortzufahren.
 			Dies öffnet eine Box, in welcher Sie zusätzliche IP-Adressen eingeben können.
-			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet 
-			<emphasis>IP-Aliase</emphasis> und in dieser Box kann man weitere 
+			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet
+			<emphasis>IP-Aliase</emphasis> und in dieser Box kann man weitere
 			Standard-Gateways (oder Router) eingeben.
 			In den meisten Fällen, in denen DHCP genutzt wird,
 			ist es nicht erforderlich, weitere Einstellungen vorzunehmen. 			
@@ -155,9 +157,9 @@ aktuell verwendeten Plattformen. Diese sind:
 			</para></step>
 
 			<step><para>
-			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte, um 
-			zusätzliche manuelle WINS-Server-Einträge vorzunehmen. 
-			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte 
+			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte, um
+			zusätzliche manuelle WINS-Server-Einträge vorzunehmen.
+			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte
 			WINS-Einstellungen nutzt.
 			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
 Siehe auch <link linkend="WXPP009"></link>.
@@ -171,7 +173,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		<title>MS Windows 2000</title>
 
 		<para>
-		Es gibt 2 Wege zu einer Windows 2000 Professional TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode: 
+		Es gibt 2 Wege zu einer Windows 2000 Professional TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode:
 		</para>
 
 		<para>
@@ -179,7 +181,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para>
 
 		<para>
-		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie  
+		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie 
 		<guimenu>Meine Netzwerkverbindungen</guimenu>, dann wählen Sie
 		<guimenuitem>Eigenschaften</guimenuitem>
 		</para>
@@ -190,7 +192,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 
 		<procedure>
 			<step><para>
-			Rechtsklicken Sie auf <guimenu>Netzwerkumgebung</guimenu>, dann klicken Sie auf 
+			Rechtsklicken Sie auf <guimenu>Netzwerkumgebung</guimenu>, dann klicken Sie auf
 			<guimenuitem>Eigenschaften</guimenuitem>. Siehe auch <link linkend="w2kp001"></link>.
 			<image id="w2kp001"><imagefile>w2kp001</imagefile><imagedescription>Eigenschaften Netzwerkumgebung</imagedescription></image>
 			</para></step>
@@ -209,12 +211,12 @@ Siehe auch <link linkend="WXPP009"></link>.
 
 			<para>
 			Viele Netzwerkadministratoren nutzen gerne DHCP, um die Client-seitigen TCP/IP-Protokoll-Einstellungen zu setzen.
-			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen 
+			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen
 			Sie bitte <link linkend="DHCP"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
+			Falls es erforderlich sein sollte, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box.
 			</para></step>
@@ -235,7 +237,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um DNS-Server-Einstellungen hinzuzufügen. 
+			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um DNS-Server-Einstellungen hinzuzufügen.
 			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie
 			fertig mit Ihren Änderungen sind, klicken Sie auf den Knopf
 			<guibutton>OK</guibutton>, um Ihre Einstellungen zu speichern.
@@ -244,9 +246,9 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie die Registerkarte <guibutton>WINS</guibutton>, 
-			um zusätzliche manuelle WINS-Server-Einträge vorzunehmen. 
-			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte 
+			Klicken Sie die Registerkarte <guibutton>WINS</guibutton>,
+			um zusätzliche manuelle WINS-Server-Einträge vorzunehmen.
+			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte
 			WINS-Einstellungen nutzt.
 			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den Knopf <guibutton>OK</guibutton>, um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="w2kp005"></link>.
@@ -254,14 +256,14 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 		</procedure>
-
+		
 		</sect3>
 
 		<sect3>
 		<title>MS Windows Me</title>
 
 		<para>
-		Es gibt 2 Wege zu einer Windows Millenium Edition (Me) TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode: 
+		Es gibt 2 Wege zu einer Windows Millenium Edition (Me) TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode:
 		</para>
 
 		<para>
@@ -269,7 +271,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para>
 
 		<para>
-		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie  
+		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie 
 		<guimenu>Meine Netzwerkverbindungen</guimenu>, dann wählen Sie
 		<guimenuitem>Eigenschaften</guimenuitem>
 		</para>
@@ -279,15 +281,16 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para>
 		
 		<procedure>
+
 			<step><para>
 			In der Box <guimenuitem>Die folgenden Netzwerkkomponenten sind installiert:</guimenuitem> klicken Sie auf den Knopf
 			<guimenu>Internetprotokoll TCP/IP</guimenu>, dann auf <guibutton>Eigenschaften</guibutton>. Siehe auch <link linkend="WME001"></link>.
 			<image id="WME001"><imagefile>WME001</imagefile><imagedescription>Die Windows Me Netzwerkkonfigurations-Box</imagedescription></image>
 			</para></step>
 			
-			<para>
+			<step><para>
 			Viele Netzwerkadministratoren nutzen gerne DHCP um die Client-seitigen TCP/IP Protokoll-Einstellungen zu setzen.
-			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen 
+			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen
 			Sie bitte <link linkend="DHCP"></link>.
 			Die Standardeinstellung auf Microsoft Windows Me workstations ist DHCP aktivierte Vorgehensweise,
 			z.B. ist <guimenu>IP-Adresse automatisch beziehen</guimenu> aktiviert. Siehe auch <link linkend="WME002"></link>.
@@ -295,23 +298,23 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para>
 
 			<para>
-			Falls es erforderlich sein soll, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf 
+			Falls es erforderlich sein soll, eine fixe IP-Adresse zur Verfügung zu stellen, klicken Sie auf
 			<quote>Folgende IP-Adresse verwenden</quote> und fahren Sie fort mit der Eingabe der IP-Adresse, der Subnetzmaske
 			und des Standardgateways in der geöffneten Box. In diesem Beispiel gehen wir davon aus, dass alle Netzwerkclients
 			durch DHCP konfiguriert wurden.
 			</para></step>
 			
 			<step><para>
-			Fixe Einstellungen sind vielleicht für DNS und WINS gewünscht, wenn diese Einstellungen nicht per DHCP 
+			Fixe Einstellungen sind vielleicht für DNS und WINS gewünscht, wenn diese Einstellungen nicht per DHCP
 			automatisch zur Verfügung gestellt wurden.
 			</para></step>
 
 			<step><para>
-			Falls notwendig klicken Sie auf die <guimenu>DNS Konfiguration</guimenu> Registerkarte, um 
-			einen DNS Server Eintrag zu machen. 
-			Klicken Sie auf die <guibutton>WINS Konfiguration</guibutton> Registerkarte, um einen WINS Server 
-			Eintrag zu machen. 
-			Die Registerkarte <guimenu>Gateway</guimenu> erlaubt zusätzliche Gateways (Router Adressen) in den 
+			Falls notwendig klicken Sie auf die <guimenu>DNS Konfiguration</guimenu> Registerkarte, um
+			einen DNS Server Eintrag zu machen.
+			Klicken Sie auf die <guibutton>WINS Konfiguration</guibutton> Registerkarte, um einen WINS Server
+			Eintrag zu machen.
+			Die Registerkarte <guimenu>Gateway</guimenu> erlaubt zusätzliche Gateways (Router Adressen) in den
 			Netzwerkkarten-Einstellungen zu hinterlegen. In den meisten Fällen, in denen DHCP genutzt wird, wird
 			an dieser Stelle eine manuelle Einstellung nicht notwendig sein.
 			</para></step>
@@ -341,8 +344,8 @@ Siehe auch <link linkend="WXPP009"></link>.
 
 	<para>
 	Microsoft Windows NT/200x/XP Professional Plattformen können in einer Sicherheitsdomäne teilhaben.
-	Dieser Abschnitt beschreibt den Prozess, der eine Windows 200x/XP Professional Maschine Mitglied einer 
-	Sicherheitsdomänen-Umgebung werden lässt. Es sollte beachtet werden, dass dieser Prozess beim Beitreten 
+	Dieser Abschnitt beschreibt den Prozess, der eine Windows 200x/XP Professional Maschine Mitglied einer
+	Sicherheitsdomänen-Umgebung werden lässt. Es sollte beachtet werden, dass dieser Prozess beim Beitreten
 	einer von Windows NT4/200x kontrollierten Domäne gleich ist, als wenn es ein Samba PDC wäre.
 	</para>
 
@@ -387,7 +390,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para>
 
                 <para>
-		Diese Box zeigt nun, dass unsere Beispielmaschine (TEMPTATION) ausgewählt ist um der Domäne MIDEARTH 
+		Diese Box zeigt nun, dass unsere Beispielmaschine (TEMPTATION) ausgewählt ist um der Domäne MIDEARTH
 		beizutreten. Siehe auch <link linkend="wxpp007"></link>.
 		<image id="wxpp007"><imagefile>wxpp007</imagefile><imagedescription>Die Box mit der Computernamens-Änderung &smbmdash; Domäne MIDEARTH.</imagedescription></image>
                 </para></step>
@@ -395,12 +398,12 @@ Siehe auch <link linkend="WXPP009"></link>.
 		<step><para>
 		Jetzt klicken Sie auf <guimenu>OK</guimenu>. Eine Dialogbox sollte erscheinen, welche Ihnen die Eingabe
 		der Referenzen (Benutzername und Passwort) eines Domänen-administrativen Accounts ermöglicht,
-		der die Rechte hat, eine Maschine einer Domäne hinzuzufügen. 
+		der die Rechte hat, eine Maschine einer Domäne hinzuzufügen.
 		ermöglicht.
 		</para>
 
                 <para>
-		Geben Sie den Namen <quote>root</quote> und das root Passwort Ihres Samba-3 Servers ein. 
+		Geben Sie den Namen <quote>root</quote> und das root Passwort Ihres Samba-3 Servers ein.
 		Siehe auch <link linkend="wxpp008"></link>.
 		<image id="wxpp008"><imagefile>wxpp008</imagefile><imagedescription>Änderung Computername &smbmdash; Benutzername und Passwort</imagedescription></image>
                 </para></step>
@@ -460,7 +463,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 
 		<step><para>
 		Klicken Sie den <guimenu>Erkennen</guimenu> Knopf. Dies ist die beste Stelle an welcher der Arbeitsgruppen (Domänen) Name
-		und der Maschinenname (Computername) gesetzt werden sollen. 
+		und der Maschinenname (Computername) gesetzt werden sollen.
 		Siehe auch <link linkend="WME013"></link>.
 		<image id="WME013"><imagefile>WME013</imagefile><imagedescription>Erkennungsbox</imagedescription></image>
                 </para></step>
@@ -482,7 +485,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 <title>Allgemeine Fehler</title>
 
 <para>
-Die häufigsten Fehler, die Windows Netzwerksysteme heimsuchen, beinhalten: 
+Die häufigsten Fehler, die Windows Netzwerksysteme heimsuchen, beinhalten:
 </para>
 
 <itemizedlist>
