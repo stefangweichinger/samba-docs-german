@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="22"
+   name="svn:this_dir"
+   committed-date="2004-04-16T15:11:59.358906Z"
+   url="svn://svnanon.samba.org/samba-docs/trunk/archives"
+   last-author="jerry"
+   kind="dir"
+   uuid="b188d75c-76d7-0310-bd5a-9f2eb9070937"
+   revision="76"/>
+<entry
+   committed-rev="22"
+   name="history"
+   text-time="2004-05-22T14:20:02.000000Z"
+   committed-date="2004-04-16T15:11:59.358906Z"
+   checksum="5665a325c0801f05aee4f6f2aaed47bb"
+   last-author="jerry"
+   kind="file"
+   prop-time="2004-05-22T14:20:02.000000Z"/>
+<entry
+   committed-rev="22"
+   name="THANKS"
+   text-time="2004-05-22T14:20:03.000000Z"
+   committed-date="2004-04-16T15:11:59.358906Z"
+   checksum="44ffc198d5e4b5656995926f3258b4e3"
+   last-author="jerry"
+   kind="file"
+   prop-time="2004-05-22T14:20:03.000000Z"/>
+</wc-entries>
