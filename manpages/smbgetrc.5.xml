@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbgetrc</refname>
-	<refpurpose>configuration file for smbget</refpurpose>
+	<refpurpose>Konfigurationsdatei für smbget</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,65 +21,80 @@
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>
-		This manual page documents the format and options of the <emphasis>smbgetrc</emphasis> 
-		file. This is the configuration file used by the <citerefentry><refentrytitle>smbget</refentrytitle><manvolnum>1</manvolnum></citerefentry> 
-		utility. The file contains of key-value pairs, one pair on each line. The key 
-			and value should be seperated by a space.
+	<para>Diese Manpage dokumentiert das Format sowie die Optionen der Datei
+	<emphasis>smbgetrc</emphasis>.Dies ist die Konfigurationsdatei, die von
+	dem Werkzeug 
+	<citerefentry><refentrytitle>smbget</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry> 
+	benutzt wird. Die Datei enthält Schlüssel-/Wert-Paare, jeweils eines pro
+	Zeile. Schlüssel und Wert sollten durch ein Leerzeichen getrennt sein.
 	</para>
 
-	<para>By default, smbget reads its configuration from <emphasis>$HOME/.smbgetrc</emphasis>, though 
-		other locations can be specified using the command-line options.</para>
+	<para>Per Voreinstellung liest smbget seine Konfigurationsdatei aus
+	<emphasis>$HOME/.smbgetrc</emphasis>, obwohl man auf der Kommandozeile auch
+	andere Orte dafür angeben kann.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<para>
-	The following keys can be set:
+	Folgende Schlüssel können gesetzt werden:
 </para>
 
 	<variablelist>
 		<varlistentry><term>resume on|off</term>
 			<listitem><para>
-			Whether aborted downloads should be automatically resumed.
+			Bestimmt, ob abgebrochene Ladevorgänge automatisch 
+			fortgesetzt werden sollen.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 			<term>recursive on|off</term>
-			<listitem><para>Whether directories should be downloaded recursively</para></listitem>
+			<listitem><para>Gibt an, ob Verzeichnisse rekursiv 
+			heruntergeladen werden sollen.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>username <replaceable>name</replaceable></term>
-			<listitem><para>Username to use when logging in to the remote server. Use an empty string for anonymous access.
+			<listitem><para>Der Benutzername, der bei der Anmeldung auf
+			dem entfernten Server verwendet werden soll. Benutzen Sie 
+			einen leeren String für den anonymen Zugriff.
 			</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>password <replaceable>pass</replaceable></term>
-			<listitem><para>Password to use when logging in.</para></listitem>
+			<listitem><para>Das Passwort, das bei der Anmeldung 
+			benutzt werden soll.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>workgroup <replaceable>wg</replaceable></term>
-			<listitem><para>Workgroup to use when logging in</para></listitem>
+			<listitem><para>Die Arbeitsgruppe, die bei der Anmeldung
+			benutzt werden soll.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>nonprompt on|off</term>
-			<listitem><para>Turns off asking for username and password. Useful for scripts.</para></listitem>
+			<listitem><para>Schaltet die Abfrage von Benutzername und
+			Passwort ab. Nützlich in Skripten.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>debuglevel <replaceable>int</replaceable></term>
-			<listitem><para>(Samba) debuglevel to run at. Useful for tracking down protocol level problems.</para></listitem>
+			<listitem><para>Die zu verwendende (Samba-) Debug-Ebene. 
+			Hilfreich beim Verfolgen von Problemen auf 
+			Protokollebene.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>dots on|off</term>
-			<listitem><para>Whether a single dot should be printed for each block that has been downloaded, instead of the default progress indicator.</para></listitem>
+			<listitem><para>Gibt an, ob für jeden heruntergeladenen Block
+			ein einzelner Punkt ausgegeben werden soll, statt die 
+			normale Fortschrittsanzeige anzuzeigen.</para></listitem>
 		</varlistentry>
 
 		<varlistentry><term>blocksize <replaceable>int</replaceable></term>
-			<listitem><para>Number of bytes to put in a block. </para></listitem>
+			<listitem><para>Die Anzahl an Bytes in einem Block.
+			</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
@@ -92,9 +107,10 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbget</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> and <citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>1</manvolnum></citerefentry> und 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>.
 	</para>
 </refsect1>
