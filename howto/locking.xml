@@ -655,17 +655,18 @@ konfiguriert werden, wie nachfolgend gezeigt.
 </para>
 
 <para>
-<emphasis>Oplock break contention limit</emphasis> is an &smb.conf; parameter that limits the
-response of the Samba server to grant an oplock if the configured
-number of contending clients reaches the limit specified by the parameter. Samba recommends
+<emphasis>oplock break contention limit</emphasis> ist ein Parameter in &smb.conf;
+der die Antwort des Samba-Servers auf die Anfrage nach einem Oplock einschränkt, wenn die Anzahl der
+sich darum <quote>bewerbenden</quote> Clients das in diesem Parameter angegebene Limit erreicht.
+Samba empfiehlt:
 <quote>Do not change this parameter unless you have read and understood the Samba oplock code.</quote>
-Oplock break Contention Limit can be enable on a per-share basis, or globally for
-the entire server, in the &smb.conf; file as shown in <link linkend="far3"/>.
+Oplock break Contention Limit kann auf einer Per-Freigabe-Basis aktiviert werden, oder
+global für den gesamten Server. Dies erfolgt in der Datei &smb.conf; wie in <link linkend="far3"/>.
 </para>
 
 <para>
 <smbconfexample id="far3">
-	<title>Configuration with oplock break contention limit</title>
+<title>Konfiguration mit oplock break contention limit</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>oplock break contention limit</name><value> 2 (default)</value></smbconfoption>
 
@@ -680,60 +681,58 @@ the entire server, in the &smb.conf; file as shown in <link linkend="far3"/>.
 </sect1>
 
 <sect1>
-<title>MS Windows Opportunistic Locking and Caching Controls</title>
+<title>MS Windows Oplock- und Cache-Kontrollen</title>
 
 <para>
-There is a known issue when running applications (like Norton Anti-Virus) on a Windows 2000/ XP
-workstation computer that can affect any application attempting to access shared database files
-across a network. This is a result of a default setting configured in the Windows 2000/XP
-operating system known as <emphasis>opportunistic locking</emphasis>. When a workstation
-attempts to access shared data files located on another Windows 2000/XP computer,
-the Windows 2000/XP operating system will attempt to increase performance by locking the
-files and caching information locally. When this occurs, the application is unable to
-properly function, which results in an <quote>Access Denied</quote>
- error message being displayed during network operations.
+Es gibt einen bekannten Umstand beim Ausführen von Applikationen (wie Norton Anti-Virus) auf einer
+Windows 2000/ XP Workstation, der jede Anwendung beeinflussen kann, die versucht, über ein Netzwerk auf
+freigegebene Datenbank-Dateien zuzugreifen. Dies ist eine Folge einer Voreinstellung im Windows 2000/XP
+Betriebssystem namens <emphasis>opportunistic locking</emphasis>. Wenn eine Workstation versucht, auf
+freigegebene Dateien auf einem anderen Windows 2000/XP Rechner zuzugreifen, versucht das Windows 2000/XP
+Betriebssystem, die Performance zu erhöhen, indem es die Dateien sperrt und lokal puffert. Wenn das
+pasiert, kann die Anwendung nicht mehr korrekt arbeiten, was darin resultiert, daß die Meldung
+<quote>Access Denied</quote> während der Netzwerk-Operation angezeigt wird.
 </para>
 
 <para>
-All Windows operating systems in the NT family that act as database servers for data files
-(meaning that data files are stored there and accessed by other Windows PCs) may need to
-have opportunistic locking disabled in order to minimize the risk of data file corruption.
-This includes Windows 9x/Me, Windows NT, Windows 200x, and Windows XP.
-<footnote><para>Microsoft has documented this in Knowledge Base article 300216.</para></footnote>
+Alle Windows Betriebssysteme in der NT-Familie, die als Datenbank-Server für Dateien arbeiten können
+(das soll heissen, daß dort Dateien abgelegt werden, auf die von anderen Windows-PCs aus zugegriffen wird),
+müssen wahrscheinlich deaktivierte Oplocks haben, um das Risiko der Beschädigung von Dateien zu
+minimieren. Das inkludiert Windows 9x/Me, Windows NT, Windows 200x, und Windows XP.
+<footnote><para>Microsoft hat dies im Knowledge Base Artikel 300216 dokumentiert.</para></footnote>
 </para>
 
 <para>
-If you are using a Windows NT family workstation in place of a server, you must also
-disable opportunistic locking (oplocks) on that workstation. For example, if you use a
-PC with the Windows NT Workstation operating system instead of Windows NT Server, and you
-have data files located on it that are accessed from other Windows PCs, you may need to
-disable oplocks on that system.
+Wenn Sie eine Workstation der Windows NT Familie anstatt eines Servers verwenden, müssen Sie auch darauf die
+Oplocks deaktivieren. Wenn Sie zum Beispiel einen PC mit dem Betriebssystem Windows NT Workstation anstatt
+Windows NT Server verwenden, und Sie haben darauf Daten abgelegt, auf die von anderen Windows PCs zugegriffen
+wird, werden Sie die Oplocks auf diesem System deaktivieren müssen.
 </para>
 
 <para>
-The major difference is the location in the Windows registry where the values for disabling
-oplocks are entered. Instead of the LanManServer location, the LanManWorkstation location
-may be used.
+Der hauptsächliche Unterschied ist der Ort in der Windows-Registrierung, an dem die Werte zum Deaktivieren der
+Oplocks eingegeben werden. Anstatt des Eintrags LanManServer muß eventuell der Eintrag LanManWorkstation
+verwendet werden.
 </para>
 
 <para>
-You can verify (change or add, if necessary) this registry value using the Windows
-Registry Editor. When you change this registry value, you will have to reboot the PC
-to ensure that the new setting goes into effect.
+Sie können diesen Wert mit dem Windows Registrierungs-Editor überprüfen 
+(auch hinzufügen oder ändern, falls nötig). Wenn Sie diesen Registrierungs-Wert ändern, müssen Sie den PC neu 
+starten, um sicherzustellen, daß die neue Einstellung wirksam wird.
 </para>
 
 <para>
-The location of the client registry entry for opportunistic locking has changed in
-Windows 2000 from the earlier location in Microsoft Windows NT.
+Der Ort des Registrierungseintrags für Oplocks hat sich mit Windows 2000 geändert (gegenüber dem früheren
+Ort in Microsoft Windows NT).
 </para>
 
 <note><para>
-Windows 2000 will still respect the EnableOplocks registry value used to disable oplocks
-in earlier versions of Windows.
+Windows 2000 akzeptiert nach wie vor den Registrierungseintrag EnableOplocks, der in früheren Windows-Versionen
+zum Deaktivieren von Oplocks verwendet wurde.
 </para></note>
 
 <para>
-You can also deny the granting of opportunistic locks by changing the following registry entries:
+Sie können die Oplocks auch deaktivieren, indem Sie die folgenden Registrierungs-Einträge ändern:
 </para>
 
 <para>
@@ -741,15 +740,15 @@ You can also deny the granting of opportunistic locks by changing the following 
 	HKEY_LOCAL_MACHINE\System\
 		CurrentControlSet\Services\MRXSmb\Parameters\
 
-		OplocksDisabled REG_DWORD 0 or 1
-		Default: 0 (not disabled)
+		OplocksDisabled REG_DWORD 0 oder 1
+		Voreinstellung: 0 (nicht deaktiviert)
 </programlisting>
 </para>
 
 <note><para>
-The OplocksDisabled registry value configures Windows clients to either request or not
-request opportunistic locks on a remote file. To disable oplocks, the value of
- OplocksDisabled must be set to 1.
+Der Registrierungs-Eintrag OplocksDisabled konfiguriert Windows Clients dahingehend, ob sie Oplocks für
+enfernte (= nicht-lokale) Dateien anfordern
+oder nicht. Um die Oplocks zu deaktivieren, muß der Wert von OplocksDisabled auf 1 gesetzt sein.
 </para></note>
 
 <para>
@@ -757,234 +756,238 @@ request opportunistic locks on a remote file. To disable oplocks, the value of
 	HKEY_LOCAL_MACHINE\System\
 		CurrentControlSet\Services\LanmanServer\Parameters
 
-		EnableOplocks REG_DWORD 0 or 1
-		Default: 1 (Enabled by Default)
+		EnableOplocks REG_DWORD 0 oder 1
+		Voreinstellung: 1 (Aktiviert)
 
-		EnableOpLockForceClose REG_DWORD 0 or 1
-		Default: 0 (Disabled by Default)
+		EnableOpLockForceClose REG_DWORD 0 oder 1
+		Voreinstellung: 0 (Deaktiviert)
 </programlisting>
 </para>
 
 <note><para>
-The EnableOplocks value configures Windows-based servers (including Workstations sharing
-files) to allow or deny opportunistic locks on local files.
+Der Registrierungs-Eintrag EnableOplocks konfiguriert Windows-basierende Server (einschliesslich Workstations, 
+die Dateien freigeben), Oplocks für lokale Dateien zu erlauben oder nicht.
 </para></note>
 
 <para>
-To force closure of open oplocks on close or program exit, EnableOpLockForceClose must be set to 1.
+Um das Schliessen von offenen Oplocks beim Schliessen oder Verlassen eines Programms zu erzwingen, muß
+EnableOpLockForceClose auf 1 gesetzt sein.
 </para>
 
 <para>
-An illustration of how Level2 oplocks work:
+Eine Illustration der Arbeitsweise von Level2-Oplocks:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Station 1 opens the file requesting oplock.
+	Station 1 öffnet die Datei und fordert einen Oplock an.
 	</para></listitem>
 	<listitem><para>
-	Since no other station has the file open, the server grants station 1 exclusive oplock.
+	Da keine andere Station die Datei geöffnet hat, gewährt der Server der Station 1 einen exklusiven Oplock.
 	</para></listitem>
 	<listitem><para>
-	Station 2 opens the file requesting oplock.
+	Station 2 öffnet die Datei und fordert einen Oplock an.
 	</para></listitem>
 	<listitem><para>
-	Since station 1 has not yet written to the file, the server asks station 1 to break
-	to Level2 oplock.
+	Da die Station 1 noch nicht auf die Datei geschrieben hat, fordert der Server die Station 1 dazu auf, den
+	Oplock auf einen Level2-Oplock zu brechen.	
 	</para></listitem>
 	<listitem><para>
-	Station 1 complies by flushing locally buffered lock information to the server.
+	Station 1 leistet dem Folge und gibt ihre gepufferten Sperr-Informationen zurück an den Server.
 	</para></listitem>
 	<listitem><para>
-	Station 1 informs the server that it has Broken to Level2 Oplock (alternately,
-	station 1 could have closed the file).
+	Station 1 informiert den Server, daß sie den Oplock auf einen Level2-Oplock geändert hat (alternativ
+	dazu hätte die Station 1 auch die Datei schliessen können).
 	</para></listitem>
 	<listitem><para>
-	The server responds to station 2's open request, granting it Level2 oplock.
-	Other stations can likewise open the file and obtain Level2 oplock.
+	Der Server antwortet auf die offene Anfrage von Station 2, und gewährt dieser einen Level2-Oplock.
+	Andere Stationen können ebenso die Datei öffnen und einen Level2-Oplock erhalten.	
 	</para></listitem>
 	<listitem><para>
-	Station 2 (or any station that has the file open) sends a write request SMB.
-	The server returns the write response.
+	Die Station 2 (oder irgendeine Station, die die Datei geöffnet hat) sendet eine Schreib-Anfrage per SMB.
+	Der Server antwortet mit seiner entsprechenden <quote>write response</quote>.
 	</para></listitem>
 	<listitem><para>
-	The server asks all stations that have the file open to break to none, meaning no
-	station holds any oplock on the file. Because the workstations can have no cached
-	writes or locks at this point, they need not respond to the break-to-none advisory;
-	all they need do is invalidate locally cashed read-ahead data.
+	Der Server fordert alle Stationen, die die Datei geöffnet haben, dazu auf, ihre Oplocks aufzubrechen, was
+	bedeutet, daß keine Station mehr irgendwelche Oplocks auf dieser Datei gesetzt hat. Da die
+	Workstations an diesem Punkt keinerlei gepufferte Schreibvorgänge oder Sperren haben können, brauchen
+	sie auch nicht auf diese <quote>break-to-none</quote>-Aufforderung zu antworten; alles was sie tun
+	müssen, ist, alle lokal gepufferten read-ahead-Daten zu verwerfen.
 	</para></listitem>
 </itemizedlist>
 
 <sect2>
-<title>Workstation Service Entries</title>
+<title>Workstation Dienst-Einträge</title>
 
 <para><programlisting>
 	\HKEY_LOCAL_MACHINE\System\
 		CurrentControlSet\Services\LanmanWorkstation\Parameters
 
-	UseOpportunisticLocking   REG_DWORD   0 or 1
-	Default: 1 (true)
+	UseOpportunisticLocking   REG_DWORD   0 oder 1
+	Voreinstellung: 1 (Aktiviert)
 </programlisting></para>
 
 <para>
-This indicates whether the redirector should use opportunistic-locking (oplock) performance
-enhancement. This parameter should be disabled only to isolate problems.
+Dies gibt an, ob der Redirektor Oplocks verwenden soll. Dieser Parameter sollte nur deaktiviert werden, um
+Probleme einzugrenzen.
 </para>
 
 </sect2>
 <sect2>
-<title>Server Service Entries</title>
+<title>Server Dienst-Einträge</title>
 
 <para><programlisting>
 	\HKEY_LOCAL_MACHINE\System\
 		CurrentControlSet\Services\LanmanServer\Parameters
 
-	EnableOplocks   REG_DWORD   0 or 1
-	Default: 1 (true)
+	EnableOplocks   REG_DWORD   0 oder 1
+	Voreinstellung: 1 (Aktiviert)
 </programlisting></para>
 
 <para>
-This specifies whether the server allows clients to use oplocks on files. Oplocks are a
-significant performance enhancement, but have the potential to cause lost cached
-data on some networks, particularly wide area networks.
+Dies gibt an, ob der Server den Clients erlaubt, Oplocks für Dateien zu verwenden.
 </para>
 
 <para><programlisting>
-	MinLinkThroughput   REG_DWORD   0 to infinite bytes per second
-	Default: 0
+	MinLinkThroughput   REG_DWORD   0 bis zu unendlich vielen Bytes/Sekunde
+	Voreinstellung: 0
 </programlisting></para>
 
 <para>
-This specifies the minimum link throughput allowed by the server before it disables
-raw and opportunistic locks for this connection.
+Dies gibt den minimalen Durchsatz an, der vom Server erlaubt wird, bevor er raw-locks und Oplocks für diese
+Verbindung deaktiviert.
 </para>
 
 <para><programlisting>
-	MaxLinkDelay   REG_DWORD   0 to 100,000 seconds
-	Default: 60
+	MaxLinkDelay   REG_DWORD   0 bis 100,000 Sekunden
+	Voreinstellung: 60
 </programlisting></para>
 
 <para>
-This specifies the maximum time allowed for a link delay. If delays exceed this number,
-the server disables raw I/O and opportunistic locking for this connection.
+Dies gibt das zeitliche Limit für die Verzögerungen in einer Verbindung an. 
+Wenn die Verzögerungen diesen Wert übersteigen,
+deaktiviert der Server raw-locks und Oplocks für diese Verbindung.
 </para>
 
 <para><programlisting>
-	OplockBreakWait   REG_DWORD   10 to 180 seconds
-	Default: 35
+	OplockBreakWait   REG_DWORD   10 bis 180 Sekunden
+	Voreinstellung: 35
 </programlisting></para>
 
 <para>
-This specifies the time that the server waits for a client to respond to an oplock break
-request. Smaller values can allow detection of crashed clients more quickly but can
-potentially cause loss of cached data.
+Dies gibt die Zeit an, die der Server einem Client gibt, um auf eine Anfrage bezüglich eines Oplock-Breaks zu
+antworten. Kleinere Werte können helfen, abgestürzte Clients schneller zu finden, verursachen aber auch
+leichter den Verlust gepufferter Daten.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Persistent Data Corruption</title>
+<title>Andauernder Datenverlust</title>
 
 <para>
-If you have applied all of the settings discussed in this chapter but data corruption problems
-and other symptoms persist, here are some additional things to check out.
+Wenn Sie alle in diesem Kapitel erwähnten Einstellungen gesetzt haben, aber nach wie vor Datenverluste
+erleiden, gibt es hier noch ein paar weitere Dinge, die Sie sich ansehen sollten.
 </para>
 
 <para>
-We have credible reports from developers that faulty network hardware, such as a single
-faulty network card, can cause symptoms similar to read caching and data corruption.
-If you see persistent data corruption even after repeated reindexing, you may have to
-rebuild the data files in question. This involves creating a new data file with the
-same definition as the file to be rebuilt and transferring the data from the old file
-to the new one. There are several known methods for doing this that can be found in
-our Knowledge Base.
+Wir haben zuverlässige Berichte von Entwicklern, daß fehlerhafte Netzwerk-Hardware, wie eine einzelne fehlerhafte
+Netzwerkkarte, Symptome wie Caching-Probleme und Datenverlust verursachen kann. Wenn Sie auch nach wiederholtem
+Neu-Indizieren immer noch Datenverluste erleiden, müssen Sie wahrscheinlich die betreffenden Dateien neu
+aufbauen. Das bedeutet das Anlegen einer neuen Datei mit derselben Definition wie die neu zu bildende Datei und
+das Transferieren der Daten aus der alten in die neue Datei. Es gibt einige bekannte Methoden, dies zu tun, die
+man in unserer Knowledge Base finden kann.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Häufige Fehler</title>
 
 <para>
-In some sites, locking problems surface as soon as a server is installed; in other sites
-locking problems may not surface for a long time. Almost without exception, when a locking
-problem does surface it will cause embarrassment and potential data corruption.
+In manchen Installationen zeigen sich Probleme mit dem Sperren sobald ein Server installiert wird; in anderen
+bleiben diese Probleme für eine lange Zeit verborgen. Fast ohne Ausnahme verursachen diese Probleme
+Peinlichkeiten und potentielle Datenverluste.
 </para>
 
 <para>
-Over the past few years there have been a number of complaints on the Samba mailing lists
-that have claimed that Samba caused data corruption. Three causes have been identified
-so far:
+Über die letzten paar Jahre gab es eine Anzahl von Beschwerden in der Samba-Mailing-Liste, die behaupteten,
+daß Samba Datenverluste verursacht habe. Drei Ursachen wurden bislang festgestellt:
 </para>
 
 <itemizedlist>
 	<listitem><para>
-	Incorrect configuration of opportunistic locking (incompatible with the application
-	being used. This is a common problem even where MS Windows NT4 or MS Windows
-	200x-based servers were in use. It is imperative that the software application vendors'
-	instructions for configuration of file locking should be followed. If in doubt,
-	disable oplocks on both the server and the client. Disabling of all forms of file
-	caching on the MS Windows client may be necessary also.
+	Fehlerhafte Konfiguration der Oplocks (inkompatibel mit der verwendeten Applikation). Dies ist ein
+	gängiges Problem, sogar dort, wo MS Windows NT4 oder MS Windows 200x-basierende Server im Einsatz
+	sind. Es ist zwingend erforderlich, daß die Anweisungen des Software-Herstellers in Bezug auf die
+	Konfiguration der Dateisperren befolgt werden. Falls Sie im Zweifel sind, deaktivieren Sie die Oplocks
+	sowohl am Server wie auch am Client. Das Deaktivieren jeglicher Form der Datei-Pufferung auf den
+	MS Windows Clients kann ebenso erforderlich sein.
 	</para></listitem>
 
 	<listitem><para>
-	Defective network cards, cables, or HUBs/Switched. This is generally a more
-	prevalent factor with low cost networking hardware, although occasionally there
-	have also been problems with incompatibilities in more up-market hardware.
+	Defekte Netzwerk-Karten, -Kabel, oder -HUBs/Switches. Dies ist im Allgemeinen eher bei Einsatz billiger
+	Netzwerk-Hardware verbreitet, obwohl es manchmal auch Probleme mit Inkompatibilitäten bei
+	eher hochpreisiger Hardware gibt.
 	</para></listitem>
 
 	<listitem><para>
-	There have been some random reports of Samba log files being written over data
-	files. This has been reported by very few sites (about five in the past three years)
-	and all attempts to reproduce the problem have failed. The Samba Team has been
-	unable to catch this happening and thus has not been able to isolate any particular
-	cause. Considering the millions of systems that use Samba, for the sites that have
-	been affected by this as well as for the Samba Team this is a frustrating and
-	a vexing challenge. If you see this type of thing happening, please create a bug
-	report on Samba <ulink url="https://bugzilla.samba.org">Bugzilla</ulink> without delay.
-	Make sure that you give as much information as you possibly can help isolate the
-	cause and to allow replication of the problem (an essential step in problem isolation and correction).
+	Es hat auch einzelne Meldungen gegeben, die davon berichtet haben, daß Samba's Protokoll-Dateien
+	über Daten-Dateien geschrieben wurden. Dies wurde nur von sehr wenigen Installationen berichtet
+	(ungefähr fünf in den letzten drei Jahren) und alle Versuche, dieses Problem zu reproduzieren, schlugen
+	fehl. Das Samba-Team war bislang nicht imstande, dieses Ereignis zu beobachtem, und konnte daher auch
+	noch keine spezielle Ursache eingrenzen. Bedenkt man die Millionen von Systemen, die Samba einsetzen,
+	ist es trotzdem für die paar Installationen, die von diesem Problem betroffen wurden, genauso wie
+	für das Samba-Team, eine frustrierende und ärgerliche Herausforderung. Wenn Sie so etwas beobachten,
+	erstellen Sie bitte unverzüglich einen Bug-Report auf 
+	Samba <ulink url="https://bugzilla.samba.org">Bugzilla</ulink>. Geben Sie bitte so viele Informationen
+	wie möglich, da Sie vielleicht dazu beitragen, die Ursache dieses Problems zu isolieren, und die
+	Reproduktion des Problems zu ermöglichen (ein Schritt von essentieller Bedeutung, um das Problem
+	eingrenzen und beheben zu können).
 	</para></listitem>
 </itemizedlist>
 
 	<sect2>
-	<title>locking.tdb Error Messages</title>
+	<title>Fehlermeldungen bezüglich locking.tdb</title>
 
 	<para>
 	<quote>
-	We are seeing lots of errors in the Samba logs, like:
+	Wir haben viele Fehler in den Samba-Logs, wie:
 <programlisting>
 tdb(/usr/local/samba_2.2.7/var/locks/locking.tdb): rec_read bad magic
  0x4d6f4b61 at offset=36116
 </programlisting>
 
-	What do these mean?
+	Was bedeuten diese Meldungen?
 	</quote>
 	</para>
 
 	<para>
-	This error indicated a corrupted tdb. Stop all instances of smbd, delete locking.tdb, and restart smbd.
+	Dieser Fehler deutet auf eine zerstörte tdb-Datei hin. Stoppen Sie alle Instanzen von smbd,
+	löschen Sie die Datei locking.tdb, und starten Sie smbd neu.	
 	</para>
 
 	</sect2>
 
 	<sect2>
-		<title>Problems Saving Files in MS Office on Windows XP</title>
+		<title>Probleme beim Speichern von Dateien in MS Office auf Windows XP</title>
 
-		<para>This is a bug in Windows XP. More information can be
-		found in <ulink url="http://support.microsoft.com/?id=812937">Microsoft Knowledge Base article 812937.</ulink></para>
+		<para>Dies ist ein Bug in Windows XP. Sie finden mehr Infos dazu im
+		<ulink url="http://support.microsoft.com/?id=812937">Microsoft Knowledge Base Artikel 812937.</ulink></para>
 
 	</sect2>
 
 	<sect2>
 
-		<title>Long Delays Deleting Files Over Network with XP SP1</title>
+		<title>Lange Verzögerungen beim Löschen von Dateien über das Netzwerk mit XP SP1</title>
 		
-		<para><quote>It sometimes takes approximately 35 seconds to delete files over the network after XP SP1 has been applied.</quote></para>
+		<para><quote>Manchmal dauert es ca. 35 Sekunden, um Dateien über das Netzwerk zu löschen, nachdem
+		XP SP1 eingespielt wurde.</quote></para>
 
-		<para>This is a bug in Windows XP. More information can be found in <ulink url="http://support.microsoft.com/?id=811492">
-				Microsoft Knowledge Base article 811492.</ulink></para>
+		<para>Dies ist ein Bug in Windows XP. Sie finden mehr Infos dazu im
+		<ulink url="http://support.microsoft.com/?id=811492">
+		Microsoft Knowledge Base Artikel 811492.</ulink></para>
 	</sect2>
 
 </sect1>
@@ -1011,18 +1014,18 @@ Windows Base Services &gt; Files and I/O &gt; SDK Documentation &gt; File Storag
 </para>
 
 <para>
-Microsoft Knowledge Base Article Q224992 <?latex \linebreak ?><quote>Maintaining Transactional Integrity
+Microsoft Knowledge Base Artikel Q224992 <?latex \linebreak ?><quote>Maintaining Transactional Integrity
 with OPLOCKS</quote>,
 Microsoft Corporation, April 1999, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q224992">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q224992</ulink>.
 </para>
 
 <para>
-Microsoft Knowledge Base Article Q296264 <quote>Configuring Opportunistic Locking in Windows 2000</quote>,
+Microsoft Knowledge Base Artikel Q296264 <quote>Configuring Opportunistic Locking in Windows 2000</quote>,
 Microsoft Corporation, April 2001, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q296264">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q296264</ulink>.
 </para>
 
 <para>
-Microsoft Knowledge Base Article Q129202 <quote>PC Ext: Explanation of Opportunistic Locking on Windows NT</quote>,
+Microsoft Knowledge Base Artikel Q129202 <quote>PC Ext: Explanation of Opportunistic Locking on Windows NT</quote>,
 Microsoft Corporation, April 1995, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q129202">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q129202</ulink>.
 </para>
 
