@@ -602,38 +602,34 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	</para>
 
 	<para>
-	What follows is the comparison of some fundamental concepts for
-	Windows and UNIX printing; then follows a description of the
-	CUPS filtering system, how it works and how you can tweak it.
+	Was nun folgt, ist der Vergleich von einigen fundamentalen Konzepten des Windows- und UNIX-Drucks;
+	danach folgt eine Beschreibung des CUPS-Filter-Systems, wie es arbeitet, und wie Sie es beeinflussen
+	können.
 	</para>
 
 	<sect2 id="gdipost">
-	<title>GDI on Windows -- PostScript on UNIX</title>
+	<title>GDI unter Windows -- PostScript auf UNIX</title>
 
 
 	<para>
 	<indexterm><primary>GDI</primary></indexterm>
 	<indexterm><primary>PostScript</primary></indexterm>
-	Network printing is one of the most complicated and error-prone
-	day-to-day tasks any user or administrator may encounter. This is
-	true for all OS platforms. And there are reasons for this.
+	Netzwerkdurck ist eine der kompliziertesten und fehlerträchtigsten Alltags-Aufgaben, die ein Benutzer
+	oder Administrator zu bewältigen hat. Dies gilt für alle Betriebssysteme. Und hier sind die Gründe dafür.
 	</para>
 
 
 	<para>
 	<indexterm><primary>PCL</primary></indexterm>
 	<indexterm><primary>PDL</primary></indexterm>
-	You can't expect most file formats to just throw them toward
-	printers and they get printed. There needs to be a file format
-	conversion in between. The problem is that there is no common standard for
-	print file formats across all manufacturers and printer types. While
-	PostScript (trademark held by Adobe) and, to an
-	extent, PCL (trademark held by HP) have developed
-	into semi-official <quote>standards</quote> by being the most widely used PDLs
-	Page Description Languages (PDLs), there are still
-	many manufacturers who <quote>roll their own</quote> (their reasons may be
-	unacceptable license fees for using printer-embedded PostScript
-	interpreters, and so on).
+	Bei den meisten Dateiformaten können Sie nicht erwarten, sie einfach in den Drucker zu schmeissen, und
+	sie werden gedruckt. Es muß eine Wandlung des Dateiformats passieren. Das Problem dabei ist, daß es 
+	keinen gemeinsamen Standard für Druck-Datei-Formate über alle Hersteller und Druckertypen gibt.
+	Während sich PostScript (Handelsmarke von Adobe) und, zu einem gewissen Teil, PCL (Handelsmarke von HP)
+	zu halb-offiziellen <quote>Standards</quote> entwickelt haben, indem sie die weitest verbreiteten
+	PDLs (Page Description Languages) sind, gibt es nach wie vor viele Hersteller, die
+	<quote>ihr eigenes Süppchen kochen</quote> (der Grund dafür können inakzeptabel hohe Lizenzgebühren
+	für Drucker-interne PostScript-Interpreter sein, usw.).
 	</para>
 	</sect2>
 
@@ -645,44 +641,40 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>GDI</primary></indexterm>
 	<indexterm><primary>EMF</primary></indexterm>
 	<indexterm><primary>WYSIWYG</primary></indexterm>
-	In Windows OS, the format conversion job is done by the printer
-	drivers. On MS Windows OS platforms all application programmers have
-	at their disposal a built-in API, the Graphical Device
-	Interface (GDI), as part and parcel of the OS itself to base
-	themselves on. This GDI core is used as one common unified ground for
-	all Windows programs to draw pictures, fonts and documents
-	<emphasis>on screen</emphasis> as well as <emphasis>on
-	paper</emphasis> (print). Therefore, printer driver developers can
-	standardize on a well-defined GDI output for their own driver
-	input. Achieving WYSIWYG (<quote>What You See Is What You Get</quote>) is
-	relatively easy, because the on-screen graphic primitives, as well as
-	the on-paper drawn objects, come from one common source. This source,
-	the GDI, often produces a file format called Enhanced
-	MetaFile (EMF). The EMF is processed by the printer driver and
-	converted to the printer-specific file format.
+	Im Windows OS wird die Formatwandlung von den Druckertreibern erledigt. Auf der Windows-Plattform
+	haben alle Anwendungs-Programmierer eine eingebaute API zur Verfügung, das Graphical Device
+        Interface (GDI), als Teil und Paket des Betriebssystems selbst, um darauf aufzubauen. Dieser GDI-Kern
+	wird als gemeinsame einheitliche Grundlage für alle Windows-Programme verwendet, um Bilder,
+	Schriften und Dokumente <emphasis>am Bildschirm "on screen"</emphasis> darzustellen, genauso wie
+	<emphasis>auf Papier "on paper"</emphasis> (Druck). Daher können Druckertreiber-Hersteller sich mit ihrem
+	Druckertreiber-Input auf einen wohldefinierten GDI-Output standardisieren. Das Erreichen von
+	WYSIWYG (<quote>What You See Is What You Get</quote>) ist relativ einfach, weil die on-screen
+	Grafik-Primitive, genauso wie die on-paper gezeichneten Objekte von einer gemeinsamen Quelle stammen.
+	Diese Quelle, die GDI, erzeugt oft ein Dateiformat namens Enhanced MetaFile (EMF). EMF wird vom
+	Druckertreiber verarbeitet und in ein Drucker-spezifisches Format konvertiert.
 	</para>
 
 	<note><para>
 	<indexterm><primary>PDF</primary></indexterm>
-	To the GDI foundation in MS Windows, Apple has chosen to
-	put paper and screen output on a common foundation for their
-	(BSD-UNIX-based, did you know?) Mac OS X and Darwin Operating
+	Zusätzlich zur GDI-Basis in MS Windows, hat Apple sich entschieden, Papier- und Bildschirmausgaben
+	für seine (auf BSD-UNIX basierende, wußten Sie das?) Betriebssysteme Mac OS X und Darwin auf
+	eine gemeinsame Basis zu stellen. 
 	<indexterm><primary>X Window System</primary></indexterm>
 	<indexterm><primary>PostScript</primary></indexterm>
 	<indexterm><primary>PCL</primary></indexterm>
 	<indexterm><primary>Xprint</primary></indexterm>
-	Systems. Their <emphasis>Core Graphic Engine</emphasis> uses a
-	<emphasis>PDF</emphasis> derivative for all display work.
+	Apples <emphasis>Core Graphic Engine</emphasis> verwendet eine Abwandlung von <emphasis>PDF</emphasis>
+	für alle Anzeigen.	
 	</para></note>
 
 	<para>
 
-	<image><imagedescription>Windows printing to a local printer.</imagedescription><imagefile>1small</imagefile></image>
+	<image><imagedescription>Windows druckt auf einen lokalen Drucker.</imagedescription><imagefile>1small</imagefile></image>
 	</para>
 	</sect2>
 
 	<sect2>
-	<title>UNIX Printfile Conversion and GUI Basics</title>
+	<title>UNIX Druckdatei-Konvertierung und GUI-Grundlagen</title>
 
 
 	<para>
@@ -690,127 +682,109 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>PostScript</primary></indexterm>
 	<indexterm><primary>PCL</primary></indexterm>
 	<indexterm><primary>Xprint</primary></indexterm>
-	In UNIX and Linux, there is no comparable layer built into the OS
-	kernel(s) or the X (screen display) server. Every application is
-	responsible for itself to create its print output. Fortunately, most
-	use PostScript and that at least gives some common ground. Unfortunately,
-	there are many different levels of quality for this PostScript. And
-	worse, there is a huge difference (and no common root) in the way
-	the same document is displayed on screen and how it is presented on
-	paper. WYSIWYG is more difficult to achieve. This goes back to the
-	time, decades ago, when the predecessors of X.org,
-	designing the UNIX foundations and protocols for Graphical User
-	Interfaces, refused to take responsibility for <quote>paper output</quote>
-	also, as some had demanded at the time, and restricted itself to
-	<quote>on-screen only.</quote> (For some years now, the <quote>Xprint</quote> project has been
-	under development, attempting to build printing support into the X
-	framework, including a PostScript and a PCL driver, but it is not yet
-	ready for prime time.) You can see this unfavorable inheritance up to
-	the present day by looking into the various <quote>font</quote> directories on your
-	system; there are separate ones for fonts used for X display and fonts
-	to be used on paper.
+	In UNIX and Linux gibt es keine vergleichbare Schicht im OS-Kernel oder dem X-
+	(Bildschirm-Darstellungs) Server. Jede Anwendung ist für sich selbst verantwortlich, um ihre
+	Druckausgabe zu erzeugen. Zum Glück verwenden die meisten Postscript und das gibt zumindest etwas
+	gemeinsame Grundlagen. Unglücklicherweise gibt es viele verschiedene Qualitätsstufen für Postscript.
+	Und noch schlechter, es gibt einen riesigen Unterschied (und keinen gemeinsamen Ursprung) zwischen
+	der Darstellung desselben Dokuments auf dem Bildschirm und wie dieses Dokument auf Papier
+	dargestellt wird. WYSIWYG ist schwieriger zu erreichen. Dies stammt aus der Zeit, Jahrzehnte zurück,
+	als die Vorläufer von X.org beim Entwurf der UNIX-Grundlagen und -Protokolle für GUIs, die
+	Verantwortung für <quote>Papierausgabe</quote> ablehnten, und sich auf <quote>nur on-screen</quote>
+	beschränkten. (Seit einigen Jahren ist das Projekt <quote>Xprint</quote> in Entwicklung, man versucht,
+	Druckunterstützung in das X-Framework zu integrieren, inklusive eines PostScript- und eines PCL-Treibers,
+	aber dieses Projekt ist noch nicht bereit für die Anwendung.) Sie können diese unangenehme Erbe bis heute
+	sehen, wenn Sie sich die verschiedenen <quote>font</quote>-Verzeichnisse auf Ihrem System ansehen;
+	es gibt eigene Schriften für X-Darstellung und andere für den Druck auf Papier.
 	</para>
 
 	<formalpara>
-	<title>Background</title>
+	<title>Hintergrund</title>
 
 
 	<para>
 	<indexterm><primary>PostScript</primary></indexterm>
-	The PostScript programming language is an <quote>invention</quote> by Adobe Inc.,
-	but its specifications have been published to the full. Its strength
-	lies in its powerful abilities to describe graphical objects (fonts,
-	shapes, patterns, lines, curves, and dots), their attributes (color,
-	linewidth) and the way to manipulate (scale, distort, rotate,
-	shift) them. Because of its open specification, anybody with the
-	skill can start writing his own implementation of a PostScript
-	interpreter and use it to display PostScript files on screen or on
-	paper. Most graphical output devices are based on the concept of
-	<quote>raster images</quote> or <quote>pixels</quote> (one notable exception is pen
-	plotters). Of course, you can look at a PostScript file in its textual
-	form and you will be reading its PostScript code, the language
-	instructions which need to be interpreted by a rasterizer. Rasterizers
-	produce pixel images, which may be displayed on screen by a viewer
-	program or on paper by a printer.
+	Die Programmiersprache PostScript ist eine <quote>Erfindung</quote> von Adobe Inc., aber ihre
+	Spezifikationen wurden vollständig veröffentlicht. Ihre Stärke liegt in den mächtigen Fähigkeiten,
+	graphische Objekte zu beschreiben (Schriften, Formen, Muster, Linien, Kurven, und Punkte), deren
+	Attribute (Farbe, Strichstärke), und die Art, diese zu manipulieren (Skalieren, Verzerren, Rotieren,
+	Verschieben). Wegen der offenen Spezifikation kann jeder mit entsprechenden Fähigkeiten damit beginnen,
+	seine eigene Implementation eines PostScript-Interpreters zu schreiben, und diesen zu verwenden, um
+	PostScript-Dateien auf dem Schirm oder auf Papier darzustellen. Die meisten grafischen Ausgabegeräte
+	basieren auf dem Konzept von <quote>Raster-Bildern</quote> oder <quote>Pixeln</quote> (eine zu erwähnende
+	Ausnahme bilden Stift-Plotter). Natürlich können Sie eine PostScript-Datei in seiner Text-Form betrachten
+	und ihren PostScript-Code lesen, die Sprach-Befehle, die von einem Rasterizer interpretiert werden
+	müssen. Rasterizer erzeugen Pixel-Bilder, welche von einem Viewer auf dem Schirm dargestellt werden
+	können, oder von einem Drucker auf dem Papier.
 	</para>
 	</formalpara>
 	</sect2>
 
 	<sect2 id="post-and-ghost">
-	<title>PostScript and Ghostscript</title>
-
+	<title>PostScript und Ghostscript</title>
 
 	<para>
 	<indexterm><primary>PostScript</primary></indexterm>
 	<indexterm><primary>GhostScript</primary><seealso>PostScript</seealso></indexterm>
 	<indexterm><primary>PostScript</primary><secondary>RIP</secondary></indexterm>
-	So, UNIX is lacking a common ground for printing on paper and
-	displaying on screen. Despite this unfavorable legacy for UNIX, basic
-	printing is fairly easy if you have PostScript printers at your
-	disposal. The reason is these devices have a built-in PostScript
-	language <quote>interpreter,</quote> also called a Raster Image
-	Processor (RIP) (which makes them more expensive than
-	other types of printers); throw PostScript toward them, and they will
-	spit out your printed pages. Their RIP is doing all the hard work of
-	converting the PostScript drawing commands into a bitmap picture as
-	you see it on paper, in a resolution as done by your printer. This is
-	no different to PostScript printing a file from a Windows origin.
+	Also fehlt UNIX eine gemeinsame Basis für Druck und Bildschirmdarstellung. Trotz diesem ungünstigen
+	Erbe, ist grundsätzlich Drucken ziemlich einfach, wenn Sie PostScript-Drucker zur Verfügung haben.
+	Der Grund dafür ist, daß diese Drucker einen eingebauten PostScript-<quote>Interpreter</quote>
+	besitzen, auch genannt, einen Raster Image Processor (RIP) (der sie auch teurer als andere Drucker sein
+	läßt); wenn Sie diesen Druckern PostScript schicken, werden diese sie auch drucken. Ihr RIP macht all
+	die harte Arbeit des Umwandelns von PostScript-Zeichenbefehlen in ein Bitmap-Bild, wie Sie es auf
+	Papier sehen, in einer Auflösung, wie Sie von Ihrem Drucker unterstützt wird. Dies entspricht dem
+	PostScript-Druck einer Datei aus Windows.
 	</para>
 
 	<note><para>
 	<indexterm><primary>PPD</primary></indexterm>
-	Traditional UNIX programs and printing systems &smbmdash; while
-	using PostScript &smbmdash; are largely not PPD-aware. PPDs are <quote>PostScript
-		Printer Description</quote> files. They enable you to specify and control all
-	options a printer supports: duplexing, stapling and punching. Therefore,
-	UNIX users for a long time couldn't choose many of the supported
-	device and job options, unlike Windows or Apple users. But now there
-	is CUPS.
+	Traditionelle UNIX-Programme und -Druck-Systeme &smbmdash; bei Verwendung von PostScript &smbmdash;
+	sind nicht PPD-fähig. PPDs sind <quote>PostScript Printer Description</quote>-Dateien. Sie ermöglichen
+	es Ihnen, alle Optionen, die ein Drucker kennt, anzugeben und zu kontrollieren: Duplexdruck, Stapeln
+	und Lochen. Daher konnten UNIX-Anwender lange Zeit viele der unterstützten Geräte- und Auftrags-Optionen
+	nicht nutzen, im Unterschied zu Windows- und Apple-Anwendern. Aber jetzt gibt es CUPS.
 	</para>
 	</note>
 
 	<para>
-	<image><imagedescription>Printing to a PostScript printer.</imagedescription>
+	<image><imagedescription>Drucken auf einen PostScript-Drucker.</imagedescription>
 			<imagefile>2small</imagefile></image>
 	</para>
 
 
 	<para>
 	<indexterm><primary>PDL</primary></indexterm>
-	However, there are other types of printers out there. These do not know
-	how to print PostScript. They use their own Page Description
-	Language (PDL, often proprietary). To print to them is much
-	more demanding. Since your UNIX applications mostly produce
-	PostScript, and since these devices do not understand PostScript, you
-	need to convert the print files to a format suitable for your printer
-	on the host before you can send it away.
+	Jedoch gibt es auch andere Drucker-Typen da draussen. Diese Typen wissen nicht, wie man PostScript
+	druckt. Sie verwenden ihre eigene Page Description Language (PDL, oft proprietär). Das Drucken auf
+	diesen Geräten stellt höhere Anforderungen. Da Ihre UNIX-Anwendungen meistens PostScript erzeugen,
+	und da diese Geräte kein PostScript verstehen, müssen Sie die Druckdateien auf dem host in ein 
+	für Ihren Drucker passendes Format konvertieren, bevor Sie diese an den Drucker senden können.
 	</para>
 	</sect2>
 
 	<sect2>
-	<title>Ghostscript &smbmdash; the Software RIP for Non-PostScript Printers</title>
+	<title>Ghostscript &smbmdash; der Software RIP für Nicht-PostScript-fähige Drucker</title>
 
 
 	<para>
 	<indexterm><primary>GhostScript</primary></indexterm>
-	Here is where Ghostscript kicks in. Ghostscript is
-	the traditional (and quite powerful) PostScript interpreter used on
-	UNIX platforms. It is a RIP in software, capable of doing a
-	<emphasis>lot</emphasis> of file format conversions for a very broad
-	spectrum of hardware devices as well as software file formats.
-	Ghostscript technology and drivers are what enable PostScript printing
-	to non-PostScript hardware.
+	Hier betritt Ghostscript das Geschehen. Ghostscript ist der traditionelle (und ziemlich mächtige)
+	PostScript-Interpreter, der auf UNIX-Plattformen verwendet wird. Es ist ein RIP als Software, imstande,
+	<emphasis>viele</emphasis> Datei-Konvertierungen für ein sehr grosses Spektrum von Hardware-Geräten bzw.
+	Software-Dateiformaten durchzuführen. Ghostscript-Technologie und -Treiber ermöglichen PostScript-Druck
+	auf Nicht-PostScript-fähige Hardware.
 	</para>
 
 	<para>
-	<image><imagedescription>Ghostscript as a RIP for non-postscript printers.</imagedescription>
+	<image><imagedescription>Ghostscript als RIP für Nicht-PostScript-fähige Drucker.</imagedescription>
 		<imagefile>3small</imagefile>
 	</image>
 	</para>
 
 	<tip><para>
-	Use the <quote>gs -h</quote> command to check for all built-in <quote>devices</quote>
-	of your Ghostscript version. If you specify a parameter of
+	Verwenden Sie den Befehl <quote>gs -h</quote>, um alle eingebauten <quote>devices</quote> Ihrer
+	Ghostscript-Version anzusehen. If you specify a parameter of
 	<parameter>-sDEVICE=png256</parameter> on your Ghostscript command
 	line, you are asking Ghostscript to convert the input into a PNG
 	file. Naming a <quote>device</quote> on the command line is the most important
