@@ -14,13 +14,13 @@
 	<pubdate>April 3, 2003</pubdate>
 </chapterinfo>
 
-<title>Interdomain Vertrauensstellung</title>
+<title>Interdomain Vertrauensstellungen</title>
 
 
 <para>
-<indexterm><primary>Interdomain Trusts</primary></indexterm>
+<indexterm><primary>Interdomain Vertrauensstellungen</primary></indexterm>
 Samba-3 unterstützt NT4-gleiche Domänen Vertrauensstellungen. Dies ist ein  Bestandteil den
-viele Standorte benutzen möchten wenn sie von einer NT4-gleichen Domäne auf eine Samba-3 Domäne
+viele Standorte benutzen möchten, wenn sie von einer NT4-gleichen Domäne auf eine Samba-3 Domäne
 migrieren, ohne Active Directory oder ein LDAP-basierendes Backend übernehmen zu müssen. Dieses Kapitel
 beschreibt einige Hintergrundinformationen bezüglich Vertrauensstellungen und wie sie erstellt werden.
 Es ist nun für Samba3 möglich NT4 zu vertrauen (und umgekehrt), genauso wie es möglich ist Samba-zu-Samba
@@ -31,13 +31,13 @@ Vertrauensstellungen zu erstellen.
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Samba-3 kann an einer Samba-zu-Samba Vertrauensstellung teilnehmen genauso wie in einer Samba
+Samba-3 kann an einer Samba-zu-Samba Vertrauensstellung teilnehmen, genauso wie in einer Samba
 -zu-MS Windows NT4 Vertrauensstellung. Somit hat Samba eine ähnliche Skalierbarkeit wie
 MS Windows NT4.
 </para>
 
 <para>
-Gegeben das Samba-3 die Fähigkeit besitzt mit einem skalierbaren Authentifizierungsbackend
+Gegeben, dass Samba-3 die Fähigkeit besitzt, mit einem skalierbaren Authentifizierungsbackend
 wie LDAP zu funktionieren, und gegeben dass es sowohl als Erster Domänen Kontroller sowie als
 Backup Domänen Kontroller funktioniert, sollte der Administrator sich nach Alternativen umschauen,
 bevor er Interdomänen Vertrauensstellung benutzt, aus dem einfachen Grund dass das Prinzip nach
@@ -53,7 +53,7 @@ von Microsoft Active Directory.
 <para>
 MS Windows NT3/4 Sicherheits Domänen haben eine nicht-hierarchische Sicherheits Struktur.
 Die Einschränkungen dieser Architektur und wie sie die Skalierbarkeit von MS Windows
-Netzwerken in grossen Organisationen betreffen, sind wohl bekannt. Dazu schränkt --the flat 
+Netzwerken in grossen Organisationen betreffen, sind wohl bekannt. Dazu schränkt ##-noch zu übersetzen##---the flat 
 namespace-- der aus diesem Design hervorgeht auch die Verteilung von administrativen Aufgaben
 in grossen Netzwerken sehr ein. 
 
@@ -76,7 +76,7 @@ Grund gibt einen unterbrechenden Wechsel zu vollziehen um ADS zu adaptieren.
 Mit MS Windows NT, hat Microsoft die Fähigkeit eingeführt, unterschiedlichen Sicherheits
 Domänen einen Mechanismus zu erlauben so, dass Benutzern einer Domäne, Anmelderechte und Privilegien
 in einer anderen Domäne gegeben werden können. Dies wird als <emphasis>Vertrauensstellung</emphasis>
-(Trusts) beschrieben. Z.B. eine Domäne <emphasis>vertraut</emphasis> den Benutzern einer anderen Domäne.
+(Trust) beschrieben. Z.B. eine Domäne <emphasis>vertraut</emphasis> den Benutzern einer anderen Domäne.
 Die Domäne, von welcher die Benutzer einer anderen Domäne zur Verfügung stehen, nennt man vertraute Domäne.
 Die Domäne, in der diese Benutzer gewisse Rechte und Privilegien haben ist die vertrauende Domäne. Mit
 NT3.x/4.0 gehen alle Vertrauensstellungen immer nur in eine Richtung, d.h. wenn Benutzer beider Domänen
@@ -122,7 +122,7 @@ konfiguriert. Dieser wird über den Domain User Manager Policies Eintrag in der M
 <guimenu>Policy</guimenu> Menü aus wählen Sie <guimenuitem>Trust Relationships</guimenuitem>. Gleich neben
 der unteren Box mit dem Namen <guilabel>Permitted to Trust this Domain</guilabel> sind zwei Knöpfe, 
 <guibutton>Add</guibutton> und <guibutton>Remove</guibutton>. Der <guibutton>Add</guibutton> Knopf öffnet 
-ein Menü wo man den Namen der Domäne eintragen kann die dann befähigt ist Zugriffsrechte an Benutzer in
+ein Menü wo man den Namen der Domäne eintragen kann, die dann befähigt ist Zugriffsrechte an Benutzer in
 Ihrer Domäne zu vergeben. Sie müssen auch ein Passwort für diese Vertrauensstellung eingeben, welches
 die vertrauende Domäne benötigt wenn sie Benutzer aus der vertrauten Domäne authentifiziert. Das Passwort
 muss zweimal eingegeben werden (standard Bestätigung).
@@ -137,9 +137,9 @@ muss zweimal eingegeben werden (standard Bestätigung).
 <para>
 <indexterm><primary>Interdomain Vertrauensstellungen</primary><secondary>Fertigstellen</secondary></indexterm>
 Eine Vertrauensstellung funktioniert nur wenn die andere (vertrauende) Domäne die benötigten Verbindungen mit
-der vertrauten Domäne herstellt. Um das Vertrauensverhältnis durchzuführen muss der Administrator den 
+der vertrauten Domäne herstellt. Um das Vertrauensverhältnis herzustellen, muss der Administrator den 
 Domain User Manager starten, dann unter <guilabel>Policies</guilabel> den Menüpunkt <guilabel>Trust Relationships</guilabel>
-auswählen, auf den <guibutton>Add</guibutton> Knopf klicken der neben sich der <guilabel>Trusted Domains</guilabel>
+auswählen, auf den <guibutton>Add</guibutton> Knopf klicken, der sich neben der <guilabel>Trusted Domains</guilabel>
 Box befindet. Es öffnet sich ein Menü in dem man den Namen der anderen Domäne sowie das Passwort zur Vertrauensstellung
 eingeben muss.
 </para>
@@ -152,7 +152,7 @@ eingeben muss.
 
 <para>
 <indexterm><primary>Interdomain Vertrauens</primary><secondary>Möglichkeiten</secondary></indexterm>
-Eine zwei Wege Vertrauensstellung ist erstellt wenn zwei Ein-Weg Vertrauensstellungen erstell sind,
+Eine zwei Wege Vertrauensstellung ist erstellt wenn zwei Ein-Weg Vertrauensstellungen erstellt sind,
 in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windows NT4 Domänen besteht
 (nennen wir sie DomA und DomB), wurden folgende Möglichkeiten hergestellt.
 </para>
@@ -169,7 +169,7 @@ in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windo
 	</para></listitem>
 
 	<listitem><para>
-	DomB ist die <parameter>vertraute</parameter> Domäne (originates the trust account).
+	DomB ist die <parameter>vertraute</parameter> Domäne (fängt mit der Vertrauensstellung an).
 	</para></listitem>
 
 	<listitem><para>
@@ -189,11 +189,11 @@ in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windo
 	</para></listitem>
 
 	<listitem><para>
-	DomB erscheint im Logon Dialog auf client Workstations von DomA.
+	DomB erscheint im Logon Dialog auf Client Workstations von DomA.
 	</para></listitem>
 
 	<listitem><para>
-	DomA erscheint nicht im Logon Dialog auf client Workstations von DomB.
+	DomA erscheint nicht im Logon Dialog auf Client Workstations von DomB.
 	</para></listitem>
 </itemizedlist>
 
@@ -237,16 +237,16 @@ in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windo
 <title>Konfigurieren einer Samba NT-gleichen Vertrauensstellung</title>
 
 <para>
-Diese Beschreibung sollte eine recht kurze Einführung sein wie man einen Samba Server aufsetzt so
-dass er an einer Inderdomain Vertrauensstellung Teilnehmen kann. Die Unterstützung von Verstrauensstellungen
+Diese Beschreibung sollte eine recht kurze Einführung sein, wie man einen Samba Server aufsetzt so,
+dass er an einer Inderdomain Vertrauensstellung teilnehmen kann. Die Unterstützung von Verstrauensstellungen
 in Samba ist in einem frühen Stadium, deshalb sollte man nicht überrascht sein wenn etwas nicht funktioniert
 wie es sollte.
 </para>
 
 <para>
-Alle unten beschriebenen Szenarien gehen davon aus dass die Peer Domäne in der Vertrauensstellung von
+Alle unten beschriebenen Szenarien gehen davon aus, dass die Peer Domäne in der Vertrauensstellung von
 einem Windows NT4 Server betrieben wird. Das entfernte Ende könnte aber auch genausogut eine andere
-Samba-3 Domäne sein. Nachdem man dieses Dokument zu ende gelesen hat, kann man gut erkennen dass wenn
+Samba-3 Domäne sein. Nachdem man dieses Dokument zu Ende gelesen hat, kann man gut erkennen, dass wenn
 man Samba-spezifische Teile von den unten beschrieben zusammensetzt, auch eine Vertrauensstellung zwischen
 Domänen in einer reinen Samba Umgebung herstellen kann.
 </para>
@@ -255,8 +255,8 @@ Domänen in einer reinen Samba Umgebung herstellen kann.
 <title>Samba als vertraute Domäne</title>
 
 <para>
-Um den Samba PDC als vertraute Seite der Vertrauensstellung festzulegen muss zuerst ein spezielles
-Konto in der Domäne festgelegt werden die die vertrauende Seite sein wird. Um dies zu machen kann
+Um den Samba PDC als vertraute Seite der Vertrauensstellung festzulegen, muss zuerst ein spezielles
+Konto in der Domäne festgelegt werden, die die vertrauende Seite sein wird. Um dies zu machen kann
 das <command>smbpasswd</command> Programm verwendet werden. Ein vertrautes Domänen Konto zu erstellen
 funktioniert ähnlich wie ein vertrautes Maschinen Konto zu erstellen. Angenommen, Ihre Domäne heisst
 SAMBA, und die entfernte Domäne ist RUMBA. Der erste Schritt ist, folgenden Befehl in Ihrer lieblings 
@@ -271,7 +271,7 @@ Retype SMB password: <userinput>XXXXXXXX</userinput>
 Added user rumba$
 </screen>
 
-wobei <option>-a</option> bedeutet dass ein neues Konto der passdb Datenbank hinzugefügt wird
+wobei <option>-a</option> bedeutet, dass ein neues Konto der passdb Datenbank hinzugefügt wird
 und <option>-i</option> soviel heisst wie <quote>erstelle dieses Konto mit der Inter-Domain
 vertrauens flag</quote>.
 </para>
@@ -284,11 +284,11 @@ sie es händisch hinzufügen und dann obigen Schritt wiederholen.
 </para>
 
 <para>
-Nachdem sie diesen Befehl eingegeben haben, werden Sie nach einem Password für dieses Konto gefragt.
-Sie können hier jedes beliebige Passwort verwenden, aber beachten Sie dass Windows NT dieses Passwort
+Nachdem Sie diesen Befehl eingegeben haben, werden Sie nach einem Password für dieses Konto gefragt.
+Sie können hier jedes beliebige Passwort verwenden, aber beachten Sie, dass Windows NT dieses Passwort
 nicht vor 7 Tage nach der Konto Erstellung ändern wird. Nach erfolgreicher Ausführung des Befehls,
-können sie den Eintrag für das neue Konto anschauen (in der Art wie es Ihre Konfiguration vorsieht),
-und Sie werden sehen dass der Kontoname wirklick RUMBA$ ist und dass die <quote>I</quote> flag im flags Feld
+können sie den Eintrag für das neue Konto anschauen (in der Art wie es Ihre Konfiguration vorsieht)
+und Sie werden sehen, dass der Kontoname wirklick RUMBA$ ist und dass die <quote>I</quote> Flag im flags Feld
 gesetzt ist. Sie sind nun bereit die Vertrauensstellung zu bestätigen, indem Sie sie vom Windows NT Server
 aus aufbauen.
 </para>
@@ -324,19 +324,19 @@ Der erste Schritt ist ein Konto für die SAMBA Domäne auf dem RUMBA PDC zu erstel
 <indexterm><primary>User Manager</primary></indexterm>
 Starten Sie den <application>Domain User Manager</application>, wählen sie vom Menü
 <guimenu>Policies</guimenu>, <guimenuitem>Trust Relationships</guimenuitem> aus. Jetzt
-drücken Sie den <guibutton>Add</guibutton> Knopf der sich neben der <guilabel>Trusted Domains</guilabel>
+drücken Sie den <guibutton>Add</guibutton> Knopf, der sich neben der <guilabel>Trusted Domains</guilabel>
 Box befindet und geben den Namen der vertrauten Domäne (SAMBA) und das Passwort für die Sicherung der 
 Vertrauensstellung ein.
 </para>
 
 <para>
-Das Passwort kann willkürlich gewählt werden. Es ist einfach das Passwort zu jedem Zeitpunkt vom Samba
-Server aus zu ändern. Nachdem man das Passwort bestätigt hat ist das Konto fertig für den Gebrauch. Jetzt
+Das Passwort kann willkürlich gewählt werden. Es ist einfach, das Passwort zu jedem Zeitpunkt vom Samba
+Server aus zu ändern. Nachdem man das Passwort bestätigt hat, ist das Konto fertig für den Gebrauch. Jetzt
 ist der Samba Server an der Reihe.
 </para>
 
 <para>
-Als root mit ihrer bevorzugten Shell angemeldet, führen Sie diesen Befhel aus:
+Als root mit ihrer bevorzugten Shell angemeldet, führen Sie diesen Befehl aus:
 </para>
 
 <para>
@@ -346,7 +346,7 @@ Als root mit ihrer bevorzugten Shell angemeldet, führen Sie diesen Befhel aus:
 <para>
 Sie werden nach dem Password gefragt das Sie gerade in Ihrer Windows NT4 Server Maschine
 eingegeben haben. Die Fehlermeldung <errorname>`NT_STATUS_NOLOGON_INTERDOMAIN_TRUST_ACCOUNT'</errorname>,
-welche manchmal auftritt, kann getrost ignoriert werden. Sie bedeutet dass das Passwort das Sie eingegeben
+welche manchmal auftritt, kann getrost ignoriert werden. Sie bedeutet, dass das Passwort welches Sie eingegeben
 haben richtig ist und der NT4 Server zurückgibt, dass das Konto bereit für eine Interdomain Verbindung ist und nicht
 für eine Normale Verbindung. Nach dieser Prozedur müssen Sie etwas gedulding sein, es könnte eine Weile
 dauern (vor allem in grossen Netzwerken), aber schließlich sollten Sie die <computeroutput>Success</computeroutput>
@@ -371,18 +371,18 @@ einem Windows 2000 Server zu vertrauen, in diesem Gebiet muss jedoch noch getest
 </para>
 
 <para>
-Nach Fertigstellung des <link linkend="samba-trusted-domain">erstellen eines interdomain Vertrauens Konto
+Nach Fertigstellung des <link linkend="samba-trusted-domain">erstellens eines interdomain Vertrauens Konto
 auf dem Samba Server</link> wie oben beschrieben, öffnen Sie <application>Active Directory Domains and 
 Trusts</application> auf dem AD Kontroller der Domäne deren Ressourcen sie den Samba Benutzern zur Verfügung
 stellen möchten. Wenn Sie möchten dass Ihre Benutzer Zugriff auf mehrer mixed-Mode Domänen in Ihrem AD Forest haben,
 müssen Sie diesen Vorgang für alle Domänen wiederholen. Nachdem Sie <application>Active Directory Domains and 
 Trusts</application> geöffnet haben, machen Sie einen Rechtsklick auf die Domäne die unserer Samba Domäne vertrauen
-soll und wählen <guimenuitem>Properties</guimenuitem>, dann klicken sie auf den <guilabel>Trusts</guilabel> tab.
+soll und wählen <guimenuitem>Properties</guimenuitem>, dann klicken Sie auf den <guilabel>Trusts</guilabel> tab.
 Im oberen Teil der Leiste sehen Sie eine List Box mit dem Namen <guilabel>Domains trusted by this domain:</guilabel>,
 und einen<guilabel>Add...</guilabel> Knopf daneben. Drücken Sie diesen Knopf und gleich wie bei NT4, werden Sie nun
-nach der Domäne und dem Passwort für die Vertrauensstelung gefragt. Drücken Sie OK, und nach einem Moment wird Active 
+nach der Domäne und dem Passwort für die Vertrauensstellung gefragt. Drücken Sie OK, und nach einem Moment wird Active 
 Directory mit einer <computeroutput>The trusted domain has been added and the trust has been verified.</computeroutput>
-Meldung antworten. Ihren Samba Benutzern kann nun Zugriff zu den Resourcen in der AD Domäne gegeben werden.
+Meldung antworten. Ihren Samba Benutzern kann nun Zugriff zu den Ressourcen in der AD Domäne gegeben werden.
 </para>
 </sect1>
 
@@ -433,7 +433,7 @@ wird welches die Privilegien dazu hat, wird es erledigt, sonst nicht.
 <para>
 Wenn Sie das <command>smbldap-useradd.pl</command> Skript benützen, um ein
 Konto, für die Fertigstellung einer interdomain Vertrauensstellung, zu erstellen wird
-dieser Prozess fehlschlagen. Das Konto welches in der LDAP Datenbank erstellt wurde
+dieser Prozess fehlschlagen. Das Konto welches in der LDAP Datenbank erstellt wurde,
 wird ein Konto Flags Feld haben das <constant>[W          ]</constant> enthält, wärend
 es <constant>[I          ]</constant> für eine funktionierende Interdomain Vertrauensstellung
 enthalten müsste.
