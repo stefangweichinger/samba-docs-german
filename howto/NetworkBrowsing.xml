@@ -627,7 +627,7 @@ der Datei &smb.conf; wie <link linkend="nombexample">im folgenden Beispiel</link
 
 <para>
 <smbconfexample id="nombexample">
-<title>smb.conf für Samba, der nicht Master Browser ist</title>
+<title>smb.conf für Samba-Server, der nicht Master Browser ist</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>no</value></smbconfoption>
 <smbconfoption><name>local master</name><value>no</value></smbconfoption>
@@ -642,21 +642,23 @@ der Datei &smb.conf; wie <link linkend="nombexample">im folgenden Beispiel</link
 <title>Konfiguration von DOMÄNEN-Browsing</title>
 
 <para>
-If you are adding Samba servers to a Windows NT Domain, then you must not set up a Samba server as a Domain Master Browser.
-By default, a Windows NT Primary Domain Controller for a domain is also the Domain Master Browser for that domain. Network
-browsing may break if a Samba server registers the domain master browser NetBIOS name (<replaceable>DOMAIN</replaceable>&lt;1B&gt;)
-with WINS instead of the PDC.
+Wenn Sie Samba-Server einer Windows-NT-Domäne hinzufügen, dann dürfen Sie keinen Samba-Server als Domänen Master
+Browser einrichten. Standardmässig ist der Windows NT-PDC einer Domäne auch gleichzeitig der Domänen Master
+Browser für diese Domäne. Das Netzwerk-Browsing kann zusammenbrechen, wenn sich ein Samba-Server mit dem
+NetBIOS-Namen des Domänen Master Browsers am WINS-Server anmeldet (<replaceable>DOMÄNE</replaceable>&lt;1B&gt;),
+zusätzlich zum PDC.
 </para>
 
 <para>
-For subnets other than the one containing the Windows NT PDC, you may set up Samba servers as Local Master Browsers as
-described. To make a Samba server a Local Master Browser, set the following options in the <smbconfsection>[global]</smbconfsection> section 
-of the &smb.conf; file as shown in <link linkend="remsmb">following example</link>:
+Für andere Subnetze als jenes, das den Windows NT PDC enthält, können Sie wie beschrieben Samba-Server als
+Lokale Master Browser einrichten. Um einen Samba-Server zu einem Lokalen Master Browser zu machen, setzen Sie
+folgende Optionen im Abschnitt <smbconfsection>[global]</smbconfsection>
+der Datei &smb.conf; wie <link linkend="remsmb">im folgenden Beispiel</link>:
 </para>
 
 <para>
 <smbconfexample id="remsmb">
-<title>Local Master Browser smb.conf</title>
+<title>smb.conf für einen Lokalen Master Browser</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>no</value></smbconfoption>
 <smbconfoption><name>local master</name><value>yes</value></smbconfoption>
@@ -666,22 +668,24 @@ of the &smb.conf; file as shown in <link linkend="remsmb">following example</lin
 </para>
 
 <para>
-If you wish to have a Samba server fight the election with machines on the same subnet you
-may set the <smbconfoption><name>os level</name></smbconfoption> parameter to lower levels.
-By doing this you can tune the order of machines that will become Local Master Browsers if
-they are running. For more details on this refer to <link linkend="browse-force-master">Forcing Samba to Be the Master</link> section.
+Wenn Sie wollen, daß ein Samba-Server mit anderen Maschinen im Subnetz um den Sieg in der Browsing-Wahl kämpft,
+können Sie den Parameter <smbconfoption><name>os level</name></smbconfoption> auf niedrigere Werte setzen. Damit 
+können Sie die Reihenfolge feintunen, in der die Maschinen zum Lokalen Master Browser werden, wenn sie laufen.
+Mehr Details dazu im Abschnitt 
+<link linkend="browse-force-master">Wie man Samba dazu zwingt, der Master zu sein</link>.
 </para>
 
 <para>
-If you have Windows NT machines that are members of the domain on all subnets and you are
-sure they will always be running, you can disable Samba from taking part in browser elections
-and ever becoming a Local Master Browser by setting the following options in the
-<smbconfsection>[global]</smbconfsection> section of the &smb.conf; file as shown in <link linkend="xremmb">next example</link>:
+Wenn Sie Windows NT Maschinen haben, die Domänenmitglieder auf allen Subnetzen sind, und Sie sind sich sicher, 
+daß diese Maschinen immer laufen werden, können Sie Samba von der Teilnahme an Browsing-Wahlen ausnehmen, und
+damit deaktivieren, daß Samba jemals ein Lokaler Master Browser wird, indem Sie folgende Optionen im 
+Abschnitt <smbconfsection>[global]</smbconfsection>
+der Datei &smb.conf; wie <link linkend="xremmb">im folgenden Beispiel</link> setzen:
 </para>
 
 <para>
 <smbconfexample id="xremmb">
-<title>&smb.conf; for not being a master browser</title>
+<title>&smb.conf; für Samba-Server, der nie Master Browser wird</title>
 <smbconfsection>[global]</smbconfsection>
 <smbconfoption><name>domain master</name><value>no</value></smbconfoption>
 <smbconfoption><name>local master</name><value>no</value></smbconfoption>
@@ -693,117 +697,126 @@ and ever becoming a Local Master Browser by setting the following options in the
 </sect2>
 
 <sect2 id="browse-force-master">
-<title>Forcing Samba to Be the Master</title>
+<title>Wie man Samba dazu zwingt, der Master zu sein</title>
 
 <para>
-Who becomes the master browser is determined by an election process using broadcasts. Each election packet contains a number of parameters
-that determine what precedence (bias) a host should have in the election. By default Samba uses a low precedence and thus loses
-elections to just about every Windows network server or client.
+Wer der Master Browser wird, hängt von einem Wahlvorgang ab, der Broadcasts verwendet. Jedes Wahl-Paket enthält
+eine Anzahl von Parametern, die bestimmen, welchen Rang ein Host in der Wahl einnimmt. Per Standard verwendet
+Samba einen niedrigen Rang und verliert daher die Wahlen gegen so gut wie jeden Windows-Netzwerk-Client oder
+-Server.
 </para>
 
 <para>
-If you want Samba to win elections, set the <smbconfoption><name>os level</name></smbconfoption>
-global option in &smb.conf; to a higher number. It defaults to 20. Using 34 would make it win
-all elections every other system (except other samba systems).
+Wenn Sie wollen, daß Samba Wahlen gewinnt, setzen Sie die globale Option 
+<smbconfoption><name>os level</name></smbconfoption> in &smb.conf; auf einen höheren Wert. Der Standard ist 20.
+Die Verwendung von 34 liesse Samba alle Wahlen gegen jedes andere System gewinnen (außer gegen andere 
+Samba-Systeme).
 </para>
 
 <para>
-An <smbconfoption><name>os level</name></smbconfoption> of two would make it beat Windows for Workgroups and Windows 9x/Me, but not MS Windows
-NT/200x Server. An MS Windows NT/200x Server Domain Controller uses level 32. The maximum os level is 255.
+Ein <smbconfoption><name>os level</name></smbconfoption> von 2 würde es Windows for Workgroups und Windows 9x/Me
+schlagen lassen, aber nicht MS Windows NT/200x Server. Ein MS Windows NT/200x Server Domänen Controller verwendet
+level 32. Das Maximum für <smbconfoption><name>os level</name></smbconfoption> ist 255.
 </para>
 
 <para>
-If you want Samba to force an election on startup, set the
-<smbconfoption><name>preferred master</name></smbconfoption> global option in &smb.conf; to <constant>yes</constant>.
-Samba will then have a slight advantage over other potential master browsers that are not Preferred Master Browsers.
-Use this parameter with care, as if you have two hosts (whether they are Windows 9x/Me or
-NT/200x/XP or Samba) on the same local subnet both set with <smbconfoption><name>preferred master</name></smbconfoption>
-to <constant>yes</constant>, then periodically and continually they will force an election in order
-to become the Local Master Browser.
+Wenn Sie wollen, daß Samba bei seinem Start eine Wahl erzwingt, setzen Sie die globale Option
+<smbconfoption><name>preferred master</name></smbconfoption> in &smb.conf; auf <constant>yes</constant>.
+Samba hat dann einen leichten Vorteil gegnüber anderen potentiellen Master Browsern, die keine
+<quote>Preferred Master Browser</quote> sind. Verwenden Sie diesen Parameter vorsichtig, denn wenn Sie zwei
+Hosts (egal ob diese Windows 9x/Me oder NT/200x/XP oder Samba ausführen) im selben Subnetz habe, die
+<smbconfoption><name>preferred master</name></smbconfoption> auf <constant>yes</constant> gesetzt haben, werden
+diese beiden periodisch und kontinuierlich eine Wahl erzwingen, um Lokaler Master Browser zu werden.
 </para>
 
 <para>
-If you want Samba to be a <emphasis>Domain Master Browser</emphasis>, then it is recommended that
-you also set <smbconfoption><name>preferred master</name></smbconfoption> to <constant>yes</constant>, because
-Samba will not become a Domain Master Browser for the whole of your LAN or WAN if it is not also a
-Local Master Browser on its own broadcast isolated subnet.
+Wenn Sie wollen, daß Samba ein <emphasis>Domänen Master Browser</emphasis> wird, dann ist es zu empfehlen,
+daß Sie auch <smbconfoption><name>preferred master</name></smbconfoption> auf <constant>yes</constant> setzen,
+da Samba nicht zum Domänen Master Browser für Ihr gesamtes LAN oder WAN wird, wenn er nicht auch ein Lokaler
+Master Browser in seinem eigenen Broadcast-isolierten Subnetz ist. 
 </para>
 
 <para>
-It is possible to configure two Samba servers to attempt to become the Domain Master Browser for a domain. The first server that comes
-up will be the Domain Master Browser. All other Samba servers will attempt to become the Domain Master Browser every five minutes. They
-will find that another Samba server is already the domain master browser and will fail. This provides automatic redundancy, should
-the current Domain Master Browser fail.
+Es ist möglich, zwei Samba-Server so zu konfigurieren, daß sie versuchen, Domänen Master Browser für eine Domäne
+zu werden. Der erste Server, der startet, wird der Domänen Master Browser. Alle anderen Samba-Server werden alle
+fünf Minuten versuchen, zum Domänen Master Browser zu werden. Sie werden herausfinden, daß ein anderer 
+Samba-Server bereits der Domänen Master Browser ist und scheitern. Dies gewährt automatisch Redundanz, wenn der
+aktuelle Domänen Master Browser ausfallen sollte.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Making Samba the Domain Master</title>
+<title>Wie man Samba zum Domänen Master macht</title>
 
 <para>
-The domain master is responsible for collating the browse lists of multiple subnets so browsing can occur between subnets. You can
-make Samba act as the Domain Master by setting <smbconfoption><name>domain master</name><value>yes</value></smbconfoption>
-in &smb.conf;. By default it will not be a Domain Master.
+Der Domänen Master ist verantwortlich für die Sammlung und Zusammenführung der Browselists von
+mehreren Subnetzen, sodaß Browsing über Subnetze hinweg stattfinden kann. Sie können Samba zum Domänen Master
+machen, indem Sie in der Datei &smb.conf; den Parameter 
+<smbconfoption><name>domain master</name><value>yes</value></smbconfoption> setzen. In der Voreinstellung ist
+Samba kein Domänen Master.
 </para>
 
 <para>
-Do not set Samba to be the Domain Master for a workgroup that has the same name as an NT/200x Domain.
-If Samba is configured to be the Domain Master for a workgroup that is present on the same
-network as a Windows NT/200x domain that has the same name, network browsing problems will
-certainly be experienced.
+Setzen Sie Samba nicht auf Domänen Master für eine Arbeitsgruppe, die denselben Namen wie eine
+NT/200x Domäne hat. Wenn Samba als Domänen Master für eine Arbeitsgruppe konfiguriert ist, die sich im selben 
+Subnetz wie
+eine gleichnamige Windows NT/200x Domäne befindet, werden mit Sicherheit Browsing-Probleme auftreten.
 </para>
 
 <para>
-When Samba is the Domain Master and the Master Browser, it will listen for master
-announcements (made roughly every twelve minutes) from Local Master Browsers on
-other subnets and then contact them to synchronize browse lists.
+Wenn Samba Domänen Master und Master Browser ist, wird es auf Master-Verlautbarungen (die ca. alle 12 Minuten
+stattfinden) von Lokalen Master Browsern in anderen Subnetzen hören, und diese dann kontaktieren, um die
+Browselists zu synchronisieren.
 </para>
 
 <para>
-If you want Samba to be the domain master, you should also set the
-<smbconfoption><name>os level</name></smbconfoption> high enough to make sure it wins elections, and
-set <smbconfoption><name>preferred master</name></smbconfoption> to <constant>yes</constant>, to
-get Samba to force an election on startup.
+Wenn Sie wollen daß Samba der Domänen Master ist, sollten Sie auch den Wert für
+<smbconfoption><name>os level</name></smbconfoption> ausreichend hoch setzen, um sicherzustellen, daß Samba
+Browsing-Wahlen gewinnt, und <smbconfoption><name>preferred master</name></smbconfoption> auf
+<constant>yes</constant>, um beim Start von Samba eine solche Wahl zu erzwingen.
 </para>
 
 <para>
-All servers (including Samba) and clients should be using a WINS server to resolve NetBIOS names. If your
-clients are only using broadcasting to resolve NetBIOS names, then two things will occur:
+Alle Server (inklusive Samba) und Clients sollten einen WINS-Server zur NetBIOS-Namensauflösung verwenden. Wenn
+Ihre Clients nur Broadcasting zur NetBIOS-Namensauflösung verwenden, werden zwei Dinge geschehen:
 </para>
 
 <orderedlist>
 <listitem>
 	<para>
-	Local Master Browsers will be unable to find a Domain Master Browser, as they will be looking only on the local subnet.
+	Die Lokalen Master Browser werden nicht mehr imstande sein, einen Domänen Master Browser zu finden, da
+	sie nur noch im lokalen Subnetz suchen können.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	If a client happens to get hold of a domain-wide browse list and a user attempts to access a
-	host in that list, it will be unable to resolve the NetBIOS name of that host.
+	Wenn ein Client doch eine domänen-weite Browselist erhascht, und ein Benutzer versucht, auf einen Host in
+	dieser Liste zuzugreifen, wird er nicht imstande sein, den NetBIOS-Namen dieses Hosts aufzulösen.
 	</para>
 </listitem>
 </orderedlist>
 
 <para>
-If, however, both Samba and your clients are using a WINS server, then:
+Wenn jedoch sowohl Samba als auch Ihre Clients einen WINS-Server verwenden, dann:
 </para>
 
 <orderedlist>
 <listitem>
 	<para>
-	Local master browsers will contact the WINS server and, as long as Samba has registered that it is a Domain Master Browser with the WINS
-	server, the Local Master Browser will receive Samba's IP address as its Domain Master Browser.
+	Lokale Master Browser kontaktieren den WINS-Server, und, sofern Samba sich als Domänen Master Browser
+	am WINS-Server registriert hat, der Lokale Master Browser empfängt die IP-Adresse des Samba-Servers
+	als die seines Domänen Master Browsers.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	When a client receives a domain-wide browse list and a user attempts to access a host in that list, it will contact the WINS server to
-	resolve the NetBIOS name of that host. As long as that host has registered its NetBIOS name with the same WINS server, the user will
-	be able to see that host. 
+	Wenn ein Client eine domänen-weite Browselist erhält, und ein Benutzer versucht, auf einen Host in
+        dieser Liste zuzugreifen, kontaktiert der Client den WINS-Server, um den NetBIOS-Namen dieses Hosts
+	aufzulösen. Sofern dieser Host seinen eigenen NetBIOS-Namen am selben WINS-Server registriert hat, wird
+	der Benutzer diesen Host auch sehen können.	
 	</para>
 </listitem>
 </orderedlist>
@@ -811,48 +824,50 @@ If, however, both Samba and your clients are using a WINS server, then:
 </sect2>
 
 <sect2>
-<title>Note about Broadcast Addresses</title>
+<title>Bemerkung zu Broadcast-Adressen</title>
 
 <para>
-If your network uses a 0 based broadcast address (for example, if it ends in a 0) then you will strike problems. Windows for Workgroups
-does not seem to support a zeros broadcast and you will probably find that browsing and name lookups will not work.
+Wenn Ihr Netzwerk eine auf 0 basierende Broadcast-Adresse verwendet (zum Beispiel, wenn diese auf 0 endet), dann
+werden Sie Probleme bekommen. Windows for Workgroups scheint keine 0-Broadcasts zu unterstützen, und Sie werden
+wahrscheinlich herausfinden, daß Browsing und Namensauflösung nicht funktionieren.
 </para>
 </sect2>
 
 <sect2>
-<title>Multiple Interfaces</title>
+<title>Mehrere Interfaces</title>
 
 <para>
-Samba supports machines with multiple network interfaces. If you have multiple interfaces, you will
-need to use the <smbconfoption><name>interfaces</name></smbconfoption> option in &smb.conf; to configure them. 
+Samba unterstützt Maschinen mit mehreren Netzwerk-Interfaces. Wenn Sie mehrere Interfaces haben, müssen Sie die
+Option <smbconfoption><name>interfaces</name></smbconfoption> in &smb.conf; setzen, um sie zu konfigurieren.
 </para>
 </sect2>
 <sect2>
-<title>Use of the Remote Announce Parameter</title>
+<title>Verwendung des Parameters Remote Announce</title>
 <para>
-The <smbconfoption><name>remote announce</name></smbconfoption> parameter of 
-&smb.conf; can be used to forcibly ensure
-that all the NetBIOS names on a network get announced to a remote network.
-The syntax of the <smbconfoption><name>remote announce</name></smbconfoption> parameter is:
+Der Parameter <smbconfoption><name>remote announce</name></smbconfoption> in &smb.conf; kann dazu verwendet
+werden, zu erzwingen, daß all die NetBIOS-Namen eines Netzwerks in einem entfernten Netzwerk bekanntgegeben
+werden. Die Syntax des Parameters <smbconfoption><name>remote announce</name></smbconfoption> ist:
 <smbconfblock>
 <smbconfoption><name>remote announce</name><value>a.b.c.d [e.f.g.h] ...</value></smbconfoption>
 </smbconfblock>
 <emphasis>or</emphasis>
 <smbconfblock>
-<smbconfoption><name>remote announce</name><value>a.b.c.d/WORKGROUP [e.f.g.h/WORKGROUP] ...</value></smbconfoption>
+<smbconfoption><name>remote announce</name><value>a.b.c.d/ARBEITSGRUPPE [e.f.g.h/ARBEITSGRUPPE] ...</value></smbconfoption>
 </smbconfblock>
 
-where:
+wobei:
 <variablelist>
-	<varlistentry><term><replaceable>a.b.c.d</replaceable> and <replaceable>e.f.g.h</replaceable></term>
+	<varlistentry><term><replaceable>a.b.c.d</replaceable> und <replaceable>e.f.g.h</replaceable></term>
 		<listitem><para>
 <indexterm><primary>LMB</primary><see>Local Master Browser</see></indexterm>
 <indexterm><primary>Local Master Browser</primary></indexterm>
-		is either the LMB (Local Master Browser) IP address or the broadcast address of the remote network.
-		i.e., the LMB is at 192.168.1.10, or the address could be given as 192.168.1.255 where the netmask
-		is assumed to be 24 bits (255.255.255.0). When the remote announcement is made to the broadcast
-		address of the remote network, every host will receive our announcements. This is noisy and therefore
-		undesirable but may be necessary if we do not know the IP address of the remote LMB.
+		entweder die IP-Adresse des LMB (Lokaler Master Browser) ist oder die Broadcast-Adresse des
+		entfernten Netzwerks, d.h. der LMB ist unter 192.168.1.10 erreichbar, oder die Adresse wird
+		als 192.168.1.255 angegeben, wobei ein 24-Bit-Netzwerk angenommen wird (255.255.255.0).
+		Wenn die Bekanntgabe an die Broadcast-Adresse des entfernten Netzwerks erfolgt, wird jeder
+		Host diese empfangen. Das macht ziemlich viel <quote>Lärm</quote> im Netz, und daher nicht
+		erstrebenswert, kann aber erforderlich sein, wenn wir die IP-Adresse des entfernten LMBs nicht
+		kennen.
 		</para></listitem>
 	</varlistentry>
 
