@@ -13,280 +13,297 @@
 
 <refnamediv>
 	<refname>smbclient</refname>
-	<refpurpose>ftp-like client to access SMB/CIFS resources 
-	on servers</refpurpose>
+	<refpurpose>ftp-ähnlicher Client für den Zugriff auf SMB/CIFS-Ressourcen 
+	auf Servern</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbclient</command>
-		<arg choice="req">servicename</arg>
-		<arg choice="opt">password</arg>
-		<arg choice="opt">-b &lt;buffer size&gt;</arg>
-		<arg choice="opt">-d debuglevel</arg>
-		<arg choice="opt">-D Directory</arg>
-		<arg choice="opt">-U username</arg>
-		<arg choice="opt">-W workgroup</arg>
-		<arg choice="opt">-M &lt;netbios name&gt;</arg>
-		<arg choice="opt">-m maxprotocol</arg>
-		<arg choice="opt">-A authfile</arg>
+		<arg choice="req">Dienstname</arg>
+		<arg choice="opt">Passwort</arg>
+		<arg choice="opt">-b &lt;Puffergröße&gt;</arg>
+		<arg choice="opt">-d Debug-Ebene</arg>
+		<arg choice="opt">-D Verzeichnis</arg>
+		<arg choice="opt">-U Benutzername</arg>
+		<arg choice="opt">-W Arbeitsgruppe</arg>
+		<arg choice="opt">-M &lt;NetBIOS-Name&gt;</arg>
+		<arg choice="opt">-m MaxProtokoll</arg>
+		<arg choice="opt">-A AuthDatei</arg>
 		<arg choice="opt">-N</arg>
-		<arg choice="opt">-l logdir</arg>
-		<arg choice="opt">-L &lt;netbios name&gt;</arg>
-		<arg choice="opt">-I destinationIP</arg>
+		<arg choice="opt">-l LogVerzeichnis</arg>
+		<arg choice="opt">-L &lt;Netbios-Name&gt;</arg>
+		<arg choice="opt">-I IP-Adresse</arg>
 		<arg choice="opt">-E</arg>
-		<arg choice="opt">-c &lt;command string&gt;</arg>
-		<arg choice="opt">-i scope</arg>
-		<arg choice="opt">-O &lt;socket options&gt;</arg>
-		<arg choice="opt">-p port</arg>
-		<arg choice="opt">-R &lt;name resolve order&gt;</arg>
-		<arg choice="opt">-s &lt;smb config file&gt;</arg>
+		<arg choice="opt">-c &lt;Befehls-String&gt;</arg>
+		<arg choice="opt">-i Scope</arg>
+		<arg choice="opt">-O &lt;Socket-Optionen&gt;</arg>
+		<arg choice="opt">-p Port</arg>
+		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Konfig-Datei&gt;</arg>
 		<arg choice="opt">-T&lt;c|x&gt;IXFqgbNan</arg>
 		<arg choice="opt">-k</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbclient</command> is a client that can 
-	'talk' to an SMB/CIFS server. It offers an interface
-	similar to that of the ftp program (see <citerefentry><refentrytitle>ftp</refentrytitle>
+	<para><command>smbclient</command> ist ein Client, der mit einem 
+	SMB/CIFS-Server "sprechen" kann. Er bietet eine Schnittstelle
+	ähnlich zu der des ftp-Programms (siehe 
+	<citerefentry><refentrytitle>ftp</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>).  
-	Operations include things like getting files from the server 
-	to the local machine, putting files from the local machine to 
-	the server, retrieving directory information from the server 
-	and so on. </para>
+	Zu den Operationen gehören Dinge wie das Holen von Dateien vom
+	Server auf den lokalen Rechner, Platzieren von Dateien vom lokalen
+	Rechner auf den Server, Holen von Informationen zu Verzeichnissen
+	auf dem Server, etc.</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 	
 	<variablelist>
 		<varlistentry>
-		<term>servicename</term>
-		<listitem><para>servicename is the name of the service 
-		you want to use on the server. A service name takes the form
-		<filename>//server/service</filename> where <parameter>server
-		</parameter> is the NetBIOS name of the SMB/CIFS server 
-		offering the desired service and <parameter>service</parameter> 
-		is the name of the service offered.  Thus to connect to 
-		the service "printer" on the SMB/CIFS server "smbserver",
-		you would use the servicename <filename>//smbserver/printer
-		</filename></para>
+		<term>Dienstname</term>
+		<listitem><para>Dienstname ist der Name des Dienstes, den Sie 
+		auf dem Server benutzen möchten. Ein Dienstname hat die Form
+		<filename>//server/dienst</filename> wobei <parameter>server
+		</parameter> der NetBIOS-Name des SMB/CIFS-Servers mit dem 
+		gewünschten Dienst und <parameter>dienst</parameter> der Name
+		des angebotenen Dienstes ist. Um also eine Verbindung zu dem 
+		Dienst "printer" auf dem SMB/CIFS-Server "smbserver" herzustellen
+		würden Sie den Dienstnamen <filename>//smbserver/printer
+		</filename></para> verwenden.
 
-		<para>Note that the server name required is NOT necessarily 
-		the IP (DNS) host name of the server !  The name required is 
-		a NetBIOS server name, which may or may not be the
-		same as the IP hostname of the machine running the server.
+		<para>Beachten Sie, dass der benötigte Servername NICHT 
+		notwendigerweise der IP- (DNS-) Hostname des Servers ist! Benötigt 
+		wird ein NetBIOS-Servername, der identisch sein kann mit dem 
+		IP-Hostname des Rechners, auf dem der Server läuft, oder auch nicht.
 		</para>
 
-		<para>The server name is looked up according to either 
-		the <parameter>-R</parameter> parameter to <command>smbclient</command> or 
-		using the name resolve order parameter in 
-		the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file, 
-		allowing an administrator to change the order and methods 
-		by which server names are looked up. </para></listitem>
+		<para>Der Servername wird entweder gemäß dem Parameter 
+		<parameter>-R</parameter> für <command>smbclient</command> oder 
+		mit Hilfe des Parameters name resolve order in der Datei
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> gesucht, 
+		wodurch ein Administrator die Reihenfolge und Methoden bei der
+		Suche von Namen ändern kann.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>password</term>
-		<listitem><para>The password required to access the specified 
-		service on the specified server. If this parameter is 
-		supplied, the <parameter>-N</parameter> option (suppress 
-		password prompt) is assumed. </para>
+		<term>Passwort</term>
+		<listitem><para>Das Passwort, das für den Zugriff auf den angegebenen
+		Dienst auf dem angegebenen Server benötigt wird. Wenn dieser 
+		Parameter angegeben wird, wird die Option <parameter>-N</parameter>
+		(unterdrücke Passworteingabe) angenommen.</para>
 
-		<para>There is no default password. If no password is supplied 
-		on the command line (either by using this parameter or adding 
-		a password to the <parameter>-U</parameter> option (see 
-		below)) and the <parameter>-N</parameter> option is not 
-		specified, the client will prompt for a password, even if 
-		the desired service does not require one. (If no password is 
-		required, simply press ENTER to provide a null password.)
+		<para>Es gibt kein vorgegebenes Passwort. Falls kein Passwort
+		auf der Kommandozeile angegeben wird (entweder durch die Verwendung 
+		dieses Parameters oder durch Hinzufügen eines Passworts zu der
+		Option <parameter>-U</parameter> (siehe unten) und die Option
+		<parameter>-N</parameter> wird nicht angegeben, dann wird der 
+		Client ein Passwort abfragen, selbst wenn der gewünschte Dienst
+		gar keines verlangt. (Wenn kein Passwort benötigt wird, drücken
+		Sie einfach die Eingabetaste, und geben ein leeres Passwort ein.)
 		</para>
 
-		<para>Note: Some servers (including OS/2 and Windows for 
-		Workgroups) insist on an uppercase password. Lowercase 
-		or mixed case passwords may be rejected by these servers. 		
+		<para>Bemerkung: Manche Server (darunter OS/2 und Windows for 
+		Workgroups) beharren auf Großbuchstaben im Passwort. Auf diesen
+		Servern werden Passworte mit Kleinbuchstaben oder in einer 
+		gemischten Schreibweise abgelehnt. 		
 		</para>
 
-		<para>Be cautious about including passwords in scripts.
+		<para>Überlegen Sie es sich gut, Passworte in Skripte zu schreiben!
 		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-R &lt;name resolve order&gt;</term> 
-		<listitem><para>This option is used by the programs in the Samba 
-		suite to determine what naming services and in what order to resolve 
-		host names to IP addresses. The option takes a space-separated 
-		string of different name resolution options.</para>
+		<term>-R &lt;Namensauflösungsreihenfolge&gt;</term> 
+		<listitem><para>Diese Option wird von den Programmen der Samba-Suite
+		dazu benutzt, festzulegen, welche Namensdienste verwendet werden und in 
+		welcher Reihenfolge Hostnamen in IP-Adressen aufgelöst werden. 
+		Die Option erwartet einen String mit verschiedenen Auflösungsoptionen,
+		die mit Leerzeichen voneinander getrennt sind.</para>
 
-		<para>The options are :"lmhosts", "host", "wins" and "bcast". They 
-		cause names to be resolved as follows:</para>
+		<para>Folgende Auflösungsoptionen sind vorhanden: "lmhosts", 
+		"host", "wins" und "bcast". Sie bewirken jeweils die folgenden Arten 
+		von Namensauflösungen:</para>
 
 		<itemizedlist>
-			<listitem><para><constant>lmhosts</constant>: Lookup an IP 
-			address in the Samba lmhosts file. If the line in lmhosts has 
-			no name type attached to the NetBIOS name (see 
-			the <citerefentry><refentrytitle>lmhosts</refentrytitle>
-			<manvolnum>5</manvolnum></citerefentry> for details) then
-			any name type matches for lookup.</para>
+			<listitem><para><constant>lmhosts</constant>: Sucht eine 
+			IP-Adresse in der Samba-Datei lmhosts. Falls die Zeile in 
+			lmhosts keinen mit dem NetBIOS-Namen verbundenen Namenstyp 
+			hat (Details siehe 
+			<citerefentry><refentrytitle>lmhosts</refentrytitle>
+			<manvolnum>5</manvolnum></citerefentry>), dann trifft bei
+			einer Suche jeder gefundene Namenstyp zu.</para>
 			</listitem>
 			
-			<listitem><para><constant>host</constant>: Do a standard host 
-			name to IP address resolution, using the system <filename>/etc/hosts
-			</filename>, NIS, or DNS lookups. This method of name resolution 
-			is operating system dependent, for instance on IRIX or Solaris this 
-			may be controlled by the <filename>/etc/nsswitch.conf</filename> 
-			file).  Note that this method is only used if the NetBIOS name 
-			type being queried is the 0x20 (server) name type, otherwise 
-			it is ignored.</para>
+			<listitem><para><constant>host</constant>: Führt eine 
+			standardmäßige Auflösung von Hostname zu IP-Adresse aus, 
+			entweder mit der Systemdatei <filename>/etc/hosts</filename>, 
+			mit einer NIS- oder DNS-Suche. Diese Methode der Namensauflösung 
+			ist abhängig vom Betriebssystem und wird z.B. unter IRIX oder
+			Solaris mit der Datei <filename>/etc/nsswitch.conf</filename> 
+			gesteuert). Beachten Sie, dass diese Methode nur dann benutzt 
+			wird, wenn der gesuchte NetBIOS-Namenstyp der Typ 0x20 (Server)
+			ist, ansonsten wird sie ignoriert.</para>
 			</listitem>
 			
-			<listitem><para><constant>wins</constant>: Query a name with 
-			the IP address listed in the <parameter>wins server</parameter>
-			parameter.  If no WINS server has
-			been specified this method will be ignored.</para>
+			<listitem><para><constant>wins</constant>: Fragt einen Namen 
+			mit Hilfe der IP-Adresse ab, die im Parameter 
+			<parameter>wins server</parameter> aufgelistet ist. Falls kein
+			WINS-Server angegeben wurde, wird diese Methode ignoriert.</para>
 			</listitem>
 			
-			<listitem><para><constant>bcast</constant>: Do a broadcast on 
-			each of the known local interfaces listed in the 
-			<parameter>interfaces</parameter>
-			parameter. This is the least reliable of the name resolution 
-			methods as it depends on the target host being on a locally 
-			connected subnet.</para>
+			<listitem><para><constant>bcast</constant>: Führt ein Broadcast
+			auf allen bekannten Schnittstellen durch, die im Parameter 
+			<parameter>interfaces</parameter> aufgelistet sind. Dies ist 
+			die unzuverlässigste Methode der Namensauflösung, da sie 
+			verlangt, dass der Ziel-Host sich in einem lokal verbundenen 
+			Subnetz befindet.</para>
 			</listitem>
 		</itemizedlist>
 
-		<para>If this parameter is not set then the name resolve order 
-		defined in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file parameter  
-		(name resolve order) will be used. </para>
+		<para>Falls dieser Parameter nicht gesetzt wird, dann wird jene
+		Reihenfolge bei der Namensauflösung benutzt, die in der Datei 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> im Parameter  
+		name resolve order definiert ist. </para>
 
-		<para>The default order is lmhosts, host, wins, bcast and without 
-		this parameter or any entry in the <parameter>name resolve order
-		</parameter> parameter of the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file the name resolution
-		methods will be attempted in this order. </para></listitem>
+		<para>Die vorgegebene Reihenfolge ist lmhosts, host, wins, bcast. 
+		Ohne diesen Parameter oder ohne Eintrag im Parameter 
+		<parameter>name resolve order</parameter> der Datei
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> werden die Methoden bei der
+		Namensauflösung in dieser Reihenfolge durchprobiert.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>-M NetBIOS name</term>
-		<listitem><para>This options allows you to send messages, using 
-		the "WinPopup" protocol, to another computer. Once a connection is 
-		established you then type your message, pressing ^D (control-D) to 
-		end. </para>
+		<term>-M NetBIOS-Name</term>
+		<listitem><para>Mit dieser Option können Sie Nachrichten mit Hilfe 
+		des Protokolls "WinPopup" an einen anderen Computer verschicken. 
+		Nachdem eine Verbindung hergestellt ist, geben Sie Ihre Nachricht ein
+		und drücken ^D (Strg-D), um diese zu beenden.</para>
 
-		<para>If the receiving computer is running WinPopup the user will 
-		receive the message and probably a beep. If they are not running 
-		WinPopup the message will be lost, and no error message will 
-		occur. </para>
+		<para>Falls WinPopup auf dem empfangenden Computer läuft, wird der
+		Benutzer die Nachricht erhalten und wahrscheinlich einen Piepton
+		hören. Wenn darauf kein WinPopup läuft, geht die Nachricht verloren 
+		und es tritt keine Fehlermeldung auf.</para>
 
-		<para>The message is also automatically truncated if the message 
-		is over 1600 bytes, as this is the limit of the protocol. 
+		<para>Außerdem wird die Nachricht automatisch nach 1600 Bytes
+		abgeschnitten, da dies eine Beschränkung des Protokolls ist. 
 		</para>
 
-		<para>One useful trick is to cat the message through
-		<command>smbclient</command>. For example: <command>
-		cat mymessage.txt | smbclient -M FRED </command> will 
-		send the message in the file <filename>mymessage.txt</filename> 
-		to the machine FRED. </para>
+		<para>Ein hilfreicher Trick besteht darin, die Nachricht mit dem
+		Befehl cat an <command>smbclient</command> weiterzuleiten. Beispiel:
+		<command>
+		cat meineNachricht.txt | smbclient -M FRED </command> verschickt die
+		Nachricht in der Datei <filename>meineNachtricht.txt</filename> 
+		an den Rechner namens FRED.</para>
 
-		<para>You may also find the <parameter>-U</parameter> and 
-		<parameter>-I</parameter> options useful, as they allow you to 
-		control the FROM and TO parts of the message. </para>
+		<para>Vielleicht werden Sie auch die Optionen <parameter>-U</parameter> 
+		und <parameter>-I</parameter> hilfreich finden, denn damit können Sie
+		die FROM- und TO-Anteile der Nachricht setzen.</para>
 
-		<para>See the <parameter>message command</parameter> parameter in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> for a description of how to handle incoming 
-		WinPopup messages in Samba. </para>
+		<para>Lesen Sie unter dem Parameter <parameter>message command</parameter>
+		in <citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> eine Beschreibung, wie man 
+		in Samba eintreffende WinPopup-Nachrichten behandelt.</para>
 
-		<para><emphasis>Note</emphasis>: Copy WinPopup into the startup group 
-		on your WfWg PCs if you want them to always be able to receive 
-		messages. </para></listitem>
+		<para><emphasis>Bemerkung</emphasis>: Kopieren Sie WinPopup in die
+		Startup-Gruppe Ihres WfWg-PCs, wenn Sie möchten, dass diese solche
+		Nachrichten immer empfangen können sollen.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-p port</term>
-		<listitem><para>This number is the TCP port number that will be used 
-		when making connections to the server. The standard (well-known)
-		TCP port number for an SMB/CIFS server is 139, which is the 
-		default. </para></listitem>
+		<term>-p Port</term>
+		<listitem><para>Diese Nummer ist die TCP-Portnummer, die bei Verbindungen
+		zum Server benutzt wird. Die standardmäßige (allseits bekannte) 
+		TCP-Portnummer für einen SMB/CIFS-Server ist 139, die vorgegeben 
+		ist.</para></listitem>
 		</varlistentry>
 		
 		
 		&stdarg.help;
 		
 		<varlistentry>
-		<term>-I IP-address</term>
-		<listitem><para><replaceable>IP address</replaceable> is the address of the server to connect to. 
-		It should be specified in standard "a.b.c.d" notation. </para>
+		<term>-I IP-Adresse</term>
+		<listitem><para><replaceable>IP-Adresse</replaceable> ist die Adresse
+		des Servers, mit dem die Verbindung hergestellt werden soll. Sie 
+		sollte in der Standardnotation "a.b.c.d" angegeben werden.</para>
 
-		<para>Normally the client would attempt to locate a named 
-		SMB/CIFS server by looking it up via the NetBIOS name resolution 
-		mechanism described above in the <parameter>name resolve order</parameter> 
-		parameter above. Using this parameter will force the client
-		to assume that the server is on the machine with the specified IP 
-		address and the NetBIOS name component of the resource being 
-		connected to will be ignored. </para>
+		<para>Normalerweise versucht der Client, einen benannten 
+		SMB/CIFS-Server dadurch zu finden, dass er mit Hilfe des 
+		NetBIOS-Namensauflösungsmechanisms gesucht wird, der oben beim
+		Parameter <parameter>name resolve order</parameter> beschrieben
+		wird. Die Verwendung dieses Parameters zwingt den Client zu der
+		Annahme, dass sich der Server auf dem Rechner mit der angegebenen 
+		IP-Adresse befindet und die NetBIOS-Namenskomponente der Zielressource
+		wird ignoriert.</para>
 
-		<para>There is no default for this parameter. If not supplied, 
-		it will be determined automatically by the client as described 
-		above. </para></listitem>
+		<para>Für diesen Parameter gibt es keinen Vorgabewert. Wenn er nicht
+		angegeben wird, so wird er vom Client wie oben beschrieben automatisch
+		bestimmt.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-E</term>
-		<listitem><para>This parameter causes the client to write messages 
-		to the standard error stream (stderr) rather than to the standard 
-		output stream. </para>
+		<listitem><para>Dieser Parameter bewirkt, dass der Client Meldungen 
+		auf die Standardfehlerausgabe (stderr) schreibt, statt auf die 
+		Standardausgabe.</para>
 		
-		<para>By default, the client writes messages to standard output 
-		- typically the user's tty. </para></listitem>
+		<para>Standardmäßig schreibt der Client Meldungen auf die Standardausgabe 
+		- üblicherweise das tty des Benutzers.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-L</term>
-		<listitem><para>This option allows you to look at what services 
-		are available on a server. You use it as <command>smbclient -L 
-		host</command> and a list should appear.  The <parameter>-I
-		</parameter> option may be useful if your NetBIOS names don't 
-		match your TCP/IP DNS host names or if you are trying to reach a 
-		host on another network. </para></listitem>
+		<listitem><para>Mit dieser Option können Sie sehen, welche Dienste 
+		auf einem Server verfügbar sind. Wenn Sie sie benutzen wie in
+		<command>smbclient -L host</command> sollte eine Liste erscheinen.  
+		Die Option <parameter>-I</parameter> ist dann evtl. hilfreich, wenn
+		Ihre NetBIOS-Namen nicht mit Ihren TCP/IP-DNS-Hostnamen übereinstimmen
+		bzw. wenn Sie versuchen, einen Host in einem anderen Netz zu 
+		erreichen.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>-t terminal code</term>
-		<listitem><para>This option tells <command>smbclient</command> how to interpret 
-		filenames coming from the remote server. Usually Asian language 
-		multibyte UNIX implementations use different character sets than 
-		SMB/CIFS servers (<emphasis>EUC</emphasis> instead of <emphasis>
-		SJIS</emphasis> for example). Setting this parameter will let 
-		<command>smbclient</command> convert between the UNIX filenames and 
-		the SMB filenames correctly. This option has not been seriously tested 
-		and may have some problems. </para>
+		<term>-t Terminal-Code</term>
+		<listitem><para>Diese Option sagt <command>smbclient</command>, wie er
+		Dateinamen auf dem entfernten Server interpretieren soll. Normalerweise
+		verwenden asiatische Multibyte-UNIX-Implementierungen andere
+		Zeichensätze als SMB/CIFS-Server (z.B. <emphasis>EUC</emphasis> statt
+		<emphasis>SJIS</emphasis>). Durch die Angabe dieses Parameters konvertiert 
+		<command>smbclient</command> korrekt zwischen den UNIX-Dateinamen und 
+		den SMB-Dateinamen. Diese Option wurde nicht ernsthaft getestet
+		und kann durchaus noch einige Probleme verursachen.</para>
 
-		<para>The terminal codes include CWsjis, CWeuc, CWjis7, CWjis8,
-		CWjunet, CWhex, CWcap. This is not a complete list, check the Samba 
-		source code for the complete list. </para></listitem>
+		<para>Zu den möglichen Terminal-Codes gehören CWsjis, CWeuc, CWjis7,
+		CWjis8, CWjunet, CWhex und CWcap. Diese Liste ist aber nicht vollständig. 
+		Eine vollständige Liste erhalten Sie, wenn Sie in den Samba-Quellcode
+		schauen.</para></listitem>
 		</varlistentry>
 		
 			
 		<varlistentry>	
-		<term>-b buffersize</term>
-		<listitem><para>This option changes the transmit/send buffer 
-		size when getting or putting a file from/to the server. The default 
-		is 65520 bytes. Setting this value smaller (to 1200 bytes) has been 
-		observed to speed up file transfers to and from a Win9x server. 
+		<term>-b Puffergröße</term>
+		<listitem><para>Diese Option ändert die transmit/send-Puffergröße,
+		beim Herunterladen oder Hochladen einer Datei vom/auf den Server. 
+		Der Vorgabewert dafür ist 65520 Bytes. Es wurde beobachtet, dass
+		ein Herabsetzen dieses Wertes (auf 1200 Bytes) den Dateitransfer 
+		von und zu einem Win9x-Server beschleunigen kann. 
 		</para></listitem>
 		</varlistentry>
 		
@@ -295,115 +312,133 @@
 		&popt.common.connection;
 		
 		<varlistentry>
-		<term>-T tar options</term>
-		<listitem><para>smbclient may be used to create <command>tar(1)
-		</command> compatible backups of all the files on an SMB/CIFS
-		share. The secondary tar flags that can be given to this option 
-		are : </para>
+		<term>-T tar-Optionen</term>
+		<listitem><para>Mann kann smbclient so benutzen, dass von allen 
+		Dateien in einer SMB/CIFS-Freigabe Backups kompatibel zu 
+		<command>tar(1)</command> erzeugt werden. Die zweitrangigen tar-Flags, 
+		die bei dieser Option angegeben werden können, sind:</para>
 		
 		<itemizedlist>
-			<listitem><para><parameter>c</parameter> - Create a tar file on UNIX. 
-			Must be followed by the name of a tar file, tape device
-			or "-" for standard output. If using standard output you must 
-			turn the log level to its lowest value -d0 to avoid corrupting 
-			your tar file. This flag is mutually exclusive with the 
-			<parameter>x</parameter> flag. </para></listitem>
+			<listitem><para><parameter>c</parameter> - Erzeugt eine tar-Datei
+			unter UNIX. 
+			Es muss der Name einer tar-Datei, eines Bandgeräts oder "-" 
+			für die Standardausgabe folgen. Bei der Standardausgabe müssen 
+			Sie die Log-Ebene auf den niedrigsten Wert setzen, -d0, um die
+			Korrektheit Ihrer tar-Datei nicht zu gefährden. Dieses Flag 
+			sowie das Flag <parameter>x</parameter> schließen sich
+			gegenseitig aus.</para></listitem>
 			
-			<listitem><para><parameter>x</parameter> - Extract (restore) a local 
-			tar file back to a share. Unless the -D option is given, the tar 
-			files will be restored from the top level of the share. Must be 
-			followed by the name of the tar file, device or "-" for standard 
-			input. Mutually exclusive with the <parameter>c</parameter> flag. 
-			Restored files have their creation times (mtime) set to the
-			date saved in the tar file. Directories currently do not get 
-			their creation dates restored properly. </para></listitem>
+			<listitem><para><parameter>x</parameter> - Extrahiert eine lokale
+			tar-Datei zurück in eine Freigabe (stellt sie wieder her). 
+			Solange die Option -D nicht angegeben wird, werden tar-Dateien
+			ab der obersten Ebene einer Freigabe wiederhergestellt. Es muss
+			der Name einer tar-Datei, eines Geräts oder "-" für die
+			Standardeingabe folgen. Dieses Flag sowie das Flag 
+			<parameter>c</parameter> schließen sich gegenseitig aus. 
+			Die Erstellungszeitstempel (mtime) wiederhergestellter Dateien 
+			werden auf den Zeitpunkt gesetzt, der in der tar-Datei gespeichert 
+			ist. Bei Verzeichnissen wird der Erstellungszeitstempel momentan
+			noch nicht korrekt wiederhergestellt.</para></listitem>
 			
-			<listitem><para><parameter>I</parameter> - Include files and directories. 
-			Is the default behavior when filenames are specified above. Causes 
-			tar files to be included in an extract or create (and therefore 
-			everything else to be excluded). See example below.  Filename globbing 
-			works  in one of two ways.  See r below. </para></listitem>
+			<listitem><para><parameter>I</parameter> - Fügt Dateien und
+			Verzeichnisse ein. 
+			Dies ist das Standardverhalten bei der Angabe von Dateinamen 
+			oben. Bewirkt, dass tar-Dateien in einer extrahierten oder 
+			erzeugten Datei eingefügt werden (und daher wird alles andere
+			ausgelassen). Siehe Beispiel unten. Das Globbing bei Dateinamen 
+			funktioniert auf eine von zwei Weisen. Siehe 
+			<parameter>r</parameter> unten.</para></listitem>
 			
-			<listitem><para><parameter>X</parameter> - Exclude files and directories. 
-			Causes tar files to be excluded from an extract or create. See 
-			example below.  Filename globbing works in one of two ways now. 
-			See <parameter>r</parameter> below. </para></listitem>
+			<listitem><para><parameter>X</parameter> - Lässt Dateien und
+			Verzeichnisse aus. 
+			Bewirkt, dass tar-Dateien in einer extrahierten oder erzeugten
+			Datei ausgelassen werden. Siehe Beispiel unten. Das Globbing 
+			bei Dateinamen funktioniert auf eine von zwei Weisen. Siehe
+			<parameter>r</parameter> unten.</para></listitem>
 			
-			<listitem><para><parameter>b</parameter> - Blocksize. Must be followed 
-			by a valid (greater than zero) blocksize.  Causes tar file to be 
-			written out in blocksize*TBLOCK (usually 512 byte) blocks. 
+			<listitem><para><parameter>b</parameter> - Blockgröße. Es muss
+			eine gültige Blockgröße folgen (größer als Null). Bewirkt, dass
+			die tar-Datei in Blöcken der Größe Blockgröße*TBLOCK
+			(normalerweise 512 Bytes) geschrieben wird. 
 			</para></listitem>
 			
-			<listitem><para><parameter>g</parameter> - Incremental. Only back up 
-			files that have the archive bit set. Useful only with the 
-			<parameter>c</parameter> flag. </para></listitem>
+			<listitem><para><parameter>g</parameter> - Inkrementell. 
+			Macht ein Backup nur von Dateien, deren Archiv-Bit gesetzt ist.
+			Nur sinnvoll mit dem Flag <parameter>c</parameter>. 
+			</para></listitem>
 
-			<listitem><para><parameter>q</parameter> - Quiet. Keeps tar from printing 
-			diagnostics as it works.  This is the same as tarmode quiet. 
+			<listitem><para><parameter>q</parameter> - Leise. Verhindert, 
+			dass tar Diagnosemeldungen ausgibt, während es arbeitet.
+			Identisch mit dem leisen tar-Modus. 
 			</para></listitem>
 			
-			<listitem><para><parameter>r</parameter> - Regular expression include
-			or exclude.  Uses regular  expression matching for 
-			excluding or excluding files if  compiled with HAVE_REGEX_H. 
-			However this mode can be very slow. If  not compiled with 
-			HAVE_REGEX_H, does a limited wildcard match on '*' and  '?'. 
+			<listitem><para><parameter>r</parameter> - Einfügen oder 
+			auslassen mit regulären Ausdrücken. Verwendet einen Vergleich
+			mit Hilfe von regulären Ausdrücken beim Einfügen oder Auslassen
+			von Dateien, sofern es mit HAVE_REGEX_H kompiliert wurde. 
+			Dieser Modus kann allerdings sehr langsam sein. Falls ohne
+			HAVE_REGEX_H kompiliert, wird ein begrenzter Vergleich mit
+			den Jokern '*' und '?' durchgeführt. 
 			</para></listitem>
 			
-			<listitem><para><parameter>N</parameter> - Newer than. Must be followed 
-			by the name of a file whose date is compared against files found 
-			on the share during a create. Only files newer than the file 
-			specified are backed up to the tar file. Useful only with the 
-			<parameter>c</parameter> flag. </para></listitem>
+			<listitem><para><parameter>N</parameter> - Neuer als. Es muss
+			der Name einer Datei folgen, deren Datum beim Erstellen mit den
+			Dateien in einer Freigabe verglichen wird. Nur Dateien, die neuer
+			sind als die angegebene Datei, werden in die tar-Datei übernommen.
+			Nur sinnvoll mit dem Flag <parameter>c</parameter>. 
+			</para></listitem>
 			
-			<listitem><para><parameter>a</parameter> - Set archive bit. Causes the 
-			archive bit to be reset when a file is backed up. Useful with the 
-			<parameter>g</parameter> and <parameter>c</parameter> flags. 
+			<listitem><para><parameter>a</parameter> - Setzt das Archiv-Bit.
+			Bewirkt, dass das Archiv-Bit zurückgesetzt wird, wenn ein Backup
+			von einer Datei gemacht wird. Sinnvoll mit den Flags 
+			<parameter>g</parameter> und <parameter>c</parameter>. 
 			</para></listitem>
 		</itemizedlist>
 			
-		<para><emphasis>Tar Long File Names</emphasis></para>
+		<para><emphasis>Tar und lange Dateinamen</emphasis></para>
 			
-		<para><command>smbclient</command>'s tar option now supports long 
-		file names both on backup and restore. However, the full path 
-		name of the file must be less than 1024 bytes.  Also, when
-		a tar archive is created, <command>smbclient</command>'s tar option places all 
-		files in the archive with relative names, not absolute names. 
+		<para>Die tar-Optionen von <command>smbclient</command> unterstützen
+		nun lange Dateinamen sowohl beim Backup wie beim Wiederherstellen.
+		Allerdings muss die Länge des vollständigen Pfadnamens der Datei
+		kleiner als 1024 Bytes sein. Wenn ein tar-Archiv erzeugt wird, 
+		setzt die tar-Option von <command>smbclient</command> außerdem alle 
+		Dateien mit relativen und nicht mit absoluten Namen ins Archiv. 
 		</para>
 			
-		<para><emphasis>Tar Filenames</emphasis></para>
+		<para><emphasis>Tar-Dateinamen</emphasis></para>
 			
-		<para>All file names can be given as DOS path names (with '\\' 
-		as the component separator) or as UNIX path names (with '/' as 
-		the component separator). </para>
+		<para>Alle Dateinamen können als DOS-Pfadnamen angegeben werden (mit
+		'\\' als Trennzeichen zwischen den Komponenten) oder als UNIX-Pfadnamen
+		(mit '/' zur Trennung der Komponenten). </para>
 			
-		<para><emphasis>Examples</emphasis></para>
+		<para><emphasis>Beispiele</emphasis></para>
 		
-		<para>Restore from tar file <filename>backup.tar</filename> into myshare on mypc 
-		(no password on share). </para>
+		<para>Wiederherstellen aus der tar-Datei <filename>backup.tar</filename>
+		in myshare auf mypc (kein Passwort auf der Freigabe). </para>
 		
 		<para><command>smbclient //mypc/yshare "" -N -Tx backup.tar
 		</command></para>
 		
-		<para>Restore everything except <filename>users/docs</filename>
+		<para>Wiederherstellen von allem außer <filename>users/docs</filename>
 		</para>
 		
 		<para><command>smbclient //mypc/myshare "" -N -TXx backup.tar 
 		users/docs</command></para>
 		
-		<para>Create a tar file of the files beneath <filename>
+		<para>Erstellen einer tar-Datei von den Dateien unter <filename>
 		users/docs</filename>. </para>
 		
 		<para><command>smbclient //mypc/myshare "" -N -Tc
 		backup.tar users/docs </command></para>
 		
-		<para>Create the same tar file as above, but now use 
-		a DOS path name. </para>
+		<para>Erstellen der gleichen tar-Datei wie oben, aber nun unter 
+		Verwendung eines DOS-Pfadnamens. </para>
 		
 		<para><command>smbclient //mypc/myshare "" -N -tc backup.tar 
 		users\edocs </command></para>
 		
-		<para>Create a tar file of all the files and directories in 
-		the share. </para>
+		<para>Erstellen einer tar-Datei aller Dateien und Verzeichnisse in 
+		der Freigabe. </para>
 		
 		<para><command>smbclient //mypc/myshare "" -N -Tc backup.tar *
 		</command></para>
@@ -412,315 +447,337 @@
 		
 		
 		<varlistentry>
-		<term>-D initial directory</term>
-		<listitem><para>Change to initial directory before starting. Probably 
-		only of any use with the tar -T option. </para></listitem>
+		<term>-D Startverzeichnis</term>
+		<listitem><para>Wechselt vorher ins Startverzeichnis. Vermutlich nur 
+		sinnvoll mit der tar-Option -T. </para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>-c command string</term>
-		<listitem><para>command string is a semicolon-separated list of 
-		commands to be executed instead of prompting from stdin. <parameter>
-		-N</parameter> is implied by <parameter>-c</parameter>.</para>
+		<term>-c Befehls-String</term>
+		<listitem><para>Der Befehls-String ist eine mit Semikola getrennte
+		Liste von Befehlen, die ausgeführt werden sollen, anstatt solche auf
+		der Standardeingabe abzufragen. <parameter>-c</parameter> 
+		impliziert <parameter>-N</parameter>.</para>
 
-		<para>This is particularly useful in scripts and for printing stdin 
-		to the server, e.g. <command>-c 'print -'</command>. </para></listitem>
+		<para>Dies ist besonders nützlich in Skripten und beim Ausgeben von
+		stdin auf den Server, z.B. <command>-c 'print -'</command>. 
+		</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
 
 
 <refsect1>
-	<title>OPERATIONS</title>
+	<title>OPERATIONEN</title>
 
-	<para>Once the client is running, the user is presented with 
-	a prompt : </para>
+	<para>Wenn der Client einmal läuft, erhält der Benutzer den Prompt:</para>
 
 	<para><prompt>smb:\&gt; </prompt></para>
 
-	<para>The backslash ("\\") indicates the current working directory 
-	on the server, and will change if the current working directory 
-	is changed. </para>
+	<para>Der Backslash ("\\") gibt das aktuelle Arbeitsverzeichnis auf dem 
+	Server an, und verändert sich, sobald das aktuelle Arbeitsverzeichnis
+	gewechselt wird.</para>
 
-	<para>The prompt indicates that the client is ready and waiting to 
-	carry out a user command. Each command is a single word, optionally 
-	followed by parameters specific to that command. Command and parameters 
-	are space-delimited unless these notes specifically
-	state otherwise. All commands are case-insensitive.  Parameters to 
-	commands may or may not be case sensitive, depending on the command. 
+	<para>Der Prompt zeigt an, dass der Client bereit ist und darauf wartet, 
+	einen Benutzerbefehl auszuführen. Jeder Befehl besteht aus einem einzelnen
+	Wort, optional gefolgt von dafür spezifischen Parametern. Befehl und 
+	Parameter werden durch Leerzeichen getrennt, es sei denn, in diesen 
+	Bemerkungen wird explizit etwas anderes angegeben. Bei allen Befehlen ist
+	die Schreibweise wichtig. Bei Befehlsparametern kann die Schreibweise
+	abhängig vom Befehl relevant sein oder auch nicht.</para>
+
+	<para>Sie können Dateinamen mit Leerzeichen darin angeben, indem der Name
+	in doppelte Anführungszeichen gesetzt wird, z.B. "ein langer Dateiname".
 	</para>
 
-	<para>You can specify file names which have spaces in them by quoting 
-	the name with double quotes, for example "a long file name". </para>
-
-	<para>Parameters shown in square brackets (e.g., "[parameter]") are 
-	optional.  If not given, the command will use suitable defaults. Parameters 
-	shown in angle brackets (e.g., "&lt;parameter&gt;") are required.
+	<para>Parameter, die in eckigen Klammern erscheinen, z.B. "[Parameter]", 
+	sind optional. Wenn sie nicht angegeben werden, verwendet der Befehl 
+	passende Vorgabewerte. Parameter in spitzen Klammern, z.B. 
+	"&lt;Parameter&gt;" sind notwendig.
 	</para>
 
+	<para>Beachten Sie, dass alle Befehle, die auf dem Server operieren, 
+	tatsächlich über eine Anfrage an den Server ausgeführt werden. Daher 
+	unterscheidet sich das Verhalten eventuell von einem Server zum anderen, 
+	je nachdem, wie der Server implementiert wurde.</para>
 
-	<para>Note that all commands operating on the server are actually 
-	performed by issuing a request to the server. Thus the behavior may 
-	vary from server to server, depending on how the server was implemented. 
-	</para>
-
-	<para>The commands available are given here in alphabetical order. </para>
+	<para>Die verfügbaren Befehle werden hier in alphabetischer Reihenfolge
+	angegeben.</para>
 
 	<variablelist>
 		<varlistentry>
-		<term>? [command]</term>
-		<listitem><para>If <replaceable>command</replaceable> is specified, the ? command will display 
-		a brief informative message about the specified command.  If no 
-		command is specified, a list of available commands will
-		be displayed. </para></listitem>
+		<term>? [Befehl]</term>
+		<listitem><para>Falls <replaceable>Befehl</replaceable> angegeben
+		wird, zeigt der Befehl ? eine kurze Erklärung zum angegebenen 
+		Befehl an. Falls kein Befehl angegeben wird, wird eine Liste von
+		Befehlen angezeigt.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>! [shell command]</term>
-		<listitem><para>If <replaceable>shell command</replaceable> is specified, the !  
-		command will execute a shell locally and run the specified shell 
-		command. If no command is specified, a local shell will be run. 
+		<term>! [Shell-Befehl]</term>
+		<listitem><para>Falls <replaceable>Shell-Befehl</replaceable> 
+		angegeben wird, wird der Befehl ! eine lokale Shell ausführen und 
+		darin den angegebenen Shell-Befehl. Wenn kein Befehl angegeben wird,
+		wird eine lokale Shell ausgeführt. 
 		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>altname file</term>
-		<listitem><para>The client will request that the server return
-		the "alternate" name (the 8.3 name) for a file or directory.
+		<term>altname Datei</term>
+		<listitem><para>Der Client verlangt vom Server, dass er einen 
+		"alternativen" Namen (den 8.3-Namen) für eine Datei oder ein 
+		Verzeichnis zurückgibt.
 		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>cancel jobid0 [jobid1] ... [jobidN]</term>
-		<listitem><para>The client will request that the server cancel
-		the printjobs identified by the given numeric print job ids.
-		</para></listitem>
-		</varlistentry>
-		
-		
-		
-		<varlistentry>
-		<term>chmod file mode in octal</term>
-		<listitem><para>This command depends on the server supporting the CIFS
-		UNIX extensions and will fail if the server does not. The client requests that the server
-		change the UNIX permissions to the given octal mode, in standard UNIX format.
+		<term>cancel AuftragsId0 [AuftragsId1] ... [AuftragsIdN]</term>
+		<listitem><para>Der Client verlangt vom Server, dass dieser die 
+		Druckaufträge mit den angegebenen numerischen Auftrags-IDs abbricht.
 		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>chown file uid gid</term>
-		<listitem><para>This command depends on the server supporting the CIFS
-		UNIX extensions and will fail if the server does not. The client requests that the server
-		change the UNIX user and group ownership to the given decimal values. Note there is
-		currently no way to remotely look up the UNIX uid and gid values for a given name.
-		This may be addressed in future versions of the CIFS UNIX extensions.
+		<term>chmod Dateimodus-oktal</term>
+		<listitem><para>Für diesen Befehl muss der Server die 
+		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
+		Der Client verlangt, dass der Server die UNIX-Rechte auf den 
+		angegebenen oktalen Modus im UNIX-Standardformat ändert.
 		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>cd [directory name]</term>
-		<listitem><para>If "directory name" is specified, the current 
-		working directory on the server will be changed to the directory 
-		specified. This operation will fail if for any reason the specified 
-		directory is inaccessible. </para>
+		<term>chown Datei uid gid</term>
+		<listitem><para>Für diesen Befehl muss der Server die 
+		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
+		Der Client verlangt, dass der Server die UNIX-Benutzer- und 
+		Gruppenzugehörigkeit auf die angegebenen dezimalen Werte setzt. 
+		Beachten Sie, dass es momentan keine Möglichkeit gibt, die Werte 
+		der UNIX-uid und -gid zu einem gegebenen Namen auf der entfernten 
+		Seite zu suchen. Das wird in zukünftigen Versionen der 
+		CIFS-UNIX-Erweiterungen vielleicht anders sein.
+		</para></listitem>
+		</varlistentry>
+		
+		
+		
+		<varlistentry>
+		<term>cd [Verzeichnisname]</term>
+		<listitem><para>Falls "Verzeichnisname" angegeben wird, wird das 
+		aktuelle Arbeitsverzeichnis auf dem Server auf das angegebene 
+		Verzeichnis gewechselt. Diese Operation versagt, falls aus irgendeinem
+		Grund nicht auf das Verzeichnis zugegriffen werden kann.</para>
 
-		<para>If no directory name is specified, the current working 
-		directory on the server will be reported. </para></listitem>
+		<para>Ohne Angabe eines Verzeichnisnamens wird das aktuelle 
+		Arbeitsverzeichnis auf dem Server ausgegeben.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>del &lt;mask&gt;</term>
-		<listitem><para>The client will request that the server attempt 
-		to delete all files matching <replaceable>mask</replaceable> from the current working 
-		directory on the server. </para></listitem>
+		<term>del &lt;Maske&gt;</term>
+		<listitem><para>Der Client verlangt vom Server, dass dieser versucht,
+		alle zur <replaceable>Maske</replaceable> passenden Dateien aus dem
+		aktuellen Arbeitsverzeichnis auf dem Server zu löschen.
+		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>dir &lt;mask&gt;</term>
-		<listitem><para>A list of the files matching <replaceable>mask</replaceable> in the current 
-		working directory on the server will be retrieved from the server 
-		and displayed. </para></listitem>
+		<term>dir &lt;Maske&gt;</term>
+		<listitem><para>Es wird vom Server eine Liste aller zur angegebenen
+		<replaceable>Maske</replaceable> passenden Dateien im aktuellen
+		Arbeitsverzeichnis des Servers geholt und angezeigt.
+		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>exit</term>
-		<listitem><para>Terminate the connection with the server and exit 
-		from the program. </para></listitem> 
+		<listitem><para>Terminiert die Verbindung zum Server und beendet 
+		das Programm. </para></listitem> 
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>get &lt;remote file name&gt; [local file name]</term>
-		<listitem><para>Copy the file called <filename>remote file name</filename> from 
-		the server to the machine running the client. If specified, name 
-		the local copy <filename>local file name</filename>.  Note that all transfers in 
-		<command>smbclient</command> are binary. See also the 
-		lowercase command. </para></listitem>
+		<term>get &lt;entfernter Dateiname&gt; [lokaler Dateiname]</term>
+		<listitem><para>Kopiert die Datei namens 
+		<filename>entfernter Dateiname</filename> vom Server auf den Rechner,
+		auf dem der Client läuft. Wenn angegeben wird die lokale Kopie 
+		<filename>lokaler Dateiname</filename> genannt. Beachten Sie, dass
+		jede Dateiübertragung in <command>smbclient</command> binär ist. 
+		Siehe auch den Befehl lowercase.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>help [command]</term>
-		<listitem><para>See the ? command above. </para></listitem>
+		<term>help [Befehl]</term>
+		<listitem><para>Siehe Befehl ? oben.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>lcd [directory name]</term>
-		<listitem><para>If <replaceable>directory name</replaceable> is specified, the current 
-		working directory on the local machine will be changed to 
-		the directory specified. This operation will fail if for any 
-		reason the specified directory is inaccessible. </para>
+		<term>lcd [Verzeichnisname]</term>
+		<listitem><para>Falls <replaceable>Verzeichnisname</replaceable>
+		angegeben wird, wird das aktuelle Arbeitsverzeichnis auf dem 
+		lokalen Rechner zum angegebenen Verzeichnis gewechselt. Diese 
+		Operation versagt, falls auf das Verzeichnis aus irgendeinem Grund
+		nicht zugegriffen werden kann.</para>
 		
-		<para>If no directory name is specified, the name of the 
-		current working directory on the local machine will be reported. 
+		<para>Ohne Angabe eines Verzeichnisnamens wird der Name des 
+		aktuellen Arbeitsverzeichnisses auf dem lokalen Rechner ausgegeben. 
 		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>link source destination</term>
-		<listitem><para>This command depends on the server supporting the CIFS
-		UNIX extensions and will fail if the server does not. The client requests that the server
-		create a hard link between the source and destination files. The source file
-		must not exist.
-		</para></listitem>
+		<term>link Quelle Ziel</term>
+		<listitem><para>Für diesen Befehl muss der Server die 
+		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
+		Der Client verlangt, dass der Server einen harten Link zwischen 
+		der Quell- und Zieldatei erstellt. Die Quelldatei muss nicht ???
+		existieren.</para></listitem>
 		</varlistentry>
 
 
 
 		<varlistentry>
 		<term>lowercase</term>
-		<listitem><para>Toggle lowercasing of filenames for the get and 
-		mget commands. </para>
+		<listitem><para>Schaltet für die Befehle get und mget die 
+		Verwendung von Kleinbuchstaben bei Dateinamen ein bzw. aus.</para>
 				
-		<para>When lowercasing is toggled ON, local filenames are converted 
-		to lowercase when using the get and mget commands. This is
-		often useful when copying (say) MSDOS files from a server, because 
-		lowercase filenames are the norm on UNIX systems. </para></listitem>
+		<para>Wenn Kleinbuchstaben eingeschaltet sind, werden für die 
+		Befehle get und mget lokale Dateinamen in kleine Buchstaben 
+		umgewandelt. Das ist dann oft praktisch, wenn (zum Beispiel) 
+		MSDOS-Dateien von einem Server kopiert werden, da auf UNIX-Systemen
+		Dateinamen mit kleinen Buchstaben der Normalfall sind.
+		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>ls &lt;mask&gt;</term>
-		<listitem><para>See the dir command above. </para></listitem>
+		<term>ls &lt;Maske&gt;</term>
+		<listitem><para>Siehe den Befehl dir oben. </para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>mask &lt;mask&gt;</term>
-		<listitem><para>This command allows the user to set up a mask 
-		which will be used during recursive operation of the mget and 
-		mput commands. </para>
+		<term>mask &lt;Maske&gt;</term>
+		<listitem><para>Mit diesem Befehl kann der Benutzer eine Maske 
+		setzen, die während der rekursiven Abarbeitung der Befehle mget 
+		und mput verwendet wird.</para>
 
-		<para>The masks specified to the mget and mput commands act as 
-		filters for directories rather than files when recursion is 
-		toggled ON. </para>
+		<para>Die für die Befehle mget und mput angegebenen Masken agieren 
+		mehr als Filter für Verzeichnisse als für Dateien, wenn eine 
+		Rekursion eingeschaltet ist. </para>
 		
-		<para>The mask specified with the mask command is necessary 
-		to filter files within those directories. For example, if the
-		mask specified in an mget command is "source*" and the mask 
-		specified with the mask command is "*.c" and recursion is 
-		toggled ON, the mget command will retrieve all files matching 
-		"*.c" in all directories below and including all directories 
-		matching "source*" in the current working directory. </para>
+		<para>Die mit dem Befehl mask angegebene Maske ist notwendig, um 
+		Dateien in diesen Verzeichnissen zu filtern. Wenn die Maske in
+		einem mget-Befehl z.B. "source*" ist und die mit dem mask-Befehl
+		angegebene Maske "*.c" ist und Rekursion eingeschaltet ist, dann
+		wird der mget-Befehl alle Dateien passend zu "*.c" in allen 
+		Verzeichnissen unter und inklusive aller zu "source*" passenden
+		Verzeichnissen im aktuellen Arbeitsverzeichnis holen.</para>
 
-		<para>Note that the value for mask defaults to blank (equivalent 
-		to "*") and remains so until the mask command is used to change it. 
-		It retains the most recently specified value indefinitely. To 
-		avoid unexpected results it would be wise to change the value of 
-		mask back to "*" after using the mget or mput commands. </para></listitem>
+		<para>Beachten Sie, dass der Vorgabewert einer Maske ein Leerzeichen
+		ist (äquivalent zu "*") und so bleibt, bis sie mit dem mask-Befehl
+		geändert wird. Sie behält den zuletzt eingestellten Wert weiterhin
+		bei. Um unerwartete Ergebnisse zu vermeiden, wäre es klug, nach 
+		der Verwendung der Befehle mget oder mput den Wert der Maske wieder
+		auf "*" zurückzusetzen.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>md &lt;directory name&gt;</term>
-		<listitem><para>See the mkdir command. </para></listitem>
+		<term>md &lt;Verzeichnisname&gt;</term>
+		<listitem><para>Siehe den Befehl mkdir.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>mget &lt;mask&gt;</term>
-		<listitem><para>Copy all files matching <replaceable>mask</replaceable> from the server to 
-		the machine running the client. </para>
+		<term>mget &lt;Maske&gt;</term>
+		<listitem><para>Kopiert alle zur <replaceable>Maske</replaceable> 
+		passenden Dateien vom Server auf den Rechner, auf dem 
+		der Client läuft.</para>
 
-		<para>Note that <replaceable>mask</replaceable> is interpreted differently during recursive 
-		operation and non-recursive operation - refer to the recurse and 
-		mask commands for more information. Note that all transfers in 
-		<command>smbclient</command> are binary. See also the lowercase command. </para></listitem>
+		<para>Beachten Sie, dass <replaceable>Maske</replaceable> unterschiedlich
+		interpretiert wird, je nachdem, ob der Vorgang rekursiv oder 
+		nicht-rekursiv erfolgt - schauen Sie bei den Befehlen recurse und 
+		mask für weitere Informationen nach. Man beachte auch, dass alle 
+		Datenübertragungen in <command>smbclient</command> binär sind. 
+		Siehe auch den Befehl lowercase.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>mkdir &lt;directory name&gt;</term>
-		<listitem><para>Create a new directory on the server (user access 
-		privileges permitting) with the specified name. </para></listitem>
-		</varlistentry>
-		
-		
-		<varlistentry>
-		<term>mput &lt;mask&gt;</term>
-		<listitem><para>Copy all files matching <replaceable>mask</replaceable> in the current working 
-		directory on the local machine to the current working directory on 
-		the server. </para>
-		
-		<para>Note that <replaceable>mask</replaceable> is interpreted differently during recursive 
-		operation and non-recursive operation - refer to the recurse and mask 
-		commands for more information. Note that all transfers in <command>smbclient</command> 
-		are binary. </para></listitem>
-		</varlistentry>
-		
-		
-		<varlistentry>
-		<term>print &lt;file name&gt;</term>
-		<listitem><para>Print the specified file from the local machine 
-		through a printable service on the server. </para>
-
-		<para>See also the printmode command.</para></listitem>
-		</varlistentry>
-		
-		
-		
-		<varlistentry>
-		<term>printmode &lt;graphics or text&gt;</term>
-		<listitem><para>Set the print mode to suit either binary data 
-		(such as graphical information) or text. Subsequent print
-		commands will use the currently set print mode. </para></listitem>
-		</varlistentry>
-		
-		
-		<varlistentry>
-		<term>prompt</term>
-		<listitem><para>Toggle prompting for filenames during operation 
-		of the mget and mput commands. </para>
-
-		<para>When toggled ON, the user will be prompted to confirm 
-		the transfer of each file during these commands. When toggled 
-		OFF, all specified files will be transferred without prompting. 
+		<term>mkdir &lt;Verzeichnisname&gt;</term>
+		<listitem><para>Erstellt auf dem Server ein neues Verzeichnis mit dem
+		angegebenen Namen (sofern es die Benutzerzugriffsrechte erlauben).
 		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>put &lt;local file name&gt; [remote file name]</term>
-		<listitem><para>Copy the file called <filename>local file name</filename> from the 
-		machine running the client to the server. If specified,
-		name the remote copy <filename>remote file name</filename>. Note that all transfers 
-		in <command>smbclient</command> are binary. See also the lowercase command. 
+		<term>mput &lt;Maske&gt;</term>
+		<listitem><para>Kopiert alle zur <replaceable>Maske</replaceable>
+		passenden Dateien im aktuellen Arbeitsverzeichnis des lokalen 
+		Rechners ins aktuelle Arbeitsverzeichnis auf dem Server.</para>
+		
+		<para>Beachten Sie, dass <replaceable>Maske</replaceable> unterschiedlich
+		interpretiert wird, je nachdem, ob der Vorgang rekursiv oder 
+		nicht-rekursiv erfolgt - schauen Sie bei den Befehlen recurse und 
+		mask für weitere Informationen nach.</para></listitem>
+		</varlistentry>
+		
+		
+		<varlistentry>
+		<term>print &lt;Dateiname&gt;</term>
+		<listitem><para>Druckt die angegebene Datei auf dem lokalen Rechner 
+		über einen Druckdienst auf dem Server aus.</para>
+
+		<para>Siehe auch den Befehl printmode.</para></listitem>
+		</varlistentry>
+		
+		
+		
+		<varlistentry>
+		<term>printmode &lt;graphics oder text&gt;</term>
+		<listitem><para>Setzt den Druckmodus passend zu Binärdaten (wie 
+		Graphiken) oder Text. Spätere print-Befehle verwenden den gerade
+		gesetzten Druckmodus.</para></listitem>
+		</varlistentry>
+		
+		
+		<varlistentry>
+		<term>prompt</term>
+		<listitem><para>Schaltet die Abfrage von Dateinamen bei der 
+		Abarbeitung der Befehle mget und mput ein bzw. aus.</para>
+
+		<para>Wenn eingeschaltet wird der Benutzer bei jeder Datei gebeten, 
+		deren Übertragung zu bestätigen. Wenn ausgeschaltet werden alle 
+		angegebenen Dateien ohne weitere Abfrage übertragen. 
+		</para></listitem>
+		</varlistentry>
+		
+		
+		<varlistentry>
+		<term>put &lt;lokaler Dateiname&gt; [entfernter Dateiname]</term>
+		<listitem><para>Kopiert die Datei namens 
+		<filename>lokaler Dateiname</filename> vom Rechner, auf dem der Client
+		läuft, auf den Server. Falls angegeben, wird die entfernte Kopie
+		<filename>entfernter Dateiname</filename> genannt. Man beachte, dass 
+		alle Datenübertragunggen in <command>smbclient</command> binär sind. 
+		Siehe auch den Befehl lowercase. 
 		</para></listitem>
 		</varlistentry>
 		
@@ -728,76 +785,80 @@
 		
 		<varlistentry>
 		<term>queue</term>
-		<listitem><para>Displays the print queue, showing the job id, 
-		name, size and current status. </para></listitem>
+		<listitem><para>Zeigt die Druckerschlange an, samt Auftrags-ID, 
+		Name, Größe und aktuellem Status.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>quit</term>
-		<listitem><para>See the exit command. </para></listitem>
+		<listitem><para>Siehe den Befehl exit.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>rd &lt;directory name&gt;</term>
-		<listitem><para>See the rmdir command. </para></listitem>
+		<term>rd &lt;Verzeichnisname&gt;</term>
+		<listitem><para>Siehe den Befehl rmdir.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>recurse</term>
-		<listitem><para>Toggle directory recursion for the commands mget 
-		and mput. </para>
+		<listitem><para>Schaltet die Verzeichnisrekursion bei den Befehlen
+		mget und mput ein bzw. aus.</para>
 		
-		<para>When toggled ON, these commands will process all directories 
-		in the source directory (i.e., the directory they are copying
-		from ) and will recurse into any that match the mask specified 
-		to the command. Only files that match the mask specified using 
-		the mask command will be retrieved. See also the mask command. 
+		<para>Wenn eingeschaltet bearbeiten diese Befehle alle Verzeichnisse 
+		im Quellverzeichnis (z.B. das Verzeichnis, aus dem kopiert wird) und 
+		machen rekursiv bei allen weiter, auf die die zum Befehl angegebene 
+		Maske passt. Es werden nur die Dateien übertragen, auf die die mit dem
+		mask-Befehl angegebene Maske passt. Siehe auch den Befehl mask. 
 		</para>
 
-		<para>When recursion is toggled OFF, only files from the current 
-		working directory on the source machine that match the mask specified 
-		to the mget or mput commands will be copied, and any mask specified 
-		using the mask command will be ignored. </para></listitem>
+		<para>Wenn die Rekursion ausgeschaltet ist, werden nur Dateien aus dem 
+		aktuellen Arbeitsverzeichnis des Ausgangsrechners kopiert, auf die
+		die in den Befehlen mget oder mput angegebene Maske passt, und eine
+		beliebige mit dem mask-Befehl angegebene Maske wird ignoriert.
+		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>rm &lt;mask&gt;</term>
-		<listitem><para>Remove all files matching <replaceable>mask</replaceable> from the current 
-		working directory on the server. </para></listitem>
+		<term>rm &lt;Maske&gt;</term>
+		<listitem><para>Entfernt auf dem Server alle Dateien, auf die 
+		<replaceable>Maske</replaceable> passt, aus dem aktuellen
+		Arbeitsverzeichnis.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>rmdir &lt;directory name&gt;</term>
- 		<listitem><para>Remove the specified directory (user access 
-		privileges permitting) from the server. </para></listitem>
+		<term>rmdir &lt;Verzeichnisname&gt;</term>
+ 		<listitem><para>Entfernt das angegebene Verzeichnis vom Server
+		(sofern das die Benutzerrechte erlauben).</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>setmode &lt;filename&gt; &lt;perm=[+|\-]rsha&gt;</term>
-		<listitem><para>A version of the DOS attrib command to set 
-		file permissions. For example: </para>
+		<term>setmode &lt;Dateiname&gt; &lt;Rechte=[+|\-]rsha&gt;</term>
+		<listitem><para>Eine Version des DOS-Befehls attrib zum Setzen von
+		Dateirechten. Beispiel:</para>
 
-		<para><command>setmode myfile +r </command></para>
+		<para><command>setmode meineDatei +r </command></para>
 		
-		<para>would make myfile read only. </para></listitem>
+		<para>würde meineDatei nur lesbar machen.</para></listitem>
 		</varlistentry>
 
 
 		
 		<varlistentry>
-		<term>symlink source destination</term>
-		<listitem><para>This command depends on the server supporting the CIFS
-		UNIX extensions and will fail if the server does not. The client requests that the server
-		create a symbolic hard link between the source and destination files. The source file
-		must not exist. Note that the server will not create a link to any path that lies 
-		outside the currently connected share. This is enforced by the Samba server.
+		<term>symlink Quelle Ziel</term>
+		<listitem><para>Für diesen Befehl muss der Server die 
+		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
+		Der Client verlangt, dass der Server einen symbolischen Link zwischen 
+		der Quell- und Zieldatei erstellt. Die Quelldatei darf nicht ???
+		existieren. Man beachte, dass der Server keinen Link auf einen Pfad
+		erzeugt, der außerhalb der gerade verbundenen Freigabe liegt. 
+		Dies wird vom Samba-Server erzwungen.
 		</para></listitem>
 		</varlistentry>
 
@@ -805,31 +866,35 @@
 
 		<varlistentry>
 		<term>tar &lt;c|x&gt;[IXbgNa]</term>
-		<listitem><para>Performs a tar operation - see the <parameter>-T
-		</parameter> command line option above. Behavior may be affected 
-		by the tarmode command (see below). Using g (incremental) and N 
-		(newer) will affect tarmode settings. Note that using the "-" option 
-		with tar x may not work - use the command line option instead. 
+		<listitem><para>Führt eine tar-Operation durch - siehe die obige 
+		Kommandozeilenoption <parameter>-T</parameter>. Das Verhalten kann
+		evtl. durch den Befehl tarmode (siehe unten) beeinflusst werden. 
+		Die Verwendung von g (inkrementell) und N (neuer) hat einen Einfluss
+		auf die Einstellungen von tarmode. Beachten Sie, dass die Option "-"
+		mit tar x evtl. nicht funktioniert - verwenden Sie stattdessen die
+		Kommandozeilenoption. 
 		</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
-		<term>blocksize &lt;blocksize&gt;</term>
-		<listitem><para>Blocksize. Must be followed by a valid (greater 
-		than zero) blocksize. Causes tar file to be written out in 
-		<replaceable>blocksize</replaceable>*TBLOCK (usually 512 byte) blocks. </para></listitem>
+		<term>blocksize &lt;Blockgröße&gt;</term>
+		<listitem><para>Blockgröße. Es muss eine gültige Blockgröße folgen
+		(größer als Null). Bewirkt, dass die tar-Datei in Blöcken der Größe
+		<replaceable>Blockgröße</replaceable>*TBLOCK 
+		(normalerweise 512 Bytes) geschrieben wird.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>tarmode &lt;full|inc|reset|noreset&gt;</term>
-		<listitem><para>Changes tar's behavior with regard to archive 
-		bits. In full mode, tar will back up everything regardless of the 
-		archive bit setting (this is the default mode). In incremental mode, 
-		tar will only back up files with the archive bit set. In reset mode, 
-		tar will reset the archive bit on all files it backs up (implies 
-		read/write share). </para></listitem>
+		<listitem><para>Ändert das Verhalten von tar bzgl. der Archiv-Bits. 
+		Im full-Modus macht tar ein Backup von allem, unabhängig von der 
+		Einstellung des Archiv-Bits (dies ist der Standardmodus). Im
+		inkrementellen Modus (inc), macht tar nur von den Dateien mit einem
+		gesetzten Archiv-Bit ein Backup. Im reset-Modus, setzt tar 
+		das Archiv-Bit auf allen Dateien zurück, von denen es ein Backup macht
+		(impliziert eine read/write-Freigabe).</para></listitem>
 		</varlistentry>
 		
 		
@@ -837,79 +902,82 @@
 </refsect1>
 
 <refsect1>
-	<title>NOTES</title>
+	<title>BEMERKUNGEN</title>
 
-	<para>Some servers are fussy about the case of supplied usernames, 
-	passwords, share names (AKA service names) and machine names. 
-	If you fail to connect try giving all parameters in uppercase. 
-	</para>
+	<para>Manche Server sind ein wenig pingelig bei der Schreibweise der 
+	angegebenen Benutzernamen, Passworte, Freigabenamen (auch bekannt als 
+	Dienstnamen) sowie Rechnernamen. Sollte Ihre Verbindung fehlschlagen, 
+	versuchen Sie, alle Parameter in Großbuchstaben anzugeben.</para>
 	
-	<para>It is often necessary to use the -n option when connecting 
-	to some types of servers. For example OS/2 LanManager insists 
-	on a valid NetBIOS name being used, so you need to supply a valid 
-	name that would be known to the server.</para>
+	<para>Bei der Verbindung mit manchen Serverarten ist es oft notwendig,
+	die Option -n zu bennutzen. OS/2-LanManager z.B. beharrt auf der
+	Verwendung eines gültigen NetBIOS-Namens, d.h. Sie müssen einen 
+	gültigen dem Server bekannten Namen angeben.</para>
 
-	<para>smbclient supports long file names where the server 
-	supports the LANMAN2 protocol or above. </para>
+	<para>smbclient unterstützt lange Dateinamen dann, wenn der Server 
+	das Protokoll LANMAN2 oder höher unterstützt.</para>
 </refsect1>
 
 <refsect1>
-	<title>ENVIRONMENT VARIABLES</title>
+	<title>UMGEBUNGSVARIABLEN</title>
 
-	<para>The variable <envar>USER</envar> may contain the 
-	username of the person  using the client. This information is 
-	used only if the protocol  level is high enough to support 
-	session-level passwords.</para>
+	<para>Die Variable <envar>USER</envar> kann den Benutzernamen der
+	Person enthalten, die den Client benutzt. Diese Information wird 
+	nur dann benutzt, wenn die Protokollebene hoch genug ist, um 
+	Passworte auf der Ebene von Sitzungen zu unterstützen.</para>
 
+	<para>Die Variable <envar>PASSWD</envar> kann das Passwort der 
+	Person enthalten, die den Client benutzt. Diese Information wird 
+	nur dann benutzt, wenn die Protokollebene hoch genug ist, um 
+	Passworte auf der Ebene von Sitzungen zu unterstützen.</para>
 
-	<para>The variable <envar>PASSWD</envar> may contain 
-	the password of the person using the client.  This information is 
-	used only if the protocol level is high enough to support 
-	session-level passwords. </para>
-
-	<para>The variable <envar>LIBSMB_PROG</envar> may contain 
-	the path, executed with system(), which the client should connect 
-        to instead of connecting to a server.  This functionality is primarily
-        intended as a development aid, and works best when using a LMHOSTS 
-        file</para>
+	<para>Die Variable <envar>LIBSMB_PROG</envar> kann den Pfad enthalten, 
+	ausgeführt mit system(), den der Client verwenden sollte, statt sich
+	mit einem Server zu verbinden. Diese Funktionalität ist primär als
+        Hilfe bei der Entwicklung gedacht und funktioniert am besten, wenn 
+	eine LMHOSTS-Datei verwendet wird.</para>
 </refsect1>
 
 
 <refsect1>
 	<title>INSTALLATION</title>
 
-	<para>The location of the client program is a matter for 
-	individual system administrators. The following are thus
-	suggestions only. </para>
+	<para>Der Ort des Client-Programms ist Sache des einzelnen 
+	Systemadministrators. Die folgenden Bemerkungen sind daher nur
+	Vorschläge.</para>
 
-	<para>It is recommended that the smbclient software be installed
-	in the <filename>/usr/local/samba/bin/</filename> or <filename>
-	/usr/samba/bin/</filename> directory, this directory readable 
-	by all, writeable only by root. The client program itself should 
-	be executable by all. The client should <emphasis>NOT</emphasis> be 
-	setuid or setgid! </para>
+	<para>Es wird empfohlen, dass die smbclient-Software im Verzeichnis 
+	<filename>/usr/local/samba/bin/</filename> oder 
+	<filename>/usr/samba/bin/</filename> installiert wird, welches für alle
+	lesbar, aber nur für root schreibbar ist. Das Client-Programm selbst 
+	sollte für alle ausführbar sein. Der Client sollte <emphasis>NICHT</emphasis> 
+	setuid oder setgid sein!</para>
 
-	<para>The client log files should be put in a directory readable 
-	and writeable only by the user. </para>
+	<para>Die Client-Logdateien sollten sich in einem Verzeichnis befinden,
+	das nur für den Benutzer les- und schreibbar ist. </para>
 
-	<para>To test the client, you will need to know the name of a 
-	running SMB/CIFS server. It is possible to run <citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry> as an ordinary user - running that server as a daemon 
-	on a user-accessible port (typically any port number over 1024)
-	would provide a suitable test server. </para>
+	<para>Um den Client zu testen, müssen Sie den Namen eines laufenden 
+	SMB/CIFS-Servers kennen. Mann kann 
+	<citerefentry><refentrytitle>smbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> als gewöhnlicher Benutzer 
+	laufen lassen. Den Server als Daemon auf einem für Benutzer 
+	zugänglichen Port laufen zu lassen (normalerweise irgendeine Port-Nummer 
+	größer als 1024) sollte einen geeigneten Testserver ergeben.</para>
 </refsect1>
 
 
 <refsect1>
-	<title>DIAGNOSTICS</title>
+	<title>DIAGNOSEMELDUNGEN</title>
 
-	<para>Most diagnostics issued by the client are logged in a 
-	specified log file. The log file name is specified at compile time, 
-	but may be overridden on the command line. </para>
+	<para>Die meisten vom Client ausgegebenen Diagnosemeldungen werden 
+	in einer bestimmten Logdatei festgehalten. Der Name der Logdatei
+	wird zum Zeitpunkt des Kompilierens angegeben, kann aber auf der 
+	Kommandozeile überschrieben werden.</para>
 
-	<para>The number and nature of diagnostics available depends 
-	on the debug level used by the client. If you have problems, 
-	set the debug level to 3 and peruse the log files. </para>
+	<para>Die Anzahl und Art von vorhandenen Diagnosemeldungen hängt von 
+	der Debug-Ebene ab, die der Client verwendet. Sollten Sie Probleme
+	haben, setzen Sie die Debug-Ebene auf 3 und schauen Sie sich die
+	Logdateien an.</para>
 </refsect1>
 
 
