@@ -892,7 +892,6 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	</sect2>
 </sect1>
 
-<sect1>
 <title>Die CUPS Filter-Architektur</title>
 
 <para>
@@ -1584,7 +1583,7 @@ werden können.
 </formalpara>
 </sect2>
 
-
+<sect2>
 <title>PostScript Printer Descriptions (PPDs) für Nicht-PS-Drucker</title>
 
 
@@ -1888,7 +1887,6 @@ Drucker-Queue einzufügen (einige Informationen über die herkömmliche Verwendung 
 <ulink noescape="1" url="http://playground.sun.com/printing/documentation/interface.html">http://playground.sun.com/printing/documentation/interface.html</ulink> gefunden werden.
 </para>
 </sect2>
-</sect1>
 
 <sect1>
 	<title>Netzwerk-Druck (Ausschließlich Windows)</title>
@@ -2115,72 +2113,59 @@ Drucker arbeiten kann.
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-CUPS-PPDs können auch auf Windows-Clients verwendet werden, 
-
-
-can also be used on Windows-Clients, on top of a
-<quote>core</quote> PostScript driver (now recommended is the "CUPS PostScript
-Driver for Windows NT/200x/XP"; you can also use the Adobe one, with
-limitations). This feature enables CUPS to do a few tricks no other
-spooler can do:
+CUPS-PPDs können auch auf Windows-Clients verwendet werden, am <quote>Rücken</quote> eines <quote>core</quote>
+PostScript-Treibers (derzeit wird der "CUPS PostScript Driver for Windows NT/200x/XP" empfohlen; Sie können auch
+den von Adobe verwenden, mit Einschränkungen). Dieses Feature ermöglicht es CUPS, einige Tricks zu beherrschen,
+die kein anderer Spooler kann:
 </para>
 
 <itemizedlist>
 
-<listitem><para>Act as a networked PostScript RIP (Raster Image
-Processor), handling print files from all client platforms in a uniform
-way.</para></listitem>
+<listitem><para>Das Arbeiten als ein vernetzter PostScript RIP (Raster Image Processor),
+der Druckdateien von allen Client-Plattformen in einer einheitlichen Weise handhabt.
+</para></listitem>
 
-<listitem><para>Act as a central accounting and billing server, since
-all files are passed through the pstops filter and are, therefore,
-logged in the CUPS <filename>page_log</filename> file.
-<emphasis>Note:</emphasis> this cannot happen with <quote>raw</quote> print jobs,
-which always remain unfiltered per definition.</para></listitem>
+<listitem><para>Das Arbeiten als zentraler Ab- und Verrechnungs-Server, da alle Dateien durch den pstops-Filter
+laufen und daher in der CUPS-Datei <filename>page_log</filename> protokolliert werden.
+<emphasis>Anmerkung:</emphasis>Dies kann nicht für <quote>raw</quote> Druckaufträge erfolgen, da diese ja per
+definitionem ungefiltert bleiben.</para></listitem>
 
-<listitem><para>Enable clients to consolidate on a single PostScript
-driver, even for many different target printers.</para></listitem>
+<listitem><para>Das Ermöglichen einer Einigung und Festlegung eines einzelnen PostScript-Treibers für die
+Clients, sogar für viele verschiedene Ziel-Drucker.</para></listitem>
 </itemizedlist>
 
 <para>
-Using CUPS PPDs on Windows clients enables these to control
-all print job settings just as a UNIX client can do.
+Die Verwendung von CUPS PPDs auf Windows-Clients ermöglicht es diesen, alle Druckauftrags-Einstellungen so
+zu kontrollieren, wie es ein UNIX-Client kann.
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Windows Terminal Servers (WTS) as CUPS Clients</title>
+<title>Windows Terminal Server (WTS) als CUPS Clients</title>
 
 <para>
-This setup may be of special interest to people experiencing major
-problems in WTS environments. WTS often need a multitude of
-non-PostScript drivers installed to run their clients' variety of
-different printer models. This often imposes the price of much
-increased instability.
+Dieses Setup wird für diejenigen interessant sein, die grosse Probleme in WTS-Umgebungen haben. WTS braucht oft
+eine Vielzahl von Nicht-PS-Treibern installiert, um die Vielfalt der verschiedenen Druckermodelle der CLients
+zu unterstützen. Dies bringt oft eine stark erhöhte Instabilität mit sich.
 </para>
 
 <sect2>
-<title>Printer Drivers Running in <quote>Kernel Mode</quote> Cause Many
-Problems</title>
+<title>Drucker-Treiber, die im <quote>Kernel Modus</quote> laufen, verursachen viele Probleme</title>
 
 <para>
-	In Windows NT printer drivers which run in <quote>Kernel
-Mode</quote>, introduces a high risk for the stability of the system
-if the driver is not really stable and well-tested. And there are a
-lot of bad drivers out there! Especially notorious is the example
-of the PCL printer driver that had an additional sound module
-running, to notify users via sound-card of their finished jobs. Do I
-need to say that this one was also reliably causing <quote>blue screens
-of death</quote> on a regular basis?
+In Windows NT bringen Drucker-Treiber, die im <quote>Kernel Modus</quote> laufen, ein hohes Risiko für die
+Stabilität des Systems mit sich, wenn der Treiber nicht wirklich stabil und gut getestet ist. Und es gibt eine
+Menge schlechte Treiber! Speziell berüchtigt ist das Beispiel des PCL-Drucker-Treibers, der ein zusätzliches
+Sound-Modul ausführte, das die Benutzer via Soundkarte über ihre abgeschlossenen Druckaufträgen informierte.
+Muß ich wirklich erwähnen, daß dies genauso verlässlich <quote>blue screens of death</quote> verursachte?
 </para>
 
 <para>
-PostScript drivers are generally well tested. They are not known
-to cause any problems, even though they also run in kernel mode. This
-might be because there have been so far only two different PostScript
-drivers: the ones from Adobe and the one from Microsoft. Both are
-well tested and are as stable as you can imagine on
-Windows. The CUPS driver is derived from the Microsoft one.
+PostScript-Treiber sind im Allgemeinen gut getestet. Sie sind nicht dafür bekannt, irgendwelche Probleme zu
+verursachen, sogar trotzdem sie auch im Kernel-Modus ausgeführt werden. Das kann daher kommen, daß es bislang
+nur zwei verschiedene PostScript-Treiber gab: die von Adobe und den von Microsoft. Beide sind gut getestet und
+so stabil, wie es unter Windows eben geht. Der CUPS-Treiber ist von dem MS-Treiber abgeleitet.
 </para>
 </sect2>
 
