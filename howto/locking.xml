@@ -24,7 +24,9 @@ die MS Windows NT/200x Server auch zur Verfügung stellen.
 </para>
 
 <para>
-Der Ausdruck <emphasis>Sperren</emphasis> hat grunsätzlich weitläufige Bedeutung und
+Der Ausdruck <emphasis>Sperren</emphasis> 
+(entsprechend dem etwas treffenderen englischen Begriff <emphasis>Locking</emphasis>, Anm. d. Übers.)
+hat grundsätzlich weitläufige Bedeutung und
 deckt eine Vielzahl von Funktionen ab, die alle unter diesem einen Begriff zusammengefasst sind.
 </para>
 
@@ -97,141 +99,127 @@ bei <emphasis>jedem</emphasis> Lese- und Schreibzugriff ausführen.
 <para>
 Sie können das Sperren von Byte-Bereichen auch komplett abschalten, indem Sie
 <smbconfoption><name>locking</name><value>no</value></smbconfoption> setzen.
-
-
-You can also disable byte range locking completely by using
-<smbconfoption><name>locking</name><value>no</value></smbconfoption>.
-This is useful for those shares that do not support locking or do not need it
-(such as CDROMs). In this case, Samba fakes the return codes of locking calls to
-tell clients that everything is okay.
+Das ist hilfreich für jene Freigaben, die die Sperren nicht unterstützen oder sie nicht brauchen (wie CDROMs).
+In diesem Fall bildet Samba die Antwort-Codes von Sperr-Aufrufen nach, um den Clients mitzuteilen, daß alles
+in Ordnung ist.
 </para>
 
 <para>
-The second class of locking is the <emphasis>deny modes</emphasis>. These 
-are set by an application when it opens a file to determine what types of
-access should be allowed simultaneously with its open. A client may ask for
+Die zweite Klasse der Sperren sind die sogenannten <emphasis>deny modes</emphasis>. Diese werden von einer
+Applikation gesetzt, wenn diese eine Datei öffnet, um zu bestimmen, welche Zugriffsarten gleichzeitig mit
+dieser Öffnung zu erlauben sind. Ein Client könnte nach
 <constant>DENY_NONE</constant>, <constant>DENY_READ</constant>, 
-<constant>DENY_WRITE</constant>, or <constant>DENY_ALL</constant>. There are also special compatibility
-modes called <constant>DENY_FCB</constant> and <constant>DENY_DOS</constant>.
+<constant>DENY_WRITE</constant>, oder <constant>DENY_ALL</constant> fragen.
+Es gibt auch spezielle Kompatibilitäts-Modii namens <constant>DENY_FCB</constant>
+und <constant>DENY_DOS</constant>.
 </para>
 
 <sect2>
-<title>Opportunistic Locking Overview</title>
+<title>Überblick über oppurtunistische Sperren</title>
 
 <para>
-Opportunistic locking (Oplocks) is invoked by the Windows file system
-(as opposed to an API) via registry entries (on the server and the client)
-for the purpose of enhancing network performance when accessing a file
-residing on a server. Performance is enhanced by caching the file
-locally on the client that allows:
+Opportunistisches Sperren, auch bezeichnet als <quote>Oplocks</quote> 
+(entspricht <quote>Opportunistic locking</quote>) wird vom Windows-Dateisystem über Registrierungs-Einträge
+aufgerufen (im Gegensatz zu einer API) um die Netzwerk-Performance zu erhöhen, wenn auf eine Datei auf einem
+Server zugegriffen wird. Die Performance wird lokales Puffern der Datei auf dem Client erhöht, was
+folgendes erlaubt:
 </para>
 
 <variablelist>
 	<varlistentry><term>Read-ahead:</term>
 		<listitem><para>
-		The client reads the local copy of the file, eliminating network latency.
+		Der Client liest die lokale Kopie der Datei, dadurch wird die Netzwerk-Latenz eliminiert.
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Write caching:</term>
 		<listitem><para>
-		The client writes to the local copy of the file, eliminating network latency.
+		Der Client schreibt in die lokale Kopie der Datei, dadurch wird die Netzwerk-Latenz eliminiert.	
 		</para></listitem>
 	</varlistentry>
 
         <varlistentry><term>Lock caching:</term>
         <listitem><para>
-		The client caches application locks locally, eliminating network latency.
+		Der Client puffert die Sperren der Anwendung lokal, wieder wird die Netzwerk-Latenz eliminiert.
 		</para></listitem>
         </varlistentry>
 </variablelist>
 
 <para>
-The performance enhancement of oplocks is due to the opportunity of
-exclusive access to the file &smbmdash; even if it is opened with deny-none &smbmdash;
-because Windows monitors the file's status for concurrent access from
-other processes.
+Die Performance-Steigerung von Oplocks kommt von der Möglichkeit des exklusiven Zugriffs auf die Datei &smbmdash;
+sogar wenn sie über <constant>DENY_NONE</constant> geöffnet ist &smbmdash; da Windows den Status der Datei
+auf konkurrierende Zugriffe von anderen Prozessen überwacht.
 </para>
 
 <variablelist>
-<title>Windows defines 4 kinds of Oplocks:</title>
+<title>Windows definiert 4 Arten von Oplocks:</title>
 
 	<varlistentry><term>Level1 Oplock</term>
                 <listitem><para>
-		The redirector sees that the file was opened with deny
-                none (allowing concurrent access), verifies that no
-                other process is accessing the file, checks that
-                oplocks are enabled, then grants deny-all/read-write/exclusive
-                access to the file. The client now performs
-                operations on the cached local file.
+		Der Redirektor sieht, daß die Datei mit DENY_NONE geöffnet wurde (was konkurrierende
+		Zugriffe erlaubt), prüft, ob auch kein anderer Prozess auf die Datei zugreift, prüft, daß
+		Oplocks aktiviert sind, dann gewährt er DENY_ALL/R+W/Exklusiv-Zugriff auf die Datei. Der
+		Client führt seine Operationen nun auf die gepufferte Datei durch.
 		</para>
 
 		<para>
-		If a second process attempts to open the file, the open
-                is deferred while the redirector <quote>breaks</quote> the original
-                oplock. The oplock break signals the caching client to
-                write the local file back to the server, flush the
-                local locks and discard read-ahead data. The break is
-                then complete, the deferred open is granted, and the
-                multiple processes can enjoy concurrent file access as
-                dictated by mandatory or byte-range locking options.
-                However, if the original opening process opened the
-                file with a share mode other than deny-none, then the
-                second process is granted limited or no access, despite
-                the oplock break.
+		Wenn ein zweiter Prozess nun versucht, die Datei zu öffnen, wird das Öffnen verzögert, während
+		der Redirektor den originalen Oplock <quote>aufbricht</quote>. Dieser Bruch des Oplocks
+		signalisiert dem puffernden Client, die gepufferte Datei zurück auf den Server zu schreiben,
+		die lokalen Sperren zu löschen und die Read-Ahead-Daten zu verwerfen. Der Bruch ist dann
+		komplett, die verzögerte Öffnung wird gewährt, und mehrere Prozesse können konkurrierenden
+		Dateizugriff geniessen, wie er von den Byte-Bereichs- oder den zwingenden Sperren diktiert wird.
+		Wenn jedoch der originale öffnende Prozess die Datei in einem anderen Modus als DENY_NONE
+		geöffnet hat, wird dem zweiten Prozess nur eingeschränkter oder gar kein Zugriff gewährt,
+		trotz des Bruchs des Oplocks.
                 </para></listitem>
         </varlistentry>
 
         <varlistentry><term>Level2 Oplock</term>
                 <listitem><para>
-		Performs like a Level1 oplock, except caching is only
-                operative for reads. All other operations are performed
-                on the server disk copy of the file.
+		Arbeitet wie ein Level1 Oplock, außer daß nur Lesezugriffe gepuffert werden. Alle anderen
+		Operationen werden auf der Server-Kopie der Datei durchgeführt.		
                 </para></listitem>
         </varlistentry>
 
         <varlistentry><term>Filter Oplock</term>
                 <listitem><para>
-		Does not allow write or delete file access.
+		Erlaubt keinen Schreib- oder Löschzugriff auf Dateien.		
                 </para></listitem>
         </varlistentry>
 
         <varlistentry><term>Batch Oplock</term>
                 <listitem><para>
-		Manipulates file openings and closings and allows caching
-                of file attributes.
+		Manipuliert Datei-Öffnungen und -Schliessungen, und erlaubt das Puffern von Dateiattributen.
                 </para></listitem>
         </varlistentry>
 </variablelist>
 
 <para>
-An important detail is that oplocks are invoked by the file system, not
-an application API. Therefore, an application can close an oplocked
-file, but the file system does not relinquish the oplock. When the
-oplock break is issued, the file system then simply closes the file in
-preparation for the subsequent open by the second process.
+Ein wichtiges Detail ist, daß Oplocks vom Dateisystem aufgerufen werden, nicht von einer Anwendungs-API. Daher
+kann eine Applikation eine opportunistisch gesperrte Datei schliessen, aber das Dateisystem gibt den Oplock
+nicht auf. Wenn der Bruch des Oplocks durchgeführt wird, schließt das Dateisystem einfach die Datei, in
+Vorbereitung auf das folgende Öffnen der Datei durch den zweiten Prozess.
 </para>
 
 <para>
-<emphasis>Opportunistic locking</emphasis> is actually an improper name for this feature.
-The true benefit of this feature is client-side data caching, and
-oplocks is merely a notification mechanism for writing data back to the
-networked storage disk. The limitation of opportunistic locking is the
-reliability of the mechanism to process an oplock break (notification)
-between the server and the caching client. If this exchange is faulty
-(usually due to timing out for any number of reasons), then the
-client-side caching benefit is negated.
+<emphasis>Opportunistisches Sperren</emphasis> ist eigentlich ein unpassender Name für dieses Feature.
+Der wirkliche Nutzen dieses Features ist das Puffern von Daten (<quote>Cachen</quote>) auf Client-Seite, 
+und die Oplocks sind nur
+ein Mitteilungs-Mechanismus für das Zurückschreiben von Daten auf die Platte des Netzwerk-Servers. Die
+Einschränkung der Oplocks ist die Zuverlässigkeit des Mechanismus, einen Oplock-Bruch (Mitteilung) zwischen
+dem Server und dem puffernden Client auszuführen. Wenn dieser Austausch fehlerhaft abläuft (üblicherweise
+wegen einem Timeout aus irgendwelchen Gründen), dann geht der Nutzen des Client-seitigen Pufferns verloren.
 </para>
 
 <para>
-The actual decision that a user or administrator should consider is
-whether it is sensible to share among multiple users data that will
-be cached locally on a client. In many cases the answer is no.
-Deciding when to cache or not cache data is the real question, and thus
-<quote>opportunistic locking</quote> should be treated as a toggle for client-side
-caching. Turn it <quote>on</quote> when client-side caching is desirable and
-reliable. Turn it <quote>off</quote> when client-side caching is redundant,
-unreliable or counter-productive.
+Die tatsächliche Entscheidung, die ein Anwender oder Administrator erwägen sollte, ist, ob es vernünftig ist,
+Daten unter mehreren Anwendern zu teilen, die lokal auf den Clients gepuffert werden. In vielen Fällen ist
+die Antwort <quote>Nein</quote>. Zu entscheiden, wann Daten gepuffert werden und wann nicht, das ist hier
+die Frage, und daher sollte <quote>opportunistisches Sperren</quote> als Schalter für Client-seitiges Puffern
+behandelt werden. Schalten Sie es <quote>on</quote>, wenn Client-seitiges Puffern erwünscht und zuverlässig ist.
+Schalten Sie es <quote>off</quote>, wenn Client-seitiges Puffern redundant, unzuverlässig oder kontra-produktiv 
+ist.
 </para>
 
 <para>
