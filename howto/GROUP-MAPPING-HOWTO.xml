@@ -173,7 +173,7 @@
 	</para>
 		
 		<para>
-		<indexterm><primary>Domänen Administratoren-Gruppe</primary></indexterm>
+		<indexterm><primary>Domänen-Administratoren-Gruppe</primary></indexterm>
 		Die Anführungszeichen um <quote>Domänen Administratoren</quote> sind notwendig, weil der
 		Gruppennamen ein Leerzeichen enthält.
 		Stellen Sie zudem sicher, dass Sie keine Leerzeichen um das Gleichheitszeichen (=) übrig lassen.
