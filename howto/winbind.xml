@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="winbind">
 
 <chapterinfo>
@@ -37,10 +38,10 @@
 	<pubdate>27 June 2002</pubdate>
 </chapterinfo>
 
-<title>Winbind: Benutzung von Dom&auml;nenkonten</title>
+<title>Winbind: Benutzung von Domänenkonten</title>
 
 <sect1>
-	<title>Eigenschaften und Nutzen</title>
+	<title>Eigenschaften und Vorzüge</title>
 
 	<para>
 	Die Integration von UNIX und Microsoft Windows NT durch eine einheitliche Anmeldung galt
