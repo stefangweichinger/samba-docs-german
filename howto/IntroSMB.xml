@@ -41,7 +41,7 @@ und NBT (NetBIOS über TCP/IP, oder NetBT). Über die Jahre hinweg wurde NBT zur m
 Implementationen bis zum Fortschritt des <quote>Direct-Hosted TCP</quote>
 -- der Microsoft Marketing Formulierung zur
 vollständigen Eliminierung von NetBIOS und der Möglichkeit, SMB direkt an den TCP-Port 445 zu binden.
-Wie es zum jetzigen Zeitpunkt aussieht, muß </quote>Direct-Hosted TCP</quote> jedoch noch aufschliessen.
+Wie es zum jetzigen Zeitpunkt aussieht, muß <quote>Direct-Hosted TCP</quote> jedoch noch aufschliessen.
 </para>
 
 <para>

@@ -565,7 +565,7 @@ Es ist auch möglich, dass Ihr Client nur verschlüsselte Passwörter
 versendet, aber Sie haben den Eintrag <smbconfoption><name>encrypt
 passwords</name><value>no</value></smbconfoption> in der &smb.conf;
 stehen.
-Ändern Sie diesen auf <quote>yes<quote>, um das Problem zu beheben.
+Ändern Sie diesen auf <quote>yes</quote>, um das Problem zu beheben.
 </para>
 
 </step>
