@@ -1,9 +1,12 @@
 <chapter id="FastStart">
 <chapterinfo>
 	&author.jht;
+	<pubdate>April 3 2003</pubdate>
+        <author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
+
 </chapterinfo>
 
-<title>Fast Start: Cure for Impatience</title>
+<title>Schnellstart: Allheilmittel für Ungeduldige</title>
 
 <para>
 When we first asked for suggestions for inclusion in the Samba HOWTO documentation,
