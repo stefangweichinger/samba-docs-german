@@ -764,23 +764,24 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 
 	<para>
 <indexterm><primary>SAM backend</primary><secondary>tdbsam</secondary></indexterm>
-		Samba can store user and machine account data in a <quote>TDB</quote> (Trivial Database).
-		Using this backend does not require any additional configuration. This backend is
-		recommended for new installations that do not require LDAP.
+		Samba kann Daten von Benutzer- und Maschinen-Konten in einer <quote>TDB</quote>
+		(Trivial Database) abspeichern. Die Verwendung dieses Backends erfordert keine weitere
+		Konfiguration. Dieses Backend wird für neue Installationen empfohlen, die kein LDAP
+		benötigen.
 		</para>
 
 		<para>
-		As a general guide, the Samba Team does not recommend using the tdbsam backend for sites
-		that have 250 or more users. Additionally, tdbsam does not support a replication protocol
-		necessary for Samba PDC and BDC installations.  In such cases, the use of ldapsam is
-		be encouraged.
+		Als generelle Richtlinie empfiehlt das Samba-Team, das tbd-Backend nicht in Installationen
+		einzusetzen, die 250 oder mehr Benutzer haben. Weiters unterstützt tdbsam kein
+		Replikations-Protokoll für Samba PDC und BDC Installationen. In solchen Fällen ist
+		die Verwendung von ldapsam ratsam.		
 		</para>
 
 		<para>
-		The recommendation of a 250 user limit is purely based on the notion that this
-		would generally involve a site that has routed networks, possibly spread across
-		more than one physical location. The Samba Team has not at this time established
-		the performance based scalability limits of the tdbsam architecture.
+		Die Empfehlung eines Limits von 250 Benutzern basiert einfach darauf, daß dies
+		üblicherweise eine Installation mit gerouteten Netzwerken ist, die sich eventuell auch über
+		mehrere physische Standorte erstreckt. Das Samba-Team hat bis dato noch nicht die
+		Skalierbarkeits-Limits der tdbsam-Architektur in Bezug auf Performance festgelegt.		
 		</para>
 
 	</sect2>
@@ -790,31 +791,32 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 
 		<para>
 <indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
-		There are a few points to stress that the ldapsam does not provide. The LDAP
-		support referred to in this documentation does not include:
+		Es gibt ein paar Punkte zu erwähnen, die ldapsam nicht anbietet. Die LDAP-Unterstützung, auf
+		die sich diese Dokumentation bezieht, inkludiert nicht:
 		</para>
 
 		<itemizedlist>
-			<listitem><para>A means of retrieving user account information from
-			an Windows 200x Active Directory server.</para></listitem>
-			<listitem><para>A means of replacing /etc/passwd.</para></listitem>
+			<listitem><para>Eine Einrichtung, um Benutzer-Konten-Information von einem
+			Windows 200x Active Directory Server zu beziehen.</para></listitem>
+			<listitem><para>Eine Einrichtung, um /etc/passwd zu ersetzen.</para></listitem>
 		</itemizedlist>
 
 		<para>
-		The second item can be accomplished by using LDAP NSS and PAM modules. LGPL
-		versions of these libraries can be obtained from
-		<ulink url="http://www.padl.com/">PADL Software</ulink>.
-		More information about the configuration of these packages may be found at
+		Der zweite Punkt kann durch die Verwendung von LDAP NSS und PAM Modulen abgedeckt werden.
+		GPL-Versionen dieser Bibliotheken können von
+		<ulink url="http://www.padl.com/">PADL Software</ulink> bezogen werden.
+		Mehr Informationen zur Konfiguration dieser Pakete können unter
 		<ulink url="http://safari.oreilly.com/?XmlId=1-56592-491-6">
-		<emphasis>LDAP, System Administration</emphasis>; Gerald Carter by O'Reilly; Chapter 6: Replacing NIS."</ulink>
+		<emphasis>LDAP, System Administration</emphasis>; Gerald Carter by O'Reilly; Chapter 6: Replacing NIS."</ulink> gefunden werden.
 		</para>
 
 		<para>
-		This document describes how to use an LDAP directory for storing Samba user
-		account information traditionally stored in the smbpasswd(5) file. It is
-		assumed that the reader already has a basic understanding of LDAP concepts
-		and has a working directory server already installed. For more information
-		on LDAP architectures and directories, please refer to the following sites:
+		Dieses Dokument beschreibt, wie man ein LDAP-Verzeichnis dazu verwendet, 
+		Samba-Benutzerkonten-Information abzuspeichern, die traditionell in der Datei smbpasswd(5)
+		abgelegt wurde. Es wird angenommen, daß der Leser bereits ein grundlegendes Verständnis von
+		LDAP-Konzepten hat, und einen funktionierenden Verzeichnis-Server bereits installiert hat.
+		Für mehr Informationen zu LDAP-Architektur und -Verzeichnissen, 
+		besuchen Sie bitte folgende Seiten:
 		</para>
 
 		<itemizedlist>
@@ -823,37 +825,42 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 		</itemizedlist>
 
 		<para>
-		Two additional Samba resources which may prove to be helpful are:
+		Zwei weitere Samba-Ressourcen, die vielleicht hilfreich sein können, sind:
 		</para>
 
 		<itemizedlist>
-			<listitem><para>The <ulink url="http://www.unav.es/cti/ldap-smb/ldap-smb-3-howto.html">Samba-PDC-LDAP-HOWTO</ulink>
-			maintained by Ignacio Coupeau.</para></listitem>
+			<listitem><para>Das <ulink url="http://www.unav.es/cti/ldap-smb/ldap-smb-3-howto.html">Samba-PDC-LDAP-HOWTO</ulink>
+			verwaltet von Ignacio Coupeau.</para></listitem>
 
-			<listitem><para>The NT migration scripts from <ulink url="http://samba.idealx.org/">IDEALX</ulink> that are
-			geared to manage users and group in such a Samba-LDAP Domain Controller configuration.
+			<listitem><para>Die NT-Migrations-Skripts von 
+			<ulink url="http://samba.idealx.org/">IDEALX</ulink>, die dafür ausgelegt sind,
+			Benutzer und Gruppen in einer solchen Samba-LDAP Domänen-Controller Konfiguration
+			zu verwalten.
 			</para></listitem>
 		</itemizedlist>
 
 		<sect3>
-		<title>Supported LDAP Servers</title>
+		<title>Unterstützte LDAP Server</title>
 
 			<para>
-			The LDAP ldapsam code has been developed and tested using the OpenLDAP 2.0 and 2.1 server and
-			client libraries. The same code should work with Netscape's Directory Server and client SDK.
-			However, there are bound to be compile errors and bugs. These should not be hard to fix.
-			Please submit fixes via the process outlined in <link linkend="bugreport">Reporting Bugs</link> chapter.
+			Der LDAP ldapsam-Code wurde unter Verwendung der OpenLDAP 2.0 und 2.1 Server- und 
+			Client-Libraries entwickelt und getestet. Der selbe Code sollte mit
+			Netscape's Directory Server und client SDK arbeiten.
+			Jedoch gibt es Compile-Fehler und Bugs. Diese sollten nicht schwierig zu beheben sein.
+			Bitte senden Sie uns Fixes mittels dem in <link linkend="bugreport">Reporting Bugs</link>
+			beschriebenen Vorgehen.
 			</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Schema and Relationship to the RFC 2307 posixAccount</title>
+		<title>Schema und Verhältnis zum RFC 2307 posixAccount</title>
 
 
 			<para>
-			Samba-3.0 includes the necessary schema file for OpenLDAP 2.0 in
-			<filename>examples/LDAP/samba.schema</filename>. The sambaSamAccount objectclass is given here:
+			Samba-3.0 enthält die notwendige Schema-Datei für OpenLDAP 2.0 in
+			<filename>examples/LDAP/samba.schema</filename>. 
+			Die sambaSamAccount Objekt-Klasse ist hier:
 			</para>
 
 <para>
@@ -871,14 +878,18 @@ objectclass (1.3.6.1.4.1.7165.2.2.6 NAME 'sambaSamAccount' SUP top AUXILIARY
 </para>
 
 			<para>
-			The <filename>samba.schema</filename> file has been formatted for OpenLDAP 2.0/2.1.
-			The Samba Team owns the OID space used by the above schema and recommends its use.
-			If you translate the schema to be used with Netscape DS, please submit the modified
-			schema file as a patch to <ulink url="mailto:jerry@samba.org">jerry@samba.org</ulink>.
+			Die Datei <filename>samba.schema</filename> wurde für OpenLDAP 2.0/2.1 formatiert.
+			Das Samba Team besitzt den OID-Space, der von obigeme Schema benutze wird und empfiehlt
+			dessen Verwendung. Wenn Sie das Schema für die Verwendung mit Netscape DS übersetzen,
+			senden Sie die modifzierte Schema-Datei bitte als Patch an
+			<ulink url="mailto:jerry@samba.org">jerry@samba.org</ulink>.
 			</para>
 
 			<para>
-			Just as the smbpasswd file is meant to store information that provides information additional to  a
+			Genauso wie die Datei smbpasswd			
+
+
+Just as the smbpasswd file is meant to store information that provides information additional to  a
 			user's <filename>/etc/passwd</filename> entry, so is the sambaSamAccount object
 			meant to supplement the UNIX user account information. A sambaSamAccount is a
 			<constant>AUXILIARY</constant> objectclass so it can be used to augment existing
