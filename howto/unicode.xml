@@ -11,36 +11,34 @@
 		</affiliation>
 		<contrib>Japanese character support</contrib>
 	</author>
-	<pubdate>25 March 2003</pubdate>i
 	<author>&person.hba;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Unicode/Charsets</title>
+<title>Unicode/Zeichensätze</title>
 
 <sect1>
 <title>Features und Benefits</title>
 
 <para>
-Wahrscheinlich wird jede Industrie erwachsen. Eine der Größten Gebiete dieses 
+Wahrscheinlich wird jede Industrie erwachsen. Einer der größten Bereiche dieses 
 Erwachsenwerdens im Fokus der letzten Dekade ist die Möglichkeit, dass jeder 
 einen Computer bedienen kann. Das war nicht immer so, tatsächlich, vor gar nicht 
-so langer Zeit war es für Software üblich, dass Sie exklusiv für das Land 
-geschrieben wurde in dem Sie verwendet werden sollte.
+so langer Zeit war es für Software üblich, dass sie exklusiv für das Land 
+geschrieben wurde, in dem sie verwendet werden sollte.
 </para>
 
 <para>
-Anstrengungen 
-Aus all den Anstrengungen heraus die aufzuwenden waren die native Sprachunterstütung 
-für alle Computer-Nutzer bereit zustellen sind die Anstrengungen der 
+Von all den Anstrengungen, die geleistet wurden, um native Sprachunterstützung 
+für alle Computer-Nutzer bereitzustellen, ist den Anstrengungen der 
 <ulink url="http://www.openi18n.org/">Openi18n Organisation</ulink>
 besondere Beachtung zu schenken.
 </para>
 
 <para>
-Samba-2.x stellte seinen Platz durch einen Mechanismuss genannt 
-<emphasis>codepages</emphasis> zur Verfügung. Samba-3 zielt 
-darauf ein echtes Trans-Globale Datei- und Druckerfreigabe Plattform 
-zu werden.
+Samba-2.x unterstützte ein einzelnes locale durch einen Mechanismus namens
+<emphasis>codepages</emphasis>. Samba-3 ist dazu bestimmt, eine echte trans-globale
+Plattform für Datei- und Druckerfreigabe zu werden.
 </para>
 
 </sect1>
@@ -49,24 +47,24 @@ zu werden.
 <title>Was sind Charsets und Unicode?</title>
 
 <para>
-Computer kommunizieren in Nummern. Jede Nummer wird zu einem korrespondierenden 
-Buchstaben übersetzt. Die Bedeutung die einer entsprechenden Zahl zu geordnet wird 
-ist abhängig vom genutztem <emphasis>character set (charset)
-</emphasis>.
+Computer kommunizieren in Zahlen. Jede Zahl wird zu einem korrespondierenden 
+Buchstaben übersetzt. Die Bedeutung, die einer entsprechenden Zahl zugeordnet wird,
+ist abhängig vom genutztem <emphasis>character set (charset)</emphasis>.
 </para>
 
 <para>
-Ein charset kann als Tabelle angesehen werden die dazu verwendet wird die Nummern 
+Ein charset kann als Tabelle angesehen werden, die dazu verwendet wird, die Nummern 
 in entsprechende Buchstaben zu wandeln (Es gibt unterschiedliche Charsets mit 
 deutschen Umlauten, Japanischen Zeichen usw.). Der <quote>American 
 Standard Code for Information Interchange</quote> (ASCII) war bis heute das 
-normale Buchstaben-Schema welches von Computern verwendet wurde. Dies ist ein 
-Charset der 256 Buchstaben darstellen kann. Unter verwendung dieser 
+normale Buchstaben-Schema,das von Computern verwendet wurde. Dies ist ein 
+Charset, der 256 Buchstaben darstellen kann. Die Verwendung dieser 
 Kodierung bedeutet, dass jeder Buchstabe genau ein Byte groß ist.
 </para>
 
 <para>
-<!-- Hendriks workmark -->
+
+
 
 There are also charsets that support extended characters, but those need at least
 twice as much storage space as does ASCII encoding. Such charsets can contain
