@@ -109,7 +109,7 @@ ADS Sicherheits Domänen in einer ähnliche Weise wie mit MS Windows NT4-gleichen 
 <para>
 Es braucht 2 Schritte um eine interdomain Vertrauensstellung herzustellen. Um eine 2 Wege
 Vertrauensstellung aufzubauen müssen beide Domänenadministratoren einen Trust Account für die
-jeweils andere Domäne anlegen um die Sicherheitsbeschränkungen zu überprüfen.
+jeweils andere Domäne anlegen der dazu dient die Sicherheitsbeschränkungen zu überprüfen.
 </para>
 
 
@@ -117,18 +117,15 @@ jeweils andere Domäne anlegen um die Sicherheitsbeschränkungen zu überprüfen.
 <title>Eine NT4 Vertrauensstellung aufbauen</title>
 
 <para>
-
-
-For MS Windows NT4, all domain trust relationships are configured using the 
-<application>Domain User Manager</application>. This is done from the Domain User Manager Policies
-entry on the menu bar. From the <guimenu>Policy</guimenu> menu, select
-<guimenuitem>Trust Relationships</guimenuitem>. Next to the lower box labeled
-<guilabel>Permitted to Trust this Domain</guilabel> are two buttons, <guibutton>Add</guibutton>
-and <guibutton>Remove</guibutton>. The <guibutton>Add</guibutton> button will open a panel in which
-to enter the name of the remote domain that will be able to assign access rights to users in 
-your domain. You will also need to enter a password for this trust relationship, which the 
-trusting domain will use when authenticating users from the trusted domain.
-The password needs to be typed twice (for standard confirmation).
+In MS Windows NT4 werden alle Domänen Vertrauensstellung mit dem<application>Domain User Manager</application>
+konfiguriert. Dieser wird über den Domain User Manager Policies Eintrag in der Menüleiste erreicht. Vom
+<guimenu>Policy</guimenu> Menü aus wählen Sie <guimenuitem>Trust Relationships</guimenuitem>. Gleich neben
+der unteren Box mit dem Namen <guilabel>Permitted to Trust this Domain</guilabel> sind zwei Knöpfe, 
+<guibutton>Add</guibutton> und <guibutton>Remove</guibutton>. Der <guibutton>Add</guibutton> Knopf öffnet 
+ein Menü wo man den Namen der Domäne eintragen kann die dann befähigt ist Zugriffsrechte an Benutzer in
+Ihrer Domäne zu vergeben. Sie müssen auch ein Passwort für diese Vertrauensstellung eingeben, welches
+die vertrauende Domäne benötigt wenn sie Benutzer aus der vertrauten Domäne authentifiziert. Das Passwort
+muss zweimal eingegeben werden (standard Bestätigung).
 </para>
 
 </sect2>
@@ -138,72 +135,72 @@ The password needs to be typed twice (for standard confirmation).
 <title>Eine NT4 Vertrauensstellung fertigstellen</title>
 
 <para>
-<indexterm><primary>Interdomain Trusts</primary><secondary>Completing</secondary></indexterm>
-A trust relationship will work only when the other (trusting) domain makes the appropriate connections
-with the trusted domain. To consummate the trust relationship, the administrator will launch the
-Domain User Manager from the menu select <guilabel>Policies</guilabel>, then select
-<guilabel>Trust Relationships</guilabel>, click on the <guibutton>Add</guibutton> button
-next to the box that is labeled <guilabel>Trusted Domains</guilabel>. A panel will open in which
-must be entered the name of the remote domain as well as the password assigned to that trust.
+<indexterm><primary>Interdomain Vertrauensstellungen</primary><secondary>Fertigstellen</secondary></indexterm>
+Eine Vertrauensstellung funktioniert nur wenn die andere (vertrauende) Domäne die benötigten Verbindungen mit
+der vertrauten Domäne herstellt. Um das Vertrauensverhältnis durchzuführen muss der Administrator den 
+Domain User Manager starten, dann unter <guilabel>Policies</guilabel> den Menüpunkt <guilabel>Trust Relationships</guilabel>
+auswählen, auf den <guibutton>Add</guibutton> Knopf klicken der neben sich der <guilabel>Trusted Domains</guilabel>
+Box befindet. Es öffnet sich ein Menü in dem man den Namen der anderen Domäne sowie das Passwort zur Vertrauensstellung
+eingeben muss.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Inter-Domain Trust Facilities</title>
+<title>Inter-Domain Vertrauens Möglichkeiten</title>
 
 
 <para>
-<indexterm><primary>Interdomain Trusts</primary><secondary>Facilities</secondary></indexterm>
-A two-way trust relationship is created when two one-way trusts are created, one in each direction.
-Where a one-way trust has been established between two MS Windows NT4 domains (let's call them
-DomA and DomB), the following facilities are created:
+<indexterm><primary>Interdomain Vertrauens</primary><secondary>Möglichkeiten</secondary></indexterm>
+Eine zwei Wege Vertrauensstellung ist erstellt wenn zwei Ein-Weg Vertrauensstellungen erstell sind,
+in jede Richtung eine. Wo eine Ein-Weg Vertrauensstellung zwischen zwei MS Windows NT4 Domänen besteht
+(nennen wir sie DomA und DomB), wurden folgende Möglichkeiten hergestellt.
 </para>
 
-<image id="trusts1"><imagefile>trusts1</imagefile><imagedescription>Trusts overview.</imagedescription></image>
+<image id="trusts1"><imagefile>Vertrauensstellungen1</imagefile><imagedescription>Vertrauens Überblick.</imagedescription></image>
 
 <itemizedlist>
 	<listitem><para>
-	DomA (completes the trust connection) <parameter>Trusts</parameter> DomB.
+	DomA (stellt die Vertrauensverbindung fertig) <parameter>vertraut</parameter> DomB.
 	</para></listitem>
 
 	<listitem><para>
-	DomA is the <parameter>Trusting</parameter> domain.
+	DomA ist die <parameter>vertrauende</parameter> Domäne.
 	</para></listitem>
 
 	<listitem><para>
-	DomB is the <parameter>Trusted</parameter> domain (originates the trust account).
+	DomB ist die <parameter>vertraute</parameter> Domäne (originates the trust account).
 	</para></listitem>
 
 	<listitem><para>
-	Users in DomB can access resources in DomA.
+	Benutzer aus DomB könne auf Ressourcen aus DomA zugreifen
 	</para></listitem>
 
 	<listitem><para>
-	Users in DomA cannot access resources in DomB.
+	Benutzer aus DomA können nicht auf Ressourcen aus DomB zugreifen.
 	</para></listitem>
 
 	<listitem><para>
-	Global groups from DomB can be used in DomA.
+	Globale Grppen aus DomB können in DomA benutzt werden.
 	</para></listitem>
 
 	<listitem><para>
-	Global groups from DomA cannot be used in DomB.
+	Globale Gruppen aus DomA können nicht in DomB benutzt weden
 	</para></listitem>
 
 	<listitem><para>
-	DomB does appear in the logon dialog box on client workstations in DomA.
+	DomB erscheint im Logon Dialog auf client Workstations von DomA.
 	</para></listitem>
 
 	<listitem><para>
-	DomA does not appear in the logon dialog box on client workstations in DomB.
+	DomA erscheint nicht im Logon Dialog auf client Workstations von DomB.
 	</para></listitem>
 </itemizedlist>
 
 <itemizedlist>
 	<listitem><para>
-	Users/Groups in a trusting domain cannot be granted rights, permissions or access
-	to a trusted domain.
+	Benutzer/Gruppen in einer vertrauenden Domäne können keine Zugriffe oder Rechte
+	zu einer vertrauten Domäne gegeben werden.
 	</para></listitem>
 
 	<listitem><para>
