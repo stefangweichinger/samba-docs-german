@@ -18,48 +18,48 @@ bezogen werden. Um eine Entwickler-Version zu beziehen, kann man Samba mittels C
 </para>
 
 <sect1>
-<title>Der Zugriff auf den Source Code von Samba via CVS</title>
+<title>Der Zugriff auf den Source Code von Samba via Subversion</title>
 
 
 <sect2>
 <title>Einführung</title>
 
 <para>
-<indexterm><primary>CVS</primary></indexterm>
+<indexterm><primary>SVN</primary></indexterm>
 Samba wird in einer offenen Umgebung entwickelt. Die Entwickler benutzen
-das Concurrent Versioning System (CVS), um mittels <quote>checkin</quote>,
+Subversion (SVN), um mittels <quote>checkin</quote>,
 (auch als <quote>commit</quote> bekannt), neuen Quelltext einzufügen.
-Auf die verschiedenen CVS-Zweige von Samba kann mittels anonymem CVS
+Auf die verschiedenen SVN-Zweige von Samba kann mittels anonymem SVN
 zugegriffen werden, dies unter Verwendung der in diesem Kapitel
 enthaltenen Anleitungen.
 </para>
 
 <para>
 Dieses Kapitel ist eine geänderte Fassung der Instruktionen, die man unter
-<ulink noescape="1" url="http://samba.org/samba/cvs.html">http://samba.org/samba/cvs.html</ulink>
+<ulink noescape="1" url="http://samba.org/samba/subversion.html">Samba</ulink> web site.
 findet.
 </para>
 
 </sect2>
 
 <sect2>
-<title>CVS-Zugriff auf samba.org</title>
+<title>Der Subversion-Zugriff auf samba.org</title>
 
 <para>
-Die Maschine samba.org führt ein offen zugängliches CVS-repository.
+Die Maschine samba.org führt ein offen zugängliches Subversion-Repository.
 Damit ermöglicht sie den Zugriff auf den Quelltext mehrerer Packages,
 einschließlich Samba, rsync, distcc, ccache, und jitterbug.
-Es gibt zwei hauptsächliche Arten, um auf den CVS-server auf diesem host
+Es gibt zwei hauptsächliche Arten, um auf den Subversion-Server auf diesem host
 zuzugreifen:
 </para>
 
 <sect3>
-<title>Zugriff via CVSweb</title>
+<title>Zugriff via SVNweb</title>
 
 
 <para>
-<indexterm><primary>CVS</primary><secondary>web</secondary></indexterm>
-Sie können so unter Verwendung Ihres bevorzugten WWW-Browsers auf den QUelltext
+<indexterm><primary>SVN</primary><secondary>web</secondary></indexterm>
+Sie können so unter Verwendung Ihres bevorzugten WWW-Browsers auf den Quelltext
 zugreifen. Dies erlaubt den Zugriff auf einzelne Dateien im Repository genauso wie
 auf den Verlauf der Revisionen und die Commit-logs der einzelnen Dateien.
 Man kann damit auch diff-listings zwischen zwei Versionen erstellen.
@@ -67,45 +67,42 @@ Man kann damit auch diff-listings zwischen zwei Versionen erstellen.
 
 <para>
 Verwenden Sie die URL:
-<ulink noescape="1" url="http://samba.org/cgi-bin/CVSweb">http://samba.org/cgi-bin/CVSweb</ulink>
+<ulink noescape="1" url="http://svnweb.samba.org/">http://svnweb.samba.org/</ulink>
 </para>
 </sect3>
 
 <sect3>
-<title>Zugriff via CVS</title>
+<title>Zugriff via Subversion</title>
 
 <para>
-Sie können auf den Quelltext auch mittels eines normalen CVS-Clients zugreifen.
+Sie können auf den Quelltext auch mittels eines normalen Subversion-Clients zugreifen.
 Dies gibt Ihnen mehr Kontrolle darüber, was Sie mit dem Repository tun können,
 und erlaubt Ihnen, ganze Quelltext-Bäume mittels checkout abzuholen, und sie mittels
-normaler CVS-Befehle am Stand zu halten. Dies ist die bevorzugte Variante des Zugriffs,
+normaler SVN-Befehle am Stand zu halten. Dies ist die bevorzugte Variante des Zugriffs,
 wenn Sie ein Entwickler sind, und nicht nur ein gelegentlicher Besucher.
 </para>
 
 <para>
-Um den letzten CVS-Quelltext herunterzuladen, geben Sie folgende URL in Ihren Browser ein:
-<ulink noescape="1" url="http://www.cyclic.com/">http://www.cyclic.com/</ulink>.
-und klicken SIe auf den Link <quote>How to get CVS</quote>. CVS ist freie Software
-unter der GNU GPL (so wie auch Samba). Wir machen Sie darauf aufmerksam, daß es auch
-einige graphische CVS-Clients gibt, die eine graphische Oberfläche für die manchmal
-sehr nüchternen CVS-Befehle anbieten. Links zu diesen Clients sind auch auf der
-Cyclic Web site verfügbar.
+Um die Samba-Quelltexte von Subversion herunterladen zu können, brauchen Sie einen Subversion-Client. Ihre
+Distribution kann einen solchen enthalten, oder Sie laden sich die Quelltexte von
+<ulink noescape="1" url="http://subversion.tigris.org/">http://subversion.tigris.org/</ulink>.
+
 </para>
 
 <para>
-Um Zugriff via anonymem CVS zu erlangen, führen Sie die folgenden Schritte durch.
+Um Zugriff via anonymem Subversion zu erlangen, führen Sie die folgenden Schritte durch.
 In diesem Beispiel wird angenommen, daß Sie eine Kopie des Samba-Quelltexts haben
 wollen. Für die anderen Quelltext-Repositories auf diesem System ersetzen sie einfach
 den Package-Namen.
 </para>
 
 <procedure>
-	<title>Samba über CVS beziehen</title>
+	<title>Samba über Subversion beziehen</title>
 
 	<step>
 	<para>
-	Installieren Sie eine aktuelle Version von CVS.
-	Alles was Sie brauchen, ist eine Kopie des CVS-Client-Programmes.
+	Installieren Sie eine aktuelle Version von Subversion.
+	Alles was Sie brauchen, ist eine Kopie des Subversion-Client-Programmes.
 	</para>
 	</step>
 
@@ -115,43 +112,24 @@ den Package-Namen.
 	</para>
 
 	<para>
-	<userinput>cvs -d :pserver:cvs@samba.org:/cvsroot login</userinput>
+	<userinput>svn co svn://svnanon.samba.org/samba/trunk samba</userinput>.
 	</para>
-	</step>
 
-	<step>
+	<para>
+        Dies legt ein Verzeichnis namens <filename>samba</filename> an, das den neuesten Samba-Quellcode
+	enthält (üblicherweise den Branch, der zur nächsten Haupt-Release werden soll). Dies entspricht
+	derzeit dem 3.1 Entwicklungs-Baum.
+        </para>
 	
 	<para>
-	Wenn Sie nach dem Passwort gefragt werden, tippen Sie <userinput>cvs</userinput>.	
+	Subversion-Zweige, die nicht dem TRUNK entsprechen, können durch Anhängen von branches/BRANCH_NAME
+	an die URL ausgecheckt werden. Eine Liste von Branch-Namen kann auf der
+	<quote>Development</quote>-Seite der Samba-Website gefunden werden. Eine gebräuchliche Anfrage ist die 
+	nach dem letzten 3.0 Release-Code. Dies könnte wie folgt geschehen:
 	</para>
-	</step>
-
-	<step>
 	<para>
-	Führen Sie folgenden Befehl aus:	
-	</para>
-	
-	<para>
-	<userinput>cvs -d :pserver:CVS@samba.org:/cvsroot co samba</userinput>.
-	</para>
-	
-	<para>
-	Dies wird ein Verzeichnis namens <filename>samba</filename> anlegen, das
-	den neuesten Samba-Quelltext (den CVS-Zweig namens HEAD) enthält.
-	Dies entspricht momentan dem Entwicklungs-Code für Samba 3.0.	
-	</para>
-	
-	<para>
-	CVS-Zweige, die nicht HEAD sind, können bezogen werden, indem man die
-	Option <option>-r</option> mit einem tag-Namen verwendet. Eine Liste 
-	von tag-Namen kann auf der Seite <quote>Development</quote> der Samba-Web-Site
-	gefunden werden. Eine gebräuchliche Anfrage ist die nach dem letzten 3.0
-	Release-Code. Dies könnte wie folgt geschehen:
-	</para>
-	
-	<para>
-	<userinput>cvs -d :pserver:cvs@samba.org:/cvsroot co -r SAMBA_3_0 samba</userinput>.
-	</para>
+                <userinput>svn co svn://svnanon.samba.org/samba/branches/SAMBA_3_0 samba_3</userinput>.
+        </para>
 	</step>
 
 	<step>
@@ -161,7 +139,7 @@ den Package-Namen.
 	</para>
 	
 	<para>
-	<userinput>cvs update -d -P</userinput>
+	<userinput>svn update</userinput>
 	</para>
 	</step>
 </procedure>
