@@ -555,7 +555,7 @@ Die Verwendung der Option
 auf einem BDC macht nur Sinn, wenn ldapsam auf einem PDC eingesetzt wird. Der Zweck eines auf LDAP
 basierenden idmap-Backends ist es, einem Domänen-Mitglied (das kein eigenes passdb-Backend hat) die
 Verwendung von winbindd zu gestatten, um Windows-Netzwerk-Benutzer und -Gruppen auf UID/GIDs aufzulösen.
-Anders gesagt, diese Option ist für die Verwendung auf BDCs und Domänen-Mitglieds-Servern gedacht.
+Anders gesagt, diese Option ist für die Verwendung auf Domänen-Mitglieds-Servern gedacht.
 </para>
 
 </sect2>
@@ -627,7 +627,7 @@ notwendig.
 </para>
 
 <para>
-Da die Datei smbpasswd Passwörter in Klartext enthält, darf sie nicht unverschlüsselt
+Da die Datei smbpasswd Klartext-Passwort-Äquivalente enthält, darf sie nicht unverschlüsselt
 übers Netz versandt werden. Die beste Art der smbpasswd-Replikation ist die
 Verwendung des Werkzeugs rsync. rsync kann ssh als Transport-Tunnel nutzen.
 <command>ssh</command> selbst kann wiederum so konfiguriert werden, daß es
