@@ -21,42 +21,37 @@
 
 <para>
 Samba-3 führt eine neue Art ein gleichermaßen mit verschiedenen Account-Datenbankservern zu arbeiten.
-Samba-3 implements a new capability to work concurrently with multiple account backends.
-Die möglichen neuen Kombinationen von Passwort-Datanbankservern ermglicht Samba-3
+Die möglichen neuen Kombinationen von Passwort-Datanbankservern ermöglicht Samba-3
 eine Flexibilität und Skalierbarkeit, wie sie zuvor nur mit MS Windows Active Directory 
 erreicht werden konnte.
-The possible new combinations of password backends allows Samba-3 a degree of flexibility
-and scalability that previously could be achieved only with MS Windows Active Directory.
 Dieses Kapitel beschreibt die neue Funktionalität und wie Sie das Beste aus und  mit ihr herausholen.
-This chapter describes the new functionality and how to get the most out of it.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Fähigkeiten</title>
 
 <para>
-Samba-3 provides for complete backward compatibility with Samba-2.2.x functionality
-as follows:
-<indexterm><primary>SAM backend</primary><secondary>smbpasswd</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>ldapsam_compat</secondary></indexterm>
+Samba-3 bietet folgende Funktionen an um zu Samba2.2.x abwärtskompatibel zu sein:
+<indexterm><primary>SAM Datenbank</primary><secondary>smbpasswd</secondary></indexterm>
+<indexterm><primary>SAM Datenbank</primary><secondary>ldapsam_compat</secondary></indexterm>
 <indexterm><primary>encrypted passwords</primary></indexterm>
 </para>
 
 <?latex \newpage ?>
 
 <sect2>
-	<title>Backward Compatibility Backends</title>
+	<title>Abwärtskompatible Datenbanken</title>
 
 <variablelist>
 	<varlistentry><term>Plain Text</term>
 		<listitem>
 			<para>
-			This option uses nothing but the UNIX/Linux <filename>/etc/passwd</filename>
-			style backend. On systems that have Pluggable Authentication Modules (PAM)
-			support, all PAM modules are supported. The behavior is just as it was with
-			Samba-2.2.x, and the protocol limitations imposed by MS Windows clients
-			apply likewise. Please refer to <link linkend="passdbtech">Technical Information</link> for more information
-			regarding the limitations of Plain Text password usage.
+			Diese Option benutzt Samba nichts weiter als das UNIX/Linux <filename>/etc/passwd</filename>
+			Modell. Bei Betriebssystemen, die Pluggable Authentication Modules (PAM) bieten,
+			koennen werden alle PAM module verwendet werden. Das Verhalten ist unveraendert wie in 
+			Samba-2.2.x, und die Protokoll-Limitationen die durch MS Windows clients auferlegt sind 
+			treffen gleichermassen zu. Für weitere Informationen zu den Beschränkungen bei Verwendung von
+			Plain Text Passworten finden Sie in den <link linkend="passdbtech">Technischen Informationen</link>.
 			</para>
 		</listitem>
 	</varlistentry>
@@ -64,30 +59,31 @@ as follows:
 	<varlistentry><term>smbpasswd</term>
 		<listitem>
 			<para>
-			This option allows continued use of the <filename>smbpasswd</filename>
-			file that maintains a plain ASCII (text) layout that includes the MS Windows
-			LanMan and NT encrypted passwords as well as a field that stores some
-			account information. This form of password backend does not store any of
-			the MS Windows NT/200x SAM (Security Account Manager) information required to
-			provide the extended controls that are needed for more comprehensive 
-			inter-operation with MS Windows NT4/200x servers.
+			Auch weiterhin bedeutet diese Option die Nutzung der <filename>smbpasswd</filename>
+			Datei, die im simplen ASCII (Text) Stil gehalten ist und die verschlüsselten MS Windows
+			LanMan und NT Passworte, sowie ein Feld für die Accountinformationen enthält.
+			account information. Diese Art der Passwort-Datenbank enthält keine 
+			MS Windows NT/200x SAM (Security Account Manager) Informationen. Diese wären notwendig
+			um die erweiterten Funktionen, für eine umfassendere Zusammenarbeit mit 
+			MS Windows NT4/200x Servern zu bieten.
 			</para>
 
 			<para>
-			This backend should be used only for backward compatibility with older
-			versions of Samba. It may be deprecated in future releases.
+			Diese Datenbank sollte nur zur Abwärtskompatiblität zu älteren Samba-Versionen benutzt werden.
+			Sie wird möglicherweise von zukünftigen Versionen abgelehnt.
 			</para>
 		</listitem>
 	</varlistentry>
 
-	<varlistentry><term>ldapsam_compat (Samba-2.2 LDAP Compatibility)</term>
+	<varlistentry><term>ldapsam_compat (Samba-2.2 LDAP Kompatibilität)</term>
 		<listitem>
 			<para>
-			There is a password backend option that allows continued operation with
-			an existing OpenLDAP backend that uses the Samba-2.2.x LDAP schema extension.
-			This option is provided primarily as a migration tool, although there is
-			no reason to force migration at this time. This tool will eventually
-			be deprecated.
+			Es gibt eine Passwortdatenbank-Option, die fortgeführte Zusammenarbeit mit 
+			einer existierenden OpenLDAP Datenbank erlaubt, die noch Samba-2.2.x 
+			LDAP Schemata-Erweiterungen benutzt.
+			Diese vorläufige Option ist als Migrations-Hilfe gedacht, 
+			auch wenn zum jetzigen Zeitpunkt kein zwingender Grund fuer eine Migration vorliegt.
+			Diese Hilfe wird möglicherweise von zukünftigen Versionen abgelehnt.
 			</para>
 		</listitem>
 	</varlistentry>
@@ -96,32 +92,32 @@ as follows:
 </sect2>
 
 <para>
-Samba-3 introduces a number of new password backend capabilities.
-<indexterm><primary>SAM backend</primary><secondary>tdbsam</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>ldapsam</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>mysqlsam</secondary></indexterm>
-<indexterm><primary>SAM backend</primary><secondary>xmlsam</secondary></indexterm>
+Samba-3 fuehrt einige neue Passwortdatenbankformen ein.
+<indexterm><primary>SAM Datenbank</primary><secondary>tdbsam</secondary></indexterm>
+<indexterm><primary>SAM Datenbank</primary><secondary>ldapsam</secondary></indexterm>
+<indexterm><primary>SAM Datenbank</primary><secondary>mysqlsam</secondary></indexterm>
+<indexterm><primary>SAM Datenbank</primary><secondary>xmlsam</secondary></indexterm>
 </para>
 
 <sect2>
-<title>New Backends</title>
+<title>Neue Datenbanken</title>
 
 <variablelist>
 	<varlistentry><term>tdbsam</term>
 		<listitem>
 			<para>
-			This backend provides a rich database backend for local servers. This
-			backend is not suitable for multiple Domain Controllers (i.e., PDC + one
-			or more BDC) installations.
+			Diese Datenbank ist eine umfangreiche Datenbank für lokale Server. 
+			Allerdings eignet sich diese Datanbankmethode nicht für das Aufsetzen 
+			von mehreren Domain-Controllern (z. B., ein PDC plus ein oder mehrere BDCs
 			</para>
 
 			<para>
-			The <emphasis>tdbsam</emphasis> password backend stores the old <emphasis>
-			smbpasswd</emphasis> information plus the extended MS Windows NT / 200x
-			SAM information into a binary format TDB (trivial database) file.
-			The inclusion of the extended information makes it possible for Samba-3
-			to implement the same account and system access controls that are possible
-			with MS Windows NT4/200x-based systems.
+			Die <emphasis>tdbsam</emphasis> Passwort-Datenbank legt neben den alten <emphasis>
+			smbpasswd</emphasis> Informationen noch die erweiterten MS Windows NT / 200x
+			SAM Informationen in binaerer Form in der TDB (Trivial DataBase) Datei ab.
+			Das Einbeziehen der erweiterten Informationen macht es Samba-3 moeglich
+			die gleichen Account- und System-Zugriffsrechte zu implementieren wie
+			MS Windows NT4/200x-basierende Systeme.
 			</para>
 
 			<para>
