@@ -64,39 +64,38 @@
 		<varlistentry>
 		<term>-w ZielArbeitsgruppe</term>
 		<listitem><para>
-		Sets target workgroup or domain. You have to specify 
-		either this option or the IP address or the name of a server.
+		Setzt die Ziel-Arbeitsgruppe oder Domäne. Sie müssen entweder diese
+		Option oder die IP-Adresse oder den Servernamen angeben.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-W Arbeitsgruppe</term>
 		<listitem><para>
-		Sets client workgroup or domain
+		Setzt Client-Arbeitsgruppe oder Domäne.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-U Benutzer</term>
 		<listitem><para>
-		User name to use
+		Der zu verwendende Benutzername.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-I IP-Adresse</term>
 		<listitem><para>
-		IP address of target server to use. You have to
-		specify either this option or a target workgroup or
-		a target server.
+		IP-Adresse des zu verwendenden Servers. Sie müssen entweder diese
+		Option oder eine Ziel-Arbeitsgruppe oder einen Ziel-Server angeben.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-p Port</term>
 		<listitem><para>
-		Port on the target server to connect to (usually 139 or 445). 
-		Defaults to trying 445 first, then 139.
+		Port für Verbindungen auf den Ziel-Server (normalerweise 139 oder 445). 
+		Standardmäßig wird erst 445, dann 139 ausprobiert.
 		</para></listitem>
 		</varlistentry>
 
@@ -106,22 +105,24 @@
 		<varlistentry>
 		<term>-S Server</term>
 		<listitem><para>
-		Name of target server. You should specify either 
-		this option or a target workgroup or a target IP address.
+		Name des Ziel-Servers. Sie sollten entweder diese Option oder eine
+		Ziel-Arbeitsgruppe oder eine Ziel-IP-Adresse angeben.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-l</term>
 		<listitem><para>
-		When listing data, give more information on each item.
+		Gibt für jeden Eintrag weitere Informationen beim Auflisten von 
+		Daten an.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-P</term>
 		<listitem><para>
-		Make queries to the external server using the machine account of the local server.
+		Führt Abfragen an den externen Server mit dem Rechnerkonto 
+		des lokalen Servers durch.
 		</para></listitem>
 		</varlistentry>
 
@@ -201,14 +202,14 @@ angelegt.</para>
 
 <para>
 [TYPE] kann PDC, BDC oder MEMBER sein, um den Typ des Servers anzugeben,
-der der Domain beitritt.
+der der Domäne beitritt.
 </para>
 </refsect2>
 
 <refsect2>
 <title>[RPC] OLDJOIN [Optionen]</title>
 
-<para>Trete einer Domain bei. Verwende die Option OLDJOIN, um der Domain 
+<para>Trete einer Domäne bei. Verwende die Option OLDJOIN, um der Domäne 
 mit dem alten Verfahren beizutreten - zuerst müssen Sie ein Vertrauenskonto 
 im Server Manager erstellen.</para>
 </refsect2>
@@ -233,7 +234,7 @@ im Server Manager erstellen.</para>
 <refsect3>
 <title>[RPC|ADS] USER INFO <replaceable>ziel</replaceable></title>
 
-<para>Liste die Domain-Gruppen des angegebenen Benutzer auf.</para>
+<para>Liste die Domäne-Gruppen des angegebenen Benutzer auf.</para>
 
 </refsect3>
 
@@ -369,7 +370,7 @@ Domäne/Arbeitsgruppe.</para>
 <refsect2>
 <title>RAP DOMAIN</title>
 
-<para>Liste alle Domains und Arbeitsgruppen auf, die im aktuellen
+<para>Liste alle Domänen und Arbeitsgruppen auf, die im aktuellen
 Netzwerk sichtbar sind.</para>
 
 </refsect2>
@@ -378,11 +379,11 @@ Netzwerk sichtbar sind.</para>
 <title>RAP PRINTQ</title>
 
 <refsect3>
-<title>RAP PRINTQ LIST <replaceable>SCHLANGEN_NAME</replaceable></title>
+<title>RAP PRINTQ LIST <replaceable>WARTESCHLANGEN_NAME</replaceable></title>
 
-<para>Listet die angegebene Druckerschlange und Druckaufträge auf dem Server auf.
-Falls <replaceable>SCHLANGEN_NAME</replaceable> weggelassen wird, werden alle 
-Schlangen aufgelistet.</para>
+<para>Listet die angegebene Druckerwarteschlange und Druckaufträge auf dem Server auf.
+Falls <replaceable>WARTESCHLANGEN_NAME</replaceable> weggelassen wird, werden alle 
+Warteschlangen aufgelistet.</para>
 
 </refsect3>
 
@@ -492,35 +493,35 @@ Als Vorgabetyp wird 0x20 (Workstation) verwendet.
 </refsect3>
 
 <refsect3>
-<title>LOOKUP LDAP [<replaceable>DOMAIN</replaceable></title>
+<title>LOOKUP LDAP [<replaceable>DOMÄNE</replaceable></title>
 
 <para>Gibt die IP-Adresse des LDAP-Servers der angegebenen 
-<replaceable>DOMAIN</replaceable> an. Standardwert ist die lokale Domain.</para>
+<replaceable>DOMÄNE</replaceable> an. Standardwert ist die lokale Domäne.</para>
 
 </refsect3>
 
 <refsect3>
-<title>LOOKUP KDC [<replaceable>REALM</replaceable>]</title> ???
+<title>LOOKUP KDC [<replaceable>BEREICH</replaceable>]</title>
 
-<para>Gibt die IP-Adresse von KDC ??? für die angegebene 
-<replaceable>REALM</replaceable> an. Standardwert ist die lokale realm ???.</para>
+<para>Gibt die IP-Adresse von KDC für den angegebenen 
+<replaceable>BEREICH</replaceable> an. Standardwert ist der lokale Bereich.</para>
 
 </refsect3>
 
 <refsect3>
-<title>LOOKUP DC [<replaceable>DOMAIN</replaceable>]</title>
+<title>LOOKUP DC [<replaceable>DOMÄNE</replaceable>]</title>
 
 <para>Gibt die IPs der Domain Controller für die angegebene <replaceable>
-DOMAIN</replaceable> an. Standardwert ist die lokale Domain.</para>
+DOMÄNE</replaceable> an. Standardwert ist die lokale Domäne.</para>
 
 </refsect3>
 
 <refsect3>
-<title>LOOKUP MASTER <replaceable>DOMAIN</replaceable></title>
+<title>LOOKUP MASTER <replaceable>DOMÄNE</replaceable></title>
 
-<para>Gibt die IP des Master Browsers für die angegebene ???
-<replaceable>DOMAIN</replaceable> oder Arbeitsgruppe an. 
-Standardwert ist die lokale Domain.</para>
+<para>Gibt die IP des Master Browsers für die angegebene 
+<replaceable>DOMÄNE</replaceable> oder Arbeitsgruppe an. 
+Standardwert ist die lokale Domäne.</para>
 
 </refsect3>
 
@@ -545,23 +546,23 @@ Sie kann mit 'NET CACHE' gesteuert werden.</para>
 </para>
 
 <refsect3>
-<title>CACHE ADD <replaceable>schluessel</replaceable> <replaceable>daten</replaceable> <replaceable>time-out</replaceable></title>
+<title>CACHE ADD <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
 
-<para>Fügt schluessel+daten mit dem angegebenen timeout an den Cache an.</para>
-
-</refsect3>
-
-<refsect3>
-<title>CACHE DEL <replaceable>schluessel</replaceable></title>
-
-<para>Löscht schluessel aus dem Cache.</para>
+<para>Fügt SCHLÜSSEL+DATEN mit dem angegebenen timeout an den Cache an.</para>
 
 </refsect3>
 
 <refsect3>
-<title>CACHE SET <replaceable>schluessel</replaceable> <replaceable>daten</replaceable> <replaceable>time-out</replaceable></title>
+<title>CACHE DEL <replaceable>SCHLÜSSEL</replaceable></title>
 
-<para>Aktualisiert die Daten eines existierenden Cache-Eintrags.</para>
+<para>Löscht SCHLÜSSEL aus dem Cache.</para>
+
+</refsect3>
+
+<refsect3>
+<title>CACHE SET <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
+
+<para>Aktualisiert die DATEN eines existierenden Cache-Eintrags.</para>
 
 </refsect3>
 
@@ -591,9 +592,9 @@ Listet alle aktuellen Einträge im Cache auf.
 </refsect2>
 
 <refsect2>
-<title>GETLOCALSID [DOMAIN]</title>
+<title>GETLOCALSID [DOMÄNE]</title>
 
-<para>Gibt die SID der angegebenen Domain aus, oder die SID der Domain 
+<para>Gibt die SID der angegebenen Domäne aus, oder die SID der Domäne 
 des lokalen Servers, falls der Parameter weggelassen wird.</para>
 
 </refsect2>
@@ -601,7 +602,7 @@ des lokalen Servers, falls der Parameter weggelassen wird.</para>
 <refsect2>
 <title>SETLOCALSID S-1-5-21-x-y-z</title>
 
-<para>Setzt die Domain-SID des lokalen Servers auf die angegebene SID.</para>
+<para>Setzt die Domänen-SID des lokalen Servers auf die angegebene SID.</para>
 
 </refsect2>
 
@@ -625,7 +626,7 @@ aufgelöst werden können</para></listitem>
 <refsect3>
 <title>GROUPMAP ADD</title>
 
-<para>Fügt einen neuen Gruppenabbildungseintrag hinzu entry</para>
+<para>Fügt einen neuen Gruppenzuordnungseintrag hinzu entry</para>
 
 <para>net groupmap add {rid=int|sid=string} unixgroup=string [type={domain|local|builtin}] [ntgroup=string] [comment=string]</para>
 
@@ -634,7 +635,7 @@ aufgelöst werden können</para></listitem>
 <refsect3>
 <title>GROUPMAP DELETE</title>
 
-<para>Löscht einen Gruppenabbildungseintrag</para>
+<para>Löscht einen Gruppenzuordnungseintrag</para>
 
 <para>net groupmap delete {ntgroup=string|sid=SID}</para>
 
@@ -643,7 +644,7 @@ aufgelöst werden können</para></listitem>
 <refsect3>
 <title>GROUPMAP MODIFY</title>
 
-<para>Aktualisiert einen vorhandenen Gruppenabbildungseintrag</para>
+<para>Aktualisiert einen vorhandenen Gruppenzuordnungseintrag</para>
 
 <para>net groupmap modify {ntgroup=string|sid=SID} [unixgroup=string] [comment=string] [type={domain|local}</para>
 </refsect3>
@@ -672,8 +673,8 @@ aufgelöst werden können</para></listitem>
 <refsect2>
 <title>RPC INFO</title>
 
-<para>Gibt Informationen über die Domain des entfernten Servers aus,
-z.B. Domainname, Domain-SID und Anzahl der Benutzer und Gruppen.
+<para>Gibt Informationen über die Domäne des entfernten Servers aus,
+z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 </para>
 
 </refsect2>
@@ -681,14 +682,14 @@ z.B. Domainname, Domain-SID und Anzahl der Benutzer und Gruppen.
 <refsect2>
 <title>[RPC|ADS] TESTJOIN</title>
 
-<para>Prüft, ob die Teilnahme an einer Domain noch gültig ist.</para>
+<para>Prüft, ob die Teilnahme an einer Domäne noch gültig ist.</para>
 
 </refsect2>
 
 <refsect2>
 <title>[RPC|ADS] CHANGETRUSTPW</title>
 
-<para>Erzwingt die Änderung des Domain-Vertrauenspassworts.</para>
+<para>Erzwingt die Änderung des Domänen-Vertrauenspassworts.</para>
 
 </refsect2>
 
@@ -696,10 +697,10 @@ z.B. Domainname, Domain-SID und Anzahl der Benutzer und Gruppen.
 <title>RPC TRUSTDOM</title>
 
 <refsect3>
-<title>RPC TRUSTDOM ADD <replaceable>DOMAIN</replaceable></title>
+<title>RPC TRUSTDOM ADD <replaceable>DOMÄNE</replaceable></title>
 
 <para>Fügt ein Interdomain-Vertrauenskonto für 
-<replaceable>DOMAIN</replaceable> auf den entfernten Server hinzu. 
+<replaceable>DOMÄNE</replaceable> auf den entfernten Server hinzu. 
 </para>
 
 </refsect3>
@@ -708,7 +709,7 @@ z.B. Domainname, Domain-SID und Anzahl der Benutzer und Gruppen.
 <title>RPC TRUSTDOM DEL <replaceable>DOMAIM</replaceable></title>
 
 <para>Entfernt Interdomain-Vertrauenskonto für 
-<replaceable>DOMAIN</replaceable> vom entfernten Server. 
+<replaceable>DOMÄNE</replaceable> vom entfernten Server. 
 </para>
 
 &not.implemented;
@@ -716,18 +717,18 @@ z.B. Domainname, Domain-SID und Anzahl der Benutzer und Gruppen.
 </refsect3>
 
 <refsect3>
-<title>RPC TRUSTDOM ESTABLISH <replaceable>DOMAIN</replaceable></title>
+<title>RPC TRUSTDOM ESTABLISH <replaceable>DOMÄNE</replaceable></title>
 
 <para>
-Stellt eine Vertrauensbeziehung zu einer vertrauenden Domain her. 
+Stellt eine Vertrauensbeziehung zu einer vertrauenden Domäne her. 
 Das Interdomain-Konto muss auf dem entfernten PDC schon erzeugt sein.
 </para>
 
 </refsect3>
 
 <refsect3>
-<title>RPC TRUSTDOM REVOKE <replaceable>DOMAIN</replaceable></title>
-<para>Beendet eine Beziehung zu einer vertrauten domain???.</para>
+<title>RPC TRUSTDOM REVOKE <replaceable>DOMÄNE</replaceable></title>
+<para>Beendet eine Beziehung zu einer vertrauten Domäne.</para>
 
 </refsect3>
 
@@ -788,7 +789,7 @@ um das Herunterfahren anzukündigen.</para></listitem>
 <title>SAMDUMP</title>
 
 <para>Gibt SAM-Datenbank auf dem entfernten Server aus. Sie müssen das
-entweder auf einem BDC ausführen. <!-- Is that correct? - Jelmer --> ???
+entweder auf einem BDC ausführen. <!-- Is that correct? - Jelmer -->
 </para>
 </refsect2>
 
@@ -796,7 +797,7 @@ entweder auf einem BDC ausführen. <!-- Is that correct? - Jelmer --> ???
 <title>VAMPIRE</title>
 
 <para>Exportiert Benutzer, Aliase und Gruppen vom entfernten auf 
-den lokalen Server. Kann nur auf einem BDC ausgeführt werden ???.
+den lokalen Server. Kann nur auf einem BDC ausgeführt werden.
 </para>
 
 </refsect2>
@@ -804,7 +805,7 @@ den lokalen Server. Kann nur auf einem BDC ausgeführt werden ???.
 <refsect2>
 <title>GETSID</title>
 
-<para>Hole Domain-SID und speichere sie in der lokalen Datei 
+<para>Hole Domänen-SID und speichere sie in der lokalen Datei 
 <filename>secrets.tdb</filename>. </para>
 
 </refsect2>
@@ -812,7 +813,7 @@ den lokalen Server. Kann nur auf einem BDC ausgeführt werden ???.
 <refsect2>
 <title>ADS LEAVE</title>
 
-<para>Bringe den entfernten Host dazu, dass er seine Domain verlässt. </para>
+<para>Veranlasse den entfernten Host, seine Domäne zu verlassen. </para>
 
 </refsect2>
 
@@ -882,7 +883,7 @@ Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.
 <refsect2>
 <title>WORKGROUP</title>
 
-<para>Gibt den Arbeitsgruppennamen für den angegebenen Kerberos-Realm an???.</para>
+<para>Gibt den Arbeitsgruppennamen für den angegebenen Kerberos-Bereich an.</para>
 
 </refsect2>
 
