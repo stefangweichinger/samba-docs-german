@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbstatus</refname>
-	<refpurpose>report on current Samba connections</refpurpose>
+	<refpurpose>gibt Info zu aktuellen Samba-Verbindungen aus</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,85 +21,89 @@
 		<command>smbstatus</command>
 		<arg choice="opt">-P</arg>
 		<arg choice="opt">-b</arg>
-		<arg choice="opt">-d &lt;debug level&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
 		<arg choice="opt">-v</arg>
 		<arg choice="opt">-L</arg>
 		<arg choice="opt">-B</arg>
 		<arg choice="opt">-p</arg>
 		<arg choice="opt">-S</arg>
-		<arg choice="opt">-s &lt;configuration file&gt;</arg>
-		<arg choice="opt">-u &lt;username&gt;</arg>
+		<arg choice="opt">-s &lt;Konfig-Datei&gt;</arg>
+		<arg choice="opt">-u &lt;Benutzername&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbstatus</command> is a very simple program to 
-	list the current Samba connections.</para>
+	<para><command>smbstatus</command> ist ein sehr einfaches Programm
+	zum Auflisten der aktuellen Samba-Verbindungen.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term>-P|--profile</term>
-		<listitem><para>If samba has been compiled with the 
-		profiling option, print only the contents of the profiling 
-		shared memory area.</para></listitem>
+		<listitem><para>Gibt, falls samba mit der Profiling-Option kompiliert
+		wurde, nur den Inhalt des Profiling-Shared Memory-Bereichs 
+		aus.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-b|--brief</term>
-		<listitem><para>gives brief output.</para></listitem>
+		<listitem><para>Gibt eine kurze Ausgabe aus.</para></listitem>
 		</varlistentry>
 
 		&popt.common.samba;
 
 		<varlistentry>
 		<term>-v|--verbose</term>
-		<listitem><para>gives verbose output.</para></listitem>
+		<listitem><para>Gibt eine ausführliche Ausgabe aus.</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>-L|--locks</term>
-		<listitem><para>causes smbstatus to only list locks.</para>
+		<listitem><para>Bewirkt, dass smbstatus nur Sperren auflistet.</para>
 		</listitem>
 		</varlistentry>
 
 		
 		<varlistentry>
 		<term>-B|--byterange</term>
-		<listitem><para>causes smbstatus to include byte range locks.
+		<listitem><para>Bewirkt, dass smbstatus auch Byte Range-Sperren
+		auflistet.
 		</para></listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>-p|--processes</term>
-		<listitem><para>print a list of <citerefentry><refentrytitle>smbd</refentrytitle>
-		<manvolnum>8</manvolnum></citerefentry> processes and exit. 
-		Useful for scripting.</para></listitem>
+		<listitem><para>Gibt eine Liste von 
+		<citerefentry><refentrytitle>smbd</refentrytitle>
+		<manvolnum>8</manvolnum></citerefentry>-Prozessen aus und
+		terminiert. Nützlich in Skripten.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>-S|--shares</term>
-		<listitem><para>causes smbstatus to only list shares.</para>
+		<listitem><para>Bewirkt, dass smbstatus nur Freigaben 
+		auflistet.</para>
 		</listitem>
 		</varlistentry>
 
 		&stdarg.help;
 
 		<varlistentry>
-		<term>-u|--user=&lt;username&gt;</term>
-		<listitem><para>selects information relevant to 
-		<parameter>username</parameter> only.</para>
+		<term>-u|--user=&lt;Benutzername&gt;</term>
+		<listitem><para>Wählt nur die Information aus, die relevant für 
+		<parameter>Benutzername</parameter> ist.</para>
 		</listitem>
 		</varlistentry>
 
@@ -114,9 +118,10 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> und
+	<citerefentry><refentrytitle>smb.conf</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>.</para>
 </refsect1>
 
