@@ -4,10 +4,7 @@
 	(C) Jelmer Vernooij 2003
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:exsl="http://exslt.org/common"
-                xmlns:samba="http://samba.org/common"
-				version="1.1"
-                extension-element-prefixes="exsl">
+				version="1.1">
 
 <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
@@ -16,7 +13,16 @@
    <xsl:apply-templates select="@*|node()"/>
 </xsl:template>
 
-<xsl:template match="chapter">
+<xsl:template match="/">
+	<xsl:element name="preface">
+		<xsl:element name="title"><xsl:text>Attribution</xsl:text></xsl:element>
+		<xsl:element name="para">
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:element>
+</xsl:template>
+
+<xsl:template match="chapter|preface">
 	<xsl:choose>
 		<xsl:when test="chapterinfo/author != ''">
 			<xsl:element name="para">
@@ -35,7 +41,7 @@
 	</xsl:choose>
 </xsl:template>
 
-<xsl:template match="author">
+<xsl:template match="chapterinfo/author">
 	<xsl:choose>
 	<xsl:when test="firstname != ''">
 	<xsl:text>&#9;</xsl:text>

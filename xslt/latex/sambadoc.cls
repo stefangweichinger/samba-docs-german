@@ -1,5 +1,5 @@
 %
-% $Id: sambadoc.cls,v 1.1 2004-05-23 16:07:58 weichinger Exp $
+% $Id: sambadoc.cls,v 1.2 2004-08-18 20:38:23 ctrlsoft Exp $
 %
 
 % phstyle.cls -- Macros for formatting Prentice-Hall Books

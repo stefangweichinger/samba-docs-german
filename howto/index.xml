@@ -46,6 +46,7 @@ Quelle der Inspiration und des Erfahrungs-Austauschs von vielen Samba-Benutzern 
 </abstract>
 </bookinfo>
 
+
 <preface>
 	<title>Copyright Informationen</title>
 <para>
@@ -56,17 +57,24 @@ eingesehen werden.
 </para>
 </preface>
 
+<?latex \setcounter{page}{5} ?>
+
 <preface>
 	<title>Zuschreibung</title>
 		&attributions;
 </preface>
 
+<?latex \cleardoublepage ?>
+
 <!-- Contents -->
 <toc/>
+
+<?latex \cleardoublepage ?>
 
 <!-- Chapters -->
 <part id="introduction">
 <title>Grundlegende Installation</title>
+<?latex \pagenumbering{arabic} ?>
 <partintro>
 <title>Vorbereitung zur Samba-Konfiguration</title>
 <para>Dieser Abschnitt der Samba-HOWTO-Sammlung beinhaltet grundlegende Informationen darüber,
@@ -152,6 +160,7 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 &Further-Resources;
 </part>
 
+<?latex \chaptermark{Subject index} ?>
 <index/>
 
 </book>

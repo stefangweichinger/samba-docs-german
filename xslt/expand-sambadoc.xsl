@@ -232,6 +232,9 @@
 			</xsl:attribute>
 
 			<xsl:element name="title">
+				<xsl:if test="imagedescription = ''">
+					<xsl:message><xsl:text>imagedescription of image with id </xsl:text><xsl:value-of select="@id"/><xsl:text> is empty.</xsl:text></xsl:message>
+				</xsl:if>
 				<xsl:value-of select="imagedescription"/>
 			</xsl:element>
 			<xsl:element name="mediaobject">
@@ -239,7 +242,7 @@
 					<xsl:attribute name="role"><xsl:text>latex</xsl:text></xsl:attribute>
 					<xsl:element name="imagedata">
 						<xsl:attribute name="fileref">
-							<xsl:text>howto/imagefiles/</xsl:text><xsl:value-of select="imagefile"/></xsl:attribute>
+							<xsl:value-of select="$latex.imagebasedir"/><xsl:text>images/</xsl:text><xsl:value-of select="imagefile"/></xsl:attribute>
 						<xsl:attribute name="scale">
 							<xsl:choose>
 								<xsl:when test="@scale != ''">
