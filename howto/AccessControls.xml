@@ -6,7 +6,7 @@
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
 	&author.jht;
     <pubdate>April 3 2003</pubdate>
-	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 <title>Zugriffskontrollen für Dateien, Verzeichnisse und Netzwerk-Freigaben</title>
 

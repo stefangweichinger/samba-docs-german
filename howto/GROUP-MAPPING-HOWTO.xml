@@ -6,7 +6,7 @@
 		<firstname>Jean François</firstname><surname>Micouleau</surname>
 	</author>
 	&author.jerry;
-	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 <title>Das Gruppen-Mapping &smbmdash; zwischen MS Windows und UNIX</title>
 
