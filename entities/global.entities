@@ -248,6 +248,15 @@
 
 <!ENTITY author.luft '<author>&person.luft;</author>'>
 
+<!ENTITY person.gherman '
+<firstname>Dinu</firstname><othername></othername><surname>Gherman</surname>
+<affiliation>
+        <orgname>German Samba-3-Docs-Translation Team</orgname>
+        <address><email>gherman@darwin.in-berlin.de</email></address>
+</affiliation>'>
+
+<!ENTITY author.gherman '<author>&person.gherman;</author>'>
+
 <!-- URL's -->
 <!ENTITY url.samba.cvsinfo 'http://pserver.samba.org/samba/cvs.html'>
 <!ENTITY url.pdc-howto.local 'samba-pdc-howto.html'>
