@@ -1399,69 +1399,59 @@ Hardware-Konfiguration). Ein Test für alle verfügbaren CUPS-Backends ist mit dem
 <para>
 <indexterm><primary>cupsomatic</primary></indexterm>
 <indexterm><primary>foomatic</primary></indexterm>
-<parameter>cupsomatic</parameter> filters may be the most widely used on CUPS
-installations. You must be clear about the fact that these were not
-developed by the CUPS people. They are a third party add-on to
-CUPS. They utilize the traditional Ghostscript devices to render jobs
-for CUPS. When troubleshooting, you should know about the
-difference. Here the whole rendering process is done in one stage,
-inside Ghostscript, using an appropriate device for the target
-printer. <parameter>cupsomatic</parameter> uses PPDs that are generated from the Foomatic
-Printer &amp; Driver Database at Linuxprinting.org.
+<parameter>cupsomatic</parameter>-Filter sind wahrscheinlich die meist verwendeten Filter in CUPS-Installationen.
+Seien sich im Klaren darüber, daß diese Filter nicht von den CUPS-Leuten entwickelt wurden. Es sind "third party"
+Erweiterungen für CUPS. Sie verwenden die traditionellen Ghostscript devices, um Aufträge für CUPS darzustellen.
+Bei der Fehlersuche sollten Sie über den Unterschied Bescheid wissen. Hier findet der gesamte Darstellungsprozess
+in einem Schritt statt, innerhalb von Ghostscript, unter Verwendung eines passenden device für den Ziel-Drucker.
+<parameter>cupsomatic</parameter> verwendet PPDs, die aus der Foomatic Drucker &amp; Treiber Datenbank auf
+Linuxprinting.org generiert werden.
 </para>
 
 <para>
-You can recognize these PPDs from the line calling the
-<parameter>cupsomatic</parameter> filter:
+Sie erkennen diese PPDs an der Zeile, die den <parameter>cupsomatic</parameter> Filter aufruft:
 
 <filterline>
  *cupsFilter: "application/vnd.cups-postscript  0  cupsomatic"
 </filterline>
 
-You may find this line among the first 40 or so lines of the PPD
-file. If you have such a PPD installed, the printer shows up in the
-CUPS Web interface with a <parameter>foomatic</parameter> namepart for
-the driver description. <parameter>cupsomatic</parameter> is a Perl script that runs
-Ghostscript with all the complicated command line options
-auto-constructed from the selected PPD and command line options give to
-the print-job.
+Sie finden diese Zeile unter den ersten 40 (oder ähnlich) Zeilen der PPD-Datei. Wenn Sie ein solches PPD
+installiert haben, scheint der Drucker im CUPS Web Interface mit der Erwähnung <parameter>foomatic</parameter>
+in der Treiberbeschreibung auf. <parameter>cupsomatic</parameter> ist ein Perl-Skript, das Ghostscript mit all
+den komplizierten Befehlszeilen-Optionen aufruft, automatisch generiert aus dem gewählten PPD und den
+Befehlszeilen-Optionen, die dem Druckauftrag mitgegeben wurden.
 </para>
 
 <para>
 <indexterm><primary>point 'n' print</primary></indexterm>
-	However, <parameter>cupsomatic</parameter> is now deprecated. Its PPDs (especially the first
-generation of them, still in heavy use out there) are not meeting the
-Adobe specifications. You might also suffer difficulties when you try
-to download them with <quote>Point'n'Print</quote> to Windows clients. A better
-and more powerful successor is now in a stable beta-version: it is called <parameter>foomatic-rip</parameter>. To use
-<parameter>foomatic-rip</parameter> as a filter with CUPS, you need the new-type PPDs. These
-have a similar but different line:
+Jedoch ist <parameter>cupsomatic</parameter> mittlerweile veraltet. Seine PPDs (besonders deren erste Generation,
+immer noch in regem Gebrauch da draussen) entsprechen nicht den Adobe Spezifikationen. Sie könnten 
+Schwierigkeiten damit haben, wenn Sie sie mittels <quote>Point'n'Print</quote> auf Windows-Clients downloaden
+wollen. Ein besserer und leistungsfähigerer Nachfolge ist nun in einer stabilen Beta-Version verfügbar:
+er heisst <parameter>foomatic-rip</parameter>. Um <parameter>foomatic-rip</parameter> als Filter mit CUPS zu
+verwenden, brauchen Sie die PPDs von neueren Typ. Diese haben eine ähnliche, jedoch andere Zeile:
 
 <filterline>
  *cupsFilter: "application/vnd.cups-postscript  0  foomatic-rip"
 </filterline>
 
-The PPD generating engine at Linuxprinting.org has been revamped.
-The new PPDs comply to the Adobe spec. On top, they also provide a
-new way to specify different quality levels (hi-res photo, normal
-color, grayscale, and draft) with a single click, whereas before you
-could have required five or more different selections (media type,
-resolution, inktype and dithering algorithm). There is support for
-custom-size media built in. There is support to switch
-print-options from page to page in the middle of a job. And the
-best thing is the new foomatic-rip now works seamlessly with all
-legacy spoolers too (like LPRng, BSD-LPD, PDQ, PPR and so on), providing
-for them access to use PPDs for their printing.
+Der Mechanismus auf Linuxprinting.org, der PPDs generiert, wurde umgestaltet. Die neuen PPDs entsprechen den
+Adobe Spezifikationen. Zuoberst stellen Sie eine neue Art bereit, um verschiedene Qualitätsstufen anzugeben
+(hochauflösende Fotos, normale Farbe, Graustufen und Entwurf), mit einem einzelnen Click, wo Sie zuvor fünf
+oder mehr verschiedene Auswahlen treffen mußten (Medientyp, Auflösung, Tintenart und Dithering-Algorithmus).
+Es gibt Unterstützung für individuelle Mediengrössen. Es gibt Unterstützung für das Umschalten von Optionen
+zwischen einzelnen Seiten eines Druckauftrags. Und das Beste ist, daß der neue foomatic-rip nun nahtlos mit
+allen klassischen Spoolern zusammenarbeitet (wie LPRng, BSD-LPD, PDQ, PPR usw.), was diesen Spoolern die
+Verwendung von PPDs eröffnet.
 </para>
 </sect2>
 
 <sect2>
-<title>The Complete Picture</title>
+<title>Das gesamte Bild</title>
 
 <para>
-If you want to see an overview of all the filters and how they
-relate to each other, the complete picture of the puzzle is at the end
-of this document.
+Wenn Sie einen Überblick über all die Filter sehen wollen, und wie sie sich zueinander verhalten, finden Sie
+das gesamte Bild dieses Puzzles am Ende dieses Dokuments.
 </para>
 </sect2>
 
