@@ -56,12 +56,12 @@
 		</varlistentry>
 		<varlistentry>
 		<term>Subnetz-Broadcast-Adresse</term>
-		<listitem><para>Ohne dieser Option wird <command>findsmb
+		<listitem><para>Ohne diese Option wird <command>findsmb
 		</command> das Subnetz der Maschine durchsuchen, auf der 
 		<citerefentry><refentrytitle>findsmb</refentrytitle><manvolnum>1</manvolnum></citerefentry>
 		ausgeführt wird. Dieser Wert wird an
 		<citerefentry><refentrytitle>nmblookup</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-weitergegeben, als Teil der <constant>-B</constant> option.</para></listitem>
+weitergegeben, als Teil der Option <constant>-B</constant>.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
@@ -85,7 +85,7 @@ weitergegeben, als Teil der <constant>-B</constant> option.</para></listitem>
 	</citerefentry>	ausgeführt werden. 
 
 	Wenn <command>nmbd</command> auf dem System läuft, werden Sie nur die IP-Adresse und den
-	DNS-Namen der Maschine erhalten. Um richtige Antowrten von Windows 95 und Windows 98-Maschinen
+	DNS-Namen der Maschine erhalten. Um richtige Antworten von Windows 95 und Windows 98-Maschinen
 	zu erhalten, muß der Befehl als root ausgeführt werden, 
 	und mit der Option <constant>-r</constant>,
 	ohne laufenden <command>nmbd</command>.</para>

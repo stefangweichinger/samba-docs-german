@@ -32,7 +32,7 @@
 	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>mount.cifs bindet ein Linux CIFS Dateisystem ein. Es wird üblicherweise indirekt
+	<para>mount.cifs bindet ein Linux CIFS-Dateisystem ein. Es wird üblicherweise indirekt
 	aufgerufen, mittels des Befehls
 	<citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry>
 	und der Option "-t cifs". Dieser Befehl funktioniert nur unter Linux, und der Kernel muß
@@ -45,13 +45,13 @@
 	Das Werkzeug mount.cifs hängt den UNC-Namen (exportierte Netzwerk-Ressource) an das
 	lokale Verzeichnis <emphasis>mount-Punkt</emphasis> an. Es ist möglich, den Modus für
 	mount.cifs auf setuid root zu setzen, um nicht-root-Benutzern zu erlauben, Verzeichnisse
-	einzubinden, zu denen sie Schreibberechtigungen besitzen.
+	einzubinden, auf denen sie Schreibrechte besitzen.
 	</para>
 
 	<para>
-	Optionen für <emphasis>mount.cifs</emphasis> werden als eine List von durch Kommas getrennten 
+	Optionen für <emphasis>mount.cifs</emphasis> werden als eine Liste von durch Kommas getrennten 
 	Schlüssel=Wert Paaren angegeben. Es ist möglich, andere Optionen als die hier angegebenen
-	zu senden, unter der Annahme, daß das CIFS-Dateisystem sie unterstützt.
+	zu senden, vorausgesetzt, das CIFS-Dateisystem unterstützt sie.
 	Nicht erkannte CIFS-mount-Optionen, die dem CIFS-VFS-Kernel-Code übergeben werden, werden
 	im Kernel-Log protokolliert.
 	</para>
@@ -68,7 +68,7 @@
 	<variablelist>
 		<varlistentry><term>user=<replaceable>arg</replaceable></term>
 
-		<listitem><para>Gibt den Benutzernamen an, als der die Verbindung aufgebaut wird.
+		<listitem><para>Gibt den Benutzernamen an, mit dem die Verbindung aufgebaut wird.
 		Wenn dieser nicht angegeben wird, wird die Umgebungsvariable <emphasis>USER</emphasis>
 		verwendet. Diese Option kann auch in der Form "Benutzer%Passwort", 
 		"Benutzer/Arbeitsgruppe" oder "Benutzer/Arbeitsgruppei%Passwort" angegeben werden, um
@@ -92,14 +92,14 @@
 
 		<listitem><para>gibt das CIFS-Passwort an. Wenn diese Option nicht angegeben wird,
 		wird die Umgebungs-Variable <emphasis>PASSWD</emphasis> verwendet. Wenn das Passwort
-		nicht direkt oder indirekt via Argument an mount weitergegeben wird, wird
-		<emphasis>mount.cifs</emphasis> per Prompt nach einem Passwort fragen, außer
-		die guest-Option ist angegeben.
+		nicht direkt oder indirekt via Argument an mount weitergegeben wird, fragt
+		<emphasis>mount.cifs</emphasis> per Prompt nach einem Passwort, außer wenn
+		die guest-Option angegeben ist.
 		</para>
 
 <para>Beachten Sie, daß ein Passwort, welches das Trennzeichen (z.B. ein Komma ',') enthält,
-auf der Befehlszeile nicht korrekt interpretiert werden kann. Jedoch kann dasselbe Passwort, wird
-es in der Umgebungs-Variable PASSWD oder via einer "credentials"-Datei (siehe unten) angegeben,
+auf der Kommandozeile nicht korrekt interpretiert werden kann. Jedoch kann dasselbe Passwort, wenn
+es in der Umgebungs-Variable PASSWD oder via einer "credentials"-Datei (siehe unten) angegeben wird,
 korrekt gelesen werden.
 </para>
 	</listitem></varlistentry>
@@ -127,7 +127,7 @@ korrekt gelesen werden.
 		<term>uid=<replaceable>Argument</replaceable></term>
 
 		<listitem><para>Gibt die UID an, die alle Dateien auf dem eingebundenen
-		Dateisystem besitzen wird. Dies kann entweder per Benutzername oder numerischer
+		Dateisystem besitzen werden. Dies kann entweder per Benutzername oder numerischer
 		UID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
 		CIFS Unix Erweiterungen unterstützt.</para></listitem>
 	</varlistentry>
@@ -136,7 +136,7 @@ korrekt gelesen werden.
 		<term>gid=<replaceable>Argument</replaceable></term>
 
 		<listitem><para>Gibt die GID an, die alle Dateien auf dem eingebundenen
-                Dateisystem besitzen wird. Dies kann entweder per Gruppenname oder numerischer
+                Dateisystem besitzen werden. Dies kann entweder per Gruppenname oder numerischer
                 GID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
                 CIFS Unix Erweiterungen unterstützt.</para></listitem>
 	</varlistentry>
@@ -146,7 +146,7 @@ korrekt gelesen werden.
 
 		<listitem><para>Setzt die Port-Nummer, auf der versucht werden soll,
 		CIFS-Unterstützung zu verhandeln. Wenn der CIFS-Server nicht auf diesem
-		Port zuhört, oder der Port nicht angegeben wird, werden die Standard-Ports
+		Port hört, oder der Port nicht angegeben wird, werden die Standard-Ports
 		versucht, d.h. Port 445 wird versucht, erfolgt dort keine Antwort, dann
 		wird Port 139 versucht.
 		</para></listitem>
@@ -200,13 +200,13 @@ korrekt gelesen werden.
 
 	<varlistentry>
 		<term>rsize</term>
-		<listitem><para>Standard-Wert für Größe eines Netzwerk-Lese-Vorgangs</para></listitem>
+		<listitem><para>Standardwert für Größe eines Netzwerk-Lese-Vorgangs</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>wsize</term>
 
-		<listitem><para>Standard-Wert für Größe eines Netzwerk-Schreibe-Vorgangs</para></listitem>
+		<listitem><para>Standardwert für Größe eines Netzwerk-Schreibe-Vorgangs</para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -236,9 +236,9 @@ korrekt gelesen werden.
 </refsect1>
 
 <refsect1>
-	<title>ANMERKUNGEN</title>
+	<title>BEMERKUNGEN</title>
 	
-	<para>Dieser Befehl kann nur von root verwendet werden, außer es ist mittels
+	<para>Dieser Befehl kann nur von root verwendet werden, außer er ist mittels
 	setuid installiert, in diesem Fall sind die mount-flags noeexec und nosuid
 	aktiviert.</para>
 </refsect1>
@@ -246,7 +246,7 @@ korrekt gelesen werden.
 <refsect1>
 	<title>KONFIGURATION</title>
 	<para>
-	Der Haupt-Mechanismus, um Konfigurations-Änderungen vorzunehmen und 
+	Der Hauptmechanismus, um Konfigurations-Änderungen vorzunehmen und 
 	Debug-Informationen für das CIFS-VFS zu lesen, ist das Linux-Dateisystem
 	/proc. Im Verzeichnis /proc/fs/cifs gibt es es verschiedene Konfigurations-Dateien
 	und Pseudo-Dateien, die Debug-Informationen anzeigen können.
@@ -256,7 +256,7 @@ korrekt gelesen werden.
 </refsect1>
 
 <refsect1>
-	<title>BUGS</title>
+	<title>FEHLER</title>
 
 	<para>
 	Passwörter und andere Optionen, die das Zeichen ',' enthalten, können nicht
@@ -269,7 +269,7 @@ korrekt gelesen werden.
 	</para>
 
 	<para>
-	Beachten Sie, daß die übliche Antwort auf einen Fehler-Bericht der Vorschlag
+	Beachten Sie, daß die übliche Antwort auf einen Fehlerbericht der Vorschlag
 	ist, zuerst die neueste Version zu versuchen. Bitte versuchen Sie also zuerst
 	dies und erwähnen Sie immer, welche Versionen relevanter Software Sie verwenden,
 	wenn Sie von Fehlern berichten.
@@ -290,7 +290,7 @@ korrekt gelesen werden.
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para>
-	Documentation/filesystems/cifs.txt und fs/cifs/README im Linux-Kernel-tree
+	Documentation/filesystems/cifs.txt und fs/cifs/README in den Linux-Kernel-Quellen
 	könnten zusätzliche Optionen und Informationen enthalten.
 </para>
 </refsect1>

@@ -56,14 +56,14 @@
 
 	    <varlistentry>
 	    	<term>-q</term>
-		<listitem><para>Sei still. Keine Warnungen über fehlende oder unvollständige
-		Daten werden ausgegeben.</para></listitem>
+		<listitem><para>Sei still. Es werden keine Warnungen über fehlende oder unvollständige
+		Daten ausgegeben.</para></listitem>
 	    </varlistentry>
 		
 	    <varlistentry>
 		<term>logdatei</term>
 		<listitem><para>
-		Samba Log-Datei. log2pcap wird versuchen, von stdin zu lesen, wenn die
+		Samba Log-Datei. log2pcap versucht, von stdin zu lesen, wenn die
 		Log-Datei nicht angegeben wird.
 		</para></listitem>
 	    </varlistentry>
@@ -71,7 +71,7 @@
 	    <varlistentry>
 		<term>pcap_file</term>
 		<listitem><para>
-		Namen der Ausgabe-Datei, auf die die pcap- (oder hexdump-)Daten geschrieben werden.
+		Name der Ausgabe-Datei, auf die die pcap- (oder hexdump-) Daten geschrieben werden.
 		Wenn dieses Argument nicht angegeben ist, wird die Ausgabe auf stdout geschrieben.
 		</para></listitem>
 	    </varlistentry>
@@ -84,7 +84,7 @@
 <refsect1>
 	<title>BEISPIELE</title>
 
-	<para>Extrahiere allen Netzwerkverkehr aus allen Samba-Log-Dateien:</para>
+	<para>Extrahiere gesamten Netzwerkverkehr aus allen Samba-Log-Dateien:</para>
 
 	<para><screen>
 			<prompt>$</prompt> log2pcap &lt; /var/log/* &gt; trace.pcap
@@ -104,12 +104,12 @@
 </refsect1>
 
 <refsect1>
-	<title>BUGS</title>
+	<title>FEHLER</title>
 
 	<para>SMB-Daten werden nur aus den Samba-Logs extrahiert, nicht aus LDAP, 
 	NetBIOS-Lookups oder anderen Datenquellen.</para>
 
-	<para>Die generierten TCP- und IP-Header enthalten keine gültige Prüfsummen.</para>
+	<para>Die generierten TCP- und IP-Header enthalten keine gültigen Prüfsummen.</para>
 	
 </refsect1>
 

@@ -55,7 +55,7 @@
 		</listitem>
 	</itemizedlist>
 
-	<para>Ein Beispiel folgt:</para>
+	<para>Es folgt ein Beispiel:</para>
 	
 	<programlisting>
 #
@@ -66,12 +66,12 @@
 192.9.200.21	SAMBASERVER
 	</programlisting>
 	
-	<para>Enthält 3 Zuweisungen von IPs auf NetBIOS-Namen. Der erste und der dritte Eintrag
+	<para>Enthält drei Zuweisungen von IPs auf NetBIOS-Namen. Der erste und der dritte Eintrag
 	werden für jegliche Anfragen nach den Namen "TESTPC" und "SAMBASERVER" zurückgegeben,
 	unabhängig davon, ob die Type-Komponente des NetBIOS-Namens erfragt wurde.</para>
 
 	<para>Die zweite Zuweisung wird nur dann zurückgegeben, wenn der NetBIOS-Namenstyp
-	"0x20" für den Namen "NTSERVER" abgefragt wird. Jeder andere Namen wird nicht aufgelöst.</para>
+	"0x20" für den Namen "NTSERVER" abgefragt wird. Alle anderen Namen werden nicht aufgelöst.</para>
 
 	<para>Der Standard-Pfad der Datei <filename>lmhosts</filename> 
 	ist dasselbe Verzeichnis wie für die Datei <citerefentry><refentrytitle>smb.conf</refentrytitle>
