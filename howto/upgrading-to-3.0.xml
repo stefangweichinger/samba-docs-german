@@ -11,8 +11,8 @@
 <title>Upgrade von Samba-2.x auf Samba-3.0.0</title>
 
 <para>
-Dieses Kapitel befaßt sich ausschließlich mit den Unterschieden zwischen Samba-3.0.0 und Samba-2.2.8a.
-Es zeigt, wo in der Konfiguration Parameter geändert wurden, und stellt eine einfache Anleitung für
+Dieses Kapitel befasst sich ausschließlich mit den Unterschieden zwischen Samba-3.0.0 und Samba-2.2.8a.
+Es zeigt, wo in der Konfiguration Parameter geändert wurden und stellt eine einfache Anleitung für
 den Umstieg von 2.2.x auf 3.0.0 dar.
 </para>
 
@@ -22,27 +22,27 @@ den Umstieg von 2.2.x auf 3.0.0 dar.
 <para>
 Das Standard-Verhalten von Samba-3.0.0 sollte ungefähr dasselbe sein wie das von Samba-2.2.x.
 Das Standard-Verhalten, wenn der neue Parameter <smbconfoption><name>passdb backend</name></smbconfoption>
-nicht in der Datei &smb.conf; gesetzt ist, entspricht dem selben Standard-Verhalten von Samba-2.2.x mit
-<smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption>, und benutzt die Datenbank
+nicht in der Datei &smb.conf; gesetzt ist, entspricht demselben Standard-Verhalten von Samba-2.2.x mit
+<smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption> und benutzt die Datenbank
  <filename>smbpasswd</filename>.
 </para>
 
 <para>
-Also warum dann sagen, <emphasis>das Verhalten sollte ungefähr gleich wie bei Samba-2.2.x sein?</emphasis>
-Weil Samba-3 neue Protokolle beherrscht, wie Unterstützung für Unicode, was darin resultieren kann, daß
-anderer Protokoll-Code verwendet werden könnte. Das neue Verhalten unter solchen Umständen ist nicht
-exakt dasselbe wie das vorherige. Die gute Nachricht dabei ist, daß die Domänen- und Maschinen-SIDs
+Warum sagen wir dann, <emphasis>das Verhalten sollte ungefähr dasselbe wie bei Samba-2.2.x sein?</emphasis>
+Weil Samba-3 neue Protokolle beherrscht, z.B. die Unterstützung für Unicode, was zur Folge haben kann, dass
+anderer Protokoll-Code verwendet wird. Das neue Verhalten unter solchen Umständen ist nicht
+exakt dasselbe wie das frühere. Die gute Nachricht dabei ist, dass die Domänen- und Maschinen-SIDs
 beim Upgrade beibehalten werden.
 </para>
 
 <para>
-Wenn das Samba-2.2.x-System ein LDAP-Backend verwendet hat, und keine Zeit vorhanden ist, um die
-LDAP-Datenbank upzudaten, stellen Sie sicher, daß
+Wenn das Samba-2.2.x-System ein LDAP-Backend verwendet hat und keine Zeit vorhanden ist, um die
+LDAP-Datenbank upzudaten, sollten Sie zumindest prüfen, dass
 <smbconfoption><name>passdb backend</name><value>ldapsam_compat</value></smbconfoption>
 in der Datei &smb.conf; gesetzt ist. Das restliche Verhalten sollte mehr oder minder das gleiche bleiben.
 Zu einem späteren Zeitpunkt, wenn Zeit vorhanden ist, um ein neues zu Samba-3 kompatibles LDAP-Backend
 zu implementieren, ist es möglich, die alte LDAP-Datenbank unter Verwendung des Befehls
-<command>pdbedit</command> zu migrieren. Siehe <link linkend="pdbeditthing"/>.
+<command>pdbedit</command> zu migrieren (siehe <link linkend="pdbeditthing"/>).
 </para>
 
 </sect1>
@@ -56,30 +56,29 @@ Die wichtigsten neuen Features sind:
 
 <orderedlist numberation="arabic">
 	<listitem><para>
-	Active Directory Support. Dieses Release kann sich einer ADS realm als
-	Mitglieds-Server anschliessen und Benutzer mittels LDAP/kerberos authentifizieren.
+	Active Directory Support. Dieses Release kann sich einer ADS-Realm als
+	Mitgliedsserver anschließen und Benutzer mittels LDAP/Kerberos authentifizieren.
 	</para></listitem>
 
 	<listitem><para>
-	Unicode Support. Samba kann nun Unicode on-the-fly verhandeln und es gibt intern eine viel
-	bessere Infrastruktur für multi-byte- und Unicode-Zeichensätze.
+	Samba kann nun Unicode on-the-fly verhandeln, und es gibt intern eine viel
+	bessere Infrastruktur für Multi-byte- und Unicode-Zeichensätze.
 	</para></listitem>
 
 	<listitem><para>
-	Neues Authentifizierungs-System. Das interne Authentifizierungs-System wurde fast
+	Neues Authentifizierungssystem. Das interne Authentifizierungssystem wurde fast
 	komplett neu geschrieben. Die meisten Veränderungen sind intern, aber auch das
 	neue Authoring-System ist sehr vielfältig konfigurierbar.
 	</para></listitem>
 
 	<listitem><para>
 	Neuer Befehl <quote>net</quote>. Der neue Befehl <quote>net</quote> wurde hinzugefügt.
-	Er ist ähnlich dem Windows-Befehl <quote>net</quote>. Eventuell werden einige andere
+	Er ähnelt dem Windows-Befehl <quote>net</quote>. Eventuell werden einige andere
 	Werkzeuge (wie smbpasswd) durch Sub-Befehle in <quote>net</quote> ersetzt.
 	</para></listitem>
 
 	<listitem><para>
-	Samba kann nun NT-style status32-codes on the wire verhandeln. Dies verbessert die
-	Handhabung von Fehlern und deren Codes deutlich. 
+	Samba kann nun Status32-codes von NT on-the-wire verhandeln. Dies verbessert den Umgang mit Fehlern und deren Codes deutlich. 
 	</para></listitem>
 
 	<listitem><para>
@@ -92,7 +91,7 @@ Die wichtigsten neuen Features sind:
 	</para></listitem>
 
 	<listitem><para>
-	Neue standardmässige Dual-Dämon-Unterstützung für Winbind mit besserer Performance.
+	Neue standardmäßige Dual-Dämon-Unterstützung für Winbind mit besserer Performance.
 	</para></listitem>
 
 	<listitem><para>
@@ -102,37 +101,37 @@ Die wichtigsten neuen Features sind:
 
 	<listitem><para>
 	Unterstützung für das Herstellen von Vertrauensstellungen mit 
-	Windows NT 4.0-Domänen-Controllern.
+	Windows NT 4.0-Domänencontrollern.
 	</para></listitem>
 
 	<listitem><para>
-	Initial-Unterstützung für eine verteilte Winbind-Architektur, unter Verwendung eines
-	LDAP-Verzeichnisses zur Speicherung der Zuordnungen von SIDs auf UIDs/GIDs.
+	Initial-Unterstützung für eine verteilte Winbind-Architektur unter Verwendung eines
+	LDAP-Verzeichnisses zur Speicherung der Zuordnungen von SIDs zu UIDs/GIDs.
 	</para></listitem>
 
 	<listitem><para>
-	Grosse Updates im Samba Dokumentations-Baum.
+	Große Updates im Samba-Dokumentationsbaum.
 	</para></listitem>
 
 	<listitem><para>
-	Volle Unterstützung für Client- und Server-Signing, um Kompatibilität mit den
-	Standard-Sicherheits-Einstellungen von Windows 2003 zu sichern.
+	Volle Unterstützung für Client- und Server-Signing, um für Kompatibilität mit den
+	Standard-Sicherheitseinstellungen von Windows 2003 zu sorgen.
 	</para></listitem>
 </orderedlist>
 
 <para>
-Und noch viele weitere Verbesserungen!
+Und es gibt noch viele weitere Verbesserungen!
 </para>
 
 </sect1>
 
 <sect1>
-<title>Änderungen von Konfigurations-Parametern</title>
+<title>Änderungen von Konfigurationsparametern</title>
 
 <para>
 Dieser Abschnitt enthält eine kurze Liste von Veränderungen an den
 Parametern in &smb.conf;, die in der Samba-Release 3.0.0 enthalten sind.
-Bitte konsultieren sie die smb.conf(5) man page für vollständige
+Bitte konsultieren Sie die smb.conf(5)-Manpage für vollständige
 Beschreibungen der neuen oder geänderten Parameter.
 </para>
 
@@ -247,7 +246,7 @@ Beschreibungen der neuen oder geänderten Parameter.
 	<listitem><para>UNIX charset </para></listitem>
 </itemizedlist>
 
-<para>Zuordnung von SID auf UID/GID:</para>
+<para>Zuordnung von SIDs zu UIDs/GIDs:</para>
 
 <itemizedlist>
 	<listitem><para>idmap backend </para></listitem>
@@ -292,8 +291,8 @@ Beschreibungen der neuen oder geänderten Parameter.
 	<listitem><para>security (neuer ADS-Wert) </para></listitem>
 	<listitem><para>strict locking (Standard-Wert: YES) </para></listitem>
 	<listitem><para>winbind cache time (erhöht auf 5 Minuten) </para></listitem>
-	<listitem><para>winbind uid (veraltet, zugunsten von idmap uid) </para></listitem>
-	<listitem><para>winbind gid (veraltet, zugunsten von idmap gid) </para></listitem>
+	<listitem><para>winbind uid (veraltet zugunsten von idmap uid) </para></listitem>
+	<listitem><para>winbind gid (veraltet zugunsten von idmap gid) </para></listitem>
 </itemizedlist>
 
 </sect2>
@@ -309,17 +308,17 @@ Beschreibungen der neuen oder geänderten Parameter.
 	<para>
 	Dieser Abschnitt enthält kurze Beschreibungen der neuen Datenbanken, die
 	mit Samba-3 eingeführt wurden. Bitte vergessen Sie nicht, Ihre existierenden
-	${lock directory}/*tdb-Dateien zu sichern, bevor Sie auf Samba-3 upgraden.
+	<filename>${lock directory}/*tdb</filename>-Dateien zu sichern, bevor Sie auf Samba-3 upgraden.
 	Samba wird die Datenbanken upgraden, wenn sie geöffnet sind (wenn nötig),
 	jedoch wird das Downgrade von 3.0 auf 2.2 nicht unterstützt.
 	</para>
 
 	<para>
-	Die neuen tdb-files sind in <link linkend="tdbfiledesc"/> beschrieben.	
+	Die neuen tdb-Dateien sind in <link linkend="tdbfiledesc"/> beschrieben.	
 	</para>
 
 
-        <table frame='all' id="tdbfiledesc"><title>TDB Datei-Beschreibungen</title>
+        <table frame='all' id="tdbfiledesc"><title>TDB-Datei-Beschreibungen</title>
         <tgroup cols='3'>
 			<colspec align="left"/>
 			<colspec align="justify" width="1*"/>
@@ -344,12 +343,12 @@ Beschreibungen der neuen oder geänderten Parameter.
 		</row>
 		<row>
 			<entry>group_mapping</entry>
-			<entry><para>Zuordnungs-Tabelle von Windows-Gruppen/SID auf UNIX-Gruppen</para></entry>
+			<entry><para>Zuordnungstabelle von Windows-Gruppen/SID zu UNIX-Gruppen</para></entry>
 			<entry>Ja</entry>
 		</row>
 		<row>
 			<entry>idmap</entry>
-			<entry><para>Neue Tabelle für ID-Zuordnung von SIDs auf UNIX UIDs/GIDs</para></entry>
+			<entry><para>Neue Tabelle für die ID-Zuordnung von SIDs zu UNIX-UIDs/GIDs</para></entry>
 			<entry>Ja</entry>
 		</row>
 		<row>
@@ -359,14 +358,13 @@ Beschreibungen der neuen oder geänderten Parameter.
 		</row>
 		<row>
 			<entry>printing/*.tdb</entry>
-			<entry><para>Gepufferte Ausgabe des Befehls `lpq command', pro Druckdienst
-			angelegt</para></entry>
+			<entry><para>Gepufferte Ausgabe des Befehls `lpq command', die für jeden Druckdienst angelegt wird</para></entry>
 			<entry>Nein</entry>
 		</row>
 		<row>
 
 			<entry>registry</entry>
-			<entry><para>Read-only Samba-Registry-Gerüst, das Unterstützung für den
+			<entry><para>Read-only-Samba-Registry-Gerüst, das Unterstützung für den
 			Export verschiedener Datenbank-Tabellen via winreg-RPCs bietet</para></entry>
 			<entry>no</entry>
 		</row>
@@ -388,18 +386,18 @@ Beschreibungen der neuen oder geänderten Parameter.
 		<listitem><para>
 		Wenn Samba-2.2 als Mitglied einer Windows-Domäne arbeitet, würde es
 		alle Benutzer, die vom entfernten DC authentifiziert wurden, dem
-		<quote>guest account</quote> zuordnen, wenn keine UID mittels des Aufrufs
-		getpwnam() erhalten werden kann.
-		Samba-3 weist die Verbindung als <?latex \linebreak ?>NT_STATUS_LOGON_FAILURE ab.
+		<quote>guest account</quote> zuordnen, wenn keine UID durch den Aufruf
+		<command>getpwnam()</command> erhalten werden kann.
+		Samba-3 weist die Verbindung als <?latex \linebreak ?><quote>NT_STATUS_LOGON_FAILURE</quote> ab.
 		Es gibt derzeit keine Möglichkeit, das Verhalten von Samba-2.2 wiederherzustellen.
 		</para></listitem>
 
 		<listitem><para>
 		Beim Hinzufügen von Maschinen zu einer Samba-2.2-Domäne wurde 
 		<quote>add user script</quote> verwendet, um die UNIX-Identität des 
-		Maschinen-Vertrauens-Kontos anzulegen.
+		Maschinen-Vertrauenskontos anzulegen.
 		Samba-3 führt <quote>add machine script</quote> ein, das zu diesem Zweck
-		spezifiziert werden muß. Samba-3 wird nicht auf die Verwendung von
+		spezifiziert werden muss. Samba-3 wird nicht auf die Verwendung von
 		<quote>add user script</quote> zurückgreifen, wenn kein <quote>add machine script</quote>
 		vorhanden ist.
 		</para></listitem>
@@ -411,40 +409,40 @@ Beschreibungen der neuen oder geänderten Parameter.
 	<title>Passdb-Backends und Authentifikation</title>
 
 	<para>
-	Es gibt einige Änderungen, deren sich Samba-Administratoren beim Wechsel auf Samba-3
-	bewußt sein sollten.
+	Es gibt einige Änderungen, an die Samba-Administratoren beim Wechsel auf Samba-3
+	denken sollten.
 	</para>
 
 	<orderedlist>
 		<listitem><para>
-		Verschlüsselte Passwörter wurden nun standardmässig aktiviert, um besser mit
-		out-of-the-box Windows-Client-Installationen zusammenzuarbeiten.
-		Das bedeutet, daß entweder (a) ein Samba-Konto für jeden Benutzer angelegt werden muß,
-		oder daß (b) <quote>encrypt passwords = no</quote> explizit in &smb.conf; gesetzt sein muß.
+		Verschlüsselte Passwörter sind nun standardmäßig aktiviert, um besser mit
+		Out-of-the-box-Windows-Client-Installationen zusammenzuarbeiten.
+		Das bedeutet, dass entweder (a) ein Samba-Konto für jeden Benutzer angelegt werden muss
+		oder dass (b) <quote>encrypt passwords = no</quote> explizit in &smb.conf; gesetzt sein muss.
 		</para></listitem>
 
 		<listitem><para>
 		Die neue Option <smbconfoption><name>security</name><value>ads</value></smbconfoption>
-		wurde inkludiert, um die Integration einer ADS-Domäne unter Verwendung der nativen
+		wurde eingeführt, um die Integration einer ADS-Domäne unter Verwendung der nativen
 		Windows-Kerberos-5- und LDAP-Protokolle zu ermöglichen.
 		</para></listitem>
 	</orderedlist>
 
 	<para>
-	Samba-3 beinhaltet auch die Möglichkeit, Verkettungen von Authentifikations-Methoden
-	(<smbconfoption><name>auth methods</name></smbconfoption>), und Konten-DB-Backends
+	Samba-3 beinhaltet auch die Möglichkeit, Verkettungen von Authentifikationsmethoden
+	(<smbconfoption><name>auth methods</name></smbconfoption>) und Konten-DB-Backends
 	(<smbconfoption><name>passdb backend</name></smbconfoption>) einzusetzen. 
-	Bitte konsultieren Sie die manpage für &smb.conf; und <link linkend="passdb"/> für Details.
-	Obwohl beide Parameter auf vernünftige Standard-Werte gesetzt werden, ist es doch
-	wahrscheinlich, daß Sie ihre Bedeutung kennenlernen wollen,
+	Bitte konsultieren Sie die Manpage für &smb.conf; und <link linkend="passdb"/> für Details.
+	Obwohl beide Parameter auf vernünftige Standard-Werte gesetzt wurden, ist es doch
+	wahrscheinlich, dass Sie ihre Bedeutung kennen lernen wollen,
 	um den korrekten Betrieb von Samba zu gewährleisten.
 	</para>
 
 	<para>
 <indexterm><primary>pdbedit</primary></indexterm>
 Bestimmte Funktionen des Befehls <command>smbpasswd</command> wurden auf das neue Werkzeug
-<command>smbpasswd</command>, das Werkzeug <command>net</command> und das neue <command>pdbedit</command>
-aufgeteilt. Details dazu in den jeweiligen manpages.
+<command>smbpasswd</command>, das Werkzeug <command>net</command> und das neue <command>pdbedit</command>-Utility 
+aufgeteilt. Details dazu finden Sie in den jeweiligen Manpages.
 	</para>
 
 	</sect2>
@@ -453,7 +451,7 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 	<title>LDAP</title>
 
 	<para>
-	Dieser Abschnitt umreißt die neuen Features betreffend Samba/LDAP-Integration.	
+	Dieser Abschnitt stellt kurz die neuen Features vor, die die Samba/LDAP-Integration betreffen.	
 	</para>
 
 		<sect3>
@@ -463,8 +461,8 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		Eine neue Objektklasse (sambaSamAccount) wurde eingeführt, um die alte
 		Klasse sambaAccount zu ersetzen. Diese Änderung hilft dabei, Attribute
 		umzubenennen, um Kollisionen mit Attributen anderer Hersteller zu vermeiden.
-		Es gibt ein Konverter-Skript (examples/LDAP/convertSambaAccount), das
-		ein LDIF-file auf das neue Schema konvertiert.
+		Es gibt ein Konverter-Skript (<filename>examples/LDAP/convertSambaAccount</filename>), das
+		eine LDIF-Datei in das neue Schema konvertiert.
 		</para>
 
 		<para>
@@ -476,21 +474,21 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		</screen></para>
 
 		<para>
-		Die &lt;DOM SID&gt; kann durch das Ausführen von
+		Sie können &lt;DOM SID&gt; abfragen, indem Sie auf dem Samba PDC (als root) 
 <screen>
 &prompt;<userinput>net getlocalsid &lt;DOMAINNAME&gt;</userinput>
 </screen>
-		auf dem Samba PDC (als root) abgefragt werden.
+		ausführen.
 		</para>
 
 		<para>
 		Das alte sambaAccount-Schema kann weiterhin verwendet werden, indem man
 		das Passdb-Backend <parameter>ldapsam_compat</parameter> spezifiziert.
-		Wie auch immer, sambaAccount und zugehörige Attribute wurden in den
+sambaAccount und zugehörige Attribute wurden jedoch in den
 		<quote>historical</quote>-Abschnitt der Schema-Datei verschoben und müssen
 		erst auskommentiert werden, um sie verwenden zu können.
-		Die Samba-2.2 Objektklassen-Deklaration für einen sambaAccount hat sich
-		in der Samba-3 samba.schema-Datei nicht verändert.
+		Die Samba-2.2-Objektklassen-Deklaration für einen sambaAccount hat sich
+		in der samba.schema-Datei von Samba-3 nicht verändert.
 		</para>
 
 		<para>
@@ -502,26 +500,26 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 			sambaDomain &smbmdash; Domänen-Information zur Zuordnung
 			von RIDs für Benutzer und Gruppen. Die Attribute werden im
 			<quote>ldap suffix</quote>-Verzeichnis-Eintrag automatisch hinzugefügt,
-			wenn ein UID/GID-Bereich für die idmap gesetzt wurde und das
+			wenn ein UID/GID-Bereich für die idmap gesetzt und das
 			<quote>ldapsam</quote>-Passdb-Backend ausgewählt wurde.
 			</para></listitem>
 
 			<listitem><para>
 			sambaGroupMapping &smbmdash; Ein Objekt, das die Beziehung zwischen einer
-			posixGroup und einer Windows Gruppe/SID repräsentiert. Diese Einträge
-			werden im <quote>ldap group suffix</quote> gespeichert und mittels des
-			Befehls <quote>net groupmap</quote> verwaltet.
+			posixGroup und einer Windows-Gruppe/SID repräsentiert. Diese Einträge
+			werden im <quote>ldap group suffix</quote> gespeichert und mit dem
+			Befehl <quote>net groupmap</quote> verwaltet.
 			</para></listitem>
 
 			<listitem><para>
 			sambaUNIXIdPool &smbmdash; Wird automatisch im <quote>ldap idmap suffix</quote>
-			angelegt, und enthält die nächste verfügbare <quote>idmap UID</quote> und
-			<quote>idmap GID</quote>.
+			angelegt und enthält die nächste verfügbare <quote>idmap-UID</quote> und
+			<quote>idmap-GID</quote>.
 			</para></listitem>
 
 			<listitem><para>
-			sambaIdmapEntry &smbmdash; Objekt, das eine Zuordnung zwischen
-			SID und einer UNIX UID/GID speichert. Diese Objekte werden vom
+			sambaIdmapEntry &smbmdash; Das ist ein Objekt, das eine Zuordnung zwischen
+			einer SID und einer UNIX-UID/GID speichert. Diese Objekte werden vom
 			idmap_ldap-Modul je nach Bedarf angelegt.
 			</para></listitem>
 		</itemizedlist>
@@ -529,7 +527,7 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		</sect3>
 
 		<sect3>
-		<title>Neuer Suffix für die Suche</title>
+		<title>Neues Suffix für die Suche</title>
 
 		<para>
 		Die folgenden neuen smb.conf-Parameter wurden hinzugefügt, um bestimmte
@@ -540,33 +538,33 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		<itemizedlist>
 			<listitem><para>ldap suffix         &smbmdash; für die Suche nach Benutzer- und Maschinen-Konten.</para></listitem>
 			<listitem><para>ldap user suffix    &smbmdash; für das Speichern von Benutzer-Konten.</para></listitem>
-			<listitem><para>ldap machine suffix &smbmdash; für das Speichern von Maschinen-Vertrauens-Konten.</para></listitem>
+			<listitem><para>ldap machine suffix &smbmdash; für das Speichern von Maschinen-Vertrauenskonten.</para></listitem>
 			<listitem><para>ldap group suffix   &smbmdash; posixGroup/sambaGroupMapping-Einträge.</para></listitem>
 			<listitem><para>ldap idmap suffix   &smbmdash; sambaIdmapEntry-Objekte.</para></listitem>
 		</itemizedlist>
 
 		<para>
-		Wenn ein <parameter>ldap suffix</parameter> definiert ist, wird er an alle verbleibenden
-		sub-suffix-Parameter angehängt. In diesem Fall ist die Reihenfolge der Suffixes in
-		smb.conf wichtig. Plazieren Sie <parameter>ldap suffix</parameter> immer als ersten
+		Wenn ein <parameter>ldap suffix</parameter> definiert ist, wird es an alle verbleibenden
+		sub-suffix-Parameter angehängt. In diesem Fall ist die Reihenfolge der Suffixe in
+		smb.conf wichtig. Platzieren Sie <parameter>ldap suffix</parameter> immer als ersten
 		Eintrag in der Liste.
 		</para>
 
 		<para>
-		Wegen einer Beschränkung in Samba's Parsing von &smb.conf; sollten Sie die DNs nicht
-		mit Anführungszeichen umschliessen.
+		Wegen einer Beschränkung in Sambas Parsing von &smb.conf; sollten Sie die DNs nicht
+		in Anführungszeichen einschließen.
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>IdMap LDAP Support</title>
+		<title>Idmap-LDAP-Support</title>
 
 		<para>
 		Samba-3 unterstützt ein LDAP-Backend für das idmap-Subsystem. Die
-		folgenden Optionen informieren Samba, daß die idmap-Tabelle auf
-		dem Verzeichnis-Server <quote>onterose</quote> gespeichert werden soll, in der
-		Partition <quote>ou=idmap,dc=quenya,dc=org</quote>.
+		folgenden Optionen informieren Samba darüber, dass die idmap-Tabelle auf
+		dem Verzeichnis-Server <quote>onterose</quote> in der
+		Partition <quote>ou=idmap,dc=quenya,dc=org</quote> gespeichert werden soll.
 		</para>
 
 		<smbconfblock>
@@ -579,9 +577,9 @@ aufgeteilt. Details dazu in den jeweiligen manpages.
 		</smbconfblock>
 
 		<para>
-		Diese Konfiguration erlaubt es Winbind-Installationen auf mehreren Servern, sich
-		einen UID/GID-Zahlenbereich zu teilen, und damit die Probleme in der Zusammenarbeit
-		mit NFS zu vermeiden, die es in Samba-2.2 gab.
+		Bei dieser Konfiguration können Winbind-Installationen auf mehreren Servern sich
+		einen UID/GID-Zahlenbereich teilen. Dadurch werden die Probleme bei der Zusammenarbeit
+		mit NFS vermeiden, die es in Samba-2.2 gab.
 		</para>
 
 		</sect3>
