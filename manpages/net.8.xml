@@ -912,9 +912,7 @@ Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die net man page wurde von Jelmer Vernooij geschrieben.</para>
-	<para>Übersetzung ins Deutsche: Dinu Gherman.</para>
-	
+	<para>Die net man page wurde von Jelmer Vernooij geschrieben.</para>	
 </refsect1>
 
 </refentry>

@@ -282,8 +282,6 @@ auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-m
 	
 	<para>Die ntlm_auth man page wurde von Jelmer Vernooij 
 	und Andrew Bartlett geschrieben.</para>
-	<para>Übersetzung ins Deutsche: Dinu Gherman.</para>
-
 </refsect1>
 
 </refentry>
