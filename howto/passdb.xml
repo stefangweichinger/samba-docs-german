@@ -937,6 +937,7 @@ objectclass (1.3.6.1.4.1.7165.2.2.6 NAME 'sambaSamAccount' SUP top AUXILIARY
 			<parameter>displayName</parameter> in der Datei 
 			<filename>inetorgperson.schema</filename>.
 			Beide müssen vor der Datei <filename>samba.schema</filename> inkludiert werden.
+</para>
 <para>
 <programlisting>
 ## /etc/openldap/slapd.conf
@@ -1243,30 +1244,32 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 			</para>
 
 			<para>
-			To remedy the first security issue, the <smbconfoption><name>ldap ssl</name></smbconfoption> &smb.conf; parameter defaults
-			to require an encrypted session (<smbconfoption><name>ldap ssl</name><value>on</value></smbconfoption>) using
-			the default port of <constant>636</constant>
-			when contacting the directory server. When using an OpenLDAP server, it
-			is possible to use the use the StartTLS LDAP extended  operation in the place of
-			LDAPS. In either case, you are strongly discouraged to disable this security
+			Um die erste Angelegenheit zu bereinigen, ist der voreingestellte Wert für den
+			&smb.conf;-Parameter <smbconfoption><name>ldap ssl</name></smbconfoption>
+			so, daß eine verschlüsselte Sitzung erforderlich ist
+			(<smbconfoption><name>ldap ssl</name><value>on</value></smbconfoption>), unter
+			Verwendung des Standard-Ports <constant>636</constant>, wenn man den Verzeichnis-Server
+			kontaktiert. Bei Verwendung eines OpenLDAP-Servers ist es möglich, die erweiterte
+			LDAP-Operation StartTLS anstatt von LDAPS zu verwenden. In jedem Fall seien Sie
+			gewarnt davor, diese Sicherheitsoption auszuschalten
 			(<smbconfoption><name>ldap ssl</name><value>off</value></smbconfoption>).
+                        </para>
+
+			<para>
+			Beachten Sie, daß das LDAPS Protokoll veraltet ist, zugunsten der erweiterten
+			LDAPv3-Operation StartTLS. Die OpenLDAP-Bibliothek bietet jedoch nach wie vor
+			Unterstützung für die ältere Methode zur Absicherung der Client-Server-Kommunikation.
 			</para>
 
 			<para>
-			Note that the LDAPS protocol is deprecated in favor of the LDAPv3 StartTLS
-			extended operation. However, the OpenLDAP library still provides support for
-			the older method of securing communication between clients and servers.
-			</para>
-
-			<para>
-			The second security precaution is to prevent non-administrative users from
-			harvesting password hashes from the directory. This can be done using the
-			following ACL in <filename>slapd.conf</filename>:
+			Die zweite Sicherheits-Maßnahme ist es, Benutzern ohne Administrator-Rechte davon
+			abzuhalten, Passwort-Hashes aus dem Verzeichnis abzufragen. Dies kann durch folgende
+			ACL in <filename>slapd.conf</filename> erfolgen:
 			</para>
 
 <para>
 <programlisting>
-## allow the "ldap admin dn" access, but deny everyone else
+## erlaube der "ldap admin dn" Zugriff, aber lehne alle anderen Zugriffe ab
 access to attrs=sambaLMPassword,sambaNTPassword
      by dn="cn=Samba Admin,ou=People,dc=quenya,dc=org" write
      by * none
@@ -1276,100 +1279,135 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		</sect3>
 
 		<sect3>
-		<title>LDAP Special Attributes for sambaSamAccounts</title>
+		<title>Spezielle LDAP Attribute für sambaSamAccounts</title>
 
-			<para> The sambaSamAccount objectclass is composed of the attributes shown in next tables: <link
-			linkend="attribobjclPartA">Part A</link>, and <link linkend="attribobjclPartB">Part B</link>.
+			<para>Die sambaSamAccount Objektklasse besteht aus den Komponenten, die in den folgenden
+			Tabellen gezeigt werden: 
+			<link linkend="attribobjclPartA">Teil A</link>, und
+			<link linkend="attribobjclPartB">Teil B</link>.
 			</para>
 
 			<para>
 			<table frame="all" id="attribobjclPartA">
-				<title>Attributes in the sambaSamAccount objectclass (LDAP) &smbmdash; Part A</title>
+				<title>Attribute in der sambaSamAccount Objektklasse (LDAP) &smbmdash; Teil A</title>
 			<tgroup cols="2" align="justify">
 					<colspec align="left"/>
 					<colspec align="justify" colwidth="1*"/>
 			<tbody>
-				<row><entry><constant>sambaLMPassword</constant></entry><entry>The LANMAN password 16-byte hash stored as a character
-						representation of a hexadecimal string.</entry></row>
-				<row><entry><constant>sambaNTPassword</constant></entry><entry>The NT password hash 16-byte stored as a character
-						representation of a hexadecimal string.</entry></row>
-				<row><entry><constant>sambaPwdLastSet</constant></entry><entry>The integer time in seconds since 1970 when the
-						<constant>sambaLMPassword</constant> and <constant>sambaNTPassword</constant> attributes were last set.
+				<row><entry><constant>sambaLMPassword</constant></entry>
+				<entry>Das LANMAN Passwort 16-byte hash, gespeichert als char-Darstellung
+				eines Hexadezimal-Strings.</entry></row>
+				<row><entry><constant>sambaNTPassword</constant></entry>
+				<entry>Das NT Passwort 16-byte hash, gespeichert als char-Darstellung
+                                eines Hexadezimal-Strings.</entry></row>
+				<row><entry><constant>sambaPwdLastSet</constant></entry>
+				<entry>Die integer-Zeit (angegeben in Sekunden seit 1970), die vergangen ist,
+				seitdem die Attribute <constant>sambaLMPassword</constant> und
+				<constant>sambaNTPassword</constant> zuletzt gesetzt wurden.
 				</entry></row>
 
-				<row><entry><constant>sambaAcctFlags</constant></entry><entry>String of 11 characters surrounded by square brackets []
-						representing account flags such as U (user), W (workstation), X (no password expiration),
-						I (Domain trust account), H (Home dir required), S (Server trust account),
-						and D (disabled).</entry></row>
+				<row><entry><constant>sambaAcctFlags</constant></entry>
+				<entry>String mit 11 Zeichen Länge, eingeschlossen von eckigen Klammern [],
+				stellt Konto-Flags dar, wie U (user), W (workstation), X (kein Ablauf von
+				Passwörtern), I (Domänen-Vertrauenskonto), H (Heimatverzeichnis erforderlich),
+				S (Server-Vertrauenskonto), und and D (disabled).</entry></row>
 
-				<row><entry><constant>sambaLogonTime</constant></entry><entry>Integer value currently unused</entry></row>
+				<row><entry><constant>sambaLogonTime</constant></entry>
+				<entry>Integer-Wert, derzeit unbenutzt</entry></row>
 
-				<row><entry><constant>sambaLogoffTime</constant></entry><entry>Integer value currently unused</entry></row>
+				<row><entry><constant>sambaLogoffTime</constant></entry>
+				<entry>Integer-Wert, derzeit unbenutzt</entry></row>
 
-				<row><entry><constant>sambaKickoffTime</constant></entry><entry>Specifies the time (UNIX time format) when the user
-				will be locked down and cannot login any longer. If this attribute is omitted, then the account will never expire.
-				If you use this attribute together with `shadowExpire' of the `shadowAccount' objectClass, will enable accounts to	
-				expire completely on an exact date.</entry></row>
+				<row><entry><constant>sambaKickoffTime</constant></entry>
+				<entry>Angabe der Zeit (UNIX Zeitformat), nach der der Benutzer gesperrt wird,
+				und sich nicht mehr anmelden kann. Wenn dieses Attribut nicht angegeben wird,
+				läuft das Konto nie ab. Wenn Sie dieses Attribut gemeinsam mit dem Attribut
+				`shadowExpire' der Objektklasse `shadowAccount' verwenden, wird dies ermöglichen
+				Konten zu einem definierten Zeitpunkt komplett ablaufen zu lassen.</entry></row>
 
-				<row><entry><constant>sambaPwdCanChange</constant></entry><entry>Specifies the time (UNIX time format) from which on the user is allowed to
-				change his password. If attribute is not set, the user will be free to change his password whenever he wants.</entry></row>
+				<row><entry><constant>sambaPwdCanChange</constant></entry>
+				<entry>Angabe der Zeit (UNIX Zeitformat), nach der dem Benutzer erlaubt wird,
+				sein Passwort zu ändern. Wenn dieses Attribut nicht angegeben wird, steht es dem
+				Benutzer frei, sein Passwort zu änder, wann immer er möchte.</entry></row>
 
-				<row><entry><constant>sambaPwdMustChange</constant></entry><entry>Specifies the time (UNIX time format) since when the user is
-				forced to change his password. If this value is set to `0', the user will have to change his password at first login.
-				If this attribute is not set, then the password will never expire.</entry></row>
+				<row><entry><constant>sambaPwdMustChange</constant></entry>
+				<entry>Angabe der Zeit (UNIX Zeitformat), ab der der Benutzer gezwungen wird, 
+				sein Passwort zu ändern. Wenn dieses Attribut auf `0' gesetzt wird, muß der
+				Benutzer sein Passwort bei der ersten Anmeldung ändern. Wenn dieses Attribut 
+				nicht gesetzt wird, läuft das Passwort nie ab.</entry></row>
 
-				<row><entry><constant>sambaHomeDrive</constant></entry><entry>Specifies the drive letter to which to map the
-				UNC path specified by sambaHomePath. The drive letter must be specified in the form <quote>X:</quote>
-				where X is the letter of the drive to map. Refer to the <quote>logon drive</quote> parameter in the
-				smb.conf(5) man page for more information.</entry></row>
+				<row><entry><constant>sambaHomeDrive</constant></entry>
+				<entry>Angabe des Laufwerks-Buchstaben, der auf den UNC-Pfad zeigt, der in
+				sambaHomePath angegeben wurde. Der Laufwerks-Buchstabe muß in der Form
+				<quote>X:</quote> angegeben werde, wobei X der Buchstabe des zugewiesenen
+				Laufwerks ist. Sehen Sie den Abschnitt zum Parameter 
+				<smbconfoption><name>logon drive</name></smbconfoption>
+				in der manpage zu &smb.conf; man page für mehr Informationen dazu.</entry></row>
 
-				<row><entry><constant>sambaLogonScript</constant></entry><entry>The sambaLogonScript property specifies the path of
-				the user's logon script, .CMD, .EXE, or .BAT file. The string can be null. The path
-				is relative to the netlogon share. Refer to the <smbconfoption><name>logon script</name></smbconfoption> parameter in the
-				&smb.conf; man page for more information.</entry></row>
-
-				<row><entry><constant>sambaProfilePath</constant></entry><entry>Specifies a path to the user's profile.
-				This value can be a null string, a local absolute path, or a UNC path. Refer to the
-				<smbconfoption><name>logon path</name></smbconfoption> parameter in the &smb.conf; man page for more information.</entry></row>
-
-				<row><entry><constant>sambaHomePath</constant></entry><entry>The sambaHomePath property specifies the path of
-				the home directory for the user. The string can be null. If sambaHomeDrive is set and specifies
-				a drive letter, sambaHomePath should be a UNC path. The path must be a network
-				UNC path of the form <filename>\\server\share\directory</filename>. This value can be a null string.
-				Refer to the <command>logon home</command> parameter in the &smb.conf; man page for more information.
+				<row><entry><constant>sambaLogonScript</constant></entry>
+				<entry>Der Wert von sambaLogonScript gibt den Pfad des Anmeldeskripts des
+				Benutzers an, einer .CMD, .EXE, oder .BAT Datei. Dieser String kann auch null
+				sein. Der Pfad ist relativ zur netlogon-Freigabe. Sehen Sie den Abschnitt zum
+				Parameter <smbconfoption><name>logon script</name></smbconfoption> in der 
+				manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
 				</entry></row>
+
+				<row><entry><constant>sambaProfilePath</constant></entry>
+				<entry>Angabe des Pfads zum Profil des Benutzers. Dieser Wert kann auch ein
+				Leerstring sein, ein lokaler absoluter Pfad, oder ein UNC-Pfad. Sehen Sie
+				den Abschnitt zum Parameter 
+				<smbconfoption><name>logon path</name></smbconfoption> in der
+                                manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
+                                </entry></row>
+
+				<row><entry><constant>sambaHomePath</constant></entry>
+				<entry>Der Wert von sambaHomePath gibt den Pfad des Heimatverzeichnisses des
+				Benutzers an. Dieser Wert kann auch ein
+                                Leerstring sein. Wenn sambaHomeDrive gesetzt ist, und einen Laufwerksbuchstaben
+				angibt, sollte sambaHomePath ein UNC-Pfad sein. Der Pfad muß ein
+				Netzwerk-UNC-Pfad in der Form <filename>\\server\freigabe\verzeichnis</filename>
+				sein. Sehen Sie den Abschnitt zum Parameter <command>logon home</command>
+				in der manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
+                                </entry></row>
+
 			</tbody>
 			</tgroup></table>
 			</para>
 			<para>
 			<table frame="all" id="attribobjclPartB">
-				<title>Attributes in the sambaSamAccount objectclass (LDAP) &smbmdash; Part B</title>
+				<title>Attribute in der sambaSamAccount Objektklasse (LDAP) &smbmdash; Teil B</title>
 			<tgroup cols="2" align="justify">
 					<colspec align="left"/>
 					<colspec align="justify" colwidth="1*"/>
 			<tbody>
-				<row><entry><constant>sambaUserWorkstations</constant></entry><entry>Here you can give a comma-separated list of machines
-				on which the user is allowed to login. You may observe problems when you try to connect to an Samba Domain Member.
-				Because Domain Members are not in this list, the Domain Controllers will reject them. Where this attribute is omitted,
-				the default implies no restrictions.
+				<row><entry><constant>sambaUserWorkstations</constant></entry>
+				<entry>Hier können Sie eine komma-getrennte Liste von Maschinen angeben, an
+				denen sich der Benutzer anmelden darf. Es könnten Probleme auftreten, wenn Sie
+				sich an einem Samba-Domänen-Mitglied anzumelden versuchen. Weil
+				Domänen-Mitglieder nicht in dieser Liste sind, werden die Domänen-Controller
+				sie zurückweisen. Wo dieses Attribut weggelassen wird, setzt die 
+				Standard-Einstellung keinerlei Einschränkungen.
 				</entry></row>
 
-				<row><entry><constant>sambaSID</constant></entry><entry>The security identifier(SID) of the user.
-				The Windows equivalent of UNIX UIDs.</entry></row>
+				<row><entry><constant>sambaSID</constant></entry>
+				<entry>Der Security Identifier(SID) des Benutzers.
+				Die Windows-Entsprechung zu UNIX UIDs.</entry></row>
 
-				<row><entry><constant>sambaPrimaryGroupSID</constant></entry><entry>The Security IDentifier (SID) of the primary group
-				of the user.</entry></row>
+				<row><entry><constant>sambaPrimaryGroupSID</constant></entry>
+				<entry>Der Security Identifier(SID) der primären Gruppe des Benutzers.
+				</entry></row>
 
-				<row><entry><constant>sambaDomainName</constant></entry><entry>Domain the user is part of.</entry></row>
+				<row><entry><constant>sambaDomainName</constant></entry>
+				<entry>Die Domäne, der der Benutzer angehört.</entry></row>
 			</tbody>
 			</tgroup></table>
 			</para>
 
 			<para>
-			The majority of these parameters are only used when Samba is acting as a PDC of
-			a domain (refer to <link linkend="samba-pdc">Domain Control</link>, for details on
-			how to configure Samba as a Primary Domain Controller). The following four attributes
-			are only stored with the sambaSamAccount entry if the values are non-default values:
+			Der Großteil dieser Parameter wird nur benötigt, wenn Samba als PDC einer Domäne
+			arbeitet (sehen Sie dazu <link linkend="samba-pdc">Domänen-Verwaltung</link>).
+			Die folgenden vier Attribute werden nur mit dem sambaSamAccount-Eintrag verspeichert,
+			wenn ihre Werte nicht gleich den Standard-Werten sind:
 			</para>
 
 			<itemizedlist>
@@ -1380,25 +1418,27 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			</itemizedlist>
 
 			<para>
-			These attributes are only stored with the sambaSamAccount entry if
-			the values are non-default values. For example, assume MORIA has now been
-			configured as a PDC and that <smbconfoption><name>logon home</name><value>\\%L\%u</value></smbconfoption> was defined in
-			its &smb.conf; file. When a user named <quote>becky</quote> logons to the domain,
-			the <smbconfoption><name>logon home</name></smbconfoption> string is expanded to \\MORIA\becky.
-			If the smbHome attribute exists in the entry <quote>uid=becky,ou=People,dc=samba,dc=org</quote>,
-			this value is used. However, if this attribute does not exist, then the value
-			of the <smbconfoption><name>logon home</name></smbconfoption> parameter is used in its place. Samba
-			will only write the attribute value to the directory entry if the value is
-			something other than the default (e.g., <filename>\\MOBY\becky</filename>).
+			Nehmen wir zum Beispiel an, daß MORIA als PDC konfiguriert wurde, und daß
+			<smbconfoption><name>logon home</name><value>\\%L\%u</value></smbconfoption>
+			in dessen Datei &smb.conf; definiert wurde. Wenn ein Benutzer namens <quote>becky</quote>
+			sich an der Domäne anmeldet, wird der String 
+			<smbconfoption><name>logon home</name></smbconfoption> auf \\MORIA\becky erweitert.
+			Wenn das Attribut smbHome im Eintrag 
+			<quote>uid=becky,ou=People,dc=samba,dc=org</quote> existiert, wird dessen Wert verwendet.
+			Existiert dieses Attribut nicht, wird der Wert des Parameters
+			<smbconfoption><name>logon home</name></smbconfoption> anstattdessen verwendet. Samba
+			schreibt den Attributswert nur dann in den Verzeichniseintrag, wenn der Wert vom
+			Standardwert abweicht (z.B. <filename>\\MOBY\becky</filename>).
 			</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Example LDIF Entries for a sambaSamAccount</title>
+		<title>Beispiel für LDIF-Einträge eines sambaSamAccount</title>
 
 			<para>
-			The following is a working LDIF that demonstrates the use of the SambaSamAccount objectclass:
+			Das folgende Beispiel ist ein funktionierendes LDIF, das die Verwendung der
+			SambaSamAccount-Objektklasse zeigt:
 			</para>
 
 	<para>
@@ -1421,8 +1461,8 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	</para>
 
 			<para>
-			The following is an LDIF entry for using both the sambaSamAccount and
-			posixAccount objectclasses:
+			Hier ein LDIF-Eintrag zur gemeinsamen Verwendung der Objektklassen sambaSamAccount und
+			posixAccount:
 			</para>
 
 	<para>
@@ -1455,7 +1495,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		</sect3>
 
 		<sect3>
-		<title>Password Synchronization</title>
+		<title>Die Synchronisation von Passwörtern</title>
 
 		<para>
 		Samba-3 and later can update the non-samba (LDAP) password stored with an account. When
