@@ -1081,20 +1081,17 @@ Einträge in <filename>wins.dat</filename> haben die Form:
 "NAME#TYPE" TTL ADDRESS+ FLAGS
 </programlisting>
 wobei NAME der NetBIOS-Namen ist, TYPE der NetBIOS-Typ, TTL die <quote>time-to-live</quote> als Absolut-Zeit in
-Sekunden, ADDRESS+ eine 
-
-time-to-live as an absolute time in seconds, ADDRESS+ is one or more
-addresses corresponding to the registration and FLAGS are the NetBIOS
-flags for the registration.
+Sekunden, ADDRESS+ eine oder mehrere Adressen, die mit der Registrierung zusammenhängen, und FLAGS sind die
+NetBIOS-Flags für die Registrierung.
 </para>
 
 <para>
-A typical dynamic entry looks like this:
+Ein typischer dynamischer Eintrag sieht so aus:
 <programlisting>
 "MADMAN#03" 1055298378 192.168.1.2 66R
 </programlisting>
 
-To make it static, all that has to be done is set the TTL to 0, like this:
+Um ihn statisch zu machen, muß nur der Wert für TTL auf 0 gesetzt werden:
 
 <programlisting>
 "MADMAN#03" 0 192.168.1.2 66R
@@ -1102,110 +1099,106 @@ To make it static, all that has to be done is set the TTL to 0, like this:
 </para>
 
 <para>
-Though this method works with early Samba-3 versions, there is a
-possibility that it may change in future versions if WINS replication
-is added.
+Obwohl diese Methode nur mit frühen Samba-3-Versionen funktioniert, ist es möglich, daß sie sich in zukünftigen
+Samba-Versionen verändert, wenn WINS-Replikation hinzugefügt wird.
 </para>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>Helpful Hints</title>
+<title>Hilfreiche Hinweise</title>
 
 <para>
-The following hints should be carefully considered as they are stumbling points
-for many new network administrators.
+Die folgenden Hinweise sollten sorgfältig bedacht werden, da sie bereits für viele Netzwerk-Administratoren
+zu Stolpersteinen geworden sind.
 </para>
 
 <sect2>
-<title>Windows Networking Protocols</title>
+<title>Windows Netzwerk-Protokolle</title>
 
 <para>
-A common cause of browsing problems results from installing more than
-one protocol on an MS Windows machine.
+Eine verbreitete Ursache von Browsing-Problemen ist, wenn mehrere Netzwerk-Protokolle auf einer 
+MS-Windows-Maschine installiert werden.
 </para>
 
 <warning><para>
-Do not use more than one protocol on MS Windows clients.
+Verwenden Sie nicht mehr als ein Protokoll auf MS Windows Clients.
 </para></warning>
 
 <para>
-Every NetBIOS machine takes part in a process of electing the LMB (and DMB)
-every 15 minutes. A set of election criteria is used to determine the order
-of precedence for winning this election process. A machine running Samba or
-Windows NT will be biased so the most suitable machine will predictably
-win and thus retain its role.
+Jede NetBIOS-Maschine nimmt alle 15 Minuten an der Wahl des LMB (und des DMB) teil. Eine Anzahl von
+Auswahl-Kriterien wird verwendet, um die Rangfolge der Maschinen zum Gewinnen dieser Wahl zu bestimmen. 
+Eine Maschine, die Samba ausführt, oder Windows NT, wird bevorzugt, so daß die am ehesten passende Maschine
+voraussichtlich gewinnen und damit diese Rolle übernehmen wird.
 </para>
 
 <para>
-The election process is <quote>fought out</quote> so to speak over every NetBIOS network
-interface. In the case of a Windows 9x/Me machine that has both TCP/IP and IPX
-installed and has NetBIOS enabled over both protocols, the election will be
-decided over both protocols. As often happens, if the Windows 9x/Me machine is
-the only one with both protocols then the LMB may be won on the NetBIOS
-interface over the IPX protocol. Samba will then lose the LMB role as Windows
-9x/Me will insist it knows who the LMB is. Samba will then cease to function
-as an LMB and thus browse list operation on all TCP/IP-only machines will
-fail.
+Der Auswahlprozess wird sozusagen über jedes NetBIOS-Netzwerk-Interface <quote>ausgefochten</quote>. Im Fall
+einer Maschine mit Windows 9x/Me, die sowohl TCP/IP als auch IPX installiert hat, und NetBIOS über beide
+Protokolle aktiviert hat, wird die Wahl über beide Protokolle entschieden. Wie es oft passiert, wenn die
+Maschine mit Windows 9x/Me die einzig mit beiden Protokollen ist, kann der LMB auf dem NetBIOS-Netzwerk-Interface
+über das IPX-Protokoll gewonnen werden. Samba verliert dann seine LMB-Rolle, da Windows 9x/Me darauf beharrt, zu
+wissen, wer der LMB ist. Samba wird dann seine Funktion als LMB beenden und daher werden ab da die
+Browselist-Operationen auf allen Maschinen, die nur über TCP/IP arbeiten, scheitern.
 </para>
 
 <para>
-Windows 95, 98, 98se, and Me are referred to generically as Windows 9x/Me.
-The Windows NT4, 200x, and XP use common protocols. These are roughly
-referred to as the Windows NT family, but it should be recognized that 2000 and
-XP/2003 introduce new protocol extensions that cause them to behave 
-differently from MS Windows NT4. Generally, where a server does not support
-the newer or extended protocol, these will fall back to the NT4 protocols.
+Auf Windows 95, 98, 98SE, und ME bezieht man sich generell als Windows 9x/Me.
+Windows NT4, 200x, und XP verwenden gemeinsame Protokolle. Diese Systeme werden grob als die Windows-NT-Familie
+bezeichnet, aber es sollte verstanden sein, daß Windows 2000 und XP/2003 neue Protokoll-Erweiterungen
+einführen, die das Verhalten dieser Systeme unterschiedlich zu dem Verhalten von MS Windows NT4 machen.
+Allgemein, wo ein Server nicht das neuere oder erweiterte Protokoll unterstützt, fällt er zurück auf die
+Verwendung der NT4-Protokolle.
 </para>
 
 <para>
-The safest rule of all to follow is: use only one protocol!
+Die sicherste Regel von allen, die es zu befolgen gilt, ist: Verwenden Sie nur ein Protokoll!
 </para>
 
 </sect2>
 
 <sect2>
-<title>Name Resolution Order</title>
+<title>Die Reihenfolge der Namensauflösung</title>
 
 <para>
-Resolution of NetBIOS names to IP addresses can take place using a number
-of methods. The only ones that can provide NetBIOS name_type information
-are:
+Die Auflösung von NetBIOS-Namen auf IP-Adressen kann mittels vieler Methoden erfolgen. Die einzigen Methoden,
+die NetBIOS-Information vom Typ name_type bereitstellen können, sind:
 </para>
 
 <itemizedlist>
-	<listitem>WINS &smbmdash; the best tool.</listitem>
-	<listitem>LMHOSTS &smbmdash; static and hard to maintain.</listitem>
-	<listitem>Broadcast &smbmdash; uses UDP and cannot resolve names across remote segments.</listitem>
+	<listitem>WINS &smbmdash; das beste Werkzeug.</listitem>
+	<listitem>LMHOSTS &smbmdash; statisch und schwierig zu warten.</listitem>
+	<listitem>Broadcast &smbmdash; verwendet UDP und kann keine Namen über Segmente hinweg auflösen.</listitem>
 </itemizedlist>
 
 <para>
-Alternative means of name resolution include:
+Alternative Möglichkeiten der Namensauflösung inkludieren:
 </para>
 <itemizedlist>
-<listitem>Static <filename>/etc/hosts</filename> &smbmdash;  hard to maintain, and lacks name_type info.</listitem>
-<listitem>DNS &smbmdash; is a good choice but lacks essential name_type info.</listitem>
+<listitem>Statische <filename>/etc/hosts</filename> &smbmdash;  schwierig zu warten, fehlende name_type-Information.</listitem>
+<listitem>DNS &smbmdash; ist eine gute Wahl, jedoch fehlt die name_type-Information.</listitem>
 </itemizedlist>
 
 <para>
-Many sites want to restrict DNS lookups and avoid broadcast name
-resolution traffic. The <parameter>name resolve order</parameter> parameter is of great help here.
-The syntax of the <parameter>name resolve order</parameter> parameter is:
+Viele Installationen wollen DNS-Lookups verbieten und den Netzwerk-Verkehr, der durch Broadcast-Namensauflösung
+entsteht, vermeiden. Der Parameter <parameter>name resolve order</parameter> ist hier von grosser Hilfe.
+Die Syntax des Parameters <parameter>name resolve order</parameter> ist:
 <smbconfblock>
 <smbconfoption><name>name resolve order</name><value>wins lmhosts bcast host</value></smbconfoption>
 </smbconfblock>
-<emphasis>or</emphasis>
+<emphasis>oder</emphasis>
 <smbconfblock>
-<smbconfoption><name>name resolve order</name><value>wins lmhosts  	(eliminates bcast and host)</value></smbconfoption>
+<smbconfoption><name>name resolve order</name><value>wins lmhosts  	(eliminiert bcast und host)</value></smbconfoption>
 </smbconfblock>
-The default is:
+Der Standard ist:
 <smbconfblock>
 <smbconfoption><name>name resolve order</name><value>host lmhost wins bcast</value></smbconfoption>
 </smbconfblock>
-where <quote>host</quote> refers to the native methods used by the UNIX system
-to implement the gethostbyname() function call. This is normally
-controlled by <filename>/etc/host.conf</filename>, <filename>/etc/nsswitch.conf</filename> and <filename>/etc/resolv.conf</filename>.
+wobei <quote>host</quote> sich auf die nativen Methoden bezieht, die vom UNIX-System zur Implementation des
+Funktions-Aufrufs gethostbyname() verwendet werden. Dies wird normalerweise über die Dateien
+<filename>/etc/host.conf</filename>, <filename>/etc/nsswitch.conf</filename> und
+<filename>/etc/resolv.conf</filename> gesteuert.
 </para>
 </sect2>
 </sect1>
