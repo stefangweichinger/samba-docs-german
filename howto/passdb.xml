@@ -1190,7 +1190,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 
 			<para>
 <indexterm><primary>Benutzerverwaltung</primary></indexterm>
-<indexterm><primary>Benutzerkonten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
+<indexterm><primary>Benutzer-Konten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
 			Da Benutzerkonten mittels der sambaSamAccount Objektklasse verwaltet werden, sollten
 			Sie Ihre bereits existierenden Administrationswerkzeuge so modifizieren, dass sie mit
 			sambaSamAccount-Attributen umgehen können.
