@@ -26,7 +26,6 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	<author>&author.yoshi;<contrib>Deutsche Übersetzung</contrib></author>
 	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
@@ -390,7 +389,7 @@ eines Windows NT oder Windows 200x PDC, für normale Dienste wie telnet und ftp g
 
 
 <sect2>
-<title>Erfordernisse</title>
+<title>Anforderungen</title>
 
 <para>
 Wenn Sie eine Samba-Konfigurationsdatei haben, die Sie momentan benutzen, 
@@ -441,16 +440,17 @@ Anwendungen benötigt werden.
 Winbind-Bibliotheken unter Linux und Solaris</title>
 
 <para>
-PAM is a standard component of most current generation UNIX/Linux systems. Unfortunately, few systems install
-the <filename>pam-devel</filename> libraries that are needed to build PAM-enabled Samba. Additionally, Samba-3
-may auto-install the Winbind files into their correct locations on your system, so before you get too far down
-the track be sure to check if the following configuration is really
-necessary. You may only need to configure
-<filename>/etc/nsswitch.conf</filename>.
+PAM ist eine Standard-Komponente der meisten aktuellen UNIX/Linux-Systeme. Unglücklicherweise installieren
+wenige Systeme die <filename>pam-devel</filename>-Bibliotheken, die benötigt werden, um ein PAM-fähiges
+Samba zu kompilieren. Zusätzlich kann Samba-3 automatisch die Winbind-Dateien in die benötigten Verzeichnisse
+auf Ihrem System installieren, bevor Sie also zu tief graben, prüfen Sie zuerst, ob die nachfolgende
+Konfiguration wirklich notwendig ist. Es kann sein, daß Sie nur <filename>/etc/nsswitch.conf</filename>
+konfigurieren müssen.
 </para>
 
 <para>
-The libraries needed to run the &winbindd; daemon through nsswitch need to be copied to their proper locations:
+Die Bibliotheken zur Ausführung des &winbindd;-Daemons durch nsswitch müssen in die entsprechenden
+Verzeichnisse kopiert werden:
 </para>
 
 <para>
@@ -460,14 +460,14 @@ The libraries needed to run the &winbindd; daemon through nsswitch need to be co
 </para>
 
 <para>
-I also found it necessary to make the following symbolic link:
+Ich habe weiters herausgefunden, daß der folgende Symlink angelegt werden muß:
 </para>
 
 <para>
 &rootprompt; <userinput>ln -s /lib/libnss_winbind.so /lib/libnss_winbind.so.2</userinput>
 </para>
 
-<para>And, in the case of Sun Solaris:</para>
+<para>Und im Falle von Sun Solaris:</para>
 <screen>
 &rootprompt;<userinput>ln -s /usr/lib/libnss_winbind.so /usr/lib/libnss_winbind.so.1</userinput>
 &rootprompt;<userinput>ln -s /usr/lib/libnss_winbind.so /usr/lib/nss_winbind.so.1</userinput>
@@ -475,10 +475,9 @@ I also found it necessary to make the following symbolic link:
 </screen>
 
 <para>
-Now, as root you need to edit <filename>/etc/nsswitch.conf</filename> to 
-allow user and group entries to be visible from the &winbindd;
-daemon. My <filename>/etc/nsswitch.conf</filename> file look like 
-this after editing:
+Nun müssen Sie als root die Datei <filename>/etc/nsswitch.conf</filename> editieren, um Benutzer- und 
+Gruppen-Einträge vom &winbindd;-Daemon sichtbar zu machen. Mein Eintrag in 
+<filename>/etc/nsswitch.conf</filename> sieht nach dem Editieren so aus:
 </para>
 
 <para><programlisting>
@@ -488,9 +487,9 @@ this after editing:
 </programlisting></para>
 
 <para>	
-The libraries needed by the <command>winbindd</command> daemon will be automatically 
-entered into the <command>ldconfig</command> cache the next time 
-your system reboots, but it is faster (and you do not need to reboot) if you do it manually:
+Die vom Daemon <command>winbindd</command> benötigten Bibliotheken werden automatisch in den Cache von
+<command>ldconfig</command> eingetragen, sobald Ihr System das nächste Mal neu startet, aber es geht
+schneller (und ohne Reboot), wenn Sie das händisch tun:
 </para>
 
 <para>
@@ -498,21 +497,21 @@ your system reboots, but it is faster (and you do not need to reboot) if you do 
 </para>
 
 <para>
-This makes <filename>libnss_winbind</filename> available to winbindd 
-and echos back a check to you.
+Dies macht <filename>libnss_winbind</filename> für winbindd verfügbar und gibt eine Bestätigung zurück.
 </para>
 
 </sect3>
 
 <sect3>
-<title>NSS Winbind on AIX</title>
+<title>NSS Winbind auf AIX</title>
 
-<para>(This section is only for those running AIX.)</para>
+<para>(Dieser Abschnitt ist nur für jene, die AIX betreiben.)</para>
 
 <para>
-The Winbind AIX identification module gets built as <filename>libnss_winbind.so</filename> in the
-nsswitch directory of the Samba source. This file can be copied to <filename>/usr/lib/security</filename>,
-and the AIX naming convention would indicate that it should be named WINBIND. A stanza like the following:
+Das Winbind AIX Identifikations-Modul wird als <filename>libnss_winbind.so</filename> im
+nsswitch-Verzeichnis des Samba-Quellcodes kompiliert. Diese Datei kann ins Verzeichnis 
+<filename>/usr/lib/security</filename> kopiert werden, und die AIX-Namens-Konvention würde sagen, daß
+es WINBIND benannt werden sollte. Ein Absatz wie der folgende:
 </para>
 
 <para><programlisting>
@@ -522,45 +521,45 @@ WINBIND:
 </programlisting></para>
 
 <para>
-can then be added to <filename>/usr/lib/security/methods.cfg</filename>. This module only supports
-identification, but there have been success reports using the standard Winbind PAM module for
-authentication. Use caution configuring loadable authentication
-modules since you can make
-it impossible to logon to the system. More information about the AIX authentication module API can
-be found at <quote>Kernel Extensions and Device Support Programming Concepts for AIX</quote><ulink
-url="http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/aixprggd/kernextc/sec_load_mod.htm">
-in Chapter 18(John, there is no section like this in 18). Loadable Authentication Module Programming
-Interface</ulink> and more information on administering the  modules
-can be found at <ulink
+kann dann zu <filename>/usr/lib/security/methods.cfg</filename> hinzugefügt werden. Dieses Modul unterstützt
+nur Identifikation, aber es gibt Erfolgsmeldungen über die Verwendung des Standard-Winbind-PAM-Modules für
+Authentifikation. Seien Sie vorsichtig mit dem Konfigurieren ladbarer Authentifikationsmodule, da Sie es damit
+unmöglich machen können, sich am System anzumelden. Mehr Informationen zur AIX Authentifikationsmodul-API finden
+Sie unter <quote>Kernel Extensions and Device Support Programming Concepts for AIX</quote><ulink
+url="http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/aixprggd/kernextc/sec_load_mod.htm">.
+Chapter 18. Loadable Authentication Module Programming Interface</ulink>, und mehr Informationen zur Administration
+der Module finden Sie unter
+<ulink
 url="http://publibn.boulder.ibm.com/doc_link/en_US/a_doc_lib/aixbman/baseadmn/iandaadmin.htm"> <quote>System
 Management Guide: Operating System and Devices.</quote></ulink>
 </para>
 </sect3>
 
 <sect3>
-<title>Configure smb.conf</title>
+<title>Das Konfigurieren von smb.conf</title>
 
 <para>
-Several parameters are needed in the &smb.conf; file to control the behavior of &winbindd;. These
-are described in more detail in the <citerefentry><refentrytitle>winbindd</refentrytitle>
-<manvolnum>8</manvolnum></citerefentry> man page. My &smb.conf; file, as shown in <link
-linkend="winbindcfg"/>, was modified to include the necessary entries in the [global] section.
+Einige Parameter werden in der Datei &smb.conf; benötigt, um das Verhalten von &winbindd; zu beeinflussen.
+Diese werden in der <citerefentry><refentrytitle>winbindd</refentrytitle> 
+<manvolnum>8</manvolnum></citerefentry> manpage
+detaillierter beschrieben. Meine &smb.conf;, wie in <link linkend="winbindcfg"/> gezeigt, wurde verändert, um
+die notwendigen Einträge im Abschnitt [global] zu inkludieren.
 </para>
 
 <para><smbconfexample id="winbindcfg">
-		<title>smb.conf for Winbind set-up</title>
+		<title>smb.conf für Winbind</title>
 <smbconfsection>[global]</smbconfsection>
      &lt;...&gt;
-<smbconfcomment> separate domain and username with '+', like DOMAIN+username</smbconfcomment>
+<smbconfcomment> Trenne Domäne und Benutzername durch '+', wie DOMÄNE+benutzername</smbconfcomment>
 <smbconfoption><name>winbind separator</name><value>+</value></smbconfoption>
-<smbconfcomment> use uids from 10000 to 20000 for domain users</smbconfcomment>
+<smbconfcomment> Verwende UIDs von 10000 bis 20000 für Domänen-Benutzer</smbconfcomment>
 <smbconfoption><name>idmap uid</name><value>10000-20000</value></smbconfoption>
-<smbconfcomment> use gids from 10000 to 20000 for domain groups</smbconfcomment>
+<smbconfcomment> Verwende GIDs von 10000 bis 20000 für Domänen-Gruppen</smbconfcomment>
 <smbconfoption><name>idmap gid</name><value>10000-20000</value></smbconfoption>
-<smbconfcomment> allow enumeration of winbind users and groups</smbconfcomment>
+<smbconfcomment> Erlaube die Aufzählung von winbind-Benutzern und -Gruppen</smbconfcomment>
 <smbconfoption><name>winbind enum users</name><value>yes</value></smbconfoption>
 <smbconfoption><name>winbind enum groups</name><value>yes</value></smbconfoption>
-<smbconfcomment> give winbind users a real shell (only needed if they have telnet access)</smbconfcomment>
+<smbconfcomment> Gib winbind-Benutzern eine echte Shell (nur benötigt, wenn diese telnet-Zugriff haben)</smbconfcomment>
 <smbconfoption><name>template homedir</name><value>/home/winnt/%D/%U</value></smbconfoption>
 <smbconfoption><name>template shell</name><value>/bin/bash</value></smbconfoption>
 </smbconfexample></para>
@@ -569,13 +568,12 @@ linkend="winbindcfg"/>, was modified to include the necessary entries in the [gl
 
 
 <sect3>
-<title>Join the Samba Server to the PDC Domain</title>
+<title>Den Samba-Server der Domäne des PDCs anschliessen</title>
 
 <para>
-Enter the following command to make the Samba server join the 
-PDC domain, where <replaceable>DOMAIN</replaceable> is the name of 
-your Windows domain and <replaceable>Administrator</replaceable> is 
-a domain user who has administrative privileges in the domain.
+Geben Sie den folgenden Befehl ein, um den Samba-Server der Domäne des PDCs anzuschliessen, wobei 
+<replaceable>DOMÄNE</replaceable> der Name Ihrer Windows-Domäne ist, und <replaceable>Administrator</replaceable>
+der Name eines Domänen-Benutzers mit administrativen Rechten in der Domäne.
 </para>
 	
 
@@ -585,22 +583,19 @@ a domain user who has administrative privileges in the domain.
 
 
 <para>
-The proper response to the command should be: <quote>Joined the domain 
-<replaceable>DOMAIN</replaceable></quote> where <replaceable>DOMAIN</replaceable> 
-is your DOMAIN name.
+Die richtige Antwort auf diesen Befehl sollte sein: <quote>Joined the domain 
+<replaceable>DOMÄNE</replaceable></quote>. 
 </para>
 
 </sect3>
 
 <sect3>
-<title>Starting and Testing the <command>winbindd</command> Daemon</title>
+<title>Starten und Testen des <command>winbindd</command>-Daemons</title>
 
 <para>
-Eventually, you will want to modify your Samba startup script to 
-automatically invoke the winbindd daemon when the other parts of 
-Samba start, but it is possible to test out just the Winbind
-portion first. To start up Winbind services, enter the following 
-command as root:
+Sie wollen eventuell Ihr Samba-Startskript verändern, um den winbindd-Daemon automatisch aufzurufen, wenn
+die anderen Teile von Samba starten, aber es ist möglich, zuerst nur den Winbind-Teil alleine zu testen.
+Um den Winbind-Dienst zu starten, geben Sie folgenden Befehl als root ein:
 </para>
 	
 <para>
@@ -608,18 +603,17 @@ command as root:
 </para>
 
 <note><para>
-The above assumes that Samba has been installed in the <filename>/usr/local/samba</filename>
-directory tree. You may need to search for the location of Samba files if this is not the
-location of <command>winbindd</command> on your system.
+Obiges geht davon aus, daß Samba im Verzeichnis <filename>/usr/local/samba</filename> installiert wurde.
+Sie müssen nach dem Pfad Ihrer Samba-Dateien suchen, falls dies auf Ihrem System nicht der Pfad zu 
+<command>winbindd</command> ist.
 </para></note>
 
 <para>
-Winbindd can now also run in <quote>dual daemon modei</quote>. This will make it 
-run as two processes. The first will answer all requests from the cache,
-thus making responses to clients faster. The other will
-update the cache for the query that the first has just responded.
-The advantage of this is that responses stay accurate and are faster. 
-You can enable dual daemon mode by adding <option>-B</option> to the commandline:
+Winbindd kann mittlerweile auch im <quote>dual daemon mode</quote> laufen. Das läßt ihn in Form von zwei
+Prozessen laufen. Der erste beantwortet alle Anfragen aus dem Cache und beschleunigt damit die Antworten an
+die Clients. Der andere Prozess aktualisiert den Cache für die Anfrage, die der erste Prozess gerade
+beantwortet hat. Der Vorteil all dessen ist, daß die Antworten schneller sind und trotzdem richtig bleiben.
+Sie aktivieren diesen Modus mittels der Option <option>-B</option> auf der Befehlszeile:
 </para>
 
 <para>
@@ -627,22 +621,22 @@ You can enable dual daemon mode by adding <option>-B</option> to the commandline
 </para>
 
 <para>
-I'm always paranoid and like to make sure the daemon is really running.
+Ich bin immer paranoid und gehe sicher, daß der Daemon wirklich läuft.
 </para>
 
 <para>
 &rootprompt;<userinput>ps -ae | grep winbindd</userinput>
 </para>
 <para>
-This command should produce output like this, if the daemon is running you would expect
-to see a report something like this:
+Dieser Befehl sollte eine Ausgabe wie diese erzeugen, wenn der Daemon läuft, sollten Sie etwas wie das hier 
+sehen:
 </para>
 <screen>
 3025 ?        00:00:00 winbindd
 </screen>
 
 <para>
-Now, for the real test, try to get some information about the users on your PDC:
+Nun zum Echt-Test, versuchen Sie, Informationen über die Benutzer auf Ihrem PDC zu erhalten:
 </para>
 
 <para>
@@ -650,8 +644,7 @@ Now, for the real test, try to get some information about the users on your PDC:
 </para>
 
 <para>	
-This should echo back a list of users on your Windows users on 
-your PDC. For example, I get the following response:
+Dies sollte eine Liste Ihrer Windows-Benutzer auf Ihrem PDC zurückgeben. Ich bekomme zum Beispiel das:
 </para>
 
 <para><screen>
@@ -664,7 +657,7 @@ your PDC. For example, I get the following response:
 </screen></para>
 
 <para>
-Obviously, I have named my domain <quote>CEO</quote> and my <smbconfoption><name>winbind separator</name></smbconfoption> is <quote>+</quote>.
+quax Obviously, I have named my domain <quote>CEO</quote> and my <smbconfoption><name>winbind separator</name></smbconfoption> is <quote>+</quote>.
 </para>
 
 <para>
