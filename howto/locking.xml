@@ -442,44 +442,38 @@ Dies ist ein guter Rat.
 <title>Missions-kritische Hochverfügbarkeit</title>
 
 <para>
-In missions-kritischen Hochverfügbarkeits-Umgebungen ist die Datenintegrität oft eine Priorität.
-
-
-In mission-critical high-availability environments, data integrity is
-often a priority. Complex and expensive configurations are implemented
-to ensure that if a client loses connectivity with a file server, a
-failover replacement will be available immediately to provide
-continuous data availability.
+In Hochverfügbarkeits-Umgebungen ist die
+Integrität der Daten oft von hoher Priorität. Komplexe und teure Konfigurationen werden implementiert, um zu
+gewährleisten, daß wenn ein Client die Verbindung zum Dateiserver verliert, sofort ein Ersatz verfügbar ist,
+um durchgehende Verfügbarkeit der Daten zu gewährleisten.
 </para>
 
 <para>
-Windows client failover behavior is more at risk of application
-interruption than other platforms because it is dependant upon an
-established TCP transport connection. If the connection is interrupted
-&smbmdash; as in a file server failover &smbmdash; a new session must be established.
-It is rare for Windows client applications to be coded to recover
-correctly from a transport connection loss, therefore, most applications
-will experience some sort of interruption &smbmdash; at worst, abort and
-require restarting.
+Das Verhalten von Windows Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
+andere Plattformen, da es von einer aufgebauten TCP-Transport-Verbindung abhängt. Wenn die Verbindung
+unterbrochen wird
+&smbmdash; wie bei einem Datei-Server-Ausfall und dessen Ersatz durch einen Failover-Server &smbmdash;
+muß eine neue Verbindung aufgebaut werden. Es ist selten, daß eine Windows-Client-Applikation so programmiert
+ist, daß sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt, daher werden die meisten
+Applikationen in irgendeiner Art unterbrochen &smbmdash; im schlimmsten Fall abgebrochen, und erfordern
+einen Neustart.
 </para>
 
 <para>
-If a client session has been caching writes and reads locally due to
-opportunistic locking, it is likely that the data will be lost when the
-application restarts, or recovers from the TCP interrupt. When the TCP
-connection drops, the client state is lost. When the file server
-recovers, an oplock break is not sent to the client. In this case, the
-work from the prior session is lost. Observing this scenario with
-oplocks disabled, and the client was writing data to the file server
-real-time, then the failover will provide the data on disk as it
-existed at the time of the disconnect.
+Wenn eine Client-Session Schreib- und Lese-Vorgänge mittels Oplocks lokal gepuffert hat, ist es wahrscheinlich,
+daß die Daten verloren gehen, wenn die Applikation neu startet, oder sich nach der TCP-Unterbrechung wieder
+verbindet. Wenn die TCP-Verbindung ausfällt, ist der Status des Clients verloren. Wenn der Server die
+Verbindung wiederherstellt, wird keine Aufforderung zum Brechen des Oplocks an den Client gesandt. In diesem
+Fall ist die Arbeit aus der vorangehenden Session verloren. Durch Echtzeit-Überwachung dieses Szenarios mit
+deaktivierten Oplocks und des Clients, der Daten auf den Datei-Server schreibt, wird die
+Ausfallssicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
+haben.
 </para>
 
 <para>
-In mission-critical high-availability environments, careful attention
-should be given to opportunistic locking. Ideally, comprehensive
-testing should be done with all effected applications with oplocks
-enabled and disabled.
+In <quote>mission-critical</quote> Hochverfügbarkeits-Umgebungen, sollte grosse Vorsicht im Umgang mit
+Oplocks geübt werden. Idealerweise sollten umfassende Tests mit allen betroffenen Applikationen erfolgen, sowohl
+mit wie auch ohne aktivierten Oplocks.
 </para>
 
 </sect3>
@@ -487,53 +481,56 @@ enabled and disabled.
 </sect1>
 
 <sect1>
-<title>Samba Opportunistic Locking Control</title>
+<title>Samba Oplock Kontrolle</title>
 
 <para>
-Opportunistic locking is a unique Windows file locking feature. It is
-not really file locking, but is included in most discussions of Windows
-file locking, so is considered a de facto locking feature.
-Opportunistic locking is actually part of the Windows client file
-caching mechanism. It is not a particularly robust or reliable feature
-when implemented on the variety of customized networks that exist in
-enterprise computing.
+Oplocks sind ein einzigartiges Datei-Sperr-Feature von Windows. Sie sind keine richtigen Dateisperren, werden
+aber in den meisten Diskussionen über Windows-Dateisperren miteinbezogen, also de facto als Sperr-Feature
+betrachtet. Oplocks sind tatsächlich Teil des Windows-Client-Datei-Caching-Mechanismus. Sie sind kein speziell
+robustes oder zuverlässiges Feature, wenn sie in der Vielzahl von angepassten Netzwerken implementiert werden,
+die es in Unternehmens-Umgebungen gibt.
 </para>
 
 <para>
-Like Windows, Samba implements opportunistic locking as a server-side
-component of the client caching mechanism. Because of the lightweight
-nature of the Windows feature design, effective configuration of
-opportunistic locking requires a good understanding of its limitations,
-and then applying that understanding when configuring data access for
-each particular customized network and client usage state.
+Wie Windows implementiert Samba Oplocks als eine server-seitige Komponente des client-seitigen Cache-Mechanismus.
+Wegen der leichtgewichtigen Entwurfs des Windows-Features erfordert die effektive Konfiguration von Oplocks
+ein tieferes Verständnis ihrer Einschränkungen, und das Anwenden dieses Verständnisses beim Konfigurieren
+des Datenzugriffs für jeden einzelnen Zustand von Netzwerk- und Client-Verwendung.
 </para>
 
 <para>
-Opportunistic locking essentially means that the client is allowed to download and cache
-a file on their hard drive while making changes; if a second client wants to access the
-file, the first client receives a break and must synchronize the file back to the server.
-This can give significant performance gains in some cases; some programs insist on
-synchronizing the contents of the entire file back to the server for a single change.
+Opportunistisches Sperren bedeutet grundsätzlich, daß es dem Client erlaubt wird, eine Datei herunterzuladen, und
+sie lokal auf seiner Platte zu puffern, während er Veränderungen daran vornimmt; wenn ein zweiter Client auf
+die Datei zugreifen will, erhält der erste Client ein Signal zum Bruch des Oplocks und muß die Datei wieder
+zurück auf den Server synchronisieren. Dies kann in einigen Fällen deutliche Performance-Steigerungen
+verursachen; manche Programme bestehen auf der Synchronisation der gesamten Datei mit dem Server, nur für
+eine einzelne Veränderung.
 </para>
 
 <para>
-Level1 Oplocks (also known as just plain <quote>oplocks</quote>) is another term for opportunistic locking.
+Level1 Oplocks (auch bekannt als einfache <quote>oplocks</quote>) sind ein anderer Begriff für
+Opportunistisches Sperren.
 </para>
 
 <para>
-Level2 Oplocks provides opportunistic locking for a file that will be treated as
-<emphasis>read only</emphasis>. Typically this is used on files that are read-only or
-on files that the client has no initial intention to write to at time of opening the file.
+Level2 Oplocks bieten Opportunistisches Sperren für eine Datei, die als <emphasis>read only</emphasis>
+behandelt wird. Dies wird typischerweise für Dateien verwendet, die read-only sind, oder für Dateien, für die
+beim Öffnen der Datei keine Absicht besteht, darauf zu schreiben.
 </para>
 
 <para>
-Kernel Oplocks are essentially a method that allows the Linux kernel to co-exist with
-Samba's oplocked files, although this has provided better integration of MS Windows network
-file locking with the underlying OS, SGI IRIX and Linux are the only two OSs that are
-oplock-aware at this time.
+Kernel Oplocks sind grundsätzlich eine Methode, die es dem Linux-Kernel erlaubt, mit Samba's opportunistisch
+gesperrten Dateien zu koexistieren, obwohl dies bessere Integration von MS-Windows-Netzwerk-Dateisperren
+mit dem darunterliegenden Betriebssystem gebracht hat; SGI IRIX und Linux sind derzeit die einzigen 
+oplock-fähigen Betriebssysteme.
 </para>
 
 <para>
+Sie sollten Oplocks deaktivieren, wenn Sie auf die selben
+Dateien sowohl von UNIX/Linux- und SMB-Clients zugreifen, außer wenn Ihr System Kernel-Oplocks unterstützt.
+
+
+
 Unless your system supports kernel oplocks, you should disable oplocks if you are
 accessing the same files from both UNIX/Linux and SMB clients. Regardless, oplocks should
 always be disabled if you are sharing a database file (e.g., Microsoft Access) between
