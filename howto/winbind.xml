@@ -24,18 +24,10 @@
 			<orgname>SNAP</orgname>
 		</affiliation>
 	</author>
-	<author>
-		<firstname>Jochen</firstname><surname>Schmidt</surname>
-		<affiliation>
-			<orgname>Millenux</orgname>
-			<address><email>jochen.schmidt@millenux.com</email></address>
-		</affiliation>
-		<contrib>German Translation</contrib>
-	</author>
-
 	&author.jelmer;
 	&author.jht;
 	<pubdate>27 June 2002</pubdate>
+	<author>&author.yoshi;<contrib>Deutsche �bersetzung</contrib></author>
 </chapterinfo>
 
 <title>Winbind: Benutzung von Dom�nenkonten</title>
@@ -50,7 +42,7 @@
 
 	<para>
 	Es gibt eine weitere Sache, ohne welche die UNIX und Microsoft Windows Netwerk
-	Interoperabilität leiden würde. Es ist zwingend notwendig, daß es einen Mechanismus
+	Interoperabilit�t leiden w�rde. Es ist zwingend notwendig, daß es einen Mechanismus
 	gibt, mit dem es möglich ist Dateien über UNIX Systeme hinweg bereitzustellen und 
 	gleichzeitig die Integrität der Domänen-Benutzer- und und Gruppenrechte zu wahren. 
 	</para>
