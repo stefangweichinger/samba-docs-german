@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="ClientConfig">
 <chapterinfo>
 	&author.jht;
-	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>MS Windows Network Configuration Guide</title>
+<title>Anleitung zur MS Windows Netzwerkkonfiguration</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge/title>
 
 <para>
 Occasionally network administrators will report difficulty getting Microsoft Windows clients to interoperate
@@ -18,19 +16,19 @@ servers. Yet there is repetitious need to provide detailed Windows client config
 </para>
 
 <para>
-The purpose of this chapter is to graphically illustrate MS Windows client configuration for the most common
-critical aspects of such configuration. An experienced network administrator will not be interested in the
-details of this chapter.
+Ziel dieses Kapitels ist es, die MS Windows Clientkonfiguration für die meisten kritischen Aspekte einer solchen
+Konfiguration grafisch darzustellen. Ein erfahrener Netzwerkadministrator wird nicht weiter an Einzelheiten dieses
+Kapitels interessiert sein.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Technical Details</title>
+<title>Technische Details</title>
 
 <para>
-This chapter discusses TCP/IP protocol configuration as well as network membership for the platforms
-that are in common use today. These are:
+Dieses Kapitel beschäftigt sich mit der Konfiguration des TCP/IP Protokolls und auch mit der Netzwerkumgebung für die meisten
+aktuell verwendeten Plattformen. Diese sind: 
 </para>
 
 <itemizedlist>
@@ -46,45 +44,45 @@ that are in common use today. These are:
 </itemizedlist>
 
 	<sect2>
-	<title>TCP/IP Configuration</title>
+	<title>TCP/IP Konfiguration</title>
 
 	<para>
-	The builder of a house must ensure that all construction takes place on a firm foundation.
-	The same is true of TCP/IP-based networking. Fundamental network configuration problems
-	will plague all network users until they are resolved. 
+	EIn Hausbauer muss sicherstellen, dass alle Konstruktionen auf Basis einer sauberen Grundlage entstehen.
+	Dasselbe gilt für TCP/IP-basiertes Vernetzen. Grundlegende Probleme mit Netzwerkkonfigurationen plagen alle 
+	Benutzer eines Netzwerkes bis zu deren Lösung.
 	</para>
 
 	<para>
-	Microsoft Windows workstations and servers can be configured either with fixed
-	IP addresses or via DHCP. The examples that follow demonstrate the use of DHCP
-	and make only passing reference to those situations where fixed IP configuration
-	settings can be effected.
+	Microsoft Windows Arbeitsstationen und Server können entweder mit fixen IP-Adressen oder per DHCP konfiguriert werden.
+	Die folgenden Beispiele zeigen die Anwendung von DHCP und beschäftigen sich nur beiläufig mit Situationen, in denen
+	fixe IP-Konfigurationen berührt sind.
 	</para>
 
 	<para>
-	It is possible to use shortcuts or abbreviated keystrokes to arrive at a
-	particular configuration screen. The decision was made to base all examples in this
-	chapter on use of the <guibutton>Start</guibutton> button.
+	Es ist möglich, Shortcuts oder gespeicherte Tastatureingaben zu verwenden, um zu einem bestimmten Konfigurationsbildschim
+	zu gelansgen. Wir haben uns entschieden, alle Beispiele dieses Kapitels auf Basis des <guibutton>Start</guibutton> Knopfes 
+	zu erläutern.
 	</para>
 
 		<sect3>
 		<title>MS Windows XP Professional</title>
 
 		<para>
-		There are two paths to the Windows XP TCP/IP configuration panel. Choose the access method that you prefer:
+		Es gibt 2 Wege zu einer Windows XP TCP/IP Konfiguration. Wählen Sie Ihre bevorzugte Methode:
 		</para>
 
 		<para>
-		Click <guimenu>Start -> Control Panel -> Network Connections</guimenu>
+		Klicken Sie auf <guimenu>Start -> Systemsteuerung -> Netzwerk Verbindungen</guimenu>
 		</para>
 
 		<para>
-		<emphasis>Alternately,</emphasis> click <guimenu>Start -></guimenu>, and right click <guimenu>My Network Places</guimenu>
-		then select <guimenuitem>Properties</guimenuitem>
+		<emphasis>Alternativ </emphasis> klicken Sie auf <guimenu>Start -></guimenu>, und rechtsklicken Sie  
+		<guimenu>Meine Netzwerkverbindungen</guimenu>, dann wählen Sie
+		<guimenuitem>Eigenschaften</guimenuitem>
 		</para>
 
 		<para>
-		The following procedure steps through the Windows XP Professional TCP/IP configuration process:
+		Der folgende Ablauf durchläuft den Windows XP Professional TCP/IP Konfigurationsprozess:
 		</para>
 
 		<procedure>
