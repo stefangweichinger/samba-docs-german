@@ -23,7 +23,6 @@
 </chapterinfo>
 
 <title>Unterstützung des CUPS-Drucksystems</title>
-(((Die Abschnittsnummerierung im PDF weicht von der im Buch ab. Bitte prüfen)))
 <sect1>
 
 	<title>Einleitung</title>
@@ -635,9 +634,9 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
         Interface (GDI). Es ist ein Teil und Paket des Betriebssystems selbst, um darauf aufzubauen. Dieser GDI-Kern
 	wird als gemeinsame einheitliche Grundlage für alle Windows-Programme verwendet, um Bilder,
 	Schriften und Dokumente <emphasis>am Bildschirm ("on screen")</emphasis> darzustellen, genauso wie
-	<emphasis>auf Papier ("on paper")</emphasis> (Druck). (((Daher können Druckertreiber-Hersteller sich mit ihrem
-	Druckertreiber-Input auf einen wohldefinierten GDI-Output standardisieren--Daher können Druckertreiber-Hersteller bei ihrem
-	Druckertreiber-Input von einem wohldefinierten GDI-Output ausgehen))). Das Erreichen von
+	<emphasis>auf Papier ("on paper")</emphasis> (Druck). 
+	Daher können Druckertreiber-Hersteller bei ihrem
+	Druckertreiber-Input von einem wohldefinierten GDI-Output ausgehen. Das Erreichen von
 	WYSIWYG (<quote>What You See Is What You Get</quote>) ist relativ einfach, weil die On-screen-Grafik-Primitive genauso wie die on-paper gezeichneten Objekte von einer gemeinsamen Quelle stammen.
 	Diese Quelle, die GDI, erzeugt oft ein Dateiformat namens Enhanced MetaFile (EMF). EMF wird vom
 	Druckertreiber verarbeitet und in ein drucker-spezifisches Format konvertiert.
@@ -954,7 +953,7 @@ Abschnitt "comments" in der Datei <filename>mime.types</filename> selbst. Eine e
 
 Das bedeutet: Wenn ein Dateiname das Suffix <filename>.pdf</filename> hat oder der magische String
 <emphasis>%PDF</emphasis> exakt am Beginn der Datei selbst (Offset 0 vom Start) steht, ist dies eine
-PDF-Datei ((<parameter>application/pdf</parameter>). Eine weitere Regel ist:
+PDF-Datei (<parameter>application/pdf</parameter>). Eine weitere Regel ist:
 
 <filterline>
  application/postscript  ai eps ps string(0,%!) string(0,&lt;04&gt;%!)
@@ -1511,11 +1510,10 @@ zwei Dateien editieren:
 <listitem><para><filename>/etc/cups/mime.types</filename></para></listitem>
 </itemizedlist>
 
-<para>(((übersetzen)))
-Both contain entries (at the end of the respective files) which must
-be uncommented to allow RAW mode operation for
-<parameter>application/octet-stream</parameter>. In <filename>/etc/cups/mime.types</filename>
-make sure this line is present:
+<para>
+Beide enthalten Einträge (am Ende der jeweiligen Datei), die auskommentiert werden müssen, um RAW-Verarbeitung
+des MIME-Typs <parameter>application/octet-stream</parameter> zu erlauben. In <filename>/etc/cups/mime.types</filename>
+muss diese Zeile vorhanden sein:
 
 <indexterm><primary>application/octet-stream</primary></indexterm>
 
@@ -1523,10 +1521,9 @@ make sure this line is present:
 application/octet-stream
 </filterline>
 
-(((übersetzen)))This line (with no specific auto-typing rule set) makes all files
-not otherwise auto-typed a member of <parameter>application/octet-stream</parameter>. In
-<filename>/etc/cups/mime.convs</filename>, have this
-line:
+Diese Zeile (ohne spezifisches (((auto-typing rule set)))? ordnet alle Dateien, die nicht anderswo automatisch
+typisiert wurden, dem Typ <parameter>application/octet-stream</parameter> zu. Stellen Sie sicher, daß Sie in
+<filename>/etc/cups/mime.convs</filename> folgende Zeile haben:
 
 <filterline>
 application/octet-stream   application/vnd.cups-raw   0   -
@@ -3032,7 +3029,7 @@ empfiehlt es sich, den Treiber so zu benennen wie den Drucker.
 
 <para>
 Es ist überhaupt nicht einfach. Ich höre Sie fragen:
-<quote>Wie weiß ich, welche Dateien Driver File</quote>, <quote>Data File</quote>, <quote>Config File</quote>,
+<quote>Wie weiß ich, welche Dateien <quote>Driver File</quote>, <quote>Data File</quote>, <quote>Config File</quote>,
 <quote>Help File</quote> und <quote>Language Monitor File</quote> im jeweiligen Fall sind?</quote>
 &smbmdash; Um eine Antwort zu finden, können Sie sich ja mal ansehen, wie eine Windows NT-Maschine mit einem
 freigegebenen Drucker uns diese Dateien anbietet. Erinnern Sie sich, dass diese ganze Prozedur vom Samba-Team
@@ -4223,8 +4220,8 @@ innerhalb der letzten 604800 Sekunden (entspricht einer Woche) zu drucken.
 <para>
 Damit CUPS richtig zählt, muss die Druckdatei durch den CUPS-pstops-Filter laufen; ansonsten verwendet es einen
 Ersatzwert von <quote>eins</quote>. Manche Druckdateien passieren diesen Filter nicht (z.B. Bilddateien), jedoch
-sind diese ohnehin meist einseitige Aufträge. Das bedeutet: Aufträge von proprietären Treibern für den
-Zieldrucker, (((die auf den Clients laufen, die von CUPS/Samba als <quote>raw</quote> weitergegeben werden -- Bezüge unklar; vgl. Buch, s.314))) (also ohne
+sind diese ohnehin meist einseitige Aufträge. Das bedeutet: Aufträge von proprietären Treibern (die auf den Clients laufen),
+die von CUPS/Samba als <quote>raw</quote> weitergegeben werden (also ohne
 Filterung), werden auch als einseitige Aufträge gezählt!
 </para>
 
@@ -4463,7 +4460,7 @@ application/vnd.cups-postscript application/vnd.cups-raw 0 \
 Sie werden einen <parameter>mein_PJL_entfernungs_filter</parameter> schreiben müssen (dies könnte ein 
 Shell-Skript sein), der die PS-Daten analysiert und das unerwünschte PJL entfernt. Dies muss konform zum 
 CUPS-Filter-Design passieren (vor allem muss es die Parameter Druckername, Job-ID,
-Benutzername, Jobtitle, Kopien, Druckoptionen und eventuell den Dateinamen empfangen und weitergeben). Es(((Der Filter?))) wird als für alle ausführbar
+Benutzername, Jobtitle, Kopien, Druckoptionen und eventuell den Dateinamen empfangen und weitergeben). Der Filter wird als für alle ausführbar
 in <filename>/usr/lib/cups/filters/</filename> installiert und wird von CUPS aufgerufen, wenn es einen
 MIME-Typen <parameter>application/vnd.cups-postscript</parameter> erkennt.
 </para>
@@ -4814,7 +4811,7 @@ einen Drucker mit dem Druck-Pfad <parameter>http://cupsserver:631/printers/druck
 Wir suchen nach wie vor nach einer Lösung dieses Problems. Vielleicht könnte ein Anmelde-Skript automatisch
 Drucker für alle Benutzer installieren.</para></sect2>
 
-<sect2><title>FIXME : Print Change Notify Functions on NT-clients</title>
+<sect2><title>(((Print Change Notify Functions on NT-clients)))</title>
 <para>For print change, notify functions on NT++ clients.(((übersetzen)))
 Diese müssen zuerst den <command>Server</command>-Dienst ausführen. (In XP wurde er in
 <command>Datei- &amp; und Druckerfreigabe für Microsoft-Netzwerke</command> umbenannt).</para></sect2>
@@ -4965,7 +4962,7 @@ großen Netzwerk passieren kann.</para></sect2>
 <para>Verwenden Sie <command>smbclient</command>, um sich mit irgendeiner Windows-Maschine mit einem freigegebenen
 PS-Drucker zu verbinden: <command>smbclient //windowsbox/print\$ -U guest</command>.
 Sie können ins Unterverzeichnis <filename>W32X86/2</filename> vordringen, um mittels 
-<command>mget ADOBE*</command> die Dateien (und andere)(((?))) zu erhalten, oder ins Verzeichnis 
+<command>mget ADOBE*</command> die Dateien zu erhalten, oder ins Verzeichnis 
 <filename>WIN40/0</filename>. Eine andere Möglichkeit ist es, die Dateien als <filename>*.exe</filename>-Package
 von der Adobe-Website herunterzuladen.</para></sect2>
 </sect1>
