@@ -63,54 +63,51 @@ Kodierung bedeutet, dass jeder Buchstabe genau ein Byte groß ist.
 </para>
 
 <para>
-
-
-
-There are also charsets that support extended characters, but those need at least
-twice as much storage space as does ASCII encoding. Such charsets can contain
-<command>256 * 256 = 65536</command> characters, which is more than all possible
-characters one could think of. They are called multibyte charsets because they use
-more then one byte to store one character. 
+Es gibt auch Charsets, die erweiterte Zeichen unterstützen, aber diese brauchen zumindest doppelt so viel
+Speicherplatz wie die ASCII-Kodierung. Solche Zeichensätze können <command>256 * 256 = 65536</command>
+Zeichen enthalten, was mehr ist, als alle möglichen Zeichen, die man sich vorstellen kann. Diese
+Charsets werden Multibyte-Charsets genannt, weil sie mehr als ein Byte zum Speichern eines Zeichens verwenden.
 </para>
 
 <para>
-One standardized multibyte charset encoding scheme is known as
-<ulink url="http://www.unicode.org/">unicode</ulink>.  A big advantage of using a
-multibyte charset is that you only need one. There is no need to make sure two
-computers use the same charset when they are communicating.
+Ein standardisiertes Multibyte-Charset ist bekannt als <ulink url="http://www.unicode.org/">Unicode</ulink>.
+Ein grosser Vorteil bei der Verwendung eines Multibyte-Charsets ist, daß Sie nur eines brauchen.
+Man muß sich nicht mehr darum kümmern, daß zwei Computer dasselbe Charset verwenden, wenn sie miteinander
+kommunizieren.
 </para>
 
-<para>Old Windows clients use single-byte charsets, named 
-<parameter>codepages</parameter>, by Microsoft. However, there is no support for 
-negotiating the charset to be used in the SMB/CIFS protocol. Thus, you 
-have to make sure you are using the same charset when talking to an older client.
-Newer clients (Windows NT, 200x, XP) talk unicode over the wire.
+<para>Alte Windows Clients verwenden Single-Byte-Charsets, namens 
+<parameter>codepages</parameter>, von Microsoft. Es gibt jedoch keine Unterstützung für das Aushandeln des
+Charsets im SMB/CIFS-Protokoll. Daher müssen Sie gewährleisten, daß sie den richtigen Zeichensatz verwenden,
+wenn Sie mit einem älteren Client arbeiten. Neuere Clients (Windows NT, 200x, XP) verwenden bereits Unicode
+im Netzwerk.
 </para>
 </sect1>
 
 <sect1>
-<title>Samba and Charsets</title>
+<title>Samba und Zeichensätze</title>
 
 <para>
-As of Samba-3, Samba can (and will) talk unicode over the wire. Internally, 
-Samba knows of three kinds of character sets: 
+Seit Samba-3 kann Samba Unicode über das Netzwerk verwenden (und tut es auch). Intern kennt Samba drei Typen
+von Zeichensätzen:
 </para>
 
 <variablelist>
 	<varlistentry>
 		<term><smbconfoption><name>unix charset</name></smbconfoption></term>
 		<listitem><para>
-		This is the charset used internally by your operating system. 
-		The default is <constant>UTF-8</constant>, which is fine for most 
-		systems, which covers all characters in all languages. The default
-		in previous Samba releases was <constant>ASCII</constant>. 
+		Dies ist der Zeichensatz, der intern von Ihrem Betriebssystem verwendet wird.
+		Die Voreinstellung ist <constant>UTF-8</constant>, was passend für die meisten Systeme ist,
+		und alle Zeichen aller Sprachen abdeckt. Die Voreinstellung in älteren Samba-Versionen war
+		<constant>ASCII</constant>.		
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term><smbconfoption><name>display charset</name></smbconfoption></term>
-		<listitem><para>This is the charset Samba will use to print messages
-		on your screen. It should generally be the same as the <parameter>unix charset</parameter>.
+		<listitem><para>Dies ist der Zeichensatz, den Samba verwendet, um Meldungen auf Ihrem
+		Bildschirm anzuzeigen. Er sollte allgemein derselbe sein wie 
+		<parameter>unix charset</parameter>.
 		</para></listitem>
 	</varlistentry>
 
