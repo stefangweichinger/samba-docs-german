@@ -36,7 +36,7 @@
 		ist mittlerweile sehr populär geworden. Alle großen
 		Linux Distributionen liefern dieses als das Standard-Drucksystem
 		aus. Für viele ist es ein mystisches Tool.
-		Meistens funktioniert es einfach. Daher wird es 
+		Meistens funktioniert es einfach. Daher wird es
 		oft als <quote>Black Box</quote> angesehen, und solange
 		es funktioniert, möchte sich auch niemand damit
 		befassen. Sobald aber ein kleines Problem auftritt,
@@ -55,7 +55,7 @@
 		bisheriges Wissen bzgl. Drucken an.
 		Versuchen Sie eher, CUPS von Grund auf zu
 		vestehen. Diese Dokumentation möchte Sie zu einem
-		kompletten Verständniss von CUPS führen. 
+		kompletten Verständniss von CUPS führen.
 		Beginnen wir mit den grundsätzlichen Dingen.
 		</para>
 
@@ -69,9 +69,9 @@
 		CUPS ist mehr als nur ein System für das Printspooling. Es ist
 		ein komplettes Drucker-Management-System, welches das
 		neue Internet Printing Protocol (IPP) erfüllt. IPP ist
-		ein IETF- (Industry-and-Internet-Engineering Task Force) Standard für 
+		ein IETF- (Industry-and-Internet-Engineering Task Force) Standard für
 		das Drucken in Netzwerken. Viele seiner Funktionen können
-		remote oder lokal über einen Webbrowser verwaltet 
+		remote oder lokal über einen Webbrowser verwaltet
 		werden (Bereitstellung eines plattform-unabhängigen
 		Zugriffs auf den CUPS-Printserver). Zusätzlich hat es die
 		traditionellen Kommandozeilen-Tools und weitere moderne
@@ -87,7 +87,7 @@
 		Dateiformat in das benötigte Druckerformat). Diese
 		gibt CUPS auf vielfache Arten ähnliche Fähigkeiten wie das MS
 		Windows Print Monitoring System. Sind Sie ein CUPS-
-		Verfechter, dann werden Sie sicher argumentieren, daß CUPS 
+		Verfechter, dann werden Sie sicher argumentieren, daß CUPS
 		sogar besser ist! Wie auch immer, lassen Sie uns
 		damit weitermachen, wie man CUPS für eine Zusammenarbeit
 		mit MS Windows Druckclients über SAMBA konfigurieren kann.
@@ -139,7 +139,7 @@
 		Wenn Samba mit <filename>libcups</filename> kompiliert
 		wurde, verwendet <smbconfoption><name>printcap</name><value>cups</value></smbconfoption>
 		die CUPS-API, um Drucker aufzufinden, Jobs zu übergeben,
-		Queues abzufragen usw. 
+		Queues abzufragen usw.
 		Sonst wird dies auf die System V Druck-Kommandos mit der zusätzlichen
 		<command>-oraw</command>-Option umgesetzt.
 		Auf einem Linux-System können Sie mit dem
@@ -159,8 +159,8 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 </screen></para>
 
 		<para>
-		Die Zeile 
-		<computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput> 
+		Die Zeile
+		<computeroutput>libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)</computeroutput>
 		bedeutet, daß der CUPS-Support in Samba einkompiliert wurde.
 		In diesem Fall, und bei gesetztem printing = cups,
 		<emphasis>werden anderweitige manuell gesetzte print
@@ -170,10 +170,10 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 
 		<tip><para>Sollte es aus irgendeinem Grund nötig sein,
 		Ihre eigenen Druck-Kommandos zu setzen, können sie
-		dies erreichen, in dem sie die Option 
+		dies erreichen, in dem sie die Option
 		<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
 		verwenden.
-		Sie verlieren so jedoch die Unterstützung der engen CUPS/Samba-Integration. 
+		Sie verlieren so jedoch die Unterstützung der engen CUPS/Samba-Integration.
 		Wenn Sie das vorhaben, müssen Sie folgende Druckkommandos manuell konfigurieren
 		(am wichtigsten:	
 		<smbconfoption><name>print command</name></smbconfoption>; andere Kommandos sind
@@ -242,7 +242,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<sect2>
 	<title>Komplexere CUPS-Einstellungen in der &smb.conf;</title>
 	<para>
-	<link linkend="overridesettings">Die nächste Konfiguration</link> 
+	<link linkend="overridesettings">Die nächste Konfiguration</link>
 	beschreibt ein etwas komplexeres Drucker-Setup der &smb.conf;.
 	Es aktiviert generellen CUPS-Druck-Support für alle Drucker, definiert aber einen
 	Drucker, der davon abweichend konfiguriert wird.
@@ -288,7 +288,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Datei <filename>/tmp/smbprn.log</filename> und löscht die Auftrags-Datei. Außerdem ist der
 	Parameter <smbconfoption><name>printer admin</name></smbconfoption> dieser Freigabe
 	<quote>kurt</quote> (nicht die Gruppe <quote>@ntadmins</quote>), Gast-Zugriff ist nicht erlaubt,
-	die Freigabe wird nicht in der Netzwerkumgebung angezeigt (also müssen Sie wissen, daß es sie 
+	die Freigabe wird nicht in der Netzwerkumgebung angezeigt (also müssen Sie wissen, daß es sie
 	gibt), und sie erlaubt nur den Zugriff von nur drei Hosts. Um CUPS daran zu hindern, sich
 	hier einzumischen und die Druckjobs dieser Freigabe zu übernehmen, müssen wir dies setzen:
 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption> und
@@ -303,7 +303,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<para>
 	Bevor wir in all die Konfigurations-Optionen eintauchen, lassen Sie uns ein paar Punkte
 	klären. <emphasis>Netzwerk-Druck muß organisiert und korrekt eingerichtet werden</emphasis>.
-	Dies passiert meistens nicht. Bestehenden alten Systemen oder 
+	Dies passiert meistens nicht. Bestehenden alten Systemen oder
 	LAN-Umgebungen in kleinen Firmen mangelt es oft an Design und guter Wartung.
 	</para>
 
@@ -408,7 +408,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<title>Installation von Windows Client Treibern</title>
 
 	<para>
-	Die Druckertreiber auf den Windows Clients können auf zwei funktional verschiedene Arten 
+	Die Druckertreiber auf den Windows Clients können auf zwei funktional verschiedene Arten
 	installiert werden:
 	</para>
 
@@ -468,7 +468,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>application/vnd.cups-raw</primary></indexterm>
 
 	<filterline>
-		application/octet-stream   application/vnd.cups-raw   0   - 
+		application/octet-stream   application/vnd.cups-raw   0   -
 	</filterline>
 
 	Wenn diese beiden Dateien nicht korrekt für RAW-Windows-CLient-Druck konfiguriert sind, kann es sein, daß
@@ -496,13 +496,13 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	erlaubt, zum Drucker zu gelangen. In der Voreinstellung können Sie nur andere (bekannte) MIME-Typen
 	 <quote>raw</quote> senden. Das <quote>raw</quote>-Senden von Daten bedeutet, daß CUPS nicht versucht,
 	die Daten zu konvertieren und sie einfach unangetastet an den Drucker weiterleitet (sehen Sie das nächste
-	Kapitel für noch mehr Hintergrund-Erklärungen dazu). 
+	Kapitel für noch mehr Hintergrund-Erklärungen dazu).
 	</para>
 	</formalpara>
 
 	<para>
 	Dies ist alles, was Sie darüber wissen müssen, um die CUPS/Samba-Combo zum <quote>raw</quote>-Druck
-	der von Windows-Clients, die Herstellertreiber lokal installiert haben, vorbereiteten Dateien 
+	der von Windows-Clients, die Herstellertreiber lokal installiert haben, vorbereiteten Dateien
 	zu bringen. Wenn Sie nicht an Hintergrund-Informationen zu erweitertem CUPS/Samba-Druck interessiert
 	sind, überspringen Sie einfach die restlichen Abschnitte dieses Kapitels.
 	</para>
@@ -590,8 +590,8 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 
 	<listitem><para>
 	Vielleicht haben Sie bereits zu viele <quote>blue screens</quote> gesehen, die von Druckertreibern
-	herrühren, die unvollständig "debugged" wurden und in NT 
-	<quote>kernel mode</quote> laufen?</para></listitem> 
+	herrühren, die unvollständig "debugged" wurden und in NT
+	<quote>kernel mode</quote> laufen?</para></listitem>
 	
 	</itemizedlist>
 
@@ -623,7 +623,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>PCL</primary></indexterm>
 	<indexterm><primary>PDL</primary></indexterm>
 	Bei den meisten Dateiformaten können Sie nicht erwarten, sie einfach in den Drucker zu schmeissen, und
-	sie werden gedruckt. Es muß eine Wandlung des Dateiformats passieren. Das Problem dabei ist, daß es 
+	sie werden gedruckt. Es muß eine Wandlung des Dateiformats passieren. Das Problem dabei ist, daß es
 	keinen gemeinsamen Standard für Druck-Datei-Formate über alle Hersteller und Druckertypen gibt.
 	Während sich PostScript (Handelsmarke von Adobe) und, zu einem gewissen Teil, PCL (Handelsmarke von HP)
 	zu halb-offiziellen <quote>Standards</quote> entwickelt haben, indem sie die weitest verbreiteten
@@ -658,7 +658,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<indexterm><primary>PDF</primary></indexterm>
 	Zusätzlich zur GDI-Basis in MS Windows, hat Apple sich entschieden, Papier- und Bildschirmausgaben
 	für seine (auf BSD-UNIX basierende, wußten Sie das?) Betriebssysteme Mac OS X und Darwin auf
-	eine gemeinsame Basis zu stellen. 
+	eine gemeinsame Basis zu stellen.
 	<indexterm><primary>X Window System</primary></indexterm>
 	<indexterm><primary>PostScript</primary></indexterm>
 	<indexterm><primary>PCL</primary></indexterm>
@@ -758,7 +758,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	Jedoch gibt es auch andere Drucker-Typen da draussen. Diese Typen wissen nicht, wie man PostScript
 	druckt. Sie verwenden ihre eigene Page Description Language (PDL, oft proprietär). Das Drucken auf
 	diesen Geräten stellt höhere Anforderungen. Da Ihre UNIX-Anwendungen meistens PostScript erzeugen,
-	und da diese Geräte kein PostScript verstehen, müssen Sie die Druckdateien auf dem host in ein 
+	und da diese Geräte kein PostScript verstehen, müssen Sie die Druckdateien auf dem host in ein
 	für Ihren Drucker passendes Format konvertieren, bevor Sie diese an den Drucker senden können.
 	</para>
 	</sect2>
@@ -795,7 +795,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	es hat einige Mängel.
 	<indexterm><primary>Ghostscript</primary><secondary>ESP</secondary><see>ESP GhostScript</see></indexterm>
 	Daher wurde ESP Ghostscript als eine Erweiterung zu GNU Ghostscript entwickelt, mit vielen Bug-fixes,
-	zusätzlichen Geräten und Erweiterungen. Es wird gemeinsam von Entwicklern von CUPS, Gimp-Print, 
+	zusätzlichen Geräten und Erweiterungen. Es wird gemeinsam von Entwicklern von CUPS, Gimp-Print,
 	MandrakeSoft, SuSE, Red Hat, und Debian verwaltet und entwickelt. Es beinhaltet das Gerät
 	<quote>cups</quote> (essentiell wichtig, um von CUPS aus auf Nicht-PS-Drucker zu drucken).
 	</para></tip>
@@ -865,14 +865,14 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<warning><para>
 	<indexterm><primary>foomatic</primary></indexterm>
 	<indexterm><primary>cupsomatic</primary></indexterm>
-	Für tatsächliche PostScript-Drucker verwenden Sie <emphasis>nicht</emphasis> die 
+	Für tatsächliche PostScript-Drucker verwenden Sie <emphasis>nicht</emphasis> die
 	<emphasis>Foomatic</emphasis> oder <emphasis>cupsomatic</emphasis> PPDs von Linuxprinting.org. Mit diesen
 	Geräten sind immer die vom Hersteller bereitgestellten PPDs erste Wahl!
 	</para></warning>
 
 	<tip><para>
 	Wenn Sie nach einem Original-Hersteller-PPD eines spezifischen Geräts suchen, und Sie wissen, daß eine
-	NT4-Box (oder irgendeine andere Windows-Box) in Ihrem LAN den PostScript-Treiber installiert hat, 
+	NT4-Box (oder irgendeine andere Windows-Box) in Ihrem LAN den PostScript-Treiber installiert hat,
 	verwenden Sie einfach <command>smbclient //NT4-box/print\$ -U username</command>, um auf das
 	Windows-Verzeichnis zuzugreifen, in dem alle Druckertreiber-Dateien gespeichert sind. Durchsuchen Sie
 	zuerst das Unterverzeichnis <filename>W32X86/2</filename> nach den gesuchten PPDs.
@@ -920,9 +920,9 @@ Wenn CUPS eine PostScript-Datei in ein Bitmap rastert, passiert dies in 2 Stufen
 </itemizedlist>
 
 <para>
-Stellen Sie sicher, daß Ihre Ghostscript-Version das Gerät <quote>cups</quote> einkompiliert hat 
+Stellen Sie sicher, daß Ihre Ghostscript-Version das Gerät <quote>cups</quote> einkompiliert hat
 (Überprüfung mittels <command>gs -h | grep cups</command>). Ansonsten könnten Sie das gefürchtete
-<computeroutput>Unable to convert file 0</computeroutput> in Ihrer CUPS error_log Datei vorfinden. Um 
+<computeroutput>Unable to convert file 0</computeroutput> in Ihrer CUPS error_log Datei vorfinden. Um
 <quote>cups</quote> als GErät in Ihrem Ghostscript zu haben, müssen Sie entweder GNU Ghostscript patchen und
 neu kompilieren, oder Sie verwenden
 <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary>
@@ -940,9 +940,9 @@ Linuxprinting.org für alle Spooler empfohlen.
 CUPS-Drucker können zur Verwendung externer Darstellungs-Pfade. Einer der gängigsten ist das
 Konzept Foomatic/cupsomatic von <ulink url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink>
 Dieses verwendet den klassischen Ghostscript-Ansatz, alles auf einmal zu tun. Es verwendet nicht das Gerät
-<quote>cups</quote>, sondern eines der vielen anderen. 
+<quote>cups</quote>, sondern eines der vielen anderen.
 <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm>
-Jedoch erzielt man auch bei Verwendung von 
+Jedoch erzielt man auch bei Verwendung von
 Foomatic/cupsomatic das beste Ergebnis und die breiteste Drucker-Modell-Unterstützung mit ESP Ghostscript
 (mehr zu cupsomatic/Foomatic, im Speziellen zur neuen Version, die jetzt <emphasis>foomatic-rip</emphasis>
 heißt, weiter unten).
@@ -956,7 +956,7 @@ heißt, weiter unten).
 <indexterm><primary>MIME</primary><secondary>Filter</secondary></indexterm>
 	<indexterm><primary>MIME</primary></indexterm>
 CUPS liest die Datei <filename>/etc/cups/mime.types</filename> (und alle anderen Dateien mit einem Suffix
-<filename>*.types</filename> im selben Verzeichnis) beim Start. Diese Dateien enthalten die 
+<filename>*.types</filename> im selben Verzeichnis) beim Start. Diese Dateien enthalten die
 MIME-Typ-Erkennungs-Regeln, die angewendet werden, wenn CUPS seine Auto-Typing-Routinen ausführt.
 Die Regel-Syntax wird in der manpage von <filename>mime.types</filename> erklärt und in dem
 Abschnitt "comments" in der Datei <filename>mime.types</filename> selbst. Eine einfache Regel sieht so aus:
@@ -974,7 +974,7 @@ PDF-Datei ((<parameter>application/pdf</parameter>). Eine weitere Regel ist:
  application/postscript  ai eps ps string(0,%!) string(0,&lt;04&gt;%!)
 </filterline>
 
-Wenn der Dateiname einen der Suffixes <filename>.ai</filename>, <filename>.eps</filename>, 
+Wenn der Dateiname einen der Suffixes <filename>.ai</filename>, <filename>.eps</filename>,
 <filename>.ps</filename> hat, oder die Datei selbst mit einem der Strings
 <emphasis>%!</emphasis> oder <emphasis><![CDATA[<04>%!]]></emphasis> beginnt, ist es eine generische
 PostScript-Datei (<parameter>application/postscript</parameter>).
@@ -987,10 +987,10 @@ Verwechseln Sie nicht die anderen mime.types Dateien, die Ihr System verwendet, 
 
 <note><para>
 Es gibt einen wichtigen Unterschied zwischen zwei ähnlichen MIME-Typen in CUPS: einer ist
-<parameter>application/postscript</parameter>, der andere ist 
+<parameter>application/postscript</parameter>, der andere ist
 <parameter>application/vnd.cups-postscript</parameter>. Während <parameter>application/postscript</parameter>
-geräte-unabhängig sein soll (Auftrags-Optionen sind immer noch außerhalb des PS-Datei-Inhalts, 
-von CUPS eingebettet in der Befehlszeile oder Umgebungsvariablen), kann 
+geräte-unabhängig sein soll (Auftrags-Optionen sind immer noch außerhalb des PS-Datei-Inhalts,
+von CUPS eingebettet in der Befehlszeile oder Umgebungsvariablen), kann
 <parameter>application/vnd.cups-postscript</parameter> die Auftrags-Optionen in die Postscript-Daten selbst
 eingefügt erhalten (wo anwendbar). Die Transformation des generischen PostScript-Formats
 (<parameter>application/postscript</parameter>) zu geräte-spezifischem PostScript
@@ -999,7 +999,7 @@ eingefügt erhalten (wo anwendbar). Die Transformation des generischen PostScript
 </para></note>
 
 <para>
-CUPS kann mit seinen Filtern folgende Formate und ihre zugehörigen MIME-Typen handhaben: 
+CUPS kann mit seinen Filtern folgende Formate und ihre zugehörigen MIME-Typen handhaben:
 ASCII text, HP-GL, PDF, PostScript, DVI, und viele Bild-Formate (GIF. PNG, TIFF, JPEG, Photo-CD, SUN-Raster,
 PNM, PBM, SGI-RGB, und noch mehr).
 </para>
@@ -1129,10 +1129,10 @@ PostScript aus generiert CUPS Rasterdaten zur Lieferung an Nicht-PostScript-Druc
 Aber was passiert, wenn Sie eines der unterstützten Nicht-PS-Formate in den Druck schicken? Dann verwendet
 CUPS <quote>pre-filters</quote> auf diese Eingabeformate, um als erstes PostScript zu erzeugen. Es gibt solche
 Vorfilter, um PS aus ASCII text, PDF, DVI, oder HP-GL zu erzeugen. Die Ausgabe dieser Filter ist immer vom
-MIME Typ <parameter>application/postscript</parameter> (das bedeutet, daß jegliche geräte-spezifische 
+MIME Typ <parameter>application/postscript</parameter> (das bedeutet, daß jegliche geräte-spezifische
 Druckoptionen noch nicht von CUPS ins PS eingebettet werden, und daß der nächste aufzurufende Filter
-pstops ist). Ein weiterer Vorfilter läuft über alle unterstützten Bildformate, der Filter 
-<parameter>imagetops</parameter>. Seine Ausgabe ist immer vom MIME Typ 
+pstops ist). Ein weiterer Vorfilter läuft über alle unterstützten Bildformate, der Filter
+<parameter>imagetops</parameter>. Seine Ausgabe ist immer vom MIME Typ
 <parameter>application/vnd.cups-postscript</parameter> (nicht application/postscript), was bedeutet, daß sie
 die Druckoptionen bereits in der Datei eingebettet hat.
 </para>
@@ -1148,7 +1148,7 @@ die Druckoptionen bereits in der Datei eingebettet hat.
 <title>pstops</title>
 
 <para>
-<emphasis>pstops</emphasis> ist der Filter, um 
+<emphasis>pstops</emphasis> ist der Filter, um
 <parameter>application/postscript</parameter> auf <?latex \linebreak ?>
 <parameter>application/vnd.cups-postscript</parameter> zu wandeln. Es wurde bereits oben erwähnt, daß dieser
 Filter alle geräte-spezifischen Druckoptionen (Befehle an den Drucker, um Duplexdruck, Stapeln und Lochen zu
@@ -1176,7 +1176,7 @@ Zwei oder mehr logische Seiten auf ein Blatt Papier drucken (die sogenannte <quo
 </para></listitem>
 
 <listitem><para>
-Das Zählen der Seiten des Auftrags, um die Abrechnungs-Information in die Datei 
+Das Zählen der Seiten des Auftrags, um die Abrechnungs-Information in die Datei
 <filename>/var/log/cups/page_log</filename> zu schreiben.
 </para></listitem>
 </itemizedlist>
@@ -1236,7 +1236,7 @@ sein, daß Sie nicht drucken können. Aktualisieren Sie Ihr Ghostscript.
 Im Abschnitt über Vorfilter haben wir den Vorfilter erwähnt, der PostScript aus Bildformaten erzeugt. Der
 Filter <parameter>imagetoraster</parameter> wird verwendet, um Bilder direkt auf Raster zu konvertieren, ohne
 die Zwischenstufe PostScript. Er wird öfter als die oben erwähnten Vorfilter verwendet. Wir fassen das
-Filtern von Bilddateien im <link linkend="small8">nächsten Bild</link> zusammen. 
+Filtern von Bilddateien im <link linkend="small8">nächsten Bild</link> zusammen.
 </para>
 
 <para>
@@ -1256,7 +1256,7 @@ finde ich in /usr/lib/cups/filter/ diese:
 <parameter>rastertoalps</parameter>, <parameter>rastertobj</parameter>, <parameter>rastertoepson</parameter>, <parameter>rastertoescp</parameter>,
 <parameter>rastertopcl</parameter>, <parameter>rastertoturboprint</parameter>, <parameter>rastertoapdk</parameter>, <parameter>rastertodymo</parameter>,
 <parameter>rastertoescp</parameter>, <parameter>rastertohp</parameter>, und
-<parameter>rastertoprinter</parameter>. 
+<parameter>rastertoprinter</parameter>.
 Keine Sorge, wenn Sie weniger Filter vorfinden; manche von diesen wurden von kommerziellen CUPS-Erweiterungen
 installiert (wie <parameter>rastertoturboprint</parameter>), andere (wie <parameter>rastertoprinter</parameter>)
 von sogenannten "third-party" Treiber-Entwicklungs-Projekten (wie Gimp-Print), um möglichst eng mit CUPS
@@ -1322,7 +1322,7 @@ den hier angegebenen Beispielen abweichen können, wenn Ihr Betriebssystem nicht 
 
 	<varlistentry><term>AppSocket/HP JetDirect </term>
 	<listitem><para>
-	Dieses Backend sendet Druckdateien an mittels AppSocket (a.k.a. "HP JetDirect") angeschlossene 
+	Dieses Backend sendet Druckdateien an mittels AppSocket (a.k.a. "HP JetDirect") angeschlossene
 	Netzwerk-Drucker. Ein Beispiel für die
         CUPS device-URI ist:
 	<filename>socket://10.11.12.13:9100</filename>.
@@ -1383,7 +1383,7 @@ an den $USER, in der er gebeten wird, immer den richtigen Druckernamen anzugeben
 
 <para>
 Nicht alle erwähnten Backends müssen auf Ihrem System vorhanden oder verwendbar sein (abhängig von der
-Hardware-Konfiguration). Ein Test für alle verfügbaren CUPS-Backends ist mit dem Werkzeug 
+Hardware-Konfiguration). Ein Test für alle verfügbaren CUPS-Backends ist mit dem Werkzeug
 <emphasis>lpinfo</emphasis> möglich. Mit der Option <option>-v</option> listet es alle verfügbaren Backends:
 </para>
 
@@ -1424,7 +1424,7 @@ Befehlszeilen-Optionen, die dem Druckauftrag mitgegeben wurden.
 <para>
 <indexterm><primary>point 'n' print</primary></indexterm>
 Jedoch ist <parameter>cupsomatic</parameter> mittlerweile veraltet. Seine PPDs (besonders deren erste Generation,
-immer noch in regem Gebrauch da draussen) entsprechen nicht den Adobe Spezifikationen. Sie könnten 
+immer noch in regem Gebrauch da draussen) entsprechen nicht den Adobe Spezifikationen. Sie könnten
 Schwierigkeiten damit haben, wenn Sie sie mittels <quote>Point'n'Print</quote> auf Windows-Clients downloaden
 wollen. Ein besserer und leistungsfähigerer Nachfolge ist nun in einer stabilen Beta-Version verfügbar:
 er heisst <parameter>foomatic-rip</parameter>. Um <parameter>foomatic-rip</parameter> als Filter mit CUPS zu
@@ -1470,7 +1470,7 @@ zugunsten der <quote>günstigsten</quote> Route.
 Die Einstellung von <parameter>FilterLimit 1000</parameter> in <filename>cupsd.conf</filename> erlaubt es nicht,
 mehr Filter gleichzeitig auszuführen, als solche, die insgesamt 1000 virtuelle Filter-Kosten verbrauchen. Dies
 ist eine effiziente Art, die Last eines CUPS-Servers zu begrenzen, indem man einen passenden Wert für
-<quote>FilterLimit</quote> setzt. Ein FilterLimit von 200 erlaubt nur ungefähr einen Auftrag zur gleichen Zeit, 
+<quote>FilterLimit</quote> setzt. Ein FilterLimit von 200 erlaubt nur ungefähr einen Auftrag zur gleichen Zeit,
 während ein FilterLimit von 1000 ungefähr 5 Aufträge gleichzeitig erlaubt.
 </para></tip>
 </sect2>
@@ -1480,7 +1480,7 @@ während ein FilterLimit von 1000 ungefähr 5 Aufträge gleichzeitig erlaubt.
 
 <para>
 Sie können CUPS (so ziemlich) jede Datei <quote>raw</quote> drucken lassen. <quote>Raw</quote> bedeutet, daß sie
-nicht gefiltert wird. CUPS sendet die Datei an den Drucker <quote>wie sie ist</quote>, ohne sich darum zu 
+nicht gefiltert wird. CUPS sendet die Datei an den Drucker <quote>wie sie ist</quote>, ohne sich darum zu
 kümmern, ob der Drucker imstande ist, diese Datei zu <quote>verdauen</quote>. Die Benutzer müssen sich selbst
 darum kümmern, daß sie nur sinnvolle Datenformate senden. Raw-Druck kann in jeder Warteschlange passieren, wenn
 die Option <quote><parameter>-o raw</parameter></quote> auf der Befehlszeile angegeben wird. Sie können auch
@@ -1494,7 +1494,7 @@ nur-raw-Queues anlegen, indem Sie einfach keinerlei PPD mit einer Queue assoziie
 <para>
 installiert eine Queue namens <quote>rawprinter</quote>, verbunden mittels dem Protokoll <quote>socket</quote>
 (a.k.a. <quote>HP JetDirect</quote>) mit dem Gerät auf IP-Adresse 11.12.1.3.14, Port 9100. (Wenn Sie ein PPD
-mit <command>-P /path/to/PPD</command> der Befehlszeile hinzugefügt hätten, hätten Sie eine 
+mit <command>-P /path/to/PPD</command> der Befehlszeile hinzugefügt hätten, hätten Sie eine
 <quote>normale</quote> Druck-Queue installiert.)
 </para>
 
@@ -1545,7 +1545,7 @@ application/octet-stream
 This line (with no specific auto-typing rule set) makes all files
 not otherwise auto-typed a member of <parameter>application/octet-stream</parameter>. In
 <filename>/etc/cups/mime.convs</filename>, have this
-line: 
+line:
 
 <filterline>
 application/octet-stream   application/vnd.cups-raw   0   -
@@ -1553,7 +1553,7 @@ application/octet-stream   application/vnd.cups-raw   0   -
 
 <indexterm><primary>MIME</primary></indexterm>
 
-Diese Zeile weist CUPS an, für den MIME-Typen <parameter>application/octet-stream</parameter> den 
+Diese Zeile weist CUPS an, für den MIME-Typen <parameter>application/octet-stream</parameter> den
 <emphasis>Null Filter</emphasis> zu verwenden (markiert mit <quote>-</quote>, tut gar nichts), und das Resultat
 als <parameter>application/vnd.cups-raw</parameter> zu kennzeichnen. Dies ist immer ein grünes Licht für den
 CUPS-Scheduler, um die Datei an das Backend zu übergeben, das sich dann zum Drucker verbindet und die Datei
@@ -1571,10 +1571,10 @@ sendet.
 Da CUPS ein mehr sicherheitsbewußtes Drucksystem ist als die traditionellen Systeme, erlaubt es
 in der Voreinstellung nicht, daß ein Benutzer beliebige (möglicherweise binäre) Daten an
 Druck-Geräte sendet. (Dies könnte leicht dazu benutzt werden, um einen <quote>Denial of Service</quote>-Angriff
-auf Ihre(n) Drucker zu starten, was zumindest den Verlust von einer Menge Papier und Tinte nach sich ziehen 
+auf Ihre(n) Drucker zu starten, was zumindest den Verlust von einer Menge Papier und Tinte nach sich ziehen
 würde.)
 <quote>Unbekannte</quote> Daten werden von CUPS als <emphasis>MIME-Typ</emphasis>
-<emphasis>application/octet-stream</emphasis> behandelt. Während Sie Daten <quote>raw</quote> senden 
+<emphasis>application/octet-stream</emphasis> behandelt. Während Sie Daten <quote>raw</quote> senden
 <emphasis>können</emphasis>, muß der MIME-Typ dafür einer sein, der CUPS bekannt ist, und erlaubt ist. Die Datei
 <filename>/etc/cups/mime.types</filename> legt die Regeln fest, wie CUPS MIME-Typen erkennt. Die Datei
 <filename>/etc/cups/mime.convs</filename> entscheidet, welche Wandlungs-Filter auf welche MIME-Typen angewandt
@@ -1589,7 +1589,7 @@ werden können.
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-Ursprünglich waren PPDs nur zur Verwendung mit PostScript-Drucker gedacht. Hier helfen sie dabei, 
+Ursprünglich waren PPDs nur zur Verwendung mit PostScript-Drucker gedacht. Hier helfen sie dabei,
 geräte-spezifische Befehle und Einstellungen an den RIP zu senden, der die Auftragsdatei verarbeitet. CUPS hat
 die Reichweite von PPDs erweitert, um auch Nicht-PS-Drucker abzudecken. Dies war nicht schwierig, da es ein
 standardisiertes Dateiformat ist. Auf eine gewisse Art war es auch logisch: CUPS verarbeitet PostScript und
@@ -1618,9 +1618,9 @@ gesendet werden, welches in weiterer Folge an das Ausgabe-Gerät sendet.
 </para>
 
 <para>
-CUPS liefert standardmässig nur ein paar generische PPDs, aber diese sind verwendbar für ein paar hundert 
+CUPS liefert standardmässig nur ein paar generische PPDs, aber diese sind verwendbar für ein paar hundert
 Drucker-Modelle. Es kann sein, daß Sie damit nicht verschiedene Papierschächte verwalten könne, oder daß Sie
-breitere Druckränder erhalten, als Ihr spezielles Modell unterstützt. Sehen Sie 
+breitere Druckränder erhalten, als Ihr spezielles Modell unterstützt. Sehen Sie
 <link linkend="cups-ppds">Mit CUPS gelieferte PPDs</link> für eine Zusammenfassung.
 </para>
 
@@ -1681,7 +1681,7 @@ aus ESP Ghostscript 7.05.x als Werkzeug.
 
 <listitem><para>
 Als zweites kommt der Schritt <parameter>rasterdriver</parameter>. Er verwendet geräte-spezifische Filter; es
-gibt einige Hersteller, die Filter guter Qualität für diesen Schritt zur Verfügung stellen. Manche sind freie 
+gibt einige Hersteller, die Filter guter Qualität für diesen Schritt zur Verfügung stellen. Manche sind freie
 Software, andere Shareware/nicht-frei, manche proprietär.</para></listitem>
 </itemizedlist>
 
@@ -1710,11 +1710,11 @@ aktuelle Version von CUPS aktualisieren.
 <para>
 	<indexterm><primary>cupsomatic</primary></indexterm>
 	<indexterm><primary>foomatic</primary></indexterm>
-Sowohl die Methode <parameter>cupsomatic</parameter> (alt) und die Methode <parameter>foomatic-rip</parameter> 
+Sowohl die Methode <parameter>cupsomatic</parameter> (alt) und die Methode <parameter>foomatic-rip</parameter>
 (neu) von Linuxprinting.org verwenden die traditionelle Ghostscript-Verarbeitung von Druckdateien, die alles
 in einem Schritt erledigt. Dies hängt davon ab, daß all die anderen Geräte bereits in Ghostscript eingebaut
 sind. Die Qualität ist so gut (oder schlecht), wie Ghostscript-Darstellung in anderen Spoolern ist. Der
-Vorteil ist, daß diese Methode viele Drucker-Modelle unterstützt, die (noch) nicht von der moderneren 
+Vorteil ist, daß diese Methode viele Drucker-Modelle unterstützt, die (noch) nicht von der moderneren
 CUPS-Methode unterstützt werden.
 </para>
 
@@ -1728,9 +1728,9 @@ Sie verschiedene Queues installieren) und herausfinden, welche am Besten für Sie
 <parameter>application/vnd.cups-postscript</parameter> und lenkt es um durch die CUPS-externe, systemweite
 Ghostscript-Installation. Daher umgeht die Druckdatei den Filter <parameter>pstoraster</parameter> (und umgeht
 auch die CUPS-Raster-Treiber <parameter>rastertosomething</parameter>). Nachdem Ghostscript sein Rastern beendet
-hat, übergibt <parameter>cupsomatic</parameter> die dargestellte Datei direkt an das CUPS-Backend. Das 
+hat, übergibt <parameter>cupsomatic</parameter> die dargestellte Datei direkt an das CUPS-Backend. Das
 Flußdiagramm in <link linkend="cupsomatic-dia">cupsomatic/foomatic Verarbeitung versus Nativem CUPS</link>
-illustriert den Unterschied zwischen nativer CUPS-Darstellung und der 
+illustriert den Unterschied zwischen nativer CUPS-Darstellung und der
 <parameter>Foomatic/cupsomatic</parameter>-Methode.
 </para>
 </sect2>
@@ -1758,7 +1758,7 @@ weitergegeben.</para></listitem>
 der den PostScript MIME-Typ <parameter>application/postscript</parameter> erzeugt (eine Vorschau an dieser
 Stelle würde immer noch alle Seiten des originalen PDFs zeigen).</para></listitem>
 
-<listitem><para>Die Datei passiert sodann den Filter <parameter>pstops</parameter>, der die 
+<listitem><para>Die Datei passiert sodann den Filter <parameter>pstops</parameter>, der die
 Befehlszeilen-Optionen anwendet: er wählt die Seiten 3-5, 7, und 11-13, legt ein Layout mit
 <quote>2 Seiten pro Blatt</quote> an, und fügt den korrekten Befehl für <quote>Duplex</quote> (wie
 im PPD des Druckers definiert) in die PostScript-Datei ein; die Datei ist jetzt vom PostScript MIME-Typ
@@ -1775,7 +1775,7 @@ dargestellt.
 </para>
 
 <para>
-Nehmen wir an, Sie wollen aus dem selben Filter auf einen an USB angeschlossenen Epson Stylus Photo 
+Nehmen wir an, Sie wollen aus dem selben Filter auf einen an USB angeschlossenen Epson Stylus Photo
 Drucker drucken, der mittels dem CUPS-PPD <filename>stphoto2.ppd</filename> installiert wurde. Die
 ersten paar Filter-Stufen sind fast die selben:
 </para>
@@ -1805,7 +1805,7 @@ zum MIME-Typ <parameter>application/cups-raster</parameter>.</para></listitem>
 des Druckers angezeigt), legt die drucker-spezifischen Rasterdaten an, und bettet alle vom Benutzer
 gewählten Druck-Optionen in die Druckdaten ein.</para></listitem>
 
-<listitem><para>Die Datei geht an das Backend <parameter>usb</parameter>, das es an die Drucker 
+<listitem><para>Die Datei geht an das Backend <parameter>usb</parameter>, das es an die Drucker
 weiterleitet.</para></listitem>
 </itemizedlist>
 
@@ -1829,7 +1829,7 @@ und mit Unterstützung für über tausend nicht-PostScript-Modelle.
 <indexterm><primary>PrintPro</primary><see>ESP Print Pro</see></indexterm>
 <listitem><para><ulink url="http://wwwl.easysw.com/printpro/">ESP
 PrintPro</ulink> (kommerziell, nicht frei) wird mit mehr als 3000 PPDs gebündelt, fertig zur erfolgreichen
-Anwendung <quote>out of the box</quote> auf Linux, Mac OS X, IBM-AIX, HP-UX, Sun-Solaris, SGI-IRIX, 
+Anwendung <quote>out of the box</quote> auf Linux, Mac OS X, IBM-AIX, HP-UX, Sun-Solaris, SGI-IRIX,
 Compaq Tru64, Digital UNIX, und noch einigen kommerziellen Unices (es wurde von den CUPS-Entwicklern selbst
 geschrieben und sein Verkauf hilft dabei, die weitere Entwicklung von CUPS zu finanzieren, genauso, wie es
 dessen Schöpfer ernährt).</para></listitem>
@@ -1851,11 +1851,11 @@ aus dem Erbe von IBM OS/2 Know-How, portiert auf Linux (CUPS Unterstützung ist d
 </para></listitem>
 
 <listitem><para><ulink url="http://hpinkjet.sourceforge.net/">HPIJS
-</ulink> (BSD-artige Lizenz, frei) unterstützt ungefähr 150 Drucker von HP und bietet nun auch exzellente 
+</ulink> (BSD-artige Lizenz, frei) unterstützt ungefähr 150 Drucker von HP und bietet nun auch exzellente
 Druckqualität (derzeit nur über den Foomatic-Pfad verfügbar).</para></listitem>
 
 <listitem><para><ulink url="http://www.linuxprinting.org/">Foomatic/cupsomatic
-</ulink> (LPGL, frei) von Linuxprinting.org bietet PPDs für praktisch jeden auf der Welt bekannten 
+</ulink> (LPGL, frei) von Linuxprinting.org bietet PPDs für praktisch jeden auf der Welt bekannten
 Ghostscript-Filter (einschließlich Omni, Gimp-Print und HPIJS).</para></listitem>
 </itemizedlist>
 
@@ -1865,7 +1865,7 @@ Ghostscript-Filter (einschließlich Omni, Gimp-Print und HPIJS).</para></listitem
 <title>Das Drucken mit Interface Scripts</title>
 
 <para>
-CUPS unterstützt auch die Verwendung von <quote>interface scripts</quote>, wie man sie von System V AT&amp;T 
+CUPS unterstützt auch die Verwendung von <quote>interface scripts</quote>, wie man sie von System V AT&amp;T
 Druck-Systemen kennt. Diese werden oft für PCL-Drucker verwendet, von Anwendungen, die PCL-Druckaufträge
 erzeugen. Interface scripts sind spezifisch für einzelne Drucker-Modelle. Sie haben eine ähnliche Rolle wie
 PPDs für PostScript-Drucker. Interface scripts können die benötigten Escape-Sequenzen in den Druck-Datenstrom
@@ -1918,7 +1918,7 @@ Windows clients, die auf einen NT-basierenden Druck-Server drucken, haben zwei M
 </itemizedlist>
 
 <para>
-Die beiden Druck-Möglichkeiten werden in den Flußdiagrammen 
+Die beiden Druck-Möglichkeiten werden in den Flußdiagrammen
 <link linkend="small11">Treiberausführung auf dem Client</link>
 und <link linkend="small12">Treiberausführung auf dem Server</link> gezeigt.
 </para>
@@ -2013,11 +2013,11 @@ Zuerst, um CUPS-basierendes Drucken per Samba zu aktivieren, sollten folgende Op
 
 <para>
 Wenn diese Parameter angegeben werden, werden alle manuell gesetzten Druck-Anweisungen (wie
-<smbconfoption><name>print command</name></smbconfoption> oder 
+<smbconfoption><name>print command</name></smbconfoption> oder
 <smbconfoption><name>lppause command</name></smbconfoption>) in &smb.conf; (genauso wie in Samba selbst)
-ignoriert. Stattdessen arbeitet Samba direkt mit CUPS zusammen, unter Verwendung dessen 
+ignoriert. Stattdessen arbeitet Samba direkt mit CUPS zusammen, unter Verwendung dessen
 "application program interface" (API), sofern Samba mit Unterstützung der CUPS-Bibliothek (libcups) kompiliert
-wurde. Wenn Samba nicht mit CUPS-Unterstützung kompiliert wurde, und wenn keine anderen Druckbefehle gesetzt 
+wurde. Wenn Samba nicht mit CUPS-Unterstützung kompiliert wurde, und wenn keine anderen Druckbefehle gesetzt
 sind, wird der Druck den <emphasis>System V</emphasis> AT&amp;T Befehlssatz verwenden, mit der automatisch
 gesetzten Option -oraw, womit Druckaufträge einfach weitergegeben werden (wenn Sie Ihre selbstdefinierten
 Druckbefehle mit einem Samba-Server, der CUPS-Unterstützung einkompiliert hat, verwenden wollen, verwenden Sie
@@ -2040,7 +2040,7 @@ Samba <emphasis>muss</emphasis> sein eigenes Spooling-Verzeichnis verwenden (es 
 <smbconfsection>[printers]</smbconfsection> oder <smbconfsection>[printername]</smbconfsection> von
 &smb.conf; gesetzt). Samba empfängt den Auftrag in seinem eigenen Spooling-Verzeichnis und gibt ihn weiter ins
 Spooling-Verzeichnis von CUPS (das CUPS-Spooling-Verzeichnis wird gesetzt mittels der Anweisung
-<parameter>RequestRoot</parameter>, in einer Zeile die voreingestellt 
+<parameter>RequestRoot</parameter>, in einer Zeile die voreingestellt
 <parameter>RequestRoot /var/spool/cups</parameter> lautet). CUPS prüft die Zugriffsrechte und setzt diese auf
 vernünftige Werte, bei jedem Neustart. Wir haben schon ziemlich viele Leute gesehen, die ein gemeinsames
 Spooling-Verzeichnis verwendet haben, und wochenlang mit diesem <quote>Problem</quote> zu kämpfen hatten.
@@ -2092,7 +2092,7 @@ sind normalerweise zur Interpretation durch den PostScript RIP auf dem PostScrip
 
 <para>
 <indexterm><primary>PPD</primary></indexterm>
-CUPS beschränkt sich nicht auf <quote>wirkliche</quote> PostScript-Drucker in seiner Verwendung von PPDs. Die 
+CUPS beschränkt sich nicht auf <quote>wirkliche</quote> PostScript-Drucker in seiner Verwendung von PPDs. Die
 CUPS-Entwickler haben die Reichweite des PPD-Konzepts erweitert, um auch verfügbare Geräte- und Treiber-Optionen
 von Nicht-PS-Druckern durch CUPS-PPDs zu beschreiben.
 </para>
@@ -2101,7 +2101,7 @@ von Nicht-PS-Druckern durch CUPS-PPDs zu beschreiben.
 Dies ist nur logisch, da CUPS einen voll ausgestatteten PostScript Interpreter (RIP) umfaßt. Dieser RIP basiert
 auf Ghostscript. Er kann alles empfangene PostScript (und zusätzlich viele weitere Dateiformate) verarbeiten.
 Alle CUPS-PPDs für Nicht-PS-Drucker enthalten eine zusätzliche Zeile, die mit dem Schlüsselwort
-<parameter>*cupsFilter</parameter> beginnt. Diese Zeile teilt dem CUPS-Druck-Systemmit, welcher 
+<parameter>*cupsFilter</parameter> beginnt. Diese Zeile teilt dem CUPS-Druck-Systemmit, welcher
 drucker-spezifische Filter zur Interpretation der PostScript-Daten verwendet werden soll. Daher läßt CUPS
 alle seine Drucker für die Clients als PostScript-Drucker erscheinen, weil es als PostScript RIP für diese
 Drucker arbeiten kann.
@@ -2189,7 +2189,7 @@ wenn sie von einem besseren Treiber angesteuert würden!
 <indexterm><primary>PPD</primary></indexterm>
 <indexterm><primary>PostScript</primary></indexterm>
 Das Verwenden eines Postscript-Treibers, aktiviert mit einem CUPS-PPD, scheint eine sehr elegante Art zu sein,
-all diese Mängel zu überbrücken. Es gibt, je nach der von Ihnen verwendeten Windows-Version, bis zu drei 
+all diese Mängel zu überbrücken. Es gibt, je nach der von Ihnen verwendeten Windows-Version, bis zu drei
 verschiedene verfügbare Postscript-Treiber: Adobe, Microsoft und CUPS Postscript-Treiber. Keiner der drei
 ist bekannt dafür, grössere Instabilitäten auf WTS zu verursachen (auch nicht, wenn viele verschiedene PPDs
 verwendet werden). Die Clients werden (wieder) imstande dazu sein, Papierschächte auszuwählen, Duplexdruck
@@ -2206,7 +2206,7 @@ vielversprechend aussehen.
 <para>
 <indexterm><primary>DDK</primary></indexterm>
 Aktuellere Drucker-Treiber unter W200x und XP laufen nicht mehr im Kernel-Modus (anders als unter Windows NT).
-Beide Betriebssysteme können jedoch die NT-Treiber verwenden, die im Kernel-Modus laufen (Sie können grob 
+Beide Betriebssysteme können jedoch die NT-Treiber verwenden, die im Kernel-Modus laufen (Sie können grob
 bestimmen, welcher Treiber zu welchem System gehört, da die Treiber im Unterverzeichnis <quote>2</quote> des
 Verzeichnisses <quote>W32X86</quote> die <quote>alten</quote> sind). Wie zuvor gesagt wurde, sind weder die
 Adobe-Treiber noch die von MS dafür bekannt, irgendwelche Stabilitätsprobleme zu verursachen. Der CUPS-Treiber
@@ -2224,7 +2224,7 @@ und wenn Sie Besitzer eines <quote>MS DDK for Windows NT</quote> sind, können Si
 <title>Das Konfigurieren von CUPS für den Download von Treibern</title>
 
 <para>
-Wie wir zuvor erwähnt haben, funktionieren alle bekannten Methoden, um Client-Drucker-Treiber auf dem 
+Wie wir zuvor erwähnt haben, funktionieren alle bekannten Methoden, um Client-Drucker-Treiber auf dem
 Samba-Server vorzubereiten (und damit die Vorzüge von Point'n'Print zu geniessen) auch mit CUPS. Diese
 Methoden wurden im vorigen Kapitel beschrieben. In Wirklichkeit ist dies eine reine Samba-Angelegenheit, und
 hängt nur mit dem Verhältnis Samba/Windows-Client zusammen.
@@ -2239,15 +2239,15 @@ hängt nur mit dem Verhältnis Samba/Windows-Client zusammen.
 Das Werkzeug <command>cupsaddsmb</command> (mit allen aktuellen CUPS-Versionen ausgeliefert) ist eine
 alternative Methode, um Drucker-Treiber in die Samba-Freigabe <smbconfsection>[print$]</smbconfsection> zu
 transferieren. Zur Erinnerung, diese Freigabe ist der Ort, an dem Clients nach hinterlegten und konfigurierten
-Treibern suchen, um diese herunterzuladen und zu installieren. Dies macht das Verteilen von jeglichen 
-(oder allen) installierten CUPS-Druckern ziemlich einfach. <command>cupsaddsmb</command> kann den Adobe 
-PostScript-Treiber genauso verwenden wie den neu entwickelten CUPS PostScript-Treiber für Windows NT/200x/XP. 
-<parameter>cupsaddsmb</parameter> funktioniert <emphasis>NICHT</emphasis> mit beliebigen Drucker-Treibern, 
+Treibern suchen, um diese herunterzuladen und zu installieren. Dies macht das Verteilen von jeglichen
+(oder allen) installierten CUPS-Druckern ziemlich einfach. <command>cupsaddsmb</command> kann den Adobe
+PostScript-Treiber genauso verwenden wie den neu entwickelten CUPS PostScript-Treiber für Windows NT/200x/XP.
+<parameter>cupsaddsmb</parameter> funktioniert <emphasis>NICHT</emphasis> mit beliebigen Drucker-Treibern,
 sondern nur mit <emphasis>exakt</emphasis> den Treiber-Dateien, die in seiner man-page angegeben sind.
 </para>
 
 <para>
-Der CUPS Drucker-Treiber ist auf der CUPS-Download-Seite verfügbar. Sein Paketname ist 
+Der CUPS Drucker-Treiber ist auf der CUPS-Download-Seite verfügbar. Sein Paketname ist
 <filename>cups-samba-[version].tar.gz</filename>. Er wird den Adobe-Treibern vorgezogen, da er einige Vorteile
 hat:
 </para>
@@ -2309,7 +2309,7 @@ Vor dem Ausführen von <command>cupsaddsmb</command> müssen Sie die Einstellungen
 <indexterm><primary>PostScript</primary></indexterm>
 CUPS-Anwender können die genau gleichen Pakete von <ulink
 noescape="1" url="http://www.cups.org/software.html">http://www.cups.org/software.html</ulink> beziehen.
-Dies ist ein separates Paket von CUPS-Software-Dateien, bezeichnet als 
+Dies ist ein separates Paket von CUPS-Software-Dateien, bezeichnet als
 CUPS 5.0rc3 Windows NT/200x/XP Printer Driver for Samba. Der Dateiname für den Download ist
 <filename>cups-samba-5.0rc3.tar.gz</filename>. Nach dem untar und unzip zeigen sich folgende Dateien:
 </para>
@@ -2337,7 +2337,7 @@ enthält drei Dateien:
 &rootprompt;<userinput>tar tv cups-samba.ss</userinput>
 cupsdrvr.dll
 cupsui.dll
-cups.hlp  
+cups.hlp 
 </screen></para>
 
 <para>
@@ -2350,7 +2350,7 @@ Das <parameter>cups-samba.install</parameter> Shell-Skript ist einfach anzuwende
 Installing software...
 Updating file permissions...
 Running post-install commands...
-Installation is complete.       
+Installation is complete.      
 </screen></para>
 
 <para>
@@ -2360,7 +2360,7 @@ kopieren.
 
 <warning><para>
 Wegen eines Fehlers kopiert eine ältere CUPS-Release die Datei <filename>cups.hlp</filename> ins Verzeichnis
-<filename>/usr/share/drivers/</filename> anstatt in <filename>/usr/share/cups/drivers/</filename>. Um das zu 
+<filename>/usr/share/drivers/</filename> anstatt in <filename>/usr/share/cups/drivers/</filename>. Um das zu
 beheben, kopieren/verschieben Sie diese Datei einfach manuell ins richtige Verzeichnis, nachdem Sie das
 Install-Skript ausgeführt haben.
 </para></warning>
@@ -2373,7 +2373,7 @@ Install-Skript ausgeführt haben.
 <para>
 <indexterm><primary>DDK</primary></indexterm>
 Dieser neue CUPS PostScript-Treiber ist derzeit nur binär verfügbar, aber ohne Kosten. Es wird (noch) kein
-vollständiger Quelltext zur Verfügung gestellt. Der Grund ist, daß er mit Hilfe des Microsoft Driver Developer 
+vollständiger Quelltext zur Verfügung gestellt. Der Grund ist, daß er mit Hilfe des Microsoft Driver Developer
 Kits (DDK) entwickelt und mit Microsoft Visual Studio 6 kompiliert wurde. Die Treiber-Entwickler dürfen nicht
 den gesamten Quelltext als freie Software vertreiben. Die CUPS-Entwickler haben jedoch das <quote>diff</quote>
 unter der GPL veröffentlicht, somit kann jeder mit einer Lizenz für Visual Studio und einem DDK den Treiber
@@ -2385,7 +2385,7 @@ selbst kompilieren.
 <title>Das Erkennen verschiedener Treiber-Dateien</title>
 
 <para>
-Die CUPS-Treiber unterstützen die älteren Systeme Windows 95/98/Me nicht, nur die Client-Systeme 
+Die CUPS-Treiber unterstützen die älteren Systeme Windows 95/98/Me nicht, nur die Client-Systeme
 Windows NT/2000/XP.
 </para>
 
@@ -2430,7 +2430,7 @@ Die Dateien sind für die einzelnen Plattformen verschieden.
 
 <note><para>
 Wenn sowohl die Adobe-Treiber-Dateien wie auch die CUPS-Treiber-Dateien zur Unterstützung von Windows NT/200x/XP
-vorhanden sind, werden die Adobe-Dateien ignoriert und die CUPS-Dateien verwendet. Wenn Sie &smbmdash; aus 
+vorhanden sind, werden die Adobe-Dateien ignoriert und die CUPS-Dateien verwendet. Wenn Sie &smbmdash; aus
 irgendeinem Grund&smbmdash; nur Adobe-Treiber verwenden wollen, entfernen Sie einfach die drei CUPS-Dateien. Die
 Windows 9x/Me clients verwenden in jedem Fall die Adobe-Treiber.
 </para></note>
@@ -2444,7 +2444,7 @@ Das Beschaffen der Adobe-Treiber-Dateien scheint für viele Anwender unerwartet s
 als einzelne Dateien auf der Adobe-Website erhältlich und das selbst-entpackende und/oder selbst-installierende
 Windows-.exe ist auch nicht einfach zu finden. Möglicherweise müssen Sie den enthaltenen Installer verwenden
 und die Installation einmal auf einem Client durchführen. Dies installiert die Treiber (und einen generischen
-PostScript-Drucker) lokal auf dem Client. Wenn diese installiert sind, geben Sie den generischen 
+PostScript-Drucker) lokal auf dem Client. Wenn diese installiert sind, geben Sie den generischen
 PostScript-Drucker frei. Danach enthält die Freigabe <smbconfsection>[print$]</smbconfsection> des Clients die
 Adobe-Dateien, von wo aus Sie sie mittels smbclient auf den CUPS-Host holen können.
 </para>
@@ -2455,16 +2455,16 @@ Adobe-Dateien, von wo aus Sie sie mittels smbclient auf den CUPS-Host holen könn
 
 <para>
 <indexterm><primary>ESP</primary><secondary>Print Pro</secondary></indexterm>
-Die Anwender der Software ESP Print Pro können ihr Samba-Treiber-Paket für diesen Zweck ohne Probleme 
+Die Anwender der Software ESP Print Pro können ihr Samba-Treiber-Paket für diesen Zweck ohne Probleme
 installieren. Beziehen Sie die Treiber-Dateien aus dem normalen Download-Bereich der ESP Print Pro Software
 unter <ulink noescape="1" url="http://www.easysw.com/software.html">http://www.easysw.com/software.html</ulink>.
-Sie müssen den Link namens <quote>SAMBA</quote> unter 
+Sie müssen den Link namens <quote>SAMBA</quote> unter
 <guilabel>Download Printer Drivers for ESP Print Pro 4.x</guilabel> finden, und das Package herunterladen.
-Sobald es instaliert ist, können Sie jeden Treiber vorbereiten, in dem Sie einfach den Drucker im 
+Sobald es instaliert ist, können Sie jeden Treiber vorbereiten, in dem Sie einfach den Drucker im
 Drucker-Manager-GUI markieren und die Funktion <guilabel>Export Driver...</guilabel> aus dem Menü wählen.
 Natürlich müssen Sie Samba zuerst für den Umgang mit den Treiber-Dateien vorbereitet haben; also die Freigabe
 <smbconfsection>[print$]</smbconfsection> angelegt haben und so weiter. Das Paket ESP Print Pro beinhaltet
-die CUPS-Treiber-Dateien genauso wie ein (lizenziertes) Set von Adobe-Treibern für die Windows 95/98/Me 
+die CUPS-Treiber-Dateien genauso wie ein (lizenziertes) Set von Adobe-Treibern für die Windows 95/98/Me
 Client-Familie.
 </para>
 </sect2>
@@ -2486,13 +2486,13 @@ CUPS-Releases seit 1.1.16).
 <tip><para>
 <indexterm><primary>Single Sign On</primary></indexterm>
 Es kann sein, daß Sie root in die Datei smbpasswd aufnehmen müssen, indem Sie <command>smbpasswd</command>
-ausführen; dies ist besonders wichtig, wenn Sie diese ganze Prozedur zum ersten Mal ausführen, und nicht in 
+ausführen; dies ist besonders wichtig, wenn Sie diese ganze Prozedur zum ersten Mal ausführen, und nicht in
 einer Umgebung arbeiten, in der alles für <emphasis>single sign on</emphasis> an einem Windows Domänen-Controller
 konfiguriert ist.
 </para></tip>
 
 <para>
-Sobald die Treiber-Dateien in der Freigabe <smbconfsection>[print$]</smbconfsection> liegen und initialisiert 
+Sobald die Treiber-Dateien in der Freigabe <smbconfsection>[print$]</smbconfsection> liegen und initialisiert
 sind, sind Sie bereit, um von den Windows NT/200x/XP Clients heruntergeladen und installiert zu werden.
 </para>
 
@@ -2526,7 +2526,7 @@ wollen und klicken auf <guilabel>Entfernen</guilabel>. Dies funktioniert nur, we
 <note><para>
 <indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
 Sobald Sie erfolgreich den CUPS PostScript Treiber auf einen Client geladen haben, können Sie leicht alle Drucker
-auf diesen Treiber umstellen, indem Sie so vorgehen, wie in 
+auf diesen Treiber umstellen, indem Sie so vorgehen, wie in
 <link linkend="printing">Classical Printing Support</link> beschrieben. Entweder ändern Sie den Treiber für einen
 vorhandenen Drucker, indem Sie den Dialog <guilabel>Drucker-Eigenschaften</guilabel> verwenden, oder Sie
 benutzen den Befehl <command>rpcclient</command> mit der Option <command>setdriver</command>.
@@ -2563,27 +2563,27 @@ wird die Dummy-Seitenzahl <quote>1</quote> in einem Standard-Setup protokolliert
 
 <listitem><para>
 Der Adobe-Treiber hat mehr Optionen, um das von ihm generierte PostScript falsch zu konfigurieren (wie z.B. es
-versehentlich auf <guilabel>Optimize for Speed</guilabel> anstatt auf 
-<guilabel>Optimize for Portability</guilabel> zu setzen, was dazu führen kann, daß CUPS es nicht mehr 
+versehentlich auf <guilabel>Optimize for Speed</guilabel> anstatt auf
+<guilabel>Optimize for Portability</guilabel> zu setzen, was dazu führen kann, daß CUPS es nicht mehr
 verarbeiten kann).</para></listitem>
 
 <listitem><para>
-Die Ausgabe des CUPS-PostScript-Treibers, der von Windows-Clients an den CUPS-Server gesendet wird, wird 
-garantiert als generischer MIME-Typ <parameter>application/postscript</parameter> typisiert, daher auch 
+Die Ausgabe des CUPS-PostScript-Treibers, der von Windows-Clients an den CUPS-Server gesendet wird, wird
+garantiert als generischer MIME-Typ <parameter>application/postscript</parameter> typisiert, daher auch
 zuverlässig durch den Filter <parameter>pstops</parameter> geschickt, was die korrekte Seitenzahl in
 <filename>page_log</filename> ergibt, für Abrechnungs- und Quota-Zwecke.
 </para></listitem>
 
 <listitem><para>
 Der CUPS-PostScript-Treiber unterstützt das Senden von zusätzlichen Standard-Druck-Optionen (IPP) durch
-Windows NT/200x/XP-Clients. Solche zusätzlichen Druck-Optionen sind: das Benennen der Standard-CUPS 
+Windows NT/200x/XP-Clients. Solche zusätzlichen Druck-Optionen sind: das Benennen der Standard-CUPS
 <emphasis>Banner Seiten</emphasis> (oder der benutzerdefinierten, sollten sie zum Zeitpunkt des Treiber-Downloads
 installiert sein), unter Verwendung der CUPS-Option page-label, das Setzen einer Auftragspriorität, und das
 Setzen einer Ausführungszeit des Drucks (mit der Option, daß zukünftig noch weitere IPP-Auftrags-Attribute
 unterstützt werden).</para></listitem>
 
 <listitem><para>
-Der CUPS-PostScript-Treiber unterstützt das Einschliessen von neuen 
+Der CUPS-PostScript-Treiber unterstützt das Einschliessen von neuen
 <parameter>*cupsJobTicket</parameter>-Parametern am Anfang der PostScript-Datei (welche in Zukunft für
 alle möglichen nützlichen Erweiterungen auf CUPS-Seite verwendet werden können, aber keinerlei andere
 Anwendungen stören werden, da diese sie einfach als Kommentar betrachten und ignorieren werden).</para></listitem>
@@ -2603,12 +2603,12 @@ sein, der bald veröffentlicht werden soll (möglicherweise parallel zur ersten Be
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
 <indexterm><primary>point 'n' print</primary></indexterm>
-Der Befehl <command>cupsaddsmb</command> kopiert die benötigten Dateien in Ihre Freigabe 
+Der Befehl <command>cupsaddsmb</command> kopiert die benötigten Dateien in Ihre Freigabe
 <smbconfsection>[print$]</smbconfsection>. Zusätzlich wird das mit dem Drucker assoziierte PPD von
-<filename>/etc/cups/ppd/</filename> in <smbconfsection>[print$]</smbconfsection> kopiert. Dort warten diese 
+<filename>/etc/cups/ppd/</filename> in <smbconfsection>[print$]</smbconfsection> kopiert. Dort warten diese
 Dateien auf praktische Windows-Client-Installationen via Point'n'Print. Bevor wir den Befehl erfolgreich
 ausführen können, müssen wir sicher sein, daß wir uns am Samba-Server authentifizieren können. Wenn Sie ein
-kleines Netzwerk haben, verwenden Sie möglicherweise user-level-Sicherheit 
+kleines Netzwerk haben, verwenden Sie möglicherweise user-level-Sicherheit
 (<smbconfoption><name>security</name><value>user</value></smbconfoption>).
 </para>
 
@@ -2623,7 +2623,7 @@ Password for root required to access localhost via Samba: <userinput>['secret']<
 
 <para>
 Um <emphasis>alle</emphasis> Drucker und Treiber freizugeben, verwenden Sie den Parameter <option>-a</option>
-anstatt des Drucker-Namens. Da <command>cupsaddsmb</command> die Druckertreiber an Samba 
+anstatt des Drucker-Namens. Da <command>cupsaddsmb</command> die Druckertreiber an Samba
 <quote>exportiert</quote>, sollte es offensichlich sein, daß es nur für Queues funktioniert, mit denen ein
 CUPS-Treiber assoziiert ist.
 </para>
@@ -2665,8 +2665,8 @@ putting file /var/spool/cups/tmp/3e98bf2d333b5 as \W32X86/infotec_2105.ppd
 putting file /usr/share/cups/drivers/cupsdrvr.dll as \W32X86/cupsdrvr.dll
 putting file /usr/share/cups/drivers/cupsui.dll as \W32X86/cupsui.dll
 putting file /usr/share/cups/drivers/cups.hlp as \W32X86/cups.hlp
-  
-Running command: rpcclient localhost -N -U'root%secret' 
+ 
+Running command: rpcclient localhost -N -U'root%secret'
    -c 'adddriver "Windows NT x86"   \
    "infotec_2105:cupsdrvr.dll:infotec_2105.ppd:cupsui.dll:cups.hlp:NULL: \
     RAW:NULL"'
@@ -2674,7 +2674,7 @@ cmd = adddriver "Windows NT x86" \
    "infotec_2105:cupsdrvr.dll:infotec_2105.ppd:cupsui.dll:cups.hlp:NULL: \
 	RAW:NULL"
 Printer Driver infotec_2105 successfully installed.
-  
+ 
 Running command: smbclient //localhost/print\$ -N -U'root%secret' \
 -c 'mkdir WIN40; \
     put /var/spool/cups/tmp/3e98bf2d333b5 WIN40/infotec_2105.PPD; \
@@ -2694,7 +2694,7 @@ Running command: smbclient //localhost/print\$ -N -U'root%secret' \
   putting file /usr/share/cups/drivers/DEFPRTR2.PPD as \WIN40/DEFPRTR2.PPD
   putting file /usr/share/cups/drivers/ICONLIB.DLL as \WIN40/ICONLIB.DLL
   putting file /usr/share/cups/drivers/PSMON.DLL as \WIN40/PSMON.DLL
-  
+ 
   Running command: rpcclient localhost -N -U'root%secret' \
    -c 'adddriver "Windows 4.0"      \
    "infotec_2105:ADOBEPS4.DRV:infotec_2105.PPD:NULL:ADOBEPS4.HLP: \
@@ -2705,7 +2705,7 @@ Running command: smbclient //localhost/print\$ -N -U'root%secret' \
 	infotec_2105.PPD,ADOBEPS4.HLP,PSMON.DLL,ADFONTS.MFM,DEFPRTR2.PPD,\
 	ICONLIB.DLL"
   Printer Driver infotec_2105 successfully installed.
-  
+ 
   Running command: rpcclient localhost -N -U'root%secret'  \
    -c 'setdriver infotec_2105 infotec_2105'
   cmd = setdriver infotec_2105 infotec_2105
@@ -2715,9 +2715,9 @@ Running command: smbclient //localhost/print\$ -N -U'root%secret' \
 
 <para>
 Wenn Sie genau hinsehen, werden Sie entdecken, daß Ihr root-Passwort unverschlüsselt übers Netz übertragen wurde,
-also geben Sie Acht! Wenn Sie weiter lesen, entdecken Sie Fehlermeldungen wie 
+also geben Sie Acht! Wenn Sie weiter lesen, entdecken Sie Fehlermeldungen wie
 <?latex \linebreak ?>NT_STATUS_OBJECT_NAME_COLLISION . Diese treten auf, weil die Verzeichnisse WIN40 und W32X86
-bereits in der Freigabe <smbconfsection>[print$]</smbconfsection> existiert haben (von einer früheren 
+bereits in der Freigabe <smbconfsection>[print$]</smbconfsection> existiert haben (von einer früheren
 Treiber-Installation). Diese Meldungen sind in diesem Zusammenhang harmlos.
 </para>
 </sect2>
@@ -2740,7 +2740,7 @@ Was ist passiert? Was hat <command>cupsaddsmb</command> gemacht? Es gibt fünf St
 	<listitem><para>Speichere die Dateien temporär im lokalen TEMPDIR (wie in <filename>cupsd.conf</filename>
 	angegeben).</para></listitem>
 
-	<listitem><para>Verbinde Dich mittels smbclient mit der Freigabe 
+	<listitem><para>Verbinde Dich mittels smbclient mit der Freigabe
 	<smbconfsection>[print$]</smbconfsection> auf dem Samba-Server und kopiere die Dateien in das dortige
 	Unterverzeichnis WIN40/ (für Windows 9x/Me) bzw. W32X86/ (für Windows NT/200x/XP).</para></listitem>
 
@@ -2751,7 +2751,7 @@ Was ist passiert? Was hat <command>cupsaddsmb</command> gemacht? Es gibt fünf St
 
 	<listitem><para>
 	<indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
-	Verbinde Dich ein zweites Mal via rpcclient mit dem Samba-Server und führe den Befehl 
+	Verbinde Dich ein zweites Mal via rpcclient mit dem Samba-Server und führe den Befehl
 	<command>setdriver</command> aus.</para></listitem>
 </orderedlist>
 
@@ -2790,8 +2790,8 @@ installed.</emphasis> # (für die WIN40 == Windows 9x/Me Architektur).</para></li
 </orderedlist>
 
 <para>
-Diese Meldungen sind eventuell nicht ganz leicht in der gesamten Ausgabe zu erkennen. Wenn Sie 
-<command>cupsaddsmb</command> mit dem Parameter <option>-a</option> ausführen (der versucht, 
+Diese Meldungen sind eventuell nicht ganz leicht in der gesamten Ausgabe zu erkennen. Wenn Sie
+<command>cupsaddsmb</command> mit dem Parameter <option>-a</option> ausführen (der versucht,
 <emphasis>alle</emphasis> aktiven CUPS-Drucker-Treiber für den Download vorzubereiten), könnten Sie übersehen,
 daß einzelne Druckertreiber Probleme bei der Installation hatten. Hier hilft eine Umleitung der Ausgabe bei der
 nachträglichen Analyse der Ergebnisse.
@@ -2810,7 +2810,7 @@ Sehen Sie man samba(5) für die Erklärung des Parameters <parameter>use client dr
 
 <note><para>
 Es ist unmöglich, irgendeine Ausgabe zu sehen, wenn Sie <command>cupsaddsmb</command> nicht im "verbose mode"
-ausführen. Daher empfehlen wir ausdrücklich, den voreingestellten "quiet mode" nicht zu verwenden. Dieser 
+ausführen. Daher empfehlen wir ausdrücklich, den voreingestellten "quiet mode" nicht zu verwenden. Dieser
 verbirgt alle eventuell auftretenden Probleme vor Ihnen.
 </para></note>
 </sect2>
@@ -2820,7 +2820,7 @@ verbirgt alle eventuell auftretenden Probleme vor Ihnen.
 
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
-Schaffen Sie es nicht, den Standard-Befehl <command>cupsaddsmb</command> auf einem Samba-PDC erfolgreich 
+Schaffen Sie es nicht, den Standard-Befehl <command>cupsaddsmb</command> auf einem Samba-PDC erfolgreich
 auszuführen? Werden Sie immer und immer wieder nach dem Passwort gefragt, und der Befehl wird nicht einmal
 gestartet? Versuchen Sie eine dieser Varianten:
 </para>
@@ -2843,7 +2843,7 @@ bewirken).
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
 <link linkend="small14">cupsaddsmb Flußdiagramm.</link> zeigt eine grafische Darstellung der Abläufe, Befehlsketten,
-und Datenflüsse des Befehls <command>cupaddsmb</command>. Nochmals zur Erinnerung: cupsaddsmb ist nicht gedacht 
+und Datenflüsse des Befehls <command>cupaddsmb</command>. Nochmals zur Erinnerung: cupsaddsmb ist nicht gedacht
 für und arbeitet nicht mit Raw-Queues!
 </para>
 
@@ -2874,13 +2874,13 @@ und zu installieren. Auf dem Windows-Client wählen Sie den CUPS/Samba-Server:
 </para></listitem>
 
 <listitem><para>Im sich öffnenden Kontext-Menü wählen Sie
-<guimenuitem>Installieren...</guimenuitem> oder 
+<guimenuitem>Installieren...</guimenuitem> oder
 <guimenuitem>Verbinden...</guimenuitem> (abhängig von der verwendeten Windows-Version).
 </para></listitem>
 </itemizedlist>
 
 <para>
-Ein paar Sekunden später sollte es einen neuen Drucker im <emphasis>lokalen</emphasis> Ordner 
+Ein paar Sekunden später sollte es einen neuen Drucker im <emphasis>lokalen</emphasis> Ordner
 <guilabel>Drucker und Faxgeräte</guilabel> Ihres Clients geben. Unter Windows XP wird er der Namenskonvention
 von <emphasis>DruckerName auf SambaServer</emphasis> entsprechen. (In meinem momentanen Fall ist es
 "infotec_2105 auf kde-bitshop"). Wenn Sie diesen Drucker testen wollen, und Ihren ersten Auftrag aus einer
@@ -2891,7 +2891,7 @@ Anwendung wie Winword senden wollen, erscheint der neue Drucker als Eintrag #
 <para>
 <indexterm><primary>PPD</primary></indexterm>
 <command>cupsaddsmb</command> arbeitet nur zuverlässig mit CUPS-Versionen ab 1.1.15 und Samba-Versionen ab 2.2.4.
-Wenn es nicht funktioniert, oder wenn der automatische Drucker-Download auf die Clients nicht erfolgreich 
+Wenn es nicht funktioniert, oder wenn der automatische Drucker-Download auf die Clients nicht erfolgreich
 verläuft, können Sie den CUPS-Treiber immer noch manuell über den Adobe-PostScript-Treiber auf den Clients
 installieren. Dann lassen Sie die Queue auf die Samba-Freigabe zeigen, um eine UNC-Verbindung zu erreichen:
 </para>
@@ -2901,7 +2901,7 @@ installieren. Dann lassen Sie die Queue auf die Samba-Freigabe zeigen, um eine U
 </screen></para>
 
 <para>
-wenn Sie die CUPS Netzwerk-RIP-Funktionalitäten nutzen möchten. (Beachten Sie, daß der Benutzer 
+wenn Sie die CUPS Netzwerk-RIP-Funktionalitäten nutzen möchten. (Beachten Sie, daß der Benutzer
 <quote>ntadmin</quote> ein gültiger Samba-Benutzer mit den erforderlichen Rechten sein muß.) Dies installiert
 die Druckerverbindung in klassischer <emphasis>LanMan</emphasis>-Weise (und verwendet dabei kein MS-RPC).
 </para>
@@ -2920,18 +2920,18 @@ Output, die die Einstellungen des Treibers auf Ihrem Client erzeugen. Behandeln 
 </para>
 
 <itemizedlist>
-<listitem><para>Vermeiden Sie die PostScript-Option: Optimize for Speed. Verwenden Sie stattdessen die 
+<listitem><para>Vermeiden Sie die PostScript-Option: Optimize for Speed. Verwenden Sie stattdessen die
 Einstellung Optimize for Portability (Adobe PostScript-Treiber).</para></listitem>
 
 <listitem><para>Verwenden Sie nicht die Einstellung Page Independence: NO. Verwenden Sie stattdessen die
 Einstellung Page Independence: YES (CUPS PostScript-Treiber).</para></listitem>
 
-<listitem><para>Empfohlen wird die True Type Font Downloading Option: Native True Type statt Automatic and 
+<listitem><para>Empfohlen wird die True Type Font Downloading Option: Native True Type statt Automatic and
 Outline; Sie sollten unter allen Umständen die Option: Bitmap vermeiden (Adobe PostScript-Treiber).
 </para></listitem>
 
 <listitem><para>Wählen Sie True Type Font: Download as Softfont into Printer anstatt des voreingestellten
-Replace by Device Font (für ausgefallene Schriftarten kann es sein, daß Sie es wieder umstellen müssen, um 
+Replace by Device Font (für ausgefallene Schriftarten kann es sein, daß Sie es wieder umstellen müssen, um
 überhaupt einen Ausdruck zu erhalten) (Adobe).</para></listitem>
 
 <listitem><para>Manchmal können Sie das PostScript Language Level wählen: Bei Problemen können Sie 2 anstatt von
@@ -2980,7 +2980,7 @@ Vorstellung zu erhalten. Sehen Sie sich die druckbezogenen Sub-Befehle an.
 <command>enumprinters</command>,
 <command>enumdrivers</command>, <command>enumports</command>,
 <command>adddriver</command>, <command>setdriver</command> sind unter den interessantesten davon.
-<parameter>rpcclient</parameter> implementiert einen wichtigen Teil des MS-RPC-Protokolls. Sie können es 
+<parameter>rpcclient</parameter> implementiert einen wichtigen Teil des MS-RPC-Protokolls. Sie können es
 verwenden, um einen Windows NT (oder 200x/XP) PC abzufragen und zu steuern. MS-RPC wird von Windows-Clients
 verwendet (neben anderen Dingen), um die Point'n'Print-Features zu nutzen. Samba kann dies mittlerweile auch
 "nachahmen".
@@ -2998,7 +2998,7 @@ Abschnitte:
 <command>adddriver &lt;arch&gt; &lt;config&gt;</command> Führe ein
 <command>AddPrinterDriver()</command> RPC aus, um den Druckertreiber auf dem Server zu installieren.
 Die Treiber sollten bereits im Verzeichnis, das von <command>getdriverdir</command> zurückgegeben wird,
-existieren. Mögliche Werte für <parameter>arch</parameter> sind dieselben wie für 
+existieren. Mögliche Werte für <parameter>arch</parameter> sind dieselben wie für
 <command>getdriverdir</command>. Der Parameter <parameter>config</parameter> ist wie folgt definiert:
 </para>
 		
@@ -3017,17 +3017,17 @@ Comma Separated list of Files
 
 <para>Samba muß das Konzept der Druck-Monitore nicht unterstützen, da dieses nur auf lokale Drucker anzuwenden
 ist, deren Treiber eine bi-direktionale Verbindung zur Kommunikation mit dem Drucker nutzen können. Dieses
-Feld sollte <quote>NULL</quote> sein. Auf einem entfernten NT-Druck-Server muß der Druck-Monitor für einen 
+Feld sollte <quote>NULL</quote> sein. Auf einem entfernten NT-Druck-Server muß der Druck-Monitor für einen
 Treiber bereits installiert sein, bevor man den Treiber hinzufügt, oder das RPC wird scheitern.
 </para>
 
 <para>
 <command>setdriver &lt;printername&gt; &lt;drivername&gt;</command>
-Führe einen Befehl <command>SetPrinter()</command> aus, um den mit einem Drucker assoziierten Treiber zu 
+Führe einen Befehl <command>SetPrinter()</command> aus, um den mit einem Drucker assoziierten Treiber zu
 aktualisieren. Der Druckertreiber muß bereits korrekt auf dem Druck-Server installiert sein.
 </para>
 
-<para>Beachten Sie auch die Befehle <command>enumprinters</command> und <command>enumdrivers</command> 
+<para>Beachten Sie auch die Befehle <command>enumprinters</command> und <command>enumdrivers</command>
 für das Abfragen einer Liste von installierten Druckern und Treibern.
 </para>
 
@@ -3054,7 +3054,7 @@ würden Sie diesen Befehl in einer Zeile eingeben, ohne die Umbrüche:
 Was die man-page als ein simples <parameter>&lt;config&gt;</parameter>-Schlüsselwort bezeichnet, besteht in
 Wirklichkeit aus acht durch Doppelpunkte getrennten Feldern. Das letzte Feld kann mehrere (in manchen sehr
 ausgefallenen Fällen bis zu 20 zusätzliche) Dateinamen enthalten. Dies mag anfangs sehr verwirrend klingen.
-Was die man-pages als <quote>LongPrinterName</quote> bezeichnen, sollte in der Realität als 
+Was die man-pages als <quote>LongPrinterName</quote> bezeichnen, sollte in der Realität als
 <quote>Driver Name</quote> bezeichnet werden. Sie können es bezeichnen, wie Sie wollen, solange Sie diesen
 Namen später im Befehl <command>rpcclient ... setdriver</command> wieder verwenden. Aus praktischen Gründen
 empfiehlt es sich, den Treiber so zu benennen wie den Drucker.
@@ -3079,7 +3079,7 @@ man-page klarer zu verstehen, die wir gerade gelesen haben.
 <para>
 	<indexterm><primary>rpcclient</primary><secondary>getdriver</secondary></indexterm>
 	<indexterm><primary>rpcclient</primary><secondary>getprinter</secondary></indexterm>
-Wir könnten <command>rpcclient</command> mit einem 
+Wir könnten <command>rpcclient</command> mit einem
 <command>getdriver</command> oder <command>getprinter</command> Sub-Befehl (in level 3 Ausführlichkeit)
 an die Windows Box absetzen. Setzen Sie sich einfach an eine UNIX oder Linux Workstation mit installierten
 Samba-Werkzeugen und tippen folgenden Befehl:
@@ -3109,7 +3109,7 @@ Aus dem Ergebnis sollte klarwerden, welche Detai welche ist. Hier ein Beispiel a
          Datafile: [C:\WINNT\System32\spool\DRIVERS\W32X86\2\INFOSTRM.PPD]
          Configfile: [C:\WINNT\System32\spool\DRIVERS\W32X86\2\PSCRPTUI.DLL]
          Helpfile: [C:\WINNT\System32\spool\DRIVERS\W32X86\2\PSCRIPT.HLP]
- 
+
          Dependentfiles: []
          Dependentfiles: []
          Dependentfiles: []
@@ -3117,7 +3117,7 @@ Aus dem Ergebnis sollte klarwerden, welche Detai welche ist. Hier ein Beispiel a
          Dependentfiles: []
          Dependentfiles: []
          Dependentfiles: []
- 
+
          Monitorname: []
          Defaultdatatype: []
 
@@ -3137,8 +3137,8 @@ wir keine (und auch für die Adobe-Treiber würden wir keine brauchen), daher erhä
 
 <para>
 >Aus der man-page (und der oben zitierten Ausgabe von <command>cupsaddsmb</command>) wird klar, daß Sie bestimmte
-Bedingungen erfüllen müssen, um das manuelle Hochladen und Initialisieren von Treibern erfolgreich zu 
-ermöglichen. Die beiden Sub-Befehle <command>rpcclient</command> und 
+Bedingungen erfüllen müssen, um das manuelle Hochladen und Initialisieren von Treibern erfolgreich zu
+ermöglichen. Die beiden Sub-Befehle <command>rpcclient</command> und
 <indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm> (<command>adddriver</command>
 und <command>setdriver</command>) müssen folgende Bedingungen erfüllen, um erfolgreich abzuschliessen:
 </para>
@@ -3146,8 +3146,8 @@ und <command>setdriver</command>) müssen folgende Bedingungen erfüllen, um erfol
 
 <listitem><para>Sie sind als <smbconfoption><name>printer admin</name></smbconfoption> oder root verbunden
 (dies ist <emphasis>nicht</emphasis> die Gruppe <quote>Printer Operators</quote> in NT, sondern die Gruppe
-<emphasis>printer admin</emphasis>, wie sie im Abschnitt 
-<smbconfsection>[global]</smbconfsection> von &smb.conf; definiert wurde).</para></listitem> 
+<emphasis>printer admin</emphasis>, wie sie im Abschnitt
+<smbconfsection>[global]</smbconfsection> von &smb.conf; definiert wurde).</para></listitem>
 
 <listitem><para>Kopieren Sie alle erforderlichen Treiber-Dateien nach
 <filename>\\SAMBA\print$\w32x86</filename> und
@@ -3155,10 +3155,10 @@ und <command>setdriver</command>) müssen folgende Bedingungen erfüllen, um erfol
 <quote>0</quote> respektive <quote>2</quote> landen. Für den Moment geben Sie sie <emphasis>nicht</emphasis>
 dorthin, sie werden automatisch vom Sub-Befehl <command>adddriver</command> verwendet. (Wenn Sie
 <command>smbclient</command> dazu verwenden, die Treiber-Dateien in die Freigabe zu plazieren, beachten Sie, daß
-Sie das Zeichen <quote>$</quote> <quote>escapen</quote>: 
+Sie das Zeichen <quote>$</quote> <quote>escapen</quote>:
 <command>smbclient //sambaserver/print\$ -U root.</command>)</para></listitem>
 
-<listitem><para>Der Benutzer, als der Sie sich verbinden, muß schreibberechtigt für die Freigabe 
+<listitem><para>Der Benutzer, als der Sie sich verbinden, muß schreibberechtigt für die Freigabe
 <smbconfsection>[print$]</smbconfsection> sein und dort Verzeichnisse anlegen dürfen.
 </para></listitem>
 
@@ -3170,8 +3170,8 @@ sein.
 	<indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
 	<indexterm><primary>rpcclient</primary><secondary>enumprinters</secondary></indexterm>
 Der CUPS-Drucker muß Samba bekannt sein, andernfalls scheitert der Sub-Befehl <command>setdriver</command>
-mit dem Fehler NT_STATUS_UNSUCCESSFUL. Um zu prüfen, ob der Drucker Samba bekannt ist, können Sie den 
-Sub-Befehl <command>enumprinters</command> von <command>rpcclient</command> verwenden. Ein seit langem 
+mit dem Fehler NT_STATUS_UNSUCCESSFUL. Um zu prüfen, ob der Drucker Samba bekannt ist, können Sie den
+Sub-Befehl <command>enumprinters</command> von <command>rpcclient</command> verwenden. Ein seit langem
 vorhandener Bug verhinderte ein sauberes Update der Drucker-Liste, bis jeder smbd-Prozess ein SIGHUP empfangen
 hatte oder neu gestartet wurde. Erinnern Sie sich daran, falls Sie den CUPS-Drucker gerade erst angelegt haben
 und auf Probleme stossen: Versuchen Sie, Samba neu zu starten.
@@ -3226,7 +3226,7 @@ ihn neu, oder senden Sie ein HUP-Signal:
 <screen>
 &rootprompt;<userinput>kill -HUP `pidof smbd`</userinput>
 </screen>
-Prüfen Sie nochmals. Korrigieren Sie und wiederholen Sie dies, bis zum Erfolg. Beachten Sie das 
+Prüfen Sie nochmals. Korrigieren Sie und wiederholen Sie dies, bis zum Erfolg. Beachten Sie das
 <quote>leere</quote> Feld zwischen den beiden Kommas in der Zeile <quote>description</quote>. Der Treibername
 würde hier aufscheinen, wenn es bereits einen gäbe. Sie müssen das Samba-Passwort von root kennen (wie es vom
 Befehl <command>smbpasswd</command> gesetzt wurde), um diesen Schritt und die meisten der folgenden Schritte
@@ -3257,7 +3257,7 @@ comment:[mysmbtstprn]
 location:[]
 sepfile:[]
 printprocessor:[winprint]
- 
+
 &rootprompt;<userinput>rpcclient -U root%xxxx -c 'getdriver mysmbtstprn' localhost</userinput>
  result was WERR_UNKNOWN_PRINTER_DRIVER
 
@@ -3271,13 +3271,13 @@ die Nachricht zeigen: <quote>Der Server hat nicht die erforderlichen Treiber ins
 </step>
 
 <step>
-<title>Stellen Sie alle erforderlichen Treiberdateien in die Samba-Freigabe 
+<title>Stellen Sie alle erforderlichen Treiberdateien in die Samba-Freigabe
 [print$].</title>
 
 <para><screen>
 &rootprompt;<userinput>smbclient //localhost/print\$ -U 'root%xxxx' \
 	-c 'cd W32X86; \
-	put /etc/cups/ppd/mysmbtstprn.ppd mysmbtstprn.PPD; \ 
+	put /etc/cups/ppd/mysmbtstprn.ppd mysmbtstprn.PPD; \
 	put /usr/share/cups/drivers/cupsui.dll cupsui.dll; \
 	put /usr/share/cups/drivers/cupsdrvr.dll cupsdrvr.dll; \
 	put /usr/share/cups/drivers/cups.hlp cups.hlp'</userinput>
@@ -3285,10 +3285,10 @@ die Nachricht zeigen: <quote>Der Server hat nicht die erforderlichen Treiber ins
 
 <para>
 (Dieser Befehl sollte in einer einzelnen langen Zeile eingegeben werden, die durch <quote>\</quote> angezeigten
-Zeilenumbrüche wurden zur Erhöhung der Lesbarkeit eingefügt. Dieser Schritt ist 
+Zeilenumbrüche wurden zur Erhöhung der Lesbarkeit eingefügt. Dieser Schritt ist
 <emphasis>erforderlich</emphasis>, damit der darauffolgende Schritt erfolgreich durchgeführt werden kann.
 Er macht die Dateien physisch in der Freigabe <smbconfsection>[print$]</smbconfsection> verfügbar. Die Clients
-wären jedoch nach wie vor nicht in der Lage, diese Treiber zu installieren, da Samba sie noch nicht als 
+wären jedoch nach wie vor nicht in der Lage, diese Treiber zu installieren, da Samba sie noch nicht als
 Treiberdateien behandelt. Ein Client, der diesen Treiber abfragt, würde nach wie vor mit einer Meldung wie
 <quote>nicht installiert</quote> konfrontiert.
 </para>
@@ -3309,7 +3309,7 @@ drwxr-sr-x    2 root     ntadmin       670 May 16 03:15 3
 </screen></para>
 
 <para>
-Die Treiberdateien sind jetzt im <quote>Wurzelverzeichnis</quote> der Freigabe 
+Die Treiberdateien sind jetzt im <quote>Wurzelverzeichnis</quote> der Freigabe
 <smbconfsection>[print$]</smbconfsection>.
 </para>
 </step>
@@ -3399,7 +3399,7 @@ Successfully set mysmbtstprn to driver mydrivername
 
 <para>
 Da Sie jeden Druckernamen (Drucker-Queue) an jeden Treiber binden können, ist dies eine praktische Möglichkeit,
-viele Queues zu konfigurieren, die denselben Treiber verwenden. Sie brauchen all die vorhergehenden Schritte 
+viele Queues zu konfigurieren, die denselben Treiber verwenden. Sie brauchen all die vorhergehenden Schritte
 nicht zu wiederholen, damit der Befehl setdriver Erfolg hat. Die einzigen Vorbedingungen sind:
 <command>enumdrivers</command> muß den Treiber finden und <command>enumprinters</command> muß den Drucker finden.
 </para>
@@ -3416,7 +3416,7 @@ nicht zu wiederholen, damit der Befehl setdriver Erfolg hat. Die einzigen Vorbed
 &rootprompt;<userinput>rpcclient -Uroot%xxxx -c 'getprinter mysmbtstprn 2' localhost \
   | grep driver</userinput>
 drivername:[mydrivername]
- 
+
 &rootprompt;<userinput>rpcclient -Uroot%xxxx -c 'getprinter mysmbtstprn 2' localhost \
   | grep -C4 driv</userinput>
 servername:[\\kde-bitshop]
@@ -3428,7 +3428,7 @@ comment:[mysmbtstprn]
 location:[]
 sepfile:[]
 printprocessor:[winprint]
- 
+
 &rootprompt;<userinput>rpcclient -U root%xxxx -c 'getdriver mysmbtstprn' localhost</userinput>
 [Windows NT x86]
 Printer Driver Info 3:
@@ -3443,7 +3443,7 @@ Printer Driver Info 3:
      Defaultdatatype: [RAW]
      Monitorname: []
      Defaultdatatype: [RAW]
- 
+
 &rootprompt;<userinput>rpcclient -Uroot%xxxx -c 'enumprinters' localhost \
 	| grep mysmbtstprn</userinput>
      name:[\\kde-bitshop\mysmbtstprn]
@@ -3473,7 +3473,7 @@ sollten hier alle freigegebenen Samba-Drucker sehen. Klicken Sie doppelt auf den
 Treiber sollte installiert und die Netzwerkverbindung hergestellt werden. Eine weitere Möglichkeit ist, den
 Ordner <guilabel>Drucker und Faxgeräte</guilabel> zu öffnen, den betreffenden Drucker mit der rechten
 Maustaste anzuklicken und entweder <guilabel>Verbinden</guilabel> oder <guilabel>Installieren</guilabel> zu
-wählen. Das Ergebnis sollte sein, daß ein neuer Drucker in dem lokalen Ordner 
+wählen. Das Ergebnis sollte sein, daß ein neuer Drucker in dem lokalen Ordner
 <guilabel>Drucker und Faxgeräte</guilabel> Ihres Clients erscheint, mit einem Namen wie
 <guilabel>Druckerfreigabename auf SambaServerName</guilabel>.
 </para>
@@ -3507,7 +3507,7 @@ Einstellung wieder zurück.
 </screen></para>
 
 <para>
-Wenn dies nicht funktioniert, könnte dies ein Berechtigungsproblem mit der Freigabe 
+Wenn dies nicht funktioniert, könnte dies ein Berechtigungsproblem mit der Freigabe
 <smbconfsection>[print$]</smbconfsection> sein.
 </para>
 </step>
@@ -3520,7 +3520,7 @@ Wenn dies nicht funktioniert, könnte dies ein Berechtigungsproblem mit der Freig
 </screen></para>
 
 <para>
-Dann drücken Sie fünfmal [TAB], zweimal [ENTER], einmal [TAB] und nochmals [ENTER] 
+Dann drücken Sie fünfmal [TAB], zweimal [ENTER], einmal [TAB] und nochmals [ENTER]
 und marschieren zum Drucker.
 </para>
 </step>
@@ -3550,7 +3550,7 @@ davon zu lesen. Stecken Sie die Seite in einen Rahmen und nageln Sie den an die 
 <title>Wiedersehen mit dem Troubleshooting</title>
 
 <para>
-Der Befehl setdriver wird scheitern, wenn in Samba's <quote>Bewußtsein</quote> die Queue noch nicht 
+Der Befehl setdriver wird scheitern, wenn in Samba's <quote>Bewußtsein</quote> die Queue noch nicht
 vorhanden ist. Sie hatten vielversprechende Meldungen wie:
 </para>
 
@@ -3569,11 +3569,11 @@ diese hier?
 
 <para>
 <indexterm><primary>lpstat</primary></indexterm>
-Es ist nicht gut genug, daß Sie die Queue in CUPS sehen können, mit dem Befehl 
-<command>lpstat -p ir85wm</command>. Ein Bug in den neueren Versionen von Samba verhindert ein 
+Es ist nicht gut genug, daß Sie die Queue in CUPS sehen können, mit dem Befehl
+<command>lpstat -p ir85wm</command>. Ein Bug in den neueren Versionen von Samba verhindert ein
 ordnungsgemässes Update der Queue-Liste. Die Erkennung von neu installierten CUPS-Druckern scheitert, bis
 Sie Samba neu starten oder ein HUP an alle smbd-Prozesse senden. Um zu prüfen, ob dies der Grund dafür ist,
-daß Samba den Befehl <command>setdriver</command> nicht erfolgreich ausführt, prüfen Sie, ob Samba den 
+daß Samba den Befehl <command>setdriver</command> nicht erfolgreich ausführt, prüfen Sie, ob Samba den
 Drucker <quote>sieht</quote>:
 </para>
 
@@ -3646,12 +3646,12 @@ auftauchen. Diese sind
 <indexterm><primary>TDB</primary></indexterm>
 Ein Windows NT (Druck-) Server führt Buch über alle benötigten Informationen, die er zur Erfüllung seiner
 Pflichten gegenüber den Clients benötigt, indem er Einträge in der Windows-Registrierung speichert.
-Client-Anfragen werden beantwortet, indem aus der Registrierung gelesen wird, Administrator- oder 
+Client-Anfragen werden beantwortet, indem aus der Registrierung gelesen wird, Administrator- oder
 Benutzer-Konfigurations-Einstellungen werden gespeichert, indem in die Registrierung geschrieben wird.
 Samba und UNIX haben natürlich keine solche Registrierung. Samba führt stattdessen Buch über alle
 Client-bezogene Information, indem es eine Reihe von <filename>*.tdb</filename> Dateien verwendet.
-(TDB = Trivial Data Base). Diese sind oft in <filename>/var/lib/samba/</filename> oder 
-<filename>/var/lock/samba/</filename> abgelegt. Die druck-bezogenen Dateien sind 
+(TDB = Trivial Data Base). Diese sind oft in <filename>/var/lib/samba/</filename> oder
+<filename>/var/lock/samba/</filename> abgelegt. Die druck-bezogenen Dateien sind
 <filename>ntprinters.tdb</filename>,
 <filename>printing.tdb</filename>,<filename>ntforms.tdb</filename> und <filename>ntdrivers.tdb</filename>.
 </para>
@@ -3666,7 +3666,7 @@ geschrieben. <quote>Warum nicht ASCII?</quote>, könnten Sie fragen. <quote>ASCII
 gute und bewährte Tradition unter UNIX.</quote>
 Der Grund für diese Design-Entscheidung ist hauptsächlich die Performance. Samba muß schnell laufen; es
 führt für jede Client-Verbindung einen separaten <command>smbd</command>-Prozess aus, in manchen
-Umgebungen viele tausende davon. Manche smbds könnten Schreibzugriff auf dieselbe 
+Umgebungen viele tausende davon. Manche smbds könnten Schreibzugriff auf dieselbe
 <filename>*.tdb</filename>-Datei <emphasis>zur gleichen Zeit</emphasis> brauchen. Das Dateiformat der
 <filename>*.tdb</filename>-Dateien von Samba erlaubt dies, viele smbd-Prozesse können gleichzeitig in die
 selbe <filename>*.tdb</filename>-Datei schreiben. Dies wäre mit reinen ASCII-Dateien nicht möglich.
@@ -3677,7 +3677,7 @@ selbe <filename>*.tdb</filename>-Datei schreiben. Dies wäre mit reinen ASCII-Dat
 <title><filename>*.tdb</filename>-Dateien verlieren</title>
 
 <para>
-Es ist sehr wichtig, daß alle <filename>*.tdb</filename>-Dateien konsistent über alle Lese- und 
+Es ist sehr wichtig, daß alle <filename>*.tdb</filename>-Dateien konsistent über alle Lese- und
 Schreibzugriffe bleiben. Es kann jedoch passieren, daß diese Dateien beschädigt <emphasis>werden</emphasis>.
 (Ein <command>kill -9 `pidof smbd'</command> während eines Schreibzugriffs könnte genauso gut dafür
 verantwortlich sein, wie ein Stromausfall etc.). Im Falle von Schwierigkeiten kann das Löschen der alten
@@ -3694,7 +3694,7 @@ Dateien erstellt.
 <para>
 <indexterm><primary>TDB</primary><secondary>sichern</secondary><see>tdbbackup</see></indexterm>
 <indexterm><primary>tdbbackup</primary></indexterm>
-Samba enthält ein kleines Hilfsmittel, das dem root-Benutzer Ihres Systems hilft, die 
+Samba enthält ein kleines Hilfsmittel, das dem root-Benutzer Ihres Systems hilft, die
 <filename>*.tdb</filename>-Dateien zu sichern. Wenn Sie es ohne Argumente ausführen, gibt es Auskunft über
 seine Verwendung:
 </para>
@@ -3702,7 +3702,7 @@ seine Verwendung:
 <para><screen>
 &rootprompt;<userinput>tdbbackup</userinput>
  Usage: tdbbackup [options] &lt;fname...&gt;
- 
+
  Version:3.0a
    -h            this help message
    -s suffix     set the backup suffix
@@ -3718,12 +3718,12 @@ Hier sehen Sie, wie ich meine Datei <filename>printing.tdb</filename> gesichert 
 &rootprompt;<userinput>ls</userinput>
 .              browse.dat     locking.tdb     ntdrivers.tdb printing.tdb
 ..             share_info.tdb connections.tdb messages.tdb  ntforms.tdb
-printing.tdbkp unexpected.tdb brlock.tdb      gmon.out      namelist.debug  
+printing.tdbkp unexpected.tdb brlock.tdb      gmon.out      namelist.debug 
 ntprinters.tdb sessionid.tdb
- 
+
 &rootprompt;<userinput>tdbbackup -s .bak printing.tdb</userinput>
  printing.tdb : 135 records
- 
+
 &rootprompt;<userinput>ls -l printing.tdb*</userinput>
  -rw-------    1 root     root        40960 May  2 03:44 printing.tdb
  -rw-------    1 root     root        40960 May  2 03:44 printing.tdb.bak
@@ -3750,8 +3750,8 @@ wie folgt installieren:
 
 <para>
 Die Option <option>-m</option> wird die Datei <filename>laserjet.ppd</filename> aus dem Standard-Repository
-für noch-nicht-installierte-PPDs beziehen, das CUPS üblicherweise in 
-<filename>/usr/share/cups/model</filename> speichert. Alternativ dazu können Sie 
+für noch-nicht-installierte-PPDs beziehen, das CUPS üblicherweise in
+<filename>/usr/share/cups/model</filename> speichert. Alternativ dazu können Sie
 <option>-P /pfad/zu/ihrer.ppd</option> benutzen.
 </para>
 
@@ -3774,8 +3774,8 @@ instand gehalten. Hier ist die neue URL zur neuen
 <ulink noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">Foomatic-3.0</ulink>-Datenbank.
 Wenn Sie ein Upgrade auf <command>foomatic-rip</command> durchführen wollen, vergessen Sie nicht, auch
 das Upgrade auf die neuartigen PPDs für Ihre Foomatic-betriebenen Drucker durchzuführen. foomatic-rip
-arbeitet nicht mit PPDs, die für das alte <command>cupsomatic</command> generiert wurden. Die neuen PPDs 
-entsprechen zu 100% der Adobe PPD-Spezifikation. Sie sind auch dazu gedacht, mit Samba und dem 
+arbeitet nicht mit PPDs, die für das alte <command>cupsomatic</command> generiert wurden. Die neuen PPDs
+entsprechen zu 100% der Adobe PPD-Spezifikation. Sie sind auch dazu gedacht, mit Samba und dem
 cupsaddsmb-Werkzeug verwendet zu werden, um die Treiber für die Windows-Clients bereitzustellen!
 </para></note>
 
@@ -3787,7 +3787,7 @@ cupsaddsmb-Werkzeug verwendet zu werden, um die Treiber für die Windows-Clients 
 <indexterm significance="preferred"><primary>foomatic</primary></indexterm>
 <indexterm significance="preferred"><primary>foomatic-rip</primary></indexterm>
 Heutzutage verwenden die meisten Linux-Distributionen die Werkzeuge von Linuxprinting.org, um ihre
-drucker-spezifische Software aufzubauen (welche übrigens auch auf allen UNICes und auch auf Mac OS X oder 
+drucker-spezifische Software aufzubauen (welche übrigens auch auf allen UNICes und auch auf Mac OS X oder
 Darwin läuft). Es ist nicht so bekannt, wie es sollte, daß es auch ein sehr benutzerfreundliches Interface
 hat, das einfache Updates von Treibern und PPDs erlaubt, für alle unterstützten Drucker, alle Spooler,
 alle Betriebssysteme und alle Paketformate (weil es keines gibt). Seine Geschichte geht schon einige Jahre
@@ -3796,14 +3796,14 @@ zurück.
 
 <para>
 Erst unlängst hat Foomatic den erstaunlichen Meilenstein von <ulink
-url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">1000 gelisteten</ulink> Druckermodellen 
+url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">1000 gelisteten</ulink> Druckermodellen
 geschafft. Linuxprinting.org speichert alle wichtigen Fakten über Druckertreiber und unterstützte Modelle
 zur Verfügung, sowie Informationen darüber, welche Optionen für die verschiedenen Treiber/Drucker-Kombinationen
 verfügbar sind, in seiner <ulink
-url="http://www.linuxprinting.org/foomatic.html">Foomatic</ulink>-Datenbank. Momentan gibt es 
+url="http://www.linuxprinting.org/foomatic.html">Foomatic</ulink>-Datenbank. Momentan gibt es
 <ulink
-url="http://www.linuxprinting.org/driver_list.cgi">245 Treiber</ulink> in der Datenbank. Viele Treiber 
-unterstützen verschiedene Modelle, und viele Modelle können mit verschiedenen Treibern betrieben werden 
+url="http://www.linuxprinting.org/driver_list.cgi">245 Treiber</ulink> in der Datenbank. Viele Treiber
+unterstützen verschiedene Modelle, und viele Modelle können mit verschiedenen Treibern betrieben werden
 &smbmdash; es ist Ihre Wahl!
 </para>
 
@@ -3829,10 +3829,10 @@ Vor ein paar Jahren startete <ulink url="http://www2.picante.com:81/~gtaylor/">G
 Die Wurzeln des heutigen Linuxprinting.org liegen in dem ersten
 <ulink url="http://www.linuxprinting.org/foomatic2.9/howto/">Linux Printing HOWTO</ulink>, das er verfaßt hat.
 Als Nebenprojekt zu diesem Dokument, das viele Linux-Anwender und -Administratoren auf ihren ersten
-Schritten in diesem komplizierten und delikaten Setup führte (für einen Wissenschaftler ist Drucken 
+Schritten in diesem komplizierten und delikaten Setup führte (für einen Wissenschaftler ist Drucken
 <quote>das Auftragen einer strukturierten Ablagerung von verschiedenen Mustern aus Tinten- oder Toner-Partikeln
 auf Papier-Substrate</quote>), startete er eine kleine Postgres-Datenbank mit Informationen über den Hardware-
-und Treiber-Zoo, aus dem das damalige Linux-Drucken bestand. Diese Datenbank wurde zur Kern-Komponente der 
+und Treiber-Zoo, aus dem das damalige Linux-Drucken bestand. Diese Datenbank wurde zur Kern-Komponente der
 heutigen Foomatic-Samllung von Werkzeugen und Daten. In der Zwischenzeit wurde auf eine XML-Struktur gewechselt.
 </para>
 </sect3>
@@ -3843,7 +3843,7 @@ heutigen Foomatic-Samllung von Werkzeugen und Daten. In der Zwischenzeit wurde a
 
 <para>
 <indexterm><primary>foomatic</primary></indexterm>
-<quote>Warum der lustige Name?</quote> fragen Sie. 
+<quote>Warum der lustige Name?</quote> fragen Sie.
 Als es wirklich losging, im Frühling 2000, war CUPS bei weitem nicht so populär, wie es heute ist, und die
 meisten Systeme benutzten LPD, LPRng oder sogar PDQ. CUPS kam nur mit ein paar generischen Treibern (genug für
 ein paar hundert verschiedene Druckermodelle). Diese unterstützten nicht soviele gerätespezifischen Optionen.
@@ -3894,19 +3894,19 @@ diese Konfigurations-Generatoren gewählt wurden, waren
 <ulink url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">PDQ-O-Matic</ulink> (für PDQ)
 und
 <ulink url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">LPD-O-Matic</ulink>
-(für &smbmdash; Sie haben es erraten &smbmdash; LPD); die Konfiguration verwendete hier keine PPDs, sondern 
+(für &smbmdash; Sie haben es erraten &smbmdash; LPD); die Konfiguration verwendete hier keine PPDs, sondern
 andere spooler-spezifische Dateien.
 </para>
 
 <para>
 Im Spätsommer jenes Jahres begann <ulink url="http://www.linuxprinting.org/till/">Till Kamppeter</ulink>, seine
-Arbeit in die Datenbank einfliessen zu lassen. Kamppeter war von 
+Arbeit in die Datenbank einfliessen zu lassen. Kamppeter war von
 <ulink url="http://www.mandrakesoft.com/">MandrakeSoft</ulink> angestellt worden, um deren Drucksystem auf CUPS
 umzustellen, nachdem sie sein auf <ulink url="http://www.fltk.org/">FLTK</ulink> basierendes
-<ulink url="http://cups.sourceforge.net/xpp/">XPP</ulink> gesehen hatten (ein GUI Frontend für den CUPS 
+<ulink url="http://cups.sourceforge.net/xpp/">XPP</ulink> gesehen hatten (ein GUI Frontend für den CUPS
 lp-Befehl). Er fügte viele Informationen und neuen Druckern hinzu, entwickelte auch die Unterstützung für andere
 Spooler, wie <ulink url="http://ppr.sourceforge.net/">PPR</ulink> (via ppromatic),
-<ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> und 
+<ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> und
 <ulink url="http://www.lprng.org/">LPRng</ulink> (beide via eines erweiterten lpdomatic) und Spooler-loses
 Drucken
 (<ulink url="http://www.linuxprinting.org/download.cgi?filename=directomatic&amp;show=0">directomatic</ulink>).
@@ -3915,7 +3915,7 @@ Drucken
 <para>
 Also, zur Beantwortung der Frage: <quote>Foomatic</quote> ist der allgemeine Namen für all den überlappenden
 Code und die Daten hinter den <quote>*omatic</quote>-Skripts. Foomatic brauchte bis zur Version 2.0.x (hässliche)
-Perl-Datenstrukturen, die an die CUPS-PPDs von Linuxprinting.org angehängt wurden. Es gabe verschiedene 
+Perl-Datenstrukturen, die an die CUPS-PPDs von Linuxprinting.org angehängt wurden. Es gabe verschiedene
 <quote>*omatic</quote>-Skripts für jeden Spooler, genauso wie verschiedene Drucker-Konfigurations-Dateien.
 </para>
 </sect3>
@@ -3931,7 +3931,7 @@ eine Annäherung aller *omatic-Skripts erreicht und wird nun <ulink
 url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=0">foomatic-rip.</ulink>
 genannt. Dieses einzelne Skript ist die Vereinheitlichung der davor verschiedenen spooler-spezifischen
 *omatic-Skripts. foomatic-rip wird von all den verschiedenen Spoolern gleicherweise benutzt, und da es PPDs
-lesen kann (sowohl die originalen PostScript-Drucker-PPDs wie auch die von Linuxprinting.org generierten), haben 
+lesen kann (sowohl die originalen PostScript-Drucker-PPDs wie auch die von Linuxprinting.org generierten), haben
 plötzlich alle unterstützten Spooler die mächtigen Features der PPDs zur Verfügung. DIe Benutzer brauchen nur
 foomatic-rip in ihr System stöpseln. Für die Benutzer gibt es erweiterte Unterstützung für Medien-Typen und
 -Zufuhr &smbmdash; Papier-Grössen und -Schächte sind einfacher zu konfigurieren.
@@ -3939,11 +3939,11 @@ foomatic-rip in ihr System stöpseln. Für die Benutzer gibt es erweiterte Unterst
 
 <para>
 Weiters enthält die neue Generation der Linuxprinting.org-PPDs keine Perl-Datenstrukturen mehr. Wenn Sie der
-Verwalter einer Distribution sind, und die vorhergehende Version von Foomatic verwendet haben, möchten Sie 
+Verwalter einer Distribution sind, und die vorhergehende Version von Foomatic verwendet haben, möchten Sie
 vielleicht die neue Version ausprobieren, aber vergessen Sie nicht, einen neuen Satz von PPDs zu generieren,
 mittels der neuen <ulink
 url="http://www.linuxprinting.org/download/foomatic/foomatic-db-engine-3.0.0beta1.tar.gz">Datenbank-Engine!</ulink>
-Privat-Anwender brauchen nur ein einzelnes neues PPD zu generieren, das spezifisch für ihren Drucker ist, unter 
+Privat-Anwender brauchen nur ein einzelnes neues PPD zu generieren, das spezifisch für ihren Drucker ist, unter
 Befolgung <ulink
 url="http://www.linuxprinting.org/kpfeifle/LinuxKongress2002/Tutorial/II.Foomatic-User/II.tutorial-handout-foomatic-user.html">dieser Schritte</ulink>, die im Foomatic-Tutorial oder in diesem Kapitel beschrieben sind. Diese
 neuen Entwicklungen sind wirklich erstaunlich.
@@ -3951,7 +3951,7 @@ neuen Entwicklungen sind wirklich erstaunlich.
 
 <para>
 foomatic-rip ist ein sehr cleverer "Wrapper" um die Anforderung, Ghostscript mit verschiedener Syntax,
-verschiedenen Optionen, Geräte-Auswahl, und/oder Filtern für jeden verschiedenen Drucker oder Spooler 
+verschiedenen Optionen, Geräte-Auswahl, und/oder Filtern für jeden verschiedenen Drucker oder Spooler
 auszuführen. Zur selben Zeit kann es die PPD, die einer Drucker-Queue zugeordnet ist, lesen, und den Druckauftrag
 entsprechend der Benutzer-Auswahl modifizieren. Dazu kommt die 100% Übereinstimmung der Foomatic-PPDs mit der
 Adobe-Spezifikation. Einige innovative Features des Foomatic-Konzepts werden die Benutzer überraschen. Es
@@ -4000,7 +4000,7 @@ der Epson-Treiber für Microsoft-Plattformen). Dieses Projekt unterstützt derzeit
 <title>Forums, Downloads, Tutorials, Howtos &smbmdash; auch für Mac OS X und kommerzielles UNIX</title>
 
 <para>
-Linuxprinting.org ist heute der One-Stop-Shop, um Druckertreiber herunterzuladen. Sehen Sie nach 
+Linuxprinting.org ist heute der One-Stop-Shop, um Druckertreiber herunterzuladen. Sehen Sie nach
 Drucker-Informationen und <ulink
 url="http://www.linuxprinting.org//kpfeifle/LinuxKongress2002/Tutorial/">Tutorials</ulink> oder lösen Sie
 Probleme in den populären <ulink
@@ -4013,7 +4013,7 @@ OS X Forum</ulink> wurde innerhalb einiger weniger Wochen zu einem der meist-fre
 
 <para>
 Linuxprinting.org und die Foomatic-Treiber-Wrapper um Ghostscript sind nunmehr eine Standard Werkzeug-Kette für
-das Drucken in allen wichtigen Distributionen. Die meisten haben auch CUPS darunter integriert. Während in den 
+das Drucken in allen wichtigen Distributionen. Die meisten haben auch CUPS darunter integriert. Während in den
 letzten Jahren die meisten Drucker-Daten von Kamppeter (der für Mandrake arbeitet) hinzugefügt wurden, kamen
 viele andere Beiträge von Leuten bei SuSE, Red Hat, Conectiva, Debian, und anderen. Hersteller-Neutralität ist
 ein wichtiges Ziel des Foomatic-Projekts.
@@ -4035,17 +4035,17 @@ Drucker- und Treiber-Informationen, sondern ist auf eine Art organisiert, daß si
 internen, auf XML basierenden Datensätzen generieren kann. Während diese PPDs der Adobe-Spezifikation für
 PostScript Printer Descriptions (PPDs) entsprechen, betreiben Linuxprinting.org/Foomatic-PPDs normalerweise
 keine PostScript-Drucker. Sie werden verwendet, um all die Features zu beschreiben, die Sie auf jedem beliebigen
-Gerät verwenden können. Der hauptsächliche Trick ist eine zusätzliche Zeile, die nicht von der 
+Gerät verwenden können. Der hauptsächliche Trick ist eine zusätzliche Zeile, die nicht von der
 Adobe-Spezifikation beachtet wird und mit dem Schlüsselwort <parameter>*cupsFilter</parameter> beginnt.
 Sie teilt dem CUPS-Daemon mit, wie er mit der PostScript-Druckdatei weiter verfahren soll (ältere Foomatic-PPDs
 benannten das cupsomatic-Filter-Skript, während die neueren PPDs foomatic-rip aufrufen). Dieses Filter-Skript
 ruft Ghostscript auf dem Host-System auf (die empfohlene Variante ist ESP Ghostscript), um die erforderliche
 Arbeit zu tun. foomatic-rip weiß, welchen Filter oder welche interne Geräte-Einstellung es von Ghostscript
 verlangen muß, um den PostScript-Druckauftrag in ein Rasterformat zu wandeln, das passend für das Zielgerät ist.
-Diese Verwendung von PPDs, um die Optionen von Nicht-PS-Druckern zu beschreiben, war eine Erfindung der 
+Diese Verwendung von PPDs, um die Optionen von Nicht-PS-Druckern zu beschreiben, war eine Erfindung der
 CUPS-Entwickler. Der Rest ist einfach. GUI-Werkzeuge (wie KDE's wunderbares <ulink
 url="http://printing.kde.org/overview/kprinter.phtml">kprinter,</ulink> oder <ulink
-url="http://gtklp.sourceforge.net/">gtklp</ulink> von GNOME, xpp und das CUPS-Web-Interface) lesen das PPD 
+url="http://gtklp.sourceforge.net/">gtklp</ulink> von GNOME, xpp und das CUPS-Web-Interface) lesen das PPD
 genauso, und verwenden diese Information, um die verfügbaren Einstellungen dem Benutzer anzubieten, genauso wie
 eine intuitive Menü-Auswahl.
 </para>
@@ -4090,7 +4090,7 @@ der Linuxprinting.org-Datenbank vertraut sind.
 
 <listitem><para>Es gibt einen Link auf die Datanbank-Seite für
 <ulink url="http://www.linuxprinting.org/show_driver.cgi?driver=ljet4">ljet4.</ulink>
-Auf der Seite des Treibers finden Sie wichtige und detaillierte Information, wie Sie den Treiber mit den 
+Auf der Seite des Treibers finden Sie wichtige und detaillierte Information, wie Sie den Treiber mit den
 verschiedenen Spoolern verwenden können.
 </para></listitem>
 
@@ -4112,7 +4112,7 @@ oder <quote>spooler-freiem</quote> <ulink url="http://www.linuxprinting.org/dire
 </para></listitem>
 
 <listitem><para>Das PPD enthält all die Informationen, um unseren Drucker und den Treiber zu verwenden; sobald
-es installiert ist, arbeitet es transparent für den Anwenden. Sie brauchen später nur noch Auflösung, 
+es installiert ist, arbeitet es transparent für den Anwenden. Sie brauchen später nur noch Auflösung,
 Papierformat, usw. aus dem Web-basierenden Menü, dem Druck-GUI-Dialog oder auf der Befehlszeile auswählen.
 </para></listitem>
 
@@ -4129,17 +4129,17 @@ Pflichterfüllung hindert), sondern verwenden Sie <guimenuitem>Speichern unter...
 Menü Ihres Browsers. (Am besten ist die Verwendung der Option <guilabel>Download</guilabel> direkt auf der
 Web-Seite).</para></listitem>
 
-<listitem><para>Ein weiterer interessanter Teil jeder Treiber-Seite ist der Button 
+<listitem><para>Ein weiterer interessanter Teil jeder Treiber-Seite ist der Button
 <guimenuitem>Show execution details</guimenuitem>. Wenn Sie Ihr Druckermodell wählen und diesen Button klicken,
-wird eine komplette Ghostscript-Befehlszeile angezeigt, die alle verfügbaren Optionen für diese 
-Drucker/Treiber-Kombination aufzählt. Dies ist eine gute Möglichkeit, <quote>Ghostscript durch Anwendung zu 
+wird eine komplette Ghostscript-Befehlszeile angezeigt, die alle verfügbaren Optionen für diese
+Drucker/Treiber-Kombination aufzählt. Dies ist eine gute Möglichkeit, <quote>Ghostscript durch Anwendung zu
 erlernen</quote>. Es ist weiters ein hervorragender Schummelzettel für alle erfahrenen Anwender, die eine
 gute Befehlszeile für irgendein verdammtes Druck-Skript rekonstruieren müssen, sich aber nicht mehr an die
 exakte Syntax erinnern.</para></listitem>
 
 <listitem><para>Irgendwann während Ihres Besuchs auf Linuxprinting.org speichern Sie Ihre PPD-Datei unter einem
 passenden Platz auf Ihrer Festplatte, sagen wir <filename>/pfad/zu/ihrer.ppd</filename> (wenn Sie es vorziehen,
-Ihre Drucker unter Verwendung des CUPS-Web-Interface zu installieren, speichern Sie das PPD in 
+Ihre Drucker unter Verwendung des CUPS-Web-Interface zu installieren, speichern Sie das PPD in
 <filename>/usr/share/cups/model/</filename> und starten CUPS neu).</para></listitem>
 
 <listitem><para>Dann installieren Sie den Drucker mit einer entsprechenden Befehlszeile, wie dieser:
@@ -4154,13 +4154,13 @@ Ihre Drucker unter Verwendung des CUPS-Web-Interface zu installieren, speichern 
 speziellen CUPS-Filter namens foomatic-rip.
 </para></listitem>
 
-<listitem><para>Das foomatic-rip Perl-Skript selbst gibt ziemlich interessanten 
+<listitem><para>Das foomatic-rip Perl-Skript selbst gibt ziemlich interessanten
 <ulink url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=1">Lesestoff</ulink>
 ab, da es durch Kamppeter's Inline-Kommentare gut dokumentiert ist (sogar Nicht-Perl-Hacker werden einiges über Drucken lernen, wenn sie es lesen).</para></listitem>
 
 <listitem><para>Speichern Sie foomatic-rip entweder direkt in
 <filename>/usr/lib/cups/filter/foomatic-rip</filename> oder sonstwo in Ihren  $PATH (und vergessen Sie nicht, es
-für alle ausführbar zu setzen). Verwenden Sie auch hier nicht Cut and Paste, sondern verwenden Sie den 
+für alle ausführbar zu setzen). Verwenden Sie auch hier nicht Cut and Paste, sondern verwenden Sie den
 entsprechenden Link oder den Menü-Eintrag <guimenuitem>Speichern unter ...</guimenuitem> Ihres Browsers.
 </para></listitem>
 
@@ -4179,7 +4179,7 @@ CUPS wird diesen neu verfügbaren Filter beim Neustart von cupsd entdecken.
 Sobald Sie auf eine Queue drucken, die mit dem Foomatic-PPD installiert wurde, fügt CUPS die entsprechenden
 Befehle und Kommentare in die resultierende PostScript-Datei ein. foomatic-rip kann diese lesen und mit ihnen
 umgehen, und verwendet einige speziell codierte Foomatic-Kommentare, die in die Auftragsdatei eingebettet sind.
-Diese werden wiederum dazu verwendet (transparent für Sie, den Anwender), um die komplizierte 
+Diese werden wiederum dazu verwendet (transparent für Sie, den Anwender), um die komplizierte
 Ghostscript-Befehlszeile zu konstruieren, die dem Druckertreiber exakt mitteilt, wie die ausgegebenen Rasterdaten
 auszusehen haben, und welche Druckerbefehle in den Datenstrom einzubetten sind. Sie brauchen:
 </para>
@@ -4612,9 +4612,9 @@ on Linux by running <userinput>ldd `which smbd'</userinput>).</para></listitem>
 
 <note><para>
 In this case, all other manually set printing-related commands (like
-<smbconfoption><name>print command</name></smbconfoption>, 
-<smbconfoption><name>lpq command</name></smbconfoption>, 
-<smbconfoption><name>lprm command</name></smbconfoption>, 
+<smbconfoption><name>print command</name></smbconfoption>,
+<smbconfoption><name>lpq command</name></smbconfoption>,
+<smbconfoption><name>lprm command</name></smbconfoption>,
 <smbconfoption><name>lppause command</name></smbconfoption> or
 <smbconfoption><name>lpresume command</name></smbconfoption>) are ignored and they should normally have no
 influence whatsoever on your printing.
@@ -4775,7 +4775,7 @@ Samba.</para>
 		password).</para>
 
 		<para>
-		If the error is: <quote>tree connect failed: NT_STATUS_BAD_NETWORK_NAME</quote>, 
+		If the error is: <quote>tree connect failed: NT_STATUS_BAD_NETWORK_NAME</quote>,
 		you may have forgotten to create the <filename>/etc/samba/drivers</filename> directory.
 		</para>
 
@@ -4785,7 +4785,7 @@ Samba.</para>
 		<title><quote>cupsaddsmb</quote> Errors</title>
 
 		<para>
-		The use of <quote>cupsaddsmb</quote> gives <quote>No PPD file for printer...</quote> 
+		The use of <quote>cupsaddsmb</quote> gives <quote>No PPD file for printer...</quote>
 		Message While PPD File Is Present.  What might the problem be?
 		</para>
 
@@ -4819,7 +4819,7 @@ Samba.</para>
 	<title>New Account Reconnection from Windows 200x/XP Troubles</title>
 
 <para>Once you are connected as the wrong user (for
-example, as <constant>nobody</constant>, which often occurs if you have 
+example, as <constant>nobody</constant>, which often occurs if you have
 <smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>), Windows Explorer will not accept an
 attempt to connect again as a different user. There will not be any byte
 transfered on the wire to Samba, but still you'll see a stupid error
@@ -4845,7 +4845,7 @@ printer in question and select
 	
 <para>You see per <command>smbstatus</command> that you are
 connected as user nobody; while you want to be root or
-printer admin. This is probably due to 
+printer admin. This is probably due to
 <smbconfoption><name>map to guest</name><value>bad user</value></smbconfoption>, which silently connects you under the guest account
 when you gave (maybe by accident) an incorrect username. Remove
 <smbconfoption><name>map to guest</name></smbconfoption>, if you want to prevent
@@ -4969,7 +4969,7 @@ to the parent dialog.</para></listitem>
 </para>
 </listitem>
 
-<listitem><para>The third, and the correct way: 
+<listitem><para>The third, and the correct way:
 
 <orderedlist>
 
