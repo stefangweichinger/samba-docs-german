@@ -508,8 +508,8 @@ Added user ameds.
 			Alternativ kann dies manuell getan werden:
 			<indexterm><primary>smbd</primary></indexterm>
 			<indexterm><primary>nmbd</primary></indexterm>
-			<indexterm><primary>starting samba</primary><secondary>smbd</secondary></indexterm>
-			<indexterm><primary>starting samba</primary><secondary>nmbd</secondary></indexterm>
+			<indexterm><primary>Samba starten</primary><secondary>smbd</secondary></indexterm>
+			<indexterm><primary>Samba starten</primary><secondary>nmbd</secondary></indexterm>
 <screen>
 &rootprompt;<userinput> nmbd; smbd;</userinput>
 </screen>
@@ -722,9 +722,9 @@ Joined domain MIDEARTH.
 			<indexterm><primary>smbd</primary></indexterm>
 			<indexterm><primary>nmbd</primary></indexterm>
 			<indexterm><primary>winbindd</primary></indexterm>
-			<indexterm><primary>starting samba</primary><secondary>smbd</secondary></indexterm>
-			<indexterm><primary>starting samba</primary><secondary>nmbd</secondary></indexterm>
-			<indexterm><primary>starting samba</primary><secondary>winbindd</secondary></indexterm>
+			<indexterm><primary>Samba starten</primary><secondary>smbd</secondary></indexterm>
+			<indexterm><primary>Samba starten</primary><secondary>nmbd</secondary></indexterm>
+			<indexterm><primary>Samba starten</primary><secondary>winbindd</secondary></indexterm>
 <screen>
 &rootprompt;<userinput>nmbd; smbd; winbindd;</userinput>
 </screen>
