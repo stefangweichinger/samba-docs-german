@@ -283,57 +283,54 @@
 
 <!ENTITY stdarg.debug '
 <varlistentry>
-<term>-d|--debug=debuglevel</term>
+<term>-d|--debug=Debug-Ebene</term>
 <listitem>
-<para><replaceable>debuglevel</replaceable> is an integer 
-from 0 to 10.  The default value if this parameter is 
-not specified is zero.</para>
+<para><replaceable>Debug-Ebene</replaceable> ist ein Integer 
+von 0 bis 10. Falls dieser Parameter nicht angegeben wird, ist
+der Vorgabewert dafür Null.</para>
 
-<para>The higher this value, the more detail will be 
-logged to the log files about the activities of the 
-server. At level 0, only critical errors and serious 
-warnings will be logged. Level 1 is a reasonable level for
-day-to-day running - it generates a small amount of 
-information about operations carried out.</para>
+<para>Je höher der Wert ist, desto mehr Details über die Serveraktivität
+werden in den Log-Dateien abgespeichert. Auf der Ebene 0 werden nur
+kritische Fehler und ernstzunehmende Warnungen geloggt. Ebene 1 ist eine
+vernünftige Ebene beim alltäglichen Betrieb - dabei wird eine kleine 
+Informationsmenge über die ausgeführten Operationen erzeugt.</para>
 
-<para>Levels above 1 will generate considerable 
-amounts of log data, and should only be used when 
-investigating a problem. Levels above 3 are designed for 
-use only by developers and generate HUGE amounts of log
-data, most of which is extremely cryptic.</para>
+<para>Die Ebenen über 1 hinaus erzeugen beachtliche mengen von Logdaten, 
+und sollten nur bei der Suche nach Problemen verwendet werden. Die Ebenenen 
+größer als 3 sind nur für Entwickler gedacht und erzeugen RIESIGE Mengen
+an Logdaten, von denen die meisten extrem kryptisch sind.</para>
 
-<para>Note that specifying this parameter here will 
-override the <smbconfoption><name>log level</name></smbconfoption> parameter
-in the &smb.conf; file.</para>
+<para>Beachten Sie, dass durch die Angabe dieses Parameters an dieser Stelle 
+der Parameter <smbconfoption><name>log level</name></smbconfoption> 
+in der Datei &smb.conf; überschrieben wird.</para>
 </listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.configfile '
 <varlistentry>
-<term>-s &lt;configuration file&gt;</term>
-<listitem><para>The file specified contains the 
-configuration details required by the server.  The 
-information in this file includes server-specific
-information such as what printcap file to use, as well 
-as descriptions of all the services that the server is 
-to provide. See &smb.conf; for more information.
-The default configuration file name is determined at 
-compile time.</para></listitem>
+<term>-s &lt;Konfigurations-Datei&gt;</term>
+<listitem><para>Die angegebene Datei enthält die Konfigurationdetails, 
+die der Server benötigt. Zu der Information in dieser Datei ist zum Teil 
+Server-spezifisch, z.B. welche printcap-Datei benutzt werden soll, 
+enthält aber auch Beschreibungen aller Dienste, die der Server anbieten
+soll. Siehe &smb.conf; für weitere Informationen.
+Der Standardname der Konfigurationsdatei wird beim Kompilieren bestimmt.
+</para></listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.version '
 <varlistentry>
 <term>-V</term>
-<listitem><para>Prints the program version number.
+<listitem><para>Gibt die Versionsnummer des Programms aus.
 </para></listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.logfile '
 <varlistentry>
 <term>-l|--logfile=logbasename</term>
-<listitem><para>File name for log/debug files. The extension
-<constant>".client"</constant> will be appended. The log file is
-never removed by the client.
+<listitem><para>Dateiname für Log-/Debug-Dateien. Die Dateierweiterung
+<constant>".client"</constant> wird angefügt. Die Log-Datei wird vom 
+Client niemals entfernt.
 </para></listitem>
 </varlistentry>'>
 
@@ -404,13 +401,13 @@ resolution methods will be attempted in this order. </para></listitem>
 
 <!ENTITY stdarg.netbios.name '
 <varlistentry>
-<term>-n &lt;primary NetBIOS name&gt;</term>
-<listitem><para>This option allows you to override
-the NetBIOS name that Samba uses for itself. This is identical
-to setting the <smbconfoption><name>netbios name</name></smbconfoption> parameter in the &smb.conf; file. 
-However, a command
-line setting will take precedence over settings in
-&smb.conf;.</para></listitem>
+<term>-n &lt;primärer NetBIOS-Name&gt;</term>
+<listitem><para>Mit dieser Option können Sie den NetBIOS-Namen überschreiben,
+den Samba für sich selbst benutzt. Das ist identisch damit, dass Sie den
+Parameter <smbconfoption><name>netbios name</name></smbconfoption> in der
+Datei &smb.conf; setzen. 
+Allerdings hat eine Einstellung auf der Kommandozeile Vorrang vor 
+Einstellungen in &smb.conf;.</para></listitem>
 </varlistentry>'>
 
 <!ENTITY stdarg.scope '
@@ -660,7 +657,7 @@ an Active Directory environment.
 <!ENTITY glossary SYSTEM "../howto/glossary.xml">
 <!ENTITY foreword-tridge SYSTEM "../howto/foreword-tridge.xml">
 
-<!ENTITY not.implemented "<note><para>Currently NOT implemented.</para></note>">
+<!ENTITY not.implemented "<note><para>Im Moment NICHT implementiert.</para></note>">
 <!ENTITY rootprompt "<prompt>root# </prompt>">
 <!ENTITY prompt "<prompt>$ </prompt>">
 <!ENTITY dosprompt "<prompt>C:\&gt; </prompt>">
