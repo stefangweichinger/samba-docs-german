@@ -6,38 +6,37 @@
 		<firstname>Jean François</firstname><surname>Micouleau</surname>
 	</author>
 	&author.jerry;
-	<pubdate>April 3 2003</pubdate>
 	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>Gruppen Mapping &smbmdash; MS Windows und UNIX</title>
+<title>Das Gruppen-Mapping &smbmdash; zwischen MS Windows und UNIX</title>
 
 
 	<para>
 <indexterm significance="preferred"><primary>Gruppen</primary><secondary>Mapping</secondary></indexterm>
-	Mit der Einführung von Samba 3, wurden neue Gruppen-Mapping Funktionen eingebaut, die Verbindungen
+	Mit der Einführung von Samba 3 wurden neue Gruppen-Mapping Funktionen eingebaut, die Verbindungen
 	zwischen Unix-Gruppen und Windows-Gruppen SIDs ermöglichen. Das Unterkommando <command>groupmap</command>,
-	welches zum &net; Kommando gehört, wird für das Verbinden der Gruppen verwendet.
+	welches zum Kommando &net; gehört, wird für das Verbinden der Gruppen verwendet.
 	</para>
 
 	<para>
-	Die neuen Merkmale des Gruppen-Mappings ermöglichen dem Administrator zu entscheiden, welche NT Domänengruppen
-	dem MS Windows Client zugeordnet werden. Es werden nur jene NT Domänengruppen in den 
-	Werkzeugen zur Bearbeitung von Domänenbenutzern und -gruppen angezeigt, welche auf eine Unix-Gruppe gemappt wurden,
+	Die neuen Merkmale des Gruppen-Mappings ermöglichen es dem Administrator, zu entscheiden, welche NT-Domänengruppen
+	dem MS Windows Client zugeordnet werden. Es werden nur jene NT-Domänengruppen in den 
+	Werkzeugen zur Bearbeitung von Domänen-Benutzern und -Gruppen angezeigt, welche auf eine Unix-Gruppe gemappt wurden,
 	und nicht dem Standardwert (<constant>-1</constant>) zugeordnet wurden.
  	</para>
 
 	<warning>
 	<para>
-	<indexterm><primary>Domänen Administratoren-Gruppe</primary></indexterm>
-	Der <parameter>domain admin group</parameter> Parameter wurde aus Samba-3 entfernt und sollte nicht
-	länger verwendet werden. In Samba-2.2.x Versionen wurde dieser Parameter verwendet, um einer bestimmten
-	Liste von Benutzern die Mitgliedschaft in der Domänen Administratoren-Gruppe zu geben, welche lokale Administrator-
+	<indexterm><primary>Domänen-Administratoren-Gruppe</primary></indexterm>
+	Der Parameter <parameter>domain admin group</parameter> wurde aus Samba-3 entfernt und sollte nicht
+	länger verwendet werden. In Samba-2.2.x-Versionen wurde dieser Parameter verwendet, um einer bestimmten
+	Liste von Benutzern die Mitgliedschaft in der Domänen-Administratoren-Gruppe zu geben, welche lokale Administrator-
 	Rechte auf den Client Rechner vergeben (in Standard Konfigurationen).
 	</para>
 	</warning>
 
 <sect1>
-<title>Eigenschaften und Leistungen</title>
+<title>Eigenschaften und Vorzüge</title>
 
 	<para>
 	Samba ermöglicht dem Administrator das Anlegen von MS Windows NT4/200x Gruppenkonten, welche
@@ -48,9 +47,9 @@
 <indexterm><primary>UID</primary></indexterm>
 <indexterm><primary>GID</primary></indexterm>
 	Gruppenkonten können mit den MS Windows 200x/XP Professional MMC Tools verwaltet werden.
-	In der &smb.conf; können entsprechende Skripts verwendet werden, um mit diesen MMC Tools 
+	In der Datei &smb.conf; können entsprechende Skripts verwendet werden, um mit diesen MMC Tools 
 	automatisch UNIX/Linux-Konten anzulegen. Wenn diese Skripts nicht angegeben werden und der
-	<command>winbindd</command> läuft, werden die Samba Gruppenkonten den Parametern von 
+	<command>winbindd</command> läuft, werden die Samba-Gruppenkonten den Parametern von 
 	<smbconfoption><name>idmap uid</name></smbconfoption>/<smbconfoption><name>idmap gid</name></smbconfoption>
 	der &smb.conf; zugeordnet.
 	</para>
@@ -70,9 +69,9 @@
 	</figure>
 
 	<para>
-	In beiden Fällen wenn winbindd nicht läuft, können nur lokal auflösbare Gruppen erkannt werden. Siehe auch
+	In beiden Fällen können, wenn winbindd nicht läuft, nur lokal auflösbare Gruppen erkannt werden. Siehe auch
 	<link linkend="idmap-sid2gid">IDMAP: Auflösung der Gruppen SID zur GID</link> und <link linkend="idmap-gid2sid">IDMAP: GID Auflösung zu passender SID</link>. 
-	Das Kommando <command>net groupmap</command> wird verwendet um UNIX-Gruppen zu NT SID Mappings wie in 
+	Das Kommando <command>net groupmap</command> wird verwendet, um UNIX-Gruppen zu NT SID Mappings wie in 
 	<link linkend="idmap-store-gid2sid">IDMAP: Speichern von Gruppen-Mappings</link> zu erstellen.
 	</para>
 	
@@ -91,8 +90,8 @@
 	Administratoren sollten beachten, dass &smb.conf; Gruppen-Interface-Skripte direkt die UNIX/Linux Systemwerkzeuge
 	(die Shadow Utilities <command>groupadd</command>, <command>groupdel</command>, und <command>groupmod</command>) 
 	verwenden. Die resultierenden Gruppennamen können nur Zeichen enthalten, die auch die oben genannten Werkzeuge
-	bearbeiten können. Wenn die Werkzeuge keine Großbuchstaben oder Leerzeichen erlauben wird das Erstellen der
-	<ntgroup>Domänen Administratoren</ntgroup> nicht möglich sein.
+	bearbeiten können. Wenn die Werkzeuge keine Großbuchstaben oder Leerzeichen erlauben, wird das Erstellen der
+	Gruppe <ntgroup>Domänen-Administratoren</ntgroup> nicht möglich sein.
 	</para>
 
 
@@ -101,12 +100,12 @@
 	<indexterm><primary>SID</primary></indexterm>
 	Es gibt verschiedene Lösungswege für solche Einschränkungen von verschiedenen Betriebsystemen.
 	Eine Möglichkeit besteht darin, Skripte zu verwenden, die die Systemeinschränkungen kennen und dann nur
-	die UNIX/Linux Gruppen ID (GID) an Samba zurückgeben. Dies ist ein dynamischer Workaround.
+	die UNIX/Linux Gruppen-ID (GID) an Samba zurückgeben. Dies ist ein dynamischer Workaround.
 	</para>
 
 	<para>
 	Ein anderer Lösungsansatz ist die manuelle Erstellung der UNIX/Linux- und MS Windows NT4/200x- 
-	Gruppen am Samba Server und die Verwendung des Werkzeugs <command>net groupmap</command> um die 
+	Gruppen am Samba-Server und die Verwendung des Werkzeugs <command>net groupmap</command>, um die 
 	Gruppen zu "verbinden".
 	</para>
 
@@ -124,32 +123,36 @@
 
 	<para>
 	<indexterm><primary>Administrator</primary></indexterm>
-	Der <constant>Administrator</constant> Benutzer ist Mitglied der <constant>Administratoren</constant> Gruppe. Dies
-	vererbt die <constant>Administratoren</constant> Gruppenrechte.
-	Falls ein Benutzer <constant>joe</constant> erzeugt wird, der Mitglied der <constant>Administratoren</constant>
-	Gruppe ist, so hat <constant>joe</constant> genau diesselben Rechte wie der Benutzer <constant>Administrator</constant>.
+	Der Benutzer <constant>Administrator</constant> ist Mitglied der Gruppe <constant>Administratoren</constant>.
+	Dies vererbt die Gruppenrechte der <constant>Administratoren</constant>.
+	Falls ein Benutzer <constant>joe</constant> erzeugt wird, der Mitglied der Gruppe 
+	<constant>Administratoren</constant>
+	ist, so hat <constant>joe</constant> genau diesselben Rechte wie der Benutzer <constant>Administrator</constant>.
 	</para>
 
 	<para>
-	Wenn eine MS Windows NT/200x/XP Maschine zum Domänenmitglied gemacht wird, so wird die <quote>Domänen Administratoren</quote> Gruppe
-	des PDC zu der lokalen <constant>Administratoren</constant> Gruppe der Arbeitsstation hinzugefügt.
-	Jedes Mitglied der <constant>Domänen Administratoren</constant> Gruppe vererbt die Rechte der lokalen
-	<constant>Administratoren</constant> Gruppe wenn diese sich an der Arbeitsstation anmelden.
+	Wenn eine MS Windows NT/200x/XP Maschine zum Domänenmitglied gemacht wird, so wird die 
+	Gruppe <quote>Domänen Administratoren</quote>
+	des PDC zu der lokalen Gruppe <constant>Administratoren</constant> der Arbeitsstation hinzugefügt.
+	Jedes Mitglied der Gruppe <constant>Domänen Administratoren</constant> vererbt die Rechte der lokalen
+	Gruppe <constant>Administratoren</constant>, wenn diese sich an der Arbeitsstation anmelden.
 	</para>
 
 	<para>
-	Die folgenden Schritte beschreiben, wie man Samba PDC-Benutzer zu Mitgliedern der <constant>Domänenadministratoren</constant> Gruppe macht.
+	Die folgenden Schritte beschreiben, wie man Samba PDC-Benutzer zu Mitgliedern der 
+	Gruppe <constant>Domänenadministratoren</constant> macht.
 	</para>
 
 	<orderedlist>
 		<listitem><para>
-		Erzeugen Sie eine UNIX Gruppe (normalerweise in der Datei <filename>/etc/group</filename>), 
+		Erzeugen Sie eine UNIX-Gruppe (normalerweise in der Datei <filename>/etc/group</filename>), 
 		nennen wir sie <constant>domadm</constant>.
 		</para></listitem>
 
 		<listitem><para>
-		Fügen Sie dieser Gruppe die Benutzer zu, die <quote>Administrator</quote> sein müssen. Falls Sie 
-		zum Beispiel <constant>joe, john</constant> und <constant>mary</constant> Administrator sein lassen wollen,
+		Fügen Sie dieser Gruppe die Benutzer hinzu, die <quote>Administrator</quote> sein müssen. 
+		Falls Sie zum Beispiel <constant>joe, john</constant> und <constant>mary</constant>
+		Administrator sein lassen wollen,
 		sieht Ihr Eintrag in <filename>/etc/group</filename> wie folgt aus:
 		</para>
 
@@ -159,7 +162,8 @@
 		</para></listitem>
 
 		<listitem><para>
-		Mappen Sie diese domadm Gruppe zu der <quote>Domänen Administratoren</quote> Gruppe indem Sie das Kommando eingeben:
+		Mappen Sie diese domadm Gruppe auf die Gruppe <quote>Domänen Administratoren</quote>,
+		indem Sie den Befehl eingeben:
 		</para>
 
 		<para>
@@ -170,7 +174,8 @@
 		
 		<para>
 		<indexterm><primary>Domänen Administratoren-Gruppe</primary></indexterm>
-		Die Anführungszeichen um <quote>Domänen Administratoren</quote> sind notwendig, weil ein Leerzeichen im Gruppennamen ist.
+		Die Anführungszeichen um <quote>Domänen Administratoren</quote> sind notwendig, weil der
+		Gruppennamen ein Leerzeichen enthält.
 		Stellen Sie zudem sicher, dass Sie keine Leerzeichen um das Gleichheitszeichen (=) übrig lassen.
 		</para></listitem>
 	</orderedlist>
@@ -183,8 +188,9 @@
 	<indexterm><primary>Gruppen</primary><secondary>Domäne</secondary></indexterm>
 	Es ist möglich, jede beliebige UNIX-Gruppe auf jede Windows NT4/200x-Gruppe zu mappen, genauso wie
 	jede UNIX-Gruppe zu einer Windows Domänengruppe zu machen. Beispielsweise wollten Sie eine UNIX-Gruppe
-	(z.B. acct) in eine ACL auf einer lokalen Datei oder Drucker auf einer Domänen-Mitgliedsmaschine aufnehmen, dann
-	markieren Sie diese Gruppe als eine Domänengruppe durch Eingeben des folgenden auf dem Samba PDC:
+	(z.B. acct) in eine ACL auf einer lokalen Datei oder Drucker auf einer Domänen-Mitgliedsmaschine 
+	aufnehmen, dann markieren Sie diese Gruppe als eine Domänengruppe auf dem Samba PDC,
+	durch Eingeben des folgenden:
 	</para>
 
 	<para>
@@ -194,9 +200,10 @@
 	</para>
 
 	<para>
-	Beachten Sie, dass der RID Parameter ein unsigned 32-Bit Integer ist, der normalerweise bei 1000 startet.
-	Wie auch immer darf dieser RID sich nicht mit einem RID, der einem Benutzer zugewiesen ist, überschneiden.
-	Die Überprüfung dessen wird unterschiedlich gemacht und ist von dem von Ihnen verwendetetn passdb-Backend 
+	Beachten Sie, dass der RID-Parameter ein unsigned 32-Bit Integer ist, der normalerweise bei 1000 startet.
+	Wie auch immer, dieser RID darf sich nicht mit einem RID, der einem Benutzer zugewiesen ist, 
+	überschneiden.
+	Die Überprüfung dessen wird unterschiedlich gemacht und ist von dem von Ihnen verwendeten passdb-Backend 
 	abhängig. Künftige Versionen der Werkzeuge machen die Überprüfung eventuell automatisch, aber derzeit ist
 	dies Ihre Sache.
 	</para>
@@ -211,17 +218,19 @@
 	<orderedlist>
 		<listitem><para>Für Samba-3 Domänenkontroller und 
 				Domänenmitglieds-Servern/Clients.</para></listitem>
-		<listitem><para>Um Windows-Arbeitsstationen die Domänenmitglied sind, zu verwalten.</para></listitem>
+		<listitem><para>Um Windows-Arbeitsstationen, die Domänenmitglied sind, zu verwalten.</para></listitem>
 	</orderedlist>
 
 	<para>
-	Administrative Aufgaben auf UNIX/Linux Systemen, wie das Hinzufügen von Benutzern oder Gruppen, setzt <constant>root</constant>
+	Administrative Aufgaben auf UNIX/Linux-Systemen, wie das Hinzufügen von Benutzern oder Gruppen, 
+	setzen <constant>root</constant>
 	Level Privilegien voraus. Das Hinzufügen eines Windows-Clients zu einer Samba Domäne bringt das Hinzufügen
 	eines Benutzerkontos für den Windows-Client mit sich.
 	</para>
 
 	<para>
-	Viele UNIX Administratoren fragen wiederholt beim Samba Team an, ob es nicht möglich wäre, Windows Arbeitsstationen
+	Viele UNIX-Administratoren fragen wiederholt beim Samba Team an, ob es nicht möglich wäre, 
+	Windows Arbeitsstationen
 	oder die Möglichkeit Benutzerkonten hinzuzufügen/zu löschen ohne <constant>root</constant> Privilegien voraus zu setzen.
 	Solch ein Verlangen verletzt jedes Verständnis von grundlegender UNIX Systemsicherheit.
 	</para>
