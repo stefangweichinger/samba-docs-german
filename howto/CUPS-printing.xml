@@ -1202,19 +1202,10 @@ geräte-spezifische Druckerdaten zu generieren.
 CUPS-Raster ist ein generisches Rasterformat mit mächtigen Eigenschaften. Es ist imstande, Informationen zu
 einzelnen Seiten, Farbprofile, und mehr zu inkludieren, um diese Informationen nachfolgenden Raster-Treibern
 zu übergeben. Sein MIME-Typ ist bei IANA registriert und seine Spezifikation ist, natürlich, völlig offen.
-Es ist entworfen, um es Herstellern ziemlich einfach und günstig zu
-
-
-CUPS raster is a generic raster format with powerful features. It is
-able to include per-page information, color profiles, and more, to be
-used by the following downstream raster drivers. Its MIME type is
-registered with IANA and its specification is, of course, completely
-open. It is designed to make it quite easy and inexpensive for
-manufacturers to develop Linux and UNIX raster drivers for their
-printer models, should they choose to do so. CUPS always takes care
-for the first stage of rasterization so these vendors do not need to care
-about Ghostscript complications (in fact, there is currently more
-than one vendor financing the development of CUPS raster drivers).
+Es ist entworfen, um es Herstellern zu ermöglichen, ziemlich einfach und günstig Raster-Treiber für Linux
+und UNIX zu entwickeln, wenn diese es möchten. CUPS übernimmt immer die erste Stufe des Rasterns, so daß
+Hersteller sich nicht um die Ghostscript-Komplikationen kümmern müssen (tatsächlich gibt es derzeit mehr als
+nur einen Hersteller, der die Entwicklung von CUPS-Raster-Treibern finanziert).
 </para>
 
 <para>
