@@ -11,7 +11,7 @@
 		</affiliation>
 		<contrib>Japanese character support</contrib>
 	</author>
-	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Unicode/Zeichensätze</title>

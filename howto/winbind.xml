@@ -26,7 +26,7 @@
 	</author>
 	&author.jelmer;
 	&author.jht;
-	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Winbind: Benutzung von Domänenkonten</title>

@@ -15,8 +15,8 @@
 	</author>
 	
 	<pubdate>May 24, 2003</pubdate>
-	<author>&author.rdoelker;<contrib>Deutsche Übersetzung</contrib></author>
-	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.rdoelker;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 <title>Die Account-Datenbank</title>
 

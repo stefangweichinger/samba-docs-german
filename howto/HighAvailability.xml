@@ -4,7 +4,7 @@
 	&author.jht;
 	&author.jeremy;
 	<pubdate>April 3 2003</pubdate>
-        <author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
+        <author>&person.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Hochverfügbarkeit</title>
