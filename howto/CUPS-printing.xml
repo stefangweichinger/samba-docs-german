@@ -3550,8 +3550,8 @@ davon zu lesen. Stecken Sie die Seite in einen Rahmen und nageln Sie den an die 
 <title>Wiedersehen mit dem Troubleshooting</title>
 
 <para>
-The setdriver command will fail, if in Samba's mind the queue is not
-already there. You had promising messages about the:
+Der Befehl setdriver wird scheitern, wenn in Samba's <quote>Bewußtsein</quote> die Queue noch nicht 
+vorhanden ist. Sie hatten vielversprechende Meldungen wie:
 </para>
 
 <para><screen>
@@ -3559,8 +3559,8 @@ already there. You had promising messages about the:
 </screen></para>
 
 <para>
-after the <command>adddriver</command> parts of the procedure?  But you are also seeing
-a disappointing message like this one?
+nach dem Abschnitt mit <command>adddriver</command>? Aber Sie sehen auch eine enttäuschende Meldung wie
+diese hier?
 </para>
 
 <para><computeroutput>
@@ -3569,15 +3569,12 @@ a disappointing message like this one?
 
 <para>
 <indexterm><primary>lpstat</primary></indexterm>
-It is not good enough that you
-can see the queue in CUPS, using
-the <command>lpstat -p ir85wm</command> command. A
-bug in most recent versions of Samba prevents the proper update of
-the queue-list. The recognition of newly installed CUPS printers
-fails unless you restart Samba or send a HUP to all smbd
-processes. To verify if this is the reason why Samba does not
-execute the <command>setdriver</command> command successfully, check if Samba <quote>sees</quote>
-the printer: 
+Es ist nicht gut genug, daß Sie die Queue in CUPS sehen können, mit dem Befehl 
+<command>lpstat -p ir85wm</command>. Ein Bug in den neueren Versionen von Samba verhindert ein 
+ordnungsgemässes Update der Queue-Liste. Die Erkennung von neu installierten CUPS-Druckern scheitert, bis
+Sie Samba neu starten oder ein HUP an alle smbd-Prozesse senden. Um zu prüfen, ob dies der Grund dafür ist,
+daß Samba den Befehl <command>setdriver</command> nicht erfolgreich ausführt, prüfen Sie, ob Samba den 
+Drucker <quote>sieht</quote>:
 </para>
 
 <para>
@@ -3588,7 +3585,7 @@ the printer:
 </screen></para>
 
 <para>
-An alternate command could be this: 
+Ein anderer Befehl könnte der hier sein:
 </para>
 
 <para>
@@ -3603,14 +3600,14 @@ An alternate command could be this:
 </screen></para>
 
 <para>
-By the way, you can use these commands, plus a few more, of course,
-to install drivers on remote Windows NT print servers too!
+Übrigens, Sie können diese Befehle, sowie einige weitere, natürlich auch dazu verwenden, Treiber auf
+entfernten Windows-NT-Druckservern zu installieren!
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-<title>The Printing <filename>*.tdb</filename> Files</title>
+<title>Die <filename>*.tdb</filename>-Dateien für das Drucken</title>
 
 <para>
 <indexterm><primary>TDB</primary></indexterm>
@@ -3626,8 +3623,8 @@ to install drivers on remote Windows NT print servers too!
 <indexterm><primary>ntprinters.tdb</primary><seealso>TDB</seealso></indexterm>
 <indexterm><primary>sessionid.tdb</primary><seealso>TDB</seealso></indexterm>
 <indexterm><primary>secrets.tdb</primary><seealso>TDB</seealso></indexterm>
-Some mystery is associated with the series of files with a
-tdb suffix appearing in every Samba installation. They are
+Einige Mysterien ranken sich um die Gruppe der Dateien mit dem Suffix tdb, die in jeder Samba-Installation
+auftauchen. Diese sind
 <filename>connections.tdb</filename>,
 <filename>printing.tdb</filename>,
 <filename>share_info.tdb</filename>,
@@ -3638,75 +3635,68 @@ tdb suffix appearing in every Samba installation. They are
 <filename>ntforms.tdb</filename>,
 <filename>messages.tdb</filename> ,
 <filename>ntprinters.tdb</filename>,
-<filename>sessionid.tdb</filename> and
-<filename>secrets.tdb</filename>. What is their purpose?
+<filename>sessionid.tdb</filename> und
+<filename>secrets.tdb</filename>. Was ist ihr Zweck?
 </para>
 
 <sect2>
-<title>Trivial Database Files</title>
+<title>Triviale Datenbank-Dateien</title>
 
 <para>
 <indexterm><primary>TDB</primary></indexterm>
-A Windows NT (print) server keeps track of all information needed to serve
-its duty toward its clients by storing entries in the Windows
-registry. Client queries are answered by reading from the registry,
-Administrator or user configuration settings that are saved by writing into
-the registry. Samba and UNIX obviously do not have such a
-Registry. Samba instead keeps track of all client related information in a
-series of <filename>*.tdb</filename> files. (TDB = Trivial Data
-Base). These are often located in <filename>/var/lib/samba/</filename>
-or <filename>/var/lock/samba/</filename>. The printing related files
-are <filename>ntprinters.tdb</filename>,
-<filename>printing.tdb</filename>,<filename>ntforms.tdb</filename> and
-<filename>ntdrivers.tdb</filename>.
+Ein Windows NT (Druck-) Server führt Buch über alle benötigten Informationen, die er zur Erfüllung seiner
+Pflichten gegenüber den Clients benötigt, indem er Einträge in der Windows-Registrierung speichert.
+Client-Anfragen werden beantwortet, indem aus der Registrierung gelesen wird, Administrator- oder 
+Benutzer-Konfigurations-Einstellungen werden gespeichert, indem in die Registrierung geschrieben wird.
+Samba und UNIX haben natürlich keine solche Registrierung. Samba führt stattdessen Buch über alle
+Client-bezogene Information, indem es eine Reihe von <filename>*.tdb</filename> Dateien verwendet.
+(TDB = Trivial Data Base). Diese sind oft in <filename>/var/lib/samba/</filename> oder 
+<filename>/var/lock/samba/</filename> abgelegt. Die druck-bezogenen Dateien sind 
+<filename>ntprinters.tdb</filename>,
+<filename>printing.tdb</filename>,<filename>ntforms.tdb</filename> und <filename>ntdrivers.tdb</filename>.
 </para>
 </sect2>
 
 <sect2>
-<title>Binary Format</title>
+<title>Binär-Format</title>
 
 <para>
-<filename>*.tdb</filename> files are not human readable. They are
-written in a binary format. <quote>Why not ASCII?</quote>, you may ask. <quote>After all,
-ASCII configuration files are a good and proven tradition on UNIX.</quote>
-The reason for this design decision by the Samba team is mainly
-performance. Samba needs to be fast; it runs a separate
-<command>smbd</command> process for each client connection, in some
-environments many thousands of them. Some of these smbds might need to
-write-access the same <filename>*.tdb</filename> file <emphasis>at the
-same time</emphasis>. The file format of Samba's
-<filename>*.tdb</filename> files allows for this provision. Many smbd
-processes may write to the same <filename>*.tdb</filename> file at the
-same time. This wouldn't be possible with pure ASCII files.
+<filename>*.tdb</filename>-Dateien sind nicht für den Menschen lesbar. Sie sind in einem binären Format
+geschrieben. <quote>Warum nicht ASCII?</quote>, könnten Sie fragen. <quote>ASCII-Dateien sind doch eine
+gute und bewährte Tradition unter UNIX.</quote>
+Der Grund für diese Design-Entscheidung ist hauptsächlich die Performance. Samba muß schnell laufen; es
+führt für jede Client-Verbindung einen separaten <command>smbd</command>-Prozess aus, in manchen
+Umgebungen viele tausende davon. Manche smbds könnten Schreibzugriff auf dieselbe 
+<filename>*.tdb</filename>-Datei <emphasis>zur gleichen Zeit</emphasis> brauchen. Das Dateiformat der
+<filename>*.tdb</filename>-Dateien von Samba erlaubt dies, viele smbd-Prozesse können gleichzeitig in die
+selbe <filename>*.tdb</filename>-Datei schreiben. Dies wäre mit reinen ASCII-Dateien nicht möglich.
 </para>
 </sect2>
 
 <sect2>
-<title>Losing <filename>*.tdb</filename> Files</title>
+<title><filename>*.tdb</filename>-Dateien verlieren</title>
 
 <para>
-It is very important that all <filename>*.tdb</filename> files remain
-consistent over all write and read accesses. However, it may happen
-that these files <emphasis>do</emphasis> get corrupted. (A
-<command>kill -9 `pidof smbd'</command> while a write access is in
-progress could do the damage as well as a power interruption,
-etc.). In cases of trouble, a deletion of the old printing-related
-<filename>*.tdb</filename> files may be the only option. After that you need to
-re-create all print-related setup or you have made a
-backup of the <filename>*.tdb</filename> files in time.
+Es ist sehr wichtig, daß alle <filename>*.tdb</filename>-Dateien konsistent über alle Lese- und 
+Schreibzugriffe bleiben. Es kann jedoch passieren, daß diese Dateien beschädigt <emphasis>werden</emphasis>.
+(Ein <command>kill -9 `pidof smbd'</command> während eines Schreibzugriffs könnte genauso gut dafür
+verantwortlich sein, wie ein Stromausfall etc.). Im Falle von Schwierigkeiten kann das Löschen der alten
+druckbezogenen <filename>*.tdb</filename>-Dateien die einzige Möglichkeit sein. Danach müssen Sie alle
+druckbezogenen Einstellungen wieder herstellen oder Sie haben rechtzeitig ein Backup der relevanten
+Dateien erstellt.
 </para>
 </sect2>
 
 <sect2>
-<title>Using <command>tdbbackup</command></title>
+<title>Das Verwenden von <command>tdbbackup</command></title>
 
 
 <para>
-<indexterm><primary>TDB</primary><secondary>backing up</secondary><see>tdbbackup</see></indexterm>
+<indexterm><primary>TDB</primary><secondary>sichern</secondary><see>tdbbackup</see></indexterm>
 <indexterm><primary>tdbbackup</primary></indexterm>
-Samba ships with a little utility that helps the root user of your
-system to backup your <filename>*.tdb</filename> files. If you run it
-with no argument, it prints a usage message:
+Samba enthält ein kleines Hilfsmittel, das dem root-Benutzer Ihres Systems hilft, die 
+<filename>*.tdb</filename>-Dateien zu sichern. Wenn Sie es ohne Argumente ausführen, gibt es Auskunft über
+seine Verwendung:
 </para>
 
 <para><screen>
@@ -3721,7 +3711,7 @@ with no argument, it prints a usage message:
 </screen></para>
 
 <para>
-Here is how I backed up my <filename>printing.tdb</filename> file:
+Hier sehen Sie, wie ich meine Datei <filename>printing.tdb</filename> gesichert habe:
 </para>
 
 <para><screen>
@@ -3743,13 +3733,12 @@ ntprinters.tdb sessionid.tdb
 </sect1>
 
 <sect1>
-<title>CUPS Print Drivers from Linuxprinting.org</title>
-
+<title>CUPS Drucker-Treiber von Linuxprinting.org</title>
 
 <para>
 <indexterm><primary>Linuxprinting.org</primary></indexterm>
-CUPS ships with good support for HP LaserJet-type printers. You can
-install the generic driver as follows:
+CUPS kommt mit guter Unterstützung für Drucker vom Typ HP LaserJet. Sie können den generischen Treiber
+wie folgt installieren:
 </para>
 
 
@@ -3760,146 +3749,128 @@ install the generic driver as follows:
 </screen></para>
 
 <para>
-The <option>-m</option> switch will retrieve the
-<filename>laserjet.ppd</filename> from the standard repository for
-not-yet-installed-PPDs, which CUPS typically stores in
-<filename>/usr/share/cups/model</filename>. Alternately, you may use
-<option>-P /path/to/your.ppd</option>.
+Die Option <option>-m</option> wird die Datei <filename>laserjet.ppd</filename> aus dem Standard-Repository
+für noch-nicht-installierte-PPDs beziehen, das CUPS üblicherweise in 
+<filename>/usr/share/cups/model</filename> speichert. Alternativ dazu können Sie 
+<option>-P /pfad/zu/ihrer.ppd</option> benutzen.
 </para>
 
 <para>
-The generic <filename>laserjet.ppd,</filename> however, does not support every special option
-for every LaserJet-compatible model. It constitutes a sort of <quote>least common
-denominator</quote> of all the models. If for some reason
-you must pay for the commercially available ESP Print Pro drivers, your
-first move should be to consult the database on the
-<ulink noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">Linuxprinting</ulink> web site.
-Linuxprinting.org has excellent recommendations about which driver is
-best used for each printer. Its database is kept current by the
-tireless work of Till Kamppeter from MandrakeSoft, who is also the
-principal author of the <command>foomatic-rip</command> utility.
+Das generische <filename>laserjet.ppd</filename> unterstützt jedoch nicht jede spezielle Option für jedes
+LaserJet-kompatibles Modell. Es stellt eine Art <quote>kleinster gemeinsamer Nenner</quote> aller Modelle
+dar. Wenn Sie aus irgendeinem Grund für die kommerziell verfügbaren ESP Print Pro Treiber bezahlen
+müssen, sollte Ihr erster Schritt sein, die Datenbank auf der Website
+<ulink noescape="1" url="http://www.linuxprinting.org/printer_list.cgi">Linuxprinting</ulink> zu befragen.
+Linuxprinting.org gibt exzellente Empfehlungen darüber ab, welcher Treiber am besten für welchen Drucker zu
+verwenden ist. Die dortige Datenbank wird von der unermüdlichen Arbeit von Till Kamppeter von MandrakeSoft
+aktuell gehalten, der auch der Haupt-Autor des Werkzeugs <command>foomatic-rip</command> ist.
 </para>
 
 <note><para>
 <indexterm><primary>foomatic-rip</primary></indexterm>
-The former <command>cupsomatic</command> concept is now being replaced by the new
-successor, a much
-more powerful <command>foomatic-rip</command>.
-<command>cupsomatic</command> is no longer maintained. Here is the new URL
-to the <ulink noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">Foomatic-3.0</ulink> database.
-If you upgrade to <command>foomatic-rip</command>, remember to also upgrade to the
-new-style PPDs for your Foomatic-driven printers. foomatic-rip will
-not work with PPDs generated for the old <command>cupsomatic</command>. The new-style
-PPDs are 100% compliant to the Adobe PPD specification. They are
-also intended to be used by Samba and the cupsaddsmb utility, to
-provide the driver files for the Windows clients!
+Das frühere Konzept <command>cupsomatic</command> wird nun von seinem neuen Nachfolger, dem weitaus
+mächtigeren <command>foomatic-rip</command> ersetzt. <command>cupsomatic</command> wird nicht mehr weiter
+instand gehalten. Hier ist die neue URL zur neuen
+<ulink noescape="1" url="http://www.linuxprinting.org/driver_list.cgi">Foomatic-3.0</ulink>-Datenbank.
+Wenn Sie ein Upgrade auf <command>foomatic-rip</command> durchführen wollen, vergessen Sie nicht, auch
+das Upgrade auf die neuartigen PPDs für Ihre Foomatic-betriebenen Drucker durchzuführen. foomatic-rip
+arbeitet nicht mit PPDs, die für das alte <command>cupsomatic</command> generiert wurden. Die neuen PPDs 
+entsprechen zu 100% der Adobe PPD-Spezifikation. Sie sind auch dazu gedacht, mit Samba und dem 
+cupsaddsmb-Werkzeug verwendet zu werden, um die Treiber für die Windows-Clients bereitzustellen!
 </para></note>
 
 <sect2>
-<title>foomatic-rip and Foomatic Explained</title>
+<title>Erklärungen zu foomatic-rip und Foomatic</title>
 
 
 <para>
 <indexterm significance="preferred"><primary>foomatic</primary></indexterm>
 <indexterm significance="preferred"><primary>foomatic-rip</primary></indexterm>
-Nowadays, most Linux distributions rely on the utilities of Linuxprinting.org
-to create their printing-related software (which, by the way, works on all
-UNIXes and on Mac OS X or Darwin, too). It is not known as well as it
-should be, that it also has a very end-user-friendly interface that
-allows for an easy update of drivers and PPDs for all supported
-models, all spoolers, all operating systems, and all package formats
-(because there is none). Its history goes back a few years.
+Heutzutage verwenden die meisten Linux-Distributionen die Werkzeuge von Linuxprinting.org, um ihre
+drucker-spezifische Software aufzubauen (welche übrigens auch auf allen UNICes und auch auf Mac OS X oder 
+Darwin läuft). Es ist nicht so bekannt, wie es sollte, daß es auch ein sehr benutzerfreundliches Interface
+hat, das einfache Updates von Treibern und PPDs erlaubt, für alle unterstützten Drucker, alle Spooler,
+alle Betriebssysteme und alle Paketformate (weil es keines gibt). Seine Geschichte geht schon einige Jahre
+zurück.
 </para>
 
 <para>
-Recently, Foomatic has achieved the astonishing milestone of <ulink
-url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">1000
-listed</ulink> printer models. Linuxprinting.org keeps all the
-important facts about printer drivers, supported models and which
-options are available for the various driver/printer combinations in
-its <ulink
-url="http://www.linuxprinting.org/foomatic.html">Foomatic</ulink>
-database. Currently there are <ulink
-url="http://www.linuxprinting.org/driver_list.cgi">245 drivers</ulink>
-in the database. Many drivers support various models, and many models
-may be driven by different drivers &smbmdash; its your choice!
+Erst unlängst hat Foomatic den erstaunlichen Meilenstein von <ulink
+url="http://www.linuxprinting.org/printer_list.cgi?make=Anyone">1000 gelisteten</ulink> Druckermodellen 
+geschafft. Linuxprinting.org speichert alle wichtigen Fakten über Druckertreiber und unterstützte Modelle
+zur Verfügung, sowie Informationen darüber, welche Optionen für die verschiedenen Treiber/Drucker-Kombinationen
+verfügbar sind, in seiner <ulink
+url="http://www.linuxprinting.org/foomatic.html">Foomatic</ulink>-Datenbank. Momentan gibt es 
+<ulink
+url="http://www.linuxprinting.org/driver_list.cgi">245 Treiber</ulink> in der Datenbank. Viele Treiber 
+unterstützen verschiedene Modelle, und viele Modelle können mit verschiedenen Treibern betrieben werden 
+&smbmdash; es ist Ihre Wahl!
 </para>
 
 <sect3>
-<title>690 <quote>Perfect</quote> Printers</title>
+<title>690 <quote>Perfekte</quote> Drucker</title>
 
 <para>
-At present, there are 690 devices dubbed as working perfectly, 181
-mostly, 96 partially, and 46 are paperweights. Keeping in mind
-that most of these are non-PostScript models (PostScript printers are
-automatically supported by CUPS to perfection, by using
-their own manufacturer-provided Windows-PPD), and that a
-multi-functional device never qualifies as working perfectly if it
-does not also scan and copy and fax under GNU/Linux &smbmdash; then this is a
-truly astonishing achievement! Three years ago the number was not
-more than 500, and Linux or UNIX printing at the time wasn't
-anywhere near the quality it is today.
+Zur Zeit gibt es 690 Geräte, die mit <quote>arbeitet perfekt</quote> bezeichnet werden, 181 arbeiten
+größtenteils, 96 teilweise, und 46 sind Briefbeschwerer. Wenn man bedenkt, daß die meisten dieser Drucker
+Nicht-PostScript-Modelle sind (PostScript-Drucker werden von CUPS automatisch perfekt unterstützt, durch die
+Verwendung ihrer eigenen, vom Hersteller bereitgestellten Windows-PPD), und daß ein multi-funktionales Gerät
+nie als perfekt-arbeitend abschließt, solange es nicht auch unter GNU/Linux &smbmdash; scannt und faxt und
+kopiert, ist dies eine wirklich erstaunliche Errungenschaft! Vor drei Jahren war die Anzahl nicht grösser als
+500, und Linux- oder UNIX-Druck war zu der Zeit nicht einmal annähernd dort, wo es jetzt steht.
 </para>
 </sect3>
 
 <sect3>
-<title>How the Printing HOWTO Started It All</title>
+<title>Wie das Druck-HOWTO alles begründete</title>
 
 <para>
-A few years ago <ulink url="http://www2.picante.com:81/~gtaylor/">Grant Taylor</ulink>
-started it all. The roots of today's Linuxprinting.org are in the
-first <ulink url="http://www.linuxprinting.org/foomatic2.9/howto/">Linux Printing
-HOWTO</ulink> that he authored. As a side-project to this document,
-which served many Linux users and Admins to guide their first steps in
-this complicated and delicate setup (to a scientist, printing is
-<quote>applying a structured deposition of distinct patterns of ink or toner
-particles on paper substrates</quote>, he started to
-build in a little Postgres database with information about the
-hardware and driver zoo that made up Linux printing of the time. This
-database became the core component of today's Foomatic collection of
-tools and data. In the meantime, it has moved to an XML representation
-of the data.
+Vor ein paar Jahren startete <ulink url="http://www2.picante.com:81/~gtaylor/">Grant Taylor</ulink> all das.
+Die Wurzeln des heutigen Linuxprinting.org liegen in dem ersten
+<ulink url="http://www.linuxprinting.org/foomatic2.9/howto/">Linux Printing HOWTO</ulink>, das er verfaßt hat.
+Als Nebenprojekt zu diesem Dokument, das viele Linux-Anwender und -Administratoren auf ihren ersten
+Schritten in diesem komplizierten und delikaten Setup führte (für einen Wissenschaftler ist Drucken 
+<quote>das Auftragen einer strukturierten Ablagerung von verschiedenen Mustern aus Tinten- oder Toner-Partikeln
+auf Papier-Substrate</quote>), startete er eine kleine Postgres-Datenbank mit Informationen über den Hardware-
+und Treiber-Zoo, aus dem das damalige Linux-Drucken bestand. Diese Datenbank wurde zur Kern-Komponente der 
+heutigen Foomatic-Samllung von Werkzeugen und Daten. In der Zwischenzeit wurde auf eine XML-Struktur gewechselt.
 </para>
 </sect3>
 
 <sect3>
-<title>Foomatic's Strange Name</title>
+<title>Foomatic's seltsamer Name</title>
 
 
 <para>
 <indexterm><primary>foomatic</primary></indexterm>
-<quote>Why the funny name?</quote> you ask. When it really took off, around spring
-2000, CUPS was far less popular than today, and most systems used LPD,
-LPRng or even PDQ to print. CUPS shipped with a few generic drivers
-(good for a few hundred different printer models). These didn't
-support many device-specific options. CUPS also shipped with its own
-built-in rasterization filter (<parameter>pstoraster</parameter>, derived from
-Ghostscript). On the other hand, CUPS provided brilliant support for
-<emphasis>controlling</emphasis> all printer options through
-standardized and well-defined PPD files (PostScript Printers
-Description files). Plus, CUPS was designed to be easily extensible.
+<quote>Warum der lustige Name?</quote> fragen Sie. 
+Als es wirklich losging, im Frühling 2000, war CUPS bei weitem nicht so populär, wie es heute ist, und die
+meisten Systeme benutzten LPD, LPRng oder sogar PDQ. CUPS kam nur mit ein paar generischen Treibern (genug für
+ein paar hundert verschiedene Druckermodelle). Diese unterstützten nicht soviele gerätespezifischen Optionen.
+CUPS kam auch mit seinem eigenen eingebauten Raster-Filter (<parameter>pstoraster</parameter>, abgeleitet von
+Ghostscript). Auf der anderen Seite bot CUPS brilliante Unterstützung für das <emphasis>controlling</emphasis>
+aller Drucker-Optionen durch standardisierte und wohldefinierte PPD-Dateien. Und CUPS war dafür entworfen,
+einfach erweiterbar zu sein.
 </para>
 
 <para>
-Taylor already had in his database a respectable compilation
-of facts about many more printers and the Ghostscript <quote>drivers</quote>
-they run with. His idea, to generate PPDs from the database information
-and use them to make standard Ghostscript filters work within CUPS,
-proved to work very well. It also killed several birds with one
-stone:
+Taylor hatte in seiner Datenbank bereits eine beachtliche Sammlung von Fakten über viel mehr Drucker und die
+Ghostscript <quote>Treiber</quote>, mit denen sie liefen. Seine Idee, PPDs aus der Datenbank-Information zu
+generieren, und diese dazu zu benutzen, um Standard-Ghostscript-Filter in CUPS zum Funktionieren zu bringen,
+funktionierte sehr gut. Sie erschlug außerdem mehrere Fliegen mit einer Klappe:
 </para>
 
 <itemizedlist>
-<listitem><para>It made all current and future Ghostscript filter
-developments available for CUPS.</para></listitem>
+<listitem><para>Sie machte alle aktuellen und zukünftigen Ghostscript Filter-Entwicklungen für CUPS verfügbar.
+</para></listitem>
 
-<listitem><para>It made available a lot of additional printer models
-to CUPS users (because often the traditional Ghostscript way of
-printing was the only one available).</para></listitem>
+<listitem><para>Sie machte eine Vielzahl von zusätzlichen Druckermodellen für CUPS-Anwender verfügbar (weil oft
+der traditionelle Weg über Ghostscript der einzige verfügbare war).
+</para></listitem>
 
-<listitem><para>It gave all the advanced CUPS options (Web interface,
-GUI driver configurations) to users wanting (or needing) to use
-Ghostscript filters.</para></listitem>
+<listitem><para>Sie brachte all den Benutzern, die Ghostscript-Filter benutzen wollten (oder mussten), die
+vielen erweiterten Optionen von CUPS (Web-Interface, GUI-Treiber-Konfiguration).
+</para></listitem>
 </itemizedlist>
 </sect3>
 
@@ -3911,145 +3882,129 @@ Ghostscript filters.</para></listitem>
 <indexterm><primary>cupsomatic</primary></indexterm>
 <indexterm><primary>CUPS-PPD</primary></indexterm>
 <indexterm><primary>PPD</primary><secondary>CUPS</secondary><see>CUPS-PPD</see></indexterm>
-CUPS worked through a quickly-hacked up filter script named <ulink
-url="http://www.linuxprinting.org/download.cgi?filename=cupsomatic&amp;show=0">cupsomatic.</ulink>
-cupsomatic ran the printfile through Ghostscript, constructing
-automatically the rather complicated command line needed. It just
-needed to be copied into the CUPS system to make it work. To
-configure the way cupsomatic controls the Ghostscript rendering
-process, it needs a CUPS-PPD. This PPD is generated directly from the
-contents of the database. For CUPS and the respective printer/filter
-combo, another Perl script named CUPS-O-Matic did the PPD
-generation. After that was working, Taylor implemented within a few
-days a similar thing for two other spoolers. Names chosen for the
-config-generator scripts were <ulink
-url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">PDQ-O-Matic</ulink>
-(for PDQ) and <ulink
-url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">LPD-O-Matic</ulink>
-(for &smbmdash; you guessed it &smbmdash; LPD); the configuration here didn't use PPDs
-but other spooler-specific files.
+CUPS arbeitete mit einem schnell zusammen-gehackten Filter-Skript namens
+<ulink url="http://www.linuxprinting.org/download.cgi?filename=cupsomatic&amp;show=0">cupsomatic.</ulink>
+cupsomatic schleuste die Druckdatei durch Ghostscript, wobei es automatisch den ziemlich komplizierten Befehl
+konstruierte, der dazu benötigt wurde. Es mußte nur noch ins CUPS-System kopiert werden, um das funktionieren
+zu lassen. Um zu konfigurieren, wie cupsomatic den Ghostscript-Darstellungs-Prozess kontrolliert, braucht es
+eine CUPS-PPD. Diese PPD wird direkt aus den Inhalten der Datenbank generiert. Für CUPS und die entsprechende
+Drucker/Filter-Kombination erledigte ein anderes Perl-Skript die PPD-Generation. Nachdem das funktionierte,
+implementierte Taylor innerhalb weniger Tage eine ähnliche Lösung für 2 andere Spooler. Die Namen, die für
+diese Konfigurations-Generatoren gewählt wurden, waren
+<ulink url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">PDQ-O-Matic</ulink> (für PDQ)
+und
+<ulink url="http://www.linuxprinting.org/download.cgi?filename=lpdomatic&amp;show=0">LPD-O-Matic</ulink>
+(für &smbmdash; Sie haben es erraten &smbmdash; LPD); die Konfiguration verwendete hier keine PPDs, sondern 
+andere spooler-spezifische Dateien.
 </para>
 
 <para>
-From late summer of that year, <ulink url="http://www.linuxprinting.org/till/">Till Kamppeter</ulink>
-started to put work into the database. Kamppeter had been newly employed by
-<ulink url="http://www.mandrakesoft.com/">MandrakeSoft</ulink> to
-convert its printing system over to CUPS, after they had seen his
-<ulink url="http://www.fltk.org/">FLTK</ulink>-based <ulink
-url="http://cups.sourceforge.net/xpp/">XPP</ulink> (a GUI front-end to
-the CUPS lp-command). He added a huge amount of new information and new
-printers. He also developed the support for other spoolers, like
-<ulink url="http://ppr.sourceforge.net/">PPR</ulink> (via ppromatic),
-<ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> and
-<ulink url="http://www.lprng.org/">LPRng</ulink> (both via an extended
-lpdomatic) and spooler-less printing (<ulink
-url="http://www.linuxprinting.org/download.cgi?filename=directomatic&amp;show=0">directomatic</ulink>).
+Im Spätsommer jenes Jahres begann <ulink url="http://www.linuxprinting.org/till/">Till Kamppeter</ulink>, seine
+Arbeit in die Datenbank einfliessen zu lassen. Kamppeter war von 
+<ulink url="http://www.mandrakesoft.com/">MandrakeSoft</ulink> angestellt worden, um deren Drucksystem auf CUPS
+umzustellen, nachdem sie sein auf <ulink url="http://www.fltk.org/">FLTK</ulink> basierendes
+<ulink url="http://cups.sourceforge.net/xpp/">XPP</ulink> gesehen hatten (ein GUI Frontend für den CUPS 
+lp-Befehl). Er fügte viele Informationen und neuen Druckern hinzu, entwickelte auch die Unterstützung für andere
+Spooler, wie <ulink url="http://ppr.sourceforge.net/">PPR</ulink> (via ppromatic),
+<ulink url="http://sourceforge.net/projects/lpr/">GNUlpr</ulink> und 
+<ulink url="http://www.lprng.org/">LPRng</ulink> (beide via eines erweiterten lpdomatic) und Spooler-loses
+Drucken
+(<ulink url="http://www.linuxprinting.org/download.cgi?filename=directomatic&amp;show=0">directomatic</ulink>).
 </para>
 
 <para>
-So, to answer your question: <quote>Foomatic</quote> is the general name for all
-the overlapping code and data behind the <quote>*omatic</quote> scripts.
-Foomatic, up to versions 2.0.x, required (ugly) Perl data structures
-attached to Linuxprinting.org PPDs for CUPS. It had a different
-<quote>*omatic</quote> script for every spooler, as well as different printer
-configuration files.
+Also, zur Beantwortung der Frage: <quote>Foomatic</quote> ist der allgemeine Namen für all den überlappenden
+Code und die Daten hinter den <quote>*omatic</quote>-Skripts. Foomatic brauchte bis zur Version 2.0.x (hässliche)
+Perl-Datenstrukturen, die an die CUPS-PPDs von Linuxprinting.org angehängt wurden. Es gabe verschiedene 
+<quote>*omatic</quote>-Skripts für jeden Spooler, genauso wie verschiedene Drucker-Konfigurations-Dateien.
 </para>
 </sect3>
 
 <sect3>
-<title>The <emphasis>Grand Unification</emphasis> Achieved</title>
+<title>Die <emphasis>Grosse Vereinheitlichung</emphasis> ist erreicht</title>
 
 
 <para>
 <indexterm><primary>foomatic-rip</primary></indexterm>
-This has all changed in Foomatic versions 2.9 (beta) and released as
-<quote>stable</quote> 3.0. It has now achieved the convergence of all *omatic
-scripts and is called the <ulink
+Dies änderte sich alles mit Foomatic 2.9 (beta) und der <quote>stable release</quote> 3.0. Es wurde nunmehr
+eine Annäherung aller *omatic-Skripts erreicht und wird nun <ulink
 url="http://www.linuxprinting.org/foomatic2.9/download.cgi?filename=foomatic-rip&amp;show=0">foomatic-rip.</ulink>
-This single script is the unification of the previously different
-spooler-specific *omatic scripts. foomatic-rip is used by all the
-different spoolers alike and because it can read PPDs (both the
-original PostScript printer PPDs and the Linuxprinting.org-generated
-ones), all of a sudden all supported spoolers can have the power of
-PPDs at their disposal. Users only need to plug foomatic-rip into
-their system. For users there is improved media type and source
-support &smbmdash; paper sizes and trays are easier to configure.
+genannt. Dieses einzelne Skript ist die Vereinheitlichung der davor verschiedenen spooler-spezifischen
+*omatic-Skripts. foomatic-rip wird von all den verschiedenen Spoolern gleicherweise benutzt, und da es PPDs
+lesen kann (sowohl die originalen PostScript-Drucker-PPDs wie auch die von Linuxprinting.org generierten), haben 
+plötzlich alle unterstützten Spooler die mächtigen Features der PPDs zur Verfügung. DIe Benutzer brauchen nur
+foomatic-rip in ihr System stöpseln. Für die Benutzer gibt es erweiterte Unterstützung für Medien-Typen und
+-Zufuhr &smbmdash; Papier-Grössen und -Schächte sind einfacher zu konfigurieren.
 </para>
 
 <para>
-Also, the New Generation of Linuxprinting.org PPDs no longer contains
-Perl data structures. If you are a distro maintainer and have
-used the previous version of Foomatic, you may want to give the new
-one a spin, but remember to generate a new-version set of PPDs
-via the new <ulink
-url="http://www.linuxprinting.org/download/foomatic/foomatic-db-engine-3.0.0beta1.tar.gz">foomatic-db-engine!</ulink>
-Individual users just need to generate a single new PPD specific to
-their model by <ulink
-url="http://www.linuxprinting.org/kpfeifle/LinuxKongress2002/Tutorial/II.Foomatic-User/II.tutorial-handout-foomatic-user.html">following
-the steps</ulink> outlined in the Foomatic tutorial or in this chapter. This new development is truly amazing.
+Weiters enthält die neue Generation der Linuxprinting.org-PPDs keine Perl-Datenstrukturen mehr. Wenn Sie der
+Verwalter einer Distribution sind, und die vorhergehende Version von Foomatic verwendet haben, möchten Sie 
+vielleicht die neue Version ausprobieren, aber vergessen Sie nicht, einen neuen Satz von PPDs zu generieren,
+mittels der neuen <ulink
+url="http://www.linuxprinting.org/download/foomatic/foomatic-db-engine-3.0.0beta1.tar.gz">Datenbank-Engine!</ulink>
+Privat-Anwender brauchen nur ein einzelnes neues PPD zu generieren, das spezifisch für ihren Drucker ist, unter 
+Befolgung <ulink
+url="http://www.linuxprinting.org/kpfeifle/LinuxKongress2002/Tutorial/II.Foomatic-User/II.tutorial-handout-foomatic-user.html">dieser Schritte</ulink>, die im Foomatic-Tutorial oder in diesem Kapitel beschrieben sind. Diese
+neuen Entwicklungen sind wirklich erstaunlich.
 </para>
 
 <para>
-foomatic-rip is a very clever wrapper around the need to run
-Ghostscript with a different syntax, options, device selections, and/or filters for each different printer
-or spooler. At the same time it can read the PPD associated
-with a print queue and modify the print job according to the user
-selections. Together with this comes the 100% compliance of the new
-Foomatic PPDs with the Adobe spec. Some innovative features of
-the Foomatic concept may surprise users. It will support custom paper
-sizes for many printers and will support printing on media drawn
-from different paper trays within the same job (in both cases, even
-where there is no support for this from Windows-based vendor printer
-drivers).
+foomatic-rip ist ein sehr cleverer "Wrapper" um die Anforderung, Ghostscript mit verschiedener Syntax,
+verschiedenen Optionen, Geräte-Auswahl, und/oder Filtern für jeden verschiedenen Drucker oder Spooler 
+auszuführen. Zur selben Zeit kann es die PPD, die einer Drucker-Queue zugeordnet ist, lesen, und den Druckauftrag
+entsprechend der Benutzer-Auswahl modifizieren. Dazu kommt die 100% Übereinstimmung der Foomatic-PPDs mit der
+Adobe-Spezifikation. Einige innovative Features des Foomatic-Konzepts werden die Benutzer überraschen. Es
+unterstützt benutzerdefinierte Papiergrössen für viele Drucker und den Druck auf Medien aus verschiedenen
+Schächten innerhalb desselben Auftrags (in beiden Fällen sogar dann, wenn es dafür keine Unterstützung von
+Windows-basierenden Hersteller-Treibern gibt).
 </para>
 </sect3>
 
 <sect3>
-<title>Driver Development Outside</title>
+<title>Externe Treiberentwicklung</title>
 
 <para>
-Most driver development itself does not happen within
-Linuxprinting.org. Drivers are written by independent maintainers.
-Linuxprinting.org just pools all the information and stores it in its
-database. In addition, it also provides the Foomatic glue to integrate
-the many drivers into any modern (or legacy) printing system known to
-the world.
+Der Großteil der Treiberentwicklung passiert nicht innerhalb Linuxprinting.org. Die Treiber werden von
+unabhängigen Maintainern geschrieben. Linuxprinting.org sammelt nur all die Information und speichert sie in
+seiner Datenbank. Zusätzlich stellt es den <quote>Leim</quote> von Foomatic zur Verfügung, um die vielen Treiber
+in jegliches moderne (oder alte) Drucksystem zu integrieren.
 </para>
 
 <para>
-Speaking of the different driver development groups, most of
-the work is currently done in three projects. These are:
+Wenn wir von den verschiedenen Treiber-Entwickler-Gruppen sprechen, die meiste Arbeit wird derzeit in drei
+Projekten erledigt. Diese sind:
 </para>
 
 <itemizedlist>
 <listitem><para><ulink
 url="http://www-124.ibm.com/developerworks/oss/linux/projects/omni/">Omni</ulink>
-&smbmdash; a free software project by IBM that tries to convert their printer
-driver knowledge from good-ol' OS/2 times into a modern, modular,
-universal driver architecture for Linux/UNIX (still beta). This
-currently supports 437 models.</para></listitem>
+&smbmdash; ein freies Software-Projekt von IBM, das versucht, deren Drucker-Treiber-Wissen aus den guten alten
+OS/2-Zeiten in eine moderne, modulare, universelle Treiber-Architektur für Linux/UNIX zu konvertieren (immer
+noch im Beta-Stadium). Dieses Projekt unterstützt derzeit 437 Modelle.</para></listitem>
 
 <listitem><para><ulink url="http://hpinkjet.sf.net/">HPIJS</ulink> &smbmdash;
-a free software project by HP to provide the support for their own
-range of models (very mature, printing in most cases is perfect and
-provides true photo quality). This currently supports 369
-models.</para></listitem>
+ein freies Software-Projekt von HP, um Unterstützung für deren eigene Modelle anzubieten (sehr ausgereift, der
+Druck ist in den meisten Fällen perfekt und bietet volle Photo-Qualität). Dieses Projekt unterstützt derzeit
+369 Modelle.</para></listitem>
 
 <listitem><para><ulink
-url="http://gimp-print.sf.net/">Gimp-Print</ulink> &smbmdash; a free software
-effort, started by Michael Sweet (also lead developer for CUPS), now
-directed by Robert Krawitz, which has achieved an amazing level of
-photo print quality (many Epson users swear that its quality is
-better than the vendor drivers provided by Epson for the Microsoft
-platforms). This currently supports 522 models.</para></listitem>
+url="http://gimp-print.sf.net/">Gimp-Print</ulink> &smbmdash; ein freies Software-Projekt, gestartet von
+Michael Sweet (auch ein führender CUPS-Entwickler), jetzt geleitet von Robert Krawitz, der ein erstaunliches
+Level von Photo-Druck-QUalität erreicht hat (viele Epson-Anwender schwören, daß die Qualität besser ist als die
+der Epson-Treiber für Microsoft-Plattformen). Dieses Projekt unterstützt derzeit 522 Modelle.</para></listitem>
 </itemizedlist>
 </sect3>
 
 <sect3>
-<title>Forums, Downloads, Tutorials, Howtos &smbmdash; also for Mac OS X and Commercial UNIX</title>
+<title>Forums, Downloads, Tutorials, Howtos &smbmdash; auch für Mac OS X und kommerzielles UNIX</title>
 
 <para>
-Linuxprinting.org today is the one-stop shop to download printer
+Linuxprinting.org ist heute der One-Stop-Shop, um Druckertreiber herunterzuladen. Sehen Sie nach 
+Drucker-Information
+
+
+today is the one-stop shop to download printer
 drivers. Look for printer information and <ulink
 url="http://www.linuxprinting.org//kpfeifle/LinuxKongress2002/Tutorial/">tutorials</ulink>
 or solve printing problems in its popular <ulink
