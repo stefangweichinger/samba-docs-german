@@ -2337,7 +2337,7 @@ enthält drei Dateien:
 &rootprompt;<userinput>tar tv cups-samba.ss</userinput>
 cupsdrvr.dll
 cupsui.dll
-cups.hlp 
+cups.hlp
 </screen></para>
 
 <para>
@@ -2350,7 +2350,7 @@ Das <parameter>cups-samba.install</parameter> Shell-Skript ist einfach anzuwende
 Installing software...
 Updating file permissions...
 Running post-install commands...
-Installation is complete.      
+Installation is complete.     
 </screen></para>
 
 <para>
@@ -2665,7 +2665,7 @@ putting file /var/spool/cups/tmp/3e98bf2d333b5 as \W32X86/infotec_2105.ppd
 putting file /usr/share/cups/drivers/cupsdrvr.dll as \W32X86/cupsdrvr.dll
 putting file /usr/share/cups/drivers/cupsui.dll as \W32X86/cupsui.dll
 putting file /usr/share/cups/drivers/cups.hlp as \W32X86/cups.hlp
- 
+
 Running command: rpcclient localhost -N -U'root%secret'
    -c 'adddriver "Windows NT x86"   \
    "infotec_2105:cupsdrvr.dll:infotec_2105.ppd:cupsui.dll:cups.hlp:NULL: \
@@ -2674,7 +2674,7 @@ cmd = adddriver "Windows NT x86" \
    "infotec_2105:cupsdrvr.dll:infotec_2105.ppd:cupsui.dll:cups.hlp:NULL: \
 	RAW:NULL"
 Printer Driver infotec_2105 successfully installed.
- 
+
 Running command: smbclient //localhost/print\$ -N -U'root%secret' \
 -c 'mkdir WIN40; \
     put /var/spool/cups/tmp/3e98bf2d333b5 WIN40/infotec_2105.PPD; \
@@ -2694,7 +2694,7 @@ Running command: smbclient //localhost/print\$ -N -U'root%secret' \
   putting file /usr/share/cups/drivers/DEFPRTR2.PPD as \WIN40/DEFPRTR2.PPD
   putting file /usr/share/cups/drivers/ICONLIB.DLL as \WIN40/ICONLIB.DLL
   putting file /usr/share/cups/drivers/PSMON.DLL as \WIN40/PSMON.DLL
- 
+
   Running command: rpcclient localhost -N -U'root%secret' \
    -c 'adddriver "Windows 4.0"      \
    "infotec_2105:ADOBEPS4.DRV:infotec_2105.PPD:NULL:ADOBEPS4.HLP: \
@@ -2705,7 +2705,7 @@ Running command: smbclient //localhost/print\$ -N -U'root%secret' \
 	infotec_2105.PPD,ADOBEPS4.HLP,PSMON.DLL,ADFONTS.MFM,DEFPRTR2.PPD,\
 	ICONLIB.DLL"
   Printer Driver infotec_2105 successfully installed.
- 
+
   Running command: rpcclient localhost -N -U'root%secret'  \
    -c 'setdriver infotec_2105 infotec_2105'
   cmd = setdriver infotec_2105 infotec_2105
@@ -3718,7 +3718,7 @@ Hier sehen Sie, wie ich meine Datei <filename>printing.tdb</filename> gesichert 
 &rootprompt;<userinput>ls</userinput>
 .              browse.dat     locking.tdb     ntdrivers.tdb printing.tdb
 ..             share_info.tdb connections.tdb messages.tdb  ntforms.tdb
-printing.tdbkp unexpected.tdb brlock.tdb      gmon.out      namelist.debug 
+printing.tdbkp unexpected.tdb brlock.tdb      gmon.out      namelist.debug
 ntprinters.tdb sessionid.tdb
 
 &rootprompt;<userinput>tdbbackup -s .bak printing.tdb</userinput>
@@ -4186,88 +4186,79 @@ auszusehen haben, und welche Druckerbefehle in den Datenstrom einzubetten sind. 
 
 <itemizedlist>
 
-<listitem><para>A <quote>foomatic+something</quote> PPD &smbmdash; but this is not enough
-to print with CUPS (it is only <emphasis>one</emphasis> important
-component).</para></listitem>
+<listitem><para>Eine <quote>foomatic+irgendwas</quote> PPD &smbmdash; aber das ist nicht genug, um mit CUPS zu
+drucken (es ist nur <emphasis>eine</emphasis> wichtige Komponente).
+</para></listitem>
 
-<listitem><para>The <parameter>foomatic-rip</parameter> filter script (Perl) in
+<listitem><para>Das <parameter>foomatic-rip</parameter> Filter-Skript (Perl) in
 <filename>/usr/lib/cups/filters/</filename>.</para></listitem>
 
-<listitem><para>Perl to make foomatic-rip run.</para></listitem>
+<listitem><para>Perl, damit foomatic-rip laufen kann.</para></listitem>
 
-<listitem><para>Ghostscript (because it is doing the main work,
-controlled by the PPD/foomatic-rip combo) to produce the raster data
-fit for your printer model's consumption.</para></listitem>
+<listitem><para>Ghostscript (weil es die Hauptarbeit macht, kontrolliert von der Kombination
+PPD/foomatic-rip), um die passenden Rasterdaten für Ihr Druckermodell zu produzieren.
+</para></listitem>
 
-<listitem><para>Ghostscript <emphasis>must</emphasis> (depending on
-the driver/model) contain support for a certain device representing
-the selected driver for your model (as shown by <command>gs
-	-h</command>).</para></listitem>
+<listitem><para>Ghostscript <emphasis>muss</emphasis> (abhängig von Ihrem Treiber/Modell) Unterstützung für
+ein bestimmtes Gerät mitbringen, das den gewählten Treiber für Ihr Modell repräsentiert (wie von
+<command>gs -h</command> gezeigt).</para></listitem>
 
-<listitem><para>foomatic-rip needs a new version of PPDs (PPD versions
-produced for cupsomatic do not work with
-foomatic-rip).</para></listitem>
+<listitem><para>foomatic-rip braucht eine neue Version PPDs (PPD-Versionen für cupsomatic funktionieren nicht
+mit foomatic-rip).</para></listitem>
 </itemizedlist>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Page Accounting with CUPS</title>
-
+<title>Seitenabrechnung mit CUPS</title>
 
 <para>
-<indexterm><primary>CUPS</primary><secondary>Page Accounting</secondary></indexterm>
-Often there are questions regarding print quotas where Samba users
-(that is, Windows clients) should not be able to print beyond a
-certain number of pages or data volume per day, week or month. This
-feature is dependent on the real print subsystem you're using.
-Samba's part is always to receive the job files from the clients
-(filtered <emphasis>or</emphasis> unfiltered) and hand it over to this
-printing subsystem.
+<indexterm><primary>CUPS</primary><secondary>Seitenabrechnung</secondary></indexterm>
+Es gibt oft Nachfragen bezüglich Druck-Quotas, wo Samba-Benutzer (also Windows-Clients) nicht mehr als eine
+bestimmte Anzahl von Seiten oder Datenmenge pro Tag, Woche oder Monat drucken dürfen sollen. Dieses Feature
+hängt vom eingesetzten Drucksystem ab. Samba's Teil ist es, die Druckaufträge von den Clients zu empfangen
+(gefiltert <emphasis>oder</emphasis> ungefiltert) und diese an das Drucksystem weiterzugeben.
 </para>
 
 <para>
-Of course one could hack things with one's own scripts. But then
-there is CUPS. CUPS supports quotas that can be based on the size of
-jobs or on the number of pages or both, and span any time
-period you want.
+Natürlich könnte man sich sowas mit seinen eigenen Skripts zusammenbauen. Aber es gibt CUPS. CUPS unterstützt
+Quotas, die basierend auf der Auftragsgrösse, der Anzahl der Seiten oder beidem festgelegt werden können, und
+jede zeitliche Periode umspannen können, die Sie wollen.
 </para>
 
 <sect2>
-<title>Setting Up Quotas</title>
+<title>Quotas einrichten</title>
 
 <para>
 <indexterm><primary>CUPS</primary><secondary>quotas</secondary></indexterm>
-This is an example command of how root would set a print quota in CUPS,
-assuming an existing printer named <quote>quotaprinter</quote>:
+Dies ist ein Beispiel, wie root ein Druck-Quota in CUPS einrichten könnte, unter der Annahme, daß es einen
+Drucker namens <quote>quotadrucker</quote> gibt:
+
 </para>
 
 
 <para>
 <indexterm><primary>lpadmin</primary></indexterm>
 	<screen>
-&rootprompt;<userinput>lpadmin -p quotaprinter -o job-quota-period=604800 \
+&rootprompt;<userinput>lpadmin -p quotadrucker -o job-quota-period=604800 \
 	-o job-k-limit=1024 -o job-page-limit=100</userinput>
 </screen></para>
 
 <para>
-This would limit every single user to print 100 pages or 1024 KB of
-data (whichever comes first) within the last 604,800 seconds ( = 1
-week).
+Dies würde jeden einzelnen Benutzer darauf beschränken, 100 Seiten oder 1024 KB (was auch immer zuerst eintrifft)
+innerhalb der letzten 604800 Sekunden (entspricht einer Woche) zu drucken.
 </para>
 </sect2>
 
 <sect2>
-<title>Correct and Incorrect Accounting</title>
+<title>Korrektes und inkorrektes Abrechnen</title>
 
 <para>
-For CUPS to count correctly, the printfile needs to pass the CUPS
-pstops filter, otherwise it uses a dummy count of <quote>one</quote>. Some
-print files do not pass it (e.g., image files) but then those are mostly one-
-page jobs anyway. This also means that proprietary drivers for the
-target printer running on the client computers and CUPS/Samba, which
-then spool these files as <quote>raw</quote> (i.e., leaving them untouched, not
-filtering them), will be counted as one-pagers too!
+Damit CUPS richtig zählt, muß die Druckdatei durch den CUPS-pstops-Filter, ansonsten verwendet es einen
+Ersatzwert von <quote>eins</quote>. Manche Druckdateien passieren diesen Filter nicht (z.B. Bilddateien), jedoch
+sind diese ohnehin meist einseitige Aufträge. Das bedeutet, Aufträge von proprietären Treibern für den
+Zieldrucker, die auf den Clients laufen, die von CUPS/Samba als <quote>raw</quote> weitergegeben werden (also ohne
+Filterung) werden auch als einseitige Aufträge gezählt!
 </para>
 
 <para>
