@@ -322,21 +322,21 @@ Der erste Schritt ist ein Konto für die SAMBA Domäne auf dem RUMBA PDC zu erstel
 
 <para>
 <indexterm><primary>User Manager</primary></indexterm>
-Launch the <application>Domain User Manager</application>, then from the menu select
-<guimenu>Policies</guimenu>, <guimenuitem>Trust Relationships</guimenuitem>.
-Now, next to the <guilabel>Trusted Domains</guilabel> box press the <guibutton>Add</guibutton>
-button and type in the name of the trusted domain (SAMBA) and the password to use in securing
-the relationship.
+Starten Sie den <application>Domain User Manager</application>, wählen sie vom Menü
+<guimenu>Policies</guimenu>, <guimenuitem>Trust Relationships</guimenuitem> aus. Jetzt
+drücken Sie den <guibutton>Add</guibutton> Knopf der sich neben der <guilabel>Trusted Domains</guilabel>
+Box befindet und geben den Namen der vertrauten Domäne (SAMBA) und das Passwort für die Sicherung der 
+Vertrauensstellung ein.
 </para>
 
 <para>
-The password can be arbitrarily chosen. It is easy to change the password
-from the Samba server whenever you want. After confirming the password your account is
-ready for use. Now its Samba's turn.
+Das Passwort kann willkürlich gewählt werden. Es ist einfach das Passwort zu jedem Zeitpunkt vom Samba
+Server aus zu ändern. Nachdem man das Passwort bestätigt hat ist das Konto fertig für den Gebrauch. Jetzt
+ist der Samba Server an der Reihe.
 </para>
 
 <para>
-Using your favorite shell while being logged in as root, issue this command:
+Als root mit ihrer bevorzugten Shell angemeldet, führen Sie diesen Befhel aus:
 </para>
 
 <para>
@@ -344,133 +344,131 @@ Using your favorite shell while being logged in as root, issue this command:
 </para>
 
 <para>
-You will be prompted for the password you just typed on your Windows NT4 Server box.
-An error message <errorname>`NT_STATUS_NOLOGON_INTERDOMAIN_TRUST_ACCOUNT'</errorname>
-that may be reported periodically is of no concern and may safely be ignored.
-It means the password you gave is correct and the NT4 Server says the account is ready for
-interdomain connection and not for ordinary connection.  After that, be patient;
-it can take a while (especially in large networks), but eventually you should see
-the <computeroutput>Success</computeroutput> message. Congratulations! Your trust
-relationship has just been established.
+Sie werden nach dem Password gefragt das Sie gerade in Ihrer Windows NT4 Server Maschine
+eingegeben haben. Die Fehlermeldung <errorname>`NT_STATUS_NOLOGON_INTERDOMAIN_TRUST_ACCOUNT'</errorname>,
+welche manchmal auftritt, kann getrost ignoriert werden. Sie bedeutet dass das Passwort das Sie eingegeben
+haben richtig ist und der NT4 Server zurückgibt, dass das Konto bereit für eine Interdomain Verbindung ist und nicht
+für eine Normale Verbindung. Nach dieser Prozedur müssen Sie etwas gedulding sein, es könnte eine Weile
+dauern (vor allem in grossen Netzwerken), aber schließlich sollten Sie die <computeroutput>Success</computeroutput>
+Meldung sehen. Gratulation! Ihre Vertrauensstellung wurde in diesem Moment fertig gestellt.
 </para>
 
 <note><para>
-You have to run this command as root because you must have write access to
-the <filename>secrets.tdb</filename> file.
+Sie müssen diesen Befehl als root ausführen da sie Schreibrechte auf die Datei
+<filename>secrets.tdb</filename> haben müssen.
 </para></note>
 
 </sect2>
 </sect1>
 
 <sect1>
-<title>NT4-Style Domain Trusts with Windows 2000</title>
+<title>NT4-gleiche Domänen Vertrauensstellungen mit Windows 2000</title>
 <para>
-Although <application>Domain User Manager</application> is not present in Windows 2000, it is 
-also possible to establish an NT4-style trust relationship with a Windows 2000 domain 
-controller running in mixed mode as the trusting server. It should also be possible for 
-Samba to trust a Windows 2000 server, however, more testing is still needed in this area.
+Obwohl der <application>Domain User Manager</application> unter Windows 2000 nicht mehr existiert,
+ist es trotzdem möglich eine NT4-gleiche Vertrauensstellung mit einem Windows 2000 Domänenkontroller,
+der im gemischten Modus als vertrauender Server läuft, aufzubauen. Es sollte auch für Samba möglich sein
+einem Windows 2000 Server zu vertrauen, in diesem Gebiet muss jedoch noch getestet werden.
 </para>
 
 <para>
-After <link linkend="samba-trusted-domain">creating the interdomain trust account on the 
-Samba server</link> as described above, open <application>Active Directory Domains and 
-Trusts</application> on the AD controller of the domain whose resources you wish Samba users 
-to have access to. Remember that since NT4-style trusts are not transitive, if you want 
-your users to have access to multiple mixed-mode domains in your AD forest, you will need to 
-repeat this process for each of those domains. With <application>Active Directory Domains 
-and Trusts</application> open, right-click on the name of the Active Directory domain that 
-will trust our Samba domain and choose <guimenuitem>Properties</guimenuitem>, then click on
-the <guilabel>Trusts</guilabel> tab. In the upper part of the panel, you will see a list box 
-labeled <guilabel>Domains trusted by this domain:</guilabel>, and an 
-<guilabel>Add...</guilabel> button next to it. Press this button and just as with NT4, you 
-will be prompted for the trusted domain name and the relationship password. Press OK and 
-after a moment, Active Directory will respond with <computeroutput>The trusted domain has 
-been added and the trust has been verified.</computeroutput>  Your Samba users can now be 
-granted access to resources in the AD domain.
+Nach Fertigstellung des <link linkend="samba-trusted-domain">erstellen eines interdomain Vertrauens Konto
+auf dem Samba Server</link> wie oben beschrieben, öffnen Sie <application>Active Directory Domains and 
+Trusts</application> auf dem AD Kontroller der Domäne deren Ressourcen sie den Samba Benutzern zur Verfügung
+stellen möchten. Wenn Sie möchten dass Ihre Benutzer Zugriff auf mehrer mixed-Mode Domänen in Ihrem AD Forest haben,
+müssen Sie diesen Vorgang für alle Domänen wiederholen. Nachdem Sie <application>Active Directory Domains and 
+Trusts</application> geöffnet haben, machen Sie einen Rechtsklick auf die Domäne die unserer Samba Domäne vertrauen
+soll und wählen <guimenuitem>Properties</guimenuitem>, dann klicken sie auf den <guilabel>Trusts</guilabel> tab.
+Im oberen Teil der Leiste sehen Sie eine List Box mit dem Namen <guilabel>Domains trusted by this domain:</guilabel>,
+und einen<guilabel>Add...</guilabel> Knopf daneben. Drücken Sie diesen Knopf und gleich wie bei NT4, werden Sie nun
+nach der Domäne und dem Passwort für die Vertrauensstelung gefragt. Drücken Sie OK, und nach einem Moment wird Active 
+Directory mit einer <computeroutput>The trusted domain has been added and the trust has been verified.</computeroutput>
+Meldung antworten. Ihren Samba Benutzern kann nun Zugriff zu den Resourcen in der AD Domäne gegeben werden.
 </para>
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Häufige Fehler</title>
 
 <para>
-Interdomain trust relationships should not be attempted on networks that are unstable
-or that suffer regular outages. Network stability and integrity are key concerns with
-distributed trusted domains.
+Interdomain Vertrauensstellungen sollten nicht in Netzwerken erstellt werden die instabil
+sind oder öfters Ausfälle haben. Netzwerkstabilität und -integrität sind Schlüsselvoraussetzungen
+für verteilte vertraute Domänen.
 </para>
 
 <sect2>
-<title>Browsing of Trusted Domain Fails</title>
+<title>Durchsuchen der vertrauten Domäne schlägt fehl</title>
 
 <para>
-Browsing from a machine in a trusted Windows 200x Domain to a Windows 200x member of
-a trusting samba domain, I get the following error:
+Während des Durchsuchens eines Windows 200x Mitglieds einer vertrauten Samba Domäne, von einer
+Maschine aus einer vertrauten Domäne, bekomme ich folgenden Fehler:
 </para>
 
 <formalpara><emphasis>
-The system detected a possible attempt to compromise security. Please ensure that
-you can contact the server that authenticated you.</emphasis>
+Das System hat einen möglichen Angriff auf die Sicherheit festgestellt. Bitte versichern
+Sie sich, dass Sie Kontakt zu dem Server haben der Sie authentifiziert.
+</emphasis>
 </formalpara>
 
 <para>
-The event logs on the box I'm trying to connect to have entries regarding group
-policy not being applied because it is a member of a down-level domain.
+Die Event Logs auf der Maschine die ich versuche zu erreichen, haben Einträge die
+nicht angewendete Gruppen Richtlinien betreffen, weil diese Maschine ein Mitglied 
+einer untergeordneten Domäne ist.
 </para>
 
-<para><emphasis>Answer: </emphasis> If there is a computer account in the Windows
-200x Domain for the machine in question, and it is disabled, this problem can
-occur.  If there is no computer account (removed or never existed), or if that 
-account is still intact (i.e.: you just joined it to another domain) everything 
-seems to be fine. By default, when you un-join a domain (the Windows 200x 
-Domain), the computer tries to automatically disable the computer account in 
-the domain.  If you are running as an account which has privileges to do this 
-when you un-join the machine, it is done, otherwise it is not done.
+<para><emphasis>Antwort: </emphasis> 
+Falls ein Computer Konto für die betroffen Maschine in der Windows 200x Domäne existiert,
+und diese deaktiviert ist, kann dieses Problem auftreten. Falls dieses Computer Konto nicht
+existiert (entfernt oder nie erstellt), oder dieses Konto noch immer intakt ist (z.B.:
+Sie haben es gerade in eine andere Domäne verschoben) sollte alles in Ordnung sein.
+Normalerweise, wenn man die Domäne (die Windows 200x Domäne) verlässt, versucht der Computer
+automatisch das Computer Konto zu deaktivieren. Falls, während dieses Vorgangs, ein Konto verwendet
+wird welches die Privilegien dazu hat, wird es erledigt, sonst nicht.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Problems With LDAP ldapsam And The smbldap-tools</title>
+<title>Probleme mit LDAB ldapsam und den smbldap-tools</title>
 
 <para>
-If you use the <command>smbldap-useradd.pl</command> script to create a trust
-account to set up Interdomain trusts the process of setting up the trust will
-fail. The account that was created in the LDAP database will have an account
-flags field that has <constant>[W          ]</constant>, when it must have
-<constant>[I          ]</constant> for Interdomain trusts to work.
+Wenn Sie das <command>smbldap-useradd.pl</command> Skript benützen, um ein
+Konto, für die Fertigstellung einer interdomain Vertrauensstellung, zu erstellen wird
+dieser Prozess fehlschlagen. Das Konto welches in der LDAP Datenbank erstellt wurde
+wird ein Konto Flags Feld haben das <constant>[W          ]</constant> enthält, wärend
+es <constant>[I          ]</constant> für eine funktionierende Interdomain Vertrauensstellung
+enthalten müsste.
 </para>
 
-<para><emphasis>Answer: </emphasis>Here is a simple solution.
-Create a machine account as follows:
+<para><emphasis>Antwort: </emphasis>Hier eine einfache Lösung.
+Erstellen Sie ein Maschinen Konto wie folgt:
 <screen>
 &rootprompt; smbldap-useradd.pl -w domain_name
 </screen>
-Then set the desired trust account password as shown here:
+Dann setzen Sie gewünschte Vertrauensstellungs Konto Passwort wie hier:
 <screen>
 &rootprompt; smbldap-passwd.pl domain_name\$
 </screen>
-Using a text editor, create the following file:
+Mit einem Text Editor erstellen sie folgenden Datei:
 <screen>
 dn: uid=domain_name$,ou=People,dc={your-domain},dc={your-top-level-domain}
 changetype: modify
 sambaAcctFlags: [I         ]
 </screen>
-Then apply the text file to the LDAP database as follows:
+Dann fügen Sie die Txt Datei wie folgt der LDAP Datenbank hinzu:
 <screen>
 &rootprompt; ldapmodify -x -h localhost \
  -D "cn=Manager,dc={your-domain},dc={your-top-level-domain}" \
  -W -f /path-to/foobar
 </screen>
-Create a single-sided trust under the NT4 Domain User Manager, then execute:
+Erstellen Sie eine einseitige Vertrauensstellung mit dem NT4 Domain User Manager, dann führen Sie folgedes aus:
 <screen>
 &rootprompt; net rpc trustdom establish domain_name
 </screen>
 </para>
 
 <para>
-It works with Samba-3  and NT4 Domains, and also with Samba-3 and Windows 200x ADS in mixed mode.
-Both DC's, samba and NT, must have the same WINS server otherwise
-the trust will never work. 
+Dies funktioniert mit Samba-3 und NT4 Domänen, sowie mit Samba-3 und Windows 200x ADS in gemischtem Mode.
+Beide DC's, Samba und NT, müssen den gleichen WINS Server benutzen, sonst wird die Vertrauensstellung nie funktionieren.
 </para>
 
 </sect2>
