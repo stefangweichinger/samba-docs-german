@@ -26,7 +26,7 @@
 		<arg choice="opt">-w Arbeitsgruppe</arg>
 		<arg choice="opt">-W MeineArbeitsgruppe</arg>
 		<arg choice="opt">-U Benutzer</arg>
-		<arg choice="opt">-I ip-Adresse</arg>
+		<arg choice="opt">-I IP-Adresse</arg>
 		<arg choice="opt">-p Port</arg>
 		<arg choice="opt">-n MeinName</arg>
 		<arg choice="opt">-s KonfDatei</arg>
@@ -49,7 +49,7 @@
 	benutzende Protokoll bei der Ausführung eines bestimmten Befehls angegeben 
 	werden. ADS wird bei ActiveDirectory benutzt, RAP bei älteren (Win9x/NT3-) 
 	Clients und RPC kann bei NT4 und Windows 2000 benutzt werden. Wenn dieses 
-	Argument ausgelassen wird, versucht net, es automatisch zu bestimmen. 
+	Argument weggelassen wird, versucht net, es automatisch zu bestimmen. 
 	Nicht bei allen Protokollen sind alle Befehle verfügbar.
 	</para>
 
@@ -84,7 +84,7 @@
 		</varlistentry>
 
 		<varlistentry>
-		<term>-I ip-Adresse</term>
+		<term>-I IP-Adresse</term>
 		<listitem><para>
 		IP address of target server to use. You have to
 		specify either this option or a target workgroup or
@@ -139,9 +139,9 @@
 Anwendung auf ein Account-Rechnerpasswort gesetzt werden, das in Active Directory 
 bereits gespeichert wurde. Diesen Befehl sollten Sie NICHT VERWENDEN, es sei denn Sie
 wissen ganz genau, was Sie tun. Bei diesem Befehl muss auch das Flag -f benutzt
-werden. Es gibt KEINEN Befehls-Prompt. Welche Information auch immer in die 
+werden. Es gibt KEIN Befehls-Prompt. Welche Information auch immer in die 
 Standardeingabe gelangt, entweder durch die Eingabe auf der Kommandozeile oder
-sonstwie, wird als als explizites Rechnerpasswort gespeichert. Benutzen Sie das 
+sonstwie, wird als explizites Rechnerpasswort gespeichert. Benutzen Sie dies 
 nur mit größter Vorsicht und Aufmerksamkeit, da das gültige Rechnerpasswort ohne
 Warnung überschrieben wird.
 SIE WURDEN GEWARNT.
@@ -175,8 +175,8 @@ die Zeit auf dem entfernten Server an.
 
 <refsect3>
 <title>TIME SET</title>
-<para>Versucht mit <command>/bin/date</command> Datum und Zeit des 
-lokalen Servers auf die des entfernten Servers zu benutzen. </para>
+<para>Versucht, mit <command>/bin/date</command> Datum und Zeit des 
+lokalen Servers auf die des entfernten Servers zu setzen. </para>
 
 </refsect3>
 
@@ -193,7 +193,7 @@ Computer an.</para>
 <title>[RPC|ADS] JOIN [TYPE] [-U Benutzername[%Passwort]] [Optionen]</title>
 
 <para>
-Einer Domain beitreten. Wenn das Konto auf dem Server bereits existiert und 
+Einer Domäne beitreten. Wenn das Konto auf dem Server bereits existiert und 
 [TYPE] gleich MEMBER ist, versucht der Rechner automatisch beizutreten (unter
 der Annahme, dass der Rechner im Server Manager erstellt wurde).
 Sonst wird nach einem Passwort gefragt und evtl. wird ein neues Konto 
@@ -359,10 +359,10 @@ Sitzung aus.</para>
 </refsect2>
 
 <refsect2>
-<title>RAP SERVER <replaceable>DOMAIN</replaceable></title>
+<title>RAP SERVER <replaceable>DOMÄNE</replaceable></title>
 
-<para>List all servers in specified domain or workgroup. Defaults
-to local domain.</para>
+<para>Listet alle Server in der angegebenen Domäne/Arbeitsgruppe. Voreinstellung ist die lokale
+Domäne/Arbeitsgruppe.</para>
 
 </refsect2>
 
@@ -608,8 +608,8 @@ des lokalen Servers, falls der Parameter weggelassen wird.</para>
 <refsect2>
 <title>GROUPMAP</title>
 
-<para>Verwaltet die Abbildungen zwischen Windows-Gruppen-SIDs und UNIX-Gruppen.
-Parameter haben die Form "parameter=value". Häufige Optionen beinhalten:</para>
+<para>Verwaltet die Zuordnungen von Windows-Gruppen-SIDs auf UNIX-Gruppen-IDs.
+Die Parameter haben die Form "parameter=value". Häufige Optionen beinhalten:</para>
 
 <itemizedlist>
 <listitem><para>unixgroup - Name der UNIX-Gruppe</para></listitem>
@@ -770,14 +770,14 @@ Erzwungenes Herunterfahren aller Anwendungen.
 <varlistentry>
 <term>-t timeout</term>
 <listitem><para>
-Timeout bevor das System heruntergefahren wird. Ein interaktiver 
+Timeout, bevor das System heruntergefahren wird. Ein interaktiver 
 Benutzer des Systems kann diese Zeit nutzen, um das Herunterfahren abzubrechen.
 </para></listitem>
 </varlistentry>'>
 
 <varlistentry>
 <term>-C message</term>
-<listitem><para>Zeigt die angegebene Meldung auf dem Bildschirm aus, 
+<listitem><para>Zeigt die angegebene Meldung auf dem Bildschirm an, 
 um das Herunterfahren anzukündigen.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -787,7 +787,7 @@ um das Herunterfahren anzukündigen.</para></listitem>
 <refsect2>
 <title>SAMDUMP</title>
 
-<para>Gibt sam-Datenbank auf dem entfernten Server aus. Sie müssen das
+<para>Gibt SAM-Datenbank auf dem entfernten Server aus. Sie müssen das
 entweder auf einem BDC ausführen. <!-- Is that correct? - Jelmer --> ???
 </para>
 </refsect2>
@@ -848,7 +848,7 @@ der Servername hat als Vorgabewert den Namen des lokalen Hosts.</para>
 <refsect3>
 <title>ADS PRINTER REMOVE <replaceable>PRINTER</replaceable></title>
 
-<para>Entfernt angegebenen den Drucker aus dem ADS-Verzeichnis.</para>
+<para>Entfernt den angegebenen Drucker aus dem ADS-Verzeichnis.</para>
 
 </refsect3>
 
@@ -858,7 +858,7 @@ der Servername hat als Vorgabewert den Namen des lokalen Hosts.</para>
 <title>ADS SEARCH <replaceable>AUSDRUCK</replaceable> <replaceable>ATTRIBUTE...</replaceable></title>
 
 <para>Führt eine rohe LDAP-Suche auf einem ADS-Server durch und gibt die
-Ergebnisse aus. Der Ausdruck ist eine Standard-LDAP-Suchausdruck und die 
+Ergebnisse aus. Der Ausdruck ist ein Standard-LDAP-Suchausdruck und die 
 Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.</para>
 
 <para>Beispiel: <userinput>net ads search '(objectCategory=group)' sAMAccountName</userinput>
@@ -882,7 +882,7 @@ Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.
 <refsect2>
 <title>WORKGROUP</title>
 
-<para>Gibt den Arbeitsgruppennamen für den angegebenen Kerberos-realm an???.</para>
+<para>Gibt den Arbeitsgruppennamen für den angegebenen Kerberos-Realm an???.</para>
 
 </refsect2>
 
