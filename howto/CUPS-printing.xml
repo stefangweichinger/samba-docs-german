@@ -3266,20 +3266,12 @@ printprocessor:[winprint]
 <para>
 Keiner der drei oben gezeigten Befehle sollte einen Treiber anzeigen. Dieser Schritt wurde nur ausgeführt, um
 diese Bedingung zu demonstrieren. Ein Versuch, sich in diesem Stadium mit dem Drucker zu verbinden, sollte
-die Nachricht zeigen: <quote>Der Server hat nicht die erforderlichen Treiber
-
-
-
-None of the three commands shown above should show a driver.
-This step was done for the purpose of demonstrating this condition. An
-attempt to connect to the printer at this stage will prompt the
-message along the lines of: <quote>The server does not have the required printer
-driver installed.</quote>
+die Nachricht zeigen: <quote>Der Server hat nicht die erforderlichen Treiber installiert.</quote>
 </para>
 </step>
 
 <step>
-<title>Put all required driver files into Samba's
+<title>Stellen Sie alle erforderlichen Treiberdateien in die Samba-Freigabe 
 [print$].</title>
 
 <para><screen>
@@ -3292,19 +3284,18 @@ driver installed.</quote>
 </screen></para>
 
 <para>
-(This command should be entered in one long single
-line. Line-breaks and the line-end indicated by <quote>\</quote> have been inserted
-for readability reasons.) This step is <emphasis>required</emphasis>
-for the next one to succeed. It makes the driver files physically
-present in the <smbconfsection>[print$]</smbconfsection> share. However, clients
-would still not be able to install them, because Samba does not yet
-treat them as driver files. A client asking for the driver would still
-be presented with a <quote>not installed here</quote> message.
+(Dieser Befehl sollte in einer einzelnen langen Zeile eingegeben werden, die durch <quote>\</quote> angezeigten
+Zeilenumbrüche wurden zur Erhöhung der Lesbarkeit eingefügt. Dieser Schritt ist 
+<emphasis>erforderlich</emphasis>, damit der darauffolgende Schritt erfolgreich durchgeführt werden kann.
+Er macht die Dateien physisch in der Freigabe <smbconfsection>[print$]</smbconfsection> verfügbar. Die Clients
+wären jedoch nach wie vor nicht in der Lage, diese Treiber zu installieren, da Samba sie noch nicht als 
+Treiberdateien behandelt. Ein Client, der diesen Treiber abfragt, würde nach wie vor mit einer Meldung wie
+<quote>nicht installiert</quote> konfrontiert.
 </para>
 </step>
 
 <step>
-<title>Verify where the driver files are now.</title>
+<title>Prüfen, wo sich die Treiberdateien jetzt befinden.</title>
 
 <para><screen>
 &rootprompt;<userinput>ls -l /etc/samba/drivers/W32X86/</userinput>
@@ -3318,13 +3309,13 @@ drwxr-sr-x    2 root     ntadmin       670 May 16 03:15 3
 </screen></para>
 
 <para>
-The driver files now are in the W32X86 architecture <quote>root</quote> of
+Die Treiberdateien sind jetzt im <quote>Wurzelverzeichnis</quote> der Freigabe 
 <smbconfsection>[print$]</smbconfsection>.
 </para>
 </step>
 
 <step>
-<title>Tell Samba that these are driver files (<command>adddriver</command>).</title>
+<title>Samba mitteilen, daß diese Dateien Treiberdateien sind (<command>adddriver</command>).</title>
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm>
@@ -3337,20 +3328,18 @@ Printer Driver mydrivername successfully installed.
 </screen></para>
 
 <para>
-You cannot repeat this step if it fails. It could fail even
-as a result of a simple typo. It will most likely have moved a part of
-the driver files into the <quote>2</quote> subdirectory. If this step fails, you
-need to go back to the fourth step and repeat it before you can try
-this one again. In this step, you need to choose a name for your
-driver. It is normally a good idea to use the same name as is used for
-the printer name; however, in big installations you may use this driver
-for a number of printers that obviously have different names, so the
-name of the driver is not fixed.
+Sie können diesen Schritt nicht wiederholen, wenn er scheitert. Er könnte sogar infolge eines simplen Tippfehlers
+scheitern. Meist hat der Befehl dann bereits einen Teil der Treiberdateien in das Unterverzeichnis
+<quote>2</quote> verschoben. Wenn dieser Schritt scheitert, müssen Sie zum vierten Schritt zurückgehen und ihn
+wiederholen, bevor Sie den fünften Schritt von neuem versuchen können. In diesem Schritt müssen Sie einen Namen
+für Ihren Treiber auswählen. Es ist normalerweise eine gute Idee, denselben Namen zu verwenden, wie er für den
+Druckernamen verwendet wird; in grossen Installationen werden Sie jedoch diesen Treiber für eine grössere Anzahl
+von Druckern verwenden, die natürlich verschiedene Namen haben, daher ist der Name des Treibers nicht fixiert.
 </para>
 </step>
 
 <step>
-<title>Verify where the driver files are now.</title>
+<title>Prüfen, wo sich die Treiberdateien jetzt befinden.</title>
 
 <para><screen>
 &rootprompt;<userinput>ls -l /etc/samba/drivers/W32X86/</userinput>
@@ -3368,13 +3357,13 @@ total 5039
 </screen></para>
 
 <para>
-Notice how step 6 also moved the driver files to the appropriate
-subdirectory. Compare this with the situation after step 5.
+Beachten Sie, wie der Schritt 6 auch die Treiberdateien in das entsprechende Unterverzeichnis verschoben hat.
+Vergleichen Sie dies mit der Situation nach dem Schritt 5.
 </para>
 </step>
 
 <step>
-<title>(Optional) Verify if Samba now recognizes the driver.</title>
+<title>(Optional) Prüfen, ob Samba jetzt den Treiber erkennt.</title>
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>enumdrivers</secondary></indexterm>
@@ -3392,14 +3381,13 @@ Helpfile: [\\kde-bitshop\print$\W32X86\2\cups.hlp]
 </screen></para>
 
 <para>
-Remember, this command greps for the name you chose for the
-driver in step 6. This command must succeed before you can proceed.
+Erinnern Sie sich, dieser Befehl führt ein <quote>grep</quote> nach dem Namen aus, den Sie im Schritt 6 für den
+Treiber gewählt haben. Dieser Befehl muß erfolgreich abschliessen, bevor Sie fortschreiten können.
 </para>
 </step>
 
 <step>
-<para>Tell Samba which printer should use these driver files (<command>setdriver</command>).</para>
-
+<para>Samba mitteilen, welcher Drucker diese Treiberdateien verwenden soll (<command>setdriver</command>).</para>
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
@@ -3410,17 +3398,15 @@ Successfully set mysmbtstprn to driver mydrivername
 </screen></para>
 
 <para>
-Since you can bind any printername (print queue) to any driver, this
-is a convenient way to setup many queues that use the same
-driver. You do not need to repeat all the previous steps for the
-setdriver command to succeed. The only preconditions are:
-<command>enumdrivers</command> must find the driver and
-<command>enumprinters</command> must find the printer.
+Da Sie jeden Druckernamen (Drucker-Queue) an jeden Treiber binden können, ist dies eine praktische Möglichkeit,
+viele Queues zu konfigurieren, die denselben Treiber verwenden. Sie brauchen all die vorhergehenden Schritte 
+nicht zu wiederholen, damit der Befehl setdriver Erfolg hat. Die einzigen Vorbedingungen sind:
+<command>enumdrivers</command> muß den Treiber finden und <command>enumprinters</command> muß den Drucker finden.
 </para>
 </step>
 
 <step>
-	<title>(Optional) Verify if Samba has recognized this association.</title>
+	<title>(Optional) Prüfen, ob Samba diese Zuordnung erkannt hat.</title>
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>getprinter</secondary></indexterm>
@@ -3468,35 +3454,35 @@ Printer Driver Info 3:
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>enumprinters</secondary></indexterm>
-Compare these results with the ones from steps 2 and 3. Every one of these commands show the driver is installed. Even
-the <command>enumprinters</command> command now lists the driver
-on the <quote>description</quote> line.
+Vergleichen Sie diese Resultate mit denen aus den Schritten 2 und 3. Jeder dieser Befehle zeigt, daß der Treiber
+installiert ist. Sogar der Befehl <command>enumprinters</command> führt jetzt den Treiber in der Zeile
+<quote>description</quote> an.
 </para>
 </step>
 
 <step>
-<title>(Optional) Tickle the driver into a correct
-device mode.</title>
+<title>(Optional) Den Treiber in den korrekten Gerätemodus <quote>kitzeln</quote>.
+</title>
 
 <para>
 <indexterm><primary>"Printers" folder</primary></indexterm>
-You certainly know how to install the driver on the client. In case
-you are not particularly familiar with Windows, here is a short
-recipe: Browse the Network Neighborhood, go to the Samba server, and look
-for the shares. You should see all shared Samba printers.
-Double-click on the one in question. The driver should get
-installed and the network connection set up. An alternate way is to
-open the <guilabel>Printers (and Faxes)</guilabel> folder, right-click on the printer in
-question and select <guilabel>Connect</guilabel> or <guilabel>Install</guilabel>. As a result, a new printer
-should have appeared in your client's local <guilabel>Printers (and Faxes)</guilabel>
-folder, named something like <guilabel>printersharename on Sambahostname</guilabel>.
+Sie wissen sicherlich, wie man den Treiber auf dem Client installiert. Für den Fall, daß Sie nicht besonders
+vertraut mit Windows sind, hier ein Schnell-Rezept:
+Durchblättern Sie die Netzwerkumgebung, gehen Sie auf den Samba-Server, und sehen Sie nach den Freigaben. Sie
+sollten hier alle freigegebenen Samba-Drucker sehen. Klicken Sie doppelt auf den gewünschten Drucker. Der
+Treiber sollte installiert und die Netzwerkverbindung hergestellt werden. Eine weitere Möglichkeit ist, den
+Ordner <guilabel>Drucker und Faxgeräte</guilabel> zu öffnen, den betreffenden Drucker mit der rechten
+Maustaste anzuklicken und entweder <guilabel>Verbinden</guilabel> oder <guilabel>Installieren</guilabel> zu
+wählen. Das Ergebnis sollte sein, daß ein neuer Drucker in dem lokalen Ordner 
+<guilabel>Drucker und Faxgeräte</guilabel> Ihres Clients erscheint, mit einem Namen wie
+<guilabel>Druckerfreigabename auf SambaServerName</guilabel>.
 </para>
 
 <para>
-It is important that you execute this step as a Samba printer admin
-(as defined in &smb.conf;). Here is another method
-to do this on Windows XP. It uses a command line, which you may type
-into the <quote>DOS box</quote> (type root's smbpassword when prompted):
+Es ist wichtig, daß Sie diesen Schritt als ein Samba-Drucker-Administrator (printer admin, definiert in
+&smb.conf;) ausführen. Hier eine andere Methode, dies in Windows XP zu tun. Diese Methode verwendet eine
+Befehlszeile, welche Sie in der <quote>DOS box</quote> eingeben (tippen Sie das smbpassword von root, wenn
+erfordert):
 </para>
 
 <para><screen>
@@ -3505,16 +3491,14 @@ into the <quote>DOS box</quote> (type root's smbpassword when prompted):
 </screen></para>
 
 <para>
-Change any printer setting once (like changing <emphasis><guilabel>portrait</guilabel> to
-	<guilabel>landscape</guilabel></emphasis>), click on <guibutton>Apply</guibutton>; change the setting
-back.
+Ändern Sie irgendeine Druckereinstellung einmal (wie z.B. den Parameter <emphasis><guilabel>portrait</guilabel>
+auf <guilabel>landscape</guilabel></emphasis>), klicken Sie <guibutton>Übernehmen</guibutton>; ändern Sie die
+Einstellung wieder zurück.
 </para>
 </step>
 
 <step>
-<title>Install the printer on a client
-(Point'n'Print).</title>
-
+<title>Den Drucker auf einem Client installieren (Point'n'Print).</title>
 
 <para>
 <indexterm significance="preferred"><primary>point 'n' print</primary></indexterm>
@@ -3523,48 +3507,47 @@ back.
 </screen></para>
 
 <para>
-If it does not work it could be a permission problem with the
-<smbconfsection>[print$]</smbconfsection> share.
+Wenn dies nicht funktioniert, könnte dies ein Berechtigungsproblem mit der Freigabe 
+<smbconfsection>[print$]</smbconfsection> sein.
 </para>
 </step>
 
 <step>
-<title>(Optional) Print a test page.</title>
+<title>(Optional) Eine Testseite drucken.</title>
 
 <para><screen>
 &dosprompt;<userinput>rundll32 printui.dll,PrintUIEntry /p /n "\\sambaserver\mysmbtstprn"</userinput>
 </screen></para>
 
 <para>
-Then hit [TAB] five times, [ENTER] twice, [TAB] once and [ENTER] again
-and march to the printer.
+Dann drücken Sie fünfmal [TAB], zweimal [ENTER], einmal [TAB] und nochmals [ENTER] 
+und marschieren zum Drucker.
 </para>
 </step>
 
 <step>
-<title>(Recommended) Study the test page.</title>
+<title>(Empfohlen) Studieren Sie die Testseite.</title>
 
 <para>
-Hmmm.... just kidding! By now you know everything about printer
-installations and you do not need to read a word. Just put it in a
-frame and bolt it to the wall with the heading "MY FIRST
-RPCCLIENT-INSTALLED PRINTER" &smbmdash; why not just throw it away!
+Hmmm.... ich scherze nur! Mittlerweile wissen Sie alles über Drucker-Installationen und brauchen kein Wort mehr
+davon zu lesen. Stecken Sie die Seite in einen Rahmen und nageln Sie den an die Wand, mit der Überschrift
+"MEIN ERSTER MIT RPCCLIENT INSTALLIERTER DRUCKER" &smbmdash; warum es nicht einfach wegwerfen!
 </para>
 </step>
 
 <step>
-<title>(Obligatory) Enjoy. Jump. Celebrate your
-success.</title>
+<title>(Obligatorisch) Geniessen Sie es. Springen Sie. Feiern Sie Ihren Erfolg.
+</title>
 
 <para><screen>
-&rootprompt;<userinput>echo "Cheeeeerioooooo! Success..." &gt;&gt; /var/log/samba/log.smbd</userinput>
+&rootprompt;<userinput>echo "Cheeeeerioooooo! Erfolg ..." &gt;&gt; /var/log/samba/log.smbd</userinput>
 </screen></para>
 </step>
 </procedure>
 </sect2>
 
 <sect2>
-<title>Troubleshooting Revisited</title>
+<title>Wiedersehen mit dem Troubleshooting</title>
 
 <para>
 The setdriver command will fail, if in Samba's mind the queue is not
