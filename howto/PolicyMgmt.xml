@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="PolicyMgmt">
 <chapterinfo>
 	&author.jht;
     <pubdate>April 3 2003</pubdate>
+	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>System und Zugriffs-Richtlinien</title>
@@ -113,7 +115,7 @@ Richtlinien</quote> zu suchen.
 
 <para>
 Nachfolgende erhalten Sie eine kurze Auflistung mit einigen hilfreichen Anmerkungen.
-Diese Informationen sind nicht ganz vollständig &smbmdsh; seien Sie also vorsichtig damit.
+Diese Informationen sind nicht ganz vollständig &smbmdash; seien Sie also vorsichtig damit.
 </para>
 
 	<sect2>
@@ -134,7 +136,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdsh; seien Sie also vorsich
 	Benutzen Sie den Gruppen Richtlinien Editor um eine Richtliniendatei zu erzeugen, welche
 	den Ort der Benutzerrichtlinien und/oder <filename>Eigene Dateien</filename> festlegt, und so
 	weiter. Dann speichern Sie diese Einstellungen in einer Datei namens <filename>Config.POL</filename>
-	welche Sie im Hauptverzeichnis von dem Share <smbconsection>[NETLOGON]</smbconfsection> ablegen.
+	welche Sie im Hauptverzeichnis von dem Share <smbconfsection>[NETLOGON]</smbconfsection> ablegen.
 	Falls Sie Windows 98 zum Anmelden an der Samba Domäne konfiguriert haben, so wird diese Datei 
 	automatisch gelesen und die Windows 9x/Me Registry der Maschine beim Anmelden aktualisiert.
 	</para>
@@ -274,6 +276,7 @@ Diese Informationen sind nicht ganz vollständig &smbmdsh; seien Sie also vorsich
 		(nach dem Programmnamen <command>poledit.exe</command> benannt) zu nutzen, werden <acronym>GPOs</acronym>
 		durch Nutzung der <application>Microsoft Management Console</application> <acronym>(MMC)</acronym> 
 		erzeugt und verwaltet, die Snap-Ins sind dabei folgende:
+		</para>
 
 		<procedure>
 			<step><para>
