@@ -849,7 +849,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		verursachen falls der Benutzer kein NT Administrator ist oder ein Dialog, der dafür gedacht ist, einem Administrator
 		Überwachungsgrundlagen einer Datei zuzufügen, wenn der Benutzer als NT Administrator angemeldet ist. Dieser Dialog
 		ist mit einer Samba-Freigabe zu diesem Zeitpunkt nicht funktionierend, da der einzige Knopf, der <guibutton>Hinzufügen</guibutton>
-		Knopf derzeit es nicht zulässt, eine Benutzerliste anzuzeigen.
+		Knopf es derzeit nicht zulässt, eine Benutzerliste anzuzeigen.
 		</para>
 
 	</sect2>
@@ -858,7 +858,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		<title>Anzeigen von Dateieigentümern</title>
 
 		<para>
-		Durch Klicken auf den <guibutton>Eigentümer</guibutton> Knopf erscheitn eine Dialogbox, welche Ihnen
+		Durch Klicken auf den <guibutton>Eigentümer</guibutton> Knopf erscheint eine Dialogbox, welche Ihnen
 		anzeigt, wem die betreffende Datei gehört. Der Name des Eigentümers wird dergestalt angezeigt:
 		</para>
 
@@ -879,143 +879,136 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		</para>
 
 		<para>
-		The <guibutton>Take Ownership</guibutton> button will not allow you to change the ownership of this file to
-		yourself (clicking it will display a dialog box complaining that the user you are currently logged onto
-		the NT client cannot be found). The reason for this is that changing the ownership of a file is a privileged
-		operation in UNIX, available only to the <emphasis>root</emphasis> user. As clicking on this button causes
-		NT to attempt to change the ownership of a file to the current user logged into the NT clienti, this will
-		not work with Samba at this time.</para>
+		Der <guibutton>Übernehmen</guibutton> Knopf erlaubt es Ihnen nicht, die Eigentumsrechte an dieser Datei auf Sie selbst zu geben
+		(ein Anklicken zeigt eine Dialogbox, die angibt, dass der Benutzer als der Sie gerade auf dem NT Client angemeldet sind, nicht
+		geufnden werden kann). Der Grund hierfür ist, dass das Ändern der Eigentumsrechte auf eine Datei eine privilegierte Operation 
+		in UNIX ist, die ausschliesslich dem <emphasis>root</emphasis> Benutzer obliegt. Indem Sie auf diesen Knopf drücken 
+		wird NT dazu veranlassen, die Eigentumsrechte einer Datei auf den gegenwärtigen am NT Client angemeldeten Benutzer zu ändern, dies 
+		jedoch funktioniert zu diesem Zeitpunkt mit Samba nicht.
+		</para>
 
 		<para>
-		There is an NT <command>chown</command> command that will work with Samba and allow a user with Administrator privilege connected
-		to a Samba server as root to change the ownership of files on both a local NTFS filesystem or remote mounted NTFS
-		or Samba drive. This is available as part of the <application>Seclib</application> NT security library written
-		by Jeremy Allison of the Samba Team, and is available from the main Samba FTP site.</para>
+		Es gibt ein NT <command>chown</command> Kommando, welches mit Samba funktioniert und es einem Benutzer der mit Administratorprivilegien an
+		einen Sambaserver als root angeschlossen ist die Eigentumsrechte Dateien sowohl auf lokaler NTFS Dateisystemebene oder entfernt gemountete
+		NTFS oder Samba-Laufwerke. Dies ist verfügbar als Teil der von Jeremy Allison vom Samba Team geschriebenen <application>Seclib</application> 
+		NT Sicherheitsbibliothek und ist abrufbar von der FTP-Hauptseite von Samba.
+		</para>
 
 	</sect2>
 
 	<sect2>
-		<title>Viewing File or Directory Permissions</title>
+		<title>Anzeigen von Datei- oder Verzeichnisberechtigungen</title>
 
 		<para>
-		The third button is the <guibutton>Permissions</guibutton> button. Clicking on this brings up a dialog box
-		that shows both the permissions and the UNIX owner of the file or directory. The owner is displayed like this:
+		Der dritte Knopf ist der <guibutton>Berechtigungen</guibutton> Knopf. Indem Sie diesen Anklicken öffnet sich eine Dialogbox
+		welche sowohl die Berechtigungen und den UNIX-Besitzer für die Datei oder das Verzeichnis anzeigen.
+		Der Eigentümer wird dergestalt angezeigt:
 		</para>
 
 		<para><command><replaceable>SERVER</replaceable>\
-				<replaceable>user</replaceable>
-				<replaceable>(Long name)</replaceable></command></para>
+				<replaceable>Benutzer</replaceable>
+				<replaceable>(Langer Name)</replaceable></command></para>
 
-		<para>Where <replaceable>SERVER</replaceable> is the NetBIOS name of the Samba server,
-		<replaceable>user</replaceable> is the user name of the UNIX user who owns the file, and
-		<replaceable>(Long name)</replaceable> is the descriptive string identifying the user (normally found in the
-		GECOS field of the UNIX password database).</para>
+		<para><replaceable>SERVER</replaceable> ist der NetBIOS Name des Samba Servers, <replaceable>Benutzer</replaceable>
+		ist der Name des UNIX-Benutzers, dem die Datei gehört und <replaceable>(Langer Name)</replaceable> ist
+		die Beschreibung, die den Benutzer ausweist (normalerweise wird dies im GECOS Feld der UNIX Passwortdatenbank gefunden).
+		Klicken Sie auf den <guibutton>Schliessen</guibutton> Knopf um diesen Dialog zu entfernen.</para>
 
 		<para>
-		If the parameter <smbconfoption><name>nt acl support</name></smbconfoption> is set to <constant>false</constant>,
-		the file owner will be shown as the NT user <constant>Everyone</constant> and the permissions will be
-		shown as NT <quote>Full Control</quote>.
+		Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption> auf <constant>false</constant> gesetzt ist,
+		wird der Dateieigentümer als NT Benutzer <emphasis>Jeder</emphasis> angezeigt.
 		</para>
-
-
+		
 		<para>
-		The permissions field is displayed differently for files and directories, so I'll describe the way file permissions
-		are displayed first.
+		Das Berechtigunggsfeld wird bei Dateien und Verzeichnissen anders dargestellt, also werde ich die Art, wie
+		Dateiberechtigungen angezeigt werden als erstes beschreiben.
 		</para>
 
 		<sect3>
-			<title>File Permissions</title>
+			<title>Dateiberechtigungen</title>
 
-			<para>The standard UNIX user/group/world triplet and the corresponding <constant>read, write, execute</constant> permissions
-			triplets are mapped by Samba into a three element NT ACL with the <quote>r</quote>, <quote>w</quote> and <quote>x</quote> bits mapped into the corresponding
-			NT permissions. The UNIX world permissions are mapped into the global NT group <constant>Everyone</constant>, followed
-			by the list of permissions allowed for UNIX world. The UNIX owner and group permissions are displayed as an NT
-			<guiicon>user</guiicon> icon and an NT <guiicon>local group</guiicon> icon, respectively, followed by the list
-			of permissions allowed for the UNIX user and group.</para>
+			<para>Die Standard UNIX Drillinge Benutzer/Gruppe/Welt und die korrespondierenden <constant>lesen, schreiben, ausführen</constant> Berechtigungen
+			werden von Samba in ein aus drei Elementen bestehendes NT ACL mit <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits 
+			zu NT Berechtigungen passenden gemappt. Die UNIX Welt-Berechtigungen werden in die globale NT Gruppe <constant>Jeder</constant> gemappt,
+			gefolgt von der Berechtigungsliste, die für UNIX-Welt gilt. Die UNIX Eigentümer- und Gruppenberechtigungen werden als ein NT
+			<guiicon>Benutzer</guiicon> Symbol und ein NT <guiicon>lokale Gruppe</guiicon> Symbol angezeigt, 
+			beziehungsweise durch die nachfolgende Berechtigungsliste für die UNIX Benutzer und Gruppe.</para>
 
-			<para>Because many UNIX permission sets do not map into common NT names such as <constant>read</constant>,
-			<constant>change</constant> or <constant>full control</constant>, usually the permissions will be prefixed
-			by the words <constant>Special Access</constant> in the NT display list.</para>
+			<para>Dadurch, dass viele UNIX Berechtigungssätze nicht in allgemeine NT Namen wie <constant>lesen</constant>,
+			<constant>ändern</constant> oder <constant>volle Kontrolle</constant> passen, werden gemeinhin die Berechtigungen
+			durch Wörter wie <constant>Spezieller Zugriff</constant> in der NT Anzeigeliste angeführt.</para>
 
-			<para>But what happens if the file has no permissions allowed for a particular UNIX user group or world component? In order
-			to  allow <quote>no permissions</quote> to be seen and modified Samba then overloads the NT <constant>Take Ownership</constant> ACL attribute
-			(which has no meaning in UNIX) and reports a component with no permissions as having the NT <command>O</command> bit set.
-			This was chosen, of course, to make it look like a zero, meaning zero permissions. More details on the decision behind this is
-			given below.</para>
+			<para>Doch was passiert, wenn die Datei keine Berechtigungen für eine bestimmte UNIX Benutzergruppe oder Welt-Komponente erlaubt ?
+			Um es zu ermöglichen <quote>keine Berechtigungen</quote> zu sehen und zu ändern übergibt Samba das NT <constant>Besitztum übernehmen</constant> ACL Attribut
+			(welches keine Bedeutung für UNIX hat) und meldet eine Komponente ohne Berechtigung, wie wenn das NT <command>O</command> Bit gesetzt ist.
+			Dies wurde natürlich deshalb gewählt um es wie eine Null aussehen zu lassen, was bedeutet: Null Berechtigungen. Weitere Details zu dieser
+			Entscheidung werden weiter unten gegeben.</para>
 		</sect3>
 
 		<sect3>
-			<title>Directory Permissions</title>
+			<title>Verzeichnis-Berechtigungen</title>
 
-			<para>Directories on an NT NTFS file system have two different sets of permissions. The first set is the ACL set on the
-			directory itself, which is usually displayed in the first set of parentheses in the normal <constant>RW</constant>
-			NT style. This first set of permissions is created by Samba in exactly the same way as normal file permissions are, described
-			above, and is displayed in the same way.</para>
+			<para>Verzeichnisse auf einem NT NTFS Dateisystem haben zwei verschiedene Berechtigungssätze. Der erste Satz ider die ACL, welche
+			auf das Verzeichnis selbst gesetzt ist, welche normalerweise im ersten Satz der Parentheses im normalen NT-Stil <constant>RW</constant>
+			angezeigt wird. Dieser erste Satz an Berechtigungen wird durch Samba in exakt derselben Art und Weise erzeugt, wie es normale Dateiberechtigungen
+			werden, und wird auch auf diesselbe Art und Weise angezeigt.</para>
 
-			<para>The second set of directory permissions has no real meaning in the UNIX permissions world and represents the <constant>
-			inherited</constant> permissions that any file created within this directory would inherit.</para>
+			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung in der UNIX-Berechtigungs-Welt und repräsentiert
+			die <constant>vererbten</constant> Berechtigungen die jede Datei, die in diesem Verzeichnis erzeugt wird, vererben wird.</para>
 
-			<para>Samba synthesises these inherited permissions for NT by returning as an NT ACL the UNIX permission mode that a new file
-			created by Samba on this share would receive.</para>
+			<para>Samba vereinigt diese vererbten Berechtigungen für NT indem es die UNIX Berechtigungsmodi als ein NT ACL zurückgibt
+			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hatte.</para>
 		</sect3>
 	</sect2>
 
 	<sect2>
-		<title>Modifying File or Directory Permissions</title>
+		<title>Ändern von Datei- oder Verzeichnis-Berechtigungen</title>
 
-		<para>Modifying file and directory permissions is as simple
-		as changing the displayed permissions in the dialog box, and
-		clicking on <guibutton>OK</guibutton>. However, there are
-		limitations that a user needs to be aware of, and also interactions
-		with the standard Samba permission masks and mapping of DOS
-		attributes that need to also be taken into account.</para>
+		<para>Das Ändern von Datei- und Verzeichnis-Berechtigungen ist genauso einfach, wie das Ändern
+		der Anzeige der Berechtigungen in der Dialogbox und das Klicken auf <guibutton>OK</guibutton>. 
+		Jedoch gibt es Einschränkungen, die ein Benutzer wissen sollte und die mit den Standard 
+		Samba-Berechtigungsmasken und dem Vergeben von DOS-Attributen, die ebenfalls in diesem Zusammenhang 
+		gemacht werden, zusammenspielen.</para>
 
-		<para>If the parameter <smbconfoption><name>nt acl support</name></smbconfoption>
-		is set to <constant>false</constant>, any attempt to set
-		security permissions will fail with an <errorname>`Access Denied'
-		</errorname> message.</para>
+		<para>Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
+		auf <constant>false</constant> gesetzt ist schlägt jeder Versuch, Sicherheitsberechtigungen zu setzen
+		mit einer <errorname>'Zugriff verweigert'</errorname> Meldung fehl.</para>
 
-		<para>The first thing to note is that the <guibutton>Add</guibutton>
-		button will not return a list of users in Samba (it will give
-		an error message saying <errorname>`The remote procedure call failed
-		and did not execute'</errorname>). This means that you can only
-		manipulate the current user/group/world permissions listed in
-		the dialog box. This actually works quite well as these are the
-		only permissions that UNIX actually has.</para>
+		<para>Das erste, was anzumerken ist, dass der <guibutton>Hinzufügen</guibutton> Knopf
+		keine Samba-Benutzerliste zurückgeben wird (es wird eine Fehlermeldung ausgeben, die besagt
+		<errorname>`Der Remoteprozedur-Aufruf schlug fehl und konnte nicht ausgeführt werden'</errorname>). 
+		Das bedeutet, dass Sie nur die gegenwärtigen Benutzer/Gruppen/Welt-Berechtigungen, die in der Dialogbox
+		angezeigt werden, ändern können. Dies funktioniert deshalb so gut, weil es die einzigen Berechtigungen sind, 
+		die UNIX augenblicklich hat.</para>
 
-		<para>If a permission triplet (either user, group, or world)
-		is removed from the list of permissions in the NT dialog box,
-		then when the <guibutton>OK</guibutton> button is pressed it will
-		be applied as <quote>no permissions</quote> on the UNIX side. If you then
-		view the permissions again, the <quote>no permissions</quote> entry will appear
-		as the NT <command>O</command> flag, as described above. This
-		allows you to add permissions back to a file or directory once
-		you have removed them from a triplet component.</para>
+		<para>Falls ein Berechtigungsdrilling (entweder Benutzer, Gruppe oder Welt)
+		von der Liste der Berechtigungen in der NT Dialogbox entfernt wird, dann der 
+		<guibutton>OK</guibutton> Knopf gedrückt wird, wird dies auf UNIX-Seite
+		mit <quote>keine Berechtigungen</quote> angewendet. Wenn Sie sich dann die Berechtigungen
+		nochmals ansehen wird der <quote>keine Berechtigungen</quote> Eintrag als das NT <command>O</command> Flag
+		wie oben beschrieben angezeigt. Dies erlaubt es Ihnen, Berechtigungen wieder auf eine Datei oder Verzeichnis
+		zu setzen, nachdem Sie diese von einem der Drillingskomponenten entfernt hatten.</para>
 
-		<para>As UNIX supports only the <quote>r</quote>, <quote>w</quote> and <quote>x</quote> bits of
-		an NT ACL, if other NT security attributes such as <constant>Delete Access</constant> are
-		selected they will be ignored when applied on the Samba server.</para>
+		<para>Weil UNIX nur die <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits eines
+		NT ACL unterstützt, falls andere NT Sicherheitsattribute wie <constant>Löschzugriff</constant> 
+		ausgewählt wurden, werden diese ignoriert, falls diese auf einem Samba Server angewandt werden.</para>
 
-		<para>When setting permissions on a directory, the second
-		set of permissions (in the second set of parentheses) is
-		by default applied to all files within that directory. If this
-		is not what you want, you must uncheck the <guilabel>Replace
-		permissions on existing files</guilabel> checkbox in the NT
-		dialog before clicking on <guibutton>OK</guibutton>.</para>
+		<para>Wenn Berechtigungen auf ein Verzeichnis gesetzt werden, wird der zweite Satz an Berechtigungen
+		(im zweiten Satz der Parenthesen) standardmässig auf alle Dateien in diesem Verzeichnis angewandt.
+		Falls Sie dies nicht wünschen müssen Sie die <guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel> Auswahlbox
+		in dem NT Dialog vor einem Klicken auf <guibutton>OK</guibutton> abwählen.</para>
 
-		<para>If you wish to remove all permissions from a
-		user/group/world  component, you may either highlight the
-		component and click on the <guibutton>Remove</guibutton> button,
-		or set the component to only have the special <constant>Take
-		Ownership</constant> permission (displayed as <command>O
-		</command>) highlighted.</para>
+		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt Komponente zu entfernen
+		können Sie entweder eine Komponente auswählen und auf den <guibutton>Entfernen</guibutton> Knopf klicken oder
+		setzen Sie die Komponente darauf, nur die spezielle <constant>Berechtigung übernehmen</constant> Berechtigung
+		(angezeigt als <command>O</command>) zu setzen.</para>
 	</sect2>
 
 	<sect2>
-		<title>Interaction with the Standard Samba <quote>create mask</quote> Parameters</title>
+		<title>Wechselwirkung mit den Standard Samba <quote>create mask</quote> Parametern</title>
 
-		<para>There are four parameters that control interaction with the standard Samba <parameter>create mask</parameter> parameters.
-		These are:
+		<para>Es gibt vier Parameter die das Wechselspiel mit den Standard Samba <parameter>create mask</parameter> Parametern kontrollieren.
+		Diese sind:
 
 		<itemizedlist>
 			<listitem><smbconfoption><name>security mask</name></smbconfoption></listitem>
