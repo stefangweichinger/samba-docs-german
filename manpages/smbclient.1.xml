@@ -204,7 +204,7 @@
 		Befehl cat an <command>smbclient</command> weiterzuleiten. Beispiel:
 		<command>
 		cat meineNachricht.txt | smbclient -M FRED </command> verschickt die
-		Nachricht in der Datei <filename>meineNachtricht.txt</filename> 
+		Nachricht in der Datei <filename>meineNachricht.txt</filename> 
 		an den Rechner namens FRED.</para>
 
 		<para>Vielleicht werden Sie auch die Optionen <parameter>-U</parameter> 
