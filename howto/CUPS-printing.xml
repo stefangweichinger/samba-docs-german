@@ -2995,13 +2995,11 @@ Abschnitte:
 </para>
 
 <para>
-<command>adddriver &lt;arch&gt; &lt;config&gt;</command> Execute an
-<command>AddPrinterDriver()</command> RPC to install the printer driver information on
-the server. The driver files should already exist in the
-directory returned by <command>getdriverdir</command>. Possible
-values for <parameter>arch</parameter> are the same as those for the
-<command>getdriverdir</command> command. The
-<parameter>config</parameter> parameter is defined as follows:
+<command>adddriver &lt;arch&gt; &lt;config&gt;</command> Führe ein
+<command>AddPrinterDriver()</command> RPC aus, um den Druckertreiber auf dem Server zu installieren.
+Die Treiber sollten bereits im Verzeichnis, das von <command>getdriverdir</command> zurückgegeben wird,
+existieren. Mögliche Werte für <parameter>arch</parameter> sind dieselben wie für 
+<command>getdriverdir</command>. Der Parameter <parameter>config</parameter> ist wie folgt definiert:
 </para>
 		
 <para><screen>
@@ -3015,38 +3013,34 @@ Default Data Type:\
 Comma Separated list of Files
 </screen></para>
 
-<para>Any empty fields should be enter as the string <quote>NULL</quote>. </para>
+<para>Alle leeren Felder sollten als String <quote>NULL</quote> angegeben werden. </para>
 
-<para>Samba does not need to support the concept of Print Monitors
-since these only apply to local printers whose driver can make use of
-a bi-directional link for communication. This field should be <quote>NULL</quote>.
-On a remote NT print server, the Print Monitor for a driver must
-already be installed prior to adding the driver or else the RPC will
-fail.
+<para>Samba muß das Konzept der Druck-Monitore nicht unterstützen, da dieses nur auf lokale Drucker anzuwenden
+ist, deren Treiber eine bi-direktionale Verbindung zur Kommunikation mit dem Drucker nutzen können. Dieses
+Feld sollte <quote>NULL</quote> sein. Auf einem entfernten NT-Druck-Server muß der Druck-Monitor für einen 
+Treiber bereits installiert sein, bevor man den Treiber hinzufügt, oder das RPC wird scheitern.
 </para>
 
 <para>
 <command>setdriver &lt;printername&gt; &lt;drivername&gt;</command>
-Execute a <command>SetPrinter()</command> command to update the
-printer driver associated with an installed printer. The printer
-driver must already be correctly installed on the print server.
+Führe einen Befehl <command>SetPrinter()</command> aus, um den mit einem Drucker assoziierten Treiber zu 
+aktualisieren. Der Druckertreiber muß bereits korrekt auf dem Druck-Server installiert sein.
 </para>
 
-<para>See also the <command>enumprinters</command> and <command>enumdrivers</command> commands for
-obtaining a list of installed printers and drivers.
+<para>Beachten Sie auch die Befehle <command>enumprinters</command> und <command>enumdrivers</command> 
+für das Abfragen einer Liste von installierten Druckern und Treibern.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Understanding the rpcclient man Page</title>
+<title>Die rpcclient man-page verstehen</title>
 
 <para>
-The <emphasis>exact</emphasis> format isn't made too clear by the man
-page, since you have to deal with some parameters containing
-spaces. Here is a better description for it. We have line-broken the
-command and indicated the breaks with <quote>\</quote>. Usually you would type the
-command in one line without the line-breaks:
+Das <emphasis>exakte</emphasis> Format wird nicht allzu klar von der man-page beschrieben, da Sie mit einigen
+Parametern umgehen müssen, die Leerzeichen enthalten. Hier ist eine bessere Beschreibung dafür. Wir haben
+den Befehl mit Zeilenumbrüchen versehen, und die Umbrüche mit <quote>\</quote> gekennzeichnet. Üblicherweise
+würden Sie diesen Befehl in einer Zeile eingeben, ohne die Umbrüche:
 <indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm>
 </para>
 
@@ -3057,45 +3051,38 @@ command in one line without the line-breaks:
 </screen></para>
 
 <para>
-What the man pages denote as a simple <parameter>&lt;config&gt;</parameter>
-keyword, in reality consists of eight colon-separated fields. The
-last field may take multiple (in some very insane cases, even
-20 different additional) files. This might sound confusing at first.
-What the man pages names the <quote>LongPrinterName</quote> in
-reality should be called the <quote>Driver Name</quote>. You can name it
-anything you want, as long as you use this name later in the
-<command>rpcclient ... setdriver</command> command. For
-practical reasons, many name the driver the same as the
-printer.
+Was die man-page als ein simples <parameter>&lt;config&gt;</parameter>-Schlüsselwort bezeichnet, besteht in
+Wirklichkeit aus acht durch Doppelpunkte getrennten Feldern. Das letzte Feld kann mehrere (in manchen sehr
+ausgefallenen Fällen bis zu 20 zusätzliche) Dateinamen enthalten. Dies mag anfangs sehr verwirrend klingen.
+Was die man-pages als <quote>LongPrinterName</quote> bezeichnen, sollte in der Realität als 
+<quote>Driver Name</quote> bezeichnet werden. Sie können es bezeichnen, wie Sie wollen, solange Sie diesen
+Namen später im Befehl <command>rpcclient ... setdriver</command> wieder verwenden. Aus praktischen Gründen
+empfiehlt es sich, den Treiber so zu benennen wie den Drucker.
 </para>
 
 <para>
-It isn't simple at all. I hear you asking:
-<quote>How do I know which files are "Driver
-File</quote>, <quote>Data File</quote>, <quote>Config File</quote>, <quote>Help File</quote> and <quote>Language
-Monitor File" in each case?</quote> &smbmdash; For an answer, you may
-want to have a look at how a Windows NT box with a shared printer
-presents the files to us. Remember, that this whole procedure has
-to be developed by the Samba team by overhearing the traffic caused
-by Windows computers on the wire. We may as well turn to a Windows
-box now and access it from a UNIX workstation. We will query it
-with <command>rpcclient</command> to see what it tells us and
-try to understand the man page more clearly that we've read just
-now.
+Es ist überhaupt nicht einfach. Ich höre Sie fragen:
+<quote>Wie weiß ich, welche Dateien Driver File</quote>, <quote>Data File</quote>, <quote>Config File</quote>,
+<quote>Help File</quote> und <quote>Language Monitor File" im jeweiligen Fall sind?</quote>
+&smbmdash; Um eine Antwort zu finden, können Sie sich ja mal ansehen, wie eine Windows NT Box mit einem
+freigegebenen Drucker uns diese Dateien anbietet. Erinnern Sie sich, daß diese ganze Prozedur vom Samba-Team
+durch Abhören des Verkehrs, der von Windows-Computern im Netzwerk verursacht wird, entwickelt werden muß. Wir
+können uns nun genauso einer Windows Box zuwenden und auf sie von einer UNIX-Workstation aus zugreifen. Wir
+werden sie mittels <command>rpcclient</command> abfragen, um zu sehen, was sie uns erzählt und versuchen, die
+man-page klarer zu verstehen, die wir gerade gelesen haben.
 </para>
 </sect2>
 
 <sect2>
-<title>Producing an Example by Querying a Windows Box</title>
+<title>Ein Beispiel durch Abfragen einer Windows Box erstellen</title>
 
 <para>
 	<indexterm><primary>rpcclient</primary><secondary>getdriver</secondary></indexterm>
 	<indexterm><primary>rpcclient</primary><secondary>getprinter</secondary></indexterm>
-We could run <command>rpcclient</command> with a
-<command>getdriver</command> or a <command>getprinter</command>
-subcommand (in level 3 verbosity) against it. Just sit down at a UNIX or
-Linux workstation with the Samba utilities installed, then type the
-following command:
+Wir könnten <command>rpcclient</command> mit einem 
+<command>getdriver</command> oder <command>getprinter</command> Sub-Befehl (in level 3 Ausführlichkeit)
+an die Windows Box absetzen. Setzen Sie sich einfach an eine UNIX oder Linux Workstation mit installierten
+Samba-Werkzeugen und tippen folgenden Befehl:
 </para>
 
 <para><screen>
@@ -3103,7 +3090,7 @@ following command:
 </screen></para>
 
 <para>
-From the result it should become clear which is which. Here is an example from my installation:
+Aus dem Ergebnis sollte klarwerden, welche Detai welche ist. Hier ein Beispiel aus meiner Installation:
 </para>
 
 <para>
@@ -3137,81 +3124,75 @@ From the result it should become clear which is which. Here is an example from m
 </screen></para>
 
 <para>
-Some printer drivers list additional files under the label
-<parameter>Dependentfiles</parameter> and these would go into the last field
-<parameter>ListOfFiles,Comma-separated</parameter>. For the CUPS
-PostScript drivers, we do not need any (nor would we for the Adobe
-PostScript driver), therefore, the field will get a <quote>NULL</quote> entry.
+Manche Druckertreiber listen zusätzliche Dateien unter der Bezeichnung
+<parameter>Dependentfiles</parameter> und diese würden im letzten Feld
+<parameter>ListOfFiles,Comma-separated</parameter> angeführt werden. Für den CUPS-PostScript-Treiber brauchen
+wir keine (und auch für die Adobe-Treiber würden wir keine brauchen), daher erhält dieses Feld den Eintrag
+<quote>NULL</quote>.
 </para>
 </sect2>
 
 <sect2>
-<title>Requirements for adddriver and setdriver to Succeed</title>
+<title>Erfordernisse für erfolgreiches Ausführen von adddriver und setdriver</title>
 
 <para>
->From the man page (and from the quoted output
-of <command>cupsaddsmb</command> above) it becomes clear that you
-need to have certain conditions in order to make the manual uploading
-and initializing of the driver files succeed. The two <command>rpcclient</command>
-<indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm>
-subcommands (<command>adddriver</command> and
-<command>setdriver</command>) need to encounter the following
-preconditions to complete successfully:
+>Aus der man-page (und der oben zitierten Ausgabe von <command>cupsaddsmb</command>) wird klar, daß Sie bestimmte
+Bedingungen erfüllen müssen, um das manuelle Hochladen und Initialisieren von Treibern erfolgreich zu 
+ermöglichen. Die beiden Sub-Befehle <command>rpcclient</command> und 
+<indexterm><primary>rpcclient</primary><secondary>adddriver</secondary></indexterm> (<command>adddriver</command>
+und <command>setdriver</command>) müssen folgende Bedingungen erfüllen, um erfolgreich abzuschliessen:
 </para>
 <itemizedlist>
 
-<listitem><para>You are connected as <smbconfoption><name>printer admin</name></smbconfoption> or root (this is <emphasis>not</emphasis> the <quote>Printer Operators</quote> group in
-NT, but the <emphasis>printer admin</emphasis> group as defined in
-the <smbconfsection>[global]</smbconfsection> section of
-&smb.conf;).</para></listitem>
+<listitem><para>Sie sind als <smbconfoption><name>printer admin</name></smbconfoption> oder root verbunden
+(dies ist <emphasis>nicht</emphasis> die Gruppe <quote>Printer Operators</quote> in NT, sondern die Gruppe
+<emphasis>printer admin</emphasis>, wie sie im Abschnitt 
+<smbconfsection>[global]</smbconfsection> von &smb.conf; definiert wurde).</para></listitem> 
 
-<listitem><para>Copy all required driver files to
-<filename>\\SAMBA\print$\w32x86</filename> and
-<filename>\\SAMBA\print$\win40</filename> as appropriate. They
-will end up in the <quote>0</quote> respective <quote>2</quote> subdirectories later. For now,
-<emphasis>do not</emphasis> put them there, they'll be automatically
-used by the <command>adddriver</command> subcommand. (If you use
-<command>smbclient</command> to put the driver files into the share, note that you need
-to escape the <quote>$</quote>: <command>smbclient //sambaserver/print\$ -U
-root.</command>)</para></listitem>
+<listitem><para>Kopieren Sie alle erforderlichen Treiber-Dateien nach
+<filename>\\SAMBA\print$\w32x86</filename> und
+<filename>\\SAMBA\print$\win40</filename>. Diese werden später in den Unterverzeichnissen
+<quote>0</quote> respektive <quote>2</quote> landen. Für den Moment geben Sie sie <emphasis>nicht</emphasis>
+dorthin, sie werden automatisch vom Sub-Befehl <command>adddriver</command> verwendet. (Wenn Sie
+<command>smbclient</command> dazu verwenden, die Treiber-Dateien in die Freigabe zu plazieren, beachten Sie, daß
+Sie das Zeichen <quote>$</quote> <quote>escapen</quote>: 
+<command>smbclient //sambaserver/print\$ -U root.</command>)</para></listitem>
 
-<listitem><para>The user you're connecting as must be able to write to
-the <smbconfsection>[print$]</smbconfsection> share and create
-subdirectories.</para></listitem>
+<listitem><para>Der Benutzer, als der Sie sich verbinden, muß schreibberechtigt für die Freigabe 
+<smbconfsection>[print$]</smbconfsection> sein und dort Verzeichnisse anlegen dürfen.
+</para></listitem>
 
-<listitem><para>The printer you are going to setup for the Windows
-clients needs to be installed in CUPS already.</para></listitem>
+<listitem><para>Der Drucker, für den Sie die Windows-Clients vorbereiten wollen, muß bereits in CUPS installiert
+sein.
+</para></listitem>
 
 <listitem><para>
 	<indexterm><primary>rpcclient</primary><secondary>setdriver</secondary></indexterm>
 	<indexterm><primary>rpcclient</primary><secondary>enumprinters</secondary></indexterm>
-		The CUPS printer must be known to Samba, otherwise the
-<command>setdriver</command> subcommand fails with an
-NT_STATUS_UNSUCCESSFUL error. To check if the printer is known by
-Samba, you may use the <command>enumprinters</command> subcommand to
-<command>rpcclient</command>. A long-standing bug prevented a proper update of the
-printer list until every smbd process had received a SIGHUP or was
-restarted. Remember this in case you've created the CUPS printer just
-recently and encounter problems: try restarting
-Samba.</para></listitem>
+Der CUPS-Drucker muß Samba bekannt sein, andernfalls scheitert der Sub-Befehl <command>setdriver</command>
+mit dem Fehler NT_STATUS_UNSUCCESSFUL. Um zu prüfen, ob der Drucker Samba bekannt ist, können Sie den 
+Sub-Befehl <command>enumprinters</command> von <command>rpcclient</command> verwenden. Ein seit langem 
+vorhandener Bug verhinderte ein sauberes Update der Drucker-Liste, bis jeder smbd-Prozess ein SIGHUP empfangen
+hatte oder neu gestartet wurde. Erinnern Sie sich daran, falls Sie den CUPS-Drucker gerade erst angelegt haben
+und auf Probleme stossen: Versuchen Sie, Samba neu zu starten.
+</para></listitem>
 </itemizedlist>
 </sect2>
 
 <sect2>
-<title>Manual Driver Installation in 15 Steps</title>
+<title>Manuelle Treiber-Installation in 15 Schritten</title>
 
 <para>
-We are going to install a printer driver now by manually executing all
-required commands. As this may seem a rather complicated process at
-first, we go through the procedure step by step, explaining every
-single action item as it comes up.
+Wir werden jetzt einen Drucker-Treiber installieren, indem wir manuell alle erforderlichen Befehle ausführen.
+Da dies zuerst als ziemlich komplizierter Prozess erscheinen mag, gehen wir die Prozedur Schritt für Schritt
+durch, und erklären jede einzelne Aktion, die vorkommt.
 </para>
 
 <procedure>
-	<title>Manual Driver Installation</title>
+	<title>Manuelle Treiber-Installation</title>
 
 <step>
-<title>Install the printer on CUPS.</title>
+<title>Den Drucker in CUPS installieren.</title>
 
 <para><screen>
 &rootprompt;<userinput>lpadmin -p mysmbtstprn -v socket://10.160.51.131:9100 -E \
@@ -3219,15 +3200,14 @@ single action item as it comes up.
 </screen></para>
 
 <para>
-This installs a printer with the name <parameter>mysmbtstprn</parameter>
-to the CUPS system. The printer is accessed via a socket
-(a.k.a. JetDirect or Direct TCP/IP) connection. You need to be root
-for this step.
+Dies installiert den Drucker mit dem Namen <parameter>mysmbtstprn</parameter> im CUPS-System. Der Drucker wird
+über eine Socket-Verbindung (auch als JetDirect oder Direct TCP/IP bekannt) angesprochen. Sie müssen für diesen
+Schritt root sein.
 </para>
 </step>
 
 <step>
-<title>(Optional) Check if the printer is recognized by Samba.</title>
+<title>(Optional) Prüfen, ob der Drucker von Samba erkannt wird.</title>
 
 <para>
 <indexterm><primary>rpcclient</primary><secondary>enumprinters</secondary></indexterm>
@@ -3241,22 +3221,22 @@ comment:[mysmbtstprn]
 </screen></para>
 
 <para>
-This should show the printer in the list. If not, stop and restart
-the Samba daemon (smbd), or send a HUP signal: 
+Dies sollte den Drucker in der Liste anzeigen. Wenn nicht, stoppen Sie den Samba-Daemon (smbd) und starten Sie
+ihn neu, oder senden Sie ein HUP-Signal:
 <screen>
 &rootprompt;<userinput>kill -HUP `pidof smbd`</userinput>
-</screen>Check again. Troubleshoot and repeat until
-successful. Note the <quote>empty</quote> field between the two commas in the
-<quote>description</quote> line. The driver name would appear here if there was one already. You need to know root's Samba password (as set by the
-<command>smbpasswd</command> command) for this step and most of the
-following steps. Alternately, you can authenticate as one of the
-users from the <quote>write list</quote> as defined in &smb.conf; for
-<smbconfsection>[print$]</smbconfsection>.
+</screen>
+Prüfen Sie nochmals. Korrigieren Sie und wiederholen Sie dies, bis zum Erfolg. Beachten Sie das 
+<quote>leere</quote> Feld zwischen den beiden Kommas in der Zeile <quote>description</quote>. Der Treibername
+würde hier aufscheinen, wenn es bereits einen gäbe. Sie müssen das Samba-Passwort von root kennen (wie es vom
+Befehl <command>smbpasswd</command> gesetzt wurde), um diesen Schritt und die meisten der folgenden Schritte
+ausführen zu können. Alternativ dazu können Sie sich als einer der Benutzer authentifizieren, die in der
+<quote>write list</quote> für <smbconfsection>[print$]</smbconfsection> in &smb.conf; definiert sind.
 </para>
 </step>
 
 <step>
-<title>(Optional) Check if Samba knows a driver for the printer.</title>
+<title>(Optional) Prüfen, ob Samba einen Treiber für den Drucker kennt.</title>
 
 <para>
 	<indexterm><primary>rpcclient</primary><secondary>getprinter</secondary></indexterm>
@@ -3284,6 +3264,12 @@ printprocessor:[winprint]
 </screen></para>
 
 <para>
+Keiner der drei oben gezeigten Befehle sollte einen Treiber anzeigen. Dieser Schritt wurde nur ausgeführt, um
+diese Bedingung zu demonstrieren. Ein Versuch, sich in diesem Stadium mit dem Drucker zu verbinden, sollte
+die Nachricht zeigen: <quote>Der Server hat nicht die erforderlichen Treiber
+
+
+
 None of the three commands shown above should show a driver.
 This step was done for the purpose of demonstrating this condition. An
 attempt to connect to the printer at this stage will prompt the
