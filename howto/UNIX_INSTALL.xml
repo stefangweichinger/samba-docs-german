@@ -152,7 +152,7 @@
 	Distribution gibt es Beispiele von Konfigurationsdateien. Es ist empfehlenswert, diese Beispiele aufmerksam zu lesen, um zu
 	verstehen, wie die verschiedenen Optionen in der Praxis zusammenarbeiten. Um eine
 	Zusammenfassung aller möglichen Optionen zu sehen, rufen Sie bitte die Manpages auf.
-	Es lohnt sich, die vorgegebene Datei smb.conf.default(((Dateinamen auszeichnen?)) als Grundlage der persönlichen
+	Es lohnt sich, die vorgegebene Datei <filename>smb.conf.default</filename> als Grundlage der persönlichen
 	Konfiguration zu verwenden, da sie viele Kommentare zu den verschiedenen Optionen enthält.
 	</para>
 
