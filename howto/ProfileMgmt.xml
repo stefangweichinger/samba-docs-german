@@ -1068,125 +1068,139 @@ In diesem Fall wird die lokale Cache-Kopie beim Abmelden gelöscht.
 
 <sect1> <title>Gängige Fehler</title>
 
-<para>
-The following are some typical errors, problems and questions that have been asked on the Samba mailing lists.
-</para>
+<para>Im Folgenden werden typische Fehler, Probleme und Fragen beschrieben, die in den Samba
+Mailing-Listen gestellt wurden.</para>
+
+
+
 
 <sect2>
-<title>Configuring Roaming Profiles for a Few Users or Groups</title>
+<title>Das Konfigurieren von "Roaming Profiles" für einige wenige Benutzer oder Gruppen</title>
 
 <para>
-With Samba-2.2.x, the choice you have is to enable or disable roaming profiles support. It is a
-global only setting. The default is to have roaming profiles and the default path will locate them in
-the user's home directory.
-</para>
+Mit Samba-2.2.x haben Sie die Wahl, die Unterstützung von Roaming Profiles zu aktivieren oder
+zu deaktivieren. Die Voreinstellung ist, Roamin Profiles zu haben, und der Standard-Pfad wird
+diese im Home-Verzeichnis des Benutzers suchen.</para>
 
-<para>
-If disabled globally, then no one will have roaming profile ability. If enabled and you want it
-to apply only to certain machines, then on those machines on which roaming profile support is not wanted
-it is then necessary to disable roaming profile handling in the registry of each such machine.
-</para>
 
-<para>
-With Samba-3, you can have a global profile setting in &smb.conf; and you can override this by
-per-user settings using the Domain User Manager (as with MS Windows NT4/ Win 200xx). </para>
+<para>Falls diese global deaktiviert sind, hat kein Benutzer die Fähigkeit, Roaming Profiles zu
+verwenden. Wenn diese aktiviert sind, und Sie wollen sie nur auf bestimmte Maschinen anwenden, ist
+es notwendig, auf jenen Maschinen, die keine Unterstützung für Roaming Profiles bieten sollen, diese
+Unterstützung in der Registrierung jeder einzelner dieser Maschinen zu deaktivieren.</para>
 
-<para> In any case, you can configure only one profile per user. That profile can be either: </para>
+<para>Mit Samba-3 können Sie eine globale Profil-Einstellung in der &smb.conf; haben, und Sie können
+diese aufheben, indem Sie Per-Benutzer-Einstellungen mit dem Domain User Manager setzen (wie bei
+MS Windows NT4/ Win 200xx).</para>
+
+<para>In jedem Fall können Sie nur ein Profil pro Benutzer konfigurieren. Dieses Profil kann sein:</para>
 
 <itemizedlist>
-	<listitem>A profile unique to that user.</listitem>
-	<listitem>A mandatory profile (one the user cannot change).</listitem>
-	<listitem>A group profile (really should be mandatory, that is unchangable).</listitem>
+	<listitem>Ein Profil, das einzigartig für diesen Benutzer ist.</listitem>
+	<listitem>Ein zwingendes Profil (eines, das der Benutzer nicht ändern kann).</listitem>
+	<listitem>Ein Gruppen-Profil (sollte wirklich zwingend sein, also unveränderbar).</listitem>
 </itemizedlist>
 
 </sect2>
 
-<sect2> <title>Cannot Use Roaming Profiles</title>
+<sect2> <title>Ich kann keine Roaming Profiles verwenden</title>
 
-<para> A user requested the following: <quote> I do not want Roaming profiles to be implemented. I want
-to give users a local profile alone. Please help me, I am totally lost with this error. For the past
-two days I tried everything, I googled around but found no useful pointers. Please help me. </quote></para>
+<para>Ein Benutzer fragte folgendes: <quote>Ich will keine Roaming Profiles implementieren. Ich möchte
+den Benutzern nur ein lokales Profil geben. Bitte helfen Sie mir, ich bin verloren ... Seit zwei Tagen
+versuche ich alles, google herum, aber finde keine hilfreichen Anhaltspunkte. Bitte um Hilfe!
+</quote></para>
 
-<para> The choices are: </para>
-
-<variablelist>
-	<varlistentry>
-		<term>Local profiles</term> <listitem><para> I know of no registry keys that will allow
-		auto-deletion of LOCAL profiles on log out.</para></listitem>
-	</varlistentry>
-
-	<varlistentry>
-		<term>Roaming profiles</term> <listitem><para> As a user logs onto the network, a centrally
-		stored profile is copied to the workstation to form a local profile. This local profile
-		will persist (remain on the workstation disk) unless a registry key is changed that will
-		cause this profile to be automatically deleted on logout. </para></listitem>
-	</varlistentry>
-</variablelist>
-
-<para>The roaming profile choices are: </para>
+<para>Die Möglichkeiten sind:</para>
 
 <variablelist>
 	<varlistentry>
-		<term>Personal roaming profiles</term> <listitem><para> These are typically stored in
-		a profile share on a central (or conveniently located local) server. </para>
-
-		<para> Workstations cache (store) a local copy of the profile. This cached
-		copy is used when the profile cannot be downloaded at next logon. </para></listitem>
+		<term>Lokale Profile</term> <listitem><para>Ich kenne keine 
+		Registrierungs-Einstellungen, die das automatische Löschen von LOKALEN Profilen
+		beim Abmelden erlauben.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
-		<term>Group profiles</term> <listitem><para>These are loaded from a central profile
-		server.</para></listitem>
-	</varlistentry>
-
-	<varlistentry>
-		<term>Mandatory profiles</term> <listitem><para> Mandatory profiles can be created for
-		a user as well as for any group that a user is a member of. Mandatory profiles cannot be
-		changed by ordinary users. Only the administrator can change or reconfigure a mandatory
-		profile. </para></listitem>
+		<term>Roaming Profiles</term> <listitem><para>Wenn sich ein Benutzer an einem Netzwerk
+		anmeldet, wird ein zentral gespeichertes Profil auf die Workstation kopiert, um ein
+		lokales Profil zu bilden. Dieses lokale Profil bleibt bestehen (verbleibt auf der Platte
+		der Workstation), außer ein Registrierungs-Schlüssel wird geändert, der das 
+		automatische Löschen dieses Profils beim Abmelden veranlaßt.</para></listitem>
 	</varlistentry>
 </variablelist>
 
-<para> A Windows NT4/200x/XP profile can vary in size from 130KB to very large. Outlook PST files are
-most often part of the profile and can be many GB in size. On average (in a well controlled environment),
-roaming profile size of 2MB is a good rule of thumb to use for planning purposes. In an undisciplined
-environment, I have seen up to 2GB profiles. Users tend to complain when it takes an hour to log onto a
-workstation but they harvest the fruits of folly (and ignorance). </para>
+<para>Die Möglichkeiten mit Roaming Profiles sind: </para>
 
-<para> The point of all the above is to show that roaming profiles and good controls of how they can be
-changed as well as good discipline make up for a problem-free site. </para>
+<variablelist>
+	<varlistentry>
+		<term>Persönliche Roaming Profiles</term> <listitem><para>Diese werden üblicherweise
+		in einer Profil-Freigabe auf einem zentralen (oder einem praktisch gelegenen lokalen)
+		Server gespeichert.</para>
 
-<para> Microsoft's answer to the PST problem is to store all email in an MS Exchange Server backend. This
-removes the need for a PST file. </para>
+		<para>Workstations cachen (speichern) eine lokale Kopie des Profils.
+		Diese gepufferte Kopie wird verwendet, wenn das Profil beim nächsten Anmelden nicht
+		geladen werden kann.</para></listitem>
+	</varlistentry>
 
-<para>Local profiles mean: </para>
+	<varlistentry>
+		<term>Gruppen-Profile</term> <listitem><para>Diese werden von einem zentralen
+		Profil-Server geladen.</para></listitem>
+	</varlistentry>
+
+	<varlistentry>
+		<term>Zwingende Profile</term> <listitem><para>Zwingende Profile können genauso für
+		einen einzelnen Benutzer angelegt werden, wie auch für jede Gruppe, deren Mitglied
+		ein Benutzer ist. Zwingende Profile können nicht von einfachen Benutzern geändert
+		werden. Nur der Administrator kann diese ändern oder neu konfigurieren.</para></listitem>
+	</varlistentry>
+</variablelist>
+
+<para>Ein Windows NT4/200x/XP Profil kann in seiner Größe variieren - von 130 kB bis zu sehr großem
+Umfang. Outlook PST Dateien sind meistens Teil des Profils und können viele GB groß sein. Im 
+Durchschnitt (in einer gut verwalteten Umgebung) ist ein Roaming Profile von 2MB ein guter Richtwert
+für Planungszwecke. In einem undisziplinierten Umfeld habe ich bereits Profile von bis zu 2GB
+gesehen. Benutzer neigen dazu, sich zu beschweren, wenn es eine Stunde dauert, sich an einer Workstation
+anzumelden, jedoch ernten sie nur die Früchte des Unverstands (und der Ignoranz).</para>
+
+<para>Die Hauptaussage des bisher Erwähnten ist es, zu zeigen, daß Roaming Profiles, sowie gute
+Kontrolle darüber, wie diese verändert werden können, neben guter Disziplin wesentlich zu einer
+problemfreien Installation beitragen.</para>
+
+<para>Microsoft's Antwort auf das PST-Problem ist, alle Email-Daten in einem MS Exchange Server backend
+zu speichern. Dies macht eine PST-Datei überflüssig.</para>
+
+<para>Lokale Profile bedeuten:</para>
 
 <itemizedlist>
-	<listitem><para>If each machine is used by many users, then much local disk storage is needed
-	for local profiles.</para></listitem> <listitem><para>Every workstation the user logs into has
-	its own profile; these can be very different from machine to machine.</para></listitem>
+	<listitem><para>Wenn jede Maschine von vielen Benutzern verwendet wird, wird auch viel lokaler
+	Speicherplatz für die Profile benötigt.</para></listitem> <listitem><para>Jede Workstation, an
+	der sich der Benutzer anmeldet, hat ein eigenes Profil für ihn; diese Profile können sehr
+	stark von einander abweichen.</para></listitem>
 </itemizedlist>
 
-<para> On the other hand, use of roaming profiles means: </para>
+<para>Auf der anderen Seite bedeutet der Einsatz von Roaming Profiles:</para>
 
 <itemizedlist>
-	<listitem><para>The network administrator can control the desktop environment of all users.</para></listitem>
-	<listitem><para>Use of mandatory profiles drastically reduces network management overheads.</para></listitem>
-	<listitem><para>In the long run, users will experience fewer problems.</para></listitem>
+	<listitem><para>Der Netzwerk-Administrator kann die Desktop-Umgebung aller Benutzer 
+	kontrollieren.</para></listitem> 
+
+	<listitem><para>Die Verwendung von zwingenden Profilen reduziert drastisch etwaige
+	Overheads im Netzwerk-Management.</para></listitem>
+
+	<listitem><para>Auf lange Sicht haben die Benutzer weniger Probleme damit.</para></listitem>
+
 </itemizedlist>
 
 </sect2>
 
 <sect2>
-<title>Changing the Default Profile</title>
+<title>Das Standard-Profil verändern</title>
 
-<para><quote>When the client logs onto the Domain Controller, it searches
-for a profile to download. Where do I put this default profile?</quote></para>
+<para><quote>Wenn sich der Client am Domänen-Controller anmeldet, sucht er ein Profil zum Download.
+Wohin stelle ich dieses Standard-Profil?</quote></para>
 
 <para>
-<indexterm><primary>default profile</primary></indexterm>
-First, the Samba server needs to be configured as a Domain Controller. This can be done by
-setting in &smb.conf;: </para>
+<indexterm><primary>Standard-Profil</primary></indexterm>
+Zuerst muß der Samba-Server als ein Domänen-Controller konfiguriert werden. Dies erfolgt durch 
+Einstellungen in der &smb.conf;:</para>
 
 <smbconfblock>
 <smbconfoption><name>security</name><value>user</value></smbconfoption>
@@ -1194,26 +1208,27 @@ setting in &smb.conf;: </para>
 <smbconfoption><name>domain logons</name><value>Yes</value></smbconfoption>
 </smbconfblock>
 
-<para> There must be a <smbconfsection>[netlogon]</smbconfsection> share that is world readable. It is
-a good idea to add a logon script to pre-set printer and drive connections. There is also a facility
-for automatically synchronizing the workstation time clock with that of the logon server (another good
-thing to do). </para>
+<para>Es muß eine Freigabe namens <smbconfsection>[netlogon]</smbconfsection> geben, die world-readable
+ist. Es ist generell eine gute Idee, ein Start-Skript hinzuzufügen, das Drucker- und 
+Laufwerks-Verbindungen vorbereitet. Es gibt außerdem eine Einrichtung zum automatischen Synchronisieren
+der Workstation-Uhr mit der des Anmelde-Servers (eine weitere gute Idee, dies zu verwenden).</para>
 
-<note><para> To invoke auto-deletion of roaming profile from the local workstation cache (disk storage), use
-the <application>Group Policy Editor</application> to create a file called <filename>NTConfig.POL</filename>
-with the appropriate entries. This file needs to be located in the <smbconfsection>netlogon</smbconfsection>
-share root directory.</para></note>
+<note><para>Um automatisches Löschen der Roaming Profiles aus dem lokalen Cache der Workstation
+(Festplatte) zu aktivieren, verwenden Sie den <application>Group Policy Editor</application>, um eine
+Datei namens <filename>NTConfig.POL</filename> mit den passenden Einträgen zu erstellen. Diese Datei
+muß im Wurzelverzeichnis der Freigabe <smbconfsection>netlogon</smbconfsection> plaziert werden.
+</para></note>
 
-<para> Windows clients need to be members of the domain. Workgroup machines do not use network logons
-so they do not interoperate with domain profiles. </para>
+<para>Windows Clients müssen Domänen-Mitglieder sein. Arbeitsgruppen-Maschinen benutzen keine
+Netzwerk-Anmeldungen, also arbeiten sie auch nicht mit Domänen-Profilen zusammen.</para>
 
-<para> For roaming profiles, add to &smb.conf;: </para>
+<para>Für Roaming Profiles fügen Sie zur &smb.conf; hinzu:</para>
 
 <smbconfblock>
 <smbconfoption><name>logon path</name><value>\\%N\profiles\%U</value></smbconfoption>
-<smbconfcomment>Default logon drive is Z:</smbconfcomment>
+<smbconfcomment>Standard-Anmelde-Laufwerk ist Z:</smbconfcomment>
 <smbconfoption><name>logon drive</name><value>H:</value></smbconfoption>
-<smbconfcomment>This requires a PROFILES share that is world writable.</smbconfcomment>
+<smbconfcomment>Dies erfordert eine PROFILES-Freigabe, die world-writable ist.</smbconfcomment>
 </smbconfblock>
 
 </sect2>
