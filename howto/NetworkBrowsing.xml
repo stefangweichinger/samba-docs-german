@@ -929,64 +929,54 @@ aufgefüllt. Daher sind alle NetBIOS-Namen 16 Zeichen lang (inklusiver der name_t
 <para>
 WINS kann diese 16-Zeichen-Namen bei ihrer Registrierung speichern. Ein Client, der sich am Netzwerk anmelden 
 will, kann den WINS-Server nach einer Liste aller registrierten Namen befragen. Das spart 
-Broadcast-Netzwerkverkehr und beschleunigt die Bearbeitung von Anmeldungen deutlich. Da 
-
-
-that wants to log onto the network can ask the WINS server for a list
-of all names that have registered the NetLogon service name_type. This saves
-broadcast traffic and greatly expedites logon processing. Since broadcast
-name resolution cannot be used across network segments this type of
-information can only be provided via WINS or via a statically configured
-<filename>lmhosts</filename> file that must reside on all clients in the
-absence of WINS.
+Broadcast-Netzwerkverkehr und beschleunigt die Bearbeitung von Anmeldungen deutlich. Da Broadcast-Namensauflösung
+nicht über Netzwerk-Segmente hinweg verwendet werden kann, kann diese Art von Information nur via WINS
+bereitgestellt werden, oder via einer statisch konfigurierten <filename>lmhosts</filename>-Datei, die bei
+Fehlen von WINS auf allen Clients vorhanden sein muß. 
 </para>
 
 <para>
-WINS also serves the purpose of forcing browse list synchronization by all
-LMBs. LMBs must synchronize their browse list with the DMB (Domain Master
-Browser) and WINS helps the LMB to identify its DMB. By definition this
-will work only within a single workgroup. Note that the Domain Master Browser
-has nothing to do with what is referred to as an MS Windows NT Domain. The
-later is a reference to a security environment while the DMB refers to the
-master controller for browse list information only.
+WINS erfüllt auch den Zweck, die Synchronisation von Browselists auf allen LMBs zu erzwingen. Die LMBs müssen 
+ihre Browselists mit dem DMB (Domänen Master Browser) synchronisieren, und WINS hilft den LMBs, ihren
+zugehörigen DMB zu identifizieren. Per Definition funktioniert dies nur innerhalb einer einzelnen Arbeitsgruppe.
+Beachten Sie, daß der Domänen Master Browser nichts damit zu tun hat, was als MS Windows NT Domäne bezeichnet
+wird. Letzteres ist die Bezeichnung für eine Sicherheits-Umgebung, während sich die Bezeichnung DMB nur auf den 
+Master-Controller der Browselist-Informationen bezieht.
 </para>
 
 <para>
-WINS will work correctly only if every client TCP/IP protocol stack
-has been configured to use the WINS servers. Any client that has not been
-configured to use the WINS server will continue to use only broadcast-based
-name registration so WINS may never get to know about it. In any case,
-machines that have not registered with a WINS server will fail name to address
-lookup attempts by other clients and will therefore cause workstation access
-errors.
+WINS arbeitet nur korrekt, wenn der TCP/IP-Protokoll-Stack jedes Clients für die Verwendung der WINS-Server
+konfiguriert ist. Jeder Client, der nicht für die Verwendung des WINS-Servers konfiguriert ist, verwendet
+weiterhin Broadcast-Namensauflösung, und es kann sein, daß WINS gar nicht von diesem Client erfährt. In jedem
+Fall werden die Namen von Maschinen, die nicht im WINS registriert sind, nicht von anderen Clients aufgelöst
+werden können, und daher zu Zugriffsproblemen und Fehlern führen.
 </para>
 
 <para>
-To configure Samba as a WINS server just add 
-<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> to the &smb.conf;
-file [global] section.
+Um Samba als WINS-Server zu konfigurieren, fügen Sie
+<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> zum Abschnitt 
+<smbconfsection>[global]</smbconfsection> ihrer &smb.conf; hinzu.
 </para>
 
 <para>
-To configure Samba to register with a WINS server just add
-<smbconfoption><name>wins server</name><value>a.b.c.d</value></smbconfoption>
-to your &smb.conf; file <smbconfsection>[global]</smbconfsection> section.
+Um Samba so zu konfigurieren, daß es sich an einem WINS-Server registriert, fügen Sie
+<smbconfoption><name>wins server</name><value>a.b.c.d</value></smbconfoption> zum Abschnitt
+<smbconfsection>[global]</smbconfsection> ihrer &smb.conf; hinzu.
 </para>
 
 <important><para>
-Never use both <smbconfoption><name>wins support</name><value>yes</value></smbconfoption> together
-with <smbconfoption><name>wins server</name><value>a.b.c.d</value></smbconfoption>
-particularly not using its own IP address. Specifying both will cause &nmbd; to refuse to start!
+Verwenden Sie niemals <smbconfoption><name>wins support</name><value>yes</value></smbconfoption> gemeinsam mit
+<smbconfoption><name>wins server</name><value>a.b.c.d</value></smbconfoption>, besonders nicht mit der eigenen
+IP-Adresse. Wenn beide Parameter so angegeben werden, wird &nmbd; den Start verweigern!
 </para></important>
 
 <sect2>
-<title>WINS Server Configuration</title>
+<title>Die Konfiguration des WINS Servers</title>
 
 <para>
-Either a Samba Server or a Windows NT Server machine may be set up
-as a WINS server. To configure a Samba Server to be a WINS server you must
-add to the &smb.conf; file on the selected Server the following line to
-the <smbconfsection>[global]</smbconfsection> section:
+Es kann entweder ein Samba-Server oder ein Windows NT Server als ein WINS-Server eingerichtet werden. Um einen
+Samba-Server als WINS-Server einzurichten, müssen Sie auf dem gewählten Server folgende Zeile dem Abschnitt
+<smbconfsection>[global]</smbconfsection> der &smb.conf; hinzufügen:
 </para>
 
 <para>
@@ -996,107 +986,103 @@ the <smbconfsection>[global]</smbconfsection> section:
 </para>
 
 <para>
-Versions of Samba prior to 1.9.17 had this parameter default to
-yes. If you have any older versions of Samba on your network it is
-strongly suggested you upgrade to a recent version, or at the very
-least set the parameter to <quote>no</quote> on all these machines.
+Samba-Versionen vor 1.9.17 hatten diesen Parameter standardmässig auf <quote>yes</quote> gesetzt. 
+Wenn Sie irgendwelche älteren
+Samba-Versionen in Ihrem Netzwerk haben, ist es sehr ratsam, diese Installationen auf eine aktuelle Version zu
+aktualisieren oder zumindest auf all diesen Maschinen den Parameter auf <quote>no</quote> zu setzen.
 </para>
 
 <para>
-Machines configured with <smbconfoption><name>wins support</name><value>yes</value></smbconfoption> will keep a list of 
-all NetBIOS names registered with them, acting as a DNS for NetBIOS names.
+Maschinen, die mit <smbconfoption><name>wins support</name><value>yes</value></smbconfoption> konfiguriert sind,
+führen eine Liste aller auf ihnen registrierter NetBIOS-Namen, und arbeiten damit als DNS für NetBIOS-Namen.
 </para>
 
 <para>
-It is strongly recommended to set up only one WINS server. Do not set the
-<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> option on more than one Samba 
-server.
+Es wird wärmstens empfohlen, nur einen WINS-Server einzurichten. Setzen Sie die Option
+<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> nicht auf mehr als einem Samba-Server.
 </para>
 
 <para>
-<indexterm><primary>replication</primary><secondary>WINS</secondary></indexterm>
-To configure Windows NT/200x Server as a WINS server, install and configure
-the WINS service. See the Windows NT/200x documentation for details.
-Windows NT/200x WINS servers can replicate to each other, allowing more
-than one to be set up in a complex subnet environment. As Microsoft
-refuses to document the replication protocols, Samba cannot currently
-participate in these replications. It is possible in the future that
-a Samba-to-Samba WINS replication protocol may be defined, in which
-case more than one Samba machine could be set up as a WINS server.
-Currently only one Samba server should have the 
-<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> parameter set.
+<indexterm><primary>Replikation</primary><secondary>WINS</secondary></indexterm>
+Um einen Windows NT/200x Server als WINS-Server einzurichten, installieren und konfigurieren Sie den WINS-Dienst.
+Konsultieren Sie die Windows NT/200x-Dokumentation für mehr Details dazu. Windows NT/200x WINS Server können sich
+untereinander replizieren, was es erlaubt, mehr als einen solchen Server in einer komplexen Subnetz-Umgebung
+einzurichten. Da Microsoft verweigert, die Replikations-Protokolle zu dokumentieren, kann Samba derzeit nicht an
+diesen Replikationen teilnehmen. Es ist möglich, daß zukünftig ein Samba-zu-Samba WINS-Replikations-Protokoll
+definiert werden könnte, was bedeuten würde, daß mehr als nur eine Samba-Maschine als WINS-Server eingerichtet
+werden könnte. Derzeit sollte jedoch nur ein Samba-Server den Parameter
+<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> gesetzt haben.
 </para>
 
 <para>
-After the WINS server has been configured, you must ensure that all
-machines participating on the network are configured with the address
-of this WINS server. If your WINS server is a Samba machine, fill in
-the Samba machine IP address in the <guilabel>Primary WINS Server</guilabel> field of
-the <guilabel>Control Panel->Network->Protocols->TCP->WINS Server</guilabel> dialogs
-in Windows 9x/Me or Windows NT/200x. To tell a Samba server the IP address
-of the WINS server, add the following line to the <smbconfsection>[global]</smbconfsection> section of
-all &smb.conf; files:
+Nachdem der WINS-Server konfiguriert wurde, müssen Sie sicherstellen, daß alle Maschinen im Netzwerk mit der
+Adresse dieses WINS-Servers konfiguriert werden. Wenn Ihr WINS-Server eine Samba-Maschine ist, tragen Sie die
+IP-Adresse der Samba-Maschine im Feld <guilabel>Primärer WINS Server</guilabel> der Dialoge
+<guilabel>Systemsteuerung->Netzwerk->Protokolle->TCP->WINS Server</guilabel> von Windows 9x/Me oder 
+Windows NT/200x ein. Um einem Samba-Server die Adresse des WINS-Servers mitzuteilen, fügen Sie die folgende
+Zeile zum Abschnitt
+<smbconfsection>[global]</smbconfsection> ihrer &smb.conf; hinzu:
 </para>
 
 <para>
 <smbconfblock>
-<smbconfoption><name>wins server</name><value>&lt;name or IP address&gt;</value></smbconfoption>
+<smbconfoption><name>wins server</name><value>&lt;Name oder IP-Adresse&gt;</value></smbconfoption>
 </smbconfblock>
 </para>
 
 <para>
-where &lt;name or IP address&gt; is either the DNS name of the WINS server
-machine or its IP address.
+wobei &lt;Name oder IP-Adresse&gt; entweder der DNS-Name oder die IP-Adresse des WINS-Servers ist.
 </para>
 
 <para>
-This line must not be set in the &smb.conf; file of the Samba
-server acting as the WINS server itself. If you set both the
-<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> option and the 
-<smbconfoption><name>wins server</name><value>&lt;name&gt;</value></smbconfoption> option then
-<command>nmbd</command> will fail to start.
+Diese Zeile darf nicht in der Datei &smb.conf; des als WINS-Server arbeitenden Samba-Servers selbst
+enthalten sein. Wenn Sie sowohl
+<smbconfoption><name>wins support</name><value>yes</value></smbconfoption> wie auch
+<smbconfoption><name>wins server</name><value>&lt;name&gt;</value></smbconfoption> setzen, wird
+<command>nmbd</command> nicht starten.
 </para>
 
 <para>
-There are two possible scenarios for setting up cross-subnet browsing.
-The first details setting up cross-subnet browsing on a network containing
-Windows 9x/Me, Samba and Windows NT/200x machines that are not configured as
-part of a Windows NT Domain. The second details setting up cross-subnet
-browsing on networks that contain NT Domains.
+Es gibt zwei mögliche Szenarios, um Cross-Subnetz-Browsing einzurichten. Das erste behandelt Details der
+Einrichtung von Cross-Subnetz-Browsing in einem Netzwerk, das Maschinen mit Windows 9x/Me, Samba und 
+Windows NT/200x enthält, die nicht als Mitglieder einer Windows NT Domäne konfiguriert sind. Das zweite
+Szenario behandelt Details der Einrichtung von Cross-Subnetz-Browsing in einem Netzwerk, das NT Domänen
+enthält.
 </para>
 
 </sect2>
 
 <sect2>
-<title>WINS Replication</title>
+<title>WINS Replikation</title>
 
 <para>
-<indexterm><primary>replication</primary><secondary>WINS</secondary></indexterm>
-Samba-3 permits WINS replication through the use of the <filename>wrepld</filename> utility.
-This tool is not currently capable of being used as it is still in active development.
-As soon as this tool becomes moderately functional, we will prepare man pages and enhance this
-section of the documentation to provide usage and technical details.
+<indexterm><primary>Replikation</primary><secondary>WINS</secondary></indexterm>
+Samba-3 erlaubt WINS-Replikation unter Verwendung des Hilfsmittels <filename>wrepld</filename>. Dieses kann
+derzeit nicht eingesetzt werden, da es sich nach wie vor in aktiver Entwicklung befindet. Sobald es
+einigermassen funktional ist, werden wir dazu manpages erstellen, und diesen Abschnitt der Dokumentation
+erweitern, um entsprechende Details zu Verwendung und technischen Hintergründen bereitzustellen.
 </para>
 
 </sect2>
 <sect2>
-<title>Static WINS Entries</title>
+<title>Statische WINS-Einträge</title>
 
 <para>
-Adding static entries to your Samba WINS server is actually fairly easy.
-All you have to do is add a line to <filename>wins.dat</filename>, typically
-located in <filename class="directory">/usr/local/samba/var/locks</filename> or
+Das Hinzufügen von statischen Einträgen zu Ihrem WINS-Server ist tatsächlich ziemlich einfach. Alles, was Sie
+tun müssen, ist, eine Zeile zur Datei <filename>wins.dat</filename> hinzuzufügen, üblicherweise in
+<filename class="directory">/usr/local/samba/var/locks</filename> oder 
 <filename>/var/run/samba</filename>.
 </para>
 
 <para>
-Entries in <filename>wins.dat</filename> take the form of:
+Einträge in <filename>wins.dat</filename> haben die Form:
 
 <programlisting>
 "NAME#TYPE" TTL ADDRESS+ FLAGS
 </programlisting>
+wobei NAME der NetBIOS-Namen ist, TYPE der NetBIOS-Typ, TTL die <quote>time-to-live</quote> als Absolut-Zeit in
+Sekunden, ADDRESS+ eine 
 
-where NAME is the NetBIOS name, TYPE is the NetBIOS type, TTL is the
 time-to-live as an absolute time in seconds, ADDRESS+ is one or more
 addresses corresponding to the registration and FLAGS are the NetBIOS
 flags for the registration.
