@@ -872,10 +872,11 @@ wobei:
 	</varlistentry>
 
 	<varlistentry>
-		<term><replaceable>WORKGROUP</replaceable></term>
-		<listitem><para>is optional and can be either our own workgroup or that of the remote network. If you use the
-		workgroup name of the remote network, our NetBIOS machine names will end up looking like
-		they belong to that workgroup. This may cause name resolution problems and should be avoided.
+		<term><replaceable>ARBEITSGRUPPE</replaceable></term>
+		<listitem><para>ist optional und kann entweder unsere eigene Arbeitsgruppe oder die des 
+		entfernten Netzwerks sein. Wenn Sie den Arbeitsgruppen-Namen des entfernten Netzwerks verwenden,
+		werden unser NetBIOS-Maschinen-Namen so aussehen, als ob sie jener Arbeitsgruppe gehörten. Dies
+		kann zu Namensauflösungs-Problemen führen und sollte vermieden werden.
 		</para></listitem>
 	</varlistentry>
 </variablelist>
@@ -884,24 +885,24 @@ wobei:
 </sect2>
 
 <sect2>
-<title>Use of the Remote Browse Sync Parameter</title>
+<title>Verwendung des Parameters Remote Browse Sync</title>
 
 <para>
-The <smbconfoption><name>remote browse sync</name></smbconfoption> parameter of 
-&smb.conf; is used to announce to another LMB that it must synchronize its NetBIOS name list with our
-Samba LMB. This works only if the Samba server that has this option is
-simultaneously the LMB on its network segment.
+Der Parameter <smbconfoption><name>remote browse sync</name></smbconfoption> 
+in &smb.conf; wird verwendet, um einem anderen LMB mitzuteilen, daß er seine NetBIOS-Namensliste mit unserem
+Samba-LMB synchronisieren muß. Dies funktioniert nur, wenn der Samba-Server, der diese Option gesetzt hat,
+gleichzeitig der LMB in seinem Netzwerk-Segment ist.
 </para>
 
 <para>
-The syntax of the <smbconfoption><name>remote browse sync</name></smbconfoption> parameter is:
+Die Syntax des Parameters <smbconfoption><name>remote browse sync</name></smbconfoption> ist:
 
 <smbconfblock>
 <smbconfoption><name>remote browse sync</name><value><replaceable>a.b.c.d</replaceable></value></smbconfoption>
 </smbconfblock>
 
-where <replaceable>a.b.c.d</replaceable> is either the IP address of the
-remote LMB or else is the network broadcast address of the remote segment.
+wobei <replaceable>a.b.c.d</replaceable> entweder die IP-Adresse des entfernten LMBs ist, oder die 
+Netzwerk-Broadcast-Adresse des entfernten Netzwerk-Segments.
 </para>
 
 </sect2>
@@ -909,28 +910,28 @@ remote LMB or else is the network broadcast address of the remote segment.
 </sect1>
 
 <sect1>
-<title>WINS &smbmdash; The Windows Inter-networking Name Server</title>
+<title>WINS &smbmdash; Der <quote>Windows Inter-networking Name Server</quote></title>
 
 <para>
-Use of WINS (either Samba WINS or MS Windows NT Server WINS) is highly
-recommended. Every NetBIOS machine registers its name together with a
-name_type value for each of several types of service it has available.
-It registers its name directly as a unique (the type 0x03) name.
-It also registers its name if it is running the LanManager compatible
-server service (used to make shares and printers available to other users)
-by registering the server (the type 0x20) name.
+Die Verwendung von WINS (entweder Samba oder MS Windows NT Server WINS) wird wärmstens empfohlen. Jede
+NetBIOS-Maschine registriert seinen Namen zusammen mit einem <quote>name_type</quote>-Wert für jeden der
+Dienste, die sie zur Verfügung stellt. Die Maschine registriert Ihren Namen direkt als eindeutigen Namen
+(Typ 0x03). Sie registriert ihren Namen auch, wenn sie den LanManager-kompatiblen Server-Dienst ausführt
+(wird zur Freigabe von Dateien und Druckern verwendet), indem sie den Server-Namen (Typ 0x20) registriert.
 </para>
 
 <para>
-All NetBIOS names are up to 15 characters in length. The name_type variable
-is added to the end of the name, thus creating a 16 character name. Any
-name that is shorter than 15 characters is padded with spaces to the 15th
-character. Thus, all NetBIOS names are 16 characters long (including the
-name_type information).
+Alle NetBIOS-Namen sind bis zu 15 Zeichen lang. Die Variable name_type wird an den Namen angehängt, daher 
+entsteht ein 16-Zeichen-Name. Jeder Name, der kürzer als 15 Zeichen ist, wird mit Leerzeichen bis zum 15. Zeichen
+aufgefüllt. Daher sind alle NetBIOS-Namen 16 Zeichen lang (inklusiver der name_type Information).
 </para>
 
 <para>
-WINS can store these 16-character names as they get registered. A client
+WINS kann diese 16-Zeichen-Namen bei ihrer Registrierung speichern. Ein Client, der sich am Netzwerk anmelden 
+will, kann den WINS-Server nach einer Liste aller registrierten Namen befragen. Das spart 
+Broadcast-Netzwerkverkehr und beschleunigt die Bearbeitung von Anmeldungen deutlich. Da 
+
+
 that wants to log onto the network can ask the WINS server for a list
 of all names that have registered the NetLogon service name_type. This saves
 broadcast traffic and greatly expedites logon processing. Since broadcast
