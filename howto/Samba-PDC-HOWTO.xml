@@ -26,12 +26,18 @@ Für viele jedoch beginnt die Arbeit mit MS-Windows-Netzwerken mit einem Domänenc
 <para>
 Das Diagramm in <link linkend="domain-example"/> zeigt eine klassische Umgebung unter Verwendung einer MS-Windows-Sicherheitsdomäne (MS Windows Domain Security network environment). Die Workstations A, B und C repräsentieren eine Vielzahl physischer MS-Windows-Netzwerk-Clients.
 </para>
+
+<!--
 <figure id="domain-example"><title>Eine Beispiel-Domäne.</title>
 <mediaobject>
-<imageobject role="latex"><imagedata fileref="images/domain" width="4in" height="3in" scalefit="1"/></imageobject>
-<imageobject><imagedata fileref="images/domain.png" scale="50" scalefit="1"/></imageobject>
+<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/domain" width="4in" height="3in" scalefit="1"/></imageobject>
+<imageobject><imagedata fileref="projdoc/imagefiles/domain.png" scale="50" scalefit="1"/></imageobject>
 </mediaobject>
 </figure>
+-->
+
+
+<image id="domain-example"><imagefile>domain</imagefile><imagedescription>Eine Beispiel-Domäne.</imagedescription></image>
 
 
 <?latex \newpage ?>

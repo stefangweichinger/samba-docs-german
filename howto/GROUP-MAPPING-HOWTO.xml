@@ -54,20 +54,27 @@
 	der &smb.conf; zugeordnet.
 	</para>
 
+	<!-- 
 	<figure id="idmap-sid2gid"><title>IDMAP: Auflösung der Gruppen-SID in eine GID</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-sid2gid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-sid2gid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
-	<!-- (((Bild Im PDF nicht vorhanden))) -->
+	(((Bild Im PDF nicht vorhanden))) -->
 
+	<image id="idmap-sid2gid"><imagefile>idmap-sid2gid</imagefile><imagedescription>IDMAP: Auflösung der Gruppen-SID in eine GID</imagedescription></image>
+	
+	<image id="idmap-gid2sid"><imagefile>idmap-gid2sid</imagefile><imagedescription>IDMAP: GID-Auflösung in eine passende SID</imagedescription></image>
+
+	<!--
 	<figure id="idmap-gid2sid"><title>IDMAP: GID-Auflösung in eine passende SID</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-gid2sid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-gid2sid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
+	-->
 
 	<para>
 	In beiden Fällen können, wenn winbindd nicht läuft, nur lokal auflösbare Gruppen erkannt werden (siehe auch
@@ -78,12 +85,16 @@
 	<!-- (((Bild Im PDF nicht vorhanden))) -->
 	
 
+	<image id="idmap-store-gid2sid"><imagefile>idmap-store-gid2sid</imagefile><imagedescription>IDMAP: Speichern von Gruppen-Mappings</imagedescription></image>
+	
+	<!--
 	<figure id="idmap-store-gid2sid"><title>IDMAP: Speichern von Gruppen-Mappings</title>
 	<mediaobject>
 	<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid" scale="50" scalefit="1"/></imageobject>
 	<imageobject><imagedata fileref="projdoc/imagefiles/idmap-store-gid2sid.png" scale="50" scalefit="1"/></imageobject>
 	</mediaobject>
 	</figure>
+	-->
 
 
 	<para>
