@@ -13,54 +13,53 @@
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Netzwerkadministratoren sind oft besorgt über die Verfügbarkeit von Datei- und Druckdiensten.
-Netzwerkbenutzer sind geneigt, intolerant gegenüber den Diensten zu sein, von denen Sie,
-was Ihre Aufgabenstellungen anbelangt, abhängig sind.
+Netzwerkadministratoren sind oft besorgt über die Verfügbarkeit von Datei- und Druck-Diensten.
+Netzwerkbenutzer sind geneigt, intolerant gegenüber den Diensten zu sein, von denen sie,
+was ihre Aufgabenstellungen anbelangt, abhängig sind.
 </para>
 
 <para>
-Ein Schild in einem Computerraum diente dazu, das Personal an Ihre Verantwortung zu erinnern.
+Ein Schild in einem Computerraum diente dazu, das Personal an seine Verantwortung zu erinnern.
 Es lautete:
 </para>
 
 <blockquote>
 <para>
-Alle Menschen scheitern, sowohl im grossen wie im kleinen scheitern wir fortwährend.
-Maschinen sind ebenfalls fehlerhaft. Computer sind Maschinen, die von Menschen verwaltet werden,
+Alle Menschen scheitern; sowohl im Großen wie im Kleinen scheitern wir fortwährend.
+Maschinen sind ebenfalls fehlerhaft. Computer sind Maschinen, die von Menschen verwaltet werden, und
 das Ergebnis eines Fehlers kann spektakulär sein. Ihre Verantwortung ist es, mit 
-dem Scheitern umzugehen, es vorwegzunehmen und auszuschliessen, soweit es menschlich und
+dem Scheitern umzugehen, es vorwegzunehmen und auszuschließen, so weit es menschlich und
 ökonomisch sinnvoll ist.
-Sind Ihre Handlungen Teil des Problems oder Teil der Lösung ?
+Sind Ihre Handlungen Teil des Problems oder Teil der Lösung?
 </para>
 </blockquote>
 
 <para>
-Wenn wir also mit Fehlern in geplanten und produktiven Arten und Weisen zu tun haben, dann müssen
+Wenn wir also mit Fehlern in geplanter und produktiver Art und Weise zu tun haben, dann müssen
 wir zuerst einmal das Problem verstehen. Dies ist die Zielsetzung dieses Kapitels.
 </para>
 
 <para>
-In der folgenden Auseinandersetzung sind beiläufig Informationen enthalten, wie man
+In der folgenden Betrachtung sind unter anderem Informationen eingestreut, wie man
 Vorsorge gegen Fehler in Netzwerkinfrastrukturen trifft. Unsere Absicht ist hier 
-keine langatmige Dissertation über Hochverfügbarkeit selbst. Zusätzlich haben wir die 
+keine langatmige Dissertation über die Hochverfügbarkeit selbst. Zusätzlich haben wir die 
 bewusste Entscheidung getroffen, keine detaillierten Arbeitsbeispiele von
-Hochverfügbarkeits-Lösungen
-zur Verfügung zu stellen; stattdessen zeigen wir einen Überblick über die Thematik
+Hochverfügbarkeitslösungen
+zur Verfügung zu stellen. Stattdessen zeigen wir einen Überblick über die Thematik
 in der Hoffnung, dass sich jemand der Herausforderung stellt, ein detailliertes Dokument zur
-Verfügung zu stellen, welches sich ausschliesslich auf die Präsentation des gegenwärtigen
-Wissensstandes und der Praktiken von hoher Verfügbarkeit beschränkt, soweit sie den Einsatz 
-von Samba und anderen CIFS/SMB Technologien betreffen.
+Verfügung zu stellen, das sich ausschließlich auf die Präsentation des gegenwärtigen
+Wissensstandes und der Praktiken im Bereich der Hochverfügbarkeit beschränkt, soweit sie den Einsatz 
+von Samba und anderen CIFS/SMB-Technologien betreffen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Technische Auseinandersetzung</title>
+<title>Technische Beschreibung</title>
 
 <para>
-Die folgende Zusammenfassung war Teil einer Präsentation von Jeremy Allison auf der SambaXP 2003-
-Konferenz, welche in Göttingen, Deutschland, im April 2003 abgehalten wurde. Es wurden Zusätze
-von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur vorgab.
+Die folgende Zusammenfassung war Teil einer Präsentation von Jeremy Allison auf der SambaXP 2003-Konferenz, die im April 2003 in Göttingen abgehalten wurde. Es wurden Zusatzinformationen
+aus anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur vorgab.
 </para>
 
 	<sect2>
@@ -71,11 +70,11 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 	</para>
 
 	<itemizedlist>
-		<listitem><para>Sich die maximal erschwingliche rechnerische Power zu verschaffen.</para></listitem>
-		<listitem><para>Sich schnellere Programmausführung zu verschaffen.</para></listitem>
-		<listitem><para>Nicht anzuhaltende Dienste liefern.</para></listitem>
-		<listitem><para>Fehler verhindern.</para></listitem>
-		<listitem><para>Genaue und höchsteffiziente Nutzung von Ressourcen.</para></listitem>
+		<listitem><para>Sich die maximal erschwingliche rechnerische Power zu verschaffen</para></listitem>
+		<listitem><para>Sich eine schnellere Programmausführung zu verschaffen</para></listitem>
+		<listitem><para>Dienste zur Verfügung zu stellen, die nicht einfach stoppen</para></listitem>
+		<listitem><para>Fehler zu verhindern</para></listitem>
+		<listitem><para>Die genaue und höchsteffiziente Nutzung von Ressourcen</para></listitem>
 	</itemizedlist>
 
 	<para>
@@ -84,10 +83,10 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 
 	<itemizedlist>
 		<listitem><para>Alle Clients können sich transparent an jeden Server verbinden.</para></listitem>
-		<listitem><para>Ein Server kann ausfallen und die Clients werden transparent wieder auf einen anderen Server verbunden.</para></listitem>
+		<listitem><para>Ein Server kann ausfallen, und die Clients werden transparent wieder auf einen anderen Server verbunden.</para></listitem>
 		<listitem><para>Alle Server halten denselben Satz von Dateien bereit.</para></listitem>
 		<listitem><para>Alle Dateiänderungen sind sofort auf allen Servern zu sehen.</para>
-			<itemizedlist><listitem><para>Setzt ein verteiltes Dateisystem voraus.</para></listitem></itemizedlist></listitem>
+			<itemizedlist><listitem><para>Das setzt ein verteiltes Dateisystem voraus.</para></listitem></itemizedlist></listitem>
 		<listitem><para>Grenzenlose Fähigkeit zu skalieren durch Hinzufügen zusätzlicher Server oder Festplatten.</para></listitem>
 	</itemizedlist>
 
@@ -97,7 +96,7 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 	<title>Warum ist dies so schwer?</title>
 
 	<para>
-	Kurz gesagt, das Problem ist eines des <emphasis>Zustandes</emphasis>.
+	Kurz gesagt, das Problem ist eine Frage des <emphasis>Zustands</emphasis>.
 	</para>
 
 	<itemizedlist>
@@ -106,24 +105,22 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 			Alle TCP/IP-Verbindungen sind von Zustandsinformationen abhängig.
 			</para>
 			<para>
-			Die TCP/IP-Verbindung bringt eine Paket-Sequenznummer mit sich.
+			Die TCP/IP-Verbindung enthält eine Paket-Sequenznummer.
 			Diese Sequenznummer muss auf allen Maschinen in einem
-			Cluster dynamisch aktualisiert werden, um eine nahtlose TCP 
-			Ausfallsicherheit zu erreichen.
+			Cluster dynamisch aktualisiert werden, um eine nahtlose TCP-Ausfallsicherheit zu erreichen.
 			</para>
 		</listitem>
 		<listitem>
 			<para>
-			CIFS/SMB (die Windows Netzwerkprotokolle) benutzen TCP-Verbindungen.
+			CIFS/SMB (die Windows-Netzwerkprotokolle) benutzen TCP-Verbindungen.
 			</para>
 			<para>
 			Dies bedeutet aus einer grundlegenden Designperspektive, dass Ausfallsicherheit
 			nicht wirklich in Erwägung gezogen wurde.
 			<itemizedlist>
 				<listitem><para>
-				Alle aktuellen SMB Cluster sind Ausfallsicherheits-Lösungen &smbmdash;,
-				sie basieren darauf, dass die Clients sich neu verbinden. Sie stellen Server-
-				Ausfallsicherheit zur Verfügung, aber die Clients können Informationen aufgrund
+				Alle aktuellen SMB-Cluster sind Ausfallsicherheitslösungen,
+				sie basieren darauf, dass die Clients sich neu verbinden. Sie stellen Server-Ausfallsicherheit zur Verfügung, aber die Clients können Informationen aufgrund
 				eines Serverausfalls verlieren.
 				</para></listitem>
 			</itemizedlist>
@@ -142,24 +139,24 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 	</itemizedlist>
 
 		<sect3>
-		<title>Die Front-End Herausforderung</title>
+		<title>Die Frontend-Herausforderung</title>
 
 		<para>
 		Um es einem Cluster von Dateiservern zu ermöglichen, als ein einzelner Server mit einem Namen und
 		einer IP-Adresse zu erscheinen, müssen die eingehenden TCP-Datenströme von den Arbeitsstationen durch
-		einen virtuellen Front-End-Server verarbeitet werden. Dieser Server muss die eingehenden Pakete auf
-		SMB-Protokoll-Layerebene de-multiplexen und dann das SMB-Paket auf verschiedene Server im Cluster
+		einen virtuellen Frontend-Server verarbeitet werden. Dieser Server muss die eingehenden Pakete auf
+		SMB-Protokoll-Layerebene de-multiplexen und dann das SMB-Paket an verschiedene Server im Cluster
 		weiterreichen.
 		</para>
 
 		<para>
-		Einer kann dann alle IPC$ Verbindungen und RPC Calls auf einen Server aufsplitten, um Druckaufgaben
-		und Benutzeranfragen aufzusplitten. RPC Druckaufgaben werden zwischen verschiedenen IPC4 Sitzungen 
-		aufgeteilt, es ist schwierig, diese über geclusterte Server aufzuteilen !
+		Einer kann dann alle IPC$-Verbindungen und RPC-Calls auf einen Server aufsplitten, um Druckaufgaben
+		und Benutzeranfragen abzuarbeiten. RPC-Druckaufgaben werden zwischen verschiedenen IPC4-Sitzungen 
+		aufgeteilt, da es schwierig ist, diese über geclusterte Server aufzuteilen!
 		</para>
 
 		<para>
-		Konzeptionell ausgedrückt: alle anderen Server werden nur Dateidienste zur Verfügung 
+		Konzeptionell ausgedrückt: Alle anderen Server werden nur Dateidienste zur Verfügung 
 		stellen. Sich darauf zu konzentrieren, ist ein einfacheres Problem.
 		</para>
 
@@ -169,28 +166,27 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 		<title>De-Multiplexen von SMB-Anfragen</title>
 
 		<para>
-		De-Multiplexen von SMB-Anfragen verlangt nach Wissen zu SMB-Zustandsinformationen,
-		alle müssen vom <emphasis>virtuellen</emphasis> Front-End-Server bereit gehalten werden.
+		Das De-Multiplexen von SMB-Anfragen erfordert Wissen zu SMB-Zustandsinformationen.
+		Alle müssen vom <emphasis>virtuellen</emphasis> Frontend-Server bereitgehalten werden.
 		Dies ist ein verblüffendes und schwer zu lösendes Problem.
 		</para>
 
 		<para>
-		Windows XP und spätere Versionen von MS Windows haben die Semantik geändert, sodaß 
-		Zustandsinformationen (vuid, tid, fid) -
+		Windows XP und spätere Versionen von MS Windows haben die Semantik geändert, so dass 
+		Zustandsinformationen (vuid, tid, fid)
 		für eine erfolgreiche Durchführung zueinander passen müssen. 
 		Dies macht die Dinge einfacher als zuvor und ist ein positiver Schritt vorwärts.
 		</para>
 
 		<para>
-		SMB-Anfragen werden durch vuid zu Ihrem Bestimmungsserver gesendet. Es existiert zurzeit
-		kein Code, um diese Lösung zu beeinflussen. Dieses Problem ist konzeptionell ähnlich 
-		zu dem Problem, Anfragen von mehreren Anfragen an einen
-		Windows 2000 Terminalserver in Samba zu bearbeiten.
+		SMB-Anfragen werden durch vuid zu ihrem Bestimmungsserver gesendet. Es existiert zurzeit
+		kein Code, um diese Lösung zu beeinflussen. Dieses Problem ähnelt im Grunde dem Problem, mehrere Anfragen an einen
+		Windows 2000-Terminalserver in Samba zu bearbeiten.
 		</para>
 
 		<para>
-		Eine Möglichkeit damit zu beginnen ist es, den Serverpool den Clients direkt auszusetzen.
-		Dies könnte den Schritt mit De-Multiplexing überflüssig machen.
+		Eine Möglichkeit, um damit zu beginnen ist es, den Serverpool den Clients direkt auszusetzen.
+		Dies könnte den Schritt des De-Multiplexing überflüssig machen.
 		</para>
 
 		</sect3>
@@ -205,9 +201,8 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 
 		<para>
 		Viele können von uns übernommen werden, um unsere Cluster abzusichern, 
-		solange das Bewusstsein 
-		der SMB-Semantik in unseren Köpfen bleibt (Freigabemodi, Sperren und Oplock Themen im speziellen).
-		Allgemeine freie verteilte Dateisysteme enthalten:
+		solange wir immer die SMB-Semantik berücksichtigen (Freigabemodi, Sperren und Oplock-Themen im Speziellen).
+		Allgemein übliche freie verteilte Dateisysteme enthalten:
 <indexterm><primary>NFS</primary></indexterm>
 <indexterm><primary>AFS</primary></indexterm>
 <indexterm><primary>OpenGFS</primary></indexterm>
@@ -232,18 +227,18 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 		<title>Restriktive Zwänge in verteilten Dateisystemen</title>
 
 		<para>
-		Wo ein geclusterter Server nur SMB-Dienste zur Verfügung stellt, kann
-		Oplock-Handling im Serverpool direkt gemacht werden, ohne den Zwang, dies an den
+		Wo ein geclusterter Server nur SMB-Dienste zur Verfügung stellt, kann das
+		Verwalten von Oplocks direkt im Serverpool erfolgen, ohne den Zwang, diese Aufgabe an den
 		dahinterliegenden Dateisystem-Pool weitergeben zu müssen. 
 		</para>
 
 		<para>
-		Auf der anderen Seite wird es essentiell notwendig sein, dass die Implementierung 
-		Oplock-fähig ist, sodass sie mit SMB-Diensten zusammenarbeiten kann, wenn der Serverpool
+		Auf der anderen Seite wird es essenziell notwendig sein, dass die Implementierung 
+		Oplock-fähig ist, so dass sie mit SMB-Diensten zusammenarbeiten kann, wenn der Serverpool
 		auch NFS oder andere Dateidienste zur Verfügung stellt.
 		Dies ist heutzutage eine bedeutende Herausforderung.
-		Ein Fehler dabei resultiert in einem bemerkenswerten Perfomanceverlust, 
-		den die Benutzer von Microsoft Windows Clients deutlich spüren. 
+		Ein Fehler dabei hat einen bemerkenswerten Perfomanceverlust zur Folge, 
+		den die Benutzer von Microsoft Windows-Clients deutlich spüren. 
 		</para>
 
 		<para>
@@ -253,46 +248,45 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 		</sect3>
 
 		<sect3>
-		<title>Serverpool Kommunikation</title>
+		<title>Serverpool-Kommunikation</title>
 
 		<para>
-		Die meisten Backend-Dateisysteme unterstützen POSIX Dateisemantik. 
-		Dies macht es schwierig,
+		Die meisten Backend-Dateisysteme unterstützen die POSIX-Dateisemantik. 
+		Dies macht es schwierig, die 
 		SMB-Semantik zurück ins Dateisystem zu schieben. POSIX-Sperren haben andere Eigenschaften
-		und Semantik als SMB-Sperren.
+		und eine andere Semantik als SMB-Sperren.
 		</para>
 
 		<para>
-		Alle <command>smbd</command> Prozesse im Serverpool müssen notwendigerweise sehr schnell
+		Alle <command>smbd</command>-Prozesse im Serverpool müssen notwendigerweise sehr schnell
 		miteinander kommunizieren.
-		Dadurch ist die gegenwärtig von Samba verwendete <parameter>tdb</parameter>
-		Dateistruktur nicht geeignet für die Nutzung über Netzwerke.
-		Geclusterte <command>smbd</command>'s müssen eine andere Struktur verwenden.
+		Dadurch ist die gegenwärtig von Samba verwendete <parameter>tdb</parameter>-Dateistruktur nicht geeignet für die Nutzung über Netzwerke.
+		Geclusterte <command>smbd</command>s müssen eine andere Struktur verwenden.
 		</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Anforderungen an Serverpool-Kommunikation</title>
+		<title>Anforderungen an die Serverpool-Kommunikation</title>
 
 		<para>
-		Hochgeschwindigkeits-Inter-Serverkommunikation innerhalb des Serverpools ist eine
+		Die Hochgeschwindigkeits-Interserverkommunikation innerhalb des Serverpools ist eine
 		Design-Grundvoraussetzung
-		für ein voll funktionsfähiges System. Möglichkeiten für dieses enthalten:
+		für ein voll funktionsfähiges System. Verfügbare Möglichkeiten sind unter anderem:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			Proprietäre Shared-Memory Bussysteme (Beispiel: Myrinet oder SCI [Scalable Coherent Interface]).
-			Diese sind äusserst kostenintensiv.
+			Proprietäre Shared-Memory-Bussysteme (Beispiel: Myrinet oder SCI [Scalable Coherent Interface]).
+			Diese sind äußerst kostenintensiv.
 			</para></listitem>
 		
 			<listitem><para>
-			Gigabit Ethernet (mittlerweile ziemlich erschwinglich).
+			Gigabit-Ethernet (mittlerweile ziemlich erschwinglich)
 			</para></listitem>
 		
 			<listitem><para>
-			Raw Ethernet-Framing (um TCP- und UDP-Overheads zu umgehen).
+			Raw-Ethernet-Framing (um TCP- und UDP-Overheads zu umgehen)
 			</para></listitem>
 		</itemizedlist>
 
@@ -307,31 +301,31 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 		<title>Benötigte Änderungen an Samba</title>
 
 		<para>
-		Samba muss entscheidend geändert werden, um mit einem Hochgeschwindigkeits-Server Inter-Connect-System
-		zusammen zu arbeiten und transparente Ausfallsicherheits-Cluster zu erlauben.
+		Samba muss entscheidend geändert werden, um mit einem Hochgeschwindigkeitsserver Inter-Connect-System
+		zusammenzuarbeiten und transparente Ausfallsicherheits-Cluster zu erlauben.
 		</para>
 
 		<para>
-		Bestimmte Funktionen innerhalb von Samba, die dadurch betroffen sind, enthalten:
+		Zu den Funktionen innerhalb von Samba, die dadurch betroffen sind, zählen:
 		</para>
 
 		<itemizedlist>
 			<listitem><para>
-			Die Sperren-Datenbank, Oplock-Benachrichtigungen und die Freigabemodi-Datenbank.
+			Die Sperren-Datenbank, Oplock-Benachrichtigungen und die Freigabemodi-Datenbank
 			</para></listitem>
 
 			<listitem><para>
-			Fehlersemantik muss definiert werden. Samba verhält sich gleich wie Windows.
+			Die Fehlersemantik muss definiert werden. Samba verhält sich so wie Windows.
 			Wenn Oplock-Nachrichten fehlschlagen, ist eine Anforderung zum Öffnen einer Datei
 			erlaubt, doch
-			dies ist in einer geclusterten Umgebung potentiell gefährlich.
-			Wie soll also Inter-Serverpool-Fehlersemantik funktionieren und wie soll diese
+			dies ist in einer geclusterten Umgebung potenziell gefährlich.
+			Wie soll also Inter-Serverpool-Fehlersemantik funktionieren, und wie soll diese
 			implementiert werden ?
 			</para></listitem>
 
 			<listitem><para>
-			Soll dies durch Nutzung eines Point-to-Point Sperren-Managers implementiert werden oder
-			kann dies durch Multicast-Techniken erreicht werden ?
+			Soll dies durch Nutzung eines Point-to-Point-Sperren-Managers implementiert werden, oder
+			kann dies durch Multicast-Techniken erreicht werden?
 			</para></listitem>
 
 		</itemizedlist>
@@ -344,22 +338,22 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 
 	<para>
 	Indem man ausfallsicheren Servern erlaubt, verschiedene Funktionen innerhalb des exportierten Dateisystems
-	zu behandeln, beseitigt man das Problem, ein verteiltes Sperrenprotokoll zu fordern.
+	zu verwalten, beseitigt man das Problem, ein verteiltes Sperrenprotokoll zu fordern.
 	</para>
 
 	<para>
 	Falls nur ein Server in einem Paar aktiv ist, wird die Forderung nach Hochgeschwindigkeits-Server-Interconnect
 	vermieden. Dies erlaubt dann das Nutzen von vorhandenen Hochverfügbarkeitslösungen, anstatt neue erfinden zu
-	müssen. Diese einfachere Lösung hat jedoch ihren Preis &smbmdash;, den Preis, einen wesentlich komplexeren
-	Dateinamens-Bereich verwalten zu müssen.
-	Dadurch, dass es heute nicht nur ein Dateisystem gibt, müssen sich die Administratoren daran erinnern,
-	wo all die Dienste beheimatet sind &smbmdash;, eine Komplexität, mit der nicht einfach 
+	müssen. Diese einfachere Lösung hat jedoch ihren Preis: Man muss jetzt einen wesentlich komplexeren
+	Dateinamensbereich verwalten.
+	Dadurch, dass es nun nicht nur ein Dateisystem gibt, müssen sich die Administratoren daran erinnern,
+	wo all die Dienste beheimatet sind: eine Komplexität, mit der nicht einfach 
 	umzugehen ist.
 	</para>
 
 	<para>
 	Der <emphasis>virtuelle Server</emphasis> wird weiterhin benötigt, um Anfragen an den Backend-Server 
-	weiterzuleiten. Die Integrität des Backend-Dateibereiches ist die Verantworlichkeit des Administrators.
+	weiterzuleiten. Für die Integrität des Backend-Dateibereichs ist der Administrator verantwortlich.
 	</para>
 
 	</sect2>
@@ -370,29 +364,29 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 	<para>
 	Ausfallsichere Server müssen miteinander kommunizieren, um Ressourcenausfälle behandeln zu können.
 	Dies ist für hochverfügbare Dienste lebensnotwendig. Der Einsatz eines dedizierten Heartbeats ist
-	dabei eine gängige Technik, etwas Intelligenz in den ausfallsichernden Prozess einzuführen.
+	dabei eine gängige Technik, um etwas Intelligenz in den ausfallsichernden Prozess einzuführen.
 	Dies wird oft durch einen dedizierten Link (LAN oder seriell) bewerkstelligt.
 	</para>
 
 	<para>
 <indexterm><primary>SCSI</primary></indexterm>
 	Viele Ausfallsicherungslösungen (der Red Hat Cluster Manager genauso wie Microsoft Wolfpack)
-	können ein geteiltes SCSI von Fiberchannel Disk Storage Arrays für ausfallsichere Kommunikation nutzen.
-	Informationen bezüglich der Red Hat Hochverfügbarkeitslösungen für Samba können hier erhalten werden:
+	können ein geteiltes SCSI von Fiberchannel Disk Storage Arrays für eine ausfallsichere Kommunikation nutzen.
+	Informationen zu den Red Hat-Hochverfügbarkeitslösungen für Samba können Sie hier erhalten:
 	<ulink url="http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-samba.html">www.redhat.com.</ulink>
 	</para>
 
 	<para>
-	Das Linux Hochverfügbarkeits-Projekt ist eine lesenswerte Quelle, falls Sie beabsichtigen,
+	Das Linux-Hochverfügbarkeitsprojekt ist eine lesenswerte Quelle, falls Sie beabsichtigen,
 	eine hochverfügbare Dateiserver-Lösung mit Samba aufzubauen. Bitte konsultieren Sie die Homepage
 	<ulink url="http://www.linux-ha.org">www.linux-ha.org.</ulink>
 	</para>
 
 	<para>
-	Die Komplexität der Frontend-Server bleibt eine Herausforderung für Hochverfügbarkeit, 
-	weil dieser anständig mit
-	Backend-Fehlern umgehen muss, während er zur selben Zeit den Fortlauf der Dienste für alle Netzwerkclients
-	zur Verfügung stellen muss.
+	Die Komplexität der Frontend-Server bleibt eine Herausforderung an die Hochverfügbarkeit, 
+	weil diese anständig mit
+	Backend-Fehlern umgehen müssen, während sie zur selben Zeit den Fortlauf der Dienste für alle Netzwerkclients
+	zur Verfügung stellen müssen.
 	</para>
 	
 	</sect2>
@@ -405,13 +399,13 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 <indexterm><primary>DFS</primary><see>MS-DFS, Distributed File Systems (verteilte Dateisysteme)</see></indexterm>
 	MS-DFS Links können dazu benutzt werden, Clients zu verschiedenen Backend-Servern 
 	umzuleiten. Dies
-	schiebt die Komplexität zurück zum Netzwerkclient, etwas bereits von Microsoft Inkludiertes.
-	MS-DFS erzeugt die Illusion eines einfachen und fortlaufenden Dateinamens-Bereiches,
-	welcher sogar auf Dateiebene arbeitet.
+	verlagert die Komplexität auf den Netzwerkclient zurück, etwas, das bereits von Microsoft vorgesehen wurde.
+	MS-DFS erzeugt die Illusion eines einfachen und fortlaufenden Dateinamensbereichs,
+	der sogar auf Dateiebene arbeitet.
 	</para>
 
 	<para>
-	Darüber kann, auf Kosten der Komplexität der Verwaltung, ein verteilter (Pseudo-) Cluster durch
+	Darüber hinaus kann, auf Kosten der Komplexität der Verwaltung, ein verteilter (Pseudo-)Cluster durch
 	Nutzung vorhandener Samba-Funktionalität erzeugt werden.
 	</para>
 
@@ -422,10 +416,10 @@ von anderen Quellen hinzugefügt, aber Jeremy war es, der die folgende Struktur v
 
 	<itemizedlist>
 		<listitem><para>Transparentes SMB-Clustering ist schwer durchzuführen!</para></listitem>
-		<listitem><para>Client Ausfallsicherung ist das Beste, was wir heute machen können.</para></listitem>
+		<listitem><para>Client-Ausfallsicherung ist das Beste, was wir heutzutage machen können.</para></listitem>
 		<listitem><para>Sehr viel mehr Arbeit muss erledigt werden, bevor eine praktikable und verwaltbare
 				transparente Hochverfügbarkeits-Clusterlösung möglich sein wird.</para></listitem>
-		<listitem><para>MS-DFS kann dazu benutzt werden, eine Illusion eines einzelnen transparenten Clusters zu erzeugen.</para></listitem>
+		<listitem><para>MS-DFS kann dazu benutzt werden, die Illusion eines einzelnen transparenten Clusters zu erzeugen.</para></listitem>
 	</itemizedlist>
 
 	</sect2>
