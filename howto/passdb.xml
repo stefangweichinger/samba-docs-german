@@ -1540,21 +1540,23 @@ access to attrs=sambaLMPassword,sambaNTPassword
 
 	<para>
 <indexterm><primary>SAM backend</primary><secondary>mysqlsam</secondary></indexterm>
-	Every so often someone will come along with a great new idea. Storing user accounts in a
-	SQL backend is one of them. Those who want to do this are in the best position to know what the
-	specific benefits are to them. This may sound like a cop-out, but in truth we cannot attempt
-	to document every little detail why certain things of marginal utility to the bulk of
-	Samba users might make sense to the rest. In any case, the following instructions should help
-	the determined SQL user to implement a working system.
+	Immer wieder kommt jemand mit einer grossartigen neuen Idee daher. Das Speichern von Benutzerkonten
+	in einem SQL-Backend ist eine solche. Jene, die dies tun wollen, sind wohl in der besten Lage, zu
+	beurteilen, welche spezifischen Vorteile dies für sie hat. Dies klingt wohl nach Rückzug, aber
+	tatsächlich können wir hier nicht versuchen, jedes kleine Detail zu dokumentieren, warum bestimtte
+	Dinge, die von marginalem Nutzen für das Gros der Samba-Benutzer sind, 
+	sehr wohl Sinn für den Rest machen können. In jedem Fall sollten die folgenden Anweisungen dem
+	willigen SQL-Anwender dabei helfen, ein funktionierendes System zu implementieren.
 	</para>
 
 		<sect3>
-		<title>Creating the Database</title>
+		<title>Das Anlegen der Datenbank</title>
 
 			<para>
-			You can set up your own table and specify the field names to pdb_mysql (see below
-			for the column names) or use the default table. The file <filename>examples/pdb/mysql/mysql.dump</filename>
-			contains the correct queries to create the required tables. Use the command:
+			Sie können Ihre eigene Tabelle anlegen und deren Feldnamen für pdb_mysql angeben
+			(sehen Sie weiter unten nach den Spaltennamen) oder die Standard-Tabelle verwenden.
+			Die Datei <filename>examples/pdb/mysql/mysql.dump</filename> enthält die korrekten
+			Abfragen, um die erforderlichen Tabellen anzulegen. Verwenden Sie den Befehl:
 
 <screen>
 &prompt;<userinput>mysql -u<replaceable>username</replaceable> -h<replaceable>hostname</replaceable> -p<replaceable>password</replaceable> \
@@ -1564,168 +1566,202 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		</sect3>
 
 		<sect3>
-		<title>Configuring</title>
+		<title>Konfigurieren</title>
 
-			<para>This plug-in lacks some good documentation, but here is some brief information. Add the following to the
-			<smbconfoption><name>passdb backend</name></smbconfoption> variable in your &smb.conf;:
+			<para>Diesem plug-in fehlt gute Dokumentation, aber hier ist etwas Kurz-Information.
+			Fügen Sie Folgendes der Variable
+			<smbconfoption><name>passdb backend</name></smbconfoption> in Ihrer &smb.conf; hinzu:
 <smbconfblock>
-<smbconfoption><name>passdb backend</name><value>[other-plugins] mysql:identifier [other-plugins]</value></smbconfoption>
+<smbconfoption><name>passdb backend</name><value>[andere-plugins] mysql:identifier [andere-plugins]</value></smbconfoption>
 </smbconfblock>
 			</para>
 
-			<para>The identifier can be any string you like, as long as it does not collide with
-			the identifiers of other plugins or other instances of pdb_mysql. If you
-			specify multiple pdb_mysql.so entries in <smbconfoption><name>passdb backend</name></smbconfoption>, you also need to
-			use different identifiers.
+			<para>Der Identifier kann jeder beliebige String sein, solange er nicht mit den
+			Identifiern anderer Plugins, oder denen anderer pdb_mysql-Instanzen kollidiert.
+			Wenn Sie mehrere pdb_mysql.so Einträge in 
+			<smbconfoption><name>passdb backend</name></smbconfoption> angeben, müssen Sie auch 
+			verschiedene Identifier angeben.
 			</para>
 
 			<para>
-			Additional options can be given through the &smb.conf; file in the <smbconfsection>[global]</smbconfsection> section.
-			Refer to <link linkend="mysqlpbe">the following table</link>.
+			Zusätzliche Optionen können durch den Abschnitt <smbconfsection>[global]</smbconfsection>
+			der Datei &smb.conf; angegeben werden. Sehen Sie 
+			<link linkend="mysqlpbe">die folgende Tabelle</link>.
 			</para>
 
 			<table frame="all" id="mysqlpbe">
-				<title>Basic smb.conf options for MySQL passdb backend</title>
+				<title>Grundlegende smb.conf Optionen für das MySQL passdb backend</title>
 				<tgroup cols="2">
 					<colspec align="left"/>
 					<colspec align="justify" colwidth="1*"/>
 				<thead>
-					<row><entry>Field</entry><entry>Contents</entry></row>
+					<row><entry>Feld</entry><entry>Inhalt</entry></row>
 				</thead>
 				<tbody>
-					<row><entry>mysql host</entry><entry>Host name, defaults to `localhost'</entry></row>
+					<row><entry>mysql host</entry><entry>Hostname, Standardwert `localhost'</entry></row>
 					<row><entry>mysql password</entry><entry></entry></row>
-					<row><entry>mysql user</entry><entry>Defaults to `samba'</entry></row>
-					<row><entry>mysql database</entry><entry>Defaults to `samba'</entry></row>
-					<row><entry>mysql port</entry><entry>Defaults to 3306</entry></row>
-					<row><entry>table</entry><entry>Name of the table containing the users</entry></row>
+					<row><entry>mysql user</entry><entry>Standardwert `samba'</entry></row>
+					<row><entry>mysql database</entry><entry>Standardwert `samba'</entry></row>
+					<row><entry>mysql port</entry><entry>Standardwert 3306</entry></row>
+					<row><entry>table</entry><entry>Tabelle, die die Benutzer enthält</entry></row>
 				</tbody>
 				</tgroup>
 			</table>
 
 			<warning>
 			<para>
-			Since the password for the MySQL user is stored in the &smb.conf; file, you should make the &smb.conf; file
-			readable only to the user who runs Samba. This is considered a security bug and will soon be fixed.
+			Da das Passwort des MySQL-Benutzers in der Datei &smb.conf; abgelegt wird, sollten Sie
+			diese Datei nur für den Benutzer lesbar machen, der Samba ausführt. Dies wird als
+			Sicherheitslücke betrachtet, und wird bald bereinigt werden.			
 			</para>
 			</warning>
 
-			<para>Names of the columns are given in <link linkend="moremysqlpdbe">the next table</link>.
-			The default column names can be found in the example table dump.
+			<para>
+			Die Spaltenbezeichnungen werden in 
+			<link linkend="moremysqlpdbe">der nächsten Tabelle</link> angegeben.
+			Die Standard-Spaltenbezeichnungen können dem Beispiels-Tabellen-dump entnommen werden.
 			 </para>
 
 		<para>
 			<table frame="all" id="moremysqlpdbe">
-				<title>MySQL field names for MySQL passdb backend</title>
+				<title>MySQL Feldnamen für das MySQL passdb backend</title>
 				<tgroup cols="3" align="justify">
 					<colspec align="left"/>
 					<colspec align="left"/>
 					<colspec align="justify" colwidth="1*"/>
 			<thead>		
-				<row><entry>Field</entry><entry>Type</entry><entry>Contents</entry></row>
+				<row><entry>Feld</entry><entry>Typ</entry><entry>Inhalt</entry></row>
 			</thead>
 			<tbody>
-				<row><entry>logon time column</entry><entry>int(9)</entry><entry>UNIX time stamp of last logon of user</entry></row>
-				<row><entry>logoff time column</entry><entry>int(9)</entry><entry>UNIX time stamp of last logoff of user</entry></row>
-				<row><entry>kickoff time column</entry><entry>int(9)</entry><entry>UNIX time stamp of moment user should be kicked off workstation (not enforced)</entry></row>
-				<row><entry>pass last set time column</entry><entry>int(9)</entry><entry>UNIX time stamp of moment password was last set</entry></row>
-				<row><entry>pass can change time column</entry><entry>int(9)</entry><entry>UNIX time stamp of moment from which password can be changed</entry></row>
-				<row><entry>pass must change time column</entry><entry>int(9)</entry><entry>UNIX time stamp of moment on which password must be changed</entry></row>
-				<row><entry>username column</entry><entry>varchar(255)</entry><entry>UNIX username</entry></row>
-				<row><entry>domain column</entry><entry>varchar(255)</entry><entry>NT domain user belongs to</entry></row>
-				<row><entry>nt username column</entry><entry>varchar(255)</entry><entry>NT username</entry></row>
-				<row><entry>fullname column</entry><entry>varchar(255)</entry><entry>Full name of user</entry></row>
-				<row><entry>home dir column</entry><entry>varchar(255)</entry><entry>UNIX homedir path (equivalent of the <smbconfoption><name>logon home</name></smbconfoption> parameter.</entry></row>
-				<row><entry>dir drive column</entry><entry>varchar(2)</entry><entry>Directory drive path (e.g., <quote>H:</quote>)</entry></row>
-				<row><entry>logon script column</entry><entry>varchar(255)</entry><entry>Batch file to run on client side when logging on</entry></row>
-				<row><entry>profile path column</entry><entry>varchar(255)</entry><entry>Path of profile</entry></row>
-				<row><entry>acct desc column</entry><entry>varchar(255)</entry><entry>Some ASCII NT user data</entry></row>
-				<row><entry>workstations column</entry><entry>varchar(255)</entry><entry>Workstations user can logon to (or NULL for all)</entry></row>
-				<row><entry>unknown string column</entry><entry>varchar(255)</entry><entry>Unknown string</entry></row>
-				<row><entry>munged dial column</entry><entry>varchar(255)</entry><entry>Unknown</entry></row>
-				<row><entry>user sid column</entry><entry>varchar(255)</entry><entry>NT user SID</entry></row>
-				<row><entry>group sid column</entry><entry>varchar(255)</entry><entry>NT group SID</entry></row>
-				<row><entry>lanman pass column</entry><entry>varchar(255)</entry><entry>Encrypted lanman password</entry></row>
-				<row><entry>nt pass column</entry><entry>varchar(255)</entry><entry>Encrypted nt passwd</entry></row>
-				<row><entry>plain pass column</entry><entry>varchar(255)</entry><entry>Plaintext password</entry></row>
-				<row><entry>acct ctrl column</entry><entry>int(9)</entry><entry>NT user data</entry></row>
-				<row><entry>unknown 3 column</entry><entry>int(9)</entry><entry>Unknown</entry></row>
-				<row><entry>logon divs column</entry><entry>int(9)</entry><entry>Unknown</entry></row>
-				<row><entry>hours len column</entry><entry>int(9)</entry><entry>Unknown</entry></row>
-				<row><entry>bad password count column</entry><entry>int(5)</entry><entry>Number of failed password tries before disabling an account</entry></row>
-				<row><entry>logon count column</entry><entry>int(5)</entry><entry>Number of logon attempts</entry></row>
-				<row><entry>unknown 6 column</entry><entry>int(9)</entry><entry>Unknown</entry></row>
+				<row><entry>logon time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel der letzten Anmeldung des Benutzers</entry></row>
+				<row><entry>logoff time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel der letzten Abmeldung des Benutzers</entry></row>
+				<row><entry>kickoff time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel des Zeitpunkts, zu dem der Benutzer von der Workstation "gekickt" werden soll (nicht erzwungen)</entry></row>
+				<row><entry>pass last set time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel des Zeitpunkts, zu dem das Passwort zuletzt gesetzt wurde</entry></row>
+				<row><entry>pass can change time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel des Zeitpunkts, ab dem das Passwort geändert werden kann</entry></row>
+				<row><entry>pass must change time column</entry><entry>int(9)</entry>
+				<entry>UNIX Zeit-Stempel des Zeitpunkts, ab dem das Passwort geändert werden muß</entry></row>
+				<row><entry>username column</entry><entry>varchar(255)</entry>
+				<entry>UNIX Benutzername</entry></row>
+				<row><entry>domain column</entry><entry>varchar(255)</entry>
+				<entry>NT Domäne, der der Benutzer angehört</entry></row>
+				<row><entry>nt username column</entry><entry>varchar(255)</entry>
+				<entry>NT Benutzername</entry></row>
+				<row><entry>fullname column</entry><entry>varchar(255)</entry>
+				<entry>Vollständiger Name des Benutzers</entry></row>
+				<row><entry>home dir column</entry><entry>varchar(255)</entry>
+				<entry>Pfad des UNIX-Heimatverzeichnisses (äquivalent zum Parameter <smbconfoption><name>logon home</name></smbconfoption>.</entry></row>
+				<row><entry>dir drive column</entry><entry>varchar(2)</entry>
+				<entry>Laufwerksbuchstabe des Verzeichnisses (z.B. <quote>H:</quote>)</entry></row>
+				<row><entry>logon script column</entry><entry>varchar(255)</entry>
+				<entry>Batch-Datei, die bei der Anmeldung ausgeführt werden soll</entry></row>
+				<row><entry>profile path column</entry><entry>varchar(255)</entry>
+				<entry>Pfad zum Profil</entry></row>
+				<row><entry>acct desc column</entry><entry>varchar(255)</entry>
+				<entry>Einige ASCII NT Benutzerdaten</entry></row>
+				<row><entry>workstations column</entry><entry>varchar(255)</entry>
+				<entry>Workstations, an denen sich der Benutzer anmelden darf (oder NULL für alle)</entry></row>
+				<row><entry>unknown string column</entry><entry>varchar(255)</entry>
+				<entry>Unbekannter String</entry></row>
+				<row><entry>munged dial column</entry><entry>varchar(255)</entry>
+				<entry>Unbekannt</entry></row>
+				<row><entry>user sid column</entry><entry>varchar(255)</entry>
+				<entry>NT Benutzer SID</entry></row>
+				<row><entry>group sid column</entry><entry>varchar(255)</entry>
+				<entry>NT Gruppen SID</entry></row>
+				<row><entry>lanman pass column</entry><entry>varchar(255)</entry>
+				<entry>Verschlüsseltes Lanman Passwort</entry></row>
+				<row><entry>nt pass column</entry><entry>varchar(255)</entry>
+				<entry>Verschlüsseltes NT Passwort</entry></row>
+				<row><entry>plain pass column</entry><entry>varchar(255)</entry>
+				<entry>Klartext Passwort</entry></row>
+				<row><entry>acct ctrl column</entry><entry>int(9)</entry>
+				<entry>NT Benutzerdaten</entry></row>
+				<row><entry>unknown 3 column</entry><entry>int(9)</entry><entry>Unbekannt</entry></row>
+				<row><entry>logon divs column</entry><entry>int(9)</entry><entry>Unbekannt</entry></row>
+				<row><entry>hours len column</entry><entry>int(9)</entry><entry>Unbekannt</entry></row>
+				<row><entry>bad password count column</entry><entry>int(5)</entry>
+				<entry>Anzahl von erlaubten Fehleingaben des Passworts, bevor das Konto deaktiviert wird</entry></row>
+				<row><entry>logon count column</entry><entry>int(5)</entry><entry>Anzahl von Anmeldeversuchen</entry></row>
+				<row><entry>unknown 6 column</entry><entry>int(9)</entry><entry>Unbekannt</entry></row>
 			</tbody></tgroup>
 		</table>
 		</para>
 
 			<para>
-			You can put a colon (:) after the name of each column, which
-			should specify the column to update when updating the table. You can also
-			specify nothing behind the colon. Then the field data will not be updated. Setting a column name to <parameter>NULL</parameter> means the field should not be used.
+			Sie können einen Doppelpunkt (:) nach dem Namen jeder Spalte angeben, welcher ein Update
+			der Spalte beim Update der Tabelle auslöst. Sie können auch nichts nach dem Spaltennamen
+			angeben, dann werden die Felddaten nicht aktualisiert. Das Setzen eines Spaltennamens
+			auf <parameter>NULL</parameter> bedeutet, daß dieses Feld nicht verwendet werden soll. 
 			</para>
 
-			<para><link linkend="mysqlsam">An example configuration</link> looks like:
+			<para><link linkend="mysqlsam">Eine Beispiels-Konfiguration</link> sieht so aus:
 			</para>
 
 			<smbconfexample id="mysqlsam">
-				<title>Example configuration for the MySQL passdb backend</title>
+				<title>Beispiels-Konfiguration für das MySQL passdb backend</title>
 			<smbconfsection>[global]</smbconfsection>
 			<smbconfoption><name>passdb backend</name><value>mysql:foo</value></smbconfoption>
 			<smbconfoption><name>foo:mysql user</name><value>samba</value></smbconfoption>
 			<smbconfoption><name>foo:mysql password</name><value>abmas</value></smbconfoption>
 			<smbconfoption><name>foo:mysql database</name><value>samba</value></smbconfoption>
-			<smbconfcomment>domain name is static and can't be changed</smbconfcomment>
+			<smbconfcomment>Der Domänen-Name ist statisch und kann nicht geändert werden</smbconfcomment>
 			<smbconfoption><name>foo:domain column</name><value>'MYWORKGROUP':</value></smbconfoption>
-			<smbconfcomment>The fullname column comes from several other columns</smbconfcomment>
+			<smbconfcomment>Der vollständige Namen besteht aus den Werten einiger anderer Spalten</smbconfcomment>
 			<smbconfoption><name>foo:fullname column</name><value>CONCAT(firstname,' ',surname):</value></smbconfoption>
-			<smbconfcomment>Samba should never write to the password columns</smbconfcomment>
+			<smbconfcomment>Samba sollte niemals in die Passwort-Spalten schreiben</smbconfcomment>
 			<smbconfoption><name>foo:lanman pass column</name><value>lm_pass:</value></smbconfoption>
 			<smbconfoption><name>foo:nt pass column</name><value>nt_pass:</value></smbconfoption>
-			<smbconfcomment>The unknown 3 column is not stored</smbconfcomment>
+			<smbconfcomment>Die Spalte "unknown 3 column" wird nicht gespeichert</smbconfcomment>
 			<smbconfoption><name>foo:unknown 3 column</name><value>NULL</value></smbconfoption>
 			</smbconfexample>
 		</sect3>
 
 		<sect3>
-		<title>Using Plaintext Passwords or Encrypted Password</title>
+		<title>Klartext-Passwörter oder verschlüsselte Passwörter</title>
 
 			<para>
 <indexterm><primary>encrypted passwords</primary></indexterm>
-			I strongly discourage the use of plaintext passwords, however, you can use them.
+			Ich rate entschieden von der Verwendung von Klartext-Passwörtern ab, Sie können
+			diese jedoch verwenden.			
 			</para>
 
 			<para>
-			If you would like to use plaintext passwords, set
-			`identifier:lanman pass column' and `identifier:nt pass column' to
-			`NULL' (without the quotes) and `identifier:plain pass column' to the
-			name of the column containing the plaintext passwords.
+			Wenn Sie Klartext-Passwörter verwenden wollen, setzen Sie
+			`identifier:lanman pass column' und `identifier:nt pass column' auf
+			`NULL' (ohne die Hochkommas) und `identifier:plain pass column' auf den Namen der
+			Spalte, die die Klartext-Passwörter enthält.			
 			</para>
 
 			<para>
-			If you use encrypted passwords, set the 'identifier:plain pass
-			column' to 'NULL' (without the quotes). This is the default.
+			Wenn Sie verschlüsselte Passwörter verwenden, setzen Sie 'identifier:plain pass
+                        column' auf `NULL' (ohne die Hochkommas). Dies ist die Voreinstellung. 
 			</para>
 
 		</sect3>
 
 		<sect3>
-		<title>Getting Non-Column Data from the Table</title>
+		<title>Das Beziehen von Nicht-Spalten-Daten aus der Tabelle</title>
 
 			<para>
-			It is possible to have not all data in the database by making some `constant'.
+			Es ist möglich, nicht alle Daten in der Datenbank zu halten, unter Verwendung
+			einer `Konstanten'.			
 			</para>
 
 			<para>
-			For example, you can set `identifier:fullname column' to
-			something like <?latex \linebreak ?><command>CONCAT(Firstname,' ',Surname)</command>
+			Zum Beispiel können Sie `identifier:fullname column' auf etwas wie
+			<?latex \linebreak ?><command>CONCAT(Firstname,' ',Surname)</command> setzen.
 			</para>
 
 			<para>
-			Or, set `identifier:workstations column' to:
+			Oder `identifier:workstations column' auf:
 			<command>NULL</command></para>
 
-			<para>See the MySQL documentation for more language constructs.</para>
+			<para>Lesen Sie die MySQL Dokumentation für mehr Infos zu den Sprachkonstrukten.<para>
 
 		</sect3>
 	</sect2>
@@ -1735,47 +1771,47 @@ access to attrs=sambaLMPassword,sambaNTPassword
 
 	<para>
 <indexterm><primary>SAM backend</primary><secondary>xmlsam</secondary></indexterm>
-		This module requires libxml2 to be installed.</para>
+		Dieses Modul setzt voraus, daß libxml2 installiert ist.</para>
 
-		<para>The usage of pdb_xml is fairly straightforward. To export data, use:
+		<para>Die Verwendung von pdb_xml ist ziemlich geradlinig. Um Daten zu exportieren, verwenden Sie:
 		</para>
 
 		<para>
 <indexterm><primary>pdbedit</primary></indexterm>
-			<prompt>$ </prompt> <userinput>pdbedit -e xml:filename</userinput>
+			<prompt>$ </prompt> <userinput>pdbedit -e xml:dateiname</userinput>
 		</para>
 
 		<para>
-		(where filename is the name of the file to put the data in)
+		(wobei dateiname der Name der Ausgabedatei ist)
 		</para>
 
 		<para>
-		To import data, use:
-		<prompt>$ </prompt> <userinput>pdbedit -i xml:filename</userinput>
+		Um Daten zu importieren, verwenden Sie:
+		<prompt>$ </prompt> <userinput>pdbedit -i xml:dateiname</userinput>
 		</para>
 	</sect2>
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Gängige Fehler</title>
 
 	<sect2>
-		<title>Users Cannot Logon</title>
+		<title>Benutzer können sich nicht anmelden</title>
 
-		<para><quote>I've installed Samba, but now I can't log on with my UNIX account! </quote></para>
+		<para><quote>Ich habe Samba installiert, aber jetzt kann ich mich mit meinem UNIX-Konto nicht anmelden! </quote></para>
 
-		<para>Make sure your user has been added to the current Samba <smbconfoption><name>passdb backend</name></smbconfoption>.
-		Read the section <link linkend="acctmgmttools">Account Management Tools</link> for details.</para>
+		<para>Stellen Sie sicher, daß Ihr Benutzer zum aktuellen Samba <smbconfoption><name>passdb backend</name></smbconfoption> hinzugefügt wurde.
+		Lesen Sie dazu den Abschnitt <link linkend="acctmgmttools">Account Management Tools</link>.</para>
 
 	</sect2>
 
 	<sect2>
-	<title>Users Being Added to the Wrong Backend Database</title>
+	<title>Benutzer werden der falschen Backend-Datenbank hinzugefügt</title>
 
 	<para>
-	A few complaints have been received from users that just moved to Samba-3. The following
-	&smb.conf; file entries were causing problems, new accounts were being added to the old
-	smbpasswd file, not to the tdbsam passdb.tdb file:
+	Ein paar Beschwerden wurden von Benutzern erhalten, die gerade zu Samba-3 gewechselt hatten.
+	Die folgenden Einträge in &smb.conf; verursachten Probleme, neue Konten wurden zur alten
+	smbpasswd-Datei hinzugefügt, nicht der tdbsam-Datei passdb.tdb:
 	</para>
 
 	<para>
@@ -1788,8 +1824,8 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	</para>
 
 	<para>
-	Samba will add new accounts to the first entry in the <emphasis>passdb backend</emphasis>
-	parameter entry. If you want to update to the tdbsam, then change the entry to:
+	Samba fügt neue Konten zum ersten Eintrag im Parameter <emphasis>passdb backend</emphasis> hinzu.
+	Wenn Sie Updates gegen tdbsam haben wollen, ändern Sie den Eintrag auf:
 	</para>
 
 	<para>
