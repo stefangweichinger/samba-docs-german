@@ -1,12 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <chapter id="DNSDHCP">
 <chapterinfo>
 	&author.jht;
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>DNS and DHCP Configuration Guide</title>
+<title>DNS und DHCP: Konfigurations-Anleitung</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
 There are few subjects in the UNIX world that might raise as much contention as
