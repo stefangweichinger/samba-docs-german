@@ -786,7 +786,7 @@ gleich sind. Das Verzeichnis <filename>Default User</filename> enthält Menü-Eint
 anpassbar sind, abhängig von den gewählten oder angelegten Profil-Einstellungen.</para>
 
 <para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows NT4-Maschine anmeldet, wird
-ein neues Profil angelegt, aus:</para>
+ein neues Profil angelegt, zusammengesetzt aus:</para>
 
 <itemizedlist>
 	<listitem><para>All Users Einstellungen.</para></listitem>
@@ -801,53 +801,60 @@ Domäne ist, werden die folgenden Schritte in Bezug auf Profile durchlaufen:
 
 
 <procedure>
-	<step> <para> The users' account information that is obtained during the logon process
-	contains the location of the users' desktop profile. The profile path may be local to
-	the machine or it may be located on a network share. If there exists a profile at the
-	location of the path from the user account, then this profile is copied to the location
-	<filename>%SystemRoot%\Profiles\%USERNAME%</filename>. This profile then inherits the settings
-	in the <filename>All Users</filename> profile in the <filename>%SystemRoot%\Profiles</filename>
-	location. </para> </step>
+	<step> <para>
+	Die Information bezüglich des Benutzerkontos, die während dem Anmelde-Vorgang erhalten wird,
+	enthält den Ort, an dem das Desktop-Profil des Benutzers aufbewahrt wird. Der Profil-Pfad
+	kann lokal auf der Maschine liegen oder auf einer Netzwerk-Freigabe. Wenn ein Profil in dem
+	vom Benutzer-Konto angegebenen Pfad existiert, wird es auf 
+	<filename>%SystemRoot%\Profiles\%USERNAME%</filename> kopiert. Dieses Profil erbt dann die
+	Einstellungen im <filename>All Users</filename>-Profil in 
+	<filename>%SystemRoot%\Profiles</filename>.</para> </step>
 
-	<step> <para> If the user account has a profile path, but at its location a profile does not
-	exist, then a new profile is created in the <filename>%SystemRoot%\Profiles\%USERNAME%</filename>
-	directory from reading the <filename>Default User</filename> profile. </para> </step>
+	<step> <para>
+	Wenn das Benutzerkonto einen Profil-Pfad hat, aber dort kein Profil existiert, wird ein neues
+	Profil in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> angelegt, unter Verwendung
+	des Profils <filename>Default User</filename>.</para> </step>.
 
-	<step> <para> If the NETLOGON share on the authenticating server (logon server) contains
-	a policy file (<filename>NTConfig.POL</filename>), then its contents are applied to the
-	<filename>NTUser.DAT</filename> which is applied to the <filename>HKEY_CURRENT_USER</filename>
-	part of the registry. 
-	</para> </step>
+	<step> <para>
+	Wenn die Freigabe NETLOGON auf dem authentifizierenden Server (Logon-Server) eine
+	Richtlinien-Datei (<filename>NTConfig.POL</filename>) enthält, werden dessen Inhalte auf
+	<filename>NTUser.DAT</filename> angewandt, welches wiederum auf den Abschnitt
+	<filename>HKEY_CURRENT_USER</filename> der Registrierung angewandt wird.</para> </step>
 
-	<step> <para> When the user logs out, if the profile is set to be a roaming profile it will be
-	written out to the location of the profile. The <filename>NTuser.DAT</filename> file is then
-	recreated from the contents of the <filename>HKEY_CURRENT_USER</filename> contents. Thus,
-	should there not exist in the NETLOGON share an <filename>NTConfig.POL</filename> at the next
-	logon, the effect of the previous <filename>NTConfig.POL</filename> will still be held in the
-	profile. The effect of this is known as tattooing.
+	<step> <para>
+	Beim Abmelden des Benutzers wird, wenn das Profil ein "Roaming Profile" ist, das Profil
+	in den Profil-Pfad geschrieben. Die Datei <filename>NTuser.DAT</filename> wird dann neu
+	aus den Inhalten von <filename>HKEY_CURRENT_USER</filename> angelegt.
+	Daher wird, falls beim nächsten Anmelden
+	in der NETLOGON-Freigabe keine Datei <filename>NTConfig.POL</filename> existiert, die
+	Auswirkung der vorigen Datei <filename>NTConfig.POL</filename> nach wie vor im Profil behalten.
+	Diesen Effekt bezeichnet man als "Tattooing".</para> </step>
 	</para> </step>
 </procedure>
 
-<para> MS Windows NT4 profiles may be <emphasis>local</emphasis> or <emphasis>roaming</emphasis>. A local
-profile will stored in the <filename>%SystemRoot%\Profiles\%USERNAME%</filename> location. A roaming
-profile will also remain stored in the same way, unless the following registry key is created as shown: </para>
+<para>
+MS Windows NT4 Profile können <emphasis>lokal</emphasis> oder <emphasis>roaming</emphasis> sein.
+Ein lokales Profil wird in <filename>%SystemRoot%\Profiles\%USERNAME%</filename> gespeichert. Ein
+"Roaming Profile" wird auch in derselben Art gespeichert, außer der folgende Registrierungs-Schlüssel
+wird wie folgt angelegt:</para>
 
 <para><screen> HKEY_LOCAL_MACHINE\SYSTEM\Software\Microsoft\Windows NT\CurrentVersion\
 winlogon\"DeleteRoamingCache"=dword:0000000
  </screen>
-In this case, the local copy (in <filename>%SystemRoot%\Profiles\%USERNAME%</filename>) will be deleted
-on logout.</para>
+In diesem Fall, wird die lokale Kopie ((in <filename>%SystemRoot%\Profiles\%USERNAME%</filename>)
+beim Abmelden gelöscht.</para>
 
-<para> Under MS Windows NT4, default locations for common resources like <filename>My Documents</filename>
-may be redirected to a network share by modifying the following registry keys. These changes may be
-affected via use of the System Policy Editor. To do so may require that you create your own template
-extension for the policy editor to allow this to be done through the GUI. Another way to do this is by
-way of first creating a default user profile, then while logged in as that user, run <command>regedt32</command> to edit
-the key settings. </para>
+<para>Unter MS Windows NT4, können Standard-Pfade für allgemeine Ressourcen wie <filename>Eigene
+Dokumente</filename> auf eine Netzwerk-Freigabe umgeleitet werden, indem man die folgenden
+Registrierungs-Schlüssel ändert. Diese Änderungen können durch Verwendung des System Policy Editor
+vorgenommen werden. Dies erfordert das Anlegen Ihrer eigenen Vorlage für den Policy Editor, um
+diese Änderungen per GUI zu erlauben. Eine andere Möglichkeit, dies zu tun, ist, zuerst ein
+Standard-Benutzer-Profil anzulegen, dann, während man als anderer Benutzer angemeldet ist,
+<command>regedt32</command> auszuführen, um die Schlüssel zu editieren.</para>
 
 <para>
-The Registry Hive key that affects the behavior of folders that are part of the default user
-profile are controlled by entries on Windows NT4 is:
+Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Teil des Standard-Benutzer-
+Profils sind, ist auf Windows NT4:
 <screen>
 HKEY_CURRENT_USER
 	\Software
@@ -860,27 +867,29 @@ HKEY_CURRENT_USER
 <indexterm><primary>windows registry settings</primary><secondary>default profile locations</secondary></indexterm>
 </para>
 
-<para> The above hive key contains a list of automatically managed folders. The default entries are shown in <link linkend="ProfileLocs"/>. </para>
+<para>
+Der obige Schlüssel enthält eine Liste von automatisch verwalteten Ordnern. Die Standard-Einträge
+werde in <link linkend="ProfileLocs"/> gezeigt.</para>
 
 <table frame="all" id="ProfileLocs">
-	<title>User Shell Folder Registry Keys Default Values</title>
+	<title>Standard-Werte der Registrierungs-Schlüssel für Benutzer-Ordner</title>
 	<tgroup cols="2">
 		<colspec align="left"/>
 		<colspec align="left"/>
 	<thead>
-		<row><entry>Name</entry><entry>Default Value</entry></row>
+		<row><entry>Name</entry><entry>Standard-Wert</entry></row>
 	</thead>
 	<tbody>
-		<row><entry>AppData</entry><entry>%USERPROFILE%\Application Data</entry></row>
+		<row><entry>AppData</entry><entry>%USERPROFILE%\Anwendungsdaten</entry></row>
 		<row><entry>Desktop</entry><entry>%USERPROFILE%\Desktop</entry></row>
-		<row><entry>Favorites</entry><entry>%USERPROFILE%\Favorites</entry></row>
-		<row><entry>NetHood</entry><entry>%USERPROFILE%\NetHood</entry></row>
-		<row><entry>PrintHood</entry><entry>%USERPROFILE%\PrintHood</entry></row>
-		<row><entry>Programs</entry><entry>%USERPROFILE%\Start Menu\Programs</entry></row>
-		<row><entry>Recent</entry><entry>%USERPROFILE%\Recent</entry></row>
+		<row><entry>Favorites</entry><entry>%USERPROFILE%\Favoriten</entry></row>
+		<row><entry>NetHood</entry><entry>%USERPROFILE%\Netzwerkumgebung</entry></row>
+		<row><entry>PrintHood</entry><entry>%USERPROFILE%\Druckumgebung</entry></row>
+		<row><entry>Programs</entry><entry>%USERPROFILE%\Startmenü\Programme</entry></row>
+		<row><entry>Recent</entry><entry>%USERPROFILE%\Zuletzt verwendete Dokumente</entry></row>
 		<row><entry>SendTo</entry><entry>%USERPROFILE%\SendTo</entry></row>
-		<row><entry>Start Menu </entry><entry>%USERPROFILE%\Start Menu</entry></row>
-		<row><entry>Startup</entry><entry>%USERPROFILE%\Start Menu\Programs\Startup</entry></row>
+		<row><entry>Start Menu</entry><entry>%USERPROFILE%\Startmenü</entry></row>
+		<row><entry>Startup</entry><entry>%USERPROFILE%\Startmenü\Programme\Autostart</entry></row>
 	</tbody>
 	</tgroup>
 </table>
