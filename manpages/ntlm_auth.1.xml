@@ -258,15 +258,17 @@ auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-m
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
 	
-	<para>The original Samba software and related utilities 
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar 
-	to the way the Linux kernel is developed.</para>
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge
+	wurden von Andrew Tridgell geschrieben. Samba wird nun vom 
+	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
+	der Linux-Kernel.</para>
 	
-	<para>The ntlm_auth manpage was written by Jelmer Vernooij and
-	Andrew Bartlett.</para>
+	<para>Die ntlm_auth man page wurde von Jelmer Vernooij 
+	und Andrew Bartlett geschrieben.</para>
+	<para>Übersetzung ins Deutsche: Dinu Gherman.</para>
+
 </refsect1>
 
 </refentry>

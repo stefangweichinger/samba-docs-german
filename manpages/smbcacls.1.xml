@@ -245,19 +245,19 @@ ACL:&lt;sid or name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
 	
-	<para>The original Samba software and related utilities 
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar 
-	to the way the Linux kernel is developed.</para>
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge
+	wurden von Andrew Tridgell geschrieben. Samba wird nun vom 
+	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
+	der Linux-Kernel.</para>
 	
-	<para><command>smbcacls</command> was written by Andrew Tridgell 
-	and Tim Potter.</para>
+	<para><command>smbcacls</command> wurde von Andrew Tridgell 
+	und Tim Potter geschrieben.</para>
 	
-	<para>The conversion to DocBook for Samba 2.2 was done 
-	by Gerald Carter. The conversion to DocBook XML 4.2 for Samba 3.0 was done
-	by Alexander Bokovoy.</para>
+	<para>Die Umwandlung ins DocBook-Format wurde von Gerald Carter 
+	für Samba 2.2 durchgeführt. Die Umwandlung in DocBook für XML 4.2
+	wurde von Alexander Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>

@@ -458,18 +458,19 @@ Comma Separated list of Files
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
 	
-	<para>The original Samba software and related utilities 
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar 
-	to the way the Linux kernel is developed.</para>
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge
+	wurden von Andrew Tridgell geschrieben. Samba wird nun vom 
+	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
+	der Linux-Kernel.</para>
 	
-	<para>The original rpcclient man page was written by Matthew 
-	Geddes, Luke Kenneth Casson Leighton, and rewritten by Gerald Carter.  
-	The conversion to DocBook for Samba 2.2 was done by Gerald 
-	Carter. The conversion to DocBook XML 4.2 for Samba 3.0 was
-	done by Alexander Bokovoy.</para>
+	<para>Die ursprüngliche rpcclient man page wurde von Matthew
+	Geddes und Luke Kenneth Casson Leighton geschrieben und von 
+	Gerald Carter überarbeitet.  
+	Die Umwandlung ins DocBook-Format wurde von Gerald Carter für 
+	Samba 2.2 durchgeführt. Die Umwandlung in DocBook für XML 4.2 
+	wurde von Alexander Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>

@@ -139,14 +139,15 @@
 </refsect1>
 
 <refsect1>
-	<title>AUTHOR</title>
+	<title>AUTOR</title>
+	
+	<para>Die originale Samba-Software und die zugehörigen Werkzeuge
+	wurden von Andrew Tridgell geschrieben. Samba wird nun vom 
+	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
+	der Linux-Kernel.</para>
 
-	<para>The original Samba software and related utilities
-	were created by Andrew Tridgell. Samba is now developed
-	by the Samba Team as an Open Source project similar
-	to the way the Linux kernel is developed.</para>
-
-	<para>The vfstest man page was written by Jelmer Vernooij.</para>
+	<para>Die vfstest man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Übersetzung ins Deutsche: Dinu Gherman.</para>
 </refsect1>
 
 </refentry>
