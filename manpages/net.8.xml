@@ -511,7 +511,7 @@ Als Vorgabetyp wird 0x20 (Workstation) verwendet.
 <refsect3>
 <title>LOOKUP DC [<replaceable>DOMÄNE</replaceable>]</title>
 
-<para>Gibt die IPs der Domain Controller für die angegebene <replaceable>
+<para>Gibt die IPs der Domänen-Controller für die angegebene <replaceable>
 DOMÄNE</replaceable> an. Standardwert ist die lokale Domäne.</para>
 
 </refsect3>
@@ -689,7 +689,7 @@ z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 <refsect2>
 <title>[RPC|ADS] CHANGETRUSTPW</title>
 
-<para>Erzwingt die Änderung des Domänen-Vertrauenspassworts.</para>
+<para>Erzwingt die Änderung des Domänen-Passworts.</para>
 
 </refsect2>
 
@@ -699,8 +699,8 @@ z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 <refsect3>
 <title>RPC TRUSTDOM ADD <replaceable>DOMÄNE</replaceable></title>
 
-<para>Fügt ein Interdomain-Vertrauenskonto für 
-<replaceable>DOMÄNE</replaceable> auf den entfernten Server hinzu. 
+<para>Fügt ein Domänen-Konto für <replaceable>DOMÄNE</replaceable> auf 
+dem entfernten Server hinzu. 
 </para>
 
 </refsect3>
@@ -708,8 +708,8 @@ z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 <refsect3>
 <title>RPC TRUSTDOM DEL <replaceable>DOMAIM</replaceable></title>
 
-<para>Entfernt Interdomain-Vertrauenskonto für 
-<replaceable>DOMÄNE</replaceable> vom entfernten Server. 
+<para>Entfernt ein Domänen-Konto für <replaceable>DOMÄNE</replaceable> 
+vom entfernten Server. 
 </para>
 
 &not.implemented;
@@ -721,7 +721,7 @@ z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 
 <para>
 Stellt eine Vertrauensbeziehung zu einer vertrauenden Domäne her. 
-Das Interdomain-Konto muss auf dem entfernten PDC schon erzeugt sein.
+Das Domänen-Konto muss auf dem entfernten PDC schon erzeugt sein.
 </para>
 
 </refsect3>
@@ -735,7 +735,7 @@ Das Interdomain-Konto muss auf dem entfernten PDC schon erzeugt sein.
 <refsect3>
 <title>RPC TRUSTDOM LIST</title>
 
-<para>Listet alle aktuellen Interdomain-Vertrauensbeziehungen auf.</para>
+<para>Listet alle aktuellen Domänen-Vertrauensbeziehungen auf.</para>
 
 </refsect3>
 
