@@ -57,7 +57,7 @@ s%@includedir@%${prefix}/include%g
 s%@oldincludedir@%/usr/include%g
 s%@infodir@%${prefix}/info%g
 s%@mandir@%${prefix}/man%g
-s%@DOC_BUILD_DATE@%18-08-2004%g
+s%@DOC_BUILD_DATE@%23-09-2004%g
 s%@PAPERSIZE@%a4paper%g
 s%@DUPLICATE_ULINKS@%%g
 s%@FONTSIZE@%10.5%g
@@ -65,6 +65,7 @@ s%@DOCROP@%0%g
 s%@SAMBASOURCEDIR@%%g
 s%@XSLTPROC@%/usr/bin/xsltproc%g
 s%@RM@%/bin/rm%g
+s%@DIA@%/usr/bin/dia%g
 s%@MAKEINDEX@%/usr/bin/makeindex%g
 s%@PDFLATEX@%/usr/bin/pdflatex%g
 s%@EPSTOPDF@%/usr/bin/epstopdf%g

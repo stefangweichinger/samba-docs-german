@@ -13,6 +13,7 @@ DVIPS = /usr/bin/dvips
 PNGTOPNM = /usr/bin/pngtopnm
 EPSTOPNM = @EPSTOPNM@
 PNMTOPNG = @PNMTOPNG@
+DIA = /usr/bin/dia
 PNMTOPS = /usr/bin/pnmtops
 HTML2TEXT = /usr/bin/html2text
 PLUCKERBUILD = 
@@ -159,11 +160,16 @@ $(PDFDIR)/%.pdf: %.pdf
 	mkdir -p $(@D)
 	cp $< $@
 
+%.idx: %.tex latexfigures
+	-$(PDFLATEX) $<
+
+%.ind: %.idx
+	$(MAKEINDEX) $<
+
 # Adobe PDF files
-%.pdf: %.tex latexfigures 
+%.pdf: %.tex %.ind latexfigures 
+	$(MAKE) $(shell $(XSLTPROC) --stringparam prepend "" --stringparam append ".png" --stringparam role latex xslt/find-image-dependencies.xsl $(DOCBOOKDIR)/$*.xml)
 	-$(PDFLATEX) $<
-	-$(PDFLATEX) $<
-	$(MAKEINDEX) $*
 	$(THUMBPDF) $*.pdf
 	-$(PDFLATEX) $<
 
@@ -175,9 +181,9 @@ $(DVIDIR)/%.dvi: %.dvi
 %.dvi: %.tex %.idx 
 	$(MAKE) $(shell $(XSLTPROC) --stringparam prepend "" --stringparam append ".eps" --stringparam role latex xslt/find-image-dependencies.xsl $(DOCBOOKDIR)/$*.xml)
 	-$(LATEX) $< 
-	-$(LATEX) $< 
-	$(MAKEINDEX) $*
-	-$(LATEX) $< 
+
+%.png: %.dia
+	$(DIA) -e $@ $<
 
 %.eps: %.png
 	$(PNGTOPNM) $< | $(PNMTOPS) > $@
@@ -223,9 +229,9 @@ $(MANDIR)/%: $(DOCBOOKDIR)/%.xml xslt/man.xsl
 
 # Pearson compatible XML
 
-$(PEARSONDIR)/%.xml: $(DOCBOOKDIR)/%.xml xslt/pearson.xsl
+$(PEARSONDIR)/%.xml: %/index.xml xslt/sambadoc2pearson.xsl
 	mkdir -p $(@D)
-	$(XSLTPROC) --xinclude --output $@ xslt/pearson.xsl $<
+	$(XSLTPROC) --xinclude --output $@ xslt/sambadoc2pearson.xsl $<
 
 $(PEARSONDIR)/%.report.html: $(PEARSONDIR)/%.xml
 	mkdir -p $(@D)

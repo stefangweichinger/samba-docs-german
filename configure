@@ -674,10 +674,68 @@ fi
 	fi
 
 
+	# Extract the first word of "dia", so it can be a program name with args.
+set dummy dia; ac_word=$2
+echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
+echo "configure:681: checking for $ac_word" >&5
+if eval "test \"`echo '$''{'ac_cv_path_DIA'+set}'`\" = set"; then
+  echo $ac_n "(cached) $ac_c" 1>&6
+else
+  case "$DIA" in
+  /*)
+  ac_cv_path_DIA="$DIA" # Let the user override the test with a path.
+  ;;
+  ?:/*)			 
+  ac_cv_path_DIA="$DIA" # Let the user override the test with a dos path.
+  ;;
+  *)
+  IFS="${IFS= 	}"; ac_save_ifs="$IFS"; IFS=":"
+  ac_dummy="$PATH"
+  for ac_dir in $ac_dummy; do 
+    test -z "$ac_dir" && ac_dir=.
+    if test -f $ac_dir/$ac_word; then
+      ac_cv_path_DIA="$ac_dir/$ac_word"
+      break
+    fi
+  done
+  IFS="$ac_save_ifs"
+  ;;
+esac
+fi
+DIA="$ac_cv_path_DIA"
+if test -n "$DIA"; then
+  echo "$ac_t""$DIA" 1>&6
+else
+  echo "$ac_t""no" 1>&6
+fi
+
+	if test x"$DIA" = x; then
+		if test x"$ALL_REQUIRES" = x; then
+			ALL_REQUIRES="dia"
+		else
+			ALL_REQUIRES="$ALL_REQUIRES dia"
+		fi
+	fi
+
+
+# Check dia version number
+ DIA_VERSION=`dia -v | egrep -o '([0-9]+)\.([0-9]+)'`
+DIA_MAJ_VERSION=`echo $DIA_VERSION | cut -d . -f 1`
+DIA_MIN_VERSION=`echo $DIA_VERSION | cut -d . -f 2`
+
+if test "$DIA_MAJ_VERSION" -le "0"
+then
+	if test "$DIA_MIN_VERSION" -le "92" && test -z "$DISPLAY" 
+	then
+		{ echo "configure: error: Dia below 0.93 requires an X environment. Set \$DISPLAY or install Dia 0.93 or higher" 1>&2; exit 1; }
+	fi
+fi
+
+
 	# Extract the first word of "makeindex", so it can be a program name with args.
 set dummy makeindex; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:681: checking for $ac_word" >&5
+echo "configure:739: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_MAKEINDEX'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -721,7 +779,7 @@ fi
 	# Extract the first word of "pdflatex", so it can be a program name with args.
 set dummy pdflatex; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:725: checking for $ac_word" >&5
+echo "configure:783: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PDFLATEX'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -765,7 +823,7 @@ fi
 	# Extract the first word of "epstopdf", so it can be a program name with args.
 set dummy epstopdf; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:769: checking for $ac_word" >&5
+echo "configure:827: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_EPSTOPDF'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -809,7 +867,7 @@ fi
 	# Extract the first word of "thumbpdf", so it can be a program name with args.
 set dummy thumbpdf; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:813: checking for $ac_word" >&5
+echo "configure:871: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_THUMBPDF'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -853,7 +911,7 @@ fi
 	# Extract the first word of "pngtopnm", so it can be a program name with args.
 set dummy pngtopnm; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:857: checking for $ac_word" >&5
+echo "configure:915: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PNGTOPNM'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -897,7 +955,7 @@ fi
 	# Extract the first word of "pnmtops", so it can be a program name with args.
 set dummy pnmtops; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:901: checking for $ac_word" >&5
+echo "configure:959: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PNMTOPS'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -941,7 +999,7 @@ fi
 	# Extract the first word of "latex", so it can be a program name with args.
 set dummy latex; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:945: checking for $ac_word" >&5
+echo "configure:1003: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_LATEX'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -985,7 +1043,7 @@ fi
 	# Extract the first word of "dvips", so it can be a program name with args.
 set dummy dvips; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:989: checking for $ac_word" >&5
+echo "configure:1047: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_DVIPS'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1029,7 +1087,7 @@ fi
 	# Extract the first word of "plucker-build", so it can be a program name with args.
 set dummy plucker-build; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1033: checking for $ac_word" >&5
+echo "configure:1091: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PLUCKERBUILD'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1073,7 +1131,7 @@ fi
 	# Extract the first word of "html2text", so it can be a program name with args.
 set dummy html2text; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1077: checking for $ac_word" >&5
+echo "configure:1135: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_HTML2TEXT'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1117,7 +1175,7 @@ fi
 	# Extract the first word of "perl", so it can be a program name with args.
 set dummy perl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1121: checking for $ac_word" >&5
+echo "configure:1179: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PERL'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1161,7 +1219,7 @@ fi
 	# Extract the first word of "xmllint", so it can be a program name with args.
 set dummy xmllint; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1165: checking for $ac_word" >&5
+echo "configure:1223: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_XMLLINT'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1551,6 +1609,7 @@ s%@DOCROP@%$DOCROP%g
 s%@SAMBASOURCEDIR@%$SAMBASOURCEDIR%g
 s%@XSLTPROC@%$XSLTPROC%g
 s%@RM@%$RM%g
+s%@DIA@%$DIA%g
 s%@MAKEINDEX@%$MAKEINDEX%g
 s%@PDFLATEX@%$PDFLATEX%g
 s%@EPSTOPDF@%$EPSTOPDF%g
