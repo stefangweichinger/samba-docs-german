@@ -784,283 +784,248 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 
 	<tip><para>
 	Verwenden Sie den Befehl <quote>gs -h</quote>, um alle eingebauten <quote>devices</quote> Ihrer
-	Ghostscript-Version anzusehen. If you specify a parameter of
-	<parameter>-sDEVICE=png256</parameter> on your Ghostscript command
-	line, you are asking Ghostscript to convert the input into a PNG
-	file. Naming a <quote>device</quote> on the command line is the most important
-	single parameter to tell Ghostscript exactly how it should render the
-	input. New Ghostscript versions are released at fairly regular
-	intervals, now by artofcode LLC. They are initially put under the
-	<quote>AFPL</quote> license, but re-released under the GNU GPL as soon as the next
-	AFPL version appears. GNU Ghostscript is probably the version
-	installed on most Samba systems. But it has some deficiencies.
+	Ghostscript-Version anzusehen. Wenn Sie den Parameter <parameter>-sDEVICE=png256</parameter> auf
+	Ihrer Ghostscript-Befehlszeile angeben, teilen Sie Ghostscript mit, den Input in eine PNG-Datei
+	zu konvertieren. Ein <quote>device</quote> auf der Befehlszeile anzugeben, ist der wichtigste
+	Parameter, um Ghostscript exakt mitzuteilen, wie es den Input darstellen soll. Neue Versionen von
+	Ghostscript werden in ziemlich regelmässigen Intervallen veröffentlicht, mittlerweile von
+	artofcode LLC. Diese Versionen werden ursprünglich unter die Lizenz <quote>AFPL</quote> gestellt,
+	aber dann unter der GNU GPL wiederveröffentlicht, sobald die nächste AFPL-Version erscheint.
+	GNU Ghostscript ist wahrscheinlich die auf den meisten Samba-Systemen installierte Version. Aber
+	es hat einige Mängel.
 	<indexterm><primary>Ghostscript</primary><secondary>ESP</secondary><see>ESP GhostScript</see></indexterm>
-	Therefore, ESP Ghostscript was developed as an
-	enhancement over GNU Ghostscript, with lots of bug-fixes, additional
-	devices and improvements. It is jointly maintained by developers from
-	CUPS, Gimp-Print, MandrakeSoft, SuSE, Red Hat, and Debian. It includes
-	the <quote>cups</quote> device (essential to print to non-PS printers from CUPS).
+	Daher wurde ESP Ghostscript als eine Erweiterung zu GNU Ghostscript entwickelt, mit vielen Bug-fixes,
+	zusätzlichen Geräten und Erweiterungen. Es wird gemeinsam von Entwicklern von CUPS, Gimp-Print, 
+	MandrakeSoft, SuSE, Red Hat, und Debian verwaltet und entwickelt. Es beinhaltet das Gerät
+	<quote>cups</quote> (essentiell wichtig, um von CUPS aus auf Nicht-PS-Drucker zu drucken).
 	</para></tip>
 	</sect2>
 
 	<sect2>
-	<title>PostScript Printer Description (PPD) Specification</title>
+	<title>Spezifikation der PostScript Printer Description (PPD)</title>
 
 
 	<para>
 	<indexterm><primary>PPD</primary></indexterm>
-	While PostScript in essence is a Page Description
-	Language (PDL) to represent the page layout in a
-	device-independent way, real-world print jobs are
-	always ending up being output on hardware with device-specific
-	features. To take care of all the differences in hardware and to
-	allow for innovations, Adobe has specified a syntax and file format
-	for PostScript Printer Description (PPD)
-	files. Every PostScript printer ships with one of these files.
+	Während PostScript im Kern eine Seiten-Beschreibungs-Sprache (PDL) ist, um das Layout einer Seite auf
+	eine geräte-unabhängige Art darzustellen, werden in der Praxis Druckaufträge schlußendlich immer von
+	Hardware mit geräteabhängigen Eigenschaften ausgegeben. Um all die Unterschiede in der Hardware zu
+	berücksichtigen und Innovation zu ermöglichen, hat Adobe eine Syntax und ein Dateiformat für
+	PostScript Printer Description (PPD) Dateien bestimmt. Jeder PostScript-Drucker wird mit einer dieser
+	Dateien geliefert.
 	</para>
 
 	<para>
-	PPDs contain all the information about general and special features of the
-	given printer model: Which different resolutions can it handle? Does
-	it have a Duplexing Unit? How many paper trays are there? What media
-	types and sizes does it take? For each item, it also names the special
-	command string to be sent to the printer (mostly inside the PostScript
-	file) in order to enable it.
+	PPDs enthalten all die Informationen über generelle und spezifische Eigenschaften des jeweiligen
+	Drucker-Modells: Welche verschiedenen Auflösungen kann es verarbeiten? Hat es eine Duplex-Einheit?
+	Wieviele Papierschächte gibt es? Welche Arten von Medien und deren Formate kann es verarbeiten? Für
+	jeden Punkt benennen PPDs auch die spezielle Befehlsfolge, die man zu dessen Aktivierung an den
+	Drucker (meist innerhalb der PostScript-Datei) senden muß.
 	</para>
 
 	<para>
-	Information from these PPDs is meant to be taken into account by the
-	printer drivers. Therefore, installed as part of the Windows
-	PostScript driver for a given printer is the printer's PPD. Where it
-	makes sense, the PPD features are presented in the drivers' UI dialogs
-	to display to the user a choice of print options. In the end, the
-	user selections are somehow written (in the form of special
-	PostScript, PJL, JCL or vendor-dependent commands) into the PostScript
-	file created by the driver.
+	Die Information in diesen PPDs ist dafür bestimmt, von den Druckertreibern berücksichtigt zu werden.
+	Daher wird als Teil des für einen bestimmten Drucker installierten Windows PostScript Treibers die
+	PPD des Druckers installiert. Wo es Sinn macht, werden die PPD-Features in den UI-Dialogen des Treibers
+	dargestellt, um dem Benutzer eine Auswahl von Druck-Optionen zu geben. Schlußendlich wird die Auswahl des
+	Benutzers in die vom Drucker erstellte PostScript-Datei geschrieben (in der Form spezieller PostScript,
+	PJL, JCL oder hersteller-spezifischer Befehle).
 	</para>
 
 	<warning><para>
 	<indexterm><primary>PDF</primary></indexterm>
-	A PostScript file that was created to contain device-specific commands
-	for achieving a certain print job output (e.g., duplex-ed, stapled and
-	punched) on a specific target machine, may not print as expected, or
-	may not be printable at all on other models; it also may not be fit
-	for further processing by software (e.g., by a PDF distilling program).
+	Eine PostScript-Datei, die angelegt wurde, um geräte-spezifische Befehle zum Erreichen einer bestimmten
+	Druckausgabe (z.B. Duplexdruck, Stapeldruck oder Faltungen) auf einem bestimmten Ausgabegerät zu
+	enthalten, kann möglicherweise nicht so drucken, wie erwartet, oder auf anderen Druckermodellen gar
+	nicht zu drucken sein; es kann auch sein, daß diese Datei nicht mehr für weitere Verarbeitung durch
+	Software geeignet ist (z.B. durch ein PDF-distilling Programm).
 	</para></warning>
 	</sect2>
 
 	<sect2>
-	<title>Using Windows-Formatted Vendor PPDs</title>
+	<title>Verwendung von Windows-formatierten Hersteller-PPDs</title>
 
 	<para>
-	CUPS can handle all spec-compliant PPDs as supplied by the
-	manufacturers for their PostScript models. Even if a
-	vendor might not have mentioned our favorite
-	OS in his manuals and brochures, you can safely trust this:
-	<emphasis>If you get the Windows NT version of the PPD, you
-	can use it unchanged in CUPS</emphasis> and thus access the full
-	power of your printer just like a Windows NT user could!
+	CUPS kann mit allen spezifikations-gemässen PPDs ungehen, wie sie von Herstellern für ihre
+	PostScript-Modelle bereitgestellt werden. Sogar wenn ein Hersteller unser Lieblings-Betriebssystem
+	nicht in seinen Handbüchern und Broschüren erwähnt hat, können Sie sich sicher darauf verlassen:
+	<emphasis>Wenn Sie die Windows NT Version der PPD erhalten, können Sie diese unverändert mit CUPS
+	verwenden</emphasis> und daher die volle Leistungsfähigkeit Ihres Druckers nutzen, genauso wie ein
+	Windows NT Benutzer es könnte!
 	</para>
 
 	<tip><para>
-	To check the spec compliance of any PPD online, go to <ulink
-	noescape="1" url="http://www.cups.org/testppd.php">http://www.cups.org/testppd.php</ulink>
-	and upload your PPD. You will see the results displayed
-	immediately. CUPS in all versions after 1.1.19 has a much more strict
-	internal PPD parsing and checking code enabled; in case of printing
-	trouble, this online resource should be one of your first pit-stops.
+	Um die Spezifikations-Entsprechung einer beliebigen PPD online zu prüfen, gehen Sie auf
+	<ulink noescape="1" url="http://www.cups.org/testppd.php">http://www.cups.org/testppd.php</ulink>
+	und laden Sie Ihre PPD. Sie sehen das Ergebnis sofort. CUPS hat seit der Version 1.1.19 ein weitaus
+	strikteres internes PPD-Parsing und eine Code-Prüfung aktiviert; im Fall von Druckerproblemen sollte
+	diese Online-Ressource einer Ihrer ersten Anlaufstellen sein.
 	</para></tip>
 
 	<warning><para>
 	<indexterm><primary>foomatic</primary></indexterm>
 	<indexterm><primary>cupsomatic</primary></indexterm>
-	For real PostScript printers, <emphasis>do not</emphasis> use the
-	<emphasis>Foomatic</emphasis> or <emphasis>cupsomatic</emphasis>
-	PPDs from Linuxprinting.org. With these devices, the original
-	vendor-provided PPDs are always the first choice!
+	Für tatsächliche PostScript-Drucker verwenden Sie <emphasis>nicht</emphasis> die 
+	<emphasis>Foomatic</emphasis> oder <emphasis>cupsomatic</emphasis> PPDs von Linuxprinting.org. Mit diesen
+	Geräten sind immer die vom Hersteller bereitgestellten PPDs erste Wahl!
 	</para></warning>
 
 	<tip><para>
-	If you are looking for an original vendor-provided PPD of a specific
-	device, and you know that an NT4 box (or any other Windows box) on
-	your LAN has the PostScript driver installed, just use
-	<command>smbclient //NT4-box/print\$ -U username</command> to
-	access the Windows directory where all printer driver files are
-	stored. First look in the <filename>W32X86/2</filename> subdir for
-	the PPD you are seeking.
+	Wenn Sie nach einem Original-Hersteller-PPD eines spezifischen Geräts suchen, und Sie wissen, daß eine
+	NT4-Box (oder irgendeine andere Windows-Box) in Ihrem LAN den PostScript-Treiber installiert hat, 
+	verwenden Sie einfach <command>smbclient //NT4-box/print\$ -U username</command>, um auf das
+	Windows-Verzeichnis zuzugreifen, in dem alle Druckertreiber-Dateien gespeichert sind. Durchsuchen Sie
+	zuerst das Unterverzeichnis <filename>W32X86/2</filename> nach den gesuchten PPDs.
 	</para></tip>
 	</sect2>
 
 	<sect2>
-	<title>CUPS Also Uses PPDs for Non-PostScript Printers</title>
+	<title>CUPS verwendet auch PPDs für Nicht-PostScript-Drucker</title>
 
 	<para>
-	CUPS also uses specially crafted PPDs to handle non-PostScript
-	printers. These PPDs are usually not available from the vendors (and
-	no, you can't just take the PPD of a PostScript printer with the same
-	model name and hope it works for the non-PostScript version too). To
-	understand how these PPDs work for non-PS printers, we first need to
-	dive deeply into the CUPS filtering and file format conversion
-	architecture. Stay tuned.
+	CUPS verwendet auch spezielle PPDs, um mit Nicht-PostScript-Druckern umzugehen. Diese PPDs sind
+	üblicherweise nicht von den Herstellern verfügbar (und, nein, Sie können nicht einfach das die PPD
+	eines PostScript-Druckers mit demselben Modellnamen verwenden und hoffen, daß diese auch mit der
+	Nicht-PostScript-Version funktioniert). Um zu verstehen, wie diese PPDs funktionieren, müssen wir
+	zuerst tief in die Architektur der CUPS-Filter und -Dateiwandlung eintauchen. Bleiben Sie dran.
 	</para>
 	</sect2>
 </sect1>
 
 <sect1>
-<title>The CUPS Filtering Architecture</title>
+<title>Die CUPS Filter-Architektur</title>
 
 <para>
-The core of the CUPS filtering system is based on
-Ghostscript. In addition to Ghostscript, CUPS
-uses some other filters of its own. You (or your OS vendor) may have
-plugged in even more filters. CUPS handles all data file formats under
-the label of various MIME types. Every incoming
-printfile is subjected to an initial
-auto-typing. The auto-typing determines its given
-MIME type. A given MIME type implies zero or more possible filtering
-chains relevant to the selected target printer. This section discusses
-how MIME types recognition and conversion rules interact. They are
-used by CUPS to automatically setup a working filtering chain for any
-given input data format.
+Der Kern des CUPS-Filter-Systems beruht auf Ghostscript. Zusätzlich dazu verwendet CUPS einige andere eigene
+Filter. Sie (oder der Hersteller Ihres Betriebssystems) können sogar noch mehr Filter hinzugefügt haben.
+CUPS behandelt alle Dateiformate unter der Zuordnung verschiedener MIME-Typen. Jede einlangende Druckdatei
+wird einem initialen Auto-Typing zugeführt. Dieses Auto-Typing bestimmt den MIME-Typ der Druckdatei. Ein
+bestimmter MIME-Typ bedingt null keine oder mehrere mögliche Filter-Ketten, die für den gewählten Zieldrucker
+relevant sind. Dieser Abschnitt behandelt, wie die Erkennungs- und Umwandlungs-Regeln von MIME-Typen
+zusammenarbeiten. Sie werden von CUPS dazu verwendet, um automatisch eine funktionierende Filterkette für
+jedes beliebige Eingabe-Datenformat zu bilden.
 </para>
 
 <para>
-If CUPS rasterizes a PostScript file natively to
-a bitmap, this is done in two stages:
+Wenn CUPS eine PostScript-Datei in ein Bitmap rastert, passiert dies in 2 Stufen:
 </para>
 
 <itemizedlist>
-	<listitem><para>The first stage uses a Ghostscript device named <quote>cups</quote>
-(this is since version 1.1.15) and produces a generic raster format
-called <quote>CUPS raster</quote>.
+	<listitem><para>Die erste Stufe verwendet ein Ghostscript-device namens <quote>cups</quote>
+	(dies seit Version 1.1.15), und erzeugt ein generisches Raster-Format namens
+	<quote>CUPS raster</quote>.
 </para></listitem>
 
-<listitem><para>The second stage uses a <quote>raster driver</quote> that converts
-		the generic CUPS raster to a device-specific raster.</para></listitem>
+<listitem><para>Die zweite Stufe verwendet einen <quote>raster driver</quote>, der das generische
+	<quote>CUPS raster</quote> in ein geräte-spezifisches Raster konvertiert.</para></listitem>
 </itemizedlist>
 
 <para>
-Make sure your Ghostscript version has the <quote>cups</quote> device compiled in
-(check with <command>gs -h | grep cups</command>). Otherwise you
-may encounter the dreaded <computeroutput>Unable to convert file
-0</computeroutput> in your CUPS error_log file. To have <quote>cups</quote> as a
-device in your Ghostscript, you either need to patch GNU
-Ghostscript and re-compile, or use <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm><ulink
-url="http://www.cups.org/ghostscript.php">ESP Ghostscript</ulink>. The
-superior alternative is ESP Ghostscript. It supports not just CUPS,
-but 300 other devices too (while GNU Ghostscript supports only about
-180). Because of this broad output device support, ESP Ghostscript is
-the first choice for non-CUPS spoolers, too. It is now recommended by
-Linuxprinting.org for all spoolers.
+Stellen Sie sicher, daß Ihre Ghostscript-Version das Gerät <quote>cups</quote> einkompiliert hat 
+(Überprüfung mittels <command>gs -h | grep cups</command>). Ansonsten könnten Sie das gefürchtete
+<computeroutput>Unable to convert file 0</computeroutput> in Ihrer CUPS error_log Datei vorfinden. Um 
+<quote>cups</quote> als GErät in Ihrem Ghostscript zu haben, müssen Sie entweder GNU Ghostscript patchen und
+neu kompilieren, oder Sie verwenden
+<indexterm><primary>ESP</primary><secondary>Ghostscript</secondary>
+</indexterm><ulink
+url="http://www.cups.org/ghostscript.php">ESP Ghostscript</ulink>.
+Die bessere Alternative ist ESP Ghostscript. Es unterstützt nicht nur CUPS, sondern auch 300 andere Geräte
+(während GNU Ghostscript nur ungefähr 180 Geräte unterstützt). Wegen dieser breiten Unterstützung von
+Ausgabegeräten ist ESP Ghostscript auch die erste Wahl für nicht-CUPS-Spooler. Es wird mittlerweile von
+Linuxprinting.org für alle Spooler empfohlen.
 </para>
 
 <para>
 <indexterm><primary>cupsomatic</primary></indexterm>
 <indexterm><primary>foomatic</primary></indexterm>
-CUPS printers may be setup to use external rendering paths. One of the most common is provided by the
-Foomatic/cupsomatic concept from <ulink url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink> This
-uses the classical Ghostscript approach, doing everything in one step. 
-It does not use the <quote>cups</quote> device, but one of the many
-others. However, even for Foomatic/cupsomatic usage, best results and
+CUPS-Drucker können zur Verwendung externer Darstellungs-Pfade. Einer der gängigsten ist das
+Konzept Foomatic/cupsomatic von <ulink url="http://www.linuxprinting.org/">Linuxprinting.org.</ulink>
+Dieses verwendet den klassischen Ghostscript-Ansatz, alles auf einmal zu tun. Es verwendet nicht das Gerät
+<quote>cups</quote>, sondern eines der vielen anderen. 
 <indexterm><primary>ESP</primary><secondary>Ghostscript</secondary></indexterm>
-broadest printer model support is provided by ESP Ghostscript (more
-about cupsomatic/Foomatic, particularly the new version called now
-<emphasis>foomatic-rip</emphasis>, follows below).
+Jedoch erzielt man auch bei Verwendung von 
+Foomatic/cupsomatic das beste Ergebnis und die breiteste Drucker-Modell-Unterstützung mit ESP Ghostscript
+(mehr zu cupsomatic/Foomatic, im Speziellen zur neuen Version, die jetzt <emphasis>foomatic-rip</emphasis>
+heißt, weiter unten).
 </para>
 
 <sect2>
-<title>MIME Types and CUPS Filters</title>
+<title>MIME-Typen und CUPS-Filter</title>
 
 
 <para>
-<indexterm><primary>MIME</primary><secondary>filters</secondary></indexterm>
+<indexterm><primary>MIME</primary><secondary>Filter</secondary></indexterm>
 	<indexterm><primary>MIME</primary></indexterm>
-CUPS reads the file <filename>/etc/cups/mime.types</filename>
-(and all other files carrying a <filename>*.types</filename> suffix
-in the same directory) upon startup. These files contain the MIME
-type recognition rules that are applied when CUPS runs its
-auto-typing routines. The rule syntax is explained in the man page
-for <filename>mime.types</filename> and in the comments section of the
-<filename>mime.types</filename> file itself. A simple rule reads
-like this:
+CUPS liest die Datei <filename>/etc/cups/mime.types</filename> (und alle anderen Dateien mit einem Suffix
+<filename>*.types</filename> im selben Verzeichnis) beim Start. Diese Dateien enthalten die 
+MIME-Typ-Erkennungs-Regeln, die angewendet werden, wenn CUPS seine Auto-Typing-Routinen ausführt.
+Die Regel-Syntax wird in der manpage von <filename>mime.types</filename> erklärt und in dem
+Abschnitt "comments" in der Datei <filename>mime.types</filename> selbst. Eine einfache Regel sieht so aus:
 
 <indexterm><primary>application/pdf</primary></indexterm>
 <filterline>
  application/pdf         pdf string(0,%PDF)
 </filterline>
 
-This means if a filename has either a
-<filename>.pdf</filename> suffix or if the magic
-string <emphasis>%PDF</emphasis> is right at the
-beginning of the file itself (offset 0 from the start), then it is
-a PDF file (<parameter>application/pdf</parameter>).
-Another rule is this: 
+Das bedeutet, daß wenn ein Dateiname den Suffix <filename>.pdf</filename> hat oder der magische String
+<emphasis>%PDF</emphasis> exakt am Beginn der Datei selbst (Offset 0 vom Start) steht, ist dies eine
+PDF-Datei ((<parameter>application/pdf</parameter>). Eine weitere Regel ist:
 
 <filterline>
  application/postscript  ai eps ps string(0,%!) string(0,&lt;04&gt;%!)
 </filterline>
 
-If the filename has one of the suffixes
-<filename>.ai</filename>, <filename>.eps</filename>,
-<filename>.ps</filename> or if the file itself starts with one of the
-strings <emphasis>%!</emphasis> or <emphasis><![CDATA[<04>%!]]></emphasis>, it
-is a generic PostScript file
-(<parameter>application/postscript</parameter>).
+Wenn der Dateiname einen der Suffixes <filename>.ai</filename>, <filename>.eps</filename>, 
+<filename>.ps</filename> hat, oder die Datei selbst mit einem der Strings
+<emphasis>%!</emphasis> oder <emphasis><![CDATA[<04>%!]]></emphasis> beginnt, ist es eine generische
+PostScript-Datei (<parameter>application/postscript</parameter>).
 </para>
 
 <warning><para>
-Don't confuse the other mime.types files your system might be using
-with the one in the <filename>/etc/cups/</filename> directory.
+Verwechseln Sie nicht die anderen mime.types Dateien, die Ihr System verwendet, mit denen im Verzeichnis
+<filename>/etc/cups/</filename>.
 </para></warning>
 
 <note><para>
-There is an important difference between two similar MIME types in
-CUPS: one is <parameter>application/postscript</parameter>, the other is
-<parameter>application/vnd.cups-postscript</parameter>. While
-<parameter>application/postscript</parameter> is meant to be device
-independent (job options for the file are still outside the PS file
-content, embedded in command line or environment variables by CUPS),
-<parameter>application/vnd.cups-postscript</parameter> may have the job
-options inserted into the PostScript data itself (where
-applicable). The transformation of the generic PostScript
-(<parameter>application/postscript</parameter>) to the device-specific version
-(<parameter>application/vnd.cups-postscript</parameter>) is the responsibility of the
-CUPS <parameter>pstops</parameter> filter. pstops uses information
-contained in the PPD to do the transformation.
+Es gibt einen wichtigen Unterschied zwischen zwei ähnlichen MIME-Typen in CUPS: einer ist
+<parameter>application/postscript</parameter>, der andere ist 
+<parameter>application/vnd.cups-postscript</parameter>. Während <parameter>application/postscript</parameter>
+geräte-unabhängig sein soll (Auftrags-Optionen sind immer noch außerhalb des PS-Datei-Inhalts, 
+von CUPS eingebettet in der Befehlszeile oder Umgebungsvariablen), kann 
+<parameter>application/vnd.cups-postscript</parameter> die Auftrags-Optionen in die Postscript-Daten selbst
+eingefügt erhalten (wo anwendbar). Die Transformation des generischen PostScript-Formats
+(<parameter>application/postscript</parameter>) zu geräte-spezifischem PostScript
+(<parameter>application/vnd.cups-postscript</parameter>) ist die Aufgabe des CUPS-Filters
+<parameter>pstops</parameter>. pstops verwendet Informationen aus dem PPD, um die Transformation durchzuführen.
 </para></note>
 
 <para>
-CUPS can handle ASCII text, HP-GL, PDF, PostScript, DVI, and
-many image formats (GIF. PNG, TIFF, JPEG, Photo-CD, SUN-Raster,
-PNM, PBM, SGI-RGB, and more) and their associated MIME types
-with its filters.
+CUPS kann mit seinen Filtern folgende Formate und ihre zugehörigen MIME-Typen handhaben: 
+ASCII text, HP-GL, PDF, PostScript, DVI, und viele Bild-Formate (GIF. PNG, TIFF, JPEG, Photo-CD, SUN-Raster,
+PNM, PBM, SGI-RGB, und noch mehr).
 </para>
 </sect2>
 
 <sect2>
-<title>MIME Type Conversion Rules</title>
+<title>MIME Typ Umwandlungs-Regeln</title>
 
 
 <para>
 <indexterm><primary>MIME</primary></indexterm>
 <indexterm><primary>application/pdf</primary></indexterm>
-CUPS reads the file <filename>/etc/cups/mime.convs</filename>
-(and all other files named with a <filename>*.convs</filename>
-suffix in the same directory) upon startup. These files contain
-lines naming an input MIME type, an output MIME type, a format
-conversion filter that can produce the output from the input type
-and virtual costs associated with this conversion. One example line
-reads like this:
+CUPS liest die Datei <filename>/etc/cups/mime.convs</filename> (und alle anderen Dateien mit der Endung
+<filename>*.convs</filename> im selben Verzeichnis) beim Starten. Diese Dateien enthalten Zeilen, diese
+benennen einen Eingabe-MIME-Typus, einen Ausgabe-MIME-Typus, einen Format-Wandlungs-Filter, der den
+Ausgabe-Typus aus dem Eingabe-Typus erzeugen kann, sowie virtuelle Kosten, die mit dieser Wandlung verbunden
+sind. Ein Beispiel für eine solche Zeile ist dies:
 
 <filterline>
  application/pdf         application/postscript   33   pdftops
 </filterline>
 
-This means that the <parameter>pdftops</parameter> filter will take
-<parameter>application/pdf</parameter> as input and produce
-<parameter>application/postscript</parameter> as output; the virtual
-cost of this operation is 33 CUPS-$. The next filter is more
-expensive, costing 66 CUPS-$:
+Das bedeutet, daß der Filter <parameter>pdftops</parameter> den Typ <parameter>application/pdf</parameter> als
+Eingabe verwenden und daraus <parameter>application/postscript</parameter> als Ausgabe erzeugen wird; die
+virtuellen Kosten dieser Operation sind 33 CUPS-$. Der nächste Filter ist teurer, er kostet 66 CUPS-$:
 
 <indexterm><primary>pdf</primary></indexterm>
 
@@ -1068,8 +1033,7 @@ expensive, costing 66 CUPS-$:
  application/vnd.hp-HPGL application/postscript   66   hpgltops
 </filterline>
 
-This is the <parameter>hpgltops</parameter>, which processes HP-GL
-plotter files to PostScript.
+Dies ist der Filter <parameter>hpgltops</parameter>, der HP-GL Plotter-Dateien in PostScript umwandelt.
 
 <indexterm><primary>application/octet-stream</primary></indexterm>
 
@@ -1077,7 +1041,7 @@ plotter files to PostScript.
  application/octet-stream
 </filterline>
 
-Here are two more examples: 
+Hier zwei weitere Beispiele:
 
 <indexterm><primary>text/plain</primary></indexterm>
 
@@ -1086,27 +1050,25 @@ Here are two more examples:
  text/plain              application/postscript   33    texttops
 </filterline>
 
-The last two examples name the <parameter>texttops</parameter> filter
-to work on <parameter>text/plain</parameter> as well as on <parameter>application/x-shell</parameter>. (Hint:
-This differentiation is needed for the syntax highlighting feature of
-<parameter>texttops</parameter>).
+Die letzten beiden Beispiele lassen den Filter <parameter>texttops</parameter> sowohl an
+<parameter>text/plain</parameter>, wie auch an <parameter>application/x-shell</parameter> arbeiten.
+(Hinweis: Diese Unterscheidung wird für das Syntax-Highlighting von <parameter>texttops</parameter>
+benötigt).
 </para>
 </sect2>
 
 <sect2>
-<title>Filtering  Overview</title>
+<title>Überblick über das Filtern</title>
 
 
 <para>
 <indexterm><primary>MIME</primary></indexterm>
-There are many more combinations named in <filename>mime.convs</filename>. However, you
-are not limited to use the ones pre-defined there. You can plug in any
-filter you like into the CUPS framework. It must meet, or must be made
-to meet, some minimal requirements. If you find (or write) a cool
-conversion filter of some kind, make sure it complies to what CUPS
-needs and put in the right lines in <filename>mime.types</filename>
-and <filename>mime.convs</filename>, then it will work seamlessly
-inside CUPS.
+Es gibt viel mehr Kombinationen in <filename>mime.convs</filename>. Sie sind jedoch nicht darauf beschränkt,
+die hier vordefinierten Kombinationen zu verwenden. Sie können jeden Filter, den Sie wollen, in das
+CUPS-Grundgerüst einsetzen. Es muß einigen minimalen Erfordernissen entsprechen, oder dazu gebracht werden.
+Wenn Sie irgend einen coolen Filter finden (oder schreiben), stellen Sie sicher, daß er dem entspricht, was CUPS
+braucht, und daß Sie die richtigen Zeilen in die Dateien <filename>mime.types</filename> und
+<filename>mime.convs</filename> einfügen, dann wird er nahtlos innerhalb CUPS arbeiten.
 </para>
 
 <sect3>
