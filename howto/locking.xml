@@ -19,37 +19,36 @@ Das Ausmaß des Problems ist bereits durch Recherchen über das Internet bewiesen.
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Samba bietet alle Sperrsemantiken, die MS Windows Clients erwarten und
-die MS Windows NT/200x Server auch zur Verfügung stellen.
+Samba bietet alle Sperrsemantiken, die MS Windows-Clients erwarten und
+die MS Windows NT/200x-Server auch zur Verfügung stellen.
 </para>
 
 <para>
 Der Ausdruck <emphasis>Sperren</emphasis>
 (entsprechend dem etwas treffenderen englischen Begriff <emphasis>Locking</emphasis>, Anm. d. Übers.)
-hat grundsätzlich weitläufige Bedeutung und
+hat grundsätzlich eine weite Bedeutung und
 deckt eine Vielzahl von Funktionen ab, die alle unter diesem einen Begriff zusammengefasst sind.
 </para>
 
 <para>
 Opportunistisches Sperren ist ein wünschenswertes Feature, wenn es die wahrnehmbare Geschwindigkeit von
 Anwendungen auf einem Netzwerkclient beschleunigen kann. Jedoch ist das opportunistische Sperrprotokoll
-nicht robust und deshalb können Probleme entstehen, wenn es von einer einfachen Konfiguration
+nicht robust, und deshalb können Probleme entstehen, wenn es von einer einfachen Konfiguration
 oder in einem sehr langsamen oder fehlerhaften Netzwerk aufgerufen wird.
-In diesen Fällen kann der Aufwand zur Verwaltung der opportunistischen Sperren, der vom
-Betriebssystem vorgenommen, und das Wiederherstellen nach Fehlern den erzielten Performance-Zuwachs
+In diesen Fällen können der Aufwand für die Verwaltung der opportunistischen Sperren, die vom
+Betriebssystem durchgeführt wird, und der Aufwand für das Wiederherstellen nach Fehlern den erzielten Performance-Zuwachs
 wieder zunichte machen.
 </para>
 
 <para>
-Der MS Windows Netzwerkadministrator muss sich darüber im Klaren sein, dass Datei- und Satzsperren-
-Semantiken (Verhalten) entweder in Samba kontrolliert werden können oder durch Registry-Einstellungen
-auf einem MS Windows Client.
+Der MS Windows-Netzwerkadministrator muss sich darüber im Klaren sein, dass Datei- und Satzsperren-Semantiken (Verhalten) entweder in Samba kontrolliert werden können oder durch Registry-Einstellungen
+auf einem MS Windows-Client.
 </para>
 
 <note>
 <para>
 Manchmal ist es sogar notwendig, Einstellungen zu Sperrkontrollen sowohl auf dem Samba-Server
-wie auch auf dem MS Windows Client abzuschalten !
+als auch auf dem MS Windows-Client abzuschalten!
 </para>
 </note>
 
@@ -59,39 +58,38 @@ wie auch auf dem MS Windows Client abzuschalten !
 <title>Erörterung</title>
 
 <para>
-Es gibt 2 Arten von Sperren, die durch einen SMB Server durchgeführt werden müssen.
+Es gibt zwei Arten von Sperren, die durch einen SMB-Server durchgeführt werden müssen.
 Die erste ist die <emphasis>Satzsperre</emphasis>, die einem Client das Sperren eines
-Bereiches von Bytes innerhalb einer geöffneten Datei erlaubt. Die zweite sind die
+Bereichs von Bytes innerhalb einer geöffneten Datei erlaubt. Die zweite sind die
 <emphasis>Verbotszustände (deny modes)</emphasis>, die spezifiziert werden, wenn eine Datei
 geöffnet ist.
 </para>
 
 <para>
-Satzsperren-Semantiken unter UNIX sind vollkommen verschieden zu Satzsperren unter
-Windows. Sambaversionen vor 2.2 hatten versucht, den nativen UNIX-Systemaufruf fcntl()
+Satzsperren-Semantiken unter UNIX sind etwas vollkommen anderes als Satzsperren unter
+Windows. Samba-Versionen vor 2.2 hatten versucht, den nativen UNIX-Systemaufruf fcntl()
 zu nutzen, um saubere Satzsperren zwischen den verschiedenen Samba-Clients zu implementieren.
-Dies kann allerdings aus mehreren Gründen nicht vollständig richtig sein. Der einfachste ist die
-Tatsache, dass ein Windows-Client einen Bytebereich von bis zu 2^32 oder 2^64,
-abhängig vom Client-Betriebssystem, sperren darf. Die UNIX-Sperren unterstützen nur einen
-Bytebereich bis zu 2^31.
+Dies kann allerdings aus mehreren Gründen nicht vollständig richtig sein. Der einfachste Grund ist die
+Tatsache, dass ein Windows-Client einen Byte-Bereich von bis zu 2^32 oder 2^64 (je nach Client-Betriebssystem) sperren darf. Die UNIX-Sperren unterstützen nur einen
+Byte-Bereich bis zu 2^31.
 So ist es nicht möglich, eine Sperranfrage oberhalb von 2^31 sauber zu ermöglichen. Es gibt noch
 wesentlich mehr Unterschiede, zu viele, um hier alle aufzuführen.
 </para>
 
 <para>
-Samba 2.2 und darüber implementiert Satzsperren völlig unabhängig vom darunterliegenden
-UNIX-System. Wenn eine Bytebereichs-Sperre, die ein Client anfordert, in den Bereich von 0-2^31
+Samba 2.2 und jüngere Versionen implementieren Satzsperren völlig unabhängig vom darunterliegenden
+UNIX-System. Wenn eine Byte-Bereichssperre, die ein Client anfordert, in den Bereich von 0-2^31
 fällt, gibt Samba diese Anfrage an das UNIX-System weiter. Alle anderen Sperren können von UNIX
 jedoch nicht gesehen werden.
 </para>
 
 <para>
-Vereinfacht ausgedrückt sollte ein SMB-Server vor jedem Lese- und Schreibzugriff auf eine Datei
-auf Sperren prüfen. Unglücklicherweise kann dies durch die Art und Weise, wie fcntl() arbeitet, langsam sein
-und den <command>rpc.lockd</command> überbeanspruchen. Dies ist fast immer unnötig, von den Clients erwartet
-wird, daß sie unabhängig Sperr-Aufrufe vor Lese- und Schreibzugriffen absetzen, wenn das Sperren für sie
+Vereinfacht ausgedrückt, sollte ein SMB-Server vor jedem Lese- und Schreibzugriff auf eine Datei
+nach Sperren suchen. Leider kann dies durch die Art und Weise, wie fcntl() arbeitet, langsam sein
+und den <command>rpc.lockd</command> überbeanspruchen. Dies ist fast immer unnötig, da von den Clients erwartet
+wird, dass sie unabhängig Sperr-Aufrufe vor Lese- und Schreibzugriffen absetzen, wenn das Sperren für sie
 wichtig ist. In der Voreinstellung setzt Samba nur dann Sperr-Aufrufe, wenn es explizit von einem Client
-danach gefragt wird, aber wenn Sie die Option
+danach gefragt wird; aber wenn Sie die Option
 <smbconfoption><name>strict locking</name><value>yes</value></smbconfoption> setzen, wird es diese Aufrufe
 bei <emphasis>jedem</emphasis> Lese- und Schreibzugriff ausführen.
 </para>
@@ -99,30 +97,30 @@ bei <emphasis>jedem</emphasis> Lese- und Schreibzugriff ausführen.
 <para>
 Sie können das Sperren von Byte-Bereichen auch komplett abschalten, indem Sie
 <smbconfoption><name>locking</name><value>no</value></smbconfoption> setzen.
-Das ist hilfreich für jene Freigaben, die die Sperren nicht unterstützen oder sie nicht brauchen (wie CDROMs).
-In diesem Fall bildet Samba die Antwort-Codes von Sperr-Aufrufen nach, um den Clients mitzuteilen, daß alles
+Das ist hilfreich für jene Freigaben, die die Sperren nicht unterstützen oder sie nicht brauchen (wie CD-ROMs).
+In diesem Fall bildet Samba die Antwort-Codes von Sperr-Aufrufen nach, um den Clients mitzuteilen, dass alles
 in Ordnung ist.
 </para>
 
 <para>
-Die zweite Klasse der Sperren sind die sogenannten <emphasis>deny modes</emphasis>. Diese werden von einer
+Die zweite Klasse der Sperren sind die so genannten <emphasis>deny modes</emphasis>. Diese werden von einer
 Applikation gesetzt, wenn diese eine Datei öffnet, um zu bestimmen, welche Zugriffsarten gleichzeitig mit
 dieser Öffnung zu erlauben sind. Ein Client könnte nach
 <constant>DENY_NONE</constant>, <constant>DENY_READ</constant>,
-<constant>DENY_WRITE</constant>, oder <constant>DENY_ALL</constant> fragen.
-Es gibt auch spezielle Kompatibilitäts-Modii namens <constant>DENY_FCB</constant>
+<constant>DENY_WRITE</constant> oder <constant>DENY_ALL</constant> fragen.
+Es gibt auch spezielle Kompatibilitätsmodi namens <constant>DENY_FCB</constant>
 und <constant>DENY_DOS</constant>.
 </para>
 
 <sect2>
-<title>Überblick über oppurtunistische Sperren</title>
+<title>Überblick über opportunistische Sperren</title>
 
 <para>
-Opportunistisches Sperren, auch bezeichnet als <quote>Oplocks</quote>
-(entspricht <quote>Opportunistic locking</quote>) wird vom Windows-Dateisystem über Registrierungs-Einträge
-aufgerufen (im Gegensatz zu einer API) um die Netzwerk-Performance zu erhöhen, wenn auf eine Datei auf einem
-Server zugegriffen wird. Die Performance wird lokales Puffern der Datei auf dem Client erhöht, was
-folgendes erlaubt:
+Das opportunistische Sperren, auch bezeichnet als <quote>Oplocks</quote>
+(entspricht <quote>Opportunistic locking</quote>) wird vom Windows-Dateisystem über Registrierungseinträge
+aufgerufen (im Gegensatz zu einer API), um die Netzwerk-Performance zu erhöhen, wenn auf eine Datei auf einem
+Server zugegriffen wird. Die Performance wird durch lokales Puffern der Datei auf dem Client erhöht, was
+Folgendes erlaubt:
 </para>
 
 <variablelist>
@@ -140,25 +138,25 @@ folgendes erlaubt:
 
         <varlistentry><term>Lock caching:</term>
         <listitem><para>
-		Der Client puffert die Sperren der Anwendung lokal, wieder wird die Netzwerk-Latenz eliminiert.
+		Der Client puffert die Sperren der Anwendung lokal, und wieder wird die Netzwerk-Latenz eliminiert.
 		</para></listitem>
         </varlistentry>
 </variablelist>
 
 <para>
 Die Performance-Steigerung von Oplocks kommt von der Möglichkeit des exklusiven Zugriffs auf die Datei &smbmdash;
-sogar wenn sie über <constant>DENY_NONE</constant> geöffnet ist &smbmdash; da Windows den Status der Datei
+sogar wenn sie über <constant>DENY_NONE</constant> geöffnet ist &smbmdash;, da Windows den Status der Datei
 auf konkurrierende Zugriffe von anderen Prozessen überwacht.
 </para>
 
 <variablelist>
-<title>Windows definiert 4 Arten von Oplocks:</title>
+<title>Windows definiert vier Arten von Oplocks:</title>
 
 	<varlistentry><term>Level1 Oplock</term>
                 <listitem><para>
-		Der Redirektor sieht, daß die Datei mit DENY_NONE geöffnet wurde (was konkurrierende
-		Zugriffe erlaubt), prüft, ob auch kein anderer Prozess auf die Datei zugreift, prüft, daß
-		Oplocks aktiviert sind, dann gewährt er DENY_ALL/R+W/Exklusiv-Zugriff auf die Datei. Der
+		Der Redirektor sieht, dass die Datei mit DENY_NONE geöffnet wurde (was konkurrierende
+		Zugriffe erlaubt), prüft, ob auch kein anderer Prozess auf die Datei zugreift, und prüft, dass
+		Oplocks aktiviert sind. Dann gewährt er DENY_ALL/R+W/Exklusiv-Zugriff auf die Datei. Der
 		Client führt seine Operationen nun auf die gepufferte Datei durch.
 		</para>
 
@@ -166,9 +164,9 @@ auf konkurrierende Zugriffe von anderen Prozessen überwacht.
 		Wenn ein zweiter Prozess nun versucht, die Datei zu öffnen, wird das Öffnen verzögert, während
 		der Redirektor den originalen Oplock <quote>aufbricht</quote>. Dieser Bruch des Oplocks
 		signalisiert dem puffernden Client, die gepufferte Datei zurück auf den Server zu schreiben,
-		die lokalen Sperren zu löschen und die Read-Ahead-Daten zu verwerfen. Der Bruch ist dann
+		die lokalen Sperren zu löschen und die Read-ahead-Daten zu verwerfen. Der Bruch ist dann
 		komplett, die verzögerte Öffnung wird gewährt, und mehrere Prozesse können konkurrierenden
-		Dateizugriff geniessen, wie er von den Byte-Bereichs- oder den zwingenden Sperren diktiert wird.
+		Dateizugriff genießen, wie er von den Byte-Bereichs- oder den zwingenden Sperren diktiert wird.
 		Wenn jedoch der originale öffnende Prozess die Datei in einem anderen Modus als DENY_NONE
 		geöffnet hat, wird dem zweiten Prozess nur eingeschränkter oder gar kein Zugriff gewährt,
 		trotz des Bruchs des Oplocks.
@@ -177,7 +175,7 @@ auf konkurrierende Zugriffe von anderen Prozessen überwacht.
 
         <varlistentry><term>Level2 Oplock</term>
                 <listitem><para>
-		Arbeitet wie ein Level1 Oplock, außer daß nur Lesezugriffe gepuffert werden. Alle anderen
+		Arbeitet wie ein Level1 Oplock, außer dass nur Lesezugriffe gepuffert werden. Alle anderen
 		Operationen werden auf der Server-Kopie der Datei durchgeführt.		
                 </para></listitem>
         </varlistentry>
@@ -190,15 +188,15 @@ auf konkurrierende Zugriffe von anderen Prozessen überwacht.
 
         <varlistentry><term>Batch Oplock</term>
                 <listitem><para>
-		Manipuliert Datei-Öffnungen und -Schliessungen, und erlaubt das Puffern von Dateiattributen.
+		Manipuliert das Öffnen und Schließen von Dateien und erlaubt das Puffern von Dateiattributen.
                 </para></listitem>
         </varlistentry>
 </variablelist>
 
 <para>
-Ein wichtiges Detail ist, daß Oplocks vom Dateisystem aufgerufen werden, nicht von einer Anwendungs-API. Daher
-kann eine Applikation eine opportunistisch gesperrte Datei schliessen, aber das Dateisystem gibt den Oplock
-nicht auf. Wenn der Bruch des Oplocks durchgeführt wird, schließt das Dateisystem einfach die Datei, in
+Ein wichtiges Detail ist, dass Oplocks vom Dateisystem aufgerufen werden, nicht von einer Anwendungs-API. Daher
+kann eine Applikation eine opportunistisch gesperrte Datei schließen, aber das Dateisystem gibt den Oplock
+nicht auf. Wenn der Bruch des Oplocks durchgeführt wird, schließt das Dateisystem einfach die Datei in
 Vorbereitung auf das folgende Öffnen der Datei durch den zweiten Prozess.
 </para>
 
@@ -206,77 +204,76 @@ Vorbereitung auf das folgende Öffnen der Datei durch den zweiten Prozess.
 <emphasis>Opportunistisches Sperren</emphasis> ist eigentlich ein unpassender Name für dieses Feature.
 Der wirkliche Nutzen dieses Features ist das Puffern von Daten (<quote>Cachen</quote>) auf Client-Seite,
 und die Oplocks sind nur
-ein Mitteilungs-Mechanismus für das Zurückschreiben von Daten auf die Platte des Netzwerk-Servers. Die
+ein Mitteilungsmechanismus für das Zurückschreiben von Daten auf die Platte des Netzwerk-Servers. Die
 Einschränkung der Oplocks ist die Zuverlässigkeit des Mechanismus, einen Oplock-Bruch (Mitteilung) zwischen
 dem Server und dem puffernden Client auszuführen. Wenn dieser Austausch fehlerhaft abläuft (üblicherweise
-wegen einem Timeout aus irgendwelchen Gründen), dann geht der Nutzen des Client-seitigen Pufferns verloren.
+wegen eines Timeouts aus irgendwelchen Gründen), dann geht der Nutzen des client-seitigen Pufferns verloren.
 </para>
 
 <para>
 Die tatsächliche Entscheidung, die ein Anwender oder Administrator erwägen sollte, ist, ob es vernünftig ist,
-Daten unter mehreren Anwendern zu teilen, die lokal auf den Clients gepuffert werden. In vielen Fällen ist
+ unter mehreren Anwendern Daten zu teilen, die lokal auf den Clients gepuffert werden. In vielen Fällen ist
 die Antwort <quote>Nein</quote>. Zu entscheiden, wann Daten gepuffert werden und wann nicht, das ist hier
-die Frage, und daher sollte <quote>opportunistisches Sperren</quote> als Schalter für Client-seitiges Puffern
-behandelt werden. Schalten Sie es <quote>on</quote>, wenn Client-seitiges Puffern erwünscht und zuverlässig ist.
-Schalten Sie es <quote>off</quote>, wenn Client-seitiges Puffern redundant, unzuverlässig oder kontra-produktiv
+die Frage, und daher sollte <quote>opportunistisches Sperren</quote> als Schalter für client-seitiges Puffern
+behandelt werden. Schalten Sie es <quote>on</quote>, wenn client-seitiges Puffern erwünscht und zuverlässig ist.
+Schalten Sie es <quote>off</quote>, wenn client-seitiges Puffern redundant, unzuverlässig oder kontraproduktiv
 ist.
 </para>
 
 <para>
-Opportunistisches Sperren wird von Samba standardmässig für alle Freigaben auf <quote>on</quote> gesetzt,
-also sollte in jedem Fall vorsichtig vorgegangen werden, um zu bestimmen, ob der potentielle Nutzen die
-potentiellen Verzögerungen wert ist. Die folgenden Empfehlungen sollen dabei helfen, eine Umgebung zu
-charakterisieren, in der opportunistisches Sperren effektiv eingerichtet werden können.
+Opportunistisches Sperren wird von Samba standardmäßig für alle Freigaben auf <quote>on</quote> gesetzt,
+also sollten Sie in jedem Fall vorsichtig vorgehen, um zu bestimmen, ob der potenzielle Nutzen die
+potenziellen Verzögerungen wert ist. Die folgenden Empfehlungen sollen Ihnen dabei helfen, eine Umgebung zu
+charakterisieren, in der opportunistische Sperren effektiv eingerichtet werden können.
 </para>
 
 <para>
-Die Windows-Oplocks sind ein leichtgewichtiges Performance-steigerndes Feature. Sie sind kein robustes
-und zuverlässiges Protokoll. Jede Implementierung von Oplocks sollte als Kompromiß zwischen Performance und
+Die Windows-Oplocks sind ein leichtgewichtiges performance-steigerndes Feature. Sie sind kein robustes
+und zuverlässiges Protokoll. Jede Implementierung von Oplocks sollte als Kompromiss zwischen Performance und
 Zuverlässigkeit geprüft werden. Die Zuverlässigkeit sinkt mit jeder oben genannten Regel, die nicht erzwungen
-wird. Stellen Sie sich eine Freigabe mit aktivierten Oplocks vor, über ein WAN, freigegeben an einen Client
-auf einem Atoll im Südpazifik, auf einem Hochverfügbarkeits-Server, der auf dieser Freigabe eine
-<quote>mission-critical</quote> Multi-User-Firmen-Datenbank bereitstellt, während eines tropischen Sturms.
+wird. Stellen Sie sich einen Hochverfügbarkeits-Server auf einem Atoll im Südpazifik vor, der über ein WAN
+eine <quote>mission-critical</quote> Multi-User-Firmen-Datenbank bereitstellt, und das auf einer
+Freigabe mit aktivierten Oplocks, während eines tropischen Sturms.
 Diese Konfiguration wird sehr wahrscheinlich Probleme mit Oplocks erfahren.
 </para>
 
 <para>
-Oplocks können sehr wirksam die Client-Performance steigern, wenn sie als Konfigurations-Schalter
-für Client-seitiges Daten-Puffern behandelt werden. Wenn das Puffern der Daten wahrscheinlich unterbrochen
-werden könnte, sollte der Einsatz von Oplocks nochmals überdacht werden. Samba aktiviert standardmässig die
-Verwendung von Oplocks auf allen Freigaben. Die Client-seitige Verwendung von Daten auf dem Server,
+Oplocks können sehr wirksam die Client-Performance steigern, wenn sie als Konfigurationsschalter
+für client-seitiges Daten-Puffern behandelt werden. Wenn das Puffern der Daten wahrscheinlich unterbrochen
+werden könnte, sollte der Einsatz von Oplocks nochmals überdacht werden. Samba aktiviert standardmäßig die
+Verwendung von Oplocks auf allen Freigaben. Die client-seitige Verwendung von Daten auf dem Server,
 die Zuverlässigkeit des Servers im Netzwerk und die Oplock-Konfiguration jeder Freigabe sollten
-mit besonderer Aufmerksamkeit bedacht und konfiguriert werden. In Hochverfügbarkeits-Umgebungen ist die
-Integrität der Daten oft von hoher Priorität. Komplexe und teure Konfigurationen werden implementiert, um zu
-gewährleisten, daß wenn ein Client die Verbindung zum Dateiserver verliert, sofort ein Ersatz verfügbar ist,
-um durchgehende Verfügbarkeit der Daten zu gewährleisten.
+mit besonderer Aufmerksamkeit bedacht und konfiguriert werden. In Hochverfügbarkeitsumgebungen hat die
+Integrität der Daten oft hohe Priorität. Komplexe und teure Konfigurationen werden implementiert, um zu
+gewährleisten, dass sofort ein Ersatz verfügbar ist, wenn ein Client die Verbindung zum Dateiserver verliert, damit die durchgehende Verfügbarkeit der Daten gewährleistet ist.
 </para>
 
 <para>
-Das Verhalten von Windows Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
-andere Plattformen, da es von einer aufgebauten TCP-Transport-Verbindung abhängt. Wenn die Verbindung
+Das Verhalten von Windows-Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
+das Verhalten anderer Plattformen, da es von einer aufgebauten TCP-Transport-Verbindung abhängt. Wenn die Verbindung
 unterbrochen wird
-&smbmdash; wie bei einem Datei-Server-Ausfall und dessen Ersatz durch einen Failover-Server &smbmdash;
-muß eine neue Verbindung aufgebaut werden. Es ist selten, daß eine Windows-Client-Applikation so programmiert
-ist, daß sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt, daher werden die meisten
+&smbmdash; wie bei einem Datei-Server-Ausfall und dessen Ersatz durch einen Failover-Server &smbmdash;,
+muss eine neue Verbindung aufgebaut werden. Es ist selten, dass eine Windows-Client-Applikation so programmiert
+ist, dass sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt. Daher werden die meisten
 Applikationen in irgendeiner Art unterbrochen &smbmdash; im schlimmsten Fall abgebrochen, und erfordern
 einen Neustart.
 </para>
 
 <para>
-Wenn eine Client-Session Schreib- und Lese-Vorgänge mittels Oplocks lokal gepuffert hat, ist es wahrscheinlich,
-daß die Daten verloren gehen, wenn die Applikation neu startet, oder sich nach der TCP-Unterbrechung wieder
+Wenn eine Client-Session Schreib- und Lese-Vorgänge mit Oplocks lokal gepuffert hat, ist es wahrscheinlich,
+dass die Daten verloren gehen, wenn die Applikation neu startet oder sich nach der TCP-Unterbrechung wieder
 verbindet. Wenn die TCP-Verbindung ausfällt, ist der Status des Clients verloren. Wenn der Server die
 Verbindung wiederherstellt, wird keine Aufforderung zum Brechen des Oplocks an den Client gesandt. In diesem
-Fall ist die Arbeit aus der vorangehenden Session verloren. Durch Echtzeit-Überwachung dieses Szenarios mit
+Fall ist die Arbeit aus der vorangegangenen Session verloren. Durch Echtzeit-Überwachung dieses Szenarios mit
 deaktivierten Oplocks und des Clients, der Daten auf den Datei-Server schreibt, wird die
-Ausfallssicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
+Ausfallsicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
 haben.
 </para>
 
 <para>
-In <quote>mission-critical</quote> Hochverfügbarkeits-Umgebungen, sollte grosse Vorsicht im Umgang mit
+In <quote>mission-critical</quote> Hochverfügbarkeitsumgebungen sollte große Vorsicht im Umgang mit
 Oplocks geübt werden. Idealerweise sollten umfassende Tests mit allen betroffenen Applikationen erfolgen, sowohl
-mit wie auch ohne aktivierten Oplocks.
+mit als auch ohne aktivierte Oplocks.
 </para>
 
 <sect3>
@@ -284,7 +281,7 @@ mit wie auch ohne aktivierten Oplocks.
 
 <para>
 Opportunistische Sperren sind am effektivsten, wenn sie auf Freigaben beschränkt sind, auf die ausschließlich
-von einem einzelnen Anwender zugegriffen wird, oder nur von einem Anwender gleichzeitig. Da der eigentliche
+ein einzelner Anwender zugreift oder nur ein Anwender gleichzeitig. Da der eigentliche
 Wert der Oplocks das client-seitige Puffern von Daten ist, verursacht jede Operation, die den Puffer-Mechanismus
 unterbricht, eine Verzögerung.
 </para>
@@ -297,11 +294,11 @@ mit Oplocks.
 </sect3>
 
 <sect3>
-<title>Freigaben oder Dateien, auf die von mehreren zugegriffen wird</title>
+<title>Freigaben oder Dateien, auf die von mehreren Usern zugegriffen wird</title>
 
 <para>
 Mit jedem weiteren Anwender, der auf eine Datei auf einer Freigabe mit aktiven Oplocks zugreift, erhöht sich
-das Potential für Verzögerungen und daraus resultierende Performance-Verschlechterung. Wenn mehrere Anwender
+das Potenzial für Verzögerungen und eine daraus resultierende Performance-Verschlechterung. Wenn mehrere Anwender
 auf eine Datei auf einer Freigabe mit aktiven Oplocks zugreifen, übersteigt der Verwaltungsaufwand für das
 Senden und Empfangen der Oplock-Breaks und die resultierende Latenz, während die anderen Clients auf den
 momentan puffernden Client warten (bis er seine Puffer geleert hat), den Performance-Gewinn des
@@ -309,7 +306,7 @@ puffernden Clients.
 </para>
 
 <para>
-Mit jedem weiteren Client, der auf eine Datei mit gesetzten Oplocks zugreift, wird der potentielle
+Mit jedem weiteren Client, der auf eine Datei mit gesetzten Oplocks zugreift, wird der potenzielle
 Performance-Zuwachs negiert, und es ergibt sich eventuell sogar ein Flaschenhals.
 </para>
 
@@ -321,13 +318,13 @@ Performance-Zuwachs negiert, und es ergibt sich eventuell sogar ein Flaschenhals
 <para>
 Lokale UNIX- oder NFS-Clients greifen ohne einen zwingenden Datei-Sperren-Mechanismus auf Dateien zu.
 Daher sind diese Client-Plattformen nicht imstande, vom Server aus einen Oplock-Bruch am Client zu erfragen, der
-gerade eine Datei puffert. Lokaler UNIX- oder NFS-Dateizugriff kann daher in eine Datei schreiben, die von einem
+gerade eine Datei puffert. Ein lokaler UNIX- oder NFS-Dateizugriff kann daher in eine Datei schreiben, die von einem
 Windows-Client gepuffert wurde, was diese Datei sehr wahrscheinlich unbrauchbar macht.
 </para>
 
 <para>
-Wenn Dateien sowohl an Windows-Clients, wie auch an lokale UNIX- oder NFS-Benutzer freigegeben werden, schalten
-Sie das opportunistische Sperren ab.
+Wenn Dateien sowohl an Windows-Clients als auch an lokale UNIX- oder NFS-Benutzer freigegeben werden, sollten
+Sie das opportunistische Sperren abschalten.
 </para>
 
 </sect3>
@@ -338,16 +335,16 @@ Sie das opportunistische Sperren ab.
 <para>
 Der größtmögliche Performance-Gewinn für Oplocks wird dann erzielt, wenn das client-seitige Puffern der
 Lese- und Schreib-Vorgänge den größten Unterschied zum Senden dieser Vorgänge über das Netzwerk liefert.
-Dies passiert am wahrscheinlichsten dann, wenn das Netzwerk extrem langsam ist, verstopft, oder weitreichend
-verteilt (wie in einem WAN). Die Netzwerk-Latenz hat jedoch auch einen grossen Einfluß auf die Zuverlässigkeit
-des Oplock-Bruch-Mechanismus, und erhöht daher die Wahrscheinlichkeit, Oplock-Probleme zu bekommen, die die
-potentiellen Performance-Gewinne mehr als zunichte machen. Wenn natürlich niemals ein Oplock-Bruch gesendet
-werden müßte, wäre dies das vorteilhafteste Szenario, um Oplocks einzusetzen.
+Dies passiert am wahrscheinlichsten dann, wenn das Netzwerk extrem langsam, verstopft oder weit
+verteilt (wie in einem WAN) ist. Die Netzwerk-Latenz hat jedoch auch einen großen Einfluss auf die Zuverlässigkeit
+des Oplock-Bruch-Mechanismus und erhöht daher die Wahrscheinlichkeit, Oplock-Probleme zu bekommen, die die
+potenziellen Performance-Gewinne mehr als zunichte machen. Wenn natürlich niemals ein Oplock-Bruch gesendet
+werden müsste, wäre dies das vorteilhafteste Szenario, um Oplocks einzusetzen.
 </para>
 
 <para>
-Wenn das Netzwerk langsam, unzuverlässig, oder ein WAN ist, konfigurieren Sie keine Oplocks, wenn irgendeine
-Möglichkeit besteht, daß mehrere Benutzer regelmässig die selbe Datei öffnen.
+Wenn das Netzwerk langsam, unzuverlässig oder ein WAN ist, sollten Sie keine Oplocks konfigurieren, falls irgendeine
+Möglichkeit besteht, dass mehrere Benutzer regelmäßig dieselbe Datei öffnen.
 </para>
 
 </sect3>
@@ -357,24 +354,23 @@ Möglichkeit besteht, daß mehrere Benutzer regelmässig die selbe Datei öffnen.
 
 <para>
 Mehrbenutzer-Datenbanken stellen klarerweise durch ihre grundlegende Natur ein Risiko dar &smbmdash;
-auf sie wird üblicherweise massiv von vielen Anwendern zugegriffen, in zufälligen Intervallen. Das Plazieren
-einer Mehrbenutzer-Datenbank auf einer Freigabe mit aktivierten Oplocks wird wahrscheinlich in einem Flaschenhals
-auf dem Samba-Server resultieren, durch die notwendige Verwaltung der Sperren. Egal, ob eine Datenbank eine
-Eigenentwicklung ist, oder ein kommerzielles Produkt, stellen Sie sicher, daß die entsprechende Freigabe
+auf sie wird üblicherweise massiv von vielen Anwendern in zufälligen Intervallen zugegriffen. Das Platzieren
+einer Mehrbenutzer-Datenbank auf einer Freigabe mit aktivierten Oplocks wird wahrscheinlich zu einem Flaschenhals
+auf dem Samba-Server führen, weil die Sperren verwaltet werden müssen. Egal, ob eine Datenbank eine
+Eigenentwicklung ist oder ein kommerzielles Produkt, stellen Sie sicher, dass die entsprechende Freigabe
 deaktivierte Oplocks hat.
 </para>
 
 </sect3>
 
 <sect3>
-<title>PDM Daten-Freigaben</title>
+<title>PDM-Daten-Freigaben</title>
 
 <para>
-Process Data Management (PDM)-Applikationen wie IMAN, Enovia und Clearcase finden immer mehr Verwendung mit
-Windows-Client-Plattformen, und daher auch mit SMB-Daten-Servern. PDM-Applikationen verwalten
-Mehrbenutzer-Umgebungen für Sicherheit von und Zugriff auf kritische Daten. Die typische PDM-Umgebung ist
-üblicherweise verbunden mit ausgeklügelt entworfenen Client-Anwendungen, die Daten lokal laden, wenn
-erforderlich. Zusätzlich überwacht die PDM-Applikation üblicherweise den Daten-Status jeden Clients. In diesem
+Process Data Management-(PDM-)Applikationen wie IMAN, Enovia und Clearcase finden immer mehr Verwendung mit
+Windows-Client-Plattformen und daher auch mit SMB-Daten-Servern. PDM-Applikationen verwalten
+Mehrbenutzer-Umgebungen für die Sicherheit von und den Zugriff auf kritische Daten. Die typische PDM-Umgebung ist
+üblicherweise mit ausgeklügelt entworfenen Client-Anwendungen verbunden, die Daten bei Bedarf lokal laden. Zusätzlich überwacht die PDM-Applikation üblicherweise den Daten-Status jeden Clients. In diesem
 Fall wird das client-seitige Puffern am besten der lokalen Applikation und dem PDM-Server überlassen. Es ist
 angemessen, das Client-OS von jeglichen Puffer-Aufgaben zu befreien, und auch den Server von der Verwaltung
 der Oplocks, indem man Oplocks auf der Freigabe deaktiviert.
@@ -389,9 +385,9 @@ der Oplocks, indem man Oplocks auf der Freigabe deaktiviert.
 Samba enthält einen Parameter in &smb.conf; namens
 <smbconfoption><name>force user</name></smbconfoption>, der den Benutzer, der auf eine Freigabe zugreift, vom
 tatsächlich zugreifenden Benutzer auf den in diesem Parameter angegebenen ändert. Wenn Oplocks auf einer
-Freigabe aktiviert sind, verursacht die Änderung des Benutzers, daß ein Bruch des Oplocks an den Client
+Freigabe aktiviert sind, verursacht die Änderung des Benutzers, dass ein Bruch des Oplocks an den Client
 gesendet wird, sogar wenn der Benutzer gar nicht explizit eine Datei geladen hat. In den Fällen, wo das Netzwerk
-langsam oder unzuverlässig ist, kann ein Oplock-Bruch verloren gehen, ohne daß der Benutzer auch nur auf eine
+langsam oder unzuverlässig ist, kann ein Oplock-Bruch verloren gehen, ohne dass der Benutzer auch nur auf eine
 Datei zugreift. Das kann sichtbare Performance-Einbrüche verursachen, wenn der Client wiederholt neu verbindet,
 um den verlorenen Oplock-Bruch <quote>zu überwinden</quote>.
 </para>
@@ -402,29 +398,29 @@ Vermeiden Sie die folgende Kombination:
 
 <itemizedlist>
 	<listitem><para>
-	<smbconfoption><name>force user</name></smbconfoption> in der &smb.conf; Freigaben-Konfiguration.
+	<smbconfoption><name>force user</name></smbconfoption> in der &smb.conf;-Freigaben-Konfiguration
 	</para></listitem>
 
 	<listitem><para>
-	Langsames oder unzuverlässiges Netzwerk.
+	Langsames oder unzuverlässiges Netzwerk
 	</para></listitem>
 
 	<listitem><para>
-	Opportunistisches Sperren aktiviert.
+	Opportunistisches Sperren aktiviert
 	</para></listitem>
 </itemizedlist>
 
 </sect3>
 
 <sect3>
-<title>Erweiterte Samba Oplock-Parameter</title>
+<title>Erweiterte Samba-Oplock-Parameter</title>
 
 <para>
 Samba bietet Oplock-Parameter, die es dem Administrator erlauben, verschiedene Eigenschaften des
-Oplock-Mechanismus anzupassen, an Timing- und Benutzungs-Level. Diese Parameter bieten hohe Flexibilität zum
-Implementieren von Oplocks in Umgebungen, wo Sie sehr wahrscheinlich Probleme verursachen würden.
+Oplock-Mechanismus an Timing- und Benutzungs-Level anzupassen. Diese Parameter bieten hohe Flexibilität, um
+Oplocks in Umgebungen zu implementieren, wo sie sehr wahrscheinlich Probleme verursachen würden.
 Die Parameter sind:
-<smbconfoption><name>oplock break wait time</name></smbconfoption>,
+<smbconfoption><name>oplock break wait time</name></smbconfoption> und
 <smbconfoption><name>oplock contention limit</name></smbconfoption>.
 </para>
 
@@ -439,41 +435,41 @@ Dies ist ein guter Rat.
 </sect3>
 
 <sect3>
-<title>Missions-kritische Hochverfügbarkeit</title>
+<title>Missionskritische Hochverfügbarkeit</title>
 
 <para>
-In Hochverfügbarkeits-Umgebungen ist die
+In Hochverfügbarkeitsumgebungen ist die
 Integrität der Daten oft von hoher Priorität. Komplexe und teure Konfigurationen werden implementiert, um zu
-gewährleisten, daß wenn ein Client die Verbindung zum Dateiserver verliert, sofort ein Ersatz verfügbar ist,
-um durchgehende Verfügbarkeit der Daten zu gewährleisten.
+gewährleisten, dass sofort ein Ersatz verfügbar ist, wenn ein Client die Verbindung zum Dateiserver verliert,
+damit eine durchgehende Verfügbarkeit der Daten gewährleistet ist.
 </para>
 
 <para>
-Das Verhalten von Windows Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
+Das Verhalten von Windows-Clients bei Ausfällen birgt ein höheres Risiko von Anwendungsunterbrechungen als
 andere Plattformen, da es von einer aufgebauten TCP-Transport-Verbindung abhängt. Wenn die Verbindung
 unterbrochen wird
 &smbmdash; wie bei einem Datei-Server-Ausfall und dessen Ersatz durch einen Failover-Server &smbmdash;
-muß eine neue Verbindung aufgebaut werden. Es ist selten, daß eine Windows-Client-Applikation so programmiert
-ist, daß sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt, daher werden die meisten
-Applikationen in irgendeiner Art unterbrochen &smbmdash; im schlimmsten Fall abgebrochen, und erfordern
+muss eine neue Verbindung aufgebaut werden. Es ist selten, dass eine Windows-Client-Applikation so programmiert
+ist, dass sie sich korrekt von einer unterbrochenen Transport-Verbindung erholt. Daher werden die meisten
+Applikationen in irgendeiner Art unterbrochen &smbmdash; im schlimmsten Fall abgebrochen &smbmdash; und erfordern
 einen Neustart.
 </para>
 
 <para>
-Wenn eine Client-Session Schreib- und Lese-Vorgänge mittels Oplocks lokal gepuffert hat, ist es wahrscheinlich,
-daß die Daten verloren gehen, wenn die Applikation neu startet, oder sich nach der TCP-Unterbrechung wieder
+Wenn eine Client-Session Schreib- und Lese-Vorgänge mit Oplocks lokal gepuffert hat, ist es wahrscheinlich,
+dass die Daten verloren gehen, wenn die Applikation neu startet oder sich nach der TCP-Unterbrechung wieder
 verbindet. Wenn die TCP-Verbindung ausfällt, ist der Status des Clients verloren. Wenn der Server die
 Verbindung wiederherstellt, wird keine Aufforderung zum Brechen des Oplocks an den Client gesandt. In diesem
-Fall ist die Arbeit aus der vorangehenden Session verloren. Durch Echtzeit-Überwachung dieses Szenarios mit
+Fall ist die Arbeit aus der vorangegangenen Session verloren. Durch die Echtzeit-Überwachung dieses Szenarios mit
 deaktivierten Oplocks und des Clients, der Daten auf den Datei-Server schreibt, wird die
-Ausfallssicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
+Ausfallsicherung die Daten auf der Platte so bewahren, wie sie zum Zeitpunkt des Verbindungsabbruchs existiert
 haben.
 </para>
 
 <para>
-In <quote>mission-critical</quote> Hochverfügbarkeits-Umgebungen, sollte grosse Vorsicht im Umgang mit
+In <quote>mission-critical</quote> Hochverfügbarkeitsumgebungen sollte große Vorsicht im Umgang mit
 Oplocks geübt werden. Idealerweise sollten umfassende Tests mit allen betroffenen Applikationen erfolgen, sowohl
-mit wie auch ohne aktivierten Oplocks.
+mit als auch ohne aktivierte Oplocks.
 </para>
 
 </sect3>
@@ -481,78 +477,78 @@ mit wie auch ohne aktivierten Oplocks.
 </sect1>
 
 <sect1>
-<title>Samba Oplock Kontrolle</title>
+<title>Samba-Oplock-Kontrolle</title>
 
 <para>
 Oplocks sind ein einzigartiges Datei-Sperr-Feature von Windows. Sie sind keine richtigen Dateisperren, werden
-aber in den meisten Diskussionen über Windows-Dateisperren miteinbezogen, also de facto als Sperr-Feature
-betrachtet. Oplocks sind tatsächlich Teil des Windows-Client-Datei-Caching-Mechanismus. Sie sind kein speziell
+aber in die meisten Diskussionen über Windows-Dateisperren miteinbezogen, also de facto als Sperr-Feature
+betrachtet. Oplocks sind tatsächlich ein Teil des Windows-Client-Datei-Caching-Mechanismus. Sie sind kein speziell
 robustes oder zuverlässiges Feature, wenn sie in der Vielzahl von angepassten Netzwerken implementiert werden,
-die es in Unternehmens-Umgebungen gibt.
+die es in Unternehmensumgebungen gibt.
 </para>
 
 <para>
 Wie Windows implementiert Samba Oplocks als eine server-seitige Komponente des client-seitigen Cache-Mechanismus.
-Wegen der leichtgewichtigen Entwurfs des Windows-Features erfordert die effektive Konfiguration von Oplocks
-ein tieferes Verständnis ihrer Einschränkungen, und das Anwenden dieses Verständnisses beim Konfigurieren
-des Datenzugriffs für jeden einzelnen Zustand von Netzwerk- und Client-Verwendung.
+Wegen des leichtgewichtigen Entwurfs des Windows-Features muss man für die effektive Konfiguration von Oplocks
+ ihre Einschränkungen genau kennen und dieses Wissen beim Konfigurieren
+des Datenzugriffs für jeden einzelnen Zustand von Netzwerk- und Client-Verwendung auch anwenden.
 </para>
 
 <para>
-Opportunistisches Sperren bedeutet grundsätzlich, daß es dem Client erlaubt wird, eine Datei herunterzuladen, und
+Opportunistisches Sperren bedeutet grundsätzlich, dass es dem Client erlaubt wird, eine Datei herunterzuladen und
 sie lokal auf seiner Platte zu puffern, während er Veränderungen daran vornimmt; wenn ein zweiter Client auf
-die Datei zugreifen will, erhält der erste Client ein Signal zum Bruch des Oplocks und muß die Datei wieder
+die Datei zugreifen will, erhält der erste Client ein Signal zum Bruch des Oplocks und muss die Datei wieder
 zurück auf den Server synchronisieren. Dies kann in einigen Fällen deutliche Performance-Steigerungen
-verursachen; manche Programme bestehen auf der Synchronisation der gesamten Datei mit dem Server, nur für
-eine einzelne Veränderung.
+verursachen; manche Programme bestehen nur für
+eine einzelne Veränderung auf der Synchronisation der gesamten Datei mit dem Server.
 </para>
 
 <para>
-Level1 Oplocks (auch bekannt als einfache <quote>oplocks</quote>) sind ein anderer Begriff für
-Opportunistisches Sperren.
+Level1 Oplocks (auch bekannt als einfache <quote>Oplocks</quote>) sind ein anderer Begriff für
+das opportunistische Sperren.
 </para>
 
 <para>
-Level2 Oplocks bieten Opportunistisches Sperren für eine Datei, die als <emphasis>read only</emphasis>
-behandelt wird. Dies wird typischerweise für Dateien verwendet, die read-only sind, oder für Dateien, für die
-beim Öffnen der Datei keine Absicht besteht, darauf zu schreiben.
+Level2 Oplocks bieten opportunistisches Sperren für eine Datei, die als <emphasis>read only</emphasis>
+behandelt wird. Dies wird typischerweise für Dateien verwendet, die read-only sind, oder für Dateien, bei denen 
+beim Öffnen keine Absicht besteht, darauf zu schreiben.
 </para>
 
 <para>
-Kernel Oplocks sind grundsätzlich eine Methode, die es dem Linux-Kernel erlaubt, mit Samba's opportunistisch
-gesperrten Dateien zu koexistieren, obwohl dies bessere Integration von MS-Windows-Netzwerk-Dateisperren
+Kernel-Oplocks sind grundsätzlich eine Methode, die es dem Linux-Kernel erlaubt, mit Sambas opportunistisch
+gesperrten Dateien zu koexistieren, obwohl dies eine bessere Integration von MS-Windows-Netzwerk-Dateisperren
 mit dem darunterliegenden Betriebssystem gebracht hat; SGI IRIX und Linux sind derzeit die einzigen
 oplock-fähigen Betriebssysteme.
 </para>
 
 <para>
-Sie sollten Oplocks deaktivieren, wenn Sie auf die selben
-Dateien sowohl von UNIX/Linux- und SMB-Clients zugreifen, außer wenn Ihr System Kernel-Oplocks unterstützt.
+Sie sollten Oplocks deaktivieren, wenn Sie auf dieselben
+Dateien sowohl von UNIX/Linux- als auch von SMB-Clients aus zugreifen, außer wenn Ihr System Kernel-Oplocks unterstützt.
 Unabhängig davon sollten Oplocks immer deaktiviert sein, wenn Sie eine Datenbank-Datei (z.B.
 Microsoft Access) für mehrere Clients freigeben, da jeder Oplock-Bruch, den der erste Client empfängt, die
 Synchronisation der gesamten Datei bewirkt (nicht nur des einzelnen Eintrags), was in einer merklichen
 Beeinträchtigung der Performance resultiert, und, noch wahrscheinlicher, in Problemen mit dem Zugriff auf
-die Datenbank. Bemerkenswerterweise reagieren Microsoft Outlook's persönliche Ordner (*.pst) ziemlich
-schlimm auf Oplocks. Im Zweifelsfall, deaktivieren Sie Oplocks und stellen Sie Ihr System von diesem
-Ausgangspunkt aus ein.
+die Datenbank. Bemerkenswerterweise reagieren Microsoft Outlooks persönliche Ordner (*.pst) ziemlich
+schlimm auf Oplocks. Im Zweifelsfall sollten Sie Oplocks deaktivieren und Ihr System von diesem
+Ausgangspunkt aus einstellen.
 </para>
 
 <para>
 Wenn client-seitiges Cachen in Ihrem Netzwerk erwünscht und zuverlässig ist, werden Sie vom Aktivieren der
-Oplocks profitieren. Wenn Ihr Netzwerk langsam und/oder unzuverlässig ist, oder Sie Ihre Dateien über mehr
-als einen Freigabe-Mechanismus (z.B. NFS) oder ein WAN bereitstellen, oder viele Anwender regelmässig auf
-dieselben Dateien zugreifen, werden Sie voraussichtlich nicht profitieren, wegen dem entstehenden Overhead
-durch das Management der Oplocks. In diesem Fall werden Sie die Oplocks stattdessen lieber deaktivieren.
+Oplocks profitieren. Wenn Ihr Netzwerk langsam und/oder unzuverlässig ist oder Sie Ihre Dateien über mehr
+als einen Freigabe-Mechanismus (z.B. NFS) oder ein WAN bereitstellen oder viele Anwender regelmäßig auf
+dieselben Dateien zugreifen, werden Sie voraussichtlich wegen des entstehenden Overheads
+durch das Management der Oplocks nicht von einer Aktivierung profitieren. In diesem Fall werden Sie die Oplocks stattdessen lieber deaktivieren.
 </para>
 
 <para>
 Ein weiterer zu bedenkender Faktor ist die resultierende Performance des Dateizugriffs. Wenn Oplocks keinen
-meßbaren Geschwindigkeitszuwachs in Ihrem Netzwerk bringen, macht es wahrscheinlich keinen Sinn, sich mit ihnen
+messbaren Geschwindigkeitszuwachs in Ihrem Netzwerk bringen, macht es wahrscheinlich keinen Sinn, sich mit ihnen
 herumzuschlagen.
 </para>
 
 <sect2>
-<title>Beispiel-Konfiguration</title>
+<title>Beispielkonfiguration</title>
 
 <para>
 Im folgenden Abschnitt untersuchen wir zwei verschiedene Aspekte der Samba-Sperren.
@@ -562,7 +558,7 @@ Im folgenden Abschnitt untersuchen wir zwei verschiedene Aspekte der Samba-Sperr
 <title>Oplocks deaktivieren</title>
 
 <para>
-Sie können Oplocks auf einer Pro-Freigabe-Basis deaktivieren, wie folgt:
+Sie können Oplocks wie folgt auf einer Pro-Freigabe-Basis deaktivieren:
 </para>
 
 <para>
@@ -574,7 +570,7 @@ Sie können Oplocks auf einer Pro-Freigabe-Basis deaktivieren, wie folgt:
 </para>
 
 <para>
-Der Standard-Oplock-Typ ist Level1. Level2 oplocks werden auf einer Pro-Freigabe-Basis in der Datei
+Der Standard-Oplock-Typ ist Level1. Level2-Oplocks werden auf einer Pro-Freigabe-Basis in der Datei
 &smb.conf; aktiviert.
 </para>
 
@@ -589,24 +585,24 @@ Andererseits können Sie Oplocks auf einer Pro-Datei-Basis innerhalb der Freigabe
 </para>
 
 <para>
-Wenn Sie Probleme mit Oplocks haben, die in Samba's Protokoll-Einträgen ersichtlich sind, möchten Sie
-vielleicht lieber auf der sicheren Seite bleiben, und Oplocks und Level2-Oplocks deaktivieren.
+Wenn Sie Probleme mit Oplocks haben, die in Sambas Protokoll-Einträgen ersichtlich sind, möchten Sie
+vielleicht lieber auf der sicheren Seite bleiben und Oplocks und Level2-Oplocks deaktivieren.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Kernel Oplocks deaktivieren</title>
+<title>Kernel-Oplocks deaktivieren</title>
 
 <para>
-<smbconfoption><name>kernel oplocks</name></smbconfoption> ist ein Parameter in &smb.conf;, der Samba mitteilt (wenn der UNIX-Kernel die Fähigkeit hat,
+<smbconfoption><name>kernel oplocks</name></smbconfoption> ist ein Parameter in &smb.conf;, der Samba informiert (wenn der UNIX-Kernel die Fähigkeit hat,
 einem Windows-Client einen Oplock-Bruch zu senden), wenn ein UNIX-Prozess versucht, eine Datei zu öffnen, die
-gepuffert wird. Dieser Parameter zielt auf das Teilen von Dateien zwischen UNIX und Windows, mit aktivierten
-Oplocks auf dem Samba-Server; der UNIX-Server kann die Datei öffnen, die per Oplocks vom Windows Client
-gesperrt (=gepuffert) ist, und der smbd-Prozess sendet keinen Oplock-Bruch, der die Datei sehr wahrscheinlich
+gepuffert wird. Dieser Parameter zielt auf die gemeinsame Nutzung von Dateien zwischen UNIX und Windows mit aktivierten
+Oplocks auf dem Samba-Server; der UNIX-Server kann die Datei öffnen, die durch Oplocks vom Windows-Client
+gesperrt (= gepuffert) ist, und der smbd-Prozess sendet keinen Oplock-Bruch, der die Datei sehr wahrscheinlich
 zerstören würde. Wenn der UNIX-Kernel die Fähigkeit hat, einen Oplock-Bruch zu senden, dann befähigt der
 Parameter <smbconfoption><name>kernel oplocks</name></smbconfoption> Samba dazu, den Oplock-Bruch zu senden.
-Kernel oplocks werden auf einer Per-Server-Basis in der Datei &smb.conf; aktiviert.
+Kernel-Oplocks werden auf einer Per-Server-Basis in der Datei &smb.conf; aktiviert.
 </para>
 
 <para>
@@ -617,14 +613,14 @@ Die Voreinstellung ist no.
 </para>
 
 <para>
-<smbconfoption><name>veto oplocks</name></smbconfoption> ist ein Parameter in &smb.conf; der
+<smbconfoption><name>veto oplocks</name></smbconfoption> ist ein Parameter in &smb.conf;, der
 spezifische Dateien angibt, für die Oplocks deaktiviert werden.
-Wenn ein Windows-Client eine Datei öffnet, die mit veto oplocks konfiguriert wurde, wird dem Client der Oplock
-nicht erlaubt, und alle Operationen werden auf die originale Datei auf der Platte durchgeführt, anstatt auf die
-vom Client gepufferte Kopie der Datei. Durch explizites Angeben der Dateien, die mit UNIX-Prozessen geteilt
-werden, und durch das Deaktivieren der Oplocks für diese Dateien, kann die Server-weite Oplock-Konfiguration
-aktiviert werden, um Windows-Clients zu erlauben, den Performance-Gewinn aus dem Datei-Caching zu nutzen, ohne
-das Risiko zerstörter Dateien einzugehen. Veto Oplocks können auf einer Per-Freigabe-Basis aktiviert werden, oder
+Wenn ein Windows-Client eine Datei öffnet, die mit veto oplocks konfiguriert worden ist, wird dem Client der Oplock
+nicht erlaubt, und alle Operationen werden auf der originalen Datei auf der Platte durchgeführt, anstatt auf der
+vom Client gepufferten Kopie der Datei. Durch explizites Angeben der Dateien, die mit UNIX-Prozessen geteilt
+werden, und durch das Deaktivieren der Oplocks für diese Dateien kann die server-weite Oplock-Konfiguration
+aktiviert werden, um es Windows-Clients zu erlauben, den Performance-Gewinn aus dem Datei-Caching zu nutzen, ohne
+das Risiko zerstörter Dateien einzugehen. Veto-Oplocks können auf einer Per-Freigabe-Basis aktiviert werden oder
 global für den gesamten Server. Dies erfolgt in der Datei &smb.conf; wie in <link linkend="far1"/>.
 </para>
 
@@ -640,12 +636,12 @@ global für den gesamten Server. Dies erfolgt in der Datei &smb.conf; wie in <lin
 </para>
 
 <para>
-<smbconfoption><name>oplock break wait time</name></smbconfoption> ist ein Parameter in &smb.conf;
+<smbconfoption><name>oplock break wait time</name></smbconfoption> ist ein Parameter in &smb.conf;,
 der das Zeit-Intervall justiert, in dem Samba auf eine Anfrage zum Bruch eines Oplocks reagiert.
 Samba empfiehlt:
 <quote>Do not change this parameter unless you have read and understood the Samba oplock code.</quote>
 <smbconfoption><name>oplock break wait time</name></smbconfoption> kann nur global in der Datei &smb.conf;
-konfiguriert werden, wie nachfolgend gezeigt.
+konfiguriert werden, wie nachfolgend gezeigt wird:
 </para>
 
 <para>
@@ -655,12 +651,12 @@ konfiguriert werden, wie nachfolgend gezeigt.
 </para>
 
 <para>
-<emphasis>oplock break contention limit</emphasis> ist ein Parameter in &smb.conf;
+<emphasis>oplock break contention limit</emphasis> ist ein Parameter in &smb.conf;,
 der die Antwort des Samba-Servers auf die Anfrage nach einem Oplock einschränkt, wenn die Anzahl der
 sich darum <quote>bewerbenden</quote> Clients das in diesem Parameter angegebene Limit erreicht.
 Samba empfiehlt:
 <quote>Do not change this parameter unless you have read and understood the Samba oplock code.</quote>
-Oplock break Contention Limit kann auf einer Per-Freigabe-Basis aktiviert werden, oder
+<emphasis>oplock break contention limit</emphasis> kann auf einer Per-Freigabe-Basis aktiviert werden oder
 global für den gesamten Server. Dies erfolgt in der Datei &smb.conf; wie in <link linkend="far3"/>.
 </para>
 
@@ -681,44 +677,42 @@ global für den gesamten Server. Dies erfolgt in der Datei &smb.conf; wie in <lin
 </sect1>
 
 <sect1>
-<title>MS Windows Oplock- und Cache-Kontrollen</title>
+<title>Oplock- und Cache-Kontrollen mit MS Windows</title>
 
 <para>
 Es gibt einen bekannten Umstand beim Ausführen von Applikationen (wie Norton Anti-Virus) auf einer
-Windows 2000/ XP Workstation, der jede Anwendung beeinflussen kann, die versucht, über ein Netzwerk auf
-freigegebene Datenbank-Dateien zuzugreifen. Dies ist eine Folge einer Voreinstellung im Windows 2000/XP
-Betriebssystem namens <emphasis>opportunistic locking</emphasis>. Wenn eine Workstation versucht, auf
-freigegebene Dateien auf einem anderen Windows 2000/XP Rechner zuzugreifen, versucht das Windows 2000/XP
-Betriebssystem, die Performance zu erhöhen, indem es die Dateien sperrt und lokal puffert. Wenn das
-pasiert, kann die Anwendung nicht mehr korrekt arbeiten, was darin resultiert, daß die Meldung
+Windows 2000/XP-Workstation, der jede Anwendung beeinflussen kann, die versucht, über ein Netzwerk auf
+freigegebene Datenbank-Dateien zuzugreifen. Dies ist eine Folge einer Voreinstellung im Windows 2000/XP-Betriebssystem, dies <emphasis>opportunistic locking</emphasis> heißt. Wenn eine Workstation versucht, auf
+freigegebene Dateien auf einem anderen Windows 2000/XP-Rechner zuzugreifen, versucht das Windows 2000/XP-Betriebssystem, die Performance zu erhöhen, indem es die Dateien sperrt und lokal puffert. Wenn das
+passiert, kann die Anwendung nicht mehr korrekt arbeiten, und das hat zur Folge, dass die Meldung
 <quote>Access Denied</quote> während der Netzwerk-Operation angezeigt wird.
 </para>
 
 <para>
-Alle Windows Betriebssysteme in der NT-Familie, die als Datenbank-Server für Dateien arbeiten können
-(das soll heissen, daß dort Dateien abgelegt werden, auf die von anderen Windows-PCs aus zugegriffen wird),
+Alle Windows-Betriebssysteme in der NT-Familie, die als Datenbank-Server für Dateien arbeiten können
+(das soll heißen, dass dort Dateien abgelegt werden, auf die von anderen Windows-PCs aus zugegriffen wird),
 müssen wahrscheinlich deaktivierte Oplocks haben, um das Risiko der Beschädigung von Dateien zu
-minimieren. Das inkludiert Windows 9x/Me, Windows NT, Windows 200x, und Windows XP.
-<footnote><para>Microsoft hat dies im Knowledge Base Artikel 300216 dokumentiert.</para></footnote>
+minimieren. Das gilt für Windows 9x/Me, Windows NT, Windows 200x und Windows XP.
+<footnote><para>Microsoft hat dies im Knowledge-Base-Artikel 300216 dokumentiert.</para></footnote>
 </para>
 
 <para>
-Wenn Sie eine Workstation der Windows NT Familie anstatt eines Servers verwenden, müssen Sie auch darauf die
+Wenn Sie eine Workstation der Windows NT-Familie anstatt eines Servers verwenden, müssen Sie auch darauf die
 Oplocks deaktivieren. Wenn Sie zum Beispiel einen PC mit dem Betriebssystem Windows NT Workstation anstatt
-Windows NT Server verwenden, und Sie haben darauf Daten abgelegt, auf die von anderen Windows PCs zugegriffen
+Windows NT Server verwenden und Sie darauf Daten abgelegt haben, auf die von anderen Windows-PCs zugegriffen
 wird, werden Sie die Oplocks auf diesem System deaktivieren müssen.
 </para>
 
 <para>
 Der hauptsächliche Unterschied ist der Ort in der Windows-Registrierung, an dem die Werte zum Deaktivieren der
-Oplocks eingegeben werden. Anstatt des Eintrags LanManServer muß eventuell der Eintrag LanManWorkstation
+Oplocks eingegeben werden. Anstatt des Eintrags LanManServer muss eventuell der Eintrag LanManWorkstation
 verwendet werden.
 </para>
 
 <para>
-Sie können diesen Wert mit dem Windows Registrierungs-Editor überprüfen 
-(auch hinzufügen oder ändern, falls nötig). Wenn Sie diesen Registrierungs-Wert ändern, müssen Sie den PC neu 
-starten, um sicherzustellen, daß die neue Einstellung wirksam wird.
+Sie können diesen Wert mit dem Windows-Registrierungseditor überprüfen 
+(auch hinzufügen oder ändern, falls nötig). Wenn Sie diesen Registrierungswert ändern, müssen Sie den PC neu 
+starten, um sicherzustellen, dass die neue Einstellung wirksam wird.
 </para>
 
 <para>
@@ -727,12 +721,12 @@ Ort in Microsoft Windows NT).
 </para>
 
 <note><para>
-Windows 2000 akzeptiert nach wie vor den Registrierungseintrag EnableOplocks, der in früheren Windows-Versionen
+Windows 2000 akzeptiert nach wie vor den Registrierungseintrag <constant>EnableOplocks</constant>, der in früheren Windows-Versionen
 zum Deaktivieren von Oplocks verwendet wurde.
 </para></note>
 
 <para>
-Sie können die Oplocks auch deaktivieren, indem Sie die folgenden Registrierungs-Einträge ändern:
+Sie können die Oplocks auch deaktivieren, indem Sie die folgenden Registrierungseinträge ändern:
 </para>
 
 <para>
@@ -746,9 +740,9 @@ Sie können die Oplocks auch deaktivieren, indem Sie die folgenden Registrierungs
 </para>
 
 <note><para>
-Der Registrierungs-Eintrag OplocksDisabled konfiguriert Windows Clients dahingehend, ob sie Oplocks für
+Der Registrierungseintrag <constant>OplocksDisabled</constant> konfiguriert Windows-Clients in Hinblick darauf, ob sie Oplocks für
 enfernte (= nicht-lokale) Dateien anfordern
-oder nicht. Um die Oplocks zu deaktivieren, muß der Wert von OplocksDisabled auf 1 gesetzt sein.
+oder nicht. Um die Oplocks zu deaktivieren, muss der Wert von <constant>OplocksDisabled</constant> auf 1 gesetzt sein.
 </para></note>
 
 <para>
@@ -765,17 +759,17 @@ oder nicht. Um die Oplocks zu deaktivieren, muß der Wert von OplocksDisabled auf
 </para>
 
 <note><para>
-Der Registrierungs-Eintrag EnableOplocks konfiguriert Windows-basierende Server (einschliesslich Workstations, 
-die Dateien freigeben), Oplocks für lokale Dateien zu erlauben oder nicht.
+Der Registrierungseintrag <constant>EnableOplocks</constant> konfiguriert Windows-basierende Server (einschließlich Workstations, 
+die Dateien freigeben) so, dass sie Oplocks für lokale Dateien erlauben oder nicht.
 </para></note>
 
 <para>
-Um das Schliessen von offenen Oplocks beim Schliessen oder Verlassen eines Programms zu erzwingen, muß
-EnableOpLockForceClose auf 1 gesetzt sein.
+Um das Schließen von offenen Oplocks beim Schließen oder Verlassen eines Programms zu erzwingen, muss
+<constant>EnableOpLockForceClose</constant> auf 1 gesetzt sein.
 </para>
 
 <para>
-Eine Illustration der Arbeitsweise von Level2-Oplocks:
+Die folgende Liste illustriert die Arbeitsweise von Level2-Oplocks:
 </para>
 
 <itemizedlist>
@@ -796,11 +790,11 @@ Eine Illustration der Arbeitsweise von Level2-Oplocks:
 	Station 1 leistet dem Folge und gibt ihre gepufferten Sperr-Informationen zurück an den Server.
 	</para></listitem>
 	<listitem><para>
-	Station 1 informiert den Server, daß sie den Oplock auf einen Level2-Oplock geändert hat (alternativ
-	dazu hätte die Station 1 auch die Datei schliessen können).
+	Station 1 informiert den Server, dass sie den Oplock auf einen Level2-Oplock geändert hat (alternativ
+	dazu hätte die Station 1 auch die Datei schließen können).
 	</para></listitem>
 	<listitem><para>
-	Der Server antwortet auf die offene Anfrage von Station 2, und gewährt dieser einen Level2-Oplock.
+	Der Server antwortet auf die offene Anfrage von Station 2 und gewährt dieser einen Level2-Oplock.
 	Andere Stationen können ebenso die Datei öffnen und einen Level2-Oplock erhalten.	
 	</para></listitem>
 	<listitem><para>
@@ -809,15 +803,15 @@ Eine Illustration der Arbeitsweise von Level2-Oplocks:
 	</para></listitem>
 	<listitem><para>
 	Der Server fordert alle Stationen, die die Datei geöffnet haben, dazu auf, ihre Oplocks aufzubrechen, was
-	bedeutet, daß keine Station mehr irgendwelche Oplocks auf dieser Datei gesetzt hat. Da die
+	bedeutet, dass keine Station mehr irgendwelche Oplocks auf dieser Datei gesetzt hat. Da die
 	Workstations an diesem Punkt keinerlei gepufferte Schreibvorgänge oder Sperren haben können, brauchen
-	sie auch nicht auf diese <quote>break-to-none</quote>-Aufforderung zu antworten; alles was sie tun
-	müssen, ist, alle lokal gepufferten read-ahead-Daten zu verwerfen.
+	sie auch nicht auf diese <quote>break-to-none</quote>-Aufforderung zu antworten; sie
+	müssen lediglich, alle lokal gepufferten read-ahead-Daten verwerfen.
 	</para></listitem>
 </itemizedlist>
 
 <sect2>
-<title>Workstation Dienst-Einträge</title>
+<title>Workstation-Dienst-Einträge</title>
 
 <para><programlisting>
 	\HKEY_LOCAL_MACHINE\System\
@@ -834,7 +828,7 @@ Probleme einzugrenzen.
 
 </sect2>
 <sect2>
-<title>Server Dienst-Einträge</title>
+<title>Server-Dienst-Einträge</title>
 
 <para><programlisting>
 	\HKEY_LOCAL_MACHINE\System\
@@ -892,12 +886,12 @@ erleiden, gibt es hier noch ein paar weitere Dinge, die Sie sich ansehen sollten
 </para>
 
 <para>
-Wir haben zuverlässige Berichte von Entwicklern, daß fehlerhafte Netzwerk-Hardware, wie eine einzelne fehlerhafte
+Wir haben zuverlässige Berichte von Entwicklern, dass fehlerhafte Netzwerk-Hardware, wie eine einzelne fehlerhafte
 Netzwerkkarte, Symptome wie Caching-Probleme und Datenverlust verursachen kann. Wenn Sie auch nach wiederholtem
 Neu-Indizieren immer noch Datenverluste erleiden, müssen Sie wahrscheinlich die betreffenden Dateien neu
 aufbauen. Das bedeutet das Anlegen einer neuen Datei mit derselben Definition wie die neu zu bildende Datei und
 das Transferieren der Daten aus der alten in die neue Datei. Es gibt einige bekannte Methoden, dies zu tun, die
-man in unserer Knowledge Base finden kann.
+Sie in unserer Knowledge Base finden können.
 </para>
 
 </sect1>
@@ -906,44 +900,44 @@ man in unserer Knowledge Base finden kann.
 <title>Häufige Fehler</title>
 
 <para>
-In manchen Installationen zeigen sich Probleme mit dem Sperren sobald ein Server installiert wird; in anderen
+In manchen Installationen zeigen sich Probleme mit dem Sperren, sobald ein Server installiert wird; in anderen
 bleiben diese Probleme für eine lange Zeit verborgen. Fast ohne Ausnahme verursachen diese Probleme
-Peinlichkeiten und potentielle Datenverluste.
+Ärger und potenzielle Datenverluste.
 </para>
 
 <para>
-Über die letzten paar Jahre gab es eine Anzahl von Beschwerden in der Samba-Mailing-Liste, die behaupteten,
-daß Samba Datenverluste verursacht habe. Drei Ursachen wurden bislang festgestellt:
+Über die letzten paar Jahre gab es eine Anzahl von Beschwerden in der Samba-Mailing-Liste, in denen behauptet wurde,
+dass Samba Datenverluste verursacht habe. Drei Ursachen wurden bislang festgestellt:
 </para>
 
 <itemizedlist>
 	<listitem><para>
 	Fehlerhafte Konfiguration der Oplocks (inkompatibel mit der verwendeten Applikation). Dies ist ein
-	gängiges Problem, sogar dort, wo MS Windows NT4 oder MS Windows 200x-basierende Server im Einsatz
-	sind. Es ist zwingend erforderlich, daß die Anweisungen des Software-Herstellers in Bezug auf die
+	gängiges Problem, sogar dort, wo MS Windows NT4- oder MS Windows 200x-basierende Server im Einsatz
+	sind. Es ist zwingend erforderlich, dass die Anweisungen des Software-Herstellers in Bezug auf die
 	Konfiguration der Dateisperren befolgt werden. Falls Sie im Zweifel sind, deaktivieren Sie die Oplocks
-	sowohl am Server wie auch am Client. Das Deaktivieren jeglicher Form der Datei-Pufferung auf den
-	MS Windows Clients kann ebenso erforderlich sein.
+	sowohl auf dem Server als auch auf dem Client. Das Deaktivieren jeglicher Form der Datei-Pufferung auf den
+	MS Windows-Clients kann ebenso erforderlich sein.
 	</para></listitem>
 
 	<listitem><para>
-	Defekte Netzwerk-Karten, -Kabel, oder -HUBs/Switches. Dies ist im Allgemeinen eher bei Einsatz billiger
+	Defekte Netzwerk-Karten, -Kabel oder -HUBs/Switches. Dies ist im Allgemeinen eher beim Einsatz billiger
 	Netzwerk-Hardware verbreitet, obwohl es manchmal auch Probleme mit Inkompatibilitäten bei
-	eher hochpreisiger Hardware gibt.
+	eher teurer Hardware gibt.
 	</para></listitem>
 
 	<listitem><para>
-	Es hat auch einzelne Meldungen gegeben, die davon berichtet haben, daß Samba's Protokoll-Dateien
+	Es hat auch einzelne Meldungen gegeben, in denen berichtet wurde, dass Sambas Protokoll-Dateien
 	über Daten-Dateien geschrieben wurden. Dies wurde nur von sehr wenigen Installationen berichtet
-	(ungefähr fünf in den letzten drei Jahren) und alle Versuche, dieses Problem zu reproduzieren, schlugen
-	fehl. Das Samba-Team war bislang nicht imstande, dieses Ereignis zu beobachtem, und konnte daher auch
+	(ungefähr fünf in den letzten drei Jahren), und alle Versuche, dieses Problem zu reproduzieren, schlugen
+	fehl. Das Samba-Team war bislang nicht imstande, dieses Ereignis zu beobachten, und konnte daher auch
 	noch keine spezielle Ursache eingrenzen. Bedenkt man die Millionen von Systemen, die Samba einsetzen,
-	ist es trotzdem für die paar Installationen, die von diesem Problem betroffen wurden, genauso wie
+	ist es trotzdem für die paar Administratoren, die von diesem Problem betroffen wurden, genauso wie
 	für das Samba-Team, eine frustrierende und ärgerliche Herausforderung. Wenn Sie so etwas beobachten,
 	erstellen Sie bitte unverzüglich einen Bug-Report auf 
 	Samba <ulink url="https://bugzilla.samba.org">Bugzilla</ulink>. Geben Sie bitte so viele Informationen
-	wie möglich, da Sie vielleicht dazu beitragen, die Ursache dieses Problems zu isolieren, und die
-	Reproduktion des Problems zu ermöglichen (ein Schritt von essentieller Bedeutung, um das Problem
+	wie möglich, da Sie vielleicht dazu beitragen, die Ursache dieses Problems zu isolieren und die
+	Reproduktion des Problems zu ermöglichen (ein Schritt von grundlegender Bedeutung, um das Problem
 	eingrenzen und beheben zu können).
 	</para></listitem>
 </itemizedlist>
@@ -974,7 +968,7 @@ tdb(/usr/local/samba_2.2.7/var/locks/locking.tdb): rec_read bad magic
 		<title>Probleme beim Speichern von Dateien in MS Office auf Windows XP</title>
 
 		<para>Dies ist ein Bug in Windows XP. Sie finden mehr Infos dazu im
-		<ulink url="http://support.microsoft.com/?id=812937">Microsoft Knowledge Base Artikel 812937.</ulink></para>
+		<ulink url="http://support.microsoft.com/?id=812937">Microsoft Knowledge-Base-Artikel 812937.</ulink></para>
 
 	</sect2>
 
@@ -987,7 +981,7 @@ tdb(/usr/local/samba_2.2.7/var/locks/locking.tdb): rec_read bad magic
 
 		<para>Dies ist ein Bug in Windows XP. Sie finden mehr Infos dazu im
 		<ulink url="http://support.microsoft.com/?id=811492">
-		Microsoft Knowledge Base Artikel 811492.</ulink></para>
+		Microsoft Knowledge-Base-Artikel 811492.</ulink></para>
 	</sect2>
 
 </sect1>
@@ -997,7 +991,7 @@ tdb(/usr/local/samba_2.2.7/var/locks/locking.tdb): rec_read bad magic
 
 <para>
 Sie möchten vielleicht auf unserer Website von Zeit zu Zeit nach einer aktualisierten Version dieser 
-Informationen sehen. Viele der von uns zur Verfügung gestellten Infos werden aktualisiert, sobald sich neue
+Informationen schauen. Viele der von uns zur Verfügung gestellten Hinweisen werden aktualisiert, sobald sich neue
 Informationen ergeben. Auf diesen <quote>papers</quote> finden Sie das Datum der letzten Bearbeitung immer
 am Beginn des jeweiligen Artikels.
 </para>
@@ -1014,18 +1008,18 @@ Windows Base Services &gt; Files and I/O &gt; SDK Documentation &gt; File Storag
 </para>
 
 <para>
-Microsoft Knowledge Base Artikel Q224992 <?latex \linebreak ?><quote>Maintaining Transactional Integrity
+Microsoft Knowledge-Base-Artikel Q224992 <?latex \linebreak ?><quote>Maintaining Transactional Integrity
 with OPLOCKS</quote>,
 Microsoft Corporation, April 1999, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q224992">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q224992</ulink>.
 </para>
 
 <para>
-Microsoft Knowledge Base Artikel Q296264 <quote>Configuring Opportunistic Locking in Windows 2000</quote>,
+Microsoft Knowledge-Base-Artikel Q296264 <quote>Configuring Opportunistic Locking in Windows 2000</quote>,
 Microsoft Corporation, April 2001, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q296264">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q296264</ulink>.
 </para>
 
 <para>
-Microsoft Knowledge Base Artikel Q129202 <quote>PC Ext: Explanation of Opportunistic Locking on Windows NT</quote>,
+Microsoft Knowledge-Base-Artikel Q129202 <quote>PC Ext: Explanation of Opportunistic Locking on Windows NT</quote>,
 Microsoft Corporation, April 1995, <ulink noescape="1" url="http://support.microsoft.com/default.aspx?scid=kb;en-us;Q129202">http://support.microsoft.com/default.aspx?scid=kb;en-us;Q129202</ulink>.
 </para>
 
