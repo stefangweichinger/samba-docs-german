@@ -251,14 +251,14 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	</para>
 
 	<para><smbconfexample id="overridesettings">
-	<title>Overriding global CUPS settings for one printer</title>
+	<title>Das Aufheben globaler CUPS-Einstellungen für einen Drucker</title>
 	<smbconfsection>[global]</smbconfsection>
 	<smbconfoption><name>printing</name><value>cups</value></smbconfoption>
 	<smbconfoption><name>printcap name</name><value>cups</value></smbconfoption>
 	<smbconfoption><name>load printers</name><value>yes</value></smbconfoption>
 
 	<smbconfsection>[printers]</smbconfsection>
-	<smbconfoption><name>comment</name><value>All Printers</value></smbconfoption>
+	<smbconfoption><name>comment</name><value>Alle Drucker</value></smbconfoption>
 	<smbconfoption><name>path</name><value>/var/spool/samba</value></smbconfoption>
 	<smbconfoption><name>public</name><value>yes</value></smbconfoption>
 	<smbconfoption><name>guest ok</name><value>yes</value></smbconfoption>
@@ -267,7 +267,7 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	<smbconfoption><name>printer admin</name><value>root, @ntadmins</value></smbconfoption>
 
 	<smbconfsection>[special_printer]</smbconfsection>
-	<smbconfoption><name>comment</name><value>A special printer with his own settings</value></smbconfoption>
+	<smbconfoption><name>comment</name><value>Ein spezieller Drucker mit seinen eigenen Einstellungen</value></smbconfoption>
 	<smbconfoption><name>path</name><value>/var/spool/samba-special</value></smbconfoption>
 	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption>
 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>
@@ -285,51 +285,54 @@ libcups.so.2 =&gt; /usr/lib/libcups.so.2 (0x40123000)
 	</smbconfexample></para>
 
 	<para>
-	This special share is only there for testing purposes. It does not write the print job to a file. It just logs the job parameters
-	known to Samba into the <filename>/tmp/smbprn.log</filename> file and deletes the job-file. Moreover, the
-	<smbconfoption><name>printer admin</name></smbconfoption> of this share is <quote>kurt</quote> (not the <quote>@ntadmins</quote> group),
-	guest access is not allowed, the share isn't published to the Network Neighborhood (so you need to know it is there), and it only
-	allows access from only three hosts. To prevent CUPS kicking in and taking over the print jobs for that share, we need to set
-	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption> and
+	Diese spezielle Freigabe ist nur für Testzwecke gedacht. Sie schreibt den Druckauftrag nicht
+	in eine Datei, sondern protokolliert nur die Auftrags-Parameter, die Samba bekannt sind, in die
+	Datei <filename>/tmp/smbprn.log</filename> und löscht die Auftrags-Datei. Außerdem ist der
+	Parameter <smbconfoption><name>printer admin</name></smbconfoption> dieser Freigabe
+	<quote>kurt</quote> (nicht die Gruppe <quote>@ntadmins</quote>), Gast-Zugriff ist nicht erlaubt,
+	die Freigabe wird nicht in der Netzwerkumgebung angezeigt (also müssen Sie wissen, daß es sie 
+	gibt), und sie erlaubt nur den Zugriff von nur drei Hosts. Um CUPS daran zu hindern, sich
+	hier einzumischen und die Druckjobs dieser Freigabe zu übernehmen, müssen wir dies setzen:
+	<smbconfoption><name>printing</name><value>sysv</value></smbconfoption> und
 	<smbconfoption><name>printcap</name><value>lpstat</value></smbconfoption>.
 	</para>
 	</sect2>
 </sect1>
 
 <sect1>
-	<title>Advanced Configuration</title>
+	<title>Erweiterte Konfiguration</title>
 
 	<para>
-	Before we delve into all the configuration options, let us clarify a few
-	points. <emphasis>Network printing needs to be organized and setup
-	correctly</emphasis>. This frequently doesn't happen. Legacy systems
-	or small business LAN environments often lack design and good housekeeping.
+	Bevor wir in all die Konfigurations-Optionen eintauchen, lassen Sie uns ein paar Punkte
+	klären. <emphasis>Netzwerk-Druck muß organisiert und korrekt eingerichtet werden</emphasis>.
+	Dies passiert meistens nicht. Bestehenden alten Systemen oder 
+	LAN-Umgebungen in kleinen Firmen mangelt es oft an Design und guter Wartung.
 	</para>
 
 
 	<sect2>
-	<title>Central Spooling vs. <quote>Peer-to-Peer</quote> Printing</title>
+	<title>Zentrales Spooling vs. <quote>Peer-to-Peer</quote>-Druck</title>
 
 
 	<para>
 <indexterm><primary>spooling</primary><secondary>central</secondary></indexterm>
 <indexterm><primary>spooling</primary><secondary>peer-to-peer</secondary></indexterm>
-	Many small office or home networks, as well as badly organized larger
-	environments, allow each client a direct access to available network
-	printers. This is generally a bad idea. It often blocks one client's
-	access to the printer when another client's job is printing. It might
-	freeze the first client's application while it is waiting to get
-	rid of the job. Also, there are frequent complaints about various jobs
-	being printed with their pages mixed with each other. A better concept
-	is the usage of a print server: it routes all jobs through one
-	central system, which responds immediately, takes jobs from multiple
-	concurrent clients at the same time, and in turn transfers them to the
-	printer(s) in the correct order.
+	Viele kleine Büro- oder Heim-Netzwerke, genauso wie schlecht organisierte grössere
+	Umgebungen, erlauben jedem Client direkten Zugriff auf verfügbare Netzwerkdrucker.
+	Dies ist im Allgemeinen eine schlechte Idee. Es blockiert oft den Zugriff eines Clients
+	auf den Drucker, wenn der Auftrag eines anderen Clients gedruckt wird. Dies könnte
+	die Applikation des ersten Clients "einfrieren", während diese darauf wartet, den
+	Auftrag loszuwerden. Es gibt auch immer wieder Beschwerden darüber, daß Aufträge
+	gedruckt werden, deren Seiten miteinander vermischt sind. Ein besseres Konzept
+	ist die Verwendung eines Druck-Servers; er routet alle Aufträge durch ein zentrales
+	System, welches unverzüglich antwortet, Aufträge von mehreren verschiedenen Clients
+	zur selben Zeit annimmt, und diese danach in der korrekten Reihenfolge an die Drucker
+	weiterleitet.
 	</para>
 	</sect2>
 
 	<sect2>
-	<title>Raw Print Serving &smbmdash; Vendor Drivers on Windows Clients</title>
+	<title>"Raw" Print Serving &smbmdash; Hersteller-Treiber auf den Windows Clients</title>
 
 
 	<para>
