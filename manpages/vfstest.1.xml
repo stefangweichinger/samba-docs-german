@@ -13,52 +13,53 @@
 
 <refnamediv>
 	<refname>vfstest</refname>
-	<refpurpose>tool for testing samba VFS modules </refpurpose>
+	<refpurpose>Werkzeug zum Testen von Samba-VFS-Modulen</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>vfstest</command>
-		<arg choice="opt">-d debuglevel</arg>
-		<arg choice="opt">-c command</arg>
-		<arg choice="opt">-l logdir</arg>
+		<arg choice="opt">-d Debug-Ebene</arg>
+		<arg choice="opt">-c Befehl</arg>
+		<arg choice="opt">-l Log-Verzeichnis</arg>
 		<arg choice="opt">-h</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>vfstest</command> is a small command line
-	utility that has the ability to test dso samba VFS modules. It gives the
-	user the ability to call the various VFS functions manually and
-	supports cascaded VFS modules.
+	<para><command>vfstest</command> ist ein kleines Kommandozeilen-Werkzeug,
+	das Samba-VFS-Module testen kann. Es gibt dem Benutzer die Möglichkeit,
+	die verschiedenen VFS-Funktionen manuell aufzurufen und unterstützt 
+	verschachtelte VFS-Module.
 	</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 
 		<varlistentry>
-		<term>-c|--command=command</term>
-		<listitem><para>Execute the specified (colon-separated) commands.
-		See below for the commands that are available.
+		<term>-c|--command=Befehl</term>
+		<listitem><para>Führt die (durch Doppelpunkte getrennten) 
+		angegebenen Befehle aus. Siehe unten für die verfügbaren Befehle.
 		</para> </listitem>
 		</varlistentry>
 
 		&stdarg.help;
 
 		<varlistentry>
-		<term>-l|--logfile=logbasename</term>
-		<listitem><para>File name for log/debug files. The extension
-		<constant>'.client'</constant> will be appended. The log file is never removed
-		by the client.
+		<term>-l|--logfile=Log-Basisname</term>
+		<listitem><para>Dateiname für Log-/Debug-Dateien. Es wird die
+		Erweiterung <constant>'.client'</constant> angefügt. Die 
+		Log-Datei wird vom Client niemals gelöscht.
 		</para></listitem>
 		</varlistentry>
 
@@ -69,17 +70,18 @@
 
 
 <refsect1>
-	<title>COMMANDS</title>
+	<title>BEFEHLE</title>
 
-	<para><emphasis>VFS COMMANDS</emphasis></para>
+	<para><emphasis>VFS-BEFEHLE</emphasis></para>
 	<itemizedlist>
-		<listitem><para><command>load &lt;module.so&gt;</command> - Load specified VFS module </para></listitem>
+		<listitem><para><command>load &lt;module.so&gt;</command> 
+		- Lädt das angegebene VFS-Modul.</para></listitem>
 
-		<listitem><para><command>populate &lt;char&gt; &lt;size&gt;</command> - Populate a data buffer with the specified data
-		</para></listitem>
+		<listitem><para><command>populate &lt;char&gt; &lt;size&gt;</command> 
+		- Füllt einen Datenpuffer mit den angegebenen Daten.</para></listitem>
 
-		<listitem><para><command>showdata [&lt;offset&gt; &lt;len&gt;]</command> - Show data currently in data buffer
-		</para></listitem>
+		<listitem><para><command>showdata [&lt;offset&gt; &lt;len&gt;]</command> 
+		- Zeigt aktuelle Daten im Datenpuffer an.</para></listitem>
 
 		<listitem><para><command>connect</command> - VFS connect()</para></listitem>
 		<listitem><para><command>disconnect</command> - VFS disconnect()</para></listitem>
@@ -116,17 +118,23 @@
 		<listitem><para><command>realpath</command> - VFS realpath()</para></listitem>
 	</itemizedlist>
 
-	<para><emphasis>GENERAL COMMANDS</emphasis></para>
+	<para><emphasis>ALLGEMEINE BEFEHLE</emphasis></para>
 	<itemizedlist>
-		<listitem><para><command>conf &lt;smb.conf&gt;</command> - Load a different configuration file</para></listitem>
+		<listitem><para><command>conf &lt;smb.conf&gt;</command> 
+		- Lädt eine andere Konfigurationsdatei.</para></listitem>
 
-		<listitem><para><command>help [&lt;command&gt;]</command> - Get list of commands or info about specified command</para></listitem>
+		<listitem><para><command>help [&lt;Befehl&gt;]</command> 
+		- Gibt eine Liste von Befehlen oder Information zum angegebenen 
+		Befehl aus.</para></listitem>
 
-		<listitem><para><command>debuglevel &lt;level&gt;</command> - Set debug level</para></listitem>
+		<listitem><para><command>debuglevel &lt;Ebene&gt;</command> 
+		- Setzt die Debug-Ebene.</para></listitem>
 
-		<listitem><para><command>freemem</command> - Free memory currently in use</para></listitem>
+		<listitem><para><command>freemem</command> 
+		- Gibt den aktuell benutzten Speicher frei.</para></listitem>
 
-		<listitem><para><command>exit</command> - Exit vfstest</para></listitem>
+		<listitem><para><command>exit</command> 
+		- Beendet vfstest.</para></listitem>
 	</itemizedlist>
 
 </refsect1>
