@@ -13,84 +13,86 @@
 
 <refnamediv>
 	<refname>smbspool</refname>
-	<refpurpose>send a print file to an SMB printer</refpurpose>
+	<refpurpose>schickt eine Druckdatei an einen SMB-Drucker</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbspool</command>
-		<arg choice="req">job</arg> 
-		<arg choice="req">user</arg> 
-		<arg choice="req">title</arg> 
-		<arg choice="req">copies</arg> 
-		<arg choice="req">options</arg> 
-		<arg choice="opt">filename</arg> 
+		<arg choice="req">Auftrag</arg> 
+		<arg choice="req">Benutzer</arg> 
+		<arg choice="req">Titel</arg> 
+		<arg choice="req">Kopien</arg> 
+		<arg choice="req">Optionen</arg> 
+		<arg choice="opt">Dateiname</arg> 
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>smbspool is a very small print spooling program that 
-	sends a print file to an SMB printer. The command-line arguments 
-	are position-dependent for compatibility with the Common UNIX 
-	Printing System, but you can use smbspool with any printing system 
-	or from a program or script.</para>
+	<para>smbspool ist ein sehr kleines Drucker-Spooling-Programm, das 
+	eine Druckdatei an einen SMB-Drucker sendet. Die Kommandozeilenargumente 
+	sind positionsabhängig, um kompatibel zu sein mit dem Common UNIX 
+	Printing System, aber Sie können smbspool mit einem beliebigen Drucksystem 
+	oder von einem Programm oder Skript aus benutzen.</para>
 
-	<para><emphasis>DEVICE URI</emphasis></para>
+	<para><emphasis>DEVICE-URI</emphasis></para>
 
-	<para>smbspool specifies the destination using a Uniform Resource 
-	Identifier ("URI") with a method of "smb". This string can take 
-	a number of forms:</para>
+	<para>smbspool gibt das Ziel mit Hilfe eines Uniform Resource 
+	Identifiers ("URI") an, und zwar mit der Methode "smb". Dieser String 
+	kann einige verschiedene Formen annehmen:</para>
 
 	<itemizedlist>
-		<listitem><para>smb://server/printer</para></listitem>
-		<listitem><para>smb://workgroup/server/printer</para></listitem>
-		<listitem><para>smb://username:password@server/printer</para></listitem>
-		<listitem><para>smb://username:password@workgroup/server/printer</para></listitem>
+		<listitem><para>smb://server/drucker</para></listitem>
+		<listitem><para>smb://arbeitsgruppe/server/drucker</para></listitem>
+		<listitem><para>smb://benutzername:passwort@server/drucker</para></listitem>
+		<listitem><para>smb://benutzername:passwort@arbeitsgruppe/server/drucker</para></listitem>
 	</itemizedlist>
 
-	<para>smbspool tries to get the URI from argv[0]. If argv[0] 
-	contains the name of the program then it looks in the <envar>
-	DEVICE_URI</envar> environment variable.</para>
+	<para>smbspool versucht, die URI aus argv[0] zu erhalten. Falls argv[0] 
+	den Namen des Programms enthält, dann sucht es in der Umgebungsvariablen 
+	<envar>DEVICE_URI</envar>.</para>
 
-	<para>Programs using the <command>exec(2)</command> functions can 
-	pass the URI in argv[0], while shell scripts must set the 
-	<envar>DEVICE_URI</envar> environment variable prior to
-	running smbspool.</para>
+	<para>Programme, die die <command>exec(2)</command>-Funktionen verwenden,
+	können die URI in argv[0] übergeben, während Shell-Skripte die 
+	Umgebungsvariable <envar>DEVICE_URI</envar> setzen müssen, bevor sie
+	smbspool aufrufen.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<itemizedlist>
-		<listitem><para>The job argument (argv[1]) contains the 
-		job ID number and is presently not used by smbspool.
+		<listitem><para>Das Argument Auftrag (argv[1]) enthält die 
+		Auftragsnummer-ID und wird momentan von smbspool nicht verwendet.
 		</para></listitem>
 
-		<listitem><para>The user argument (argv[2]) contains the 
-		print user's name and is presently not used by smbspool.
+		<listitem><para>Das Argument Benutzer (argv[2]) enthält den Namen 
+		des Druckerbenutzers und wird momentan von smbspool nicht verwendet.
 		</para></listitem>
 
-		<listitem><para>The title argument (argv[3]) contains the 
-		job title string and is passed as the remote file name 
-		when sending the print job.</para></listitem>
+		<listitem><para>Das Argument Titel (argv[3]) enthält den 
+		Auftragstitel-String und wird als entfernter Dateiname übergeben,
+		wenn der Druckauftrag abgeschickt wird.</para></listitem>
 
-		<listitem><para>The copies argument (argv[4]) contains 
-		the number of copies to be printed of the named file. If 
-		no filename is provided then this argument is not used by 
-		smbspool.</para></listitem>
+		<listitem><para>Das Argument Kopien (argv[4]) enthält die Anzahl 
+		der anzufertigenden Kopien von der genannten Datei. Falls kein 
+		Dateiname angegeben wird, wird dieses Argument von smbspool
+		nicht verwendet.</para></listitem>
 
-		<listitem><para>The options argument (argv[5]) contains 
-		the print options in a single string and is currently 
-		not used by smbspool.</para></listitem>
+		<listitem><para>Das Argument Optionen (argv[5]) enthält die 
+		Druckoptionen in einem einzelnen String und wird momentan von 
+		smbspool nicht verwendet.</para></listitem>
 
-		<listitem><para>The filename argument (argv[6]) contains the 
-		name of the file to print. If this argument is not specified 
-		then the print file is read from the standard input.</para>
+		<listitem><para>Das Argument Dateiname (argv[6]) enthält den 
+		Namen der zu druckenden Datei. Falls dieses Argument nicht 
+		angegeben wird, wird die Druckdatei von der Standardeingabe
+		gelesen.</para>
 		</listitem>
 	</itemizedlist>
 </refsect1>
@@ -104,7 +106,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>.</para>
