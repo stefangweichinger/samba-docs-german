@@ -1040,34 +1040,53 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<sect3>
 			<title>Dateiberechtigungen</title>
 
-			<para>Die Standard UNIX Drillinge Benutzer/Gruppe/Welt und die korrespondierenden <constant>lesen, schreiben, ausführen</constant> Berechtigungen
-			werden von Samba in ein aus drei Elementen bestehendes NT ACL mit <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits
-			zu NT Berechtigungen passenden gemappt. Die UNIX Welt-Berechtigungen werden in die globale NT Gruppe <constant>Jeder</constant> gemappt,
-			gefolgt von der Berechtigungsliste, die für UNIX-Welt gilt. Die UNIX Eigentümer- und Gruppenberechtigungen werden als ein NT
-			<guiicon>Benutzer</guiicon> Symbol und ein NT <guiicon>lokale Gruppe</guiicon> Symbol angezeigt
-			beziehungsweise durch die nachfolgende Berechtigungsliste für die UNIX Benutzer und Gruppe.</para>
+			<para>Die Standard UNIX Drillinge Benutzer/Gruppe/Welt und die 
+			korrespondierenden Berechtigungen 
+			<constant>lesen, schreiben, ausführen</constant> 
+			werden von Samba in ein aus drei Elementen bestehendes NT-ACL mit 
+			den Bits <quote>r</quote>, <quote>w</quote> und <quote>x</quote>
+			auf passende NT-Berechtigungen gemappt. Die UNIX Welt-Berechtigungen werden 
+			in die globale NT Gruppe <constant>Jeder</constant> gemappt,
+			gefolgt von der Berechtigungsliste, die für UNIX-Welt gilt. Die UNIX 
+			Eigentümer- und Gruppenberechtigungen werden als ein NT-
+			<guiicon>Benutzer</guiicon>-Symbol und ein NT-Symbol 
+			<guiicon>lokale Gruppe</guiicon> angezeigt,
+			beziehungsweise durch die nachfolgende Berechtigungsliste für den 
+			UNIX-Benutzer und -Gruppe.</para>
 
-			<para>Dadurch, dass viele UNIX Berechtigungssätze nicht in allgemeine NT Namen wie <constant>lesen</constant>,
-			<constant>ändern</constant> oder <constant>volle Kontrolle</constant> passen, werden gemeinhin die Berechtigungen
-			durch Wörter wie <constant>Spezieller Zugriff</constant> in der NT Anzeigeliste angeführt.</para>
+			<para>Dadurch, dass viele UNIX-Berechtigungssätze nicht auf allgemeine NT-Namen
+			wie <constant>lesen</constant>,
+			<constant>ändern</constant> oder <constant>volle Kontrolle</constant> passen,
+			werden gemeinhin die Berechtigungen 
+			durch Wörter wie <constant>Spezieller Zugriff</constant> in der 
+			NT-Anzeigeliste angeführt.</para>
 
-			<para>Doch was passiert, wenn die Datei keine Berechtigungen für eine bestimmte UNIX Benutzergruppe oder Welt-Komponente erlaubt ?
-			Um es zu ermöglichen, <quote>keine Berechtigungen</quote> zu sehen und zu ändern übergibt Samba das NT <constant>Besitztum übernehmen</constant> ACL Attribut
-			(welches keine Bedeutung für UNIX hat) und meldet eine Komponente ohne Berechtigung, wie wenn das NT <command>O</command> Bit gesetzt ist.
-			Dies wurde natürlich deshalb gewählt, um es wie eine Null aussehen zu lassen, was bedeutet: Null Berechtigungen. Weitere Details zu dieser
-			Entscheidung werden weiter unten gegeben.</para>
+			<para>Doch was passiert, wenn die Datei keine Berechtigungen für eine bestimmte 
+			UNIX-Benutzergruppe oder Welt-Komponente erlaubt ?
+			Um es zu ermöglichen, <quote>keine Berechtigungen</quote> zu sehen und zu 
+			ändern, übergibt Samba das NT ACL-Attribut 
+			<constant>Eigentum übernehmen</constant> 
+			(welches keine Bedeutung für UNIX hat) und meldet eine Komponente ohne 
+			Berechtigung, wie wenn das NT-Bit <command>O</command> gesetzt wäre.
+			Dies wurde natürlich deshalb gewählt, um es wie eine Null aussehen zu 
+			lassen, was bedeutet: Keine (Null) Berechtigungen. Weitere Details zu dieser
+			Entscheidung werden weiter unten angeführt.</para>
 		</sect3>
 
 		<sect3>
 			<title>Verzeichnis-Berechtigungen</title>
 
-			<para>Verzeichnisse auf einem NT NTFS Dateisystem haben zwei verschiedene Berechtigungssätze. Der erste Satz ist die ACL, welche
-			auf das Verzeichnis selbst gesetzt ist, welche normalerweise im ersten Satz der Parentheses im normalen NT-Stil <constant>RW</constant>
-			angezeigt wird. Dieser erste Satz an Berechtigungen wird durch Samba in exakt derselben Art und Weise erzeugt, wie es normale Dateiberechtigungen
+			<para>Verzeichnisse auf einem NTFS-Dateisystem haben zwei verschiedene 
+			Berechtigungssätze. Der erste Satz ist die ACL, welche
+			auf das Verzeichnis selbst gesetzt ist, welche normalerweise im ersten Satz 
+			der Klammern im normalen NT-Stil <constant>RW</constant>
+			angezeigt wird. Dieser erste Satz an Berechtigungen wird durch Samba in exakt 
+			derselben Art und Weise erzeugt, wie es normale Dateiberechtigungen
 			werden, und wird auch auf diesselbe Art und Weise angezeigt.</para>
-
-			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung in der UNIX-Berechtigungs-Welt und repräsentiert
-			die <constant>vererbten</constant> Berechtigungen die jede Datei, die in diesem Verzeichnis erzeugt wird, vererben wird.</para>
+			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung 
+			in der UNIX-Berechtigungs-Welt und repräsentiert
+			die <constant>vererbten</constant> Berechtigungen, die jede Datei, die in 
+			diesem Verzeichnis erzeugt wird, vererben wird.</para>
 
 			<para>Samba vereinigt diese vererbten Berechtigungen für NT, indem es die UNIX Berechtigungsmodi als ein NT ACL zurückgibt, so
 			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hatte.</para>
