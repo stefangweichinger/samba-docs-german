@@ -28,7 +28,7 @@
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para>smbpasswd ist die verschlüsselte Samba-Passwortdatei. Sie enthält 
-	den Benutzernamen, die Unix-UID und die Hashes von SMB-Passworten des 
+	den Benutzernamen, die Unix-UID und die Hashes von SMB-Passwörtern des 
 	Benutzers, ebenso wie Informationen über die Flags des Kontos und den 
 	Zeitpunkt der letzten Passwortänderung. Dieses Dateiformat hat sich mit 
 	Samba selbst weiterentwickelt und hatte in der Vergangenheit mehrere
@@ -87,7 +87,7 @@
 		nachahmen kann. Deswegen sind diese Hashes als 
 		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
 		für andere Benutzer als root <emphasis>NICHT</emphasis> 
-		zugänglich gemacht werden. Um diese Passworte zu schützen, wird
+		zugänglich gemacht werden. Um diese Passwörter zu schützen, wird
 		die Datei smbpasswd in ein Verzeichnis gelegt, an dem nur root
 		Lese- und Traversierungsrecht hat, und die Datei smbpasswd selbst 
 		darf nur für root les- und schreibbar sein, ohne jeden weiteren
@@ -116,7 +116,7 @@
 		nachahmen kann. Deswegen sind diese Hashes als 
 		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
 		für andere Benutzer als root <emphasis>NICHT</emphasis> 
-		zugänglich gemacht werden. Um diese Passworte zu schützen, wird
+		zugänglich gemacht werden. Um diese Passwörter zu schützen, wird
 		die Datei smbpasswd in ein Verzeichnis gelegt, an dem nur root
 		Lese- und Traversierungsrecht hat, und die Datei smbpasswd selbst 
 		darf nur für root les- und schreibbar sein, ohne jeden weiteren
@@ -140,7 +140,7 @@
 			Workstation-Trust-Konten unterstützt.</para></listitem>
 			
 			<listitem><para><emphasis>N</emphasis> - Das bedeutet, das
-			Konto hat kein Passwort (die Passworte in den Feldern LANMAN 
+			Konto hat kein Passwort (die Passwörter in den Feldern LANMAN 
 			Password Hash und NT Password Hash werden ignoriert). Beachten
 			Sie, dass Benutzer sich nur dann ohne Passwort anmelden können,
 			wenn der Parameter <parameter>null passwords</parameter>

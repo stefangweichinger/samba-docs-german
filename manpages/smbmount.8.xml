@@ -77,7 +77,7 @@
 		einem Passwort, sofern nicht die Option guest angegeben ist.</para>
 
 		<para>
-		Beachten Sie, dass Passworte, die den Argumenttrennungsbezeichner
+		Beachten Sie, dass Passwörter, die den Argumenttrennungsbezeichner
 		enthalten, d.h. ein Komma, auf der Kommandozeile nicht korrekt
 		geparst werden können. Das gleiche Passwort wird korrekt gelesen, 
 		wenn es in der Umgebungsvariablen PASSWD oder in einer credentials-Datei 
@@ -95,7 +95,7 @@ Benutzername = &lt;Wert&gt;
 Passwort = &lt;Wert&gt;
 </programlisting></para>
 
-		<para>Das ist besser als Passworte im Klartext in einer gemeinsamen
+		<para>Das ist besser als Passwörter im Klartext in einer gemeinsamen
 		Datei zu haben, z.B. in <filename>/etc/fstab</filename>. Seien Sie 
 		sicher, dass sie eine solche credentials-Datei ausreichend schützen.
 		</para></listitem>
@@ -255,14 +255,14 @@ Passwort = &lt;Wert&gt;
 
 	<para>Die Variable <envar>USER</envar> kann den Benutzernamen der
 	Person enthalten, die den Client benutzt. Diese Information wird nur 
-	dann verwendet, wenn die Protokollebene hoch genug ist, um Passworte
+	dann verwendet, wenn die Protokollebene hoch genug ist, um Passwörter
 	auf Sitzungsebene zu unterstützen. Mit der Variable kann sowohl der
 	Benutzername als auch das Passwort gesetzt werden, wenn das Format
 	benutzername%passwort benutzt wird.</para>
 
 	<para>Die Variable <envar>PASSWD</envar> kann das Passwort der Person
 	enthalten, die den Client benutzt. Diese Information wird nur 
-	dann verwendet, wenn die Protokollebene hoch genug ist, um Passworte
+	dann verwendet, wenn die Protokollebene hoch genug ist, um Passwörter
 	auf Sitzungsebene zu unterstützen.</para>
 
 	<para>Die Variable <envar>PASSWD_FILE</envar> kann den Pfadnamen einer
@@ -274,12 +274,12 @@ Passwort = &lt;Wert&gt;
 <refsect1>
 	<title>FEHLER</title>
 
-	<para>Passworte und andere Optionen, die ein Komma enthalten, können
-	nicht gehandhabt werden. Andere Möglichkeiten, Passworte zu übergeben, 
+	<para>Passwörter und andere Optionen, die ein Komma enthalten, können
+	nicht gehandhabt werden. Andere Möglichkeiten, Passwörter zu übergeben, 
 	bestehen in einer credentials-Datei oder mit der Umgebungsvariable 
 	PASSWD.</para>
 
-	<para>Die credentials-Datei kann nicht mit Benutzernamen oder Passworten 
+	<para>Die credentials-Datei kann nicht mit Benutzernamen oder Passwörtern 
 	mit vorangestellten Leerzeichen umgehen.</para>
 
 	<para>Ein smbfs-Fehler ist wichtig genug, dass er hier erwähnt werden

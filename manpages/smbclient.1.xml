@@ -115,11 +115,11 @@
 
 		<para>Bemerkung: Manche Server (darunter OS/2 und Windows for 
 		Workgroups) beharren auf Großbuchstaben im Passwort. Auf diesen
-		Servern werden Passworte mit Kleinbuchstaben oder in einer 
+		Servern werden Passwörter mit Kleinbuchstaben oder in einer 
 		gemischten Schreibweise abgelehnt. 		
 		</para>
 
-		<para>Überlegen Sie es sich gut, Passworte in Skripte zu schreiben!
+		<para>Überlegen Sie es sich gut, Passwörter in Skripte zu schreiben!
 		</para></listitem>
 		</varlistentry>
 		
@@ -905,7 +905,7 @@
 	<title>BEMERKUNGEN</title>
 
 	<para>Manche Server sind ein wenig pingelig bei der Schreibweise der 
-	angegebenen Benutzernamen, Passworte, Freigabenamen (auch bekannt als 
+	angegebenen Benutzernamen, Passwörter, Freigabenamen (auch bekannt als 
 	Dienstnamen) sowie Rechnernamen. Sollte Ihre Verbindung fehlschlagen, 
 	versuchen Sie, alle Parameter in Großbuchstaben anzugeben.</para>
 	
@@ -924,12 +924,12 @@
 	<para>Die Variable <envar>USER</envar> kann den Benutzernamen der
 	Person enthalten, die den Client benutzt. Diese Information wird 
 	nur dann benutzt, wenn die Protokollebene hoch genug ist, um 
-	Passworte auf der Ebene von Sitzungen zu unterstützen.</para>
+	Passwörter auf der Ebene von Sitzungen zu unterstützen.</para>
 
 	<para>Die Variable <envar>PASSWD</envar> kann das Passwort der 
 	Person enthalten, die den Client benutzt. Diese Information wird 
 	nur dann benutzt, wenn die Protokollebene hoch genug ist, um 
-	Passworte auf der Ebene von Sitzungen zu unterstützen.</para>
+	Passwörter auf der Ebene von Sitzungen zu unterstützen.</para>
 
 	<para>Die Variable <envar>LIBSMB_PROG</envar> kann den Pfad enthalten, 
 	ausgeführt mit system(), den der Client verwenden sollte, statt sich

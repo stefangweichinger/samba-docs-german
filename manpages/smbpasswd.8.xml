@@ -48,7 +48,7 @@
 	<para>Das Programm smbpasswd hat mehrere verschiedene Aufgaben,
 	jenachdem, ob es vom Benutzer <emphasis>root</emphasis> ausgeführt 
 	wird oder nicht. Einem normalen Benutzer erlaubt es, das Passwort 
-	seiner SMB-Sitzungen auf allen Rechnern zu ändern, die SMB-Passworte
+	seiner SMB-Sitzungen auf allen Rechnern zu ändern, die SMB-Passwörter
 	speichern.</para>
 
 	<para>Standardmäßig (ohne Angabe von Argumenten) versucht es, das 
@@ -62,7 +62,7 @@
 	<manvolnum>8</manvolnum></citerefentry> kommuniziert. 
 	Damit das funktionieren kann muss als Konsequenz der smbd-Daemon auf
 	dem lokalen Rechner laufen. Auf einem UNIX-Rechner werden die 
-	verschlüsselten SMB-Passworte normalerweise in der Datei
+	verschlüsselten SMB-Passwörter normalerweise in der Datei
 	the <citerefentry><refentrytitle>smbpasswd</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry> gespeichert.</para>
 
@@ -70,7 +70,7 @@
 	wird, fragt smbpasswd ihn nach seinem alten SMB-Passwort und dann fragt
 	es zwei mal nach seinem neuen Passwort, um sicherzugehen, dass das neue
 	Passwort korrekt eingegeben wird. Während der Eingabe sind die 
-	Passworte auf dem Bildschirm nicht sichtbar. Sollten Sie ein leeres 
+	Passwörter auf dem Bildschirm nicht sichtbar. Sollten Sie ein leeres 
 	SMB-Passwort haben (angegeben durch den String "NO PASSWORD" in der
 	Datei smbpasswd), so drücken Sie einfach die Eingabetaste, wenn Sie nach
 	Ihrem alten Passwort gefragt werden.</para>
@@ -238,7 +238,7 @@
 		
 		<para>Beachten Sie, dass Windows 95/98 keine echte 
 		Passwort-Datenbank besitzt. Daher ist es nicht möglich,
-		Passworte zu ändern, indem ein Win95/98-Rechner als entfernter
+		Passwörter zu ändern, indem ein Win95/98-Rechner als entfernter
 		Zielrechner angegeben wird.</para>
 		</listitem>
 		</varlistentry>
@@ -318,7 +318,7 @@
 		Benutzernamen auf diesem Rechner anzugeben, dessen Passwort 
 		geändert wird. Diese Option existiert, damit Benutzer mit 
 		verschiedenen Benutzernamen auf verschiedenen Systemen diese
-		Passworte ändern können.</para></listitem>
+		Passwörter ändern können.</para></listitem>
 		</varlistentry>
 		
 		
@@ -333,7 +333,7 @@
 		<varlistentry>
 		<term>-s</term>
 		<listitem><para>Diese Option bewirkt, dass smbpasswd leise ist, d.h. 
-		keine Fragen stellt, und seine alten und neuen Passworte von der 
+		keine Fragen stellt, und seine alten und neuen Passwörter von der 
 		Standardeingabe statt von <filename>/dev/tty</filename> einliest  
 		(wie es das Programm <command>passwd(1)</command> macht). Diese 
 		Option soll den Leuten helfen, die Skripte zur Steuerung von smbpasswd
@@ -402,7 +402,7 @@
 	wird, den Zugriff von "localhost" auf smbd zu erlauben.</para>
 
 	<para>Außerdem gilt, dass der Befehl smbpasswd nur dann nützlich ist,
-	wenn Samba so eingestellt wurde, dass es verschlüsselte Passworte
+	wenn Samba so eingestellt wurde, dass es verschlüsselte Passwörter
 	verwendet.</para>
 </refsect1>
 
