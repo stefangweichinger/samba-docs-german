@@ -3,24 +3,22 @@
 <chapterinfo>
 	&author.jht;
 	&author.jelmer;
-	<pubdate>July 5, 1998</pubdate>
-	<pubdate>Updated: April 21, 2003</pubdate>
 	<author>&person.klimklim;<contrib>Deutsche Übersetzung</contrib></author>
+	<author>&author.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
 <title>Netzwerk-Browsing</title>
 
 <para>
-Diese Dokumentation enthält detailierte Informationen und einen Leitfaden, wie
-man das Browsing quer durch Subnetze und/oder Arbeitsgruppen (oder Domänen)
-implementiert. WINS ist das beste Werkzeug, um NetBIOS-Namen nach
-IP-Adressen aufzulösen. # WINS is not involved in browse list handling except
-by way of name to address resolution. #
+Diese Dokumentation enthält detaillierte Informationen und einen Leitfaden, wie
+man das Browsing über mehrere Subnetze und/oder Arbeitsgruppen (oder Domänen)
+implementiert. WINS ist das beste Werkzeug, um NetBIOS-Namen auf IP-Adressen aufzulösen.
+WINS ist nicht am Umgang mit Browse-Lists beteiligt, außer bei der Auflösung von Namen auf Adressen.
 </para>
 
 <note><para>
-MS Windows 2000 und später können so konfiguriert werden, dass sie ohne NetBIOS über
-TCP/IP arbeiten, wozu Samba-3 und spätere Versionen ebenfalls in der Lage sind. Ist
+MS Windows 2000 und neuere Windows-Versionen können so konfiguriert werden, dass sie ohne NetBIOS über
+TCP/IP arbeiten, wozu Samba ab Version 3 ebenfalls in der Lage ist. Ist
 die Benutzung von NetBIOS über TCP/IP deaktiviert, werden die MS Windows Maschinen
 über DNS und Active Directory aufgelöst. Die folgenden Informationen gehen davon aus,
 dass ein Netz mit NetBIOS über TCP/IP betrieben wird. 
@@ -30,53 +28,53 @@ dass ein Netz mit NetBIOS über TCP/IP betrieben wird.
 <title>Planung und Beginn</title>
 
 <para>
-Jemand bezog sich einst auf die Vergangenheit in den Worten <quote><emphasis>Es war die beste
-aller Zeiten, es war die schlechteste aller Zeiten.</emphasis></quote> Je mehr wir nach hinten
-schauen, umso mehr sehnen wir uns nach dem was war und hoffen, dass es nie wiederkehrt.
+Jemand bezog sich einst auf die Vergangenheit mit den Worten <quote><emphasis>Es war die beste
+aller Zeiten, es war die schlechteste aller Zeiten.</emphasis></quote> Je mehr wir zurück blicken,
+umso mehr sehnen wir uns nach dem, was war, und hoffen, dass es nie wiederkehrt.
 </para>
 
 
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
-Für viele MS Windows Netzwerkadministratoren beschreibt diese Aussage präzise deren
-Gefühle über NetBIOS. Diejenigen, die NetBIOS meisterten, wussten was sie erwartet.
-Für diejenigen, die es nie schafften, seine Eigenschaften zu zähmen, erscheint NetBIOS
+Für viele MS Windows Netzwerk-Administratoren beschreibt diese Aussage präzise deren
+Gefühle bezüglich NetBIOS. Diejenigen, die NetBIOS gemeistert haben, wussten was sie erwartet.
+Für diejenigen, die es nie geschafft haben, seine Eigenschaften zu zähmen, erscheint NetBIOS
 wie Pattersons Fluch.
 </para>
 
 <para>
 Für diejenigen, die nicht mit den botanischen Problemen Australiens vertraut sind:
-Pattersons Fluch, <emphasis>Echium plantagineum</emphasis>, wurde Mitte des Neunzehnten
-Jahrhunderts eingeführt. Seitdem breitet es sich schnell aus. Die hohe Samenproduktion
+Pattersons Fluch, <emphasis>Echium plantagineum</emphasis>, wurde Mitte des 19.
+Jahrhunderts eingeführt. Seitdem hat es sich schnell ausgebreitet. Die hohe Samenproduktion
 der Pflanze, mit einer Dichte von tausenden pro Quadratmeter, einer Lebensdauer von mehr
-als sieben Jahren, der Fähigkeit unter guten Voraussetzungen über das ganze Jahr hinweg
+als sieben Jahren, der Fähigkeit, unter guten Voraussetzungen, über das ganze Jahr hinweg
 zu keimen, sind einige der Eigenschaften, die es zu einem solch hartnäckigen Unkraut
 machen. (Frank Patterson war einer der gefürchtesten Gesetzlosen Australiens. Nachdem
 er wegen eines Diebstahls von vier Dollar am Galgen landete, verfluchte er die Stadt
 Ironbark und die australische Regierung. Seine Familie pflanzte eine lilafarbene,
 aus England stammende Pflanze auf sein Grab, die sich rasch im ganzen Land ausbreitete.
-Aufgrund der Giftigkeit der Planze, kostet die Vernichtung die Viehzüchter Australians
+Aufgrund der Giftigkeit der Planze kostet ihre Vernichtung die Viehzüchter Australiens
 ca. 30 Mill. Dollar pro Jahr, Anm. d. Übersetzers.)
 </para>
 
 <para>
 In diesem Kapitel erfahren wir die grundlegenden Aspekte der Server Message Block- (SMB)
-Vernetzung mit einem besonderen Blick auf SMB als Implementation in einer NetBIOS-
-(Network Basic Input/Output System) Umgebung über TCP/IP. Da Samba SMB oder NetBIOS nicht
+Vernetzung mit einem besonderen Blick auf SMB als Implementation in einer NetBIOS-über-TCP/IP-
+(Network Basic Input/Output System) Umgebung. Da Samba SMB oder NetBIOS nicht
 über ein anderes Protokoll implementiert, ist es wichtig zu wissen, wie man die
-Netzwerkumgebung konfiguriert und uns schlicht daran erinnern, nichts anderes als TCP/IP auf 
+Netzwerkumgebung konfiguriert und sich schlicht daran zu erinnern, nichts anderes als TCP/IP auf 
 allen MS Windows Clients im Netzwerk zu benutzen.
 </para>
 
 <para>
 Samba bietet die Möglichkeit, WINS (Windows Inter-networking Name Server) samt der 
 Systemerweiterungen von Microsofts WINS zu implementieren. Diese Systemerweiterungen
-helfen Samba stabile WINS Operationen, über den herkömmlichen Anwendungsbereich von
+helfen Samba dabei, stabile WINS Operationen, über den herkömmlichen Anwendungsbereich von
 MS WINS hinaus, zu ermöglichen.
 </para>
 
 <para>
-WINS wirkt sich ausschließlich auf Systeme aus, die mit NetBIOS über TCP/IP laufen.
+WINS wirkt sich ausschließlich auf Systeme aus, die mit NetBIOS-über-TCP/IP laufen.
 MS Windows 200x/XP können NetBIOS abschalten, in welchem Fall WINS keine Rolle mehr
 spielt. Samba unterstützt dies ebenfalls.
 </para>
@@ -92,32 +90,32 @@ wird, ist der Einsatz eines DNS für die Namensauflösung unabdingbar.
 <title>Was ist Browsing?</title>
 
 <para>
-Für die meisten ist Browsing das sie die MS Windows und Samba Server in der
-Netzwerkumgebung sehen können, und das wenn man auf das Icon eines bestimmten
+Für die meisten ist Browsing, daß sie die MS Windows und Samba Server in der
+Netzwerkumgebung sehen können, und daß, wenn man auf das Icon eines bestimmten
 Servers klickt, ein Fenster geöffnet wird, in dem man die verfügbaren Freigaben und
 Drucker des Servers sehen kann.
 </para>
 
 <para>
-Was so einfach klingt ist in Wirklichkeit eine komplexe Interaktion verschiedener
+Was so einfach klingt, ist in Wirklichkeit eine komplexe Interaktion verschiedener
 Technologien. Die dabei involvierten Technologien (oder Methoden) beinhalten:
 </para>
 
 <itemizedlist>
 	<listitem>MS Windows Maschinen melden ihre Präsenz im Netzwerk an.</listitem>
 	<listitem>Maschinen kündigen sich anderen Maschinen im Netzwerk an.</listitem>
-	<listitem>Eine oder mehrere Maschinen vereinigen diese Ankündigungen lokal.</listitem>
+	<listitem>Eine oder mehrere Maschinen fassen diese Ankündigungen lokal zusammen.</listitem>
 	<listitem>Der Client findet die Maschine, die diese Liste von Maschinen gesammelt hat.</listitem>
 	<listitem>Der Client ist in der Lage, den Namen der Maschine in eine IP-Adresse aufzulösen.</listitem>
-	<listitem>Der Client ist in der Lage sich mit einer anderen Maschine zu verbinden.</listitem>
+	<listitem>Der Client ist in der Lage, sich mit einer anderen Maschine zu verbinden.</listitem>
 </itemizedlist>
 
 <para>
-Die Samba Anwendung, die die Verwaltung des Browsing und die Namensauflösung kontrolliert heißt
+Die Samba-Anwendung, die die Verwaltung des Browsing und die Namensauflösung kontrolliert, heißt
 <filename>nmbd</filename>. Die dabei verwendeten Konfigurationsparameter sind:
 </para>
 
-<para>Browsing options: <smbconfoption><name>os level</name></smbconfoption>(*),
+<para>Browsing-Optionen: <smbconfoption><name>os level</name></smbconfoption>(*),
 	<smbconfoption><name>lm announce</name></smbconfoption>,
 	<smbconfoption><name>lm interval</name></smbconfoption>,
 	<smbconfoption><name>preferred master</name></smbconfoption>(*),
@@ -127,11 +125,11 @@ Die Samba Anwendung, die die Verwaltung des Browsing und die Namensauflösung kon
 	<smbconfoption><name>enhanced browsing</name></smbconfoption>.
 </para>
 
-<para>Name Resolution Method:
+<para>Namensauflösungs-Methoden:
 	<smbconfoption><name>name resolve order</name></smbconfoption>(*).
 </para>
 
-<para>WINS options:
+<para>WINS-Optionen:
 	<smbconfoption><name>dns proxy</name></smbconfoption>,
 	<smbconfoption><name>wins proxy</name></smbconfoption>,
 	<smbconfoption><name>wins server</name></smbconfoption>(*),
