@@ -11,7 +11,7 @@
 
 <para>
 Als wir erstmalig nach Vorschlägen für die Aufnahme in die Samba HOWTO Dokumentation fragten,
-fragte gleich jemand nach Beispielkonfigurationen &smbdash; und vieles mehr davon. Dies ist 
+fragte gleich jemand nach Beispielkonfigurationen &smbmdash; und vieles mehr davon. Dies ist 
 ausdrücklich schwierig zu erfüllen, ohne einen Wertverlust zu bekommen, wenn man von einem
 Produktionssystem nur Teile herausnimmt. Dies ist es, was der Rest dieses Dokumentes macht.
 Es wird dies dadurch erfüllen, indem es ausführliche Beschreibungen der Konfigurationsmöglichkeiten
