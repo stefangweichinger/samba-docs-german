@@ -128,8 +128,6 @@ Die folgenden Funktionalitäten werden von Samba-3 NICHT zur Verfügung gestellt:
 	<listitem><para>
 	Das Arbeiten als Windows 2000 Domain Controller
 	(z.B., Kerberos und Active Directory).
-
-	Tatsächlich hat Samba-3 einige AD-Domänen-Kontroll-Fähigkeiten, die zum jetzigen Zeitpunkt rein experimenteller Natur sind. Diese werden sicherlich zu voll unterstützten Features ausgebaut, sei es während der Existenz von Samba-3 oder zu einem späteren Zeitpunkt. Wie dem auch sei, Active Directory ist mehr als nur SMB &smbmdash;, es ist weiters LDAP, Kerberos, DHCP, und andere Protokolle (selbstverständlich mit proprietären Erweiterungen).
 	</para></listitem>
 
 	<listitem><para>
