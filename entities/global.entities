@@ -344,61 +344,64 @@ Client niemals entfernt.
 
 <!ENTITY stdarg.resolve.order '
 <varlistentry>
-<term>-R &lt;name resolve order&gt;</term> 
-<listitem><para>This option is used to determine what naming 
-services and in what order to resolve 
-host names to IP addresses. The option takes a space-separated 
-string of different name resolution options.</para>
+<term>-R &lt;Namensauflösungsreihenfolge&gt;</term> 
+<listitem><para>Mit dieser Option kann bestimmt werden, welche Dienste 
+bei der Namensauflösung benutzt werden und in welcher Reihenfolge 
+Hostnamen auf IP-Adressen aufgelöst werden sollen. Diese Option erwartet 
+einen mit Leerzeichen getrennten String verschiedener 
+Auflösungsoptionen.</para>
 
-<para>The options are: "lmhosts", "host", "wins" and "bcast". 
-They cause names to be resolved as follows :</para>
+<para>Verfügbare Optionen sind: "lmhosts", "host", "wins" und "bcast".
+Sie bewirken, dass Namen wie folgt aufgelöst werden:</para>
 
 <itemizedlist>
-<listitem><para><constant>lmhosts</constant>: 
-Lookup an IP address in the Samba lmhosts file. If the 
-line in lmhosts has no name type attached to the 
-NetBIOS name 
-(see the <citerefentry><refentrytitle>lmhosts</refentrytitle>
- <manvolnum>5</manvolnum></citerefentry>	for details) 
-then any name type matches for lookup.
-</para></listitem>
+<listitem><para><constant>lmhosts</constant>: Sucht eine 
+IP-Adresse in der Samba-Datei lmhosts. Falls die Zeile in 
+lmhosts keinen mit dem NetBIOS-Namen verbundenen Namenstyp 
+hat (Details siehe 
+<citerefentry><refentrytitle>lmhosts</refentrytitle>
+<manvolnum>5</manvolnum></citerefentry>), dann trifft bei
+einer Suche jeder gefundene Namenstyp zu.</para>
+</listitem>
 
-<listitem><para><constant>host</constant>: 
-Do a standard host name to IP address resolution, using
-the system <filename>/etc/hosts</filename>, NIS, or DNS
-lookups. This method of name resolution is operating 
-system dependent, for instance on IRIX or Solaris this 
-may be controlled by the <filename>/etc/nsswitch.conf
-</filename> file).  Note that this method is only used 
-if the NetBIOS name type being queried is the 0x20 
-(server) name type, otherwise it is ignored.
-</para></listitem>
+<listitem><para><constant>host</constant>: Führt eine 
+standardmäßige Auflösung von Hostname zu IP-Adresse aus, 
+entweder mit der Systemdatei <filename>/etc/hosts</filename>, 
+mit einer NIS- oder DNS-Suche. Diese Methode der Namensauflösung 
+ist abhängig vom Betriebssystem und wird z.B. unter IRIX oder
+Solaris mit der Datei <filename>/etc/nsswitch.conf</filename> 
+gesteuert). Beachten Sie, dass diese Methode nur dann benutzt 
+wird, wenn der gesuchte NetBIOS-Namenstyp der Typ 0x20 (Server)
+ist, ansonsten wird sie ignoriert.</para>
+</listitem>
 
-<listitem><para><constant>wins</constant>: 
-Query a name with the IP address listed in the 
-<parameter>wins server</parameter> parameter.  If no 
-WINS server has been specified this method will be 
-ignored.
-</para></listitem>
+<listitem><para><constant>wins</constant>: Fragt einen Namen 
+mit Hilfe der IP-Adresse ab, die im Parameter 
+<parameter>wins server</parameter> aufgelistet ist. Falls kein
+WINS-Server angegeben wurde, wird diese Methode ignoriert.</para>
+</listitem>
 
-<listitem><para><constant>bcast</constant>: 
-Do a broadcast on each of the known local interfaces 
-listed in the <parameter>interfaces</parameter>
-parameter. This is the least reliable of the name 
-resolution methods as it depends on the target host 
-being on a locally connected subnet.
-</para></listitem>
+<listitem><para><constant>bcast</constant>: Führt ein Broadcast
+auf allen bekannten Schnittstellen durch, die im Parameter 
+<parameter>interfaces</parameter> aufgelistet sind. Dies ist 
+die unzuverlässigste Methode der Namensauflösung, da sie 
+verlangt, dass der Ziel-Host sich in einem lokal verbundenen 
+Subnetz befindet.</para>
+</listitem>
 </itemizedlist>
 
-<para>If this parameter is not set then the name resolve order 
-defined in the &smb.conf; file parameter  
-(<smbconfoption><name>name resolve order</name></smbconfoption>) will be used.
+<para>Falls dieser Parameter nicht gesetzt ist, wird die im Dateiparameter
+(<smbconfoption><name>name resolve order</name></smbconfoption>) in &smb.conf; 
+definierte Namensauflösungsreihenfolge verwendet.
 </para>
 
-<para>The default order is lmhosts, host, wins, bcast. Without 
-this parameter or any entry in the <smbconfoption><name>name resolve order</name></smbconfoption> parameter of the &smb.conf; file, the name 
-resolution methods will be attempted in this order. </para></listitem>
-</varlistentry>'>
+<para>Die Standardreihenfolge ist 
+<command>lmhosts, host, wins, bcast</command> und ohne diesen Parameter 
+oder ohne Eintrag in der Datei 
+<citerefentry><refentrytitle>smb.conf</refentrytitle>
+<manvolnum>5</manvolnum></citerefentry> werden die Methoden der
+Namensauflösung in dieser Reihenfolge ausprobiert.</para></listitem>
+</varlistentry>
 
 <!ENTITY stdarg.netbios.name '
 <varlistentry>
