@@ -58,7 +58,7 @@ Es ist nichts weiter nötig als das Anlegen von Benutzerkonten.
 Stand-alone-Server bieten keine Netzwerk-Anmelde-Dienste an. Das bedeutet, daß Maschinen, die
 diesen Server benutzen, keine Domänen-Anmeldung auf ihm durchführen. Welchem Anmeldedienst
 diese Workstations unterstellt sind, ist unabhängig von dieser Maschine. Es ist aber notwendig,
-jeden Netzwerk-Benutzer dahingehend "unterzubringen", daß der zur Anmeldung benutzte Namen lokal
+jeden Netzwerk-Benutzer dahingehend <quote>unterzubringen</quote>, daß der zur Anmeldung benutzte Namen lokal
 auf dem Samba-Stand-alone-Server auf einen lokal bekannten Benutzernamen übersetzt (mapped) wird.
 Es gibt verschiedene Arten, auf die dies geschehen kann.
 </para>
@@ -85,7 +85,7 @@ smbpasswd, oder ein LDAP-Backend, oder sogar via PAM und Winbind einen anderen C
 <title>Beispiel-Konfiguration</title>
 
 <para>
-Die Beispiele, <link linkend="simplynice"/>, and link linkend="SimplePrintServer"/>,
+Die Beispiele, <link linkend="simplynice"/>, and <link linkend="SimplePrintServer"/>,
 wurden entworfen, um Einfachheit zu inspirieren. Es ist oft gar zu leicht, einen hohen
 Grad an Kreativität anzustreben, und damit zu viel Komplexität ins Design von Server und
 Netzwerk zu bringen.
@@ -223,7 +223,7 @@ Der Inhalt von &smb.conf; wird in <link linkend="AnonPtrSvr"/> gezeigt.
 <note><para>
 <indexterm><primary>MIME</primary><secondary>raw</secondary></indexterm>
 <indexterm><primary>raw printing</primary></indexterm>
-Auf CUPS-Systemen gibt es eine Funktionalität, um "raw"-Daten direkt an den Drucker weiterzugeben,
+Auf CUPS-Systemen gibt es eine Funktionalität, um <quote>raw</quote>-Daten direkt an den Drucker weiterzugeben,
 ohne zwischenzeitliches Verarbeiten durch CUPS-Druck-Filter. Wo die Verwendung dieses Modus gewünscht
 ist, ist es notwendig, ein raw-Druck-Device zu konfigurieren. Es ist weiters notwendig, den 
 raw mime handler in den Dateien <filename>/etc/mime.conv</filename> und <filename>/etc/mime.types</filename>

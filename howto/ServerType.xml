@@ -451,7 +451,7 @@ Diese Methode betrifft folgende Parameter in der &smb.conf;-Datei:
 <para><smbconfblock>
 <smbconfoption><name>encrypt passwords</name><value>Yes</value></smbconfoption>
 <smbconfoption><name>security</name><value>server</value></smbconfoption>
-<smbconfoption><name>password server</name><value>"NetBIOS_name_of_a_DC"</value></smbconfoption>
+<smbconfoption><name>password server</name><value>NetBIOS_name_of_a_DC</value></smbconfoption>
 </smbconfblock></para>
 
 
