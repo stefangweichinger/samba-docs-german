@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbcquotas.1">
 
 <refmeta>
 	<refentrytitle>smbcquotas</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbcquotas</refname>
-	<refpurpose>Setzt oder fragt QUOTAs von NTFS 5-Freigaben ab</refpurpose>
+	<refpurpose>Setzt oder fragt QUOTAs von NTFS 5-Freigaben ab.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -96,7 +94,7 @@
 		<term>-n</term>
 		<listitem><para>Diese Option zeigt alle QUOTA-Informationen in 
 		numerischem Format an. Per Voreinstellung werden SIDs in Namen
-		und QUOTA-Beschränkungen in ein lesbares String-Format
+		und QUOTA-Beschränkungen in ein lesbares Stringformat
 		konvertiert.</para></listitem>
 		</varlistentry>
 
@@ -132,48 +130,45 @@
 	den aktuellen Benutzernamen:
 	</para>
 
-	<para><userinput>
-	UQLIM:&lt;Benutzername&gt;:&lt;softlimit&gt;/&lt;hardlimit&gt;
+	<para><userinput>	UQLIM:&lt;Benutzername&gt;:&lt;softlimit&gt;/&lt;hardlimit&gt;
 	</userinput></para>
 
 	<para>
 	zum Setzen der Standard-Quotas für eine Freigabe:
 	</para>
 
-	<para><userinput>
-	FSQLIM:&lt;softlimit&gt;/&lt;hardlimit&gt;
+	<para><userinput>	FSQLIM:&lt;softlimit&gt;/&lt;hardlimit&gt;
 	</userinput></para>
 
 	<para>
 	zum Ändern von Quota-Einstellungen der Freigabe:
 	</para>
 
-	<para><userinput>
-	FSQFLAGS:QUOTA_ENABLED/DENY_DISK/LOG_SOFTLIMIT/LOG_HARD_LIMIT
+	<para><userinput>	FSQFLAGS:QUOTA_ENABLED/DENY_DISK/LOG_SOFTLIMIT/LOG_HARD_LIMIT
 	</userinput></para>
 </refsect1>
 
 <refsect1>
-	<title>EXIT-STATUS</title>
+	<title>EXITSTATUS</title>
 
-	<para>Das Programm <command>smbcquotas</command> setzt den Exit-Status
-	abhängig vom Ergebnis der ausgeführten Operationen. Der Exit-Status 
+	<para>Das Programm <command>smbcquotas</command> setzt den Exitstatus
+	abhängig vom Ergebnis der ausgeführten Operationen. Der Exitstatus 
 	kann einer der folgenden Werte sein.</para>
 
 	<para>Falls die Operation erfolgreich war, gibt smbcquotas den 
-	Exit-Status 0 zurück. Falls <command>smbcquotas</command> keine 
+	Exitstatus 0 zurück. Falls <command>smbcquotas</command> keine 
 	Verbindung zum angegebenen Server herstellen konnte, oder wenn es 
 	einen Fehler beim Abfragen oder Setzen der Quota(s) gab, wird der 
-	Exit-Status 1 zurückgegeben. Wenn es beim Parsen eines Arguments 
-	auf der Kommandozeile einen Fehler gab, wird der Exit-Status 
+	Exitstatus 1 zurückgegeben. Wenn es beim Parsen eines Arguments 
+	auf der Kommandozeile einen Fehler gab, wird der Exitstatus 
 	2 zurückgegeben.</para>
 </refsect1>
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -189,3 +184,4 @@
 </refsect1>
 
 </refentry>
+

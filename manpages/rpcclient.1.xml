@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="rpcclient.1">
 
 <refmeta>
 	<refentrytitle>rpcclient</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>rpcclient</refname>
 	<refpurpose>Werkzeug für die Ausführung von clientseitigen 
-	MS-RPC-Funktionen</refpurpose>
+	MS-RPC-Funktionen.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -67,7 +65,7 @@
 
 		<varlistentry>
 		<term>-c|--command='BefehlsString'</term>
-		<listitem><para>Führt die mit Semikola getrennte Befehle aus (unten aufgelistet).
+		<listitem><para>Führt die mit Semikola getrennten Befehle aus (unten aufgelistet).
 		</para></listitem>
 		</varlistentry>
 
@@ -78,7 +76,7 @@
 		Zielservers. Sie sollte in der Standardnotation "a.b.c.d" angegeben
 		werden.</para>
 
-		<para>Normalerweise würde der Client versuchen, einen benannten SMB/CIFS-Server
+		<para>Normalerweise würde der Client versuchen, einen benannten SMB-/CIFS-Server
 		zu finden, indem er ihn über den NetBIOS-Namensauflösungesmechanismus sucht,
 		der oben beim Parameter <parameter>name resolve order</parameter> beschrieben 
 		ist. Die Benutzung dieses Parameters zwingt den Client zu der Annahme, dass
@@ -157,7 +155,7 @@
 	
 	<variablelist>
 		<varlistentry><term>dsroledominfo</term><listitem><para>Holt 
-		Domänen-Hauptinformation.</para></listitem></varlistentry>
+		Domänenhauptinformation.</para></listitem></varlistentry>
 	</variablelist>
 
 	<para> </para>
@@ -246,10 +244,10 @@ Comma Separated list of Files
 
 		<para>Alle leeren Felder sollten als String "NULL" eingegeben werden.</para>
 		
-		<para>Samba braucht das Konzept von Druck-Monitoren nicht zu unterstützen,
+		<para>Samba braucht das Konzept von Druckmonitoren nicht zu unterstützen,
 		da diese nur auf lokalen Druckern anwendbar sind, deren Treiber auf einer
 		bidirektionalen Verbindung kommunizieren können. Dieses Feld sollte 
-		"NULL" sein. Auf einem entfernten NT-Druckserver, muss der Druck-Monitor 
+		"NULL" sein. Auf einem entfernten NT-Druckserver muss der Druckmonitor 
 		für einen Treiber schon vor dem Treiber selbst installiert sein, sonst 
 		versagt der RPC-Aufruf.</para>
 
@@ -266,7 +264,7 @@ Comma Separated list of Files
  		automatisch freigegeben. Seien Sie sich im Klaren darüber, dass der
 		Druckertreiber auf dem Server schon installiert sein muss (siehe 
 		<command>adddriver</command>) 
-		und <parameter>Port</parameter> ein gültiger Port-Name sein muss (siehe
+		und <parameter>Port</parameter> ein gültiger Portname sein muss (siehe
 		<command>enumports</command>).</para>
 		</listitem></varlistentry>
 
@@ -336,7 +334,7 @@ Comma Separated list of Files
 		<varlistentry><term>getdriver &lt;Druckername&gt;</term>
 		<listitem><para>
 		Holt die Druckertreiberinformation (z.B. Treiberdatei, Konfigurationsdatei,
-		abhängige Dateien, etc...) zum angegebenen Drucker. 
+		abhängige Dateien etc. ...) zum angegebenen Drucker. 
 		Dieser Befehl entspricht der Funktion GetPrinterDriver() des SDK auf der 
 		MS-Plattform. Momentan werden die Informationsebenen 1, 2 und 3 unterstützt.
 		</para></listitem></varlistentry>
@@ -423,10 +421,10 @@ Comma Separated list of Files
 
 	<variablelist>
 		<varlistentry><term>debuglevel</term><listitem><para>Setzt die aktuelle
-		Debug-Ebene zum Loggen von Information.</para></listitem></varlistentry>
+		Debugebene zum Loggen von Information.</para></listitem></varlistentry>
 
 		<varlistentry><term>help (?)</term><listitem><para>Gibt eine Liste aller 
-		bekannten Befehle aus, bzw. eine erweiterte Hilfe zu einem bestimmten Befehl. 
+		bekannten Befehle aus bzw. eine erweiterte Hilfe zu einem bestimmten Befehl. 
 		</para></listitem></varlistentry>
 		
 		<varlistentry><term>quit (exit)</term><listitem><para>Beendet 
@@ -445,15 +443,15 @@ Comma Separated list of Files
 	Es ist bekannt, dass es bei Fehlern einen Core-Dump generiert, wenn ungültige 
 	Parameter an den Interpreter übergeben werden.</para>
 
-	<para>Dies ist ein Auszug von Luke Leightons urspünglicher manpage 
+	<para>Dies ist ein Auszug von Luke Leightons urspünglicher Manpage 
 	zu rpcclient:</para>
 	
 	<para><emphasis>WARNUNG!</emphasis> Der MSRPC-via-SMB-Code wurde ausgehend 
 	von der Untersuchung von Netzwerk-Traces entwickelt. Vom ursprünglichen 
 	Hersteller (Microsoft) ist keine Dokumentation darüber vorhanden, wie MSRPC 
-	via SMB funktioniert, oder wie die individuellen MSRPC-Dienste funktionieren. 
+	via SMB funktioniert oder wie die individuellen MSRPC-Dienste funktionieren. 
 	Es konnte gezeigt werden (und wurde berichtet), dass Microsofts Implementation 
-	dieser Dienste an einigen Stellen ein wenig... verrückt ist.</para>
+	dieser Dienste an einigen Stellen ein wenig ... verrückt ist.</para>
 
 	<para>Die Entwicklung von Sambas Implementation ist ebenfalls ein wenig grob, 
 	und mit wachsender Anzahl verstandener Dienste kann sie sogar zu Versionen
@@ -470,8 +468,8 @@ Comma Separated list of Files
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -482,7 +480,7 @@ Comma Separated list of Files
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 	
-	<para>Die ursprüngliche rpcclient man page wurde von Matthew
+	<para>Die ursprüngliche rpcclient-Manpage wurde von Matthew
 	Geddes und Luke Kenneth Casson Leighton geschrieben und von 
 	Gerald Carter überarbeitet.  
 	Die Umwandlung ins DocBook-Format wurde von Gerald Carter für 
@@ -491,3 +489,4 @@ Comma Separated list of Files
 </refsect1>
 
 </refentry>
+

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="ntlm-auth.1">
 
 <refmeta>
 	<refentrytitle>ntlm_auth</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>ntlm_auth</refname>
 	<refpurpose>Werkzeug für den externen Zugriff auf 
-die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
+die NTLM-Authentifikationsfunktion von Winbind.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -96,8 +94,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 		<para>Benötigt Zugriff auf das Verzeichnis 
                 <filename>winbindd_privileged</filename> in
 		<filename>$LOCKDIR</filename>. Das verwendete Protokoll wird
-		hier beschrieben: <ulink
-		url="http://devel.squid-cache.org/ntlm/squid_helper_protocol.html">http://devel.squid-cache.org/ntlm/squid_helper_protocol.html</ulink>
+		hier beschrieben: <ulink url="http://devel.squid-cache.org/ntlm/squid_helper_protocol.html">http://devel.squid-cache.org/ntlm/squid_helper_protocol.html</ulink>
                 </para>
                 </listitem>
 	      </varlistentry>
@@ -105,7 +102,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 	      <varlistentry>
 		<term>ntlmssp-client-1</term>
 		<listitem><para>
-                Cleintseitiges Hilfsprogramm für den Einsatz mit beliebigen externen
+                Clientseitiges Hilfsprogramm für den Einsatz mit beliebigen externen
 		Programmen, die Sambas Fähigkeit zur NTLMSSP-Authentifikation nutzen
 		möchten.</para>
 		<para>Dieses Hilfsprogramm ist ein Client und darf daher von allen
@@ -134,9 +131,9 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 	      <varlistentry>
 		<term>gss-spnego-client</term>
 		<listitem><para>
-                Cleintseitiges Hilfsprogramm, das GSS-SPNEGO implementiert. Dabei
-		wird ebenfalls ein ähnliches Protokoll wie in den obigen 
-		Hilfsprogrammen verwendet, das aber im Moment nicht dokumentiert ist.
+                Clientseitiges Hilfsprogramm, das GSS-SPNEGO implementiert. Dabei
+		wird ebenfalls ein ähnliches Protokoll wie bei den obigen 
+		Hilfsprogrammen verwendet, was aber im Moment nicht dokumentiert ist.
                 </para>
                 </listitem>
 		</varlistentry>
@@ -186,7 +183,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 
 	<varlistentry>
 	<term>--password=PASSWORD</term>
-	<listitem><para>Passwort des Benutzers in Klartext</para>
+	<listitem><para>Passwort des Benutzers in Klartext.</para>
 	<para>Wird wenn nötig abgefragt, falls es nicht auf der Kommandozeile  
 	angegeben wird.</para></listitem>
 	</varlistentry>
@@ -228,7 +225,7 @@ die NTLM-Authentifikationsfunktion von Winbind</refpurpose>
 
         <para>Um ntlm_auth für den Einsatz mit Squid 2.5 sowohl mit einfacher wie 
 	auch mit NTLMSSP-Authentifikation einzurichten, sollte
-	folgendes in die Datei <filename>squid.conf</filename> platziert werden.
+	folgendes in die Datei <filename>squid.conf</filename> platziert werden:
 <programlisting>
 auth_param ntlm program ntlm_auth --helper-protocol=squid-2.5-ntlmssp
 auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic
@@ -238,13 +235,13 @@ auth_param basic credentialsttl 2 hours
 </programlisting></para>
 
 <note><para>Bei diesem Beispiel wird angenommen, dass ntlm_auth in Ihrem Pfad
-	installiert wurde, und dass die Gruppenrechte von
-	<filename>winbindd_privileged</filename> so sind wie oben beschrieben
+	installiert wurde und dass die Gruppenrechte von
+	<filename>winbindd_privileged</filename> so sind, wie oben beschrieben
 	wurde.</para></note>
 
 	<para>Um ntlm_auth für den Einsatz mit Squid 2.5 zusätzlich zu obigem
 	Beispiel mit einer Gruppenbeschränkung einzurichten, sollte folgendes 
-	zur Datei <filename>squid.conf</filename> hinzugefügt werden.
+	zur Datei <filename>squid.conf</filename> hinzugefügt werden:
 <programlisting>
 auth_param ntlm program ntlm_auth --helper-protocol=squid-2.5-ntlmssp --require-membership-of='WORKGROUP\Domain Users'
 auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-membership-of='WORKGROUP\Domain Users'
@@ -258,18 +255,18 @@ auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-m
 	<para>Sollten Sie im Internet Explorer unter MS Windows 9X oder Millenium
 	Edition Probleme bei der Authentifizierung mittels des 
 	NTLMSSP-Authentifikationshilfsprogramms ntlm_auth haben 
-	(--helper-protocol=squid-2.5-ntlmssp), dann lesen Sie bitte 
+	(--helper-protocol=squid-2.5-ntlmssp), dann lesen Sie bitte den Artikel 
 	<ulink url="http://support.microsoft.com/support/kb/articles/Q239/8/69.ASP">
-	den Artikel #239869 in der Microsoft Knowledge Base und befolgen Sie 
-	die dortigen Anweisungen</ulink>.
+	#239869</ulink> in der Microsoft Knowledge Base und befolgen Sie 
+	die dortigen Anweisungen.
 	</para>
 </refsect1>
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -280,8 +277,9 @@ auth_param basic program ntlm_auth --helper-protocol=squid-2.5-basic --require-m
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 	
-	<para>Die ntlm_auth man page wurde von Jelmer Vernooij 
+	<para>Die ntlm_auth-Manpage wurde von Jelmer Vernooij 
 	und Andrew Bartlett geschrieben.</para>
 </refsect1>
 
 </refentry>
+

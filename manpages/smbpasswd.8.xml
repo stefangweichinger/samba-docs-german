@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbpasswd.8">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>smbpasswd</refname>
-	<refpurpose>ändert das SMB-Passwort eines Benutzers</refpurpose>
+	<refpurpose>Ändert das SMB-Passwort eines Benutzers.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,7 +22,7 @@
 		<arg choice="opt">-x</arg>	
 		<arg choice="opt">-d</arg>	
 		<arg choice="opt">-e</arg>	
-		<arg choice="opt">-D Debug-Ebene</arg>	
+		<arg choice="opt">-D Debugebene</arg>	
 		<arg choice="opt">-n</arg>	
 		<arg choice="opt">-r &lt;entfernter Rechner&gt;</arg>	
 		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>	
@@ -46,7 +45,7 @@
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 	
 	<para>Das Programm smbpasswd hat mehrere verschiedene Aufgaben,
-	jenachdem, ob es vom Benutzer <emphasis>root</emphasis> ausgeführt 
+	je nachdem ob es vom Benutzer <emphasis>root</emphasis> ausgeführt 
 	wird oder nicht. Einem normalen Benutzer erlaubt es, das Passwort 
 	seiner SMB-Sitzungen auf allen Rechnern zu ändern, die SMB-Passwörter
 	speichern.</para>
@@ -168,20 +167,20 @@
 
 
 		<varlistentry>
-		<term>-D Debug-Ebene</term>
-		<listitem><para><replaceable>Debug-Ebene</replaceable> ist ein
+		<term>-D Debugebene</term>
+		<listitem><para><replaceable>Debugeene</replaceable> ist ein
 		Integer von 0 bis 10. Falls nicht angegeben, ist der Vorgabewert 
 		für diesen Parameter gleich Null.</para>
 
 		<para>Je höher dieser Wert ist, desto mehr Details werden in den
-		Log-Dateien über die Aktivitäten von smbpasswd festgehalten. Auf
+		Logdateien über die Aktivitäten von smbpasswd festgehalten. Auf
 		der Ebene 0 werden nur kritische Fehler und ernste Warnungen 
 		gespeichert.</para>
 
-		<para>Auf Ebenen über 1 werden erhebliche Mengen an Log-Daten
+		<para>Auf Ebenen über 1 werden erhebliche Mengen an Logdaten
 		gespeichert, daher sollten diese Ebenen nur bei der Untersuchung
 		eines Problems verwendet werden. Ebenen über 3 sind für den Gebrauch 
-		von Entwicklern gedacht und erzeugen RIESIGE Mengen an Log-Daten,
+		von Entwicklern gedacht und erzeugen RIESIGE Mengen an Logdaten,
 		von denen die meisten extrem kryptisch sind. 
 		</para></listitem>
 		</varlistentry>
@@ -231,13 +230,13 @@
 		man das Passwort eines anderen Benutzers ändert.</para>
 
 		<para>Man beachte, dass bei der Änderung eines Windows 
-		NT-Domänenpassworts der angegebene entfernte Rechner der Primäre
-		Domänen-Controller der Domäne sein muss (Backup Domänen-Controller
+		NT-Domänenpassworts der angegebene entfernte Rechner der primäre
+		Domänencontroller der Domäne sein muss (Backup Domänen-Controller
 		verfügen lediglich über eine nur lesbare Kopie der 
-		Benutzerkonten-Datenbank und erlauben keine Passwortänderung).</para>
+		Benutzerkontendatenbank und erlauben keine Passwortänderung).</para>
 		
 		<para>Beachten Sie, dass Windows 95/98 keine echte 
-		Passwort-Datenbank besitzt. Daher ist es nicht möglich,
+		Passwortdatenbank besitzt. Daher ist es nicht möglich,
 		Passwörter zu ändern, indem ein Win95/98-Rechner als entfernter
 		Zielrechner angegeben wird.</para>
 		</listitem>
@@ -270,7 +269,7 @@
 			mit einer NIS- oder DNS-Suche. Diese Methode der Namensauflösung 
 			ist abhängig vom Betriebssystem und wird z.B. unter IRIX oder
 			Solaris mit der Datei <filename>/etc/nsswitch.conf</filename> 
-			gesteuert). Beachten Sie, dass diese Methode nur dann benutzt 
+			gesteuert. Beachten Sie, dass diese Methode nur dann benutzt 
 			wird, wenn der gesuchte NetBIOS-Namenstyp der Typ 0x20 (Server)
 			ist, ansonsten wird sie ignoriert.</para>
 			</listitem>
@@ -303,7 +302,7 @@
 		<term>-m</term>
 		<listitem><para>Diese Option sagt smbpasswd, dass es sich beim geänderten
 		Konto um ein RECHNER-Konto handelt. Momentan wird das dann benutzt, 
-		wenn Samba als Primärer NT-Domänen-Controller benutzt wird.</para>
+		wenn Samba als primärer NT-Domänencontroller benutzt wird.</para>
 
 		<para>Diese Option ist nur dann vorhanden, wenn smbpasswd unter 
 		root ausgeführt wird.</para></listitem>
@@ -324,7 +323,7 @@
 		
 		<varlistentry>
 		<term>-h</term>
-		<listitem><para>Diese Option gibt den Hilfe-String für <command>
+		<listitem><para>Diese Option gibt den Hilfestring für <command>
 		smbpasswd</command> aus, wobei je nach normalem oder root-Benutzer
 		der richtige ausgewählt wird.</para></listitem>
 		</varlistentry>
@@ -333,7 +332,7 @@
 		<varlistentry>
 		<term>-s</term>
 		<listitem><para>Diese Option bewirkt, dass smbpasswd leise ist, d.h. 
-		keine Fragen stellt, und seine alten und neuen Passwörter von der 
+		keine Fragen stellt und seine alten und neuen Passwörter von der 
 		Standardeingabe statt von <filename>/dev/tty</filename> einliest  
 		(wie es das Programm <command>passwd(1)</command> macht). Diese 
 		Option soll den Leuten helfen, die Skripte zur Steuerung von smbpasswd
@@ -361,8 +360,8 @@
 		<varlistentry>
 		<term>-i</term>
 		<listitem><para>Diese Option sagt smbpasswd, dass das veränderte 
-		Konto ein Interdomänen-Trust-Konto ist. Momentan wird das benutzt,
-		wenn Samba als Primärer NT-Domänen-Controller verwendet wird. 
+		Konto ein Interdomänen-Trustkonto ist. Momentan wird das benutzt,
+		wenn Samba als primärer NT-Domänen-Controller verwendet wird. 
 		Das Konto enthält Informationen über eine andere vertrauenswürdige
 		Domäne.</para>
 
@@ -410,8 +409,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -430,14 +429,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

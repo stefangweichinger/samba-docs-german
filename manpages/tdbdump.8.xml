@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="tdbdump.8">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>tdbdump</refname>
-	<refpurpose>Werkzeug zum Ausgeben des Inhalts einer TDB-Datei</refpurpose>
+	<refpurpose>Werkzeug zum Ausgeben des Inhalts einer TDB-Datei.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -45,8 +44,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -57,7 +56,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die tdbdump man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die tdbdump-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

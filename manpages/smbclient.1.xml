@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbclient.1">
 
 <refmeta>
 	<refentrytitle>smbclient</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbclient</refname>
-	<refpurpose>ftp-ähnlicher Client für den Zugriff auf SMB/CIFS-Ressourcen 
-	auf Servern</refpurpose>
+	<refpurpose>ftp-ähnlicher Client für den Zugriff auf SMB-/CIFS-Ressourcen 
+	auf Servern.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -23,7 +21,7 @@
 		<arg choice="req">Dienstname</arg>
 		<arg choice="opt">Passwort</arg>
 		<arg choice="opt">-b &lt;Puffergröße&gt;</arg>
-		<arg choice="opt">-d Debug-Ebene</arg>
+		<arg choice="opt">-d Debugebene</arg>
 		<arg choice="opt">-D Verzeichnis</arg>
 		<arg choice="opt">-U Benutzername</arg>
 		<arg choice="opt">-W Arbeitsgruppe</arg>
@@ -35,12 +33,12 @@
 		<arg choice="opt">-L &lt;Netbios-Name&gt;</arg>
 		<arg choice="opt">-I IP-Adresse</arg>
 		<arg choice="opt">-E</arg>
-		<arg choice="opt">-c &lt;Befehls-String&gt;</arg>
+		<arg choice="opt">-c &lt;Befehlsstring&gt;</arg>
 		<arg choice="opt">-i Scope</arg>
-		<arg choice="opt">-O &lt;Socket-Optionen&gt;</arg>
+		<arg choice="opt">-O &lt;Socketoptionen&gt;</arg>
 		<arg choice="opt">-p Port</arg>
 		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>
-		<arg choice="opt">-s &lt;smb-Konfig-Datei&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Konfigdatei&gt;</arg>
 		<arg choice="opt">-T&lt;c|x&gt;IXFqgbNan</arg>
 		<arg choice="opt">-k</arg>
 	</cmdsynopsis>
@@ -54,14 +52,14 @@
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbclient</command> ist ein Client, der mit einem 
-	SMB/CIFS-Server "sprechen" kann. Er bietet eine Schnittstelle
+	SMB-/CIFS-Server "sprechen" kann. Er bietet eine Schnittstelle
 	ähnlich zu der des ftp-Programms (siehe 
 	<citerefentry><refentrytitle>ftp</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>).  
 	Zu den Operationen gehören Dinge wie das Holen von Dateien vom
 	Server auf den lokalen Rechner, Platzieren von Dateien vom lokalen
 	Rechner auf den Server, Holen von Informationen zu Verzeichnissen
-	auf dem Server, etc.</para>
+	auf dem Server etc.</para>
 </refsect1>
 
 
@@ -74,10 +72,10 @@
 		<listitem><para>Dienstname ist der Name des Dienstes, den Sie 
 		auf dem Server benutzen möchten. Ein Dienstname hat die Form
 		<filename>//server/dienst</filename> wobei <parameter>server
-		</parameter> der NetBIOS-Name des SMB/CIFS-Servers mit dem 
+		</parameter> der NetBIOS-Name des SMB-/CIFS-Servers mit dem 
 		gewünschten Dienst und <parameter>dienst</parameter> der Name
 		des angebotenen Dienstes ist. Um also eine Verbindung zu dem 
-		Dienst "printer" auf dem SMB/CIFS-Server "smbserver" herzustellen
+		Dienst "printer" auf dem SMB-/CIFS-Server "smbserver" herzustellen
 		würden Sie den Dienstnamen <filename>//smbserver/printer
 		</filename> verwenden.</para> 
 
@@ -104,13 +102,13 @@
 		(unterdrücke Passworteingabe) angenommen.</para>
 
 		<para>Es gibt kein vorgegebenes Passwort. Falls kein Passwort
-		auf der Kommandozeile angegeben wird (entweder durch die Verwendung 
+		auf der Kommandozeile angegeben wird entweder durch die Verwendung 
 		dieses Parameters oder durch Hinzufügen eines Passworts zu der
 		Option <parameter>-U</parameter> (siehe unten) und die Option
 		<parameter>-N</parameter> wird nicht angegeben, dann fragt der 
 		Client ein Passwort ab, selbst wenn der gewünschte Dienst
 		gar keines verlangt. (Wenn kein Passwort benötigt wird, drücken
-		Sie einfach die Eingabetaste, und geben ein leeres Passwort ein.)
+		Sie einfach die Eingabetaste und geben ein "leeres" Passwort ein.)
 		</para>
 
 		<para>Bemerkung: Manche Server (darunter OS/2 und Windows for 
@@ -126,7 +124,7 @@
 		<varlistentry>
 		<term>-R &lt;Namensauflösungsreihenfolge&gt;</term> 
 		<listitem><para>Diese Option wird von den Programmen der Samba-Suite
-		dazu benutzt, festzulegen, welche Namensdienste verwendet werden und in 
+		dazu benutzt festzulegen, welche Namensdienste verwendet werden und in 
 		welcher Reihenfolge Hostnamen in IP-Adressen aufgelöst werden. 
 		Die Option erwartet einen String mit verschiedenen Auflösungsoptionen,
 		die mit Leerzeichen voneinander getrennt sind.</para>
@@ -151,7 +149,7 @@
 			mit einer NIS- oder DNS-Suche. Diese Methode der Namensauflösung 
 			ist abhängig vom Betriebssystem und wird z.B. unter IRIX oder
 			Solaris mit der Datei <filename>/etc/nsswitch.conf</filename> 
-			gesteuert). Beachten Sie, dass diese Methode nur dann benutzt 
+			gesteuert. Beachten Sie, dass diese Methode nur dann benutzt 
 			wird, wenn der gesuchte NetBIOS-Namenstyp der Typ 0x20 (Server)
 			ist, ansonsten wird sie ignoriert.</para>
 			</listitem>
@@ -227,7 +225,7 @@
 		<term>-p Port</term>
 		<listitem><para>Diese Nummer ist die TCP-Portnummer, die bei Verbindungen
 		zum Server benutzt wird. Die standardmäßige (allseits bekannte) 
-		TCP-Portnummer für einen SMB/CIFS-Server ist 139, die vorgegeben 
+		TCP-Portnummer für einen SMB-/CIFS-Server ist 139, die vorgegeben 
 		ist.</para></listitem>
 		</varlistentry>
 		
@@ -241,8 +239,8 @@
 		sollte in der Standardnotation "a.b.c.d" angegeben werden.</para>
 
 		<para>Normalerweise versucht der Client, einen benannten 
-		SMB/CIFS-Server dadurch zu finden, dass er mit Hilfe des 
-		NetBIOS-Namensauflösungsmechanisms gesucht wird, der oben beim
+		SMB-/CIFS-Server dadurch zu finden, dass er mit Hilfe des 
+		NetBIOS-Namensauflösungsmechanismus gesucht wird, der oben beim
 		Parameter <parameter>name resolve order</parameter> beschrieben
 		wird. Die Verwendung dieses Parameters zwingt den Client zu der
 		Annahme, dass sich der Server auf dem Rechner mit der angegebenen 
@@ -280,17 +278,17 @@
 		
 		
 		<varlistentry>
-		<term>-t Terminal-Code</term>
+		<term>-t Terminalcode</term>
 		<listitem><para>Diese Option sagt <command>smbclient</command>, wie er
 		Dateinamen auf dem entfernten Server interpretieren soll. Normalerweise
 		verwenden asiatische Multibyte-UNIX-Implementierungen andere
-		Zeichensätze als SMB/CIFS-Server (z.B. <emphasis>EUC</emphasis> statt
+		Zeichensätze als SMB-/CIFS-Server (z.B. <emphasis>EUC</emphasis> statt
 		<emphasis>SJIS</emphasis>). Durch die Angabe dieses Parameters konvertiert 
 		<command>smbclient</command> korrekt zwischen den UNIX-Dateinamen und 
 		den SMB-Dateinamen. Diese Option wurde nicht ernsthaft getestet
 		und kann durchaus noch einige Probleme verursachen.</para>
 
-		<para>Zu den möglichen Terminal-Codes gehören CWsjis, CWeuc, CWjis7,
+		<para>Zu den möglichen Terminalcodes gehören CWsjis, CWeuc, CWjis7,
 		CWjis8, CWjunet, CWhex und CWcap. Diese Liste ist aber nicht vollständig. 
 		Eine vollständige Liste erhalten Sie, wenn Sie in den Samba-Quellcode
 		schauen.</para></listitem>
@@ -299,7 +297,7 @@
 			
 		<varlistentry>	
 		<term>-b Puffergröße</term>
-		<listitem><para>Diese Option ändert die transmit/send-Puffergröße,
+		<listitem><para>Diese Option ändert die transmit-/send-Puffergröße,
 		beim Herunterladen oder Hochladen einer Datei vom bzw. auf den Server. 
 		Der Vorgabewert dafür ist 65520 Bytes. Es wurde beobachtet, dass
 		ein Herabsetzen dieses Wertes (auf 1200 Bytes) den Dateitransfer 
@@ -314,7 +312,7 @@
 		<varlistentry>
 		<term>-T tar-Optionen</term>
 		<listitem><para>Mann kann smbclient so benutzen, dass von allen 
-		Dateien in einer SMB/CIFS-Freigabe Backups kompatibel zu 
+		Dateien in einer SMB-/CIFS-Freigabe Backups kompatibel zu 
 		<command>tar(1)</command> erzeugt werden. Die zweitrangigen tar-Flags, 
 		die bei dieser Option angegeben werden können, sind:</para>
 		
@@ -323,7 +321,7 @@
 			unter UNIX. 
 			Es muss der Name einer tar-Datei, eines Bandgeräts oder "-" 
 			für die Standardausgabe folgen. Bei der Standardausgabe müssen 
-			Sie die Log-Ebene auf den niedrigsten Wert setzen, -d0, um die
+			Sie die Logebene auf den niedrigsten Wert setzen, -d0, um die
 			Korrektheit Ihrer tar-Datei nicht zu gefährden. Dieses Flag 
 			sowie das Flag <parameter>x</parameter> schließen sich
 			gegenseitig aus.</para></listitem>
@@ -363,7 +361,7 @@
 			</para></listitem>
 			
 			<listitem><para><parameter>g</parameter> - Inkrementell. 
-			Macht ein Backup nur von Dateien, deren Archiv-Bit gesetzt ist.
+			Macht ein Backup nur von Dateien, deren Archivbit gesetzt ist.
 			Nur sinnvoll mit dem Flag <parameter>c</parameter>. 
 			</para></listitem>
 
@@ -388,8 +386,8 @@
 			Nur sinnvoll mit dem Flag <parameter>c</parameter>. 
 			</para></listitem>
 			
-			<listitem><para><parameter>a</parameter> - Setzt das Archiv-Bit.
-			Bewirkt, dass das Archiv-Bit zurückgesetzt wird, wenn ein Backup
+			<listitem><para><parameter>a</parameter> - Setzt das Archivbit.
+			Bewirkt, dass das Archivbit zurückgesetzt wird, wenn ein Backup
 			von einer Datei gemacht wird. Sinnvoll mit den Flags 
 			<parameter>g</parameter> und <parameter>c</parameter>. 
 			</para></listitem>
@@ -398,7 +396,7 @@
 		<para><emphasis>Tar und lange Dateinamen</emphasis></para>
 			
 		<para>Die tar-Optionen von <command>smbclient</command> unterstützen
-		nun lange Dateinamen sowohl beim Backup wie beim Wiederherstellen.
+		nun lange Dateinamen sowohl beim Backup als auch beim Wiederherstellen.
 		Allerdings muss die Länge des vollständigen Pfadnamens der Datei
 		kleiner als 1024 Bytes sein. Wenn ein tar-Archiv erzeugt wird, 
 		setzt die tar-Option von <command>smbclient</command> außerdem alle 
@@ -414,31 +412,31 @@
 		<para><emphasis>Beispiele</emphasis></para>
 		
 		<para>Wiederherstellen aus der tar-Datei <filename>backup.tar</filename>
-		in meinefreigabe auf meinpc (kein Passwort auf der Freigabe). </para>
+		in meinefreigabe auf meinpc (kein Passwort auf der Freigabe):</para>
 		
 		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tx backup.tar
 		</command></para>
 		
-		<para>Wiederherstellen von allem außer <filename>users/docs</filename>
+		<para>Wiederherstellen von allem außer <filename>users/docs</filename>:
 		</para>
 		
 		<para><command>smbclient //meinpc/meinefreigabe "" -N -TXx backup.tar 
 		users/docs</command></para>
 		
 		<para>Erstellen einer tar-Datei von den Dateien unter <filename>
-		users/docs</filename>. </para>
+		users/docs</filename>:</para>
 		
 		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tc
 		backup.tar users/docs </command></para>
 		
 		<para>Erstellen der gleichen tar-Datei wie oben, aber nun unter 
-		Verwendung eines DOS-Pfadnamens. </para>
+		Verwendung eines DOS-Pfadnamens:</para>
 		
 		<para><command>smbclient //meinpc/meinefreigabe "" -N -tc backup.tar 
 		users\edocs </command></para>
 		
 		<para>Erstellen einer tar-Datei aller Dateien und Verzeichnisse in 
-		der Freigabe. </para>
+		der Freigabe:</para>
 		
 		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tc backup.tar *
 		</command></para>
@@ -454,8 +452,8 @@
 		
 		
 		<varlistentry>
-		<term>-c Befehls-String</term>
-		<listitem><para>Der Befehls-String ist eine mit Semikola getrennte
+		<term>-c Befehlsstring</term>
+		<listitem><para>Der Befehlsstring ist eine mit Semikola getrennte
 		Liste von Befehlen, die ausgeführt werden sollen, anstatt solche auf
 		der Standardeingabe abzufragen. <parameter>-c</parameter> 
 		impliziert <parameter>-N</parameter>.</para>
@@ -500,7 +498,7 @@
 	<para>Beachten Sie, dass alle Befehle, die auf dem Server operieren, 
 	tatsächlich über eine Anfrage an den Server ausgeführt werden. Daher 
 	unterscheidet sich das Verhalten eventuell von einem Server zum anderen, 
-	je nachdem, wie der Server implementiert wurde.</para>
+	je nachdem wie der Server implementiert wurde.</para>
 
 	<para>Die verfügbaren Befehle werden hier in alphabetischer Reihenfolge
 	angegeben.</para>
@@ -516,10 +514,10 @@
 		
 		
 		<varlistentry>
-		<term>! [Shell-Befehl]</term>
-		<listitem><para>Falls <replaceable>Shell-Befehl</replaceable> 
+		<term>! [Shellbefehl]</term>
+		<listitem><para>Falls <replaceable>Shellbefehl</replaceable> 
 		angegeben wird, wird der Befehl ! eine lokale Shell ausführen und 
-		darin den angegebenen Shell-Befehl. Wenn kein Befehl angegeben wird,
+		darin den angegebenen Shellbefehl. Wenn kein Befehl angegeben wird,
 		wird eine lokale Shell ausgeführt. 
 		</para></listitem>
 		</varlistentry>
@@ -610,7 +608,7 @@
 		<term>get &lt;entfernter Dateiname&gt; [lokaler Dateiname]</term>
 		<listitem><para>Kopiert die Datei namens 
 		<filename>entfernter Dateiname</filename> vom Server auf den Rechner,
-		auf dem der Client läuft. Wenn angegeben wird die lokale Kopie 
+		auf dem der Client läuft. Wenn angegeben, wird die lokale Kopie 
 		<filename>lokaler Dateiname</filename> genannt. Beachten Sie, dass
 		jede Dateiübertragung in <command>smbclient</command> binär ist. 
 		Siehe auch den Befehl lowercase.</para></listitem>
@@ -762,7 +760,7 @@
 		<listitem><para>Schaltet die Abfrage von Dateinamen bei der 
 		Abarbeitung der Befehle mget und mput ein bzw. aus.</para>
 
-		<para>Wenn eingeschaltet wird der Benutzer bei jeder Datei gebeten, 
+		<para>Wenn eingeschaltet, wird der Benutzer bei jeder Datei gebeten, 
 		ihre Übertragung zu bestätigen. Wenn ausgeschaltet werden alle 
 		angegebenen Dateien ohne weitere Abfrage übertragen. 
 		</para></listitem>
@@ -806,7 +804,7 @@
 		<listitem><para>Schaltet die Verzeichnisrekursion bei den Befehlen
 		mget und mput ein bzw. aus.</para>
 		
-		<para>Wenn eingeschaltet bearbeiten diese Befehle alle Verzeichnisse 
+		<para>Wenn eingeschaltet, bearbeiten diese Befehle alle Verzeichnisse 
 		im Quellverzeichnis (z.B. das Verzeichnis, aus dem kopiert wird) und 
 		machen rekursiv bei allen weiter, auf die die zum Befehl angegebene 
 		Maske passt. Es werden nur die Dateien übertragen, auf die die mit dem
@@ -887,12 +885,12 @@
 		
 		<varlistentry>
 		<term>tarmode &lt;full|inc|reset|noreset&gt;</term>
-		<listitem><para>Ändert das Verhalten von tar bzgl. der Archiv-Bits. 
+		<listitem><para>Ändert das Verhalten von tar bzgl. der Archivbits. 
 		Im fullinc-Modus macht tar ein Backup von allem, unabhängig von der 
-		Einstellung des Archiv-Bits (dies ist der Standardmodus). Im
+		Einstellung des Archivbits (dies ist der Standardmodus). Im
 		inkrementellen Modus (inc), macht tar nur von den Dateien mit einem
-		gesetzten Archiv-Bit ein Backup. Im reset-Modus, setzt tar 
-		das Archiv-Bit auf allen Dateien zurück, von denen es ein Backup macht
+		gesetzten Archivbit ein Backup. Im reset-Modus, setzt tar 
+		das Archivbit auf allen Dateien zurück, von denen es ein Backup macht
 		(impliziert eine read/write-Freigabe).</para></listitem>
 		</varlistentry>
 		
@@ -941,14 +939,14 @@
 <refsect1>
 	<title>INSTALLATION</title>
 
-	<para>Der Ort des Client-Programms ist Sache des einzelnen 
+	<para>Der Ort des Clientprogramms ist Sache des einzelnen 
 	Systemadministrators. Die folgenden Bemerkungen sind daher nur
 	Vorschläge.</para>
 
 	<para>Es wird empfohlen, dass die smbclient-Software im Verzeichnis 
 	<filename>/usr/local/samba/bin/</filename> oder 
 	<filename>/usr/samba/bin/</filename> installiert wird, welches für alle
-	lesbar, aber nur für root schreibbar ist. Das Client-Programm selbst 
+	lesbar, aber nur für root schreibbar ist. Das Clientprogramm selbst 
 	sollte für alle ausführbar sein. Der Client sollte <emphasis>NICHT</emphasis> 
 	setuid oder setgid sein!</para>
 
@@ -956,11 +954,11 @@
 	das nur für den Benutzer les- und schreibbar ist. </para>
 
 	<para>Um den Client zu testen, müssen Sie den Namen eines laufenden 
-	SMB/CIFS-Servers kennen. Mann kann 
+	SMB-/CIFS-Servers kennen. Mann kann 
 	<citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry> als gewöhnlicher Benutzer 
 	laufen lassen. Den Server als Daemon auf einem für Benutzer 
-	zugänglichen Port laufen zu lassen (normalerweise irgendeine Port-Nummer 
+	zugänglichen Port laufen zu lassen (normalerweise irgendeine Portnummer 
 	größer als 1024) sollte einen geeigneten Testserver ergeben.</para>
 </refsect1>
 
@@ -974,8 +972,8 @@
 	Kommandozeile überschrieben werden.</para>
 
 	<para>Die Anzahl und Art von vorhandenen Diagnosemeldungen hängt von 
-	der Debug-Ebene ab, die der Client verwendet. Sollten Sie Probleme
-	haben, setzen Sie die Debug-Ebene auf 3 und schauen Sie sich die
+	der Debugebene ab, die der Client verwendet. Sollten Sie Probleme
+	haben, setzen Sie die Debugebene auf 3 und schauen Sie sich die
 	Logdateien an.</para>
 </refsect1>
 
@@ -983,8 +981,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 2.2 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 2.2 der 
+	Samba-Suite.</para>
 </refsect1>
 
 
@@ -996,14 +994,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 	
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="profiles.1">
 
 <refmeta>
 	<refentrytitle>profiles</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>profiles</refname>
-	<refpurpose>Ein Werkzeug, um SIDs in Registry-Dateien auszugeben und zu ändern
+	<refpurpose>Ein Werkzeug, um SIDs in Registry-Dateien auszugeben und zu ändern.
 	</refpurpose>
 </refnamediv>
 
@@ -72,8 +70,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -84,7 +82,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 	
-	<para>Die profiles man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die profiles-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

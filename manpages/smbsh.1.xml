@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbsh.1">
@@ -14,7 +13,7 @@
 <refnamediv>
 	<refname>smbsh</refname>
 	<refpurpose>Erlaubt den Zugriff mit UNIX-Befehlen auf 
-	entfernte SMB-Freigaben</refpurpose>
+	entfernte SMB-Freigaben.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,9 +23,9 @@
 		<arg choice="opt">-U Benutzername</arg>
 		<arg choice="opt">-P Präfix</arg>
 		<arg choice="opt">-R &lt;Namensauflösungsreihenfolge&gt;</arg>
-		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
-		<arg choice="opt">-l Log-Verzeichnis</arg>
-		<arg choice="opt">-L Lib-Verzeichnis</arg>
+		<arg choice="opt">-d &lt;Debugebene&gt;</arg>
+		<arg choice="opt">-l Logverzeichnis</arg>
+		<arg choice="opt">-L Libverzeichnis</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
@@ -50,7 +49,7 @@
 	<variablelist>
 	    <varlistentry>
 		<term>-W Arbeitsgruppe</term>
-		<listitem><para>Überschreibt die Standard-Arbeitsgruppe, die im
+		<listitem><para>Überschreibt die Standardarbeitsgruppe, die im
 		Parameter workgroup der Datei 
 		<citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry> für diese Sitzung 
@@ -62,7 +61,7 @@
 		<term>-U Benutzername[%Passwort]</term>
 		<listitem><para>Setzt den SMB-Benutzernamen oder den Benutzernamen 
 		und das Passwort. Falls diese Option nicht angegeben ist, wird der
-		Benutzer sowohl nach einem Benutzernamen wie auch nach einem 
+		Benutzer sowohl nach einem Benutzernamen als auch nach einem 
 		Passwort gefragt. Falls %Passwort nicht angegeben wird, wird der 
 		Benutzer nach einem Passwort gefragt.
 		</para></listitem>
@@ -113,7 +112,7 @@
 	<command>ls /smb/MEINEGRUPPE</command> zeigt alle Rechner in der  
 	Arbeitsgruppe MEINEGRUPPE an. Der Befehl 
 	<command>ls /smb/MEINEGRUPPE/&lt;Rechner-Name&gt;</command> zeigt die
-	Namen der Freigaben auf diesem Rechner an. dann könnten Sie z.B. den
+	Namen der Freigaben auf diesem Rechner an. Dann könnten Sie z.B. den
 	Befehl <command>cd</command> benutzen, um Verzeichnisse zu wechseln,
 	<command>vi</command> um Dateien zu editieren, und <command>rcp</command>,
 	um Dateien zu kopieren.</para>
@@ -122,8 +121,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -146,7 +145,7 @@
 	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry></para>
+	<manvolnum>5</manvolnum></citerefentry>.</para>
 </refsect1>
 
 <refsect1>
@@ -157,14 +156,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

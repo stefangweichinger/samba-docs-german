@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="winbindd.8">
@@ -13,8 +12,8 @@
 
 <refnamediv>
 	<refname>winbindd</refname>
-	<refpurpose>Name Service Switch-Daemon für die Auflösung 
-	von Namen von NT-Servern</refpurpose>
+	<refpurpose>Name-Service-Switch-Daemon für die Auflösung 
+	von Namen von NT-Servern.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -24,8 +23,8 @@
 		<arg choice="opt">-S</arg>
 		<arg choice="opt">-i</arg>
 		<arg choice="opt">-Y</arg>
-		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
-		<arg choice="opt">-s &lt;smb-Konfig-Datei&gt;</arg>
+		<arg choice="opt">-d &lt;Debugebene&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Konfigdatei&gt;</arg>
 		<arg choice="opt">-n</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -38,7 +37,7 @@
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>winbindd</command> ist ein Daemon, der einen Dienst
-	für die <quote>Name Service Switch</quote>-Eigenschaft bietet, die in den 
+	für die <quote>Name-Service-Switch</quote>-Eigenschaft bietet, die in den 
 	meisten modernen C-Bibliotheken vorhanden ist. Mit Hilfe des Name Service 
 	Switch kann man Benutzer- und Systeminformationen aus verschiedenen
 	Datenbankdiensten wie NIS oder DNS erhalten. Das genaue Verhalten 
@@ -47,7 +46,7 @@
 	vom Samba-Administrator angegebenen Bereich von Benutzer- und 
 	Gruppen-IDs allokiert.</para>
 
-	<para>Der von <command>winbindd</command> angebotene Dienst wird `winbind'
+	<para>Der von <command>winbindd</command> angebotene Dienst wird 'winbind'
 	genannt und mit ihm können Benutzer- und Gruppeninformationen von einem 
 	Windows NT-Server aufgelöst werden. Über ein entsprechendes PAM-Modul kann
 	dieser Dienst auch Authentifikationsdienste anbieten.</para>
@@ -78,7 +77,7 @@
 		<varlistentry>
 		<term>passwd</term>
 		<listitem><para>Benutzerinformationen, die traditionell in der 
-		Datei <filename>passwd(5)</filename> gespeichert sind, und von den 
+		Datei <filename>passwd(5)</filename> gespeichert sind und von den 
 		<command>getpwent(3)</command>-Funktionen benutzt werden. 
 		</para></listitem>
 		</varlistentry>
@@ -138,7 +137,7 @@ hosts:		files wins
 		<varlistentry>
 		<term>-S</term>
 		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass
-		<command>winbindd</command> seine Log-Meldungen auf die
+		<command>winbindd</command> seine Logmeldungen auf die
 		Standardausgabe statt in einer Datei ausgibt.</para></listitem>
 		</varlistentry>
 
@@ -148,10 +147,10 @@ hosts:		files wins
 		<varlistentry>
 		<term>-i</term>
 		<listitem><para>Sagt <command>winbindd</command>, dass er nicht 
-		zum Daemon werden und sich vom aktuellen Terminal abkoppeln soll. 
+		zum Daemon werden darfund sich vom aktuellen Terminal abkoppeln soll. 
 		Diese Option wird von Entwicklern benutzt, wenn eine interaktive
 		Fehlersuche mit <command>winbindd</command> notwendig ist.
-		<command>winbindd</command> gibt seine Log-Daten auch auf die 
+		<command>winbindd</command> gibt seine Logdaten auch auf die 
 		Standardausgabe aus, als ob der Parameter <command>-S</command> 
 		angegeben wäre.</para></listitem>
 		</varlistentry>
@@ -159,7 +158,7 @@ hosts:		files wins
 		<varlistentry>
 		<term>-n</term>
 		<listitem><para>Deaktiviert das Caching, d.h. winbindd muss immer 
-		auf eine Antwort vom Domänen-Controller warten, bevor es einem
+		auf eine Antwort vom Domänencontroller warten, bevor es einem
 		Client antworten kann, deswegen verlangsamt sich einiges. Die
 		Ergebnisse werden allerdings genauer sein, da die Ergebnisse aus
 		dem Cache eventuell nicht aktuell sind. Wenn der DC nicht antwortet,
@@ -169,10 +168,10 @@ hosts:		files wins
 
 		<varlistentry>
 		<term>-Y</term>
-		<listitem><para>Einzel-Daemon-Modus, d.h. winbindd läuft als einzelner 
+		<listitem><para>Einzel-Daemonmodus, d.h. winbindd läuft als einzelner 
 		Prozess (die normale Arbeitsweise in Samba 2.2). Das Standardverhalten
 		von winbindd ist, einen Kindprozess zu starten, der für die
-		Aktualisierung abgelaufener Cache-Einträge verantwortlich ist.
+		Aktualisierung abgelaufener Cacheeinträge verantwortlich ist.
 		</para></listitem>
 		</varlistentry>
 
@@ -191,9 +190,9 @@ hosts:		files wins
 	bzw. Gruppen-IDs benötigt. Dies ist eine der Aufgaben, für die 
 	<command>winbindd</command> da ist.</para>
 
-	<para>Da winbindd-Benutzer und Gruppen von einem Server aufgelöst 
+	<para>Da winbindd-Benutzer und -Gruppen von einem Server aufgelöst 
 	werden, werden Benutzer- und Gruppen-IDs aus einem angegebenen Bereich
-	allokiert. Dies geschieht nach dem Prinzip "Wer zuerst kommt, malt 
+	allokiert. Dies geschieht nach dem Prinzip "Wer zuerst kommt, mahlt 
 	zuerst.", obwohl alle vorhandenen Benutzer und Gruppen gleich dann
 	abgebildet werden, wenn ein Client einen Befehl ausführt, der die 
 	Benutzer oder Gruppen aufzählt. Die allokierten UNIX-IDs werden in 
@@ -203,7 +202,7 @@ hosts:		files wins
 	<para>WARNUNG: Die Datenbank, die rids auf UNIX-IDs abbildet, ist der
 	einzige Ort, wo die Benutzer- und Gruppenabbildungen von winbindd
 	gespeichert werden. Wenn diese Datei gelöscht oder beschädigt wird, 
-	hat winbindd keine Möglichkeit mehr, festzustellen, welche Benutzer-
+	hat winbindd keine Möglichkeit mehr festzustellen, welche Benutzer-
 	und Gruppen-IDs zu den Windows NT-Benutzer- und Gruppen-rids gehören. 
 	</para>
 </refsect1>
@@ -242,14 +241,14 @@ hosts:		files wins
 
 
 <refsect1>
-	<title>BEISPIEL-EINSTELLUNGEN</title>
+	<title>BEISPIELEINSTELLUNGEN</title>
 
 	<para>Um winbindd für die Suche nach Benutzern und Gruppen sowie 
-	für die Authentifikation von einem Domänen-Controller einzurichten,
-	können Sie eine Einstellung ähnlich zu folgender verwenden. Diese wurde
+	für die Authentifikation von einem Domänencontroller einzurichten,
+	können Sie eine Einstellung ähnlich der folgenden verwenden. Diese wurde
 	auf einem RedHat 6.2 Linux-System getestet.</para>
 
-	<para>Setzen Sie folgendes in <filename>/etc/nsswitch.conf</filename>:
+	<para>Setzen Sie Folgendes in <filename>/etc/nsswitch.conf</filename>:
 <programlisting>
 passwd:     files winbind
 group:      files winbind
@@ -289,7 +288,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 	<filename>/lib/security</filename>. Dann muss ein symbolischer Link von 
 	<filename>/lib/libnss_winbind.so</filename> auf
 	<filename>/lib/libnss_winbind.so.2</filename> gemacht werden. 
-	Falls Sie eine ältere Version von glibc verwenden, dan sollte das Ziel
+	Falls Sie eine ältere Version von glibc verwenden, dann sollte das Ziel
 	des Links <filename>/lib/libnss_winbind.so.1</filename> sein.</para>
 
 	<para>Richten Sie schließlich 
@@ -311,8 +310,8 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
   
 
 	<para>Wenn Sie nun winbindd starten, sollten Sie feststellen, dass Ihre
-	Benutzer- und Gruppendatenbank um Ihre NT-Benutzer und Gruppen erweitert
-	ist, und dass Sie sich auf Ihrem UNIX-Rechner als Domänenbenutzer 
+	Benutzer- und Gruppendatenbank um Ihre NT-Benutzer und -Gruppen erweitert
+	ist und dass Sie sich auf Ihrem UNIX-Rechner als Domänenbenutzer 
 	anmelden können, indem Sie als Benutzernamen die Syntax DOMAIN+Benutzer 
 	verwenden. Möglicherweise möchten Sie die Befehle  
 	<command>getent passwd</command> und <command>getent group</command>
@@ -365,7 +364,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 		<citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry> erneut und wendet 
 		alle Parameteränderungen bei der laufenden Version von 
-		winbindd an. Dieses Signal löscht ausserdem gecachte Benutzer- 
+		winbindd an. Dieses Signal löscht außerdem gecachte Benutzer- 
 		und Gruppeninformationen. Die Liste der anderen Domänen, denen 
 		winbindd traut, wird ebenfalls neu geladen.</para></listitem>
 		</varlistentry>
@@ -374,11 +373,11 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 		<term>SIGUSR2</term>
 		<listitem><para>Das Signal SIGUSR2 bewirkt, dass 
 		<command>winbindd</command> Statusinformationen in die 
-		winbind-Log-Datei schreibt, inklusive Informationen über die
+		winbind-Logdatei schreibt, inklusive Informationen über die
 		Anzahl der Benutzer- und Gruppen-IDs, die von 
 		<command>winbindd</command> allokiert sind.</para>
 
-		<para>Log-Dateien werden unter dem Dateinamen gespeichert,
+		<para>Logdateien werden unter dem Dateinamen gespeichert,
 		der im Parameter log file angegeben ist.</para></listitem>
 		</varlistentry>
 	</variablelist>
@@ -390,7 +389,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 	<variablelist>
 		<varlistentry>
 		<term><filename>/etc/nsswitch.conf(5)</filename></term>
-		<listitem><para>Name Service Switch-Konfigurationsdatei.</para>
+		<listitem><para>Name-Service-Switch-Konfigurationsdatei.</para>
 		</listitem>
 		</varlistentry>
 	
@@ -398,9 +397,9 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 		<term>/tmp/.winbindd/pipe</term>
 		<listitem><para>Die UNIX-Pipe, über die Clients mit dem Programm 
 		<command>winbindd</command> kommunizieren. Aus Sicherheitsgründen
-		versucht der winbind-Client sich nur dann mit dem winbindd-Daemon zu 
+		versucht der winbind-Client, sich nur dann mit dem winbindd-Daemon zu 
 		verbinden, wenn sowohl das Verzeichnis 
-		<filename>/tmp/.winbindd</filename> wie auch die Datei 
+		<filename>/tmp/.winbindd</filename> als auch die Datei 
 		<filename>/tmp/.winbindd/pipe</filename> root als Besitzer 
 		haben.</para></listitem>
 		</varlistentry>
@@ -409,7 +408,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 		<term>$LOCKDIR/winbindd_privilaged/pipe</term>
 	        <listitem><para>Die UNIX-Pipe, über die 'privilegierte' Clients 
                 mit dem Programm <command>winbindd</command> kommunizieren. Aus
-		Sicherheitsgründen ist der Zugriff auf manche winbindd-Funktionen,
+		Sicherheitsgründen ist der Zugriff auf manche winbindd-Funktionen
 		beschränkt, z.B. auf jene, die das Werkzeug 
 		<command>ntlm_auth</command> braucht. Standardmäßig erhalten nur die
                 Benutzer der Gruppe 'root' diesen Zugriff, der Administrator kann
@@ -424,7 +423,7 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 
 		<varlistentry>
 		<term>/lib/libnss_winbind.so.X</term>
-		<listitem><para>Implementierung der Name Service Switch-Bibliothek.
+		<listitem><para>Implementierung der Name-Service-Switch-Bibliothek.
 		</para></listitem>
 		</varlistentry>
 	
@@ -450,8 +449,8 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -483,3 +482,4 @@ auth       required     /lib/security/pam_pwdb.so use_first_pass shadow nullok
 </refsect1>
 
 </refentry>
+

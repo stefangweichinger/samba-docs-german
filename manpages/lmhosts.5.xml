@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="lmhosts.5">
 
 <refmeta>
 	<refentrytitle>lmhosts</refentrytitle>
-	<manvolnum>5</manvolnum>
-</refmeta>
+	<manvolnum>5</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>lmhosts</refname>
-	<refpurpose>Die Samba NetBIOS-hosts-Datei</refpurpose>
+	<refpurpose>Die Samba-NetBIOS-Hosts-Datei.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -31,21 +29,21 @@
 	<para><filename>lmhosts</filename> ist die <emphasis>Samba
 	</emphasis>-Datei, die das Mapping von NetBIOS-Namen zu
         IP-Adressen enthält. Sie ist sehr ähnlich dem Dateiformat von <filename>/etc/hosts</filename>,
-	außer daß der Hostname dem NetBIOS-Namensformat entsprechen muß.</para>
+	außer dass der Hostname dem NetBIOS-Namensformat entsprechen muss.</para>
 </refsect1>
 
 <refsect1>
 	<title>DATEIFORMAT</title>
 	<para>Es ist eine ASCII-Datei, die eine Zeile pro NetBIOS-Namen enthält. 
 	Die zwei Felder in jeder Zeile sind voneinander durch Leerzeichen getrennt.
-	Ein Eintrag beginnend mit '#' wird ignoriert. Jede Zeile in der Datei lmhosts enthält
+	Ein Eintrag beginnend mit '#' wird ignoriert. Jede Zeile in der Datei <filename>lmhosts</filename> enthält
 	folgende Information:</para>
 
 	<itemizedlist>
 		<listitem><para>IP-Adresse - im dezimalen Format, getrennt durch Punkte.</para>
 		</listitem>
 
-		<listitem><para>NetBIOS Name - Dieses Namensformat ist ein maximal 15 Zeichen
+		<listitem><para>NetBIOS-Name - Dieses Namensformat ist ein maximal 15 Zeichen
 		langer Hostname, mit einem optionalen Endzeichen '#', gefolgt vom NetBIOS-Namenstypen
 		in Form zweier hexadezimaler Ziffern.</para>
 
@@ -57,8 +55,8 @@
 
 	<para>Es folgt ein Beispiel:</para>
 	
-	<programlisting>
-#
+	
+<programlisting>#
 # Beispiel Samba lmhosts Datei.
 #
 192.9.200.1	TESTPC
@@ -73,7 +71,7 @@
 	<para>Die zweite Zuweisung wird nur dann zurückgegeben, wenn der NetBIOS-Namenstyp
 	"0x20" für den Namen "NTSERVER" abgefragt wird. Alle anderen Namen werden nicht aufgelöst.</para>
 
-	<para>Der Standard-Pfad der Datei <filename>lmhosts</filename> 
+	<para>Der Standardpfad der Datei <filename>lmhosts</filename> 
 	ist dasselbe Verzeichnis wie für die Datei <citerefentry><refentrytitle>smb.conf</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>.</para>
 	
@@ -82,7 +80,7 @@
 <refsect1>
 	<title>DATEIEN</title>
 
-	<para>lmhosts wird aus dem Konfigurations-Verzeichnis geladen. Dieses ist üblicherweise
+	<para>lmhosts wird aus dem Konfigurationsverzeichnis geladen. Dieses ist üblicherweise
 	<filename>/etc/samba</filename> oder <filename>/usr/local/samba/lib</filename>.
 	</para>
 </refsect1>
@@ -90,15 +88,13 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para><citerefentry>
-	<refentrytitle>smbclient</refentrytitle><manvolnum>1</manvolnum>
-	</citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle><manvolnum>5</manvolnum>
-	</citerefentry>, und <citerefentry><refentrytitle>smbpasswd</refentrytitle>
+	<refentrytitle>smbclient</refentrytitle><manvolnum>1</manvolnum>	</citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle><manvolnum>5</manvolnum>	</citerefentry> und <citerefentry><refentrytitle>smbpasswd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>
 	</para>
 </refsect1>
@@ -110,14 +106,14 @@
         Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
         entwickelt, ähnlich wie der Linux-Kernel.</para>
 
-        <para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-        Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres exzellentes
-        Stück Open Source Software, verfügbar unter <ulink
-        url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-        und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die Umwandlung ins
+        <para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+        Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres exzellentes
+        Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+        und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die Umwandlung ins
         DocBook-Format wurde von Gerald Carter für Samba 2.2 durchgeführt.
         Die Umwandlung in Docbook für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
         durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

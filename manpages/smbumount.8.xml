@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbumount.8">
@@ -13,13 +12,13 @@
 
 <refnamediv>
 	<refname>smbumount</refname>
-	<refpurpose>smbfs-umount für normale Benutzer</refpurpose>
+	<refpurpose>smbfs-umount für normale Benutzer.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbumount</command>
-		<arg choice="req">Mount-Punkt</arg>
+		<arg choice="req">Mountpunkt</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
@@ -27,7 +26,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Mit diesem Programm können normale Benutzer smb-Dateisysteme
-	unmounten, vorausgesetzt, es ist suid root. <command>smbumount</command>
+	unmounten, vorausgesetzt es ist suid root. <command>smbumount</command>
 	wurde geschrieben, damit normale Linux-Benutzer mehr Einfluss auf 
 	ihre Ressourcen haben. Es ist sicher, dieses Programm als suid root
 	zu installieren, weil nur der Benutzer, der ein Dateisystem gemountet
@@ -41,7 +40,7 @@
 
 	<variablelist>
 		<varlistentry>
-		<term>Mount-Punkt</term>
+		<term>Mountpunkt</term>
 		<listitem><para>Das Verzeichnis das unmountet werden 
 		soll.</para></listitem>
 		</varlistentry>
@@ -66,16 +65,16 @@
 	<para>Der aktuell Verantwortliche von smbfs und der 
 	Userspace-Tools <command>smbmount</command>, 
 	<command>smbumount</command> und <command>smbmnt</command> ist
-	<ulink 
-	url="mailto:urban@teststation.com">Urban Widmark</ulink>.
+	<ulink url="mailto:urban@teststation.com">Urban Widmark</ulink>.
 	Die <ulink url="mailto:samba@samba.org">SAMBA-Mailingliste</ulink>
 	ist die beste Adresse, um Fragen zu diesen Programmen zu stellen.
 	</para>
 	
-	<para>Die Umwandlung dieser man page ins DocBook-Format wurde von
+	<para>Die Umwandlung dieser Manpage ins DocBook-Format wurde von
 	Gerald Carter für Samba 2.2 durchgeführt. Die Umwandlung in DocBook
 	für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
 	durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

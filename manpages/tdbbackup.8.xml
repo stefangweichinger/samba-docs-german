@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="tdbbackup.8">
@@ -34,7 +33,7 @@
 	<manvolnum>1</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>tdbbackup</command> ist ein Werkzeug, mit dem ein Backup
-	von .tdb-Samba-Dateien angefertigt werden kann, und mit dem die
+	von .tdb-Samba-Dateien angefertigt werden kann und mit dem die
 	Integrität von .tdb-Dateien überprüft werden kann, bevor Samba
 	gestartet wird. Für den Fall, dass eine Datei beschädigt ist und ein
 	vorher dafür angelegtes Backup gefunden wird, wird diese Backup-Datei 
@@ -51,14 +50,14 @@
 		<varlistentry>
 		<term>-h</term>
 		<listitem><para>
-		Gibt Hilfe-Information aus.
+		Gibt Hilfeinformation aus.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-s Endung</term>
 		<listitem><para>
-		Die Option <command>-s</command> ermöglicht dem Adminisistrator
+		Die Option <command>-s</command> ermöglicht dem Administrator
 		die Angabe einer Dateierweiterung für Backups. Auf diese Weise
 		kann man alle tdb-Backupdateien aufbewahren, indem für jedes
 		Backup eine neue Endung verwendet wird.
@@ -108,7 +107,7 @@
 	<itemizedlist>
 		<listitem><para>
 		<command>secrets.tdb</command> - üblicher Ort ist im
-		Verzeichnis /usr/local/samba/private, bzw. auf manchen 
+		Verzeichnis /usr/local/samba/private bzw. auf manchen 
 		Systemen in /etc/samba.
 		</para></listitem>
 
@@ -130,8 +129,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -142,7 +141,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die tdbbackup man page wurde von John H. Terpstra geschrieben.</para>
+	<para>Die tdbbackup-Manpage wurde von John H. Terpstra geschrieben.</para>
 </refsect1>
 
 </refentry>
+

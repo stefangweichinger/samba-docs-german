@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="mount.cifs.8">
 
 <refmeta>
 	<refentrytitle>mount.cifs</refentrytitle>
-	<manvolnum>8</manvolnum>
-</refmeta>
+	<manvolnum>8</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>mount.cifs</refname>
-	<refpurpose>mount unter Verwendung des Common Internet File System (CIFS)</refpurpose>
+	<refpurpose>mount unter Verwendung des Common Internet File System (CIFS).</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -32,32 +30,32 @@
 	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>mount.cifs bindet ein Linux CIFS-Dateisystem ein. Es wird üblicherweise indirekt
+	<para>mount.cifs bindet ein Linux-CIFS-Dateisystem ein. Es wird üblicherweise indirekt
 	aufgerufen, mittels des Befehls
 	<citerefentry><refentrytitle>mount</refentrytitle><manvolnum>8</manvolnum></citerefentry>
-	und der Option "-t cifs". Dieser Befehl funktioniert nur unter Linux, und der Kernel muß
+	und der Option "-t cifs". Dieser Befehl funktioniert nur unter Linux, und der Kernel muss
 	das CIFS-Dateisystem unterstützen. Das CIFS-Protokoll ist der Nachfolger des SMB-Protokolls
 	und wird von den meisten Windows-Servern unterstützt, von vielen anderen kommerziellen Servern
 	und NAS-Einrichtungen ebenso wie von dem populären Open-Source-Server Samba.
 	</para>
 
 	<para>
-	Das Werkzeug mount.cifs hängt den UNC-Namen (exportierte Netzwerk-Ressource) an das
+	Das Werkzeug mount.cifs hängt den UNC-Namen (exportierte Netzwerkressource) an das
 	lokale Verzeichnis <emphasis>mount-Punkt</emphasis> an. Es ist möglich, den Modus für
-	mount.cifs auf setuid root zu setzen, um nicht-root-Benutzern zu erlauben, Verzeichnisse
+	mount.cifs auf setuid root zu setzen, um Nicht-root-Benutzern zu erlauben, Verzeichnisse
 	einzubinden, auf denen sie Schreibrechte besitzen.
 	</para>
 
 	<para>
 	Optionen für <emphasis>mount.cifs</emphasis> werden als eine Liste von durch Kommas getrennten 
-	Schlüssel=Wert Paaren angegeben. Es ist möglich, andere Optionen als die hier angegebenen
+	Schlüssel-/Wertpaaren angegeben. Es ist möglich, andere Optionen als die hier angegebenen
 	zu senden, vorausgesetzt, das CIFS-Dateisystem unterstützt sie.
 	Nicht erkannte CIFS-mount-Optionen, die dem CIFS-VFS-Kernel-Code übergeben werden, werden
 	im Kernel-Log protokolliert.
 	</para>
 
-	<para><emphasis>mount.cifs</emphasis> veranlaßt das CIFS-VFS dazu, einen Thread namens cifsd
-	zu starten. Nach dem Einbinden/mounten läuft dieser weiter, bis die Einbindung der Ressource
+	<para><emphasis>mount.cifs</emphasis> veranlasst das CIFS-VFS dazu, einen Thread namens cifsd
+	zu starten. Nach dem Einbinden/Mounten läuft dieser weiter, bis die Einbindung der Ressource
 	wieder gelöst wird (üblicherweise mittels umount).
 	</para>
 
@@ -77,10 +75,10 @@
 
 <note>
 	<para>
-	Das CIFS-VFS akzeptiert den Parameter <parameter>user=</parameter>, oder für Benutzer, die
-	vertraut mit smbfs sind, auch die längere Form des Parameters <parameter>username=</parameter>.
+	Das CIFS-VFS akzeptiert den Parameter <parameter>user=</parameter> oder auch die längere Form des Parameters <parameter>username=</parameter> für Benutzer, die
+	vertraut mit smbfs sind. 
 	Genauso werden die längeren Formen der Parameternamen als Entsprechungen für die kürzeren
-	CIFS-Parameter <parameter>pass=</parameter>,<parameter>dom=</parameter> und 
+	CIFS-Parameter <parameter>pass=</parameter>, <parameter>dom=</parameter> und 
 	<parameter>cred=</parameter> akzeptiert.
 	</para>
 </note>
@@ -90,16 +88,16 @@
 
 	<varlistentry><term>password=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>gibt das CIFS-Passwort an. Wenn diese Option nicht angegeben wird,
-		wird die Umgebungs-Variable <emphasis>PASSWD</emphasis> verwendet. Wenn das Passwort
+		<listitem><para>Gibt das CIFS-Passwort an. Wenn diese Option nicht angegeben wird,
+		wird die Umgebungsvariable <emphasis>PASSWD</emphasis> verwendet. Wenn das Passwort
 		nicht direkt oder indirekt via Argument an mount weitergegeben wird, fragt
 		<emphasis>mount.cifs</emphasis> per Prompt nach einem Passwort, außer wenn
-		die guest-Option angegeben ist.
+		die Guest-Option angegeben ist.
 		</para>
 
-<para>Beachten Sie, daß ein Passwort, welches das Trennzeichen (z.B. ein Komma ',') enthält,
+<para>Beachten Sie, dass ein Passwort, welches ein Trennzeichen (z.B. ein Komma ',') enthält,
 auf der Kommandozeile nicht korrekt interpretiert werden kann. Jedoch kann dasselbe Passwort, wenn
-es in der Umgebungs-Variable PASSWD oder via einer "credentials"-Datei (siehe unten) angegeben wird,
+es in der Umgebungsvariable PASSWD oder via einer "credentials"-Datei (siehe unten) angegeben wird,
 korrekt gelesen werden.
 </para>
 	</listitem></varlistentry>
@@ -107,7 +105,7 @@ korrekt gelesen werden.
 	<varlistentry><term>credentials=<replaceable>Dateiname</replaceable></term>
 
 		<listitem><para>
-				gibt eine Datei an, die einen Benutzernamen und/oder
+				Gibt eine Datei an, die einen Benutzernamen und/oder
 				ein Passwort enthält. Das Format der Datei ist:
 			</para>
 
@@ -117,9 +115,9 @@ korrekt gelesen werden.
 </programlisting>
 		
 		<para>
-		Dies wird dem Eintragen von Klartext-Passwörten in einer mit anderen Benutzern
+		Dies wird dem Eintragen von Klartextpasswörten in einer mit anderen Benutzern
 		gemeinsam genutzten Datei wie <filename>/etc/fstab</filename> vorgezogen.
-		Stellen Sie sicher, daß jegliche "credentials"-Datei richtig geschützt wird.
+		Stellen Sie sicher, dass jegliche "credentials"-Datei richtig geschützt wird.
 		</para>
 	</listitem></varlistentry>
 
@@ -128,8 +126,8 @@ korrekt gelesen werden.
 
 		<listitem><para>Gibt die UID an, die alle Dateien auf dem eingebundenen
 		Dateisystem besitzen werden. Dies kann entweder per Benutzername oder numerischer
-		UID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
-		CIFS Unix Erweiterungen unterstützt.</para></listitem>
+		UID angegeben werden. Dieser Parameter wird ignoriert, wenn der Zielserver die
+		CIFS-Unix-Erweiterungen unterstützt.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -138,15 +136,15 @@ korrekt gelesen werden.
 		<listitem><para>Gibt die GID an, die alle Dateien auf dem eingebundenen
                 Dateisystem besitzen werden. Dies kann entweder per Gruppenname oder numerischer
                 GID angegeben werden. Dieser Parameter wird ignoriert, wenn der Ziel-Server die
-                CIFS Unix Erweiterungen unterstützt.</para></listitem>
+                CIFS-Unix-Erweiterungen unterstützt.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>port=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>Setzt die Port-Nummer, auf der versucht werden soll,
+		<listitem><para>Setzt die Portnummer, auf der versucht werden soll,
 		CIFS-Unterstützung zu verhandeln. Wenn der CIFS-Server nicht auf diesem
-		Port hört, oder der Port nicht angegeben wird, werden die Standard-Ports
+		Port hört oder der Port nicht angegeben wird, werden die Standard-Ports
 		versucht, d.h. Port 445 wird versucht, erfolgt dort keine Antwort, dann
 		wird Port 139 versucht.
 		</para></listitem>
@@ -155,22 +153,22 @@ korrekt gelesen werden.
 	<varlistentry>
 		<term>file_mode=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>Wenn der Server die CIFS Unix Erweiterungen nicht unterstützt,
-		setzt dies den Standard-Modus für Dateien außer Kraft.</para></listitem>
+		<listitem><para>Wenn der Server die CIFS-Unix-Erweiterungen nicht unterstützt,
+		setzt dies den Standardmodus für Dateien außer Kraft.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>dir_mode=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>Wenn der Server die CIFS Unix Erweiterungen nicht unterstützt,
-                setzt dies den Standard-Modus für Verzeichnisse außer Kraft.</para></listitem>
+		<listitem><para>Wenn der Server die CIFS-Unix-Erweiterungen nicht unterstützt,
+                setzt dies den Standardmodus für Verzeichnisse außer Kraft.</para></listitem>
 
 	</varlistentry>
 
 	<varlistentry>
 		<term>ip=<replaceable>Argument</replaceable></term>
 
-		<listitem><para>Gibt den Ziel-Host oder dessen IP-Adresse an.</para></listitem>
+		<listitem><para>Gibt den Zielhost oder dessen IP-Adresse an.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -200,13 +198,13 @@ korrekt gelesen werden.
 
 	<varlistentry>
 		<term>rsize</term>
-		<listitem><para>Standardwert für Größe eines Netzwerk-Lese-Vorgangs</para></listitem>
+		<listitem><para>Standardwert für Größe eines Netzwerklesevorgangs</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
 		<term>wsize</term>
 
-		<listitem><para>Standardwert für Größe eines Netzwerk-Schreibe-Vorgangs</para></listitem>
+		<listitem><para>Standardwert für Größe eines Netzwerkschreibevorgangs</para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -239,18 +237,18 @@ korrekt gelesen werden.
 	<title>BEMERKUNGEN</title>
 	
 	<para>Dieser Befehl kann nur von root verwendet werden, außer er ist mittels
-	setuid installiert, in diesem Fall sind die mount-flags noeexec und nosuid
+	setuid installiert, in diesem Fall sind die Mount-Flags noeexec und nosuid
 	aktiviert.</para>
 </refsect1>
 
 <refsect1>
 	<title>KONFIGURATION</title>
 	<para>
-	Der Hauptmechanismus, um Konfigurations-Änderungen vorzunehmen und 
+	Der Hauptmechanismus, um Konfigurationsänderungen vorzunehmen und 
 	Debug-Informationen für das CIFS-VFS zu lesen, ist das Linux-Dateisystem
-	/proc. Im Verzeichnis /proc/fs/cifs gibt es es verschiedene Konfigurations-Dateien
-	und Pseudo-Dateien, die Debug-Informationen anzeigen können.
-	Lesen Sie die Kernel-Datei fs/cifs/README für mehr
+	<filename>/proc</filename>. Im Verzeichnis <filename>/proc/fs/cifs</filename> gibt es es verschiedene Konfigurationsdateien
+	und Pseudodateien, die Debug-Informationen anzeigen können.
+	Lesen Sie die Kerneldatei <filename>fs/cifs/README</filename> für mehr
         Informationen dazu.	
 	</para>
 </refsect1>
@@ -261,19 +259,19 @@ korrekt gelesen werden.
 	<para>
 	Passwörter und andere Optionen, die das Zeichen ',' enthalten, können nicht
 	verarbeitet werden. Eine Alternative für Passwörter ist die Verwendung einer
-	credentials-Datei oder der Variable PASSWD.</para>
+	"credentials"-Datei oder der Variable PASSWD.</para>
 
 	<para>
-	Die credentials-Datei kann nicht mit Benutzernamen oder Passwörtern umgehen,
+	Die "credentials"-Datei kann nicht mit Benutzernamen oder Passwörtern umgehen,
 	die ein führendes Leerzeichen enthalten.
 	</para>
 
 	<para>
-	Beachten Sie, daß die übliche Antwort auf einen Fehlerbericht der Vorschlag
+	Beachten Sie, dass die übliche Antwort auf einen Fehlerbericht der Vorschlag
 	ist, zuerst die neueste Version zu versuchen. Bitte versuchen Sie also zuerst
 	dies und erwähnen Sie immer, welche Versionen relevanter Software Sie verwenden,
 	wenn Sie von Fehlern berichten.
-	Minimum: mount.cifs (versuchen Sie mount.cifs -V), Kernel (siehe /proc/version),
+	Minimum: mount.cifs (versuchen Sie mount.cifs -V), Kernel (siehe <filename>/proc/version</filename>),
 	Typ des Servers, den Sie zu kontaktieren versuchen.
 </para>
 </refsect1>
@@ -283,14 +281,14 @@ korrekt gelesen werden.
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese man-page ist korrekt für die Version 1.0.6 des CIFS-VFS-Dateisystems 
+	<para>Diese Manpage ist korrekt für die Version 1.0.6 des CIFS-VFS-Dateisystems 
 	(ca. Linux-Kernel 2.6.6).</para>
 </refsect1>
 
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para>
-	Documentation/filesystems/cifs.txt und fs/cifs/README in den Linux-Kernel-Quellen
+	<filename>Documentation/filesystems/cifs.txt</filename> und <filename>fs/cifs/README</filename> in den Linux-Kernelquellen
 	könnten zusätzliche Optionen und Informationen enthalten.
 </para>
 </refsect1>
@@ -300,15 +298,16 @@ korrekt gelesen werden.
 	
 	<para>Steve French</para>
 
-	<para>Die Syntax und man-page sind angelehnt an jene von smbmount. 
+	<para>Die Syntax und Manpage sind angelehnt an jene von smbmount. 
 	Umwandlung in Docbook/XML: Jelmer Vernooij.</para>
 
 
 	<para>Der Maintainer des Linux-CIFS-VFS und des Werkzeugs
 	<emphasis>mount.cifs</emphasis> ist <ulink url="mailto:sfrench@samba.org">Steve French</ulink>.
-	Die <ulink url="mailto:linux-cifs-client@lists.samba.org">Linux CIFS Mailing list</ulink> 
+	Die <ulink url="mailto:linux-cifs-client@lists.samba.org">Linux-CIFS-Mailinglist</ulink> 
 	ist die erste Adresse, um Fragen zu diesen Programmen zu stellen.
 	</para>
 </refsect1>
 
 </refentry>
+

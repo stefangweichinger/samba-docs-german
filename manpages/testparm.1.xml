@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="testparm.1">
@@ -13,8 +12,8 @@
 
 <refnamediv>
 	<refname>testparm</refname>
-	<refpurpose>prüft eine smb.conf-Konfigurationsdatei auf 
-	interne Korrektheit</refpurpose>
+	<refpurpose>Prüft eine smb.conf-Konfigurationsdatei auf 
+	interne Korrektheit.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,7 +24,7 @@
 		<arg choice="opt">-v</arg>
 		<arg choice="opt">-L &lt;Servername&gt;</arg>
 		<arg choice="opt">-t &lt;Codierung&gt;</arg>
-		<arg choice="req">Konfig-Dateiname</arg>
+		<arg choice="req">Konfigdateiname</arg>
 		<arg choice="opt">Hostname HostIP</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -41,8 +40,8 @@
 	zur Prüfung einer <citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>-Konfigurationsdatei auf ihre
 	interne Korrektheit. Falls dieses Programm keine Probleme findet, 
-	können Sie Vertrauen in die Konfigurationsdatei haben, und darin, 
-	dass <command>smbd</command> sie erfolgreich laden wird.</para>
+	können Sie Vertrauen in die Konfigurationsdatei haben und darauf, 
+	dass <command>smbd</command> sie erfolgreich geladen wird.</para>
 
 	<para>Beachten Sie, dass dies <emphasis>KEINE</emphasis> Garantie 
 	dafür ist, dass die in der Konfigurationsdatei angegebenen Dienste
@@ -56,7 +55,7 @@
 	<para>Falls <command>testparm</command> einen Fehler in der Datei
 	<filename>smb.conf</filename> findet, gibt es den Rückgabewert 1 an
 	das aufrufende Programm zurück, sonst gibt es 0 zurück. Dadurch
-	können Shell-Skripte die Ausgabe von <command>testparm</command>
+	können Shellskripte die Ausgabe von <command>testparm</command>
 	testen.</para>
 </refsect1>
 
@@ -165,8 +164,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -186,14 +185,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="nmblookup">
 
 <refmeta>
 	<refentrytitle>nmblookup</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>nmblookup</refname>
-	<refpurpose>NetBIOS-über-TCP/IP-Client für Abfragen von NetBIOS-Namen</refpurpose>
+	<refpurpose>NetBIOS-über-TCP/IP-Client für Abfragen von NetBIOS-Namen.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -25,10 +23,10 @@
 		<arg choice="opt">-r</arg>
 		<arg choice="opt">-A</arg>
 		<arg choice="opt">-h</arg>
-		<arg choice="opt">-B &lt;Broadcast-Adresse&gt;</arg>
-		<arg choice="opt">-U &lt;Unicast-Adresse&gt;</arg>
-		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
-		<arg choice="opt">-s &lt;smb-Konfig-Datei&gt;</arg>
+		<arg choice="opt">-B &lt;Broadcastadresse&gt;</arg>
+		<arg choice="opt">-U &lt;Unicastadresse&gt;</arg>
+		<arg choice="opt">-d &lt;Debugebene&gt;</arg>
+		<arg choice="opt">-s &lt;smb-Konfigdatei&gt;</arg>
 		<arg choice="opt">-i &lt;NetBIOS-Scope&gt;</arg>
 		<arg choice="opt">-T</arg>
 		<arg choice="opt">-f</arg>
@@ -56,7 +54,7 @@
 	<variablelist>
 		<varlistentry>
 		<term>-M</term>
-		<listitem><para>Sucht einen Master Browser, indem der NetBIOS-Name 
+		<listitem><para>Sucht einen Masterbrowser, indem der NetBIOS-Name 
 		<replaceable>name</replaceable> mit dem Typ 
 		<constant>0x1d</constant> gesucht wird. Falls <replaceable>
 		name</replaceable> gleich "-" ist, führt es eine Suche nach dem
@@ -74,16 +72,16 @@
 		Namensabfrage an einen Rechner geschickt wird, auf dem ein WINS-Server
 		läuft, und der Benutzer die Namen im WINS-Server abfragen möchte. 
 		Falls das Bit nicht gesetzt ist, wird stattdessen der normale 
-		NetBIOS-Verarbeitungscode (Broadcast-Antwort) auf dem Rechner benutzt
+		NetBIOS-Verarbeitungscode (Broadcastantwort) auf dem Rechner benutzt
 		Siehe RFC1001, RFC1002 für weitere Details.
 		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>Führt auch eine Abfrage des Node-Status durch, nachdem
+		<listitem><para>Führt auch eine Abfrage des Nodestatus durch, nachdem
 		die Namensabfrage eine IP-Adresse zurückgegeben hat. Eine Abfrage des 
-		Node-Status gibt die von einem Host registrierten NetBIOS-Namen zurück.
+		Nodestatus gibt die von einem Host registrierten NetBIOS-Namen zurück.
 		</para></listitem>
 		</varlistentry>
 
@@ -92,7 +90,7 @@
 		<term>-r</term> 
 		<listitem><para>Versucht den UDP-Port 137 beim Senden und Empfangen von 
 		UDP-Datagrammen zu verwenden. Der Grund für diese Option ist ein Fehler in 
-		Windows 95, das den Ursprungs-Port des Abfragepakets ignoriert und nur auf 
+		Windows 95, das den Ursprungsport des Abfragepakets ignoriert und nur auf 
 		dem UDP-Port 137 antwortet. Unglücklicherweise sind auf den meisten 
 		UNIX-Systemen root-Rechte nötig, um sich mit diesem Port zu verbinden, und 
 		außerdem verbindet sich auch der 
@@ -106,7 +104,7 @@
 		<varlistentry>
 		<term>-A</term>
 		<listitem><para>Interpretiert <replaceable>name</replaceable> als 
-		IP-Adresse und führt auf dieser Adresse eine Node-Statusabfrage durch.</para>
+		IP-Adresse und führt auf dieser Adresse eine Nodestatusabfrage durch.</para>
 		</listitem>
 		</varlistentry>
 
@@ -116,12 +114,11 @@
 		&stdarg.help;
 
 		<varlistentry>
-		<term>-B &lt;Broadcast-Adresse&gt;</term> 
-		<listitem><para>Sendet die Abfrage an die gegebene Broadcast-Adresse. Ohne 
+		<term>-B &lt;Broadcastadresse&gt;</term> 
+		<listitem><para>Sendet die Abfrage an die gegebene Broadcastadresse. Ohne 
 		diese Option verhält sich nmblookup standardmäßig so, dass es die Abfrage 
-		an die Broadcast-Adresse der Netzwerkschnittstelle sendet, die es entweder 
-		automatisch findet oder die im Parameter <ulink 
-		url="smb.conf.5.html#INTERFACES"><parameter>interfaces</parameter>
+		an die Broadcastadresse der Netzwerkschnittstelle sendet, die es entweder 
+		automatisch findet oder die im Parameter <ulink url="smb.conf.5.html#INTERFACES"><parameter>interfaces</parameter>
 		</ulink> der Datei <citerefentry><refentrytitle>smb.conf</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry> definiert ist.
 		</para></listitem>
@@ -130,8 +127,8 @@
 
 
 		<varlistentry>
-		<term>-U &lt;Unicast-Adresse&gt;</term>
-		<listitem><para>Führt eine Unicast-Abfrage auf der angegebenen Adresse oder 
+		<term>-U &lt;Unicastadresse&gt;</term>
+		<listitem><para>Führt eine Unicastabfrage auf der angegebenen Adresse oder 
 		dem Host <replaceable>unicast address</replaceable> durch. Diese Option 
 		(zusammen mit der Option <parameter>-R</parameter>) wird benötigt, um einen 
 		WINS-Server abzufragen.</para></listitem>
@@ -189,22 +186,22 @@
 
 		<para><command>nmblookup -U samba.org -R 'IRIX#1B'</command></para>
 
-		<para>würde den WINS-Server samba.org nach dem Domain Master Browser 
+		<para>würde den WINS-Server samba.org nach dem Domainmasterbrowser 
 		(Namenstyp 1B) der IRIX-Arbeitsgruppe fragen.</para>
 </refsect1>
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>nmbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry>, and <citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry> und <citerefentry><refentrytitle>smb.conf</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>.</para>
 </refsect1>
 
@@ -216,14 +213,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

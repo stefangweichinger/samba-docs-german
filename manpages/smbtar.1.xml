@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbtar.1">
@@ -13,8 +12,8 @@
 
 <refnamediv>
 	<refname>smbtar</refname>
-	<refpurpose>Shell-Skript für das Backup von SMB/CIFS-Freigaben 
-	direkt auf UNIX-Bandlaufwerken</refpurpose>
+	<refpurpose>Shell-Skript für das Backup von SMB-/CIFS-Freigaben 
+	direkt auf UNIX-Bandlaufwerken.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -31,7 +30,7 @@
 		<arg choice="opt">-N Dateiname</arg>
 		<arg choice="opt">-b Blockgröße</arg>
 		<arg choice="opt">-d Verzeichnis</arg>
-		<arg choice="opt">-l Log-Ebene</arg>
+		<arg choice="opt">-l Logebene</arg>
 		<arg choice="opt">-u Benutzer</arg>
 		<arg choice="opt">-t Band</arg>
 		<arg choice="req">Dateinamen</arg>
@@ -45,10 +44,10 @@
 	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>smbtar</command> ist ein sehr kleines Shell-Skript,
+	<para><command>smbtar</command> ist ein sehr kleines Shellskript,
 	das auf 
 	<citerefentry><refentrytitle>smbclient</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry> aufsetzt, und SMB-Freigaben
+	<manvolnum>1</manvolnum></citerefentry> aufsetzt und SMB-Freigaben
 	direkt auf Band ausgibt.</para>
 </refsect1>
 
@@ -58,7 +57,7 @@
 	<variablelist>
 		<varlistentry>
 		<term>-s Server</term>
-		<listitem><para>Der SMB/CIFS-Server, auf dem sich die Freigabe
+		<listitem><para>Der SMB-/CIFS-Server, auf dem sich die Freigabe
 		befindet.</para></listitem>
 		</varlistentry>
 
@@ -73,7 +72,7 @@
 		
 		<varlistentry>
 		<term>-X</term>
-		<listitem><para>Ausschließen-Modus. Schließt Dateinamen... von 
+		<listitem><para>Ausschließen-Modus. Schließt Dateinamen ... von 
 		der Erzeugung eines tar-Archivs oder seiner Wiederherstellung
 		aus.</para></listitem>
 		</varlistentry>
@@ -109,7 +108,7 @@
 
 		<varlistentry>
 		<term>-a</term>
-		<listitem><para>Setzt DOS-Archiv-Bit, um anzuzeigen, dass 
+		<listitem><para>Setzt DOS-Archivbit, um anzuzeigen, dass 
 		die Datei archiviert wurde.</para></listitem>
 		</varlistentry>
 
@@ -133,7 +132,7 @@
 		<varlistentry>
 		<term>-N Dateiname</term>
 		<listitem><para>Macht ein Backup nur von Dateien, die neuer sind
-		als Dateiname. Könnte z.B. bei einer Log-Datei benutzt werden,
+		als Dateiname. Könnte z.B. bei einer Logdatei benutzt werden,
 		um inkrementelle Backups zu implementieren.</para></listitem>
 		</varlistentry>
 
@@ -141,8 +140,8 @@
 		<varlistentry>
 		<term>-i</term>
 		<listitem><para>Inkrementeller Modus; von tar-Dateien wird nur 
-		dann ein Backup gemacht, wenn deren Archiv-Bit gesetzt ist. 
-		Das Archiv-Bit wird zurückgesetzt, nachdem jede Datei gelesen
+		dann ein Backup gemacht, wenn deren Archivbit gesetzt ist. 
+		Das Archivbit wird zurückgesetzt, nachdem jede Datei gelesen
 		wird.</para></listitem>
 		</varlistentry>
 
@@ -155,8 +154,8 @@
 
 
 		<varlistentry>
-		<term>-l Log-Ebene</term>
-		<listitem><para>(Debug-) Log-Ebene. Entspricht dem Flag 
+		<term>-l Logebene</term>
+		<listitem><para>(Debug-)Logebene. Entspricht dem Flag 
 		<parameter>-d</parameter> von <citerefentry>
 		<refentrytitle>smbclient</refentrytitle><manvolnum>1</manvolnum>
 		</citerefentry>.</para></listitem>
@@ -169,7 +168,7 @@
 	<title>UMGEBUNGSVARIABLEN</title>
 
 	<para>Die Variable <parameter>$TAPE</parameter> gibt das 
-	Standard-Bandgerät an, auf dem geschrieben wird. Kann mit der 
+	Standardbandgerät an, auf dem geschrieben wird. Kann mit der 
 	Option -t überschrieben werden.</para>
 </refsect1>
 
@@ -207,8 +206,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -228,19 +227,18 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 	
-	<para><ulink noescape="1" url="mailto:poultenr@logica.co.uk">Ricky Poulten</ulink>  
-	hat die tar-Erweiterung und diese man page geschrieben. 
-	Das Skript <command>smbtar</command> wurde von <ulink noescape="1"
-	url="mailto:Martin.Kraemer@mch.sni.de">Martin Kraemer</ulink> stark 
+	<para><ulink url="mailto:poultenr@logica.co.uk" noescape="1">Ricky Poulten</ulink>  
+	hat die tar-Erweiterung und diese Manpage geschrieben. 
+	Das Skript <command>smbtar</command> wurde von <ulink url="mailto:Martin.Kraemer@mch.sni.de" noescape="1">Martin Kraemer</ulink> stark 
 	überarbeitet und verbessert. Vielen Dank an alle, die Erweiterungen,
-	Verbesserungen, Fehlerkorrekturen, etc. vorgeschlagen haben. 
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	Verbesserungen, Fehlerkorrekturen etc. vorgeschlagen haben. 
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

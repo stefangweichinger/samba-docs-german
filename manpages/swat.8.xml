@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="swat.8">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>swat</refname>
-	<refpurpose>Samba Web Administration Tool</refpurpose>
+	<refpurpose>Samba-Web-Administration-Tool.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -49,7 +48,7 @@
 
 	<variablelist>
 		<varlistentry>
-		<term>-s smb-Konfig-Datei</term>
+		<term>-s smb-Konfigdtei</term>
 		<listitem><para>Der Standardpfad zur Konfigurationsdatei wird zum 
 		Zeitpunkt der Kompilierung bestimmt. Die angegebene Datei enthält
 		die Konfigurationsdetails, die der
@@ -67,7 +66,7 @@
 		<varlistentry>
 		<term>-a</term>
 		<listitem><para>Diese Option deaktiviert die Authentifikation und
-		versetzt <command>swat</command> in den Demo-Modus. In diesem 
+		versetzt <command>swat</command> in den Demomodus. In diesem 
 		Modus kann jeder die Datei <filename>smb.conf</filename> 
 		verändern.</para>
 		
@@ -92,7 +91,7 @@
 	selbst neu kompiliert haben.
 	</para>
 
-	<para>Nachdem Sie SWAT kompilieren, müssen Sie <command>make install
+	<para>Nachdem Sie SWAT kompiliert haben, müssen Sie <command>make install
 	</command> ausführen, um die <command>swat</command>-Binärdatei und
 	die verschiedenen Hilfedateien und Bilder zu installieren. Eine
 	Standardinstallation würde diese an folgende Orte platzieren:</para>
@@ -117,17 +116,17 @@
 		<para><command>swat            901/tcp</command></para>
 
 		<para>Eine Bemerkung für NIS/YP- und LDAP-Benutzer - eventuell
-		müssen Sie die NIS-Dienstezuordnungen neu erstellen, statt ihre
+		müssen Sie die NIS-Dienstezuordnungen neu erstellen statt ihre
 		lokale Datei <filename>/etc/services</filename> zu ändern.</para>
 
-		<para>Die Wahl der Port-Nummer ist nicht wirklich wichtig, sie  
+		<para>Die Wahl der Portnummer ist nicht wirklich wichtig, sie  
 		muss nur kleiner als 1024 sein und darf gerade nicht verwendet 
 		werden (eine Zahl größer als 1024 zu verwenden, stellt ein 
 		obskures Sicherheitsloch dar, je nach Implementierungsdetails 
 		Ihres <command>inetd</command>-Daemons).</para>
 
 		<para>In <filename>/etc/inetd.conf</filename> sollten Sie eine 
-		Zeile wie die folgende hinzufügen:</para>
+		Zeile wie die folgende einfügen:</para>
 
 		<para><command>swat    stream  tcp     nowait.400  root
 		/usr/local/samba/sbin/swat swat</command></para>
@@ -162,14 +161,14 @@
 	<variablelist>
 		<varlistentry>
 		<term><filename>/etc/inetd.conf</filename></term>
-		<listitem><para>Diese Datei muss passende Startup-Informationen 
+		<listitem><para>Diese Datei muss passende Startupinformationen 
 		für den Meta-Daemon enthalten.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term><filename>/etc/services</filename></term>
 		<listitem><para>Diese Datei muss eine Zuordnung von Dienstname 
-		(z.B. swat) auf Dienst-Port (z.B. 901) und Protokolltyp 
+		(z.B. swat) auf Dienstport (z.B. 901) und Protokolltyp 
 		(z.B. tcp) enthalten.</para></listitem>
 		</varlistentry>
 
@@ -205,8 +204,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -214,7 +213,7 @@
 	<para><command>inetd(5)</command>, <citerefentry>
 	<refentrytitle>smbd</refentrytitle><manvolnum>8</manvolnum>
 	</citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry></para>
+	<manvolnum>5</manvolnum></citerefentry>.</para>
 </refsect1>
 
 <refsect1>
@@ -225,14 +224,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

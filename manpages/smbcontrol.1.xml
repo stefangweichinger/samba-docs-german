@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbcontrol.1">
 
 <refmeta>
 	<refentrytitle>smbcontrol</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbcontrol</refname>
-	<refpurpose>sendet Nachrichten an smbd-, nmbd- oder winbindd-Prozesse</refpurpose>
+	<refpurpose>Sendet Nachrichten an smbd-, nmbd- oder winbindd-Prozesse.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,7 +24,7 @@
 	<cmdsynopsis>
 		<command>smbcontrol</command>
 		<arg>Ziel</arg>
-		<arg>Nachrichten-Typ</arg>
+		<arg>Nachrichtentyp</arg>
 		<arg>Parameter</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -59,7 +57,7 @@
 		<varlistentry>
 		<term>-i</term>
 		<listitem><para>Läuft interaktiv. Individuelle Befehle der Form 
-		Ziel Nachrichten-Typ Parameter können auf der Standardeingabe  
+		Ziel Nachrichtentyp Parameter können auf der Standardeingabe  
 		eingegeben werden. Eine leere Befehlszeile oder ein "q" beendet
 		das Programm.</para></listitem>
 		</varlistentry>
@@ -83,15 +81,15 @@
 		
 		
 		<varlistentry>
-		<term>Nachrichten-Typ</term>
+		<term>Nachrichtentyp</term>
 		<listitem><para>Typ der zu sendenden Nachricht. Siehe den 
-		Abschnitt <constant>NACHRICHTEN-TYPEN</constant> für Details.
+		Abschnitt <constant>NACHRICHTENTYPEN</constant> für Details.
 		</para></listitem></varlistentry>
 		
 
 		<varlistentry>
 		<term>Parameter</term>
-		<listitem><para>Irgendwelche für den Nachrichten-Typ benötigte
+		<listitem><para>Irgendwelche für den Nachrichtentyp benötigte
 		Parameter.</para>
 		</listitem>
 		</varlistentry>
@@ -100,17 +98,17 @@
 </refsect1>
 
 <refsect1>
-	<title>NACHRICHTEN-TYPEN</title>
+	<title>NACHRICHTENTYPEN</title>
 
-	<para>Verfügbare Nachrichten-Typen sind:</para>
+	<para>Verfügbare Nachrichtentypen sind:</para>
 
 	<variablelist>
 	<varlistentry><term>close-share</term>
-	<listitem><para>Weist smbd an, die Client-Verbindungen zur genannten 
+	<listitem><para>Weist smbd an, die Clientverbindungen zur genannten 
 	Freigabe zu schließen. Man beachte, dass dies keinen Einfluss auf 
-	Client-Verbindungen zu anderen Freigaben hat. Dieser Nachrichten-Typ 
+	Clientverbindungen zu anderen Freigaben hat. Dieser Nachrichtentyp 
 	erwartet als Argument den Namen der Freigabe, für die die 
-	Client-Verbindungen geschlossen werden, oder das Zeichen "*", mit dem
+	Clientverbindungen geschlossen werden, oder das Zeichen "*", mit dem
 	alle gerade geöffneten Freigaben geschlossen werden. Das mag dann hilfreich
 	sein, wenn Sie Änderungen an den Access Controls der Freigabe vorgenommen
 	haben. Diese Nachricht kann nur an <constant>smbd</constant> gesendet
@@ -120,7 +118,7 @@
 
 	<varlistentry>
 	<term>debug</term>
-	<listitem><para>Setzt die Debug-Ebene auf den vom Parameter angegebenen
+	<listitem><para>Setzt die Debugebene auf den vom Parameter angegebenen
 	Wert. Dies kann an alle möglichen Ziele gesendet werden.</para>
 	</listitem>
 	</varlistentry>
@@ -143,7 +141,7 @@
 
 	<varlistentry>
 	<term>profile</term>
-	<listitem><para>Ändert die Profil-Einstellungen eines Daemons, basierend 
+	<listitem><para>Ändert die Profileinstellungen eines Daemons, basierend 
 	auf dem Parameter. Der Parameter kann "on" oder "off" sein, um das Sammeln
 	von Profilstatistiken ein- bzw- auszuschalten, "count", um nur das Sammeln
 	von Zählstatistiken zu ermöglichen (Zeitstatistiken sind nicht möglich),
@@ -154,7 +152,7 @@
 	<varlistentry>
 	<term>debuglevel</term>
 	<listitem><para>
-	Erfragt die Debug-Ebene eines bestimmten Daemons und schreibt sie auf
+	Erfragt die Debugebene eines bestimmten Daemons und schreibt sie auf
 	die Standardausgabe aus. Dies kann an alle möglichen Ziele 
 	gesendet werden.</para>
 	</listitem>
@@ -163,7 +161,7 @@
 	<varlistentry>
 	<term>profilelevel</term>
 	<listitem><para>
-	Erfragt die Profil-Ebene eines bestimmten Daemons und schreibt sie auf
+	Erfragt die Profilebene eines bestimmten Daemons und schreibt sie auf
 	die Standardausgabe aus. Dies kann an beliebige smbd- oder nmbd-Ziele
 	gesendet werden.</para>
 	</listitem>
@@ -174,7 +172,7 @@
 	<listitem><para>
 	Weist smbd an, eine Druckerbenachrichtigung an irgendwelche Windows 
 	NT-Clients zu schicken, die mit einem Drucker verbunden sind. 
-	Dieser Nachrichten-Typ erwartet die folgenden Argumente:
+	Dieser Nachrichtentyp erwartet die folgenden Argumente:
 	</para>
 	
 	<variablelist>
@@ -291,14 +289,14 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>nmbd</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry> and <citerefentry><refentrytitle>smbd</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> und <citerefentry><refentrytitle>smbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>.</para>
 </refsect1>
 
@@ -310,14 +308,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

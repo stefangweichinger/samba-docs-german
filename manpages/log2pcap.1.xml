@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="log2pcap.1">
 
 <refmeta>
 	<refentrytitle>log2pcap</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>log2pcap</refname>
-	<refpurpose>Erstellt Netzwerk-Traces aus den Samba Log-Dateien</refpurpose>
+	<refpurpose>Erstellt Netzwerk-Traces aus den Samba-Logdateien.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -32,13 +30,13 @@
 	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>log2pcap</command> liest eine Samba-Log-Datei und generiert eine
+	<para><command>log2pcap</command> liest eine Samba-Logdatei und generiert eine
 	pcap-Datei (lesbar von den meisten Sniffern, wie ethereal oder tcpdump), basierend auf
-	den "packet-dumps" in der Log-Datei.</para>
+	den "packet-dumps" in der Logdatei.</para>
 
-	<para>Die Log-Datei muß zumindest mit einem <parameter>log level</parameter> 
-	von <constant>5</constant> erstellt werden, um die SMB Header/Parameter richtig zu
-	erhalten, mit <constant>10</constant>, um die ersten 512 Daten-Bytes des Pakets zu erhalten,
+	<para>Die Logdatei muss zumindest mit einem <parameter>log level</parameter> 
+	von <constant>5</constant> erstellt werden, um die SMB-Header/-Parameter richtig zu
+	erhalten: mit <constant>10</constant>, um die ersten 512 Datenbytes des Pakets zu erhalten,
 	und mit <constant>50</constant>, um das ganze Paket zu bekommen.
 	</para>
 </refsect1>
@@ -49,29 +47,29 @@
 	<variablelist>
 	    <varlistentry>
 		<term>-h</term>
-		<listitem><para>Wenn dieser Parameter angegeben ist, wird die Ausgabe-Datei ein
-		sogenannter "hex dump" sein, in einem Format, das lesbar für das Werkzeug
+		<listitem><para>Wenn dieser Parameter angegeben ist, wird die Ausgabedatei ein
+		sogenannter "hex dump" sein, in einem Format, das lesbar f&uuml;r das Werkzeug
 		<application>text2pcap</application> ist.</para></listitem>
 	    </varlistentry>
 
 	    <varlistentry>
 	    	<term>-q</term>
-		<listitem><para>Sei still. Es werden keine Warnungen über fehlende oder unvollständige
+		<listitem><para>Sei still. Es werden keine Warnungen &uuml;ber fehlende oder unvollst&auml;ndige
 		Daten ausgegeben.</para></listitem>
 	    </varlistentry>
 		
 	    <varlistentry>
 		<term>logdatei</term>
 		<listitem><para>
-		Samba Log-Datei. log2pcap versucht, von stdin zu lesen, wenn die
-		Log-Datei nicht angegeben wird.
+		Samba-Logdatei. log2pcap versucht, von stdin zu lesen, wenn die
+		Logdatei nicht angegeben wird.
 		</para></listitem>
 	    </varlistentry>
 
 	    <varlistentry>
 		<term>pcap_file</term>
 		<listitem><para>
-		Name der Ausgabe-Datei, auf die die pcap- (oder hexdump-) Daten geschrieben werden.
+		Name der Ausgabedatei, auf die die pcap- (oder hexdump-) Daten geschrieben werden.
 		Wenn dieses Argument nicht angegeben ist, wird die Ausgabe auf stdout geschrieben.
 		</para></listitem>
 	    </varlistentry>
@@ -84,23 +82,21 @@
 <refsect1>
 	<title>BEISPIELE</title>
 
-	<para>Extrahiere gesamten Netzwerkverkehr aus allen Samba-Log-Dateien:</para>
+	<para>Extrahiere gesamten Netzwerkverkehr aus allen Samba-Logdateien:</para>
 
-	<para><screen>
-			<prompt>$</prompt> log2pcap &lt; /var/log/* &gt; trace.pcap
+	<para><screen>			<prompt>$</prompt> log2pcap &lt; /var/log/* &gt; trace.pcap
 	</screen></para>
 
 	<para>Konvertieren auf pcap mittels text2pcap:</para>
 
-	<para><screen>
-	<prompt>$</prompt> log2pcap -h samba.log | text2pcap -T 139,139 - trace.pcap
+	<para><screen>	<prompt>$</prompt> log2pcap -h samba.log | text2pcap -T 139,139 - trace.pcap
 	</screen></para>
 </refsect1>
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
+	<para>Diese Manpage ist korrekt f&uuml;r die Version 3.0 der Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -109,7 +105,7 @@
 	<para>SMB-Daten werden nur aus den Samba-Logs extrahiert, nicht aus LDAP, 
 	NetBIOS-Lookups oder anderen Datenquellen.</para>
 
-	<para>Die generierten TCP- und IP-Header enthalten keine gültigen Prüfsummen.</para>
+	<para>Die generierten TCP- und IP-Header enthalten keine g&uuml;ltigen Pr&uuml;fsummen.</para>
 	
 </refsect1>
 
@@ -123,11 +119,12 @@
 <refsect1>
 	<title>AUTOR</title>
 
-	<para>Die originale Samba-Software und die zugehörigen Werkzeuge wurden von
+	<para>Die originale Samba-Software und die zugeh&ouml;rigen Werkzeuge wurden von
         Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
-        entwickelt, ähnlich wie der Linux-Kernel.</para>
+        entwickelt, &auml;hnlich wie der Linux-Kernel.</para>
 	
-	<para>Diese man-page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Diese Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

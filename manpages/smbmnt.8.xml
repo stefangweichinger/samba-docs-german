@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbmnt.8">
@@ -13,13 +12,13 @@
 
 <refnamediv>
 	<refname>smbmnt</refname>
-	<refpurpose>Hilfswerkzeug zum Mounten von SMB-Dateisystemen</refpurpose>
+	<refpurpose>Hilfswerkzeug zum Mounten von SMB-Dateisystemen.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbmnt</command>
-		<arg choice="req">Mount-Punkt</arg>
+		<arg choice="req">Mountpunkt</arg>
 		<arg choice="opt">-s &lt;Freigabe&gt;</arg>
 		<arg choice="opt">-r</arg>
 		<arg choice="opt">-u &lt;uid&gt;</arg>
@@ -48,7 +47,7 @@
 	es nicht direkt aufgerufen werden.</para>
 
 	<para>smbmount sucht im normalen PATH nach smbmnt. Sie müssen sicherstellen,
-	dass die smbmnt-Version auf Ihrem Pfad zu dem verwendeten smbmount passt.</para>
+	dass die smbmnt-Version zu dem verwendeten smbmount passt.</para>
 
 </refsect1>
 
@@ -109,16 +108,16 @@
 	<para>Der aktuell Verantwortliche von smbfs und der 
 	Userspace-Tools <command>smbmount</command>, 
 	<command>smbumount</command> und <command>smbmnt</command> ist
-	<ulink 
-	url="mailto:urban@teststation.com">Urban Widmark</ulink>.
+	<ulink url="mailto:urban@teststation.com">Urban Widmark</ulink>.
 	Die <ulink url="mailto:samba@samba.org">SAMBA-Mailingliste</ulink>
 	ist die beste Adresse, um Fragen zu diesen Programmen zu stellen.
 	</para>
 	
-	<para>Die Umwandlung dieser man page ins DocBook-Format wurde von
+	<para>Die Umwandlung dieser Manpage ins DocBook-Format wurde von
 	Gerald Carter für Samba 2.2 durchgeführt. Die Umwandlung in DocBook
 	für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
 	durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

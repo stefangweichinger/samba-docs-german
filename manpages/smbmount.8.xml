@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbmount.8">
@@ -13,14 +12,14 @@
 
 <refnamediv>
 	<refname>smbmount</refname>
-	<refpurpose>mountet ein smbfs-Dateisystem</refpurpose>
+	<refpurpose>Mountet ein smbfs-Dateisystem.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbmount</command>
 		<arg choice="req">Dienst</arg>
-		<arg choice="req">Mount-Punkt</arg>
+		<arg choice="req">Mountpunkt</arg>
 		<arg choice="opt">-o Optionen</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -36,14 +35,14 @@
 	Kernel muss das smbfs-Dateisystem unterstützen.</para>
 
 	<para>Optionen für <command>smbmount</command> werden als mit Kommata getrennte
-	Liste von Schlüssel=Wert-Paaren angegeben. Es ist möglich, andere als hier 
+	Liste von Schlüssel-/Wertpaaren angegeben. Es ist möglich, andere als hier 
 	aufgelistete Optionen anzugeben, vorausgesetzt, dass smbfs sie unterstützt. 
 	Sollte der Mount fehlschlagen, suchen Sie am besten in Ihrem Kernel-Log 
 	nach Fehlern bei unbekannten Optionen.</para>
 
 	<para><command>smbmount</command> ist ein Daemon. Nach dem Mounten läuft er 
 	so lange, bis das gemountete smbfs wieder abgetrennt wird. Er logt das, was
-	im Daemon-Modus passiert, mit dem "Rechnernamen"-smbmount, d.h. diese Ausgabe 
+	im Daemonmodus passiert, mit dem "Rechnernamen"-smbmount, d.h. diese Ausgabe 
 	endet normalerweise in <filename>log.smbmount</filename>. Der Prozess 
 	<command>smbmount</command> kann evtl. auch den Namen mount.smbfs haben.</para>
 
@@ -61,7 +60,7 @@
 	<variablelist>
 		<varlistentry>
 		<term>username=&lt;arg&gt;</term>
-		<listitem><para>gibt den Benutzernamen für die Verbindung an. Ohne 
+		<listitem><para>Gibt den Benutzernamen für die Verbindung an. Ohne 
 		diese Angabe wird die Umgebungsvariable <envar>USER</envar> verwendet. 
 		Diese Option kann auch die Form "benutzer%passwort" oder 
 		"benutzer/arbeitsgruppe" oder "benutzer/arbeitsgruppe%passwort" 
@@ -71,7 +70,7 @@
 
 		<varlistentry>
 		<term>password=&lt;arg&gt;</term>
-		<listitem><para>gibt das SMB-Passwort an. Ohne diese Angabe wird
+		<listitem><para>Gibt das SMB-Passwort an. Ohne diese Angabe wird
 		die Umgebungsvariable <envar>PASSWD</envar> benutzt. Falls kein
 		Passwort gefunden wird, fragt <command>smbmount</command> nach
 		einem Passwort, sofern nicht die Option guest angegeben ist.</para>
@@ -88,7 +87,7 @@
 
 		<varlistentry>
 		<term>credentials=&lt;filename&gt;</term>
-		<listitem><para>gibt eine Datei an, die einen Benutzernamen und/oder 
+		<listitem><para>Gibt eine Datei an, die einen Benutzernamen und/oder 
 		ein Passwort enthält. Das Dateiformat ist:
 <programlisting>
 Benutzername = &lt;Wert&gt;
@@ -103,18 +102,18 @@ Passwort = &lt;Wert&gt;
 
 		<varlistentry>
 		<term>krb</term>
-		<listitem><para>verwendet Kerberos (Active Directory).</para></listitem>
+		<listitem><para>Verwendet Kerberos (Active Directory).</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>netbiosname=&lt;arg&gt;</term>
-		<listitem><para>setzt den NetBIOS-Quellnamen. Der Vorgabewert 
+		<listitem><para>Setzt den NetBIOS-Quellnamen. Der Vorgabewert 
 		ist der lokale Hostname.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>uid=&lt;arg&gt;</term>
-		<listitem><para>setzt die uid, der alle Dateien auf dem gemounteten
+		<listitem><para>Setzt die uid, der alle Dateien auf dem gemounteten
 		Dateisystem gehören werden.
 		Sie kann entweder als Benutzername oder als numerische uid angegeben 
 		werden.
@@ -124,7 +123,7 @@ Passwort = &lt;Wert&gt;
 		
 		<varlistentry>
 		<term>gid=&lt;arg&gt;</term>
-		<listitem><para>setzt die gid, der alle Dateien auf dem gemounteten
+		<listitem><para>Setzt die gid, der alle Dateien auf dem gemounteten
 		Dateisystem gehören werden.
 		Sie kann entweder als Gruppenname oder als numerische gid angegeben 
 		werden.</para></listitem>		
@@ -133,14 +132,14 @@ Passwort = &lt;Wert&gt;
 		
 		<varlistentry>
 		<term>port=&lt;arg&gt;</term>
-		<listitem><para>setzt die entfernte SMB-Port-Nummer. Vorgabewert 
+		<listitem><para>Setzt die entfernte SMB-Portnummer. Vorgabewert 
 		ist 139.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>fmask=&lt;arg&gt;</term>
-		<listitem><para>setzt die Dateimaske. Das bestimmt die Rechte, 
+		<listitem><para>Setzt die Dateimaske. Das bestimmt die Rechte, 
 		die entfernte Dateien im lokalen Dateisystem haben. 
 		Dies ist keine umask, sondern die wirklichen Rechte für die Dateien.
 		Der Vorgabewert basiert auf der aktuellen umask.</para></listitem>
@@ -149,7 +148,7 @@ Passwort = &lt;Wert&gt;
 
 		<varlistentry>
 		<term>dmask=&lt;arg&gt;</term>
-		<listitem><para>setzt die Verzeichnismaske. Das bestimmt die Rechte, 
+		<listitem><para>Setzt die Verzeichnismaske. Das bestimmt die Rechte, 
 		die entfernte Verzeichnisse im lokalen Dateisystem haben. 
 		Dies ist keine umask, sondern die wirklichen Rechte für die 
 		Verzeichnisse.
@@ -159,7 +158,7 @@ Passwort = &lt;Wert&gt;
 		
 		<varlistentry>
 		<term>debug=&lt;arg&gt;</term>
-		<listitem><para>setzt die Debug-Ebene. Dies ist hilfreich beim 
+		<listitem><para>Setzt die Debugebene. Dies ist hilfreich beim 
 		Aufspüren von Problemen mit SMB-Verbindungen. Als Startwert wird der
 		Wert 4 vorgeschlagen. Falls er zu hoch eingestellt wird, gibt es
 		sehr viele Daten in der Ausgabe, die möglicherweise die interessanten
@@ -169,7 +168,7 @@ Passwort = &lt;Wert&gt;
 		
 		<varlistentry>
 		<term>ip=&lt;arg&gt;</term>
-		<listitem><para>setzt den Ziel-Host oder die Ziel-IP-Adresse.
+		<listitem><para>Setzt den Zielhost oder die Ziel-IP-Adresse.
 		</para></listitem>
 		</varlistentry>
 
@@ -177,16 +176,15 @@ Passwort = &lt;Wert&gt;
 
 		<varlistentry>
 		<term>workgroup=&lt;arg&gt;</term>
-		<listitem><para>setzt die Arbeitsgruppe auf dem Ziel.</para>
+		<listitem><para>Setzt die Arbeitsgruppe auf dem Ziel.</para>
 		</listitem>
 		</varlistentry>
 
 
 		<varlistentry>
 		<term>sockopt=&lt;arg&gt;</term>
-		<listitem><para>setzt die TCP-Socket-Optionen. Siehe die Option
-		<parameter>socket options</parameter> in <ulink
-		url="smb.conf.5.html#SOCKETOPTIONS"><citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<listitem><para>Setzt die TCP-Socket-Optionen. Siehe die Option
+		<parameter>socket options</parameter> in <ulink url="smb.conf.5.html#SOCKETOPTIONS"><citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry></ulink>.
 		</para></listitem>
 		</varlistentry>
@@ -194,27 +192,27 @@ Passwort = &lt;Wert&gt;
 
 		<varlistentry>
 		<term>scope=&lt;arg&gt;</term>
-		<listitem><para>setzt den NetBIOS-Scope.</para></listitem>
+		<listitem><para>Setzt den NetBIOS-Scope.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>guest</term>
-		<listitem><para>fragt nicht nach einem Passwort nach.</para></listitem>
+		<listitem><para>Fragt nicht nach einem Passwort.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>ro</term>
-		<listitem><para>mountet nur lesbar</para></listitem>
+		<listitem><para>Mountet nur lesbar.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>rw</term><listitem><para>mountet les- und schreibbar</para></listitem>
+		<term>rw</term><listitem><para>Mountet les- und schreibbar.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>iocharset=&lt;arg&gt;</term>
 		<listitem><para>
-		setzt den Zeichensatz, der auf der Linux-Seite für Übersetzungen
+		Setzt den Zeichensatz, der auf der Linux-Seite für Übersetzungen
 		von Codepage zu Zeichensatz (NLS) benutzt wird. Das Argument sollte
 		der Name eines Zeichensatzes sein, z.B. iso8859-1. (Bemerkung: nur
 		unter Kernel 2.4.0 oder später.)
@@ -224,7 +222,7 @@ Passwort = &lt;Wert&gt;
 		<varlistentry>
 		<term>codepage=&lt;arg&gt;</term>
 		<listitem><para>
-		setzt die Codepage, die der Server verwendet. Siehe die Option 
+		Setzt die Codepage, die der Server verwendet. Siehe die Option 
 		iocharset. Ein Beispielwert ist cp850. (Bemerkung: nur
 		unter Kernel 2.4.0 oder später.)
 		</para></listitem>
@@ -233,8 +231,8 @@ Passwort = &lt;Wert&gt;
 		<varlistentry>
 		<term>ttl=&lt;arg&gt;</term>
 		<listitem><para>
-		stellt in Millisekunden ein, wie lange ein Verzeichnislisting im
-		Cached-Speicher gehalten wird (betrifft auch die Sichtbarkeit von
+		Stellt in Millisekunden ein, wie lange ein Verzeichnislisting im
+		Cachespeicher gehalten wird (betrifft auch die Sichtbarkeit von
 		Dateigrößen und Datumsänderungen). Ein höherer Wert bedeutet, dass
 		Änderungen auf dem Server länger brauchen, bis sie bemerkt werden,
 		aber bei großen Verzeichnissen kann das eine bessere Performanz 
@@ -298,7 +296,7 @@ Passwort = &lt;Wert&gt;
 
 	<para>Beachten Sie, dass die typische Antwort auf einen Fehlermeldung 
 	in dem Vorschlag besteht, es zuerst einmal mit der letzten Version zu
-	probieren. Bitte tun Sie das also als erstes, und geben Sie immer mit
+	probieren. Bitte tun Sie das also als erstes und geben Sie immer mit
 	an, welche Versionen an relevanter Software Sie benutzen, wenn Sie
 	Fehler melden (Minimum: Samba, Kernel, Distribution).</para>
 
@@ -308,7 +306,7 @@ Passwort = &lt;Wert&gt;
 <refsect1>
 	<title>SIEHE AUCH</title>
 
-	<para>Die Datei Documentation/filesystems/smbfs.txt im Quellbaum zum
+	<para>Die Datei <filename>Documentation/filesystems/smbfs.txt</filename> im Quellbaum zum
 	Linux-Kernel enthält möglicherweise weitere Optionen und 
 	Informationen.</para>
 
@@ -333,16 +331,16 @@ Passwort = &lt;Wert&gt;
 	<para>Der aktuell Verantwortliche von smbfs und der 
 	Userspace-Tools <command>smbmount</command>, 
 	<command>smbumount</command> und <command>smbmnt</command> ist
-	<ulink 
-	url="mailto:urban@teststation.com">Urban Widmark</ulink>.
+	<ulink url="mailto:urban@teststation.com">Urban Widmark</ulink>.
 	Die <ulink url="mailto:samba@samba.org">SAMBA-Mailingliste</ulink>
 	ist die beste Adresse, um Fragen zu diesen Programmen zu stellen.
 	</para>
 	
-	<para>Die Umwandlung dieser man page ins DocBook-Format wurde von
+	<para>Die Umwandlung dieser Manpage ins DocBook-Format wurde von
 	Gerald Carter für Samba 2.2 durchgeführt. Die Umwandlung in DocBook
 	für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
 	durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

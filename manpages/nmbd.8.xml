@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="nmbd.8">
 
 <refmeta>
 	<refentrytitle>nmbd</refentrytitle>
-	<manvolnum>8</manvolnum>
-</refmeta>
+	<manvolnum>8</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>nmbd</refname>
 	<refpurpose>NetBIOS-Nameserver zur Bereitstellung von NetBIOS-über-IP-Namensdiensten 
-	für Clients</refpurpose>
+	für Clients.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -28,10 +26,10 @@
 		<arg choice="opt">-o</arg>
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-V</arg>
-		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-d &lt;Debugebene&gt;</arg>
 		<arg choice="opt">-H &lt;lmhosts-Datei&gt;</arg>
-		<arg choice="opt">-l &lt;Log-Verzeichnis&gt;</arg>
-		<arg choice="opt">-p &lt;Port-Nummer&gt;</arg>
+		<arg choice="opt">-l &lt;Logverzeichnis&gt;</arg>
+		<arg choice="opt">-p &lt;Portnummer&gt;</arg>
 		<arg choice="opt">-s &lt;Konfigurationsdatei&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -44,13 +42,13 @@
 
 	<para><command>nmbd</command> ist ein Server, der Anfragen zu
 	NetBIOS-über-IP-Namensdiensten verstehen und beantworten kann, wie  
-	sie von SMB/CIFS-Clients produziert werden, z.B. Windows 95/98/ME, 
+	sie von SMB-/CIFS-Clients produziert werden, z.B. Windows 95/98/ME, 
 	Windows NT, Windows 2000, Windows XP und LanManager-Clients. Er
 	nimmt auch an den Browsing-Protokollen teil, die in Windows die
 	Ansicht "Netzwerkumgebung" ausmachen.</para>
 
-	<para>Wenn SMB/CIFS-Clients hochgefahren werden, möchten sie evtl.
-	einen SMB/CIFS-Server ausfindig machen, d.h. sie wollen wissen,
+	<para>Wenn SMB-/CIFS-Clients hochgefahren werden, möchten sie evtl.
+	einen SMB-/CIFS-Server ausfindig machen, d.h. sie wollen wissen,
 	welche IP-Adresse ein bestimmter Host benutzt.</para>
 
 	<para>Neben weiteren Diensten wird <command>nmbd</command> auf 
@@ -60,7 +58,7 @@
 	DNS-Name des Hosts, auf dem er läuft, was aber durch
 	<smbconfoption><name>netbios name</name></smbconfoption>
 	in &smb.conf; überschrieben werden kann. Somit beantwortet
-	<command>nmbd</command> Broadcast-Anfragen nach seinem (bzw. seinen)
+	<command>nmbd</command> Broadcastanfragen nach seinem (bzw. seinen)
 	eigenen Namen. Weitere Namen, auf die <command>nmbd</command> 
 	antworten soll, können mit Hilfe von Parametern in der 
 	Konfigurationsdatei 
@@ -68,10 +66,10 @@
 	<manvolnum>5</manvolnum></citerefentry> eingestellt werden.</para>
 
 	<para><command>nmbd</command> kann auch als WINS-Server (Windows
-	Internet Name Server) benutzt werden. Das heisst prinzipiell,
+	Internet Name Server) benutzt werden. Das heißt prinzipiell,
 	dass er als WINS-Datenbankserver fungiert und aus den 
 	empfangenen Anfragen zu Namensregistrierungen eine Datenbank 
-	erstellt, mit der er auf Client-Abfragen nach diesen Namen 
+	erstellt, mit der er auf Clientabfragen nach diesen Namen 
 	antwortet.</para>
 
 	<para>Außerdem kann <command>nmbd</command> als WINS-Proxy agieren
@@ -87,7 +85,7 @@
 		<term>-D</term>
 		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass 
 		<command>nmbd</command> als Daemon arbeitet. Das heisst, er
-		koppelt sich selbst ab, und läuft im Hintergrund weiter, wo
+		koppelt sich selbst ab und läuft im Hintergrund weiter, wo
 		er Anfragen auf dem entsprechenden Port empfängt. 
 		<command>nmbd</command> arbeitet standardmäßig als Daemon,
 		wenn er von der Kommandozeile gestartet wird. 
@@ -115,7 +113,7 @@
 		<varlistentry>
 		<term>-S</term>
 		<listitem><para>Wenn angegeben bewirkt dieser Parameter, dass
-		<command>nmbd</command> seine Log-Meldungen auf die
+		<command>nmbd</command> seine Logmeldungen auf die
 		Standardausgabe statt in einer Datei ausgibt.</para></listitem>
 		</varlistentry>
 
@@ -125,8 +123,8 @@
 		der Server "interaktiv" läuft, d.h. nicht als Daemon, selbst
 		wenn der Server von der Kommandozeile einer Shell gestartet wird.
 		Durch das Setzen dieses Parameters wird der implizite 
-		Daemon-Modus negiert, wenn er von der Kommandozeile aus
-		gestartet wird. <command>nmbd</command> gibt seine Log-Daten 
+		Daemonmodus negiert, wenn er von der Kommandozeile aus
+		gestartet wird. <command>nmbd</command> gibt seine Logdaten 
 		ebenfalls auf die Standardausgabe aus, so als ob der Parameter
 		<constant>-S</constant> gesetzt wäre. </para></listitem>
 		</varlistentry>
@@ -141,7 +139,7 @@
 		<smbconfoption><name>name resolve order</name></smbconfoption>,
 		der in <citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry> beschrieben wird, 
-		dazu benutzt wird, alle NetBIOS-Namenanfragen an den Server
+		dazu benutzt wird, alle NetBIOS-Namensanfragen an den Server
 		aufzulösen. Beachten Sie, dass der Inhalt dieser Datei 
 		von <command>nmbd</command> <emphasis>NICHT</emphasis> 
 		benutzt wird, um Namensanfragen zu beantworten. 
@@ -162,9 +160,9 @@
 		&popt.common.samba;
 		
 		<varlistentry>
-		<term>-p &lt;UDP-Port-Nummer&gt;</term>
-		<listitem><para>UDP-Port-Nummer ist eine positive ganze Zahl.
-		Diese Option ändert die vorgegebene UDP-Port-Nummer 
+		<term>-p &lt;UDP-Portnummer&gt;</term>
+		<listitem><para>UDP-Portnummer ist eine positive ganze Zahl.
+		Diese Option ändert die vorgegebene UDP-Portnummer 
 		(normalerweise 137), auf der <command>nmbd</command> 
 		Namensabfragen beantwortet. Verwenden Sie diese Option nur
 		dann, wenn Sie ein Experte sind, wobei Sie dann keine Hilfe
@@ -182,7 +180,7 @@
 		<term><filename>/etc/inetd.conf</filename></term>
 		<listitem><para>Falls der Server vom Meta-Daemon
 		<command>inetd</command> ausgeführt werden soll, muss
-		diese Datei die passende Startup-Information für den
+		diese Datei die passende Startupinformation für den
 		Meta-Daemon enthalten. 
 		</para></listitem>
 		</varlistentry>
@@ -193,7 +191,7 @@
 		System auch immer benutzt.</para>
 
 		<para>Wenn der Server beim Start als Daemon läuft,
-		muss diese Datei eine passende Startup-Sequenz für den
+		muss diese Datei eine passende Startupsequenz für den
 		Server enthalten.</para></listitem>
 		</varlistentry>
 
@@ -202,7 +200,7 @@
 		<listitem><para>Wird der Server über den Meta-Daemon
 		<command>inetd</command> ausgeführt, muss diese Datei
 		eine Abbildung von Dienstnamen, z.B. netbios-ssn, auf
-		Dienst-Port, z.B. 139, und Protokolltyp, z.B. tcp,
+		Dienst-port, z.B. 139, und Protokolltyp, z.B. tcp,
 		enthalten.
 		</para></listitem>
 		</varlistentry>
@@ -210,7 +208,7 @@
 		<varlistentry>
 		<term><filename>/usr/local/samba/lib/smb.conf</filename></term>
 		<listitem><para>Dies ist der voreingestellte Ort der 
-		Server-Konfigurationsdatei
+		Serverkonfigurationsdatei
 		<citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry>.
 		Zu den anderen Plätzen, an denen manche Systeme diese Datei
@@ -234,8 +232,8 @@
 		<smbconfoption><name>local master</name></smbconfoption>
 		in der Manpage 
 		<citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry>, speichert
-		<command>nmbd</command> die Browsing-Datenbank in der 
+		<manvolnum>5</manvolnum></citerefentry>), speichert
+		<command>nmbd</command> die Browsingdatenbank in der 
 		Datei <filename>browse.dat</filename> im Verzeichnis
 		<filename>var/locks</filename>, was an der gleichen 
 		Stelle konfiguriert ist, an der auch steht, wo Samba installiert 
@@ -263,21 +261,21 @@
 	wird). Dabei schreibt <command>nmbd</command> auch seine Server-Datenbank
 	in die Datei <filename>log.nmbd</filename>.</para>
 
-	<para>Die Debug-Log-Ebene von nmbd kann mit
+	<para>Die Debug-Logebene von nmbd kann mit
 	<citerefentry><refentrytitle>smbcontrol</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry> erhöht oder erniedrigt werden
 	(SIGUSR[1|2]-Signale werden ab Samba 2.2 nicht mehr verwendet). Das
 	geschieht, damit vorübergehende Probleme diagnostiziert werden können,
 	während man sich weiterhin auf einer normalerweise geringeren 
-	Log-Ebene befindet.</para>
+	Logebene befindet.</para>
 </refsect1>
 
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -289,9 +287,9 @@
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>smbclient</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testparm</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>, <citerefentry><refentrytitle>testprns</refentrytitle>
-	<manvolnum>1</manvolnum></citerefentry>, sowie die Internet-RFCs
+	<manvolnum>1</manvolnum></citerefentry> sowie die Internet-RFCs
 	<filename>rfc1001.txt</filename> und <filename>rfc1002.txt</filename>. 
-	Ausserdem ist die CIFS- (früher SMB-) Spezifikation als Link auf der 
+	Außerdem ist die CIFS- (früher SMB-)Spezifikation als Link auf der 
 	Website <ulink noescape="1" url="http://samba.org/cifs/"> 
 	http://samba.org/cifs/</ulink> verfügbar.</para>
 </refsect1>
@@ -304,14 +302,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open Source Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

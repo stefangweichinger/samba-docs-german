@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbcacls.1">
 
 <refmeta>
 	<refentrytitle>smbcacls</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbcacls</refname>
-	<refpurpose>Setzt oder holt ACLs einer NT-Datei oder eines Verzeichnisses</refpurpose>
+	<refpurpose>Setzt oder holt ACLs einer NT-Datei oder eines Verzeichnisses.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -85,8 +83,9 @@
 		
 		<varlistentry>
 		<term>-S acls</term>
-		<listitem><para>Dieser Befehl setzt die ACLs auf der Datei auf
-		allein genau die, die in der Kommandozeile angegebenen werden. 
+		<listitem><para>
+		Dieser Befehl setzt die ACLs der aktuellen Datei auf
+		exakt diejenigen, die in der Kommandozeile angegebenen werden. 
 		Alle andere ACLs werden gelöscht. Beachten Sie, dass die 
 		angegebene ACL mindestens die Felder Revision, Typ, Besitzer 
 		und Gruppe enthalten muss, damit dieser Aufruf erfolgreich
@@ -146,7 +145,7 @@
 		<listitem><para>Diese Option zeigt alle ACL-Informationen in einem
 		numerischen Format an. Standardmäßig werden SIDs in Namen 
 		konvertiert und ACE-Typen und -Masken werden in ein lesbares
-		String-Format konvertiert.</para></listitem>
+		Stringformat konvertiert.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
@@ -197,7 +196,7 @@ ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 	</para>
 
 	<para>Der Typ kann entweder 0 oder 1 für ERLAUBTEN oder VERWEIGERTEN 
-	Zugriff auf die SID sein. Die Flags-Werte sind im Allgemeinen Null 
+	Zugriff auf die SID sein. Die Flagwerte sind im Allgemeinen Null 
 	bei Datei-ACLs und entweder 9 oder 2 bei Verzeichnis-ACLs. Einige 
 	häufige Flags sind: </para>
 
@@ -212,8 +211,8 @@ ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 	angegeben werden.</para>
  
 	<para>Die Maske ist ein Wert, der das Zugriffsrecht an der SID
-	ausdrückt. Sie kann als Dezimal- oder Hexadezimalwert angegeben werden, 
-	oder unter Verwendung eines der folgenden Text-Strings, die auf die 
+	ausdrückt. Sie kann als Dezimal- oder Hexadezimalwert angegeben werden 
+	oder unter Verwendung eines der folgenden Textstrings, die auf die 
 	gleichnamigen NT-Dateirechte abgebildet werden.</para>
 
 	<itemizedlist>
@@ -241,26 +240,26 @@ ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 	</refsect1>
 
 <refsect1>
-	<title>EXIT-STATUS</title>
+	<title>EXITSTATUS</title>
 
-	<para>Das Programm <command>smbcacls</command> setzt den Exit-Status 
-	in Abhängigkiet vom Erfolg oder anderen Ergebnis der ausgeführten
-	Operationen. Der Exit-Status kann einen der folgenden Werte 
-	annehmen.</para>
+	<para>Das Programm <command>smbcacls</command> setzt den Exitstatus 
+	in Abhängigkiet vom Erfolg oder anderen Ergebnissen der ausgeführten
+	Operationen. Der Exitstatus kann einen der folgenden Werte 
+	annehmen:</para>
 
-	<para>Bei erfolgreicher Operation gibt smbcacls einen Exit-Status von 
+	<para>Bei erfolgreicher Operation gibt smbcacls einen Exitstatus von 
 	0 zurück. Falls <command>smbcacls</command> keine Verbindung zum
-	angegebenen Server herstellen konnte, oder falls es beim Abfragen oder 
-	Setzen der ACLs einen Fehler gab, wird der Exit-Status 1 zurückgegeben.  
+	angegebenen Server herstellen konnte oder falls es beim Abfragen oder 
+	Setzen der ACLs einen Fehler gab, wird der Exitstatus 1 zurückgegeben.  
 	Falls beim Parsen irgendeines Kommandozeilenarguments ein Fehler 
-	auftrat, wird der Exit-Status 2 zurückgegeben.</para>
+	auftrat, wird der Exitstatus 2 zurückgegeben.</para>
 </refsect1>
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -280,3 +279,4 @@ ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 </refsect1>
 
 </refentry>
+

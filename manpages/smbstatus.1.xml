@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbstatus.1">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>smbstatus</refname>
-	<refpurpose>gibt Information zu aktuellen Samba-Verbindungen aus</refpurpose>
+	<refpurpose>Gibt Information zu aktuellen Samba-Verbindungen aus.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,13 +20,13 @@
 		<command>smbstatus</command>
 		<arg choice="opt">-P</arg>
 		<arg choice="opt">-b</arg>
-		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-d &lt;Debugebene&gt;</arg>
 		<arg choice="opt">-v</arg>
 		<arg choice="opt">-L</arg>
 		<arg choice="opt">-B</arg>
 		<arg choice="opt">-p</arg>
 		<arg choice="opt">-S</arg>
-		<arg choice="opt">-s &lt;Konfig-Datei&gt;</arg>
+		<arg choice="opt">-s &lt;Konfigdatei&gt;</arg>
 		<arg choice="opt">-u &lt;Benutzername&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -49,8 +48,8 @@
 	<variablelist>
 		<varlistentry>
 		<term>-P|--profile</term>
-		<listitem><para>Gibt, falls samba mit der Profiling-Option kompiliert
-		wurde, nur den Inhalt des Profiling-Shared Memory-Bereichs 
+		<listitem><para>Gibt, falls Samba mit der Profilingoption kompiliert
+		wurde, nur den Inhalt des Profiling-Shared-Memory-Bereichs 
 		aus.</para></listitem>
 		</varlistentry>
 
@@ -76,7 +75,7 @@
 		
 		<varlistentry>
 		<term>-B|--byterange</term>
-		<listitem><para>Bewirkt, dass smbstatus auch Byte Range-Sperren
+		<listitem><para>Bewirkt, dass smbstatus auch Byte-Range-Sperren
 		auflistet.
 		</para></listitem>
 		</varlistentry>
@@ -113,8 +112,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -133,14 +132,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

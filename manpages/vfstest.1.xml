@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="vfstest.1">
@@ -13,15 +12,15 @@
 
 <refnamediv>
 	<refname>vfstest</refname>
-	<refpurpose>Werkzeug zum Testen von Samba-VFS-Modulen</refpurpose>
+	<refpurpose>Werkzeug zum Testen von Samba-VFS-Modulen.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>vfstest</command>
-		<arg choice="opt">-d Debug-Ebene</arg>
+		<arg choice="opt">-d Debugebene</arg>
 		<arg choice="opt">-c Befehl</arg>
-		<arg choice="opt">-l Log-Verzeichnis</arg>
+		<arg choice="opt">-l Logverzeichnis</arg>
 		<arg choice="opt">-h</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
@@ -33,7 +32,7 @@
 	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>vfstest</command> ist ein kleines Kommandozeilen-Werkzeug,
+	<para><command>vfstest</command> ist ein kleines Kommandozeilenwerkzeug,
 	das Samba-VFS-Module testen kann. Es gibt dem Benutzer die Möglichkeit,
 	die verschiedenen VFS-Funktionen manuell aufzurufen und unterstützt 
 	verschachtelte VFS-Module.
@@ -57,9 +56,9 @@
 
 		<varlistentry>
 		<term>-l|--logfile=Log-Basisname</term>
-		<listitem><para>Dateiname für Log-/Debug-Dateien. Es wird die
+		<listitem><para>Dateiname für Log-/Debugdateien. Es wird die
 		Erweiterung <constant>'.client'</constant> angefügt. Die 
-		Log-Datei wird vom Client niemals gelöscht.
+		Logdatei wird vom Client niemals gelöscht.
 		</para></listitem>
 		</varlistentry>
 
@@ -128,7 +127,7 @@
 		Befehl aus.</para></listitem>
 
 		<listitem><para><command>debuglevel &lt;Ebene&gt;</command> 
-		- Setzt die Debug-Ebene.</para></listitem>
+		- Setzt die Debugebene.</para></listitem>
 
 		<listitem><para><command>freemem</command> 
 		- Gibt den aktuell benutzten Speicher frei.</para></listitem>
@@ -142,8 +141,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -154,7 +153,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die vfstest man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die vfstest-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="pdbedit.8">
 
 <refmeta>
 	<refentrytitle>pdbedit</refentrytitle>
-	<manvolnum>8</manvolnum>
-</refmeta>
+	<manvolnum>8</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>pdbedit</refname>
-	<refpurpose>verwaltet die SAM-Datenbank</refpurpose>
+	<refpurpose>Verwaltet die SAM-Datenbank.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -56,7 +54,7 @@
 
 	<para>Das Werkzeug pdbedit verwendet die modulare Schnittstelle passdb und
 	ist unabhängig von der verwendeten Benutzerdatenbank (im Moment gibt es
-	smbpasswd, ldap, nis+ und tdb-basierte, und weitere können hinzugefügt
+	smbpasswd, ldap, nis+ und tdb-basierte, weitere können hinzugefügt
 	werden, ohne das Werkzeug zu verändern).</para>
 
 	<para>Es gibt fünf verschiedene Hauptarten, pdbedit zu benutzen: Hinzufügen
@@ -84,7 +82,7 @@ samba:45:Test User
 
 		<varlistentry>
 		<term>-v</term>
-		<listitem><para>Diese Option schaltet das ausführliche Listing-Format ein.
+		<listitem><para>Diese Option schaltet das ausführliche Listingformat ein.
 		Dadurch listet pdbedit die Benutzer in der Datenbank auf und gibt dabei die
 		Felder des Kontos in einem ausführlicheren Format aus.</para>
 
@@ -116,10 +114,10 @@ Profile Path:   \\BERSERKER\profile
 		
 		<varlistentry>
 		<term>-w</term>
-		<listitem><para>Diese Option setzt das Listing-Format "smbpasswd".
+		<listitem><para>Diese Option setzt das Listingformat "smbpasswd".
 		Dadurch gibt pdbedit die Felder in der Benutzerliste aus der Datenbank
 		in einem Format aus, das mit dem Dateiformat von 
-		<filename>smbpasswd</filename> kompatibel ist. (Siehe die manpage
+		<filename>smbpasswd</filename> kompatibel ist. (Siehe die Manpage
 		<citerefentry><refentrytitle>smbpasswd</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry> für Details.)</para>
 
@@ -155,7 +153,7 @@ samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX  
 		<term>-h HomeVerz</term>
 		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
 		Benutzerkontos verwendet werden. Sie gibt den Netzwerkpfad zum 
-		Home-Verzeichnis des Benutzers an.</para>
+		Homeverzeichnis des Benutzers an.</para>
 
 		<para>Beispiel: <command>-h "\\\\BERSERKER\\sorce"</command>
 		</para>
@@ -166,7 +164,7 @@ samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX  
 		<term>-D Laufwerk</term>
 		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
 		Benutzerkontos verwendet werden. Sie gibt den Windows-Laufwerksbuchstaben 
-		an, der bei der Zuordnung des Home-Verzeichnisses benutzt wird.</para>
+		an, der bei der Zuordnung des Homeverzeichnisses benutzt wird.</para>
 
 		<para>Beispiel: <command>-d "H:"</command>
 		</para>
@@ -189,7 +187,7 @@ samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX  
 		<varlistentry>
 		<term>-p Profil</term>
 		<listitem><para>Diese Option kann beim Hinzufügen oder Ändern eines
-		Benutzerkontos verwendet werden. Sie gibt das Profil-Verzeichnis des 
+		Benutzerkontos verwendet werden. Sie gibt das Profilverzeichnis des 
 		Benutzers an.</para>
 
 		<para>Beispiel: <command>-p "\\\\BERSERKER\\netlogon"</command>
@@ -229,15 +227,15 @@ samba:45:0F2B255F7B67A7A9AAD3B435B51404EE:BC281CE3F53B6A5146629CD4751D3490:[UX  
 		<itemizedlist>
 			<listitem><para>N: Kein Passwort notwendig</para></listitem>
 			<listitem><para>D: Konto deaktiviert</para></listitem>
-			<listitem><para>H: Home-Verzeichnis notwendig</para></listitem>
+			<listitem><para>H: Homeverzeichnis notwendig</para></listitem>
 			<listitem><para>T: Temporäres Duplikat eines anderen Kontos</para></listitem>
 			<listitem><para>U: Reguläres Benutzerkonto</para></listitem>
 			<listitem><para>M: MNS-Anmeldebenutzerkonto</para></listitem>
-			<listitem><para>W: Workstation-Vertrauenskonto</para></listitem>
-			<listitem><para>S: Server-Vertrauenskonto</para></listitem>
+			<listitem><para>W: Workstationvertrauenskonto</para></listitem>
+			<listitem><para>S: Serververtrauenskonto</para></listitem>
 			<listitem><para>L: Automatisches Sperren</para></listitem>
 			<listitem><para>X: Passwort läuft nicht aus</para></listitem>
-			<listitem><para>I: Domänen-Vertrauenskonto</para></listitem>
+			<listitem><para>I: Domänenvertrauenskonto</para></listitem>
 		</itemizedlist>
 	</para>
 
@@ -361,7 +359,7 @@ retype new password
 		<para>Gültige Policies sind: minimum password age (min. Passwortalter), 
 		reset count minutes (Minutenzähler zurücksetzen), disconnect time 
 		(Trennungszeit), user must 
-		logon to change password (Benutzer muss sich anmelden um Passwort zu 
+		logon to change password (Benutzer muss sich anmelden, um Passwort zu 
 		ändern), password history (Passwort-History), lockout duration
 		(Sperrzeit), min password length (min. Passwortlänge),
 		maximum password age (größtes Passwortalter) und bad lockout attempt
@@ -408,8 +406,8 @@ account policy value for bad lockout attempt is now 3
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -427,8 +425,9 @@ account policy value for bad lockout attempt is now 3
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die pdbedit man page wurde von Simo Sorce und 
+	<para>Die pdbedit-Manpage wurde von Simo Sorce und 
 	Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

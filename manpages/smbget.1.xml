@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbget.1">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>smbget</refname>
-	<refpurpose>wget-ähnliches Werkzeug zum Herunterladen von Dateien über SMB</refpurpose>
+	<refpurpose>wget-ähnliches Werkzeug zum Herunterladen von Dateien über SMB.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -99,7 +98,7 @@
 
 	<varlistentry>
 		<term>-d, --debuglevel=INT</term>
-		<listitem><para>Zu verwendende Debug-Ebene.</para></listitem>
+		<listitem><para>Zu verwendende Debugebene.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -139,7 +138,7 @@
 
 	<varlistentry>
 		<term>-?, --help</term>
-		<listitem><para>Zeigt Hilfe-Meldung an.</para></listitem>
+		<listitem><para>Zeigt Hilfemeldung an.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>
@@ -195,8 +194,8 @@ smbget -Rr smb://rhonwyn/
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -207,7 +206,8 @@ smbget -Rr smb://rhonwyn/
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die net man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die net-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbd.8">
 
 <refmeta>
 	<refentrytitle>smbd</refentrytitle>
-	<manvolnum>8</manvolnum>
-</refmeta>
+	<manvolnum>8</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbd</refname>
-	<refpurpose>Server, der SMB/CIFS-Dienste für Clients anbietet</refpurpose>
+	<refpurpose>Server, der SMB-/CIFS-Dienste für Clients anbietet.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -36,7 +34,6 @@
 
 <refsect1>
 	<title>BESCHREIBUNG</title>
-
 	<para>Dieses Werkzeug ist Teil der 
 	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
@@ -53,7 +50,7 @@
 	ist in der Manpage zur Konfigurationsdatei enthalten, in der die Attribute
 	jener Dienste eingestellt werden (siehe 
 	<citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry>. Diese Manpage beschreibt nicht
+	<manvolnum>5</manvolnum></citerefentry>). Diese Manpage beschreibt nicht
 	die Dienste, sondern konzentriert sich auf die administrativen Aspekte 
 	des Serverbetriebs.</para>
 
@@ -82,12 +79,10 @@
 
 <refsect1>
 	<title>OPTIONEN</title>
-
 	<variablelist>
 		<varlistentry>
-		<term>-D</term>
-		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass 
-		der Server als Daemon arbeitet, d.h. er koppelt sich selbst ab, 
+		<term>-D</term>		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass 
+		der Server als Daemon arbeitet, d.h. er koppelt sich selbst ab 
 		und läuft im Hintergrund, wo er Anfragen an den entsprechenden 
 		Port weiterleitet. Der Betrieb als Daemon ist die empfohlene 
 		Art und Weise, <command>smbd</command> auf Servern zu betreiben,
@@ -99,8 +94,7 @@
 		</varlistentry>
 
 		<varlistentry>
-		<term>-F</term>
-		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		<term>-F</term>		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
 		der <command>smbd</command>-Hauptprozess nicht zum Daemon wird,
 		d.h. sich doppelt teilt und vom Terminal abkoppelt.
 		Kindprozesse werden weiterhin ganz normal erzeugt, um jede 
@@ -114,20 +108,18 @@
 		</varlistentry>
 
 		<varlistentry>
-		<term>-S</term>
-		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
-		<command>smbd</command> als Log-Datei die Standardausgabe statt 
+		<term>-S</term>		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		<command>smbd</command> als Logdatei die Standardausgabe anstelle 
 		einer anderen Datei verwendet.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-i</term>
-		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
-		der Server "interaktiv" läuft, also nicht als Daemon, selbst dann,
+		<term>-i</term>		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		der Server "interaktiv" läuft, also nicht als Daemon, selbst dann nicht,
 		wenn der Server von der Kommandozeile einer Shell ausgeführt wird. 
 		Das Setzen dieses Parameters negiert den impliziten Deamon-Modus 
 		bei der Ausführung von der Kommandozeile. <command>smbd</command> 
-		schreibt seine Log-Daten ebenfalls auf die Standardausgabe, als ob
+		schreibt seine Logdaten ebenfalls auf die Standardausgabe, als ob
 		der Parameter <command>-S</command> angegeben wäre.
 		</para></listitem>
 		</varlistentry>
@@ -136,14 +128,12 @@
 		&stdarg.help;
 
 		<varlistentry>
-		<term>-b</term>
-		<listitem><para>Gibt Informationen darüber aus, wie  
+		<term>-b</term>		<listitem><para>Gibt Informationen darüber aus, wie  
 		Samba kompiliert wurde.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-p &lt;Port-Nummer(n)&gt;</term>
-		<listitem><para><replaceable>Port-Nummer(n)</replaceable> ist eine 
+		<term>-p &lt;Portnummer(n)&gt;</term>		<listitem><para><replaceable>Portnmmer(n)</replaceable> ist eine 
 		mit Leerzeichen oder Kommata getrennte Liste von TCP-Ports, die 
 		smbd abhören soll. Der Vorgabewert dafür wird aus dem Parameter
 		<smbconfoption><name>ports</name></smbconfoption> in &smb.conf;
@@ -159,43 +149,38 @@
 
 <refsect1>
 	<title>DATEIEN</title>
-
 	<variablelist>
 		<varlistentry>
-		<term><filename>/etc/inetd.conf</filename></term>
-		<listitem><para>Falls der Server vom Meta-Daemon 
+		<term><filename>/etc/inetd.conf</filename></term>		<listitem><para>Falls der Server vom Meta-Daemon 
 		<command>inetd</command> gestartet werden soll, muss diese 
-		Datei die passende Startup-Information für den Meta-Daemon 
+		Datei die passende Startupinformation für den Meta-Daemon 
 		enthalten. 
 		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term><filename>/etc/rc</filename></term>
-		<listitem><para>(oder welches Initialisierungs-Skript Ihr 
+		<term><filename>/etc/rc</filename></term>		<listitem><para>(oder welches Initialisierungs-Skript Ihr 
 		System benutzt.)</para>
 
 		<para>Wenn der Server beim Hochfahren als Daemon gestartet wird, 
-		muss diese Datei eine passende Startup-Sequenz für den Server
+		muss diese Datei eine passende Startupsequenz für den Server
 		enthalten.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term><filename>/etc/services</filename></term>
-		<listitem><para>Falls der Server vom Meta-Daemon 
+		<term><filename>/etc/services</filename></term>		<listitem><para>Falls der Server vom Meta-Daemon 
 		<command>inetd</command> betrieben wird, muss diese Datei 
 		eine Abbildung von Dienstname (z.B. netbios-ssn) auf den 
-		Dienst-Port (z.B. 139) und den Protokolltyp (z.B. tcp)
+		Dienstport (z.B. 139) und den Protokolltyp (z.B. tcp)
 		enthalten.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term><filename>/usr/local/samba/lib/smb.conf</filename></term>
-		<listitem><para>Dies ist der vorgegebene Ort der Konfigurationsdatei
+		<term><filename>/usr/local/samba/lib/smb.conf</filename></term>		<listitem><para>Dies ist der vorgegebene Ort der Konfigurationsdatei
 		<citerefentry><refentrytitle>smb.conf</refentrytitle>
 		<manvolnum>5</manvolnum></citerefentry> des Servers. 
-		Andere Orte, an denen verschiedene Systeme diese Datei 
-		häufig installieren, sind 
+		Andere Orte, an denen diese Datei 
+		häufig installiert ist, sind 
 		<filename>/usr/samba/lib/smb.conf</filename> 
 		und <filename>/etc/samba/smb.conf</filename>.</para>
 		
@@ -210,23 +195,20 @@
 </refsect1>
 
 <refsect1>
-	<title>BESCHRÄNKUNGEN</title>
-	<para>Auf manchen Systemen kann <command>smbd</command> die uid nach 
+	<title>BESCHRÄNKUNGEN</title>	<para>Auf manchen Systemen kann <command>smbd</command> die uid nach 
 	einem Aufruf von setuid() nicht wieder auf root zurücksetzen. Solche 
 	Systeme werden auch "Trapdoor-uid"-Systeme genannt. Sollten Sie über
 	ein solches System verfügen, können Sie von einem Client (z.B. einem PC) 
 	nicht gleichzeitig Verbindungen unter zwei verschiedenen Benutzern
 	herstellen. Beim Versuch, einen zweiten Benutzer zu verbinden, erhalten
-	Sie Meldungen der Art Zugriff verweigert oder ähnlich.</para>
+	Sie Meldungen der Art &quot;Zugriff verweigert&quot; oder ähnlich.</para>
 </refsect1>
 
 <refsect1>
 	<title>UMGEBUNGSVARIABLEN</title>
-
 	<variablelist>
 		<varlistentry>
-		<term><envar>PRINTER</envar></term>
-		<listitem><para>Wenn kein Druckername für irgendwelche Druckdienste 
+		<term><envar>PRINTER</envar></term>		<listitem><para>Wenn kein Druckername für irgendwelche Druckdienste 
 		angegeben ist, verwenden die meisten Systeme den Wert dieser 
 		Variablen (oder <constant>lp</constant>, falls diese Variable 
 		nicht definiert ist) als Namen des Druckers. Das hängt jedoch 
@@ -237,8 +219,7 @@
 
 
 <refsect1>
-        <title>PAM-INTERAKTION</title>
-	<para>Samba verwendet PAM bei der Authentifikation (wenn es ein Passwort 
+        <title>PAM-INTERAKTION</title>	<para>Samba verwendet PAM bei der Authentifikation (wenn es ein Passwort 
 	in Klartext erhält), bei der Überprüfung von Konten (ist dieses Konto 
 	deaktiviert?) sowie bei der Verwaltung von Sitzungen.
 	Der Grad, bis zu dem PAM von Samba unterstützt wird, ist eingeschränkt 
@@ -258,7 +239,7 @@
 
 	<listitem><para><emphasis>Sitzungs-Verwaltung</emphasis>: Wenn keine 
 	Sicherheit auf der Ebene von Freigaben verwendet wird, müssen Benutzer 
-	die Sitzungsüberprüfung durch PAM passieren, bevor der Zugriff erlaubt
+	die Sitzungsüberprüfung durch PAM durchlaufen, bevor der Zugriff erlaubt
 	wird. Man beachte jedoch, dass dies bei der Sicherheit auf der Ebene 
 	von Freigaben umgangen wird. Man beachte auch, dass manche älteren 
 	PAM-Konfigurationsdateien eine zusätzliche Zeile für die Unterstützung 
@@ -269,35 +250,32 @@
 
 <refsect1>
 	<title>VERSION</title>
-
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>DIAGNOSEMELDUNGEN</title>
-
 	<para>Die meisten vom Server ausgegebenen Diagnosemeldungen werden in
-	einer bestimmten Log-Datei gespeichert. Der Name der Log-Datei wird
+	einer bestimmten Logdatei gespeichert. Der Name der Logdatei wird
 	zum Zeitpunkt des Kompilierens angegeben, kann aber auf der 
 	Kommandozeile überschrieben werden.</para>
 
 	<para>Die Anzahl und Art der verfügbaren Diagnosemeldungen hängt von 
-	der Debug-Ebene ab, die der Server benutzt. Wenn Sie Probleme haben, 
-	setzen Sie die Debug-Ebene auf 3 und schauen Sie die Log-Dateien 
+	der Debugebene ab, die der Server benutzt. Wenn Sie Probleme haben, 
+	setzen Sie die Debugebene auf 3 und schauen Sie die Log-Dateien 
 	durch.</para>
 
 	<para>Die meisten Meldungen sind einigermaßen selbsterklärend. Als diese
-	manpage erzeugt wurde, gab es leider zu viele Diagnosemeldungen im 
-	Quellcode, als dass jede einzelne beschrieben werden konnte. Zu diesem
+	Manpage erzeugt wurde, gab es leider zu viele Diagnosemeldungen im 
+	Quellcode, als dass jede einzelne beschrieben werden könnte. Zu diesem
 	Zeitpunkt ist das Beste, was Sie machen können, ein grep auf dem 
-	Quellcode und zu versuchen, die Bedingungen herauszufinden, die zu der 
+	Quellcode, um die Bedingungen herauszufinden, die zu der 
 	Diagnosemeldung geführt haben, die Sie sehen.</para>
 </refsect1>
 
 <refsect1>
 	<title>SIGNALE</title>
-
 	<para>Ein SIGHUP an <command>smbd</command> zu senden, bewirkt, dass er 
 	seine Konfigurationsdatei <filename>smb.conf</filename> innerhalb kurzer
 	Zeit erneut lädt.</para>
@@ -305,7 +283,7 @@
 	<para>Zum Herunterfahren eines <command>smbd</command>-Prozesses eines 
 	Benutzers, wird empfohlen <command>SIGKILL (-9)</command> 
 	<emphasis>NICHT</emphasis> zu benutzen, außer als letztes Mittel, weil
-	das den Shared Memory-bereich in einen inkonsistenten Zustand versetzen 
+	das den Shared-Memory-Bereich in einen inkonsistenten Zustand versetzen 
 	kann. Die sichere Art, einen <command>smbd</command> zu terminieren, 
 	besteht darin, ihm das Signal SIGTERM (-15) zu schicken und darauf zu 
 	warten, dass er sich selbst beendet.</para>
@@ -315,21 +293,20 @@
 	<manvolnum>1</manvolnum></citerefentry> erhöht oder erniedrigt werden 
 	(SIGUSR[1|2]-Signale werden seit Samba 2.2 nicht mehr verwendet). 
 	Das geschieht, damit vorübergehende Probleme diagnostiziert werden können,
-	während man sich weiterhin auf einer normalerweise geringeren Log-Ebene 
+	während man sich weiterhin auf einer normalerweise tieferen Logebene 
 	befindet.</para>
 
-	<para>Beachten Sie, dass die Signal-Handler beim Schreiben in eine 
-	Debug-Datei nicht re-entrant in <command>smbd</command> sind. Das heisst,
+	<para>Beachten Sie, dass die Signalhandler beim Schreiben in eine 
+	Debugdatei nicht re-entrant in <command>smbd</command> sind. Das heisst,
 	Sie sollten warten, bis <command>smbd</command> wieder in einem Zustand ist,
 	in dem es auf einen eintreffenden SMB wartet, bevor Sie solche abschicken.  
-	Man kann Signal-Handler sicher machen, indem die Signale vor dem ausgewählten
+	Man kann Signalhandler sicher machen, indem die Signale vor dem ausgewählten
 	Aufrud entsperrt und hinterher wieder gesperrt werden, was aber die 
 	Performanz beeinträchtigen würde.</para>
 </refsect1>
 
 <refsect1>
-	<title>SIEHE AUCH</title>
-	<para><citerefentry><refentrytitle>hosts_access</refentrytitle>
+	<title>SIEHE AUCH</title>	<para><citerefentry><refentrytitle>hosts_access</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>inetd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>nmbd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>smb.conf</refentrytitle>
@@ -344,21 +321,20 @@
 </refsect1>
 
 <refsect1>
-	<title>AUTOR</title>
-	
+	<title>AUTOR</title>	
 	<para>Die originale Samba-Software und die zugehörigen Werkzeuge
 	wurden von Andrew Tridgell geschrieben. Samba wird nun vom 
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+

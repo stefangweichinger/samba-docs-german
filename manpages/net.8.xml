@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="net.8">
 
 <refmeta>
 	<refentrytitle>net</refentrytitle>
-	<manvolnum>8</manvolnum>
-</refmeta>
+	<manvolnum>8</manvolnum></refmeta>
 
 
 <refnamediv>
@@ -64,7 +62,7 @@
 		<varlistentry>
 		<term>-w ZielArbeitsgruppe</term>
 		<listitem><para>
-		Setzt die Ziel-Arbeitsgruppe oder Domäne. Sie müssen entweder diese
+		Setzt die Zielarbeitsgruppe oder Domäne. Sie müssen entweder diese
 		Option oder die IP-Adresse oder den Servernamen angeben.
 		</para></listitem>
 		</varlistentry>
@@ -72,7 +70,7 @@
 		<varlistentry>
 		<term>-W Arbeitsgruppe</term>
 		<listitem><para>
-		Setzt Client-Arbeitsgruppe oder Domäne.
+		Setzt Clientarbeitsgruppe oder Domäne.
 		</para></listitem>
 		</varlistentry>
 
@@ -87,14 +85,14 @@
 		<term>-I IP-Adresse</term>
 		<listitem><para>
 		IP-Adresse des zu verwendenden Servers. Sie müssen entweder diese
-		Option oder eine Ziel-Arbeitsgruppe oder einen Ziel-Server angeben.
+		Option oder eine Zielarbeitsgruppe oder einen Zielserver angeben.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-p Port</term>
 		<listitem><para>
-		Port für Verbindungen auf den Ziel-Server (normalerweise 139 oder 445). 
+		Port für Verbindungen auf den Zielserver (normalerweise 139 oder 445). 
 		Standardmäßig wird erst 445, dann 139 ausprobiert.
 		</para></listitem>
 		</varlistentry>
@@ -105,8 +103,8 @@
 		<varlistentry>
 		<term>-S Server</term>
 		<listitem><para>
-		Name des Ziel-Servers. Sie sollten entweder diese Option oder eine
-		Ziel-Arbeitsgruppe oder eine Ziel-IP-Adresse angeben.
+		Name des Zielservers. Sie sollten entweder diese Option oder eine
+		Zielarbeitsgruppe oder eine Ziel-IP-Adresse angeben.
 		</para></listitem>
 		</varlistentry>
 
@@ -140,7 +138,7 @@
 Anwendung auf ein Account-Rechnerpasswort gesetzt werden, das in Active Directory 
 bereits gespeichert wurde. Diesen Befehl sollten Sie NICHT VERWENDEN, es sei denn Sie
 wissen ganz genau, was Sie tun. Bei diesem Befehl muss auch das Flag -f benutzt
-werden. Es gibt KEIN Befehls-Prompt. Welche Information auch immer in die 
+werden. Es gibt KEIN Befehlsprompt. Welche Information auch immer in die 
 Standardeingabe gelangt, entweder durch die Eingabe auf der Kommandozeile oder
 sonstwie, wird als explizites Rechnerpasswort gespeichert. Benutzen Sie dies 
 nur mit größter Vorsicht und Aufmerksamkeit, da das gültige Rechnerpasswort ohne
@@ -157,38 +155,29 @@ SIE WURDEN GEWARNT.
 	einem entfernten Rechner sehen oder die Zeit auf dem lokalen Server mit 
 	der Zeit auf dem entfernten Server synchronisieren.</para>
 
-<refsect3>
-<title>TIME</title>
+<refsect3><title>TIME</title>
 
 <para>Ohne weitere Optionen zeigt der Befehl <command>NET TIME</command> 
 die Zeit auf dem entfernten Server an.
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>TIME SYSTEM</title>
+<refsect3><title>TIME SYSTEM</title>
 
 <para>Zeigt die Zeit auf dem entfernten Server in einem für 
 <command>/bin/date</command> geeigneten Format an.</para>
-
 </refsect3>
 
-<refsect3>
-<title>TIME SET</title>
+<refsect3><title>TIME SET</title>
 <para>Versucht, mit <command>/bin/date</command> Datum und Zeit des 
 lokalen Servers auf die des entfernten Servers zu setzen. </para>
-
 </refsect3>
 
-<refsect3>
-<title>TIME ZONE</title>
+<refsect3><title>TIME ZONE</title>
 
 <para>Zeigt die Zeitzone in Stunden von der GMT auf dem entfernten 
 Computer an.</para>
-
-</refsect3>
-</refsect2>
+</refsect3></refsect2>
 
 <refsect2>
 <title>[RPC|ADS] JOIN [TYP] [-U Benutzername[%Passwort]] [Optionen]</title>
@@ -196,7 +185,7 @@ Computer an.</para>
 <para>
 Tritt einer Domäne bei. Wenn das Konto auf dem Server bereits existiert und 
 [TYP] gleich MEMBER ist, versucht der Rechner automatisch beizutreten (unter
-der Annahme, dass der Rechner im Server Manager erstellt wurde).
+der Annahme, dass der Rechner im Servermanager erstellt wurde).
 Sonst wird nach einem Passwort gefragt und evtl. wird ein neues Konto 
 angelegt.</para>
 
@@ -211,152 +200,112 @@ der der Domäne beitritt.
 
 <para>Tritt einer Domäne bei. Verwendet die Option OLDJOIN, um der Domäne 
 mit dem alten Verfahren beizutreten - zuerst müssen Sie ein Vertrauenskonto 
-im Server Manager erstellen.</para>
+im Servermanager erstellen.</para>
 </refsect2>
 
 <refsect2>
 <title>[RPC|ADS] USER</title>
 
-<refsect3>
-<title>[RPC|ADS] USER DELETE <replaceable>Ziel</replaceable></title>
+<refsect3><title>[RPC|ADS] USER DELETE <replaceable>Ziel</replaceable></title>
 
 <para>Löscht den angegebenen Benutzer.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RPC|ADS] USER LIST</title>
+<refsect3><title>[RPC|ADS] USER LIST</title>
 
 <para>Listet alle Benutzer auf.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RPC|ADS] USER INFO <replaceable>Ziel</replaceable></title>
+<refsect3><title>[RPC|ADS] USER INFO <replaceable>Ziel</replaceable></title>
 
-<para>Listez die Domäne-Gruppen des angegebenen Benutzer auf.</para>
-
+<para>Listet die Domänegruppen des angegebenen Benutzer auf.</para>
 </refsect3>
 
-<refsect3>
-<title>[RPC|ADS] USER ADD <replaceable>Name</replaceable> [Passwort] [-F Benutzerflags] [-C Kommentar]</title>
+<refsect3><title>[RPC|ADS] USER ADD <replaceable>Name</replaceable> [Passwort] [-F Benutzerflags] [-C Kommentar]</title>
 
-<para>Fügt den angegebenen Benutzer hinzu.</para>
-</refsect3>
-</refsect2>
+<para>Fügt den angegebenen Benutzer hinzu.</para></refsect3></refsect2>
 
 <refsect2>
 <title>[RPC|ADS] GROUP</title>
 
-<refsect3>
-<title>[RPC|ADS] GROUP [versch. Optionen] [Ziele]</title>
-<para>Listet Benutzergruppen auf.</para>
-</refsect3>
+<refsect3><title>[RPC|ADS] GROUP [versch. Optionen] [Ziele]</title>
+<para>Listet Benutzergruppen auf.</para></refsect3>
 
-<refsect3>
-<title>[RPC|ADS] GROUP DELETE <replaceable>Name</replaceable> [versch. Optionen]</title>
+<refsect3><title>[RPC|ADS] GROUP DELETE <replaceable>Name</replaceable> [versch. Optionen]</title>
 
 <para>Löscht die angegebene Gruppe.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RPC|ADS] GROUP ADD <replaceable>Name</replaceable> [-C Kommentar]</title>
+<refsect3><title>[RPC|ADS] GROUP ADD <replaceable>Name</replaceable> [-C Kommentar]</title>
 
 <para>Erzeugt die angegebene Gruppe.</para>
-
-</refsect3>
-</refsect2>
+</refsect3></refsect2>
 
 <refsect2>
 <title>[RAP|RPC] SHARE</title>
 
-<refsect3>
-<title>[RAP|RPC] SHARE [versch. Optionen] [Ziele]</title>
+<refsect3><title>[RAP|RPC] SHARE [versch. Optionen] [Ziele]</title>
 
 <para>Zählt alle exportierten Ressourcen (Netzwerkfreigaben) auf dem Zielserver auf.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RAP|RPC] SHARE ADD <replaceable>name=serverpath</replaceable> [-C Kommentar] [-M MaxBenutzer] [Ziele]</title>
+<refsect3><title>[RAP|RPC] SHARE ADD <replaceable>name=serverpath</replaceable> [-C Kommentar] [-M MaxBenutzer] [Ziele]</title>
 
 <para>Fügt eine Freigabe von einem Server hinzu (aktiviert den Export). MaxBenutzer 
 gibt die Anzahl der Benutzer an, die gleichzeitig mit der Freigabe verbunden sein
 können.</para>
-
 </refsect3>
 
-<refsect3>
-<title>SHARE DELETE <replaceable>Freigabename</replaceable></title>
+<refsect3><title>SHARE DELETE <replaceable>Freigabename</replaceable></title>
 
-<para>Löscht die angegebene Freigabe.</para>
-</refsect3>
-</refsect2>
+<para>Löscht die angegebene Freigabe.</para></refsect3></refsect2>
 
 <refsect2>
 <title>[RPC|RAP] FILE</title>
-
-<refsect3>
-<title>[RPC|RAP] FILE</title>
+<!--Ist das Korrekt: Dieselb Überschrift sowohl in 2. als auch in 3. Ebene?--><refsect3><title>[RPC|RAP] FILE</title>
 
 <para>Listet alle geöffneten Dateien auf dem entfernten Server auf.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RPC|RAP] FILE CLOSE <replaceable>Datei-id</replaceable></title>
+<refsect3><title>[RPC|RAP] FILE CLOSE <replaceable>Datei-ID</replaceable></title>
 
-<para>Schließt Datei mit der angegebenen <replaceable>Datei-id</replaceable> auf 
+<para>Schließt Datei mit der angegebenen <replaceable>Datei-ID</replaceable> auf 
 dem entfernten Server.</para>
-
 </refsect3>
 
-<refsect3>
-<title>[RPC|RAP] FILE INFO <replaceable>Datei-id</replaceable></title>
+<refsect3><title>[RPC|RAP] FILE INFO <replaceable>Datei-ID</replaceable></title>
 
 <para>
-Gibt Information zur angegebenen <replaceable>Datei-id</replaceable> aus. 
-Im Moment wird ausgegeben: Datei-id, Benutzername, Sperren, Pfad und Rechte.
+Gibt Information zur angegebenen <replaceable>Datei-ID</replaceable> aus. 
+Im Moment wird ausgegeben: Datei-ID, Benutzername, Sperren, Pfad und Rechte.
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>[RAP|RPC] FILE USER</title>
+<refsect3><title>[RAP|RPC] FILE USER</title>
 
 &not.implemented;
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
 <title>SESSION</title>
 
-<refsect3>
-<title>RAP SESSION</title>
+<refsect3><title>RAP SESSION</title>
 
-<para>Ohne weitere Optionen listet SESSION alle aktiven SMB/CIFS-Sitzungen 
+<para>Ohne weitere Optionen listet SESSION alle aktiven SMB-/CIFS-Sitzungen 
 auf dem Zielserver auf.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RAP SESSION DELETE|CLOSE <replaceable>CLIENT_NAME</replaceable></title>
+<refsect3><title>RAP SESSION DELETE|CLOSE <replaceable>CLIENT_NAME</replaceable></title>
 
 <para>Beendet die angegebenen Sitzungen.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RAP SESSION INFO <replaceable>CLIENT_NAME</replaceable></title>
+<refsect3><title>RAP SESSION INFO <replaceable>CLIENT_NAME</replaceable></title>
 
 <para>Gibt eine Liste aller geöffneten Dateien in der angegebenen 
 Sitzung aus.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -378,22 +327,17 @@ Netzwerk sichtbar sind.</para>
 <refsect2>
 <title>RAP PRINTQ</title>
 
-<refsect3>
-<title>RAP PRINTQ LIST <replaceable>WARTESCHLANGEN_NAME</replaceable></title>
+<refsect3><title>RAP PRINTQ LIST <replaceable>WARTESCHLANGEN_NAME</replaceable></title>
 
 <para>Listet die angegebene Druckerwarteschlange und Druckaufträge auf dem Server auf.
 Falls <replaceable>WARTESCHLANGEN_NAME</replaceable> weggelassen wird, werden alle 
 Warteschlangen aufgelistet.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RAP PRINTQ DELETE <replaceable>AUFTRAGS-ID</replaceable></title>
+<refsect3><title>RAP PRINTQ DELETE <replaceable>AUFTRAGS-ID</replaceable></title>
 
 <para>Löscht den Auftrag mit der angegebenen ID.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -411,27 +355,20 @@ Wenn das Passwort nicht auf der Kommandozeile angegeben wird, wird danach gefrag
 <refsect2>
 <title>RAP GROUPMEMBER</title>
 
-<refsect3>
-<title>RAP GROUPMEMBER LIST <replaceable>GRUPPE</replaceable></title>
+<refsect3><title>RAP GROUPMEMBER LIST <replaceable>GRUPPE</replaceable></title>
 
 <para>Listet alle Mitglieder der angegebenen Gruppe auf.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RAP GROUPMEMBER DELETE <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
+<refsect3><title>RAP GROUPMEMBER DELETE <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
 
 <para>Löscht Mitglied aus der angegebenen Gruppe.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RAP GROUPMEMBER ADD <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
+<refsect3><title>RAP GROUPMEMBER ADD <replaceable>GRUPPE</replaceable> <replaceable>BENUTZER</replaceable></title>
 
 <para>Fügt Mitglied zur Gruppe hinzu.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -448,25 +385,19 @@ entfernten Server aus. Funktioniert nur auf OS/2-Servern.
 <refsect2>
 <title>RAP SERVICE</title>
 
-<refsect3>
-<title>RAP SERVICE START <replaceable>NAME</replaceable> [Argumente...]</title>
+<refsect3><title>RAP SERVICE START <replaceable>NAME</replaceable> [Argumente...]</title>
 
-<para>Startet den angegebenen Dienst auf dem entfernten Server. 
-Noch nicht implementiert.</para>
+<para>Startet den angegebenen Dienst auf dem entfernten Server.</para>
 
 &not.implemented;
-
 </refsect3>
 
-<refsect3>
-<title>RAP SERVICE STOP</title>
+<refsect3><title>RAP SERVICE STOP</title>
 
 <para>Hält den angegebenen Dienst auf dem entfernten Server an.</para>
 
 &not.implemented;
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -482,58 +413,47 @@ Noch nicht implementiert.</para>
 <refsect2>
 <title>LOOKUP</title>
 
-<refsect3>
-<title>LOOKUP HOST <replaceable>HOSTNAME</replaceable> [<replaceable>TYP</replaceable>]</title>
+<refsect3><title>LOOKUP HOST <replaceable>HOSTNAME</replaceable> [<replaceable>TYP</replaceable>]</title>
 
 <para>
-Sucht die IP-Adresse des gegebenen Hosts mit dem angegebenen Typ (netbios-Endung). 
+Sucht die IP-Adresse des gegebenen Hosts mit dem angegebenen Typ (Netbios-Endung). 
 Als Vorgabetyp wird 0x20 (Workstation) verwendet.
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>LOOKUP LDAP [<replaceable>DOMÄNE</replaceable></title>
+<refsect3><title>LOOKUP LDAP [<replaceable>DOMÄNE</replaceable></title>
 
 <para>Gibt die IP-Adresse des LDAP-Servers der angegebenen 
 <replaceable>DOMÄNE</replaceable> an. Standardwert ist die lokale Domäne.</para>
-
 </refsect3>
 
-<refsect3>
-<title>LOOKUP KDC [<replaceable>BEREICH</replaceable>]</title>
+<refsect3><title>LOOKUP KDC [<replaceable>BEREICH</replaceable>]</title>
 
 <para>Gibt die IP-Adresse von KDC für den angegebenen 
 <replaceable>BEREICH</replaceable> an. Standardwert ist der lokale Bereich.</para>
-
 </refsect3>
 
-<refsect3>
-<title>LOOKUP DC [<replaceable>DOMÄNE</replaceable>]</title>
+<refsect3><title>LOOKUP DC [<replaceable>DOMÄNE</replaceable>]</title>
 
-<para>Gibt die IPs der Domänen-Controller für die angegebene <replaceable>
+<para>Gibt die IPs der Domänencontroller für die angegebene <replaceable>
 DOMÄNE</replaceable> an. Standardwert ist die lokale Domäne.</para>
-
 </refsect3>
 
-<refsect3>
-<title>LOOKUP MASTER <replaceable>DOMÄNE</replaceable></title>
+<refsect3><title>LOOKUP MASTER <replaceable>DOMÄNE</replaceable></title>
 
-<para>Gibt die IP des Master Browsers für die angegebene 
+<para>Gibt die IP des Masterbrowsers für die angegebene 
 <replaceable>DOMÄNE</replaceable> oder Arbeitsgruppe an. 
 Standardwert ist die lokale Domäne.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
 <title>CACHE</title>
 
-<para>Samba verwendet eine allgemeine Caching-Schnittstelle namens 'gencache'. 
+<para>Samba verwendet eine allgemeine Cachingschnittstelle namens 'gencache'. 
 Sie kann mit 'NET CACHE' gesteuert werden.</para>
 
-<para>Alle Timeout-Parameter unterstützen die Endungen:
+<para>Alle Timeoutparameter unterstützen die Endungen:
 
 <simplelist>
 <member>s - Sekunden</member>
@@ -545,56 +465,43 @@ Sie kann mit 'NET CACHE' gesteuert werden.</para>
 
 </para>
 
-<refsect3>
-<title>CACHE ADD <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
+<refsect3><title>CACHE ADD <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
 
-<para>Fügt SCHLÜSSEL+DATEN mit dem angegebenen timeout an den Cache an.</para>
-
+<para>Fügt SCHLÜSSEL+DATEN mit dem angegebenen Timeout an den Cache an.</para>
 </refsect3>
 
-<refsect3>
-<title>CACHE DEL <replaceable>SCHLÜSSEL</replaceable></title>
+<refsect3><title>CACHE DEL <replaceable>SCHLÜSSEL</replaceable></title>
 
 <para>Löscht SCHLÜSSEL aus dem Cache.</para>
-
 </refsect3>
 
-<refsect3>
-<title>CACHE SET <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
+<refsect3><title>CACHE SET <replaceable>SCHLÜSSEL</replaceable> <replaceable>DATEN</replaceable> <replaceable>time-out</replaceable></title>
 
-<para>Aktualisiert die DATEN eines existierenden Cache-Eintrags.</para>
-
+<para>Aktualisiert die DATEN eines existierenden Cacheeintrags.</para>
 </refsect3>
 
-<refsect3>
-<title>CACHE SEARCH <replaceable>MUSTER</replaceable></title>
+<refsect3><title>CACHE SEARCH <replaceable>MUSTER</replaceable></title>
 
-<para>Sucht in den Cache-Daten nach dem angegebenen Muster.</para>
-
+<para>Sucht in den Cachedaten nach dem angegebenen Muster.</para>
 </refsect3>
 
-<refsect3>
-<title>CACHE LIST</title>
+<refsect3><title>CACHE LIST</title>
 
 <para>
 Listet alle aktuellen Einträge im Cache auf.
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>CACHE FLUSH</title>
+<refsect3><title>CACHE FLUSH</title>
 
 <para>Entfernt alle aktuellen Einträge aus dem Cache.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
 <title>GETLOCALSID [DOMÄNE]</title>
 
-<para>Gibt die SID der angegebenen Domäne aus, oder die SID der Domäne 
+<para>Gibt die SID der angegebenen Domäne aus oder die SID der Domäne 
 des lokalen Servers, falls der Parameter weggelassen wird.</para>
 
 </refsect2>
@@ -623,41 +530,32 @@ aufgelöst werden können</para></listitem>
 <listitem><para>comment - Formloser Text als Beschreibung der Gruppe</para></listitem>
 </itemizedlist>
 
-<refsect3>
-<title>GROUPMAP ADD</title>
+<refsect3><title>GROUPMAP ADD</title>
 
 <para>Fügt einen neuen Gruppenzuordnungseintrag hinzu entry</para>
 
 <para>net groupmap add {rid=int|sid=string} unixgroup=string [type={domain|local|builtin}] [ntgroup=string] [comment=string]</para>
-
 </refsect3>
 
-<refsect3>
-<title>GROUPMAP DELETE</title>
+<refsect3><title>GROUPMAP DELETE</title>
 
 <para>Löscht einen Gruppenzuordnungseintrag</para>
 
 <para>net groupmap delete {ntgroup=string|sid=SID}</para>
-
 </refsect3>
 
-<refsect3>
-<title>GROUPMAP MODIFY</title>
+<refsect3><title>GROUPMAP MODIFY</title>
 
 <para>Aktualisiert einen vorhandenen Gruppenzuordnungseintrag</para>
 
-<para>net groupmap modify {ntgroup=string|sid=SID} [unixgroup=string] [comment=string] [type={domain|local}</para>
-</refsect3>
+<para>net groupmap modify {ntgroup=string|sid=SID} [unixgroup=string] [comment=string] [type={domain|local}</para></refsect3>
 
-<refsect3>
-<title>GROUPMAP LIST</title>
+<refsect3><title>GROUPMAP LIST</title>
 
 <para>Listet vorhandene Gruppenabbildungseinträge auf</para>
 
 <para>net groupmap list [verbose] [ntgroup=string] [sid=SID]</para>
-
-</refsect3>
-</refsect2>
+</refsect3></refsect2>
 
 
 
@@ -689,56 +587,45 @@ z.B. Domänenname, Domänen-SID und Anzahl der Benutzer und Gruppen.
 <refsect2>
 <title>[RPC|ADS] CHANGETRUSTPW</title>
 
-<para>Erzwingt die Änderung des Domänen-Passworts.</para>
+<para>Erzwingt die Änderung des Domänenpassworts.</para>
 
 </refsect2>
 
 <refsect2>
 <title>RPC TRUSTDOM</title>
 
-<refsect3>
-<title>RPC TRUSTDOM ADD <replaceable>DOMÄNE</replaceable></title>
+<refsect3><title>RPC TRUSTDOM ADD <replaceable>DOMÄNE</replaceable></title>
 
-<para>Fügt ein Domänen-Konto für <replaceable>DOMÄNE</replaceable> auf 
+<para>Fügt ein Domänenkonto für <replaceable>DOMÄNE</replaceable> auf 
 dem entfernten Server hinzu. 
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>RPC TRUSTDOM DEL <replaceable>DOMAIM</replaceable></title>
+<refsect3><title>RPC TRUSTDOM DEL <replaceable>DOMAIM</replaceable></title>
 
-<para>Entfernt ein Domänen-Konto für <replaceable>DOMÄNE</replaceable> 
+<para>Entfernt ein Domänenkonto für <replaceable>DOMÄNE</replaceable> 
 vom entfernten Server. 
 </para>
 
 &not.implemented;
-
 </refsect3>
 
-<refsect3>
-<title>RPC TRUSTDOM ESTABLISH <replaceable>DOMÄNE</replaceable></title>
+<refsect3><title>RPC TRUSTDOM ESTABLISH <replaceable>DOMÄNE</replaceable></title>
 
 <para>
 Stellt eine Vertrauensbeziehung zu einer vertrauenden Domäne her. 
-Das Domänen-Konto muss auf dem entfernten PDC schon erzeugt sein.
+Das Domänenkonto muss auf dem entfernten PDC schon erzeugt sein.
 </para>
-
 </refsect3>
 
-<refsect3>
-<title>RPC TRUSTDOM REVOKE <replaceable>DOMÄNE</replaceable></title>
+<refsect3><title>RPC TRUSTDOM REVOKE <replaceable>DOMÄNE</replaceable></title>
 <para>Beendet eine Beziehung zu einer vertrauten Domäne.</para>
-
 </refsect3>
 
-<refsect3>
-<title>RPC TRUSTDOM LIST</title>
+<refsect3><title>RPC TRUSTDOM LIST</title>
 
-<para>Listet alle aktuellen Domänen-Vertrauensbeziehungen auf.</para>
-
+<para>Listet alle aktuellen Domänenvertrauensbeziehungen auf.</para>
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -774,7 +661,7 @@ Erzwungenes Herunterfahren aller Anwendungen.
 Timeout, bevor das System heruntergefahren wird. Ein interaktiver 
 Benutzer des Systems kann diese Zeit nutzen, um das Herunterfahren abzubrechen.
 </para></listitem>
-</varlistentry>'>
+</varlistentry>
 
 <varlistentry>
 <term>-C message</term>
@@ -821,7 +708,7 @@ den lokalen Server. Kann nur auf einem BDC ausgeführt werden.
 <title>ADS STATUS</title>
 
 <para>Gibt den Status des Rechnerkontos auf dem lokalen Rechner in ADS aus.
-Gibt eine Menge Debug-Information aus. Ist für Entwickler gedacht, normale 
+Gibt eine Menge Debuginformation aus. Ist für Entwickler gedacht, normale 
 Benutzer sollten <command>NET ADS TESTJOIN</command> benutzen.</para>
 
 </refsect2>
@@ -829,30 +716,23 @@ Benutzer sollten <command>NET ADS TESTJOIN</command> benutzen.</para>
 <refsect2>
 <title>ADS PRINTER</title>
 
-<refsect3>
-<title>ADS PRINTER INFO [<replaceable>DRUCKER</replaceable>] [<replaceable>SERVER</replaceable>]</title>
+<refsect3><title>ADS PRINTER INFO [<replaceable>DRUCKER</replaceable>] [<replaceable>SERVER</replaceable>]</title>
 
 <para>
 Sucht Information zum <replaceable>DRUCKER</replaceable> auf 
 <replaceable>SERVER</replaceable>. Der Druckername hat den Vorgabewert "*", 
 der Servername hat als Vorgabewert den Namen des lokalen Hosts.</para>
-
 </refsect3>
 
-<refsect3>
-<title>ADS PRINTER PUBLISH <replaceable>DRUCKER</replaceable></title>
+<refsect3><title>ADS PRINTER PUBLISH <replaceable>DRUCKER</replaceable></title>
 
 <para>Veröffentlicht den angegebenen Drucker mittels ADS.</para>
-
 </refsect3>
 
-<refsect3>
-<title>ADS PRINTER REMOVE <replaceable>PRINTER</replaceable></title>
+<refsect3><title>ADS PRINTER REMOVE <replaceable>PRINTER</replaceable></title>
 
 <para>Entfernt den angegebenen Drucker aus dem ADS-Verzeichnis.</para>
-
 </refsect3>
-
 </refsect2>
 
 <refsect2>
@@ -900,8 +780,8 @@ Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -912,7 +792,8 @@ Attribute sind eine Liste von LDAP-Feldern, um die Ergebnisse anzuzeigen.
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die net man page wurde von Jelmer Vernooij geschrieben.</para>	
+	<para>Diese Manpage wurde von Jelmer Vernooij geschrieben.</para>	
 </refsect1>
 
 </refentry>
+

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
-<!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
-]>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [				<!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities; ]>
 <refentry id="editreg.1">
 
 <refmeta>
@@ -13,33 +10,32 @@
 
 <refnamediv>
 	<refname>editreg</refname>
-	<refpurpose>Ein Werkzeug zum Drucken und Editieren von NT4-Registry-Dateien
+	<refpurpose>Ein Werkzeug zum Drucken und Editieren von NT4-Registry-Dateien.
 	</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>editreg</command>
-		<arg choice="opt">-v</arg>
-		<arg choice="opt">-c Datei</arg>
-		<arg choice="req">Datei</arg>
-	</cmdsynopsis>
+		
+<arg choice="opt">-v</arg>
+		
+<arg choice="opt">-c Datei</arg>
+		
+<arg choice="req">Datei</arg>	</cmdsynopsis>
 </refsynopsisdiv>
 
-<refsect1>
-	<title>BESCHREIBUNG</title>
+<refsect1>	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der <citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para><command>editreg</command> ist ein Werkzeug, das Windows Registrierungs-Dateien
-	visualisieren kann (derzeit nur NT4), und sogenannte "commandfiles" auf sie anwenden kann.
-	</para>
-</refsect1>
+	<para><command>editreg</command> ist ein Werkzeug, das Windows-Registrierungsdateien
+	visualisieren (derzeit nur NT4) und sogenannte "commandfiles" auf sie anwenden kann.
+	</para></refsect1>
 
 
-<refsect1>
-	<title>OPTIONEN</title>
+<refsect1>	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
@@ -50,37 +46,31 @@
 
 		<varlistentry>
 		<term>-v,--verbose</term>
-		<listitem><para>Erhöht die Ausführlichkeit der Programm-Meldungen. 
+		<listitem><para>Erhöht die Ausführlichkeit der Programmmeldungen. 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-c Befehlsdatei</term>
-		<listitem><para>Liest Befehle, die auf die <filename>Registrierungsdatei</filename>
-		angewandt werden sollen, aus der Datei <filename>Befehlsdatei</filename>.
+		<listitem><para>Liest Befehle, die auf die <filename>Registrierungsdatei</filename> angewandt werden sollen, aus der Datei <filename>Befehlsdatei</filename>.
 		Derzeit noch nicht unterstützt!
 		</para></listitem>
 		</varlistentry>
 
 		&stdarg.help;
 		
-	</variablelist>
-</refsect1>
+	</variablelist></refsect1>
 
-<refsect1>
-	<title>VERSION</title>
+<refsect1>	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
-</refsect1>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der Samba-Suite.</para></refsect1>
 
-<refsect1>
-	<title>AUTOR</title>
+<refsect1>	<title>AUTOR</title>
 	
 	<para>Die originale Samba-Software und die zugehörigen Werkzeuge wurden von
 	Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
 	entwickelt, ähnlich wie der Linux-Kernel.</para>
 	
-	<para>Die editreg man page wurde von Jelmer Vernooij geschrieben.</para>
-</refsect1>
-
+	<para>Die editreg-Manpage wurde von Jelmer Vernooij geschrieben.</para></refsect1>
 </refentry>
+

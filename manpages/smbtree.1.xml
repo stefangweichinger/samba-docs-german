@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbtree.1">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>smbtree</refname>
-	<refpurpose>Ein textbasierter smb-Netzwerk-Browser
+	<refpurpose>Ein textbasierter smb-Netzwerkbrowser.
 	</refpurpose>
 </refnamediv>
 
@@ -49,7 +48,7 @@
 		<varlistentry>
 		<term>-b</term>
 		<listitem><para>Fragt die Netzwerkknoten ab, indem Anfragen als
-		Broadcasts gesendet werden, statt den lokalen Master Browser
+		Broadcasts gesendet werden, statt den lokalen Masterbrowser
 		abzufragen.
 		</para></listitem>
 		</varlistentry>
@@ -57,13 +56,13 @@
 		<varlistentry>
 		<term>-D</term>
 		<listitem><para>Gibt nur eine Liste aller Domänen aus, die beim
-		Broadcast oder die dem Master Browser bekannt sind.</para></listitem>
+		Broadcast oder die dem Masterbrowser bekannt sind.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-S</term>
 		<listitem><para>Gibt nur eine Liste aller Domänen und Server aus, 
-		die beim Broadcast antworten oder die dem Master Browser bekannt 
+		die beim Broadcast antworten oder die dem Masterbrowser bekannt 
 		sind.</para></listitem>
 		</varlistentry>
 
@@ -77,8 +76,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -89,7 +88,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die smbtree man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die smbtree-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
+

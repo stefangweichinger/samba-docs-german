@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="wbinfo.1">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>wbinfo</refname>
-	<refpurpose>Fragt Informationen vom winbind-Daemon ab</refpurpose>
+	<refpurpose>Fragt Informationen vom winbind-Daemon ab.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -107,7 +106,7 @@
 		verfügbaren Gruppen auf, in denen der 
 		<citerefentry><refentrytitle>samba</refentrytitle>
 		<manvolnum>7</manvolnum></citerefentry>-Daemon operiert. 
-		Die Gruppen aller Vertrauens-Domänen werden ebenfalls aufgelistet. 
+		Die Gruppen aller Vertrauensdomänen werden ebenfalls aufgelistet. 
 		Man beachte, dass diese Operation keine Gruppen-IDs an irgendwelche
 		Gruppen vergibt, die 
 		<citerefentry><refentrytitle>winbindd</refentrytitle>
@@ -118,7 +117,7 @@
 		<varlistentry>
 		<term>--get-auth-user</term>
 		<listitem><para>Gibt Benutzernamen und Passwort aus, die von winbindd
-		während der Einrichtung einer Sitzung mit einem Domänen-Controller
+		während der Einrichtung einer Sitzung mit einem Domänencontroller
 		benutzt werden. Benutzername und Passwort können mit '-A' gesetzt
 		werden. Nur für root verfügbar.</para></listitem>
 		</varlistentry>
@@ -142,12 +141,12 @@
 		<varlistentry>
 		<term>-m</term>
 		<listitem><para>
-		Gibt eine Liste der Domänen zurück, die in einem Vertrauensverhältnis zum Windows NT Server
-		stehen, und die von 
+		Gibt eine Liste der Domänen zurück, die in einem Vertrauensverhältnis zum Windows NT-Server
+		stehen und die von 
 		<citerefentry><refentrytitle>winbindd</refentrytitle><manvolnum>8</manvolnum></citerefentry>
 		bei der Namensauflösung kontaktiert werden.
 		Nicht enthalten ist darin die Windows NT-Domäne, für die der Server 
-		einen Primären Domänen-Controller darstellt.
+		einen primären Domänen-Controller darstellt.
 		</para></listitem>
 		</varlistentry>
 		
@@ -200,7 +199,7 @@
 		<term>-r Benutzername</term>
 		<listitem><para>Versucht, die Liste der UNIX-Gruppen-IDs zu erhalten,
 		zu denen der Benutzer gehört. Das funktioniert nur bei Benutzern,
-		die in einem Domänen-Controller definiert sind.
+		die in einem Domänencontroller definiert sind.
 		</para></listitem>
 		</varlistentry>
 		
@@ -240,7 +239,7 @@
 
 		<varlistentry>
 		<term>-t</term>
-		<listitem><para>Überprüft, dass das Workstation-Vertrauens-Konto
+		<listitem><para>Überprüft, ob das Workstationvertrauenskonto
 		funktioniert, das erzeugt wird, wenn der Samba-Server zur
 		Windows NT-Domäne hinzugefügt wird.</para></listitem>
 		</varlistentry>
@@ -310,8 +309,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -337,3 +336,4 @@
 </refsect1>
 
 </refentry>
+

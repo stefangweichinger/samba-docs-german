@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbgetrc.5">
 
 <refmeta>
 	<refentrytitle>smbgetrc</refentrytitle>
-	<manvolnum>5</manvolnum>
-</refmeta>
+	<manvolnum>5</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>smbgetrc</refname>
-	<refpurpose>Konfigurationsdatei für smbget</refpurpose>
+	<refpurpose>Konfigurationsdatei für smbget.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -28,7 +26,7 @@
 	dem Werkzeug 
 	<citerefentry><refentrytitle>smbget</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry> 
-	benutzt wird. Die Datei enthält Schlüssel-/Wert-Paare, jeweils eines pro
+	benutzt wird. Die Datei enthält Schlüssel-/Wertpaare, jeweils eines pro
 	Zeile. Schlüssel und Wert sollten durch ein Leerzeichen getrennt sein.
 	</para>
 
@@ -81,7 +79,7 @@
 		</varlistentry>
 
 		<varlistentry><term>debuglevel <replaceable>int</replaceable></term>
-			<listitem><para>Die zu verwendende (Samba-) Debug-Ebene. 
+			<listitem><para>Die zu verwendende (Samba-)Debugebene. 
 			Hilfreich beim Verfolgen von Problemen auf 
 			Protokollebene.</para></listitem>
 		</varlistentry>
@@ -102,8 +100,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -123,9 +121,8 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die net man page wurde von Jelmer Vernooij geschrieben.</para>
+	<para>Die net-Manpage wurde von Jelmer Vernooij geschrieben.</para>
 </refsect1>
 
 </refentry>
-
 

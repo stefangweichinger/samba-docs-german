@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
-]>
+]-->
 <refentry id="findsmb.1">
 
 <refmeta>
 	<refentrytitle>findsmb</refentrytitle>
-	<manvolnum>1</manvolnum>
-</refmeta>
+	<manvolnum>1</manvolnum></refmeta>
 
 
 <refnamediv>
 	<refname>findsmb</refname>
-	<refpurpose>Listet Informationen über Maschinen in einem Subnetz, die auf SMB-Namensanfragen 
+	<refpurpose>Listet Informationen &uuml;ber Maschinen in einem Subnetz, die auf SMB-Namensanfragen 
 	antworten.</refpurpose>
 </refnamediv>
 
@@ -31,7 +29,7 @@
 	<refentrytitle>Samba</refentrytitle><manvolnum>7</manvolnum></citerefentry>
 	-Suite.</para>
 
-	<para><command>findsmb</command> ist ein Perl-Skript, das einige Informationen über
+	<para><command>findsmb</command> ist ein Perl-Skript, das einige Informationen &uuml;ber
 	Maschinen im Subnetz ausgibt, die auf SMB-Namensanfragen antworten.
 	Es verwendet <citerefentry><refentrytitle>nmblookup</refentrytitle><manvolnum>1</manvolnum></citerefentry>
 	und <citerefentry><refentrytitle>smbclient</refentrytitle>
@@ -46,10 +44,10 @@
 	<variablelist>
 		<varlistentry>
 		<term>-r</term>
-		<listitem><para>Bestimmt, ob <command>findsmb</command> Bugs in Windows95
-		berücksichtigt, wenn es versucht, den registrierten NetBIOS-Namen
-		der fernen Maschine zu bestimmen. Diese Option ist standardmässig deaktiviert,
-		weil sie nur spezifisch für Windows 95 und Windows 95-Maschinen ist.
+		<listitem><para>Bestimmt, ob <command>findsmb</command> Bugs in Windows 95
+		ber&uuml;cksichtigt, wenn es versucht, den registrierten NetBIOS-Namen
+		der fernen Maschine zu bestimmen. Diese Option ist standardm&auml;&szlig;ig deaktiviert,
+		weil sie nur spezifisch f&uuml;r Windows 95 und Windows 95-Maschinen ist.
 		Wenn sie gesetzt ist, wird
 		<citerefentry><refentrytitle>nmblookup</refentrytitle><manvolnum>1</manvolnum></citerefentry>
 		mit der Option <constant>-B</constant> aufgerufen.</para></listitem>
@@ -59,9 +57,9 @@
 		<listitem><para>Ohne diese Option wird <command>findsmb
 		</command> das Subnetz der Maschine durchsuchen, auf der 
 		<citerefentry><refentrytitle>findsmb</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-		ausgeführt wird. Dieser Wert wird an
+		ausgef&uuml;hrt wird. Dieser Wert wird an
 		<citerefentry><refentrytitle>nmblookup</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-weitergegeben, als Teil der Option <constant>-B</constant>.</para></listitem>
+weitergegeben als Teil der Option <constant>-B</constant>.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
@@ -70,32 +68,30 @@ weitergegeben, als Teil der Option <constant>-B</constant>.</para></listitem>
 	<title>BEISPIELE</title>
 
 	<para>Die Ausgabe von <command>findsmb</command> listet folgende Informationen
-	für alle Maschinen, die auf den ursprünglichen Befehl <command>nmblookup</command>
-	antworten: IP-Adresse, NetBIOS-Namen, Arbeitsgruppen/Domänen-Name, Betriebssystem, und
-	SMB-Server-Version.</para>
+	f&uuml;r alle Maschinen, die auf den urspr&uuml;nglichen Befehl <command>nmblookup</command>
+	antworten: IP-Adresse, NetBIOS-Namen, Arbeitsgruppen-/Dom&auml;nenname, Betriebssystem und
+	SMB-Serverversion.</para>
 
-	<para>Vor dem Namen der Arbeitsgruppe/Domäne wird bei den lokalen Master-Browsern
-	ein '+' angezeigt, ein '*' bei dem Domänen-Master-Browser der Arbeitsgruppe.
-	Für Maschinen, die Windows, Windows 95 oder Windows 98 ausführen, werden keine
-	Informationen bezüglich des Betriebssystems oder der Server-Version angezeigt.</para>
+	<para>Vor dem Namen der Arbeitsgruppe/Dom&auml;ne wird bei den lokalen Masterbrowsern
+	ein '+' angezeigt, ein '*' bei dem Dom&auml;nen-Masterbrowser der Arbeitsgruppe.
+	F&uuml;r Maschinen, die Windows, Windows 95 oder Windows 98 ausf&uuml;hren, werden keine
+	Informationen bez&uuml;glich des Betriebssystems oder der Serverversion angezeigt.</para>
 
 	<para>Der Befehl darf mit der Option <constant>-r</constant> 
 	nur auf Systemen ohne laufenden <citerefentry>
-	<refentrytitle>nmbd</refentrytitle><manvolnum>8</manvolnum>
-	</citerefentry>	ausgeführt werden. 
+	<refentrytitle>nmbd</refentrytitle><manvolnum>8</manvolnum>	</citerefentry>	ausgef&uuml;hrt werden. 
 
-	Wenn <command>nmbd</command> auf dem System läuft, werden Sie nur die IP-Adresse und den
-	DNS-Namen der Maschine erhalten. Um richtige Antworten von Windows 95 und Windows 98-Maschinen
-	zu erhalten, muß der Befehl als root ausgeführt werden, 
+	Wenn <command>nmbd</command> auf dem System l&auml;uft, werden Sie nur die IP-Adresse und den
+	DNS-Namen der Maschine erhalten. Um richtige Antworten von Windows 95- und Windows 98-Maschinen
+	zu erhalten, muss der Befehl als root ausgef&uuml;hrt werden, 
 	und mit der Option <constant>-r</constant>,
 	ohne laufenden <command>nmbd</command>.</para>
 
-	<para>Zum Beispiel würde das Ausführen von <command>findsmb</command> 
-	ohne gesetzter Option <constant>-r</constant> Ausgaben ähnlich zu den folgenden erzeugen:
+	<para>Zum Beispiel w&uuml;rde das Ausf&uuml;hren von <command>findsmb</command> 
+	ohne gesetzter Option <constant>-r</constant> Ausgaben &auml;hnlich zu den folgenden erzeugen:
 	</para>
 
-<screen>
-IP ADDR         NETBIOS NAME   WORKGROUP/OS/VERSION 
+<screen>IP ADDR         NETBIOS NAME   WORKGROUP/OS/VERSION 
 --------------------------------------------------------------------- 
 192.168.35.10   MINESET-TEST1  [DMVENGR]
 192.168.35.55   LINUXBOX      *[MYGROUP] [Unix] [Samba 2.0.6]
@@ -106,25 +102,21 @@ IP ADDR         NETBIOS NAME   WORKGROUP/OS/VERSION
 192.168.35.78   HERBDHCP1     +[HERB]
 192.168.35.88   SCNT2         +[MVENGR] [Windows NT 4.0] [NT LAN Manager 4.0]
 192.168.35.93   FROGSTAR-PC    [MVENGR] [Windows 5.0] [Windows 2000 LAN Manager]
-192.168.35.97   HERBNT1       *[HERB-NT] [Windows NT 4.0] [NT LAN Manager 4.0]
-</screen>
-
+192.168.35.97   HERBNT1       *[HERB-NT] [Windows NT 4.0] [NT LAN Manager 4.0]</screen>
 </refsect1>
 
 
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der Samba Suite.</para>
+	<para>Diese Manpage ist korrekt f&uuml;r die Version 3.0 der Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
 	<title>SEE ALSO</title>
 	<para><citerefentry>
-	<refentrytitle>nmbd</refentrytitle><manvolnum>8</manvolnum>
-	</citerefentry>,
-	<citerefentry><refentrytitle>smbclient</refentrytitle><manvolnum>1</manvolnum>
-	</citerefentry>, und <citerefentry><refentrytitle>nmblookup</refentrytitle>
+	<refentrytitle>nmbd</refentrytitle><manvolnum>8</manvolnum>	</citerefentry>,
+	<citerefentry><refentrytitle>smbclient</refentrytitle><manvolnum>1</manvolnum>	</citerefentry>, und <citerefentry><refentrytitle>nmblookup</refentrytitle>
 	<manvolnum>1</manvolnum></citerefentry>
 	</para>
 </refsect1>
@@ -132,18 +124,18 @@ IP ADDR         NETBIOS NAME   WORKGROUP/OS/VERSION
 <refsect1>
 	<title>AUTOR</title>
 	
-	<para>Die originale Samba-Software und die zugehörigen Werkzeuge wurden von
+	<para>Die originale Samba-Software und die zugeh&ouml;rigen Werkzeuge wurden von
 	Andrew Tridgell geschrieben. Samba wird nun vom Samba-Team als ein Open-Source-Projekt
-	entwickelt, ähnlich wie der Linux-Kernel.</para>
+	entwickelt, &auml;hnlich wie der Linux-Kernel.</para>
 	
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben. 
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres exzellentes
-	Stück Open Source Software, verfügbar unter <ulink
-        url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die Umwandlung ins
-	DocBook-Format wurde von Gerald Carter für Samba 2.2 durchgeführt.
-	Die Umwandlung in Docbook für XML 4.2 wurde von Alexander Bokovoy für Samba 3.0
-	durchgeführt.</para>
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben. 
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres exzellentes
+	St&uuml;ck Open-Source-Software, verf&uuml;gbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und f&uuml;r die Samba 2.0-Release von Jeremy Allison aktualisiert. Die Umwandlung ins
+	DocBook-Format wurde von Gerald Carter f&uuml;r Samba 2.2 durchgef&uuml;hrt.
+	Die Umwandlung in Docbook f&uuml;r XML 4.2 wurde von Alexander Bokovoy f&uuml;r Samba 3.0
+	durchgef&uuml;hrt.</para>
 </refsect1>
 
 </refentry>
+

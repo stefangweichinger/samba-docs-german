@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
-				  
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 <refentry id="smbpasswd.5">
@@ -13,7 +12,7 @@
 
 <refnamediv>
 	<refname>smbpasswd</refname>
-	<refpurpose>Die verschlüsselte Samba-Passwortdatei</refpurpose>
+	<refpurpose>Die verschlüsselte Samba-Passwortdatei.</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -71,7 +70,7 @@
 		Benutzerpasswort als DES-Schlüssel. Das ist identisch mit dem 
 		Passwort, das von Windows 95/98-Rechnern verwendet wird. 
 		Beachten Sie, dass dieser Passwort-Hash als schwach betrachtet
-		wird, da er anfällig ist für Wörterbuchattacken, und wenn zwei
+		wird, da er anfällig ist für Wörterbuchattacken und wenn zwei
 		Benutzer das gleiche Passwort wählen ist dieser Eintrag identisch
 		(d.h. das Passwort ist nicht "gesalzen" wie das UNIX-Passwort). 
 		Falls der Benutzer ein leeres Passwort hat, enthält dieses Feld
@@ -82,7 +81,7 @@
 		anmelden.</para>
 		
 		<para><emphasis>WARNUNG!!</emphasis> Man beachte, dass auf Grund der
-		Aufgabe/Antwort-Natur des SMB/CIFS-Authentifikationsprotokolls, 
+		Aufgabe/Antwort-Natur des SMB-/CIFS-Authentifikationsprotokolls 
 		jeder, der diesen Passwort-Hash kennt, den Benutzer im Netzwerk 
 		nachahmen kann. Deswegen sind diese Hashes als 
 		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
@@ -111,7 +110,7 @@
 		nicht "gesalzen" wie ein UNIX-Passwort).</para>
 
 		<para><emphasis>WARNUNG!!</emphasis> Man beachte, dass auf Grund der
-		Aufgabe/Antwort-Natur des SMB/CIFS-Authentifikationsprotokolls, 
+		Aufgabe-/Antwort-Natur des SMB-/CIFS-Authentifikationsprotokolls 
 		jeder, der diesen Passwort-Hash kennt, den Benutzer im Netzwerk 
 		nachahmen kann. Deswegen sind diese Hashes als 
 		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
@@ -125,7 +124,7 @@
 		
 
 		<varlistentry>
-		<term>Konten-Flags</term>
+		<term>Kontenflags</term>
 		<listitem><para>Dieser Abschnitt enthält Flags, die die Attribute
 		des Benutzerkontos beschreiben. In Samba 2.2 wird dieses Feld 
 		zwischen eckigen Klammern gesetzt, '[' und ']', und ist immer 
@@ -137,7 +136,7 @@
 			<listitem><para><emphasis>U</emphasis> - Das bedeutet, dies 
 			ist ein "Benutzer"-Konto, d.h. ein gewöhnlicher Benutzer. 
 			Momentan werden in der Datei smbpasswd nur Benutzer- und
-			Workstation-Trust-Konten unterstützt.</para></listitem>
+			Workstation-Trustkonten unterstützt.</para></listitem>
 			
 			<listitem><para><emphasis>N</emphasis> - Das bedeutet, das
 			Konto hat kein Passwort (die Passwörter in den Feldern LANMAN 
@@ -151,7 +150,7 @@
 				
 			<listitem><para><emphasis>D</emphasis> - Das bedeutet, das
 			Konto ist deaktiviert und für diesen Benutzer ist keine 
-			SMB/CIFS-Anmeldung möglich.</para></listitem>
+			SMB-/CIFS-Anmeldung möglich.</para></listitem>
 			
 			<listitem><para><emphasis>W</emphasis> - Das bedeutet, dieses
 			Konto ist ein "Workstation Trust"-Konto. Diese Art von
@@ -186,8 +185,8 @@
 <refsect1>
 	<title>VERSION</title>
 
-	<para>Diese manpage ist korrekt für die Version 3.0 der 
-	Samba Suite.</para>
+	<para>Diese Manpage ist korrekt für die Version 3.0 der 
+	Samba-Suite.</para>
 </refsect1>
 
 <refsect1>
@@ -207,14 +206,14 @@
 	Samba-Team als ein Open-Source-Projekt entwickelt, ähnlich wie 
 	der Linux-Kernel.</para>
 
-	<para>Die originalen Samba-manpages wurden von Karl Auer geschrieben.
-	Die manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
-	exzellentes Stück Open Source Software, verfügbar unter <ulink
-	url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
-	und für die Samba 2.0 Release von Jeremy Allison aktualisiert. Die 
+	<para>Die originalen Samba-Manpages wurden von Karl Auer geschrieben.
+	Die Manpage-Quelltexte wurden ins YODL-Format konvertiert (ein weiteres 
+	exzellentes Stück Open-Source-Software, verfügbar unter <ulink url="ftp://ftp.icce.rug.nl/pub/unix/">ftp://ftp.icce.rug.nl/pub/unix/</ulink>)
+	und für die Samba 2.0-Release von Jeremy Allison aktualisiert. Die 
 	Umwandlung ins DocBook-Format wurde von Gerald Carter für Samba 2.2 
 	durchgeführt. Die Umwandlung in DocBook für XML 4.2 wurde von Alexander 
 	Bokovoy für Samba 3.0 durchgeführt.</para>
 </refsect1>
 
 </refentry>
+
