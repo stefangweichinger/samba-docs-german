@@ -12,8 +12,8 @@
 <sect1>
 <title>Einführung</title>
 <para>
-Diese Anmerkung wurde den Release-Notes zu Samba 2.2.8 hinzugefügt, da sie eine
-wichtige Sicherheits-Korrektur enthält. Die hier enthaltene Information gilt generell
+Diese Anmerkung wurde zu den Release-Notes zu Samba 2.2.8 hinzugefügt, da sie eine
+wichtige Sicherheitskorrektur enthält. Die hier enthaltene Information gilt generell
 für Samba-Installationen.
 </para>
 
@@ -26,9 +26,9 @@ Der Ingenieur antwortete:<quote>Du lehnst daran!</quote>
 </blockquote>
 
 <para>
-Sicherheits-Bedenken sind genau so. Sie müssen ein wenig über das Thema wissen, um anzuerkennen, wie
+Sicherheitsbedenken sind genau so. Sie müssen ein wenig über das Thema wissen, um anzuerkennen, wie
 offensichtlich das meiste davon ist. Die Herausforderung für die meisten von uns ist, den ersten
-Brocken des Wissens zu entdecken, mit dem wir die Geheimnisse der Meister für uns eröffnen könnten.
+Brocken des Wissens zu entdecken, mit dem wir die Geheimnisse der Meister entschlüsseln können.
 </para>
 
 </sect1>
@@ -37,8 +37,8 @@ Brocken des Wissens zu entdecken, mit dem wir die Geheimnisse der Meister für un
 <title>Eigenschaften und Vorzüge</title>
 
 <para>
-Es gibt drei Ebenen, auf denen Sicherheits-Prinzipien beachtet werden müssen, um eine Installation
-zumindest einigermassen sicher zu gestalten. Diese sind die umgebende Firewall, die Konfiguration
+Es gibt drei Ebenen, auf denen Sicherheitsprinzipien beachtet werden müssen, um eine Installation
+zumindest einigermaßen sicher zu gestalten. Diese sind die umgebende Firewall, die Konfiguration
 des Host-Servers, der Samba ausführt, und Samba selbst.
 </para>
 
@@ -50,33 +50,33 @@ ermöglichen.
 
 <para>
 Samba kann gegenüber Verbindungen abgesichert werden, die von außerhalb des LAN herrühren.
-Dies kann durch die Verwendung von <emphasis>host-based protection</emphasis> geschehen,
-(unter Verwendung der Samba-Implementation einer Technologie namens <quote>tcpwrappers</quote>),
-oder durch die Verwendung von <emphasis>interface-based exclusion</emphasis>, sodaß &smbd; sich
-nur an bestimmte erlaubte Netz-Interfaces bindet. Es ist auch möglich, Ausschliessungen spezifisch
-für Freigaben oder Ressourcen zu setzen, zum Beispiel auf die automatische Freigabe
-<smbconfsection>[IPC$]</smbconfsection>. Diese Freigabe wird für Browsing-Zwecke ebenso verwendet, wie
+Dies kann durch die Verwendung von <emphasis>host-based protection</emphasis> geschehen
+(unter Verwendung der Samba-Implementation einer Technologie namens <quote>tcpwrappers</quote>)
+oder durch die Verwendung von <emphasis>interface-based exclusion</emphasis>, so dass &smbd; sich
+nur an bestimmte erlaubte Netz-Interfaces bindet. Es ist auch möglich, Ausschlüsse spezifisch
+für Freigaben oder Ressourcen zu setzen, zum Beispiel für die automatische Freigabe
+<smbconfsection>[IPC$]</smbconfsection>. Diese Freigabe wird für Browsing-Zwecke ebenso verwendet wie
 zur Herstellung von TCP/IP-Verbindungen.
 </para>
 
 <para>
 Eine andere Methode, um Samba abzusichern, ist das Setzen von 
 <quote>Access Control Entries</quote> (ACEs) in einer
-Zugriffs-Kontroll-Liste (ACL) auf den Freigaben selbst. Dies wird in <link linkend="AccessControls"/>
-diskutiert.
+Zugriffskontroll-Liste (ACL) auf den Freigaben selbst. Dies wird in <link linkend="AccessControls"/>
+beschrieben.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Technische Diskussion von Schutzmaßnahmen</title>
+<title>Technische Beschreibung von Schutzmaßnahmen</title>
 
 <para>
-Die eigentliche Herausforderung der Sicherheit ist die Tatsache, daß Schutzmaßnahmen nur
-dazu ausreichen, die Tür für bekannte <quote>exploit</quote>- und <quote>breach</quote>-Techniken zu schliessen.
-Nehmen Sie niemals an, daß weil Sie diese paar Maßnahmen befolgt haben, der Samba-Server
-nun eine uneinnehmbare Festung ist! Wenn man die bisherige Geschichte von Informations-Systemen
-anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkeit findet.
+Die eigentliche Herausforderung bei allen Sicherheitsbestrebungen ist die Tatsache, dass Schutzmaßnahmen nur
+dazu ausreichen, die Tür für bekannte <quote>exploit</quote>- und <quote>breach</quote>-Techniken zu schließen.
+Nehmen Sie niemals an, dass der Samba-Server
+nun eine uneinnehmbare Festung sei, nur weil Sie ein paar Maßnahmen befolgt haben! Wenn man die bisherige Geschichte von Informationssystemen
+anschaut, ist es nur eine Frage der Zeit, bis jemand einen weiteren Schwachpunkt findet.
 </para>
 
 	<sect2>
@@ -84,16 +84,15 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 
 	<para>
 	In vielen Installationen von Samba kommt die größte Bedrohung von außerhalb
-	des unmittelbaren Netzes. Standardmässig akzeptiert Samba Verbindungen von jedem
-	Host, was bedeutet, daß wenn Sie eine unsichere Version von Samba auf einem Host
-	ausführen, der direkte Verbindung zum Internet hat, Sie besonders gefährdet sein
-	können.
+	des unmittelbaren Netzes. Standardmäßig akzeptiert Samba Verbindungen von jedem
+	Host, was bedeutet, dass Sie besonders gefährdet sein können, wenn Sie eine unsichere Version von Samba auf einem Host
+	ausführen, der direkte Verbindung zum Internet hat.
 	</para>
 
 	<para>
 	Eine der einfachsten Abhilfen in diesem Fall ist die Verwendung der Optionen
 	<smbconfoption><name>hosts allow</name></smbconfoption> und
-	<smbconfoption><name>hosts deny</name></smbconfoption> in der &smb.conf; Konfigurations-Datei,
+	<smbconfoption><name>hosts deny</name></smbconfoption> in der Konfigurationsdatei &smb.conf;,
 	um den Zugriff auf Ihren Server auf eine spezifizierte Menge von Hosts einzuschränken.
 	Ein Beispiel könnte sein:	
 	</para>
@@ -104,7 +103,7 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</smbconfblock></para>
 
 	<para>
-	Obiges wird nur SMB-Verbindungen von <constant>localhost</constant> (Ihrem eigenen Rechner)
+	Diese Einstellung wird nur SMB-Verbindungen von <constant>localhost</constant> (Ihrem eigenen Rechner)
 	und von den beiden privaten Netzen 192.168.2 und 192.168.3 erlauben. Alle anderen
 	Verbindungen werden abgelehnt, sobald der Client sein erstes Paket sendet.
 	Die Ablehnung wird als <errorname>not listening on called name</errorname>-Fehler
@@ -127,7 +126,7 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</smbconfblock></para>
 
 	<para>
-	Dies schränkt allen Server-Zugriff auf entweder den Benutzer <emphasis>jacko</emphasis>,
+	Dies schränkt allen Server-Zugriff auf entweder den Benutzer <emphasis>jacko</emphasis>
 	oder Mitglieder der System-Gruppe <emphasis>smbusers</emphasis> ein.
 	</para>
 
@@ -138,8 +137,8 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	<title>Benutzen von Schnittstellen-Schutz</title>
 
 	<para>
-	Standardmässig akzeptiert Samba Verbindungen auf jeder Netzwerk-Schnittstelle, die
-	es in Ihrem System findet. Das bedeutet, daß wenn Sie eine ISDN-Verbindung oder
+	Standardmäßig akzeptiert Samba Verbindungen auf jeder Netzwerk-Schnittstelle, die
+	es in Ihrem System findet. Das bedeutet: Wenn Sie eine ISDN-Verbindung oder
 	einen PPP-Tunnel zum Internet haben, wird Samba Verbindungen über diese
 	Schnittstellen akzeptieren. Das könnte etwas sein, das Sie nicht wollen.
 	</para>
@@ -155,18 +154,18 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 
 	<para>
 	Dies weist Samba an, Verbindungen nur auf Schnittstellen zu erwarten, die mit
-	<constant>eth</constant> beginnen, wie <constant>eth0, eth1</constant>, sowie auf
+	<constant>eth</constant> beginnen (wie <constant>eth0, eth1</constant>) sowie auf
 	dem loopback-Interface namens <constant>lo</constant>. Der zu verwendende Name
-	hängt vom verwendeten Betriebssystem ab. In obigem Beispiel wurden die unter Linux
+	hängt vom verwendeten Betriebssystem ab. Im Beispiel oben wurden die unter Linux
 	gängigen Namen für Ethernet-Karten verwendet.	
 	</para>
 
 	<para>
-	Wenn Sie das obige Beispiel verwenden, und jemand versucht, 
+	Wenn Sie das obige Beispiel verwenden und jemand versucht, 
 	eine SMB-Verbindung über eine PPP-Schnittstelle namens <constant>ppp0</constant> herzustellen,
 	wird er eine Ablehnung erhalten. In diesem Fall wird keinerlei Samba-Code ausgeführt,
-	da das OS angewiesen wurde, keine Verbindungen von dieser Schnittstelle an jeglichen
-	Samba-Prozeß weiterzuleiten.
+	da das OS angewiesen wurde, keine Verbindungen von dieser Schnittstelle an irgendeinen
+	Samba-Prozess weiterzuleiten.
 	</para>
 
 	</sect2>
@@ -177,13 +176,13 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	<para>
 	Viele verwenden eine Firewall, um Zugriff auf Dienste zu sperren, die sie nicht
 	außerhalb ihres Netzwerks anbieten wollen. Dies kann eine gute Idee sein, obwohl
-	wir es empfehlen, die Firewall gemeinsam mit obigen Methoden einzusetzen, so daß
+	wir empfehlen, die Firewall gemeinsam mit obigen Methoden einzusetzen, so dass
 	Sie auch geschützt sind, wenn die Firewall aus irgendwelchen Gründen nicht
 	aktiv ist.
 	</para>
 
 	<para>
-	Wenn Sie eine Firewall aufsetzen, müssen Sie wissen, welche TCP- und UDP-ports
+	Wenn Sie eine Firewall aufsetzen, müssen Sie wissen, welche TCP- und UDP-Ports
 	zu öffnen bzw. zu blockieren sind. Samba benutzt die folgenden Ports:	
 	</para>
 
@@ -203,18 +202,18 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</sect2>
 
 	<sect2>
-	<title>Verwenden von IPC$-Freigaben-basierenden Ablehnungen</title>
+	<title>Verwenden von Ablehnungen, die auf IPC$-Freigaben basieren </title>
 
 	<para>
-	Wenn die obigen Methoden nicht anwendbar sind, könnten Sie auch eine mehr
-	spezifische Ablehnung auf der IPC$-Freigabe setzen, die in einer kürzlich
+	Wenn die obigen Methoden nicht anwendbar sind, könnten Sie auch eine 
+	spezifischere Ablehnung auf der IPC$-Freigabe setzen, die in einer kürzlich
 	entdeckten Sicherheitslücke verwendet wird. Dies erlaubt Ihnen, Zugriff auf
-	andere Freigaben anzubieten, während Sie den Zugriff von potentiell
+	andere Freigaben anzubieten, während Sie den Zugriff von potenziell
 	nicht vertrauenswürdigen Hosts auf IPC$ ablehnen.
 	</para>
 
 	<para>
-	Um dies zu tun, könnten Sie folgendes verwenden:	
+	Um dies zu tun, verwenden Sie folgendes:	
 	</para>
 
 	<para><smbconfblock>
@@ -224,19 +223,19 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</smbconfblock></para>
 
 	<para>
-	Dies weist Samba an, daß IPC$-Verbindungen nicht erlaubt sind, außer von den zwei
-	angeführten Netzwerk-Adressen (localhost und das Subnetz 192.168.115).
+	Dies weist Samba an, dass IPC$-Verbindungen nicht erlaubt sind, außer von den zwei
+	angeführten Netzwerk-Adressen (localhost und dem Subnetz 192.168.115).
 	Verbindungen zu anderen Freigaben sind weiter erlaubt. Da die IPC$-Freigabe die 
 	einzige Freigabe ist, auf die anonym zugegriffen werden kann, schafft dies einen
-	gewisse Schutz gegen Angreifer, die keine gültige Benutzernamen/Paßwort-Kombination
+	gewisse Schutz vor Angreifern, die keine gültige Benutzernamen/Passwort-Kombination
 	für Ihren Server kennen.
 	</para>
 
 	<para>
-	Wenn Sie diese Methode anwenden, werden Clients eine <errorname>`access denied'</errorname>-Meldung
-	erhalten, wenn Sie sich mit der IPC$-Freigabe zu verbinden versuchen. Diese Clients
+	Wenn Sie diese Methode anwenden, werden Clients eine <errorname>'access denied'</errorname>-Meldung
+	erhalten, wenn sie versuchen, sich mit der IPC$-Freigabe zu verbinden. Diese Clients
 	werden keine Freigaben durchsuchen können, und sie können auch manche andere Dienste
-	nicht benutzen können. Diese Methode wird nicht empfohlen, außer Sie können aus einem
+	nicht benutzen. Diese Methode wird nicht empfohlen, außer Sie können aus einem
 	bestimmten Grund keine der anderen oben beschriebenen Methoden anwenden.
 	</para>
 
@@ -246,7 +245,7 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	<title>NTLMv2-Sicherheit</title>
 
 	<para>
-	Um NTLMv2-Authentifizierung zu konfigurieren, sind die folgenden Registrierungs-Schlüssel
+	Um eine NTLMv2-Authentifizierung zu konfigurieren, sind die folgenden Registrierungsschlüssel
 	wichtig:
 	</para>
 
@@ -258,9 +257,9 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</para>
 
 	<para>
-	Der Wert 0x00000003 bedeutet, daß nur NTLMv2-Antworten gesendet werden.
-	Clients werden NTLMv2-Authentifizierung verwenden, und NTLMv2-Session-Security, wenn
-	es der Server unterstützt. Domänen-Controller akzeptieren LM, NTLM, und NTLMv2-Authentifizierung.
+	Der Wert 0x00000003 bedeutet, dass nur NTLMv2-Antworten gesendet werden.
+	Clients werden die NTLMv2-Authentifizierung verwenden, und die NTLMv2-Session-Security, wenn
+	es der Server unterstützt. Domänencontroller akzeptieren LM-, NTLM- und NTLMv2-Authentifizierung.
 	</para>
 
 	<para>
@@ -271,9 +270,9 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 	</para>
 
 	<para>
-	Der Wert 0x00080000 bedeutet, daß nur NTLMv2-Session-Security akzeptiert wird.
+	Der Wert 0x00080000 bedeutet, dass nur NTLMv2-Session-Security akzeptiert wird.
 	Wenn entweder NtlmMinClientSec oder NtlmMinServerSec auf 0x00080000 gesetzt ist, wird
-	die Verbindung fehlschlagen, wenn NTLMv2-Session-Security nicht verhandelt wird.
+	die Verbindung fehlschlagen, wenn die NTLMv2-Session-Security nicht ausgehandelt wird.
 	</para>
 	</sect2>
 </sect1>
@@ -282,9 +281,8 @@ anschaut, ist es nur eine Frage der Zeit, bis jemand eine weitere Verletzlichkei
 <title>Upgrade von Samba</title>
 
 <para>
-Bitte überprüfen Sie regelmässig <ulink noescape="1" url="http://www.samba.org/">http://www.samba.org/</ulink>
-für Updates und wichtige Verlautbarungen. Gelegentlich werden Sicherheits-Releases herausgegeben, und es
-ist wärmstens empfohlen, ein Upgrade von Samba durchzuführen, wenn eine Sicherheits-Lücke entdeckt wird.
+Bitte überprüfen Sie regelmäßig <ulink noescape="1" url="http://www.samba.org/">http://www.samba.org/</ulink>
+auf Updates und wichtige Verlautbarungen. Gelegentlich werden Sicherheits-Releases herausgegeben, und wir empfehlen Ihnen dringend, ein Upgrade von Samba durchzuführen, wenn eine Sicherheitslücke entdeckt wird.
 Prüfen Sie auch die Seiten des Lieferanten Ihres Betriebssystems auf Upgrades, die spezifisch für Ihr
 Betriebssystem sind. 
 </para>
@@ -296,10 +294,10 @@ Betriebssystem sind.
 
 <para>
 Wenn die ganze Konfiguration von Samba und seiner Host-Plattform wirklich so intuitiv wäre, wie es sich
-mancher wünscht, dann wäre dieser Abschnitt unnötig. Sicherheits-Fragen sind oft ärgerlich für die
-Support-Person, die sie aufzulösen hat, nicht nur wegen der Komplexität des Problems, sondern aus dem Grund,
-daß die meisten Administratoren, die von etwas berichten, das sich dann als Sicherheits-Problem
-herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
+mancher wünscht, dann wäre dieser Abschnitt unnötig. Sicherheitsfragen sind oft ärgerlich für die
+Support-Person, die sie zu lösen hat, nicht nur wegen der Komplexität des Problems, sondern aus dem Grunde,
+dass die meisten Administratoren, die von etwas berichten, das sich dann als Sicherheitsproblem
+herausstellt, völlig überzeugt davon sind, dass das Problem an Samba liegt.
 </para>
 
 	<sect2>
@@ -312,9 +310,8 @@ herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 	</para>
 
 	<para>
-	Die Lösung ist es, entweder die Firewall zu entfernen (stoppen), oder das Firewall-Skript
-	so zu modifizieren, daß die Firewall SMB-Netzwerk-Verkehr durchläßt.
-	Siehe den obigen Abschnitt hierzu.	
+	Die Lösung ist es, entweder die Firewall zu entfernen (stoppen) oder das Firewall-Skript
+	so zu modifizieren, dass die Firewall SMB-Netzwerk-Verkehr durchlässt (siehe den obigen Abschnitt hierzu).	
 	</para>
 
 	</sect2>
@@ -327,34 +324,33 @@ herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 	We are unable to keep individual users from mapping to any other user's
 	home directory once they have supplied a valid password! They only need
 	to enter their own password. I have not found any method to configure
-	Samba so that  users may map only their own home directory.
+	Samba so that  users may map only their own home directory.(((Bitte übersetzen)))
 	</quote>
 	</para>
 
 	<para><quote>
 	User xyzzy can map his home directory. Once mapped user xyzzy can also map
-	anyone else's home directory.
+	anyone else's home directory.(((Bitte übersetzen)))
 	</quote></para>
 
 	<para>
-	Dies ist kein Sicherheits-Versäumnis, sondern per Design vorgesehen.
-	Samba erlaubt Benutzern	denselben Zugriff auf das UNIX-Dateisystem, wie wenn
-	sie an der UNIX-Maschine angemeldet wären, mit der Einschränkung, daß es nur
+	Dies ist kein Sicherheitsversäumnis, sondern vom Design so vorgesehen.
+	Samba erlaubt Benutzern	denselben Zugriff auf das UNIX-Dateisystem, als wären
+	sie an der UNIX-Maschine angemeldet, mit der Einschränkung, dass es nur
 	Zugriff auf die Dateien erlaubt, die von den definierten Freigaben erlaubt sind.
 	</para>
 
 	<para>
-	Wenn Ihre UNIX-home-Verzeichnisse so angelegt sind, daß ein Benutzer einfach per
+	Wenn Ihre UNIX-home-Verzeichnisse so angelegt sind, dass ein Benutzer einfach per
 	<command>cd</command> in das home-Verzeichnis eines anderen Benutzers gelangen und
-	<command>ls</command> ausführen kann, so ist die UNIX-Sicherheits-Lösung dafür,
-	die Datei-Erlaubnisse für die home-Verzeichnisse so zu setzen, daß die Befehle
+	<command>ls</command> ausführen kann, so ist die UNIX-Sicherheitslösung dafür,
+	die Datei-Erlaubnisse für die home-Verzeichnisse so zu setzen, dass die Befehle
 	<command>cd</command> und <command>ls</command> abgelehnt werden.	
 	</para>
 
 	<para>
-	Samba versucht sehr streng, die Sicherheits-Richtlinien des UNIX-Administrators
-	nicht zu hinterfragen, und ihm zu vertrauen, die Richtlinien und Erlaubnisse so zu setzen,
-	wie er es für richtig hält.	
+	Samba ist so eingeichtet, dass es die Sicherheitsrichtlinien des UNIX-Administrators
+	nicht hinterfragt und ihm zu vertraut, dass er die Richtlinien und Erlaubnisse so setzt, wie er es für richtig hält.	
 	</para>
 
 	<para>
@@ -366,7 +362,7 @@ herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 	<para>
 	Die Option <smbconfoption><name>only user</name><value></value></smbconfoption> arbeitet
 	in Wechselwirkung mit <smbconfoption><name>users</name><value>list</value></smbconfoption>,
-	also müssen Sie, um das gewünschte Verhalten zu erzielen, die Zeile hinzufügen:
+	also müssen Sie, um das gewünschte Verhalten zu erzielen, folgende Zeile hinzufügen:
 	<smbconfblock>
 <smbconfoption><name>users</name><value>%S</value></smbconfoption>
 </smbconfblock>
@@ -374,8 +370,8 @@ herausstellt, völlig überzeugt davon sind, daß das Problem an Samba liegt.
 	<smbconfblock>
 <smbconfoption><name>valid users</name><value>%S</value></smbconfoption>
 	</smbconfblock>
-	zur Definition der <smbconfsection>[homes]</smbconfsection>-Freigabe, wie in der manpage
-	zu &smb.conf; empfohlen.	
+	zur Definition der <smbconfsection>[homes]</smbconfsection>-Freigabe, wie es in der Manpage
+	zu &smb.conf; empfohlen wird.	
 	</para>
 	</sect2>
 
