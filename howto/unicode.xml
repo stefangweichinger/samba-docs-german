@@ -5,7 +5,7 @@
 	&author.jelmer;
 	&author.jht;
 	<author>
-		<firstname>TAKAHASHI</firstname><surname>Motonobu</surname>
+		<firstname>Takahashi</firstname><surname>Motonobu</surname>
 		<affiliation>
 		<address><email>monyo@home.monyo.com</email></address>
 		</affiliation>
@@ -17,7 +17,7 @@
 <title>Unicode/Zeichensätze</title>
 
 <sect1>
-<title>Features und Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
 Wahrscheinlich wird jede Industrie erwachsen. Einer der größten Bereiche dieses 
@@ -367,7 +367,7 @@ begründet:
 
 			<para>
 			Um CAP-Codierung mit Samba-3 zu verwenden, sollten Sie den Parameter 
-			<smbconfoption><name>unix charset</name> und VFS wie folgt verwenden:
+			<smbconfoption><name>unix charset</name></smbconfoption> und VFS wie folgt verwenden:
 			</para>
 
 <smbconfexample><title>VFS CAP</title>
@@ -382,7 +382,8 @@ begründet:
 </smbconfexample>
 
 			<para>
-			Sie sollten den Parameter <smbconfoption><name>unix charset</name> auf CP932 setzen, 
+			Sie sollten den Parameter <smbconfoption><name>unix charset</name></smbconfoption>
+			 auf CP932 setzen, 
 			wenn Sie GNU libiconv verwenden. Dadurch werden die Dateinamen in der Freigabe
 			<quote>cap-share</quote> mit CAP-Codierung geschrieben.
 			</para>
