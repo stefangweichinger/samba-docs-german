@@ -27,7 +27,7 @@ Windows-Clients zuverlässig und nahtlos zur Verfügung stellen.
 </para>
 
 <para>
-Ein Samba-Druckdienst kann auf einem Standalone- oder Domain Member-Server???
+Ein Samba-Druckdienst kann auf einem Standalone- oder Domänenmitglieds-Server
 betrieben werden, gemeinsam mit Dateiserver-Funktionen, oder auch auf 
 einem eigenen Druckserver. Seine Sicherheit kann je nach Bedarf zwischen 
 sehr hoch und sehr niedrig gewählt werden. Die Konfiguration kann
@@ -1766,7 +1766,7 @@ Neuere Treiber auf Windows 2000 und Windows XP werden im Unterverzeichnis
 wie sie in Windows NT benutzt werden, liefen vorher im Kernel-Mode. Mit
 Windows 2000 hat sich das verändert. Zwar kann es weiterhin die Treiber im 
 Kernel-Mode benutzen (falls das vom Administrator erlaubt ist), aber der
-native Modus für seine Druckertreiber ist die Ausführung im User-Mode???. 
+native Modus für seine Druckertreiber ist die Ausführung im User-Modus. 
 Dafür sind speziell entworfene Treiber notwendig. Diese Art von Treibern
 werden im Unterverzeichnis <quote>3</quote> installiert.
 </para></note>
@@ -2328,19 +2328,19 @@ Reiter <guimenu>Allgemein</guimenu> gibt es einen Knopf genau dafür. Aber sehr
 wahrscheinlich würden Sie eine Fehlermeldung namens 
 <errorname>Unable to print Test Page</errorname> ??? erhalten. 
 Der Grund könnte sein, dass noch kein 
-gültiger Device Mode ??? für den Drucker gesetzt ist, oder dass der Satz an 
+gültiger Device-Modus für den Drucker gesetzt ist, oder dass der Satz an 
 <quote>Druckertreiberdaten</quote> noch immer unvollständig ist.
 </para>
 
 <para>
 Sie müssen sicherstellen, dass für den Drucker ein gültiger 
-<parameter>Device Mode</parameter> ??? gesetzt ist. Wir wollen nun erklären, 
+<parameter>Device-Modus</parameter> gesetzt ist. Wir wollen nun erklären, 
 was das bedeutet.
 </para>
 </sect2>
 
 <sect2>
-<title>Device Modes ??? auf neuen Druckern setzen</title>
+<title>Device-Modus auf neuen Druckern setzen</title>
 
 <para>
 Damit ein Drucker wirklich auf einem Windows NT/200x/XP-Client benutzt werden
@@ -2349,7 +2349,7 @@ kann, muss er über folgendes verfügen:
 
 <itemizedlist>
 	<listitem><para>
-	Einen gültigen <emphasis>Device Mode</emphasis>???, der von dem 
+	Einen gültigen <emphasis>Device-Modus</emphasis>, der von dem 
 	Druckertreiber generiert wird (und Dinge wie die Papiergröße,
 	-ausrichtung und Duplex-Einstellungen definiert).
 	</para></listitem>
@@ -3567,7 +3567,7 @@ einschlagen. Hier sind einige mögliche Migrationsszenarien:
 
 	<para>
 	für ein Beispiel. Siehe auch die Diskussion zur Benutzung von rpcclient
-	im Abschnitt <quote>Unterstützung des CUPS-Drucksystems</quote> ???.</para></listitem>
+	im Abschnitt <quote>Unterstützung des CUPS-Drucksystems</quote>.</para></listitem>
 </itemizedlist>
 </sect1>
 
