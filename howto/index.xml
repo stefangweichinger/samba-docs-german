@@ -12,7 +12,6 @@
 	<editor>&person.jelmer;</editor>
 	<editor>&person.jht;</editor>
 	<editor>&person.jerry;</editor>
-	<pubdate>November 15, 2003</pubdate>
 	<editor>&person.gertrans;<contrib>German Translation Team</contrib></editor>
 	</authorgroup>
 
@@ -27,6 +26,11 @@ auf der "Documentation" Seite. Bitte senden Sie Neuigkeiten an
 <ulink url="mailto:jelmer@samba.org">Jelmer Vernooij</ulink>,
 <ulink url="mailto:jht@samba.org">John H. Terpstra</ulink> oder
 <ulink url="mailto:jerry@samba.org">Gerald (Jerry) Carter</ulink>.
+</para>
+
+<para>
+Anmerkungen zur deutschen Fassung senden Sie bitte an
+<ulink url="mailto:monitor@oops.co.at">Stefan G. Weichinger</ulink>.
 </para>
 
 <para>
