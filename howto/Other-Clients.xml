@@ -10,30 +10,30 @@
 
 <title>Samba und andere CIFS-Clients</title>
 
-<para>Dieses Kapitel enthält client-spezifische Informationen.</para>
+<para>Dieses Kapitel enthält clientspezifische Informationen.</para>
 
 <sect1>
-<title>Macintosh Clients</title>
+<title>Macintosh-Clients</title>
 
 <para>
-Ja. <ulink url="http://www.thursby.com/">Thursby</ulink> hat einen CIFS-Client/Server namens <ulink url="http://www.thursby.com/products/dave.html">DAVE.</ulink>
+Ja, <ulink url="http://www.thursby.com/">Thursby</ulink> hat einen CIFS-Client/Server namens <ulink url="http://www.thursby.com/products/dave.html">DAVE.</ulink>
 Er wird gegen Windows 95, Windows NT /200x/XP und Samba auf Kompatibilität geprüft. Bei Verfassen
-dieses Textes war DAVE in Version 4.1 erhältlich. Bitte konsultieren Sie Thursby's Web-Seite für mehr
+dieses Textes war DAVE in Version 4.1 erhältlich. Bitte konsultieren Sie Thursbys Webseite für mehr
 Informationen zu diesem Produkt.
 </para>
 
 <para> 
 Alternativen &smbmdash; Es gibt zwei freie Implementationen von Appletalk für einige Arten von
 UNIX-Maschinen und noch einige kommerzielle mehr. Diese Produkte erlauben es Ihnen, 
-native Datei- und Druck-Dienste für Macintosh-Benutzer anzubieten, ohne daß weitere Unterstützung
+native Datei- und Druck-Dienste für Macintosh-Benutzer anzubieten, ohne dass weitere Unterstützung
 dafür auf dem Macintosh erforderlich wäre.
 Die zwei freien Implementationen sind
-<ulink url="http://www.umich.edu/~rsug/netatalk/">Netatalk,</ulink> und
+<ulink url="http://www.umich.edu/~rsug/netatalk/">Netatalk</ulink> und
 <ulink url="http://www.cs.mu.oz.au/appletalk/atalk.html">CAP.</ulink>
 Diese Packages bieten Macs das, was Samba Benutzern von MS Windows bietet.
-Für mehr Informationen zu diesen Packages, Samba und Linux (sowie andere UNIX-basierende Systeme),
-sehen Sie 
-<ulink noescape="1" url="http://www.eats.com/linux_mac_win.html">http://www.eats.com/linux_mac_win.html.</ulink>
+Für mehr Informationen zu diesen Packages, Samba und Linux (sowie anderen UNIX-basierenden Systemen)
+sehen Sie sich bitte 
+<ulink noescape="1" url="http://www.eats.com/linux_mac_win.html">http://www.eats.com/linux_mac_win.html</ulink> an.
 </para>
 
 <para>Neuere Versionen des Macintosh (Mac OS X) enthalten Samba.</para>
@@ -41,7 +41,7 @@ sehen Sie
 </sect1>
 
 <sect1>
-<title>OS/2 Client</title>
+<title>OS/2-Clients</title>
 
 	<sect2>
 		<title>Das Konfigurieren von OS/2 Warp Connect oder OS/2 Warp 4</title>
@@ -50,31 +50,31 @@ sehen Sie
 		
 		<itemizedlist>
 			<listitem>Den Datei- und Druck-Client (IBM Peer)</listitem>
-			<listitem>TCP/IP (Internet support) </listitem>
+			<listitem>TCP/IP (Internet-Support) </listitem>
 			<listitem>Den <quote>NetBIOS über TCP/IP</quote>-Treiber (TCPBEUI)</listitem>
 		</itemizedlist>
 		
-		<para>Das Installieren der ersten beiden, gemeinsam mit dem Basis-Betriebssystem,
-		auf einem leeren System ist im Warp-Handbuch beschrieben. Wenn Warp bereits
+		<para>Wie Sie die ersten beiden gemeinsam mit dem Basis-Betriebssystem
+		auf einem leeren System installieren, ist im Warp-Handbuch beschrieben. Wenn Warp bereits
 		installiert wurde, Sie aber nun die Netzwerk-Unterstützung installieren wollen,
 		verwenden Sie den Eintrag <quote>Selective Install for Networking</quote>
-		im Ordner <quote>System Setup</quote> folder.</para>
+		im Ordner <quote>System Setup</quote>.</para>
 
 		<para>Das Hinzufügen des <quote>NetBIOS über TCP/IP</quote>-Treibers wird nicht
 		im Handbuch beschrieben und auch von der Online-Dokumentation nur gestreift.
 		Starten Sie <command>MPTS.EXE</command>, klicken Sie auf <guiicon>OK</guiicon>,
-		dann <guimenu>Configure LAPS</guimenu>, und auf 
+		dann auf <guimenu>Configure LAPS</guimenu> und auf 
 		<guimenu>IBM OS/2 NETBIOS OVER TCP/IP</guimenu> unter <guilabel>Protocols</guilabel>.
 		Diese Zeile wird dann in die <guilabel>Current Configuration</guilabel> verschoben.
-		Wählen Sie diese Zeile aus, klicken Sie auf <guimenuitem>Change number</guimenuitem>
+		Wählen Sie diese Zeile aus, klicken Sie auf <guimenuitem>Change number</guimenuitem>,
 		und erhöhen Sie den Wert von 0 auf 1. Speichern Sie diese Konfiguration.</para>
 
 		<para>Wenn der Samba-Server nicht in Ihrem lokalen Subnetz ist, können Sie
 		optional IP-Namen und -Adressen dieser Server zur <guimenu>Names List</guimenu>
-		hinzufügen, oder einen WINS-Server (NetBIOS Nameserver, in der 
+		hinzufügen oder einen WINS-Server (NetBIOS Nameserver, in der 
 		Terminologie von IBM und RFC) spezifizieren. Für Warp Connect brauchen Sie
 		eventuell ein Update für den <constant>IBM Peer</constant>, um ihn auf dasselbe
-		Level wie Warp 4 zu bringen. Sehen Sie dazu obige Webseite.</para>
+		Level wie Warp 4 zu bringen. Sehen Sie dazu auf der oben genannten Webseite nach.</para>
 
 	</sect2>
 	
@@ -87,9 +87,9 @@ sehen Sie
 		verwenden, der unter
 		<ulink noescape="1" url="ftp://ftp.microsoft.com/BusSys/Clients/LANMAN.OS2/">
 		ftp://ftp.microsoft.com/BusSys/Clients/LANMAN.OS2/</ulink> erhältlich ist.
-		Kurz gesagt, editieren Sie die Datei 
-		<filename>\OS2VER</filename> im root-Verzeichnis der OS/2-Boot-Partition 
-		und fügen Sie folgende Zeilen ein</para>
+		Kurz gesagt: Editieren Sie die Datei 
+		<filename>\OS2VER</filename> im root-Verzeichnis der OS/2-Boot-Partition, 
+		und fügen Sie die Zeilen</para>
 	
 		<para><programlisting>
 		20=setup.exe
@@ -97,22 +97,22 @@ sehen Sie
 		20=netvdd.sys
 		</programlisting></para>
 		
-		<para>bevor Sie den Client installieren. 
-		Verwenden Sie den inkludierten NE2000-Treiber NICHT, da er fehlerhaft ist.
-		Versuchen Sie stattdessen den NE2000- oder NS2000-Treiber von
+		<para>ein, bevor Sie den Client installieren. 
+		Verwenden Sie den NICHT den vorhandenen NE2000-Treiber, da er fehlerhaft ist.
+		Probieren Sie stattdessen den NE2000- oder NS2000-Treiber von
 		<ulink noescape="1" url="ftp://ftp.cdrom.com/pub/os2/network/ndis/">
- 		ftp://ftp.cdrom.com/pub/os2/network/ndis/</ulink>.
+ 		ftp://ftp.cdrom.com/pub/os2/network/ndis/</ulink> aus.
 		</para>
 	</sect2>
 	
 	<sect2>
-		<title>Drucker-Treiber-Download für OS/2-Clients</title>
+		<title>Druckertreiber-Download für OS/2-Clients</title>
 
 		<para>Legen Sie eine Freigabe namens <smbconfsection>[PRINTDRV]</smbconfsection> an,
 		die world-readable ist. Kopieren Sie Ihre OS/2-Treiber-Dateien dorthin.
 		Die <filename>.EA_</filename>-Dateien müssen jedoch weiter separat beleiben, also
-		werden Sie die originalen Installations-Dateien benutzen müssen, und nicht einen
-		installierten Treiber von einem OS/2-System kopieren können.
+		werden Sie die originalen Installationsdateien benutzen müssen und dürfen keinen
+		installierten Treiber von einem OS/2-System kopieren.
 		</para>
 		
 		<para>Installieren Sie zuerst den NT-Treiber für diesen Drucker. Dann fügen Sie den 
@@ -121,7 +121,7 @@ sehen Sie
 		zu Ihrer Datei &smb.conf; hinzu.
 
 		Als Nächstes weisen Sie in der Datei, die durch <replaceable>filename</replaceable>
-		bezeichnet wird, den NT-Treibernamen dem OS/2-Treibernamen zu, wie folgt:</para>
+		bezeichnet wird, den NT-Treibernamen dem OS/2-Treibernamen wie folgt zu:</para>
 
 		<para><parameter><replaceable>nt driver name</replaceable> = <replaceable>os2 driver name</replaceable>.<replaceable>device name</replaceable></parameter>, e.g.</para>
 
@@ -130,10 +130,10 @@ sehen Sie
 
 		<para>Sie können in dieser Datei mehrere Treiberzuweisungen vornehmen.</para>
 	
-		<para>Wenn Sie nur den OS/2-Treibernamen angeben, aber nicht den device-Namen,
+		<para>Wenn Sie nur den OS/2-Treibernamen angeben, aber nicht den Device-Namen,
 		werden im ersten Versuch zwar die Dateien geladen, aber der OS/2-Client wird melden,
-		daß der Treiber nicht verfügbar ist. Im zweiten Anlauf wird es funktionieren.
-		Dies kann durch einfaches Hinzufügen des device-Namens behoben werden, wonach
+		dass der Treiber nicht verfügbar ist. Im zweiten Anlauf wird es funktionieren.
+		Dies kann durch einfaches Hinzufügen des Device-Namens behoben werden, wonach
 		es schon beim ersten Versuch funktioniert.
 		</para>
 	</sect2>
@@ -149,19 +149,18 @@ sehen Sie
 for Workgroups einsetzen. Die frühen TCP/IP-Stacks hatten viele Bugs.</para>
 
 <para> 
-Microsoft hat ein inkrementelles Upgrade für seine TCP/IP 32-bit
-VxD-Treiber veröffentlicht. Die letzte Release kann auf deren ftp-site
-ftp.microsoft.com gefunden werden, 
-in <filename>/peropsys/windows/public/tcpip/wfwt32.exe</filename>.
+Microsoft hat ein inkrementelles Upgrade für seine TCP/IP-32-Bit-VxD-Treiber veröffentlicht. Die letzte Release kann auf der FTP-Site
+ftp.microsoft.com
+in <filename>/peropsys/windows/public/tcpip/wfwt32.exe</filename> gefunden werden.
 Es gibt dort auch eine Datei update.txt, die die gelösten Probleme beschreibt.
-Neue Dateien sind
+Neue Dateien sind:
 <filename>WINSOCK.DLL</filename>, 
 <filename>TELNET.EXE</filename>, 
 <filename>WSOCK.386</filename>, 
 <filename>VNBT.386</filename>,
 <filename>WSTCP.386</filename>, 
 <filename>TRACERT.EXE</filename>, 
-<filename>NETSTAT.EXE</filename>, und 
+<filename>NETSTAT.EXE</filename> und 
 <filename>NBTSTAT.EXE</filename>.
 </para>
 
@@ -172,41 +171,40 @@ Neue Dateien sind
 
 <para>
 Windows for Workgroups arbeitet lausig, wenn es um Passwörter geht.
-Wenn Sie Passwörter auf entweder der UNIX-Box oder dem PC ändern, ist es am sichersten, die
+Wenn Sie Passwörter auf entweder der UNIX-Mascine oder dem PC ändern, ist es am sichersten, die
 .pwl-Dateien im Windows-Verzeichnis zu löschen. Der PC wird sich darüber beschweren, diese Dateien
 nicht zu finden, sich aber bald damit abfinden und Ihnen erlauben, das neue Passwort einzugeben.
 </para>
 
 <para> 
-Wenn Sie dies nicht tun, kann es sein, daß Windows for Workgroups sich an das alte Passwort erinnert,
+Wenn Sie dies nicht tun, kann es sein, dass Windows for Workgroups sich an das alte Passwort erinnert 
 und es verwendet, auch wenn Sie ein neues angegeben haben.
 </para>
 
 <para> 
-Oft wird Windows for Workgroups ein Passwort gänzlich ignorieren, das sie in einer Dialog-Box
+Oft wird Windows for Workgroups ein Passwort gänzlich ignorieren, das Sie in einer Dialog-Box
 angeben.
 </para>
 
 </sect2>
 
 <sect2>
-<title>Das Konfigurieren des Umgangs mit Passwörtern in Windows for Workgroups</title>
+<title>Den Umgang mit Passwörtern in Windows for Workgroups konfigurieren</title>
 
 <para>
-Es gibt ein Programm namens <filename>admincfg.exe</filename>
-auf der letzten Diskette (Diskette 8) des WFW-3.11-Diskettensatzes. Um es zu installieren,
-geben Sie ein: <userinput>EXPAND A:\ADMINCFG.EX_ C:\WINDOWS\ADMINCFG.EXE</userinput>.
-Fügen Sie dann ein Icon hinzu, über das Menü <guimenu>New</guimenu> im <application>Program Manager</application>.
-Dieses Programm erlaubt Ihnen die Kontrolle darüber, wie WFW mit Passwörtern umgeht, z.B. das
+Auf der letzten Diskette (Diskette 8) des WFW-3.11-Diskettensatzes gibt es ein Programm namens <filename>admincfg.exe</filename>. Um es zu installieren,
+geben Sie <userinput>EXPAND A:\ADMINCFG.EX_ C:\WINDOWS\ADMINCFG.EXE</userinput> ein.
+Fügen Sie dann über das Menü <guimenu>New</guimenu> im <application>Program Manager</application> ein Icon hinzu.
+Dieses Programm erlaubt Ihnen die Kontrolle darüber, wie WFW mit Passwörtern umgeht, z.B. beim
 Ausschalten von Passwort-Caching und so weiter.</para>
 
 </sect2>
 
 <sect2>
-<title>Groß/Klein-Schreibung in Passwörtern</title>
+<title>Groß-/Kleinschreibung in Passwörtern</title>
 
-<para>Windows for Workgroups setzt das ganze Passwort in Großbuchstaben, vor dem Senden an den Server.
-UNIX-Passwörter können jedoch Groß/Klein-Schreibung unterscheiden.
+<para>Windows for Workgroups setzt das ganze Passwort in Großbuchstaben, bevor es es an den Server sendet.
+UNIX-Passwörter können jedoch zwischen Groß-/Kleinschreibung unterscheiden.
 Prüfen Sie die Informationen zum Parameter <smbconfoption><name>password level</name></smbconfoption>
 in der &smb.conf;, um angeben zu können, ob Samba bei der Prüfung des Passworts die
 Großschreibung versuchen soll.</para>
@@ -216,24 +214,23 @@ Großschreibung versuchen soll.</para>
 <sect2>
 <title>TCP/IP als Standard-Protokoll verwenden</title>
 
-<para>Um Reports über Drucker-Queues zu unterstützen, werden Sie herausfinden, daß Sie
-unter WfW TCP/IP als das Standard-Protokoll verwenden müssen.
-Aus irgendeinem Grund kann das Belassen von NetBEUI als Standard zum Nicht-Funktionieren
-der Queue-Reports auf manchen Systemen führen. Dies ist möglicherweise ein Bug in WfW.</para>
+<para>Um Reports über Drucker-Queues zu unterstützen, werden Sie unter Umständen
+unter WfW TCP/IP als Standard-Protokoll verwenden müssen.
+Aus irgendeinem Grund kann das Belassen von NetBEUI als Standardeinstellung dazu führen, dass die Queue-Reports auf manchen Systemen nicht funktionieren. Dies ist möglicherweise ein Bug in WfW.</para>
 
 </sect2>
 
 <sect2>
 <title>Geschwindigkeitssteigerung</title>
 
-<para>Beachten Sie, daß einige Anwender herausgefunden haben, daß das Setzen des Parameters
+<para>Einige Anwender haben festgestellt, dass sie eine große Beschleunigung erzielen, wenn sie den Parameter
 <parameter>DefaultRcvWindow</parameter> im Abschnitt <smbconfsection>[MSTCP]</smbconfsection> der
-Datei <filename>SYSTEM.INI</filename> unter WfW auf den Wert 3072 eine grosse Beschleunigung verursacht.
+Datei <filename>SYSTEM.INI</filename> unter WfW auf den Wert 3072 setzen.
 </para>
 
 <para>
-Meine eigene Erfahrung mit <parameter>DefaultRcvWindow</parameter> ist, daß ich eine viel bessere
-Performance mit grossen Werten (16384 oder grösser) erziele. Andere berichten, daß alles über
+Meine eigene Erfahrung mit <parameter>DefaultRcvWindow</parameter> ist, dass ich eine viel bessere
+Performance mit großen Werten (16384 oder höher) erziele. Andere berichten, dass alles über
 3072 wieder enorm bremst. Jemand hat sogar einen Geschwindigkeitsabfall auf 1/30 gemessen, als
 er den Wert von 3072 auf 8192 erhöht hat.
 </para>
@@ -245,21 +242,21 @@ er den Wert von 3072 auf 8192 erhöht hat.
 
 <para>
 Bei der Verwendung von Windows 95 OEM SR2 werden folgende Updates empfohlen,
-wenn Samba eingesetzt wird. Bitte beachten Sie, daß Sie obige Änderung betreffen wird, sobald
+wenn Samba eingesetzt wird. Bitte beachten Sie, dass die oben genannte Änderung Sie betreffen wird, sobald
 diese Updates installiert worden sind.
 </para>
 
 <para> 
 Es gibt mehr Updates als die hier erwähnten. Wir verweisen Sie auf die
-Microsoft Website für die verfügbaren Updates zu Ihrer spezifischen Version von Windows 95.
+Microsoft-Website für die verfügbaren Updates zu Ihrer spezifischen Version von Windows 95.
 </para>
 
 <simplelist>
-<member>Kernel Update: KRNLUPD.EXE</member>
-<member>Ping Fix: PINGUPD.EXE</member>
-<member>RPC Update: RPCRTUPD.EXE</member>
-<member>TCP/IP Update: VIPUPD.EXE</member>
-<member>Redirector Update: VRDRUPD.EXE</member>
+<member>Kernel-Update: KRNLUPD.EXE</member>
+<member>Ping-Fix: PINGUPD.EXE</member>
+<member>RPC-Update: RPCRTUPD.EXE</member>
+<member>TCP/IP-Update: VIPUPD.EXE</member>
+<member>Redirector-Update: VRDRUPD.EXE</member>
 </simplelist>
 
 <para>
@@ -273,7 +270,7 @@ Netzwerkumgebung zugreifen.
 <title>Geschwindigkeitssteigerung</title>
 
 <para>
-Konfigurieren Sie die Windows 95 TCP/IP Registrierungseinträge, um bessere Performance zu erreichen.
+Konfigurieren Sie die Windows 95-TCP/IP-Registrierungseinträge, um eine bessere Performance zu erreichen.
 Ich verwende ein Programm namens <command>MTUSPEED.exe</command> aus dem Internet. Es gibt verschiedene
 andere Utilities dieser Art, die frei verfügbar sind.
 </para>
@@ -287,19 +284,19 @@ andere Utilities dieser Art, die frei verfügbar sind.
 
 <para> 
 Es gibt einige lästige Dinge an Windows 2000 SP2. Eines davon tritt nur auf, wenn man einen 
-Samba-Server verwendet, um Benutzer-Profile für Windows 2000 SP2 Clients in einer Windows-Domäne
-bereitzustellen. Dies geht davon aus, daß Samba Domänen-Mitglied ist, aber das Problem wird
+Samba-Server verwendet, um Benutzer-Profile für Windows 2000 SP2-Clients in einer Windows-Domäne
+bereitzustellen. Dies geht davon aus, dass Samba Domänen-Mitglied ist, aber das Problem wird
 meist dann auftreten, wenn Samba es nicht ist.
 </para>
 
 <para> 
-Um Profile erfolgreich für Windows 2000 SP2 Clients anzubieten (ohne PDC zu sein), muß Samba
+Um Profile erfolgreich für Windows 2000 SP2-Clients anzubieten (ohne PDC zu sein), muss Samba
 den Parameter <smbconfoption><name>nt acl support</name><value>no</value></smbconfoption> für
 die Freigabe gesetzt haben, die die Roaming-Profile beinhaltet. Wenn dies nicht erfolgt, wird sich
-der Windows 2000 SP2 Client darüber beschweren, daß er nicht imstande ist, auf das Profil
+der Windows 2000 SP2-Client darüber beschweren, dass er nicht imstande ist, auf das Profil
 zuzugreifen (Access Denied) und mehrfach Kopien davon auf der Platte anlegen (DOMAIN.user.001,
-DOMAIN.user.002, und so weiter). Lesen Sie in der Manpage zu &smb.conf; mehr über diesen Parameter.
-Beachten Sie auch, daß der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
+DOMAIN.user.002 und so weiter). Lesen Sie in der Manpage zu &smb.conf; mehr über diesen Parameter.
+Beachten Sie auch, dass der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
 in Releases vor Samba 2.2.2 formal ein globaler Parameter war.
 </para>
 
@@ -318,16 +315,16 @@ in Releases vor Samba 2.2.2 formal ein globaler Parameter war.
 </smbconfexample></para>
 
 <para>
-Der Grund für diesen Bug ist, daß der Windows 2000 SP2 Client den Security Descriptor für das
-Profil, das die SID des Samba-Servers enthält, kopiert, und nicht die Domänen-SID. Der Client
-vergleicht die SID für SAMBA\user und stellt fest, daß sie von der SID für DOMAIN\user abweicht.
-Daher die Meldung <errorname>access denied</errorname>.
+Der Grund für diesen Bug ist, dass der Windows 2000 SP2-Client den Security-Deskriptor für das
+Profil, das die SID des Samba-Servers enthält, kopiert und nicht die Domänen-SID. Der Client
+vergleicht die SID für SAMBA\user und stellt fest, dass sie von der SID für DOMAIN\user abweicht.
+Daher kommt es zu der Meldung <errorname>access denied</errorname>.
 </para>
 
 <para>
-Durch Deaktivieren des Parameters <smbconfoption><name>nt acl support</name></smbconfoption>, sendet
-Samba dem Windows 200x-Client eine Antwort auf den QuerySecurityDescriptor trans2 call, welche den
-Client dazu veranlaßt, eine Standard-ACL für das Profil zu setzen. Diese Standard-ACL enthält:
+Durch Deaktivieren des Parameters <smbconfoption><name>nt acl support</name></smbconfoption> sendet
+Samba dem Windows 200x-Client eine Antwort auf den Aufruf <quote>QuerySecurityDescriptor trans2</quote>, die den
+Client dazu veranlasst, eine Standard-ACL für das Profil zu setzen. Diese Standard-ACL enthält:
 </para>
 
 <para><emphasis>DOMAIN\user 	<quote>Full Control</quote></emphasis>></para>
@@ -340,9 +337,9 @@ Domänen-Benutzer auf dem Samba-Host verwendet.</para></note>
 <sect1>
 <title>Windows NT 3.1</title>
 
-<para>Wenn Sie Probleme mit der Kommunikation über Router mit Windows NT 3.1 Workstations haben,
-lesen Sie <ulink url="http://support.microsoft.com/default.aspx?scid=kb;Q103765">diesen 
-Microsoft Knowledge Base Artikel.</ulink>
+<para>Wenn Sie Probleme mit der Kommunikation über Router mit Windows NT 3.1-Workstations haben,
+lesen Sie <ulink url="http://support.microsoft.com/default.aspx?scid=kb;Q103765">den 
+Microsoft Knowledge-Base-Artikel.</ulink>
 </para>
 
 </sect1>
