@@ -290,17 +290,9 @@ vergessen, dies in der Datei <filename>/etc/openldap/slapd.conf</filename> zu ko
 Es sollte bemerkt werden, daß der DN eines Server-Zertifikats das CN-Attribut zur Benennung des
 Servers verwenden muß, und daß CN den vollen Domain-Namen (FQDN = fully qualified domain name) des
 Servers beinhalten muß. Weitere Aliases und Wildcards können in der subjectAltName-Zertifikats-Erweiterung
-abgelegt werden. Mehr Details zu Server-Zertifikaten finden Sie in der RFC2830.
-</para>
-
-<para>
-Es paßt nicht wirklich zum Thema dieses Dokuments, aber eine funktionierende LDAP-Installation
-ist Grundlage für LDAP-basierenden Betrieb von Samba. Bei Verwendung eines OpenLdap-Servers mit 
-sogenannter Transport Layer Security (TLS), muß der Maschinen-Name in 
-<filename>/etc/ssl/certs/slapd.pem</filename> der selbe sein wie in <filename>/etc/openldap/sldap.conf</filename>.
-Das Red Hat Linux Startup-Skript legt die Datei <filename>slapd.pem</filename> mit dem Hostnamen
-<quote>localhost.localdomain.</quote> an. Es ist unmöglich, mit einem Slave-LDAP-Server auf diesen
-LDAP-Server zuzugreifen, solange nicht das Zertifikat mit einem korrekten Hostnamen neu angelegt wurde.
+abgelegt werden. Die Kommunikation zwischen LDAP-PDC und LDAP-BDC muss komplett verschlüsselt ablaufen.
+Dies kann unter Verwendung von Zertifikaten geschehen.
+Mehr Details zu Server-Zertifikaten finden Sie in der RFC2830.
 </para>
 
 <para>
@@ -310,6 +302,8 @@ LDAP-Baum auf dem Master-LDAP-Server stattfinden muß. Dies wird nicht schnell ge
 repliziert, den der PDC abfragt. Daher gibt es auf der Client-Maschine eine Fehlermeldung, die besagt,
 daß es nicht möglich sei, die Konto-Informationen richtig zu setzen. Das Maschinen-Konto wird auf dem
 LDAP-Server angelegt, aber die Passwort-Felder werden leer bleiben.
+(Anmerkung: Zur Lösung dieser Problematik wurde mit Samba 3.0.1 der &smb.conf;-Parameter 
+<smbconfoption><name>ldap replication sleep</name></smbconfoption> eingeführt.)
 </para>
 
 <para>
