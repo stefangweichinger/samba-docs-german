@@ -1209,43 +1209,39 @@ nur einen Hersteller, der die Entwicklung von CUPS-Raster-Treibern finanziert).
 </para>
 
 <para>
-	<image><imagedescription>CUPS-raster production using Ghostscript.</imagedescription>
+	<image><imagedescription>CUPS-Raster Erzeugung mittels Ghostscript.</imagedescription>
 		<imagefile>7small</imagefile>
 	</image>
 </para>
 
 <para>
-CUPS versions before version 1.1.15 were shipping a binary (or source
-code) standalone filter, named <parameter>pstoraster</parameter>. <parameter>pstoraster</parameter> was derived
-from GNU Ghostscript 5.50, and could be installed besides and in
-addition to any GNU or AFPL Ghostscript package without conflicting.
+CUPS-Versionen vor Version 1.1.15 beinhalteten einen binären (oder source code) Standalone-Filter namens
+<parameter>pstoraster</parameter>. <parameter>pstoraster</parameter> wurde von GNU Ghostscript 5.50
+abgeleitet, und konnte neben oder zusätzlich zu einem beliebigen GNU oder AFPL Ghostscript-Paket
+installiert werden, ohne Konflikte zu verursachen.
 </para>
 
 <para>
->From version 1.1.15, this has changed. The functions for this have been
-integrated back into Ghostscript (now based on GNU Ghostscript version
-7.05). The <parameter>pstoraster</parameter> filter is now a simple shell script calling
-<command>gs</command> with the <command>-sDEVICE=cups</command>
-parameter. If your Ghostscript does not show a success on asking for
-<command>gs -h |grep cups</command>, you might not be able to
-print. Update your Ghostscript.
+Mit Version 1.1.15 hat sich dies geändert. Die dafür benötigten Funktionen wurden zurück in Ghostscript
+integriert (nun basierend auf GNU Ghostscript Version 7.05). Der <parameter>pstoraster</parameter>-Filter
+ist nun ein einfaches Shell-Skript, das <command>gs</command> mit dem Parameter <command>-sDEVICE=cups</command>
+aufruft. Wenn Ihr Ghostscript nicht erfolgreich auf <command>gs -h |grep cups</command> antwortet, könnte es
+sein, daß Sie nicht drucken können. Aktualisieren Sie Ihr Ghostscript.
 </para>
 </sect2>
 
 <sect2>
-<title>imagetops and imagetoraster</title>
+<title>imagetops und imagetoraster</title>
 
 <para>
-In the section about pre-filters, we mentioned the pre-filter
-that generates PostScript from image formats. The <parameter>imagetoraster</parameter>
-filter is used to convert directly from image to raster, without the
-intermediate PostScript stage. It is used more often than the above
-mentioned pre-filters. We summarize flowchart of image file
-filtering on <link linkend="small8">next picture</link>.
+Im Abschnitt über Vorfilter haben wir den Vorfilter erwähnt, der PostScript aus Bildformaten erzeugt. Der
+Filter <parameter>imagetoraster</parameter> wird verwendet, um Bilder direkt auf Raster zu konvertieren, ohne
+die Zwischenstufe PostScript. Er wird öfter als die oben erwähnten Vorfilter verwendet. Wir fassen das
+Filtern von Bilddateien im <link linkend="small8">nächsten Bild</link> zusammen. 
 </para>
 
 <para>
-	<image id="small8"><imagedescription>Image format to CUPS-raster format conversion.</imagedescription>
+	<image id="small8"><imagedescription>Konvertierung von Bildformaten zu CUPS-Raster-Format.</imagedescription>
 		<imagefile>8small</imagefile>
 	</image>
 </para>
@@ -1253,24 +1249,23 @@ filtering on <link linkend="small8">next picture</link>.
 </sect2>
 
 <sect2>
-<title>rasterto [printers specific]</title>
+<title>rasterto [druckerspezifisch]</title>
 
 <para>
-CUPS ships with quite different raster drivers processing CUPS
-raster. On my system I find in /usr/lib/cups/filter/ these:
+CUPS wird mit ziemlich verschiedenen Rastertreibern geliefert, die CUPS-Raster verarbeiten. Auf meinem System
+finde ich in /usr/lib/cups/filter/ diese:
 <parameter>rastertoalps</parameter>, <parameter>rastertobj</parameter>, <parameter>rastertoepson</parameter>, <parameter>rastertoescp</parameter>,
 <parameter>rastertopcl</parameter>, <parameter>rastertoturboprint</parameter>, <parameter>rastertoapdk</parameter>, <parameter>rastertodymo</parameter>,
-<parameter>rastertoescp</parameter>, <parameter>rastertohp</parameter>, and
-<parameter>rastertoprinter</parameter>. Don't worry if you have less
-than this; some of these are installed by commercial add-ons to CUPS
-(like <parameter>rastertoturboprint</parameter>), others (like
-<parameter>rastertoprinter</parameter>) by third-party driver
-development projects (such as Gimp-Print) wanting to cooperate as
-closely as possible with CUPS.
+<parameter>rastertoescp</parameter>, <parameter>rastertohp</parameter>, und
+<parameter>rastertoprinter</parameter>. 
+Keine Sorge, wenn Sie weniger Filter vorfinden; manche von diesen wurden von kommerziellen CUPS-Erweiterungen
+installiert (wie <parameter>rastertoturboprint</parameter>), andere (wie <parameter>rastertoprinter</parameter>)
+von sogenannten "third-party" Treiber-Entwicklungs-Projekten (wie Gimp-Print), um möglichst eng mit CUPS
+zusammen zu arbeiten.
 </para>
 
 <para>
-	<image id="small9"><imagedescription>Raster to printer-specific formats.</imagedescription>
+	<image id="small9"><imagedescription>Raster auf druckerspezifische Formate.</imagedescription>
 		<imagefile>9small</imagefile>
 	</image>
 </para>
@@ -1280,86 +1275,83 @@ closely as possible with CUPS.
 <title>CUPS Backends</title>
 
 <para>
-The last part of any CUPS filtering chain is a backend. Backends
-are special programs that send the print-ready file to the final
-device. There is a separate backend program for any transfer
-protocol of sending print jobs over the network, or for every local
-interface. Every CUPS print queue needs to have a CUPS <quote>device-URI</quote>
-associated with it. The device URI is the way to encode the backend
-used to send the job to its destination. Network device-URIs are using
-two slashes in their syntax, local device URIs only one, as you can
-see from the following list. Keep in mind that local interface names
-may vary much from my examples, if your OS is not Linux:
+Der letzte Teil jeder CUPS-Filterkette ist ein Backend. Backends sind spezielle Programme, die das druckfertige
+Programm schlußendlich an das Gerät senden. Es gibt ein separates Backend-Programm für jedes Transfer-Protokoll,
+um Druckaufträge über das Netzwerk zu senden, oder für jedes lokales Interface. Jede CUPS-Druckwarteschlange
+braucht eine CUPS <quote>device-URI</quote>, mit dem es assoziiert wird. Die device URI ist eine Art, das
+Backend enkodiert anzugeben, das verwendet wird, um den Auftrag an seinen Bestimmungsort zu senden.
+Netzwerk device-URIs verwenden zwei Schrägstriche in ihrer Syntax, lokale device-URIs nur einen, wie Sie der
+folgenden Liste entnehmen können. Bitte denken Sie daran, daß die Namen der lokalen Interfaces stark von
+den hier angegebenen Beispielen abweichen können, wenn Ihr Betriebssystem nicht Linux ist:
 </para>
 
 <variablelist>
 	<varlistentry><term>usb </term>
 	<listitem><para>
-	This backend sends print files to USB-connected printers. An
-	example for the CUPS device-URI to use is:
+	Dieses Backend sendet Druckdateien auf mittels USB angeschlossene Drucker. Ein Beispiel für die
+	CUPS device-URI ist:
 	<filename>usb:/dev/usb/lp0</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>serial </term>
 	<listitem><para>
-	This backend sends print files to serially connected printers.
-	An example for the CUPS device-URI to use is:
+	Dieses Backend sendet Druckdateien auf seriell angeschlossene Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>serial:/dev/ttyS0?baud=11500</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>parallel </term>
 	<listitem><para>
-	This backend sends print files to printers connected to the
-	parallel port. An example for the CUPS device-URI to use is:
+	Dieses Backend sendet Druckdateien auf an Parallel-Ports angeschlossene Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>parallel:/dev/lp0</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>SCSI </term>
 	<listitem><para>
-	This backend sends print files to printers attached to the
-	SCSI interface. An example for the CUPS device-URI to use is:
+	Dieses Backend sendet Druckdateien auf an das SCSI-Interface angeschlossene Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>scsi:/dev/sr1</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>lpd </term>
 	<listitem><para>
-	This backend sends print files to LPR/LPD connected network
-	printers. An example for the CUPS device-URI to use is:
+	Dieses Backend sendet Druckdateien auf über LPR/LPD angeschlossene Netzwerk-Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>lpd://remote_host_name/remote_queue_name</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>AppSocket/HP JetDirect </term>
 	<listitem><para>
-	This backend sends print files to AppSocket (a.k.a. "HP
-	JetDirect") connected network printers. An example for the CUPS
-	device-URI to use is:
+	Dieses Backend sendet Druckdateien an mittels AppSocket (a.k.a. "HP JetDirect") angeschlossene 
+	Netzwerk-Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>socket://10.11.12.13:9100</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>ipp </term>
 	<listitem><para>
-	This backend sends print files to IPP connected network
-	printers (or to other CUPS servers). Examples for CUPS device-URIs
-	to use are:
+	Dieses Backend sendet Druckdateien an mittels IPP angeschlossene Netzwerk-Drucker. Ein Beispiel für die
+        CUPS device-URI ist:
 	<filename>ipp:://192.193.194.195/ipp</filename>
-	(for many HP printers) or
+	(für viele HP-Drucker) oder
 	<filename>ipp://remote_cups_server/printers/remote_printer_name</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>http </term>
 	<listitem><para>
-	This backend sends print files to HTTP connected printers.
-	(The http:// CUPS backend is only a symlink to the ipp:// backend.)
-	Examples for the CUPS device-URIs to use are:
+	Dieses Backend sendet Druckdateien an mittels HTTP angeschlossene Drucker.
+	(Das http:// CUPS-Backend ist nur ein symlink auf das ipp:// Backend.)
+	Beispiele für die CUPS device-URIs sind:
 	<filename>http:://192.193.194.195:631/ipp</filename>
-	(for many HP printers) or
+	(für viele HP-Drucker) oder
 	<filename>http://remote_cups_server:631/printers/remote_printer_name</filename>.
 	</para></listitem></varlistentry>
 
 	<varlistentry><term>smb </term>
 	<listitem><para>
-	This backend sends print files to printers shared by a Windows
-	host. An example for CUPS device-URIs that may be used includes:
+	Dieses Backend sendet Druckdateien an Windows-Druckerfreigaben.
+	Ein Beispiel für die CUPS device-URI ist:
 	</para>
 
 	<para>
@@ -1372,34 +1364,28 @@ may vary much from my examples, if your OS is not Linux:
 	</para>
 
 	<para>
-	The smb:// backend is a symlink to the Samba utility
-	<parameter>smbspool</parameter> (does not ship with CUPS). If the
-	symlink is not present in your CUPS backend directory, have your
-	root user create it: <command>ln -s `which smbspool'
-	/usr/lib/cups/backend/smb</command>.
+	Das smb:// Backend ist ein Symlink auf das Samba-Werkzeug <parameter>smbspool</parameter> (nicht in
+	CUPS inkludiert). Wenn der Symlink in Ihrem CUPS-Backend-Verzeichnis nicht vorhanden ist, können Sie
+	es mittels root-Benutzer anlegen (lassen): <command>ln -s `which smbspool'
+        /usr/lib/cups/backend/smb</command>.
 	</para></listitem></varlistentry>
 </variablelist>
 
 <para>
-It is easy to write your own backends as shell or Perl scripts, if you
-need any modification or extension to the CUPS print system. One
-reason could be that you want to create <quote>special</quote> printers that send
-the print-jobs as email (through a <quote>mailto:/</quote> backend), convert them to
-PDF (through a <quote>pdfgen:/</quote> backend) or dump them to <quote>/dev/null</quote>. (In
-fact I have the system-wide default printer set up to be connected to
-a devnull:/ backend: there are just too many people sending jobs
-without specifying a printer, or scripts and programs which do not name
-a printer. The system-wide default deletes the job and sends a polite
-email back to the $USER asking him to always specify the correct
-printer name.)
+Es ist einfach, Ihre eigenen Backends als Shell- oder Perl-Skripts zu schreiben, wenn Sie irgendeine Änderung
+oder Erweiterung zum CUPS-Druck-System brauchen. Ein Grund könnte sein, daß Sie <quote>spezielle</quote>
+Drucker anlegen wollen, die Druckaufträge per email senden (durch das <quote>mailto:/</quote> Backend), diese
+in PDF wandeln (durch das <quote>pdfgen:/</quote> Backend), oder sie mittels <quote>/dev/null</quote> entsorgen.
+(Tatsächlich habe ich den systemweiten Standard-Drucker so installiert, daß mit einem devnull:/ Backend verbunden
+ist; es gibt einfach zu viele Leute, die Aufträge ohne Angabe eines Druckers senden, oder Skripts und Programme,
+die keinen Drucker angeben. Der systemweite Standard löscht den Auftrag und sendet eine höfliche Email zurück
+an den $USER, in der er gebeten wird, immer den richtigen Druckernamen anzugeben.)
 </para>
 
 <para>
-Not all of the mentioned backends may be present on your system or
-usable (depending on your hardware configuration). One test for all
-available CUPS backends is provided by the <emphasis>lpinfo</emphasis>
-utility. Used with the <option>-v</option> parameter, it lists
-all available backends:
+Nicht alle erwähnten Backends müssen auf Ihrem System vorhanden oder verwendbar sein (abhängig von der
+Hardware-Konfiguration). Ein Test für alle verfügbaren CUPS-Backends ist mit dem Werkzeug 
+<emphasis>lpinfo</emphasis> möglich. Mit der Option <option>-v</option> listet es alle verfügbaren Backends:
 </para>
 
 <para><screen>
@@ -1408,7 +1394,7 @@ all available backends:
 </sect2>
 
 <sect2>
-<title>The Role of <parameter>cupsomatic/foomatic</parameter></title>
+<title>Die Rolle von <parameter>cupsomatic/foomatic</parameter></title>
 
 <para>
 <indexterm><primary>cupsomatic</primary></indexterm>
