@@ -4,7 +4,9 @@
 <!ENTITY % globalentities SYSTEM '../entities/global.entities'> %globalentities;
 ]>
 
-<book id="Samba-HOWTO-Sammlung" lang="de">
+<book id="Samba-HOWTO-Sammlung" lang="de"
+          xmlns:xi="http://www.w3.org/2003/XInclude">
+
 <title>Samba-HOWTO-Sammlung</title>
 
 <bookinfo>
@@ -150,7 +152,49 @@ Dieses Kapitel behandelt ausgewählte Merkmale.
 &BUGS;
 </part>
 
-<part id="Appendixes">
+<part id="Appendix A">
+	<title>Manpages</title>
+<xi:include href="../manpages/editreg.1.xml"/>
+<xi:include href="../manpages/findsmb.1.xml"/>
+<xi:include href="../manpages/lmhosts.5.xml"/>
+<xi:include href="../manpages/log2pcap.1.xml"/>
+<xi:include href="../manpages/mount.cifs.8.xml"/>
+<xi:include href="../manpages/net.8.xml"/>
+<xi:include href="../manpages/nmbd.8.xml"/>
+<xi:include href="../manpages/nmblookup.1.xml"/>
+<xi:include href="../manpages/ntlm_auth.1.xml"/>
+<xi:include href="../manpages/pdbedit.8.xml"/>
+<xi:include href="../manpages/profiles.1.xml"/>
+<xi:include href="../manpages/rpcclient.1.xml"/>
+<xi:include href="../manpages/samba.7.xml"/>
+<xi:include href="../manpages/smbcacls.1.xml"/>
+<xi:include href="../manpages/smbclient.1.xml"/>
+<xi:include href="../manpages/smbcontrol.1.xml"/>
+<xi:include href="../manpages/smbcquotas.1.xml"/>
+<xi:include href="../manpages/smbd.8.xml"/>
+<xi:include href="../manpages/smbget.1.xml"/>
+<xi:include href="../manpages/smbgetrc.5.xml"/>
+<xi:include href="../manpages/smbmnt.8.xml"/>
+<xi:include href="../manpages/smbmount.8.xml"/>
+<xi:include href="../manpages/smbpasswd.5.xml"/>
+<xi:include href="../manpages/smbpasswd.8.xml"/>
+<xi:include href="../manpages/smbsh.1.xml"/>
+<xi:include href="../manpages/smbspool.8.xml"/>
+<xi:include href="../manpages/smbstatus.1.xml"/>
+<xi:include href="../manpages/smbtar.1.xml"/>
+<xi:include href="../manpages/smbtree.1.xml"/>
+<xi:include href="../manpages/smbumount.8.xml"/>
+<xi:include href="../manpages/swat.8.xml"/>
+<xi:include href="../manpages/tdbbackup.8.xml"/>
+<xi:include href="../manpages/tdbdump.8.xml"/>
+<xi:include href="../manpages/testparm.1.xml"/>
+<xi:include href="../manpages/testprns.1.xml"/>
+<xi:include href="../manpages/vfstest.1.xml"/>
+<xi:include href="../manpages/wbinfo.1.xml"/>
+<xi:include href="../manpages/winbindd.8.xml"/>
+</part>
+
+<part id="Appendix B">
 	<title>Anhang</title>
 &Compiling;
 &Portability;
