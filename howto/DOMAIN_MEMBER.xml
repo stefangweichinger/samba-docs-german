@@ -143,8 +143,6 @@ Maschinen-Vertrauens-Konto in zwei Teilen, wie folgt:
 
 	<listitem><para>
 	Ein entsprechendes UNIX-Konto, meist in <filename>/etc/passwd</filename> gespeichert.
-	Es wird daran gearbeitet, eine vereinfachte Betriebsart zu erlauben, die keine
-	UNIX-Konten erfordert, jedoch wird dies kein Feature der ersten Samba-3-Releases sein.	
 	</para></listitem>
 </itemizedlist>
 </para>
