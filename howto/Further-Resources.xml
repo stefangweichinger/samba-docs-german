@@ -6,7 +6,7 @@
 	<pubdate>May 1, 2003</pubdate>
 </chapterinfo>
 
-<title>Weitere Hilfsquellen.</title>
+<title>Weitere Hilfsquellen</title>
 
 <sect1>
 	<title>Webseiten</title>
@@ -15,99 +15,98 @@
 
 	<listitem><para>
 	<ulink url="http://hr.uoregon.edu/davidrl/cifs.txt">
-	<emphasis>CIFS: Common Insecurities Fail Scrutiny</emphasis> by <quote>Hobbit</quote></ulink>
+	<emphasis>CIFS: Common Insecurities Fail Scrutiny</emphasis> von <quote>Hobbit</quote></ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://afr.com/it/2002/10/01/FFXDF43AP6D.html">
-	<emphasis>Doing the Samba on Windows</emphasis> by Financial Review
+	<emphasis>Doing the Samba on Windows</emphasis> von Financial Review
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://ubiqx.org/cifs/">
-	<emphasis>Implementing CIFS</emphasis> by Christopher R. Hertel
+	<emphasis>Implementing CIFS</emphasis> von Christopher R. Hertel
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://samba.anu.edu.au/cifs/docs/what-is-smb.html">
-	<emphasis>Just What Is SMB?</emphasis> by Richard Sharpe
+	<emphasis>Just What Is SMB?</emphasis> von Richard Sharpe
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/1999-05/samba_01.html">
-	<emphasis>Opening Windows Everywhere</emphasis> by Mike Warfield
+	<emphasis>Opening Windows Everywhere</emphasis> von Mike Warfield
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.tldp.org/HOWTO/SMB-HOWTO.html">
-	<emphasis>SMB HOWTO</emphasis> by David Wood
+	<emphasis>SMB HOWTO</emphasis> von David Wood
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.phrack.org/phrack/60/p60-0x0b.txt">
-	<emphasis>SMB/CIFS by The Root</emphasis> by <quote>ledin</quote>
+	<emphasis>SMB/CIFS by The Root</emphasis> von <quote>ledin</quote>
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/1999-09/samba_01.html">
-	<emphasis>The Story of Samba</emphasis> by Christopher R. Hertel
+	<emphasis>The Story of Samba</emphasis> von Christopher R. Hertel
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://hr.uoregon.edu/davidrl/samba/">
-	<emphasis>The Unofficial Samba HOWTO</emphasis> by David Lechnyr
+	<emphasis>The Unofficial Samba HOWTO</emphasis> von David Lechnyr
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/2001-05/smb_01.html">
-	<emphasis>Understanding the Network Neighborhood</emphasis> by Christopher R. Hertel
+	<emphasis>Understanding the Network Neighborhood</emphasis> von Christopher R. Hertel
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/2002-02/samba_01.html">
-	<emphasis>Using Samba as a PDC</emphasis> by Andrew Bartlett
+	<emphasis>Using Samba as a PDC</emphasis> von Andrew Bartlett
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://ru.samba.org/samba/ftp/docs/Samba24Hc13.pdf">
 	<emphasis>PDF version of the Troubleshooting Techniques chapter</emphasis>
-	from the second edition of Sam's Teach Yourself Samba in 24 Hours
-	(publishing date of Dec. 12, 2001)</ulink>
+	aus der zweiten Auflage von <quote>Sam's Teach Yourself Samba in 24 Hours</quote>
+	(erschienen am 12.12.2001)</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://ru.samba.org/samba/ftp/slides/">
-	<emphasis>Slide presentations</emphasis> by Samba Team members
+	<emphasis>Slide presentations</emphasis> von Mitgliedern des Samba-Team
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.atmarkit.co.jp/flinux/special/samba3/samba3a.html">
-	<emphasis>Introduction to Samba-3.0</emphasis> by Motonobu Takahashi
+	<emphasis>Introduction to Samba-3.0</emphasis> von Motonobu Takahashi
 	(written in Japanese). </ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="http://www.linux-mag.com/2001-05/smb_01.html">
-	<emphasis>Understanding the Network Neighborhood</emphasis>, by team member
-	Chris Hertel. This article appeared in the May 2001 issue of
-	Linux Magazine.
+	<emphasis>Understanding the Network Neighborhood</emphasis>,
+	vom Samba-Team-Mitglied Chris Hertel. Dieser Artikel erschien im Mai 2001 im Linux Magazine.
 	</ulink>
 	</para></listitem>
 
 	<listitem><para>
 	<ulink url="ftp://ftp.stratus.com/pub/vos/customers/samba/">
-	<emphasis>Samba 2.0.x Troubleshooting guide</emphasis> from Paul Green
+	<emphasis>Samba 2.0.x Troubleshooting guide</emphasis> von Paul Green
 	</ulink>
 	</para></listitem>
 
@@ -138,7 +137,7 @@
 	<listitem><para>
 	<ulink url="http://support.microsoft.com/support/kb/articles/q92/5/88.asp">
 		<emphasis>WFWG: Password Caching and How It Affects LAN Manager
-			Security</emphasis> at Microsoft Knowledge Base
+			Security</emphasis> in der Microsoft Knowledge Base
 	</ulink>
 	</para></listitem>
 

@@ -15,7 +15,7 @@
 	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>Samba Performance Tuning</title>
+<title>Performance-Tuning für Samba</title>
 
 <sect1>
 <title>Vergleiche</title>
@@ -25,19 +25,19 @@ Der Samba-Server verwendet TCP zur Kommunikation mit dem Client. Um die wirklich
 </para>
 
 <para>
-Um Samba mit anderen Servern wie Windows-NT- oder Windows-for-Workgroups-Servern vergleichen zu können, müssen alle Protokolle ausser TCP entweder auf dem Client oder dem Server deaktiviert werden. Ansonsten besteht die Möglichkeit, unwissentlich ein gänzlich anderes Protokoll (wie NetBEUI) zu verwenden. Die resultierenden Ergebnisse wären unbrauchbar.
+Um Samba mit anderen Servern wie Windows-NT- oder Windows-for-Workgroups-Servern vergleichen zu können, müssen alle Protokolle außer TCP entweder auf dem Client oder auf dem Server deaktiviert werden. Ansonsten besteht die Möglichkeit, unwissentlich ein gänzlich anderes Protokoll (wie NetBEUI) zu verwenden. Die resultierenden Ergebnisse wären unbrauchbar.
 </para>
 
 <para>
-Allgemein kann gesagt werden, daß Samba ähnliche Durchsatzraten wie ftp erzielt.
+Allgemein kann gesagt werden, dass Samba ähnliche Durchsatzraten wie ftp erzielt.
 Es sollte ein deutliches Stück schneller als NFS arbeiten, wobei dies vom System abhängt.
 </para>
 
 <para>
 Es gibt einige Vergleiche zwischen Samba und Novell, NFS oder NT.
 In manchen schneidet Samba am besten ab, in anderen am schlechtesten.
-Es ist zu vermuten, daß der grösste beeinflussende Faktor nicht Samba selbst,
-sondern die Kombination von Hardware und Treiber der verschiedenen Systeme ist.
+Es ist zu vermuten, dass der größte beeinflussende Faktor nicht Samba selbst,
+sondern die Kombination von Hardware und Treibern der verschiedenen Systeme ist.
 Bei der Verwendung ähnlicher Hardware sollte Samba sehr wohl wettbewerbsfähig sein.
 </para>
 
@@ -51,28 +51,28 @@ Es gibt einige Socket-Optionen, die die Performance eines TCP-basierten Servers 
 </para>
 
 <para>
-Die von Samba verwendeten Socket-Optionen können sowohl mittels der Option <option>-O</option> auf der Befehlszeile gesetzt werden, wie auch in der Datei &smb.conf;.
+Die von Samba verwendeten Socket-Optionen können sowohl mit der Option <option>-O</option> auf der Befehlszeile gesetzt werden als auch in der Datei &smb.conf;.
 </para>
 
 <para>
 Der Abschnitt zu <smbconfoption><name>socket options</name></smbconfoption>
-in der man-page zu &smb.conf; beschreibt deren Verwendung und gibt diesbezügliche Empfehlungen ab.
+in der Manpage zu &smb.conf; beschreibt deren Verwendung und gibt diesbezügliche Empfehlungen.
 </para>
 
 <para>
-Die Socket-Optionen richtig zu setzen, kann einen grossen Einfluss auf die Performance haben,
+Die Socket-Optionen richtig zu setzen kann einen großen Einfluss auf die Performance haben;
 sind sie jedoch falsch gesetzt, kann dies die Performance ebenso sehr verschlechtern.
 Die korrekten Parameter sind in hohem Maße vom lokalen Netzwerk abhängig.
 </para>
 
 <para>
-Die Socket-Option TCP_NODELAY ist diejenige, die den grössten Leistungs-Unterschied für die meisten Netzwerke auszumachen scheint. Viele Anwender berichten, daß das Hinzufügen von
+Die Socket-Option TCP_NODELAY ist diejenige, die den größten Leistungsunterschied für die meisten Netzwerke auszumachen scheint. Viele Anwender berichten, dass das Hinzufügen von
 <?latex \linebreak ?><smbconfoption><name>socket options</name><value>TCP_NODELAY</value></smbconfoption>
-die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erklärung hiefür scheint, daß der Microsoft TCP/IP-Stack sehr langsam beim Senden von TCP-ACKs ist.
+die Lese-Performance eines Samba-Laufwerks verdoppelt. Die beste Erklärung hierfür scheint, dass der Microsoft TCP/IP-Stack sehr langsam beim Senden von TCP-ACKs ist.
 </para>
 
 <para>
-Es wurde berichtet, daß das Setzen von <parameter>socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter>socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
+Es wurde berichtet, dass das Setzen von <parameter>socket options = SO_RCVBUF=8192</parameter> in smb.conf die Samba-Performance auf dem Loopback-Interface (IP 127.0.0.1) stark verschlechtert. Es wird daher empfohlen, vor dem Setzen jeglicher <parameter>socket options</parameter> die Auswirkungen quantitativ auf dem zu konfigurierenden Server zu messen.
 </para>
 
 </sect1>
@@ -81,15 +81,15 @@ Es wurde berichtet, daß das Setzen von <parameter>socket options = SO_RCVBUF=819
 <title>Read Size</title>
 
 <para>
-Die Option <smbconfoption><name>read size</name></smbconfoption> beeinflusst die Uberschneidungen von Platten-Schreib/Lese-Vorgängen mit Netzwerk-Schreib/Lese-Vorgängen. Wenn die von einigen SMB-Befehlen (momentan SMBwrite, SMBwriteX und SMBreadbraw) transferierte Datenmenge über diesem Wert liegt, beginnt der Server bereits, Daten zu schreiben, bevor er noch das ganze TCP-Paket vom Netzwerk empfangen hat, bzw. beginnt er im Falle von SMBreadbraw, Daten an das Netz zu senden, bevor er noch alle Daten von der Platte gelesen hat.
+Die Option <smbconfoption><name>read size</name></smbconfoption> beeinflusst die Überschneidungen von Platten-Schreib/Lese-Vorgängen mit Netzwerk-Schreib/Lese-Vorgängen. Wenn die von einigen SMB-Befehlen (momentan SMBwrite, SMBwriteX und SMBreadbraw) transferierte Datenmenge über diesem Wert liegt, beginnt der Server bereits Daten zu schreiben, bevor er noch das ganze TCP-Paket vom Netzwerk empfangen hat. Im Falle von SMBreadbraw beginnt er Daten an das Netz zu senden, bevor er noch alle Daten von der Platte gelesen hat.
 </para>
 
 <para>
-Diese Überschneidung funktioniert am besten, wenn Platten- und Netzwerk-Zugriffsgeschwindigkeit ungefähr gleich sind. Bei grossen Unterschieden zwischen diesen beiden Werten hat dieser Parameter wenig Auswirkung.
+Diese Überschneidung funktioniert am besten, wenn die Platten- und Netzwerk-Zugriffsgeschwindigkeit ungefähr gleich sind. Bei großen Unterschieden zwischen diesen beiden Werten hat dieser Parameter wenig Auswirkung.
 </para>
 
 <para>
-Der Standard-Wert ist 16384, jedoch wurde bisher wenig experimentiert, um den optimalen Wert zu finden, es ist weiters anzunehmen, daß dieser Wert stark zwischen einzelnen Systemen variiert. Ein Wert über 65536 ist nutzlos und verursacht nur unnötig hohe Speicherbelegung.
+Der Standard-Wert ist 16384, jedoch wurde bisher wenig experimentiert, um den optimalen Wert zu finden, es ist außerdem anzunehmen, dass dieser Wert stark zwischen einzelnen Systemen variiert. Ein Wert über 65536 ist nutzlos und verursacht nur unnötig hohe Speicherbelegung.
 </para>
 
 </sect1>
@@ -98,20 +98,20 @@ Der Standard-Wert ist 16384, jedoch wurde bisher wenig experimentiert, um den op
 <title>Max Xmit</title>
 
 <para>
-Beim Verbindungsaufbau verhandeln Client und Server einen Wert namens <parameter>maximum transmit</parameter> size, der die Grösse nahzu aller SMB-Befehle beschränkt. Der Startwert für diese Verhandlung kann mittels der Option <smbconfoption><name>max xmit</name></smbconfoption> in &smb.conf; gesetzt werden. Es ist zu beachten, daß dies die maximale Grösse der SMB-Anfragen ist, die Samba akzeptiert, jedoch nicht die maximale Grösse, die der Client akzeptiert. Der Client legt die von ihm akzeptierte maximale SMB-Anfragen-Grösse fest, und Samba berücksichtigt dieses Limit.
+Beim Verbindungsaufbau verhandeln Client und Server einen Wert namens <parameter>maximum transmit</parameter> size, der die Größe nahzu aller SMB-Befehle beschränkt. Der Startwert für diese Verhandlung kann mit der Option <smbconfoption><name>max xmit</name></smbconfoption> in &smb.conf; gesetzt werden. Beachten Sie, dass dies die maximale Größe der SMB-Anfragen ist, die Samba akzeptiert, jedoch nicht die maximale Größe, die der Client akzeptiert. Der Client legt die von ihm akzeptierte maximale SMB-Anfragen-Größe fest, und Samba berücksichtigt dieses Limit.
 </para>
 
 <para>
-Dieser Wert beträgt standardmässig 65536 bytes (das Maximum), aber es ist möglich, daß manche Clients mit einer kleineren Übertragungseinheit schneller arbeiten. Werte unter 2048 verursachen meist ernsthafte Probleme. Im Normalfall ist der Standard-Wert der beste.
+Dieser Wert beträgt standardmäßig 65536 Bytes (das Maximum), aber es ist möglich, dass manche Clients mit einer kleineren Übertragungseinheit schneller arbeiten. Werte unter 2048 verursachen meist ernsthafte Probleme. Im Normalfall ist der Standard-Wert der beste.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Log Level</title>
+<title>Log-Level</title>
 
 <para>
-Wird der log level (auch als <smbconfoption><name>debug level</name></smbconfoption> bekannt) auf Werte grösser als 2 gesetzt, resultiert dies meist in einem starken Performance-Einbruch. Dies ist darin begründet, daß der Server nach jeder Operation das logfile <quote>flushed</quote>.
+Wird der Log-Level (auch als <smbconfoption><name>debug level</name></smbconfoption> bekannt) auf Werte größer als 2 gesetzt, resultiert dies meist in einem starken Performance-Einbruch. Dies liegt daran, dass der Server nach jeder Operation das Logfile <quote>flusht</quote>.
 </para>
 </sect1>
 
@@ -119,15 +119,15 @@ Wird der log level (auch als <smbconfoption><name>debug level</name></smbconfopt
 <title>Read Raw</title>
 
 <para>
-Die <smbconfoption><name>read raw</name></smbconfoption>-Operation ist eine optimierte Lese-Operation mit geringer Latenz-Zeit. Ein Server kann diese wahlweise unterstützen, Samba trägt dem dadurch Rechnung, daß die Unterstützung für <smbconfoption><name>read raw</name></smbconfoption> optional ist, wobei diese standardmässig aktiv ist.
+Die <smbconfoption><name>read raw</name></smbconfoption>-Operation ist eine optimierte Lese-Operation mit geringer Latenz-Zeit. Ein Server kann diese wahlweise unterstützen, Samba trägt dem dadurch Rechnung, dass die Unterstützung für <smbconfoption><name>read raw</name></smbconfoption> optional ist, wobei diese standardmäßig aktiv ist.
 </para>
 
 <para>
-In einigen Fällen können Clients mit dem Parameter <smbconfoption><name>read raw</name></smbconfoption> nicht besonders gut umgehen, dann resultiert aus dessen Verwendung eine schlechtere Performance als bei der Verwendung der konventionellen Lese-Operation.
+In einigen Fällen können Clients mit dem Parameter <smbconfoption><name>read raw</name></smbconfoption> nicht besonders gut umgehen. Dann hat seine Verwendung eine schlechtere Performance zur Folge als die Verwendung der konventionellen Lese-Operation.
 </para>
 
 <para>
-Es liegt nahe, die Verwendung von <smbconfoption><name>read raw</name><value>no</value></smbconfoption> zu versuchen, und die Auswirkungen im jeweiligen Netzwerk zu prüfen. Es kann die Performance steigern, verringern oder auch gar nicht beeinflussen. Nur ein Test kann dies wirklich zeigen.
+Es liegt nahe, die Option <smbconfoption><name>read raw</name><value>no</value></smbconfoption> auszuprobieren und die Auswirkungen im jeweiligen Netzwerk zu prüfen. Diese Einstellung kann die Performance steigern, verringern oder auch gar nicht beeinflussen. Nur ein Test kann dies wirklich zeigen.
 </para>
 
 </sect1>
@@ -136,7 +136,7 @@ Es liegt nahe, die Verwendung von <smbconfoption><name>read raw</name><value>no<
 <title>Write Raw</title>
 
 <para>
-Die <smbconfoption><name>write raw</name></smbconfoption>-Operation ist eine optimierte Schreib-Operation mit geringer Latenz-Zeit. Ein Server kann diese wahlweise unterstützen, Samba trägt dem dadurch Rechnung, daß die Unterstützung für <smbconfoption><name>write raw</name></smbconfoption> optional ist, wobei diese standardmässig aktiv ist.
+Die <smbconfoption><name>write raw</name></smbconfoption>-Operation ist eine optimierte Schreiboperation mit geringer Latenz-Zeit. Ein Server kann diese wahlweise unterstützen; Samba trägt dem dadurch Rechnung, dass die Unterstützung für <smbconfoption><name>write raw</name></smbconfoption> optional ist, wobei diese standardmäßig aktiv ist.
 </para>
 
 <para>
@@ -149,13 +149,13 @@ Einige Maschinen arbeiten mit <smbconfoption><name>write raw</name></smbconfopti
 <title>Slow Logins</title>
 
 <para>
-<quote>Slow logins</quote> hängen so gut wie immer mit der Zeit zusammen, die benötigt wird, um das Passwort zu überprüfen. Das Verwenden des niedrigstmöglichen <smbconfoption><name>password level</name></smbconfoption> wird dies verbessern.
+<quote>Slow Logins</quote> hängen so gut wie immer mit der Zeit zusammen, die benötigt wird, um das Passwort zu überprüfen. Das Verwenden des niedrigstmöglichen <smbconfoption><name>password level</name></smbconfoption> wird dies verbessern.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Client Tuning</title>
+<title>Client-Tuning</title>
 
 <para>
 Oft kann ein Geschwindigkeitsproblem auf den Client zurückgeführt werden. Der Client (z.B. Windows for Workgroups) kann oft noch auf bessere TCP-Performance getunt werden. Lesen Sie diesbezüglich die jeweiligen Abschnitte in <link linkend="Other-Clients"/>.
@@ -167,11 +167,11 @@ Oft kann ein Geschwindigkeitsproblem auf den Client zurückgeführt werden. Der Cl
 <title>Samba-Performance-Problem nach dem Wechsel des Linux-Kernels</title>
 
 <para>
-Ein Samba-Anwender hat das Folgende an die Samba-mailing-list geschrieben:
+Ein Samba-Anwender hat das Folgende an die Samba-Mailingliste geschrieben:
 </para>
 
 <para>
-Ich verwende auf meinem Server Gentoo Linux und Samba 2.2.8a. Unlängst habe ich meinen Kernel von <filename>linux-2.4.19-gentoo-r10</filename> auf <filename>linux-2.4.20-wolk4.0s</filename> gewechselt. Nun habe ich ein Performance-Problem mit Samba. Viele von Euch werden vielleicht sagen, <quote>Versuche die ursprünglichen Kernel-Sourcen!</quote>. Tja, ich habe das versucht, und es hat nicht funktioniert. Ich habe ein 100MBit-LAN und zwei Rechner (Linux und Windows 2000). Der Linux-Server gibt Verzeichnisse mit DivX-Dateien frei, der Windows-Client spielt diese übers LAN ab. Zuvor, als ich noch den 2.4.19-Kernel verwendet habe, lief alles sauber, aber nun stocken und stoppen die Filme. Der Versuch, die Dateien vom Server auf den Windows-Rechner zu schieben, zeigte, daß dies schrecklich langsam ist.
+Ich verwende auf meinem Server Gentoo Linux und Samba 2.2.8a. Unlängst habe ich meinen Kernel von <filename>linux-2.4.19-gentoo-r10</filename> auf <filename>linux-2.4.20-wolk4.0s</filename> geändert. Nun habe ich ein Performance-Problem mit Samba. Viele von euch werden vielleicht sagen, <quote>Versuche es mit den ursprünglichen Kernel-Sourcen!</quote>. Tja, ich habe das versucht, und es hat nicht funktioniert. Ich habe ein 100-MBit-LAN und zwei Rechner (Linux und Windows 2000). Der Linux-Server gibt Verzeichnisse mit DivX-Dateien frei, der Windows-Client spielt diese über das LAN ab. Zuvor, als ich noch den 2.4.19-Kernel verwendet habe, lief alles sauber, aber nun stocken und stoppen die Filme. Der Versuch, die Dateien vom Server auf den Windows-Rechner zu schieben, zeigte, dass dies schrecklich langsam ist.
 </para>
 
 <para>
@@ -179,30 +179,30 @@ Die Antwort, die er erhalten hat, war diese:
 </para>
 
 <para>
-Besorge Dir das mii-tool und überprüfe die Duplex-Einstellungen auf Deiner Netzwerkkarte. Meine Vermutung ist, daß dies ein Problem in der Verbindungs-Schicht ist, keines in der Anwendungs-Schicht. Überprüfe weiters, ob die Ausgaben von ifconfig in Bezug auf Kollisionen usw. normal für Ethernet erscheinen.
+Besorge dir das mii-Tool und überprüfe die Duplex-Einstellungen auf deiner Netzwerkkarte. Meine Vermutung ist, dass dies ein Problem in der Verbindungsschicht ist, keines in der Anwendungsschicht. Überprüfe außerdem, ob die Ausgaben von ifconfig in Hinblick auf Kollisionen usw. normal für Ethernet erscheinen.
 </para>
 
 </sect1>
 
 <sect1>
-<title>Korrupte tdb-Dateien</title>
+<title>Beschäigte tdb-Dateien</title>
 
 <para>
-Unser Samba-PDC-Server verwaltet seit 3 Jahren ohne Probleme 3 TB Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Weiters begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, sodaß wir schliesslich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500 cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command>rm /var/locks/*.tdb</command> auszuführen. Endlich bin ich wieder glücklich!
+Unser Samba-PDC-Server verwaltet seit drei Jahren ohne Probleme 3 Tbyte Daten für unsere mehr als 500 Benutzer [Windows NT/XP]. Heute wurden alle Freigaben plötzlich sehr langsam. Außerdem begann der Haupt-smbd-Prozess damit, neue Sub-smbd-Prozesse zu starten, so dass wir schließlich über 1600 laufende smbd-Prozesse hatten (normalerweise haben wir durchschnittlich 250). Dies brachte den SUN E3500-Cluster zweimal zum Absturz. Nach vielem Suchen habe ich entschieden, <command>rm /var/locks/*.tdb</command> auszuführen. Endlich bin ich wieder glücklich!
 </para>
 
 <para>
-<emphasis>Frage:</emphasis> Gibt es eine Methode, um die tdb-Dateien in gutem Zustand zu halten? Wie kann ich frühzeitig feststellen, daß diese Dateien beschädigt sind?
+<emphasis>Frage:</emphasis> Gibt es eine Methode, um die tdb-Dateien in gutem Zustand zu halten? Wie kann ich frühzeitig feststellen, dass diese Dateien beschädigt sind?
 </para>
 
 <para>
-<emphasis>Antwort:</emphasis> Ja, führe <command>tdbbackup</command> nach jedem Stop und vor jedem Start von nmbd aus. 
+<emphasis>Antwort:</emphasis> Führe <command>tdbbackup</command> nach jedem Stopp und vor jedem Start von nmbd aus. 
 (Anmerkung des Übersetzers:
 Eine Möglichkeit ist, dies in das rcsmb/rcnmb-Skript aufzunehmen, das viele Distributionen verwenden.)
 </para>
 
 <para>
-<emphasis>Frage:</emphasis> Was ich noch bemerken möchte, ist, daß die Antwortzeiten der Dienste bei weitem niedriger erscheint als vor dem Bereinigen der Sperr-Dateien. Gibt es Möglichkeiten, diese in Top-Zustand zu halten?
+<emphasis>Frage:</emphasis> Was ich noch bemerken möchte, ist, dass die Antwortzeiten der Dienste bei weitem niedriger erscheinen als vor dem Bereinigen der Sperrdateien. Gibt es Möglichkeiten, diese im Top-Zustand zu halten?
 </para>
 
 <para>
@@ -215,23 +215,23 @@ Eine Möglichkeit ist, dies in das rcsmb/rcnmb-Skript aufzunehmen, das viele Dist
 <title>Samba-Performance ist sehr langsam</title>
 
 <para>
-Eine Site hat über sehr verblüffende Symptome berichtet, die mit MYOB Premier zusammenhängen, das seine Datendateien öffnet und darauf zugreift. Einige Operationen würden zwischen 40 und 45 Sekunden dauern.
+Der Administrator einer Site hat über sehr verblüffende Symptome berichtet, die mit MYOB Premier zusammenhängen, das seine Datendateien öffnet und darauf zugreift. Einige Operationen würden zwischen 40 und 45 Sekunden dauern.
 </para>
 
 <para>
-Es stellte sich heraus, daß das Drucker-Überwachungs-Programm, das auf den Windows-Clients läuft, das Problem verursacht hat. Aus den Log-Dateien wurde dessen Aktivität im 1-Sekunden-Takt ersichtlich.
+Es stellte sich heraus, dass das Drucker-Überwachungsprogramm, das auf den Windows-Clients läuft, das Problem verursacht hat. Aus den Log-Dateien wurde dessen Aktivität im 1-Sekunden-Takt ersichtlich.
 </para>
 
 <para>
-Das Stoppen dieses Überwachungs-Programms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes liess die Geschwindigkeit wieder stark abfallen. Der Drucker war ein Canon lbp810 und der betreffende task hiess so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungs-Software zeigte einen <quote>Druck wird ausgeführt</quote>-Dialog auf dem Windows-Client.
+Das Stoppen dieses Überwachungsprogramms ergab Netzwerkzugriffe in normaler (schneller) Geschwindigkeit. Das Neustarten des Programmes ließ die Geschwindigkeit wieder stark abfallen. Der Drucker war ein Canon lbp810, und der betreffende Task hieß so ähnlich wie CAPON (exakte Schreibweise unbekannt). Die Überwachungssoftware zeigte einen <quote>Druck wird ausgeführt</quote>-Dialog auf dem Windows-Client.
 </para>
 
 <para>
-Wir haben dies festgestellt, indem wir eine frische Windows-Installation verwendeten und die Anwendung bei jedem Installations-Schritt anderer Software ausprobierte (wir mussten dies oft tun ...).
+Wir haben dies festgestellt, indem wir eine frische Windows-Installation verwendeten und die Anwendung bei jedem Installationsschritt einer anderen Software ausprobiert haben (wir mussten dies oft tun ...).
 </para>
 
 <para>
-Die Moral der Geschichte: Überprüfe alles (andere Software eingeschlossen)!
+Und die Moral von der Geschicht': Überprüfe alles (andere Software eingeschlossen)!
 </para>
 
 </sect1>
