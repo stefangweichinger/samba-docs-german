@@ -518,6 +518,9 @@ Dies verhindert, daß die Desktop-Profile unbenützbar werden.
 	</para>
 
 <procedure>
+
+<para>TODO : DIESE PROZEDUR MUSS NOCH ÜBERSETZT WERDEN - ANHAND VON SCREENSHOTS !!!</para>
+
 	<step><para>On the XP workstation, log in with an Administrative account.</para></step>
 
 	<step><para>Click on <guimenu>Start</guimenu> -> <guimenuitem>Run</guimenuitem>.</para></step>
@@ -542,50 +545,62 @@ Dies verhindert, daß die Desktop-Profile unbenützbar werden.
 </sect2>
 
 <sect2>
-	<title>Sharing Profiles between W9x/Me and NT4/200x/XP Workstations</title>
+	<title>Das gemeinsame Nutzen von Profilen mit W9x/Me und NT4/200x/XP Workstations</title>
 
-<para> Sharing of desktop profiles between Windows versions is not recommended. Desktop profiles are an
-evolving phenomenon and profiles for later versions of MS Windows clients add features that may interfere
-with earlier versions of MS Windows clients. Probably the more salient reason to not mix profiles is
-that when logging off an earlier version of MS Windows, the older format of profile contents may overwrite
-information that belongs to the newer version resulting in loss of profile information content when that
-user logs on again with the newer version of MS Windows. </para>
+<para>
+Das gemeinsame Nutzen von Desktop-Profilen mit verschiedenen Windows-Versionen ist nicht zu empfehlen.
+Desktop-Profile sind ein Phänomen in Evolution, und Profile für spätere MS Windows-Versionen fügen
+Eigenschaften hinzu, die mit früheren MS Windows Clients zu Problemen führen können. Vielleicht ist
+der herausragendste Grund dafür, Profile nicht zu mischen, daß, wenn man sich von einer älteren
+MS Windows Version abmeldet, das alte Format der Profil-Inhalte Information überschreiben könnte, die
+zur neueren Version gehört, was in dem Verlust von Profil-Informations-Gehalt führt, wenn sich dieser
+Benutzer wieder an der neueren Version von MS Windows anmeldet.</para>
 
-<para> If you then want to share the same Start Menu/Desktop with W9x/Me, you will need to specify a common
-location for the profiles. The &smb.conf; parameters that need to be common are <smbconfoption><name>logon path</name></smbconfoption> and <smbconfoption><name>logon home</name></smbconfoption>. </para>
+<para>
+Wenn Sie dasselbe Startmenü/Desktop mit W9x/Me teilen wollen, müssen Sie einen gemeinsamen Ort 
+für die Profile angeben. Die Parameter in &smb.conf;, die gleich sein müssen, sind
+<smbconfoption><name>logon path</name></smbconfoption> und
+<smbconfoption><name>logon home</name></smbconfoption>. </para>
 
-<para> If you have this set up correctly, you will find separate <filename>user.DAT</filename> and
-<filename>NTuser.DAT</filename> files in the same profile directory. </para>
+<para>
+Wenn Sie dies korrekt eingerichtet haben, werden Sie separate Dateien <filename>user.DAT</filename>
+und <filename>NTuser.DAT</filename> im selben Profil-Verzeichnis vorfinden.</para>
 
 </sect2>
 
 <sect2>
-<title>Profile Migration from Windows NT4/200x Server to Samba</title>
+<title>Migration von Profilen von Windows NT4/200x Server zu Samba</title>
 
-<para> There is nothing to stop you from specifying any path that you like for the location of users' profiles.
-Therefore, you could specify that the profile be stored on a Samba server, or any other SMB server,
-as long as that SMB server supports encrypted passwords. </para>
+<para>
+Es gibt nichts, das Sie davon abhält, jeglichen beliebigen Pfad für die Benutzer-Profile anzugeben.
+Daher könnten Sie bestimmen, daß das Profil auf einem Samba-Server gespeichert werden soll, oder auf 
+irgendeinem anderen SMB-Server, solange diese Server verschlüsselte Passwörter unterstützt.</para>
 
 <sect3>
-<title>Windows NT4 Profile Management Tools</title>
+<title>Windows NT4 Profil-Verwaltungs-Werkzeuge</title>
 
-<para> Unfortunately, the Resource Kit information is specific to the version of MS Windows NT4/200x. The
-correct resource kit is required for each platform. </para>
+<para>
+Unglücklicherweise sind die Informationen zum Resource Kit spezifisch für die Version von
+MS Windows NT4/200x. Das passende Resource Kit ist für jede Plattform erforderlich.</para>
 
-<para>Here is a quick guide:</para>
+<para>Hier eine Kurz-Anleitung:</para>
 
+<para>TODO : DIESE PROZEDUR MUSS NOCH ÜBERSETZT WERDEN - ANHAND VON SCREENSHOTS !!!</para>
 <procedure>
-	<step><para> On your NT4 Domain Controller, right click on <guiicon>My Computer</guiicon>, then select the
-	tab labeled <guilabel>User Profiles</guilabel>. </para></step>
+	<step><para>Klicken Sie auf Ihrem NT4 Domain Controller mit der rechten Maustaste auf
+	<guiicon>Arbeitsplatz</guiicon>, dann wählen Sie die Klappe namens
+	<guilabel>Benutzerprofile</guilabel>. </para></step>
 
-	<step><para> Select a user profile you want to migrate and click on it. </para>
+	<step><para>Wählen Sie ein Benutzerprofil, das Sie migrieren wollen und klicken Sie darauf.
+	</para>
 
-	<note><para>I am using the term <quote>migrate</quote> loosely. You can copy a profile to create a group
-	profile. You can give the user <parameter>Everyone</parameter> rights to the profile you copy this to. That
-	is what you need to do, since your Samba domain is not a member of a trust relationship with your NT4
-	PDC.</para></note></step>
+	<note><para>Ich verwende den Begriff <quote>migrieren</quote> locker.
+	Sie können ein Profil kopieren, um ein Gruppen-Profil anzulegen. Sie können dem Benutzer
+	<parameter>Everyone</parameter> Rechte an dem Profil geben, auf das Sie kopieren. Dies
+	müssen Sie tun, da Ihre Samba-Domäne kein Mitglied einer Vertrauensstellung mit Ihrem PDC
+	ist.</para></note></step>
 
-	<step><para>Click on the <guibutton>Copy To</guibutton> button.</para></step>
+	<step><para>Klicken Sie auf <guibutton>Kopieren auf</guibutton>.</para></step>
 
 	<step><para>In the box labeled <guilabel>Copy Profile to</guilabel> add your new path, e.g.,
 	<filename>c:\temp\foobar</filename></para></step>
@@ -598,38 +613,41 @@ correct resource kit is required for each platform. </para>
 	<step><para>Now click on <guibutton>OK</guibutton>.</para></step>
 </procedure>
 
-<para> Follow the above for every profile you need to migrate.	</para>
+<para>Befolgen Sie obige Anleitung für jedes zu migrierende Profil.</para>
 
 </sect3>
 
 <sect3>
-<title>Side Bar Notes</title>
+<title>Randbemerkungen</title>
 
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-You should obtain the SID of your NT4 domain. You can use smbpasswd to do this. Read the man
-page.</para>
+Sie sollten sich die SID Ihrer NT4-Domäne besorgen, dazu können Sie smbpasswd verwenden.
+Lesen Sie dazu die man-page.</para>
 
 </sect3>
 
 <sect3> <title>moveuser.exe</title>
 
-<para> The Windows 200x professional resource kit has <command>moveuser.exe</command>. <command>moveuser.exe</command> changes the security of a profile
-from one user to another. This allows the account domain to change, and/or the user name to change.</para>
+<para>
+Das Windows 200x Professional Resource Kit enthält <command>moveuser.exe</command>.
+<command>moveuser.exe</command> verändert die Sicherheit eines Profils von einem Benutzer auf einen
+anderen. Dies erlaubt es, die Domäne des Kontos zu ändern, und/oder den Benutzernamen.</para>
 
 <para>
-This command is like the Samba <command>profiles</command> tool.
+Dieser Befehl ist dem Samba-Befehl <command>profiles</command> ähnlich.
 </para>
 
 </sect3>
 
 <sect3>
-<title>Get SID</title>
+<title>Die SID erhalten</title>
 
 <para>
 <indexterm><primary>SID</primary></indexterm>
-You can identify the SID by using <command>GetSID.exe</command> from the Windows NT Server 4.0 Resource Kit. </para>
+Sie können die SID bestimmen, indem Sie das Programm <command>GetSID.exe</command> aus dem
+Windows NT Server 4.0 Resource Kit verwenden.</para>
 
 <para> Windows NT 4.0 stores the local profile information in the registry under the following key:
 <filename>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList</filename> </para>
