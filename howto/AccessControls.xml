@@ -136,7 +136,7 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 	<para>
 	Glücklicherweise bietet Samba eine Reihe von Konfigurationsmöglichkeiten, um die Unterschiede zu
 	überbrücken. Wir werden einige dieser Einstellungsmöglichkeiten betrachten, jedoch nicht alle. Wer mehr wissen möchte, sollte die
-	Beschreibung ( man = manual Datei ) der smb.conf lesen.
+	Beschreibung (man = manual Datei) der smb.conf lesen.
 	</para>
 
 	<para>Im folgenden ein Vergleich von UNIX- und Windows-Dateisystem NT/200x:
@@ -165,11 +165,11 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		<indexterm><primary>8.3 Dateinamen</primary></indexterm>
 		<indexterm><primary>Dateisystem</primary><secondary>Schreibweise sensitiv</secondary></indexterm>
 		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt. Dateinamen die
-		länger sind, sind in ihrer Schreibweise insensitiv ( d. h. ob groß oder klein geschrieben spielt keine Rolle )
+		länger sind, sind in ihrer Schreibweise insensitiv (d. h. ob groß oder klein geschrieben spielt keine Rolle )
 		</para>
 
 		<para>
-		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen sensitiv ( es spielt sehr wohl eine Rolle,
+		Unter UNIX sind alle Dateien und Verzeichnisse Schreibweisen sensitiv (es spielt sehr wohl eine Rolle,
 		ob eine Datei groß oder klein geschrieben wird).
 		</para>
 		<para>
@@ -182,7 +182,7 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 
 		<para>
 		Es wird ziemlich klar, dass diese Dateien in Windows nicht nebeneinander stehen könnten
-		( im selben Ordner ) unter UNIX jedoch jederzeit.
+		(im selben Ordner) unter UNIX jedoch jederzeit.
 		</para>
 		<para>
 		Was soll nun Samba tun, wenn es auf diese Dateien trifft? Die Lösung besteht darin, dass die erste
@@ -198,9 +198,9 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 
 		<para>
 				<indexterm><primary>Verzeichnis-Trennzeichen</primary></indexterm>
-		MS Windows und DOS benutzen den \ ( Backslash) als Verzeichnis-Trennzeichen <constant>\</constant>
-		UNIX benutzt ( wie im Internet üblich ) den Slash / als Verzeichnis Trennzeichen.
-		<constant>/</constant>Dies wird von Samba transparent (für den Windowsnutzer unbemerkt ) umgelegt.
+		MS Windows und DOS benutzen den \ (Backslash) als Verzeichnis-Trennzeichen <constant>\</constant>
+		UNIX benutzt (wie im Internet üblich) den Slash / als Verzeichnis Trennzeichen.
+		<constant>/</constant>Dies wird von Samba transparent (für den Windowsbenutzer unbemerkt) umgelegt.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -211,9 +211,9 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 		<para>
 			<indexterm><primary>Laufwerksbezeichnung</primary></indexterm>
 		In MS Windows werden verschiedene Festplatten Partitionen mit Buchstaben belegt.<command>C:</command>
-		Es gibt unter UNIX kein ähnliches Konzept, Festplatten Teile ( Partitionen ) werden eingebunden
-		( gemounted ) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist, wäre unter UNIX einfach
-		( root = Wurzel des Dateisystembaumes )<constant>/</constant>.
+		Es gibt unter UNIX kein ähnliches Konzept, Festplatten Teile (Partitionen) werden eingebunden
+		(gemounted) als Teil des Dateisystems. Was unter DOS <constant>C:\</constant> ist, wäre unter UNIX einfach
+		(root = Wurzel des Dateisystembaumes)<constant>/</constant>.
 		</para>
 			</listitem>
 		</varlistentry>
@@ -265,7 +265,7 @@ erst die Unterschiede erklären und dann, wie Samba hilft, dies zu überbrücken.
 	Es gibt grunsätzlich 3 Möglichkeiten um Ordner (Verzeichnisse) zu verwalten: <command>create (erstellen), 
 delete (löschen), rename (umbenennen )</command>.
 	<table frame="all">
-		<title>Verwaltung von Ordnern (Verzeichnisse) mit UNIX und Windows</title>
+		<title>Verwaltung von Ordnern (Verzeichnissen) mit UNIX und Windows</title>
 		<tgroup align="center" cols="3">
 		<thead>
 		<row><entry>Action</entry><entry>Windows Befehle</entry><entry>UNIX Befehle</entry></row>
@@ -282,14 +282,14 @@ delete (löschen), rename (umbenennen )</command>.
 	</sect2>
 
 	<sect2>
-	<title>Datei- und Ordner- (Verzeichnis) Zugriffskontrolle (Verwaltung)</title>
+	<title>Verwaltung von Datei- und Ordner- (Verzeichnis) Zugriffskontrollen</title>
 
 
 	<para>
-	<indexterm><primary>ACLs</primary><secondary>File System</secondary></indexterm>
+	<indexterm><primary>ACLs</primary><secondary>Dateisystem</secondary></indexterm>
 	Jedem Administrator wird geraten zusätzliche Handbücher über dieses Thema zu studieren.
 	Die meisten Fälle können mit den grundlegenden Zugriffsmöglichkeiten von UNIX gelöst werden
-	ohne die Technoilogine der Zugriffskontrolllisten (ACLs) oder der Erweiterten Attribute (EAs) zu gebrauchen.
+	ohne die Technologien der Zugriffskontrolllisten (ACLs) oder der Erweiterten Attribute (EAs) zu gebrauchen.
 	</para>
 
 	<para>
@@ -345,9 +345,9 @@ scale="40"><imagedescription>Übersicht der UNIX Berechtigungen</imagedescription
 
 	<para>
 	Die Zeichen <constant>rwxXst</constant> für die Berechtigungen für Nutzer, Gruppen und anderen sind: 
-	lesen (r), schreiben (w), ausführen (oder Ordner Zugriff ) (x),
+	lesen (r), schreiben (w), ausführen (oder Ordner Zugriff) (x),
 	exclusives ausführen, wenn der Nutzer berechtigt für die Datei oder den Ordner ist (X), Setzen der ID des 
-	Nutzers bei Ausführung (s), sticky ( begleitendes Bit )(t).
+	Nutzers bei Ausführung (s), sticky (begleitendes Bit)(t).
 	</para>
 
 	<para>
@@ -503,8 +503,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 	<para>
 	Die folgenden Datei- und Verzeichnis-Berechtigungsbasierenden Kontrollen können, wenn falsch angewendet,
 	in erheblichen Schwierigkeiten bei der Fehlersuche durch Fehlkonfigurationen enden.
-	Benutzern Sie diese sparsam und sorgfältig. Durch schrittweise Einführung einer nach dem anderen können unerwünschte By gradually introducing each one by one,
-	Seiteneffekte entdeckt werden. Im Fehlerfall kommentieren Sie alle aus und führen Sie diese dann schrittweise in 
+	Benutzen Sie diese sparsam und sorgfältig. Durch schrittweise Einführung einer nach dem anderen können unerwünschte
+	Nebeneffekte entdeckt werden. Im Fehlerfall kommentieren Sie alle aus und führen Sie diese dann schrittweise in 
 	einer kontrollierten Art und Weise wieder ein.
 	</para>
 
@@ -604,7 +604,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 	<title>Allgemeine Kontrollen</title>
 
 	<para>
-	Das folgende ist dokumentiert, da es weit verbreitet ist, dass Administratoren unabsichtliche Barrieren beim
+	Das folgende ist dokumentiert, da es weit verbreitet ist, dass Administratoren unabsichtlich Barrieren beim
 	Einrichten von Dateizugriffen dadurch aufbauen, dass sie die genauen Auswirkungen von Dateieinstellungen in 
 	&smb.conf; nicht verstehen. Siehe <link linkend="mcoc"/>.
 	</para>
@@ -694,17 +694,17 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 
 	<para>
 <indexterm><primary>Berechtigungen</primary><secondary>Freigabe ACLs</secondary></indexterm>
-	Dieses Kaptitel handelt davon, wie Samba Zugriffskontroll-Einschränkungen für Freigaben konfiguriert werden kann.
+	Dieses Kapitel handelt davon, wie Samba für Zugriffskontroll-Einschränkungen bei Freigaben konfiguriert werden kann.
 	Standardmässig setzt Samba keine Einschränkungen auf die Freigabe selbst. Einschränkungen auf der Freigabe selbst
 	können auf MS Windows NT4/200x/XP-Freigaben gesetzt werden. Dies kann ein effektiver Weg sein zu regeln, wer auf
-	eine Freigabe verbinden darf. In Abwesenheit von spezifischen Einschränkungen ist die Standardeinstellung, dem
-	globalen Benutzer <constant>Everyone - Volle Kontrolle</constant> (volle Kontrolle, ändern und lesen) zu erlauben.
+	eine Freigabe verbinden darf. In Ermangelung spezifischer Einschränkungen ist die Standardeinstellung, dem
+	globalen Benutzer <constant>Jeder - Volle Kontrolle</constant> (volle Kontrolle, ändern und lesen) zu erlauben.
 	</para>
 
 	<para>
 	Zur Zeit stellt Samba kein Werkzeug zum Konfigurieren von Zugriffskontroll-Einstellung auf einer Freigabe selbst zur 
-	Verfügung. Samba hat die Kapazität auf Zugriffskontroll-Einstellungen zu speichern und zu arbeiten, aber der einzige Weg
-	diese Einstellung zu erzeugen ist der NT4 Server Manager oder die Windows 200x MMC für Computer-Verwaltung.
+	Verfügung. Samba hat die Kapazität auf Zugriffskontroll-Einstellungen zu speichern und zu arbeiten, aber der einzige Weg,
+	diese Einstellung zu erzeugen, ist der NT4 Server Manager oder die Windows 200x MMC für Computer-Verwaltung.
 	</para>
 
 	<para>
@@ -725,7 +725,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 			<sect3>
 			<title>Windows NT4 Workstation/Server</title>
 			<para>
-			Das Werkzeug, welches Sie zum verwalten von Freigabeberechtigungen auf einem Samba-Server nutzen müssen 
+			Das Werkzeug, welches Sie zum Verwalten von Freigabeberechtigungen auf einem Samba-Server nutzen müssen 
 			ist der NT Server Manager. Der Server Manager wird mit den Windows NT4 Serverprodukten, aber
 			nicht mit Windows NT4 Workstation ausgeliefert.
 			Sie können den NT Server Manager für MS Windows NT4 Workstation von Microsoft &smbmdash; erhalten, Details weiter unten.
@@ -804,7 +804,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 </sect1>
 
 <sect1>
-<title>MS Windows Zugriffskontrolllisten (ACLs) und UNIX Interoperabilität</title>
+<title>MS Windows Zugriffskontrolllisten (ACLs) und UNIX-Wechselwirkungen</title>
 
 	<sect2>
 		<title>Verwalten von UNIX Berechtigungen durch NT Sicherheitsdialoge</title>
@@ -817,7 +817,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		</para>
 
 		<para>
-		Diese Fähigkeit ist so umsichtig , dass die Sicherheit des UNIX Hosts auf welchem Samba läuft nicht 
+		Diese Fähigkeit ist so umsichtig, dass die Sicherheit des UNIX Hosts, auf welchem Samba läuft, nicht 
 		gefährdet wird und dennoch alle Dateiberechtigungs-Regeln, die ein Samba Administrator setzt, beachtet.
 		</para>
 
@@ -844,7 +844,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		gemounteten Laufwerksbuchstaben oder UNC-Pfad. Wenn das Menü aufgeht klicken Sie auf den <guilabel>Eigenschaften</guilabel> Eintrag 
 		am Fuss des Menüs. Dies startet die Datei <constant>Eigenschaften</constant> Dialogbox. Klicken Sie auf die
 		<guilabel>Sicherheit</guilabel> Registerkarte und Sie werden drei Knöpfe sehen: <guibutton>Berechtigungen</guibutton>,
-		<guibutton>Überwachung</guibutton>, und <guibutton>Besitzer</guibutton>. Der <guibutton>Überwachung</guibutton>
+		<guibutton>Überwachung</guibutton> und <guibutton>Besitzer</guibutton>. Der <guibutton>Überwachung</guibutton>
 		Knopf wird entweder eine Fehlermeldung <errorname>`A requested privilege is not held by the client'</errorname>
 		verursachen falls der Benutzer kein NT Administrator ist oder ein Dialog, der dafür gedacht ist, einem Administrator
 		Überwachungsgrundlagen einer Datei zuzufügen, wenn der Benutzer als NT Administrator angemeldet ist. Dieser Dialog
@@ -879,19 +879,19 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		</para>
 
 		<para>
-		Der <guibutton>Übernehmen</guibutton> Knopf erlaubt es Ihnen nicht, die Eigentumsrechte an dieser Datei auf Sie selbst zu geben
+		Der <guibutton>Übernehmen</guibutton> Knopf erlaubt es Ihnen nicht, die Eigentumsrechte an dieser Datei auf Sie selbst zu setzen
 		(ein Anklicken zeigt eine Dialogbox, die angibt, dass der Benutzer als der Sie gerade auf dem NT Client angemeldet sind, nicht
-		geufnden werden kann). Der Grund hierfür ist, dass das Ändern der Eigentumsrechte auf eine Datei eine privilegierte Operation 
+		gefunden werden kann). Der Grund hierfür ist, dass das Ändern der Eigentumsrechte auf eine Datei eine privilegierte Operation 
 		in UNIX ist, die ausschliesslich dem <emphasis>root</emphasis> Benutzer obliegt. Indem Sie auf diesen Knopf drücken 
-		wird NT dazu veranlassen, die Eigentumsrechte einer Datei auf den gegenwärtigen am NT Client angemeldeten Benutzer zu ändern, dies 
+		wird NT dazu veranlasst, die Eigentumsrechte einer Datei auf den am NT Client gegenwärtig angemeldeten Benutzer zu ändern, dies 
 		jedoch funktioniert zu diesem Zeitpunkt mit Samba nicht.
 		</para>
 
 		<para>
-		Es gibt ein NT <command>chown</command> Kommando, welches mit Samba funktioniert und es einem Benutzer der mit Administratorprivilegien an
-		einen Sambaserver als root angeschlossen ist die Eigentumsrechte Dateien sowohl auf lokaler NTFS Dateisystemebene oder entfernt gemountete
-		NTFS oder Samba-Laufwerke. Dies ist verfügbar als Teil der von Jeremy Allison vom Samba Team geschriebenen <application>Seclib</application> 
-		NT Sicherheitsbibliothek und ist abrufbar von der FTP-Hauptseite von Samba.
+		Es gibt ein NT <command>chown</command> Kommando, welches mit Samba funktioniert und es einem Benutzer, der mit Administratorprivilegien an
+		einen Sambaserver als root angeschlossen ist erlaubt, die Eigentumsrechte von Dateien sowohl auf lokaler NTFS Dateisystemebene oder entfernt gemountete
+		NTFS oder Samba-Laufwerke zu setzen. Dies ist verfügbar als Teil der von Jeremy Allison vom Samba Team geschriebenen <application>Seclib</application> 
+		NT Sicherheitsbibliothek und ist von der FTP-Hauptseite von Samba abrufbar.
 		</para>
 
 	</sect2>
@@ -900,8 +900,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		<title>Anzeigen von Datei- oder Verzeichnisberechtigungen</title>
 
 		<para>
-		Der dritte Knopf ist der <guibutton>Berechtigungen</guibutton> Knopf. Indem Sie diesen Anklicken öffnet sich eine Dialogbox
-		welche sowohl die Berechtigungen und den UNIX-Besitzer für die Datei oder das Verzeichnis anzeigen.
+		Der dritte Knopf ist der <guibutton>Berechtigungen</guibutton> Knopf. Indem Sie diesen Anklicken öffnet sich eine Dialogbox,
+		welche sowohl die Berechtigungen und den UNIX-Besitzer für die Datei als auch für das Verzeichnis anzeigen.
 		Der Eigentümer wird dergestalt angezeigt:
 		</para>
 
@@ -920,7 +920,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		</para>
 		
 		<para>
-		Das Berechtigunggsfeld wird bei Dateien und Verzeichnissen anders dargestellt, also werde ich die Art, wie
+		Das Berechtigungsfeld wird bei Dateien und Verzeichnissen anders dargestellt, also werde ich die Art, wie
 		Dateiberechtigungen angezeigt werden als erstes beschreiben.
 		</para>
 
@@ -931,7 +931,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 			werden von Samba in ein aus drei Elementen bestehendes NT ACL mit <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits 
 			zu NT Berechtigungen passenden gemappt. Die UNIX Welt-Berechtigungen werden in die globale NT Gruppe <constant>Jeder</constant> gemappt,
 			gefolgt von der Berechtigungsliste, die für UNIX-Welt gilt. Die UNIX Eigentümer- und Gruppenberechtigungen werden als ein NT
-			<guiicon>Benutzer</guiicon> Symbol und ein NT <guiicon>lokale Gruppe</guiicon> Symbol angezeigt, 
+			<guiicon>Benutzer</guiicon> Symbol und ein NT <guiicon>lokale Gruppe</guiicon> Symbol angezeigt
 			beziehungsweise durch die nachfolgende Berechtigungsliste für die UNIX Benutzer und Gruppe.</para>
 
 			<para>Dadurch, dass viele UNIX Berechtigungssätze nicht in allgemeine NT Namen wie <constant>lesen</constant>,
@@ -939,16 +939,16 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 			durch Wörter wie <constant>Spezieller Zugriff</constant> in der NT Anzeigeliste angeführt.</para>
 
 			<para>Doch was passiert, wenn die Datei keine Berechtigungen für eine bestimmte UNIX Benutzergruppe oder Welt-Komponente erlaubt ?
-			Um es zu ermöglichen <quote>keine Berechtigungen</quote> zu sehen und zu ändern übergibt Samba das NT <constant>Besitztum übernehmen</constant> ACL Attribut
+			Um es zu ermöglichen, <quote>keine Berechtigungen</quote> zu sehen und zu ändern übergibt Samba das NT <constant>Besitztum übernehmen</constant> ACL Attribut
 			(welches keine Bedeutung für UNIX hat) und meldet eine Komponente ohne Berechtigung, wie wenn das NT <command>O</command> Bit gesetzt ist.
-			Dies wurde natürlich deshalb gewählt um es wie eine Null aussehen zu lassen, was bedeutet: Null Berechtigungen. Weitere Details zu dieser
+			Dies wurde natürlich deshalb gewählt, um es wie eine Null aussehen zu lassen, was bedeutet: Null Berechtigungen. Weitere Details zu dieser
 			Entscheidung werden weiter unten gegeben.</para>
 		</sect3>
 
 		<sect3>
 			<title>Verzeichnis-Berechtigungen</title>
 
-			<para>Verzeichnisse auf einem NT NTFS Dateisystem haben zwei verschiedene Berechtigungssätze. Der erste Satz ider die ACL, welche
+			<para>Verzeichnisse auf einem NT NTFS Dateisystem haben zwei verschiedene Berechtigungssätze. Der erste Satz ist die ACL, welche
 			auf das Verzeichnis selbst gesetzt ist, welche normalerweise im ersten Satz der Parentheses im normalen NT-Stil <constant>RW</constant>
 			angezeigt wird. Dieser erste Satz an Berechtigungen wird durch Samba in exakt derselben Art und Weise erzeugt, wie es normale Dateiberechtigungen
 			werden, und wird auch auf diesselbe Art und Weise angezeigt.</para>
@@ -956,7 +956,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 			<para>Der zweite Satz von Verzeichnis-Berechtigungen hat keine echte Bedeutung in der UNIX-Berechtigungs-Welt und repräsentiert
 			die <constant>vererbten</constant> Berechtigungen die jede Datei, die in diesem Verzeichnis erzeugt wird, vererben wird.</para>
 
-			<para>Samba vereinigt diese vererbten Berechtigungen für NT indem es die UNIX Berechtigungsmodi als ein NT ACL zurückgibt
+			<para>Samba vereinigt diese vererbten Berechtigungen für NT, indem es die UNIX Berechtigungsmodi als ein NT ACL zurückgibt, so
 			wie es eine Datei erhalten würde, die Samba für diese Freigabe erzeugt hatte.</para>
 		</sect3>
 	</sect2>
@@ -968,11 +968,11 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		der Anzeige der Berechtigungen in der Dialogbox und das Klicken auf <guibutton>OK</guibutton>. 
 		Jedoch gibt es Einschränkungen, die ein Benutzer wissen sollte und die mit den Standard 
 		Samba-Berechtigungsmasken und dem Vergeben von DOS-Attributen, die ebenfalls in diesem Zusammenhang 
-		gemacht werden, zusammenspielen.</para>
+		gemacht werden, zusammenhängen.</para>
 
 		<para>Falls der Parameter <smbconfoption><name>nt acl support</name></smbconfoption>
 		auf <constant>false</constant> gesetzt ist schlägt jeder Versuch, Sicherheitsberechtigungen zu setzen
-		mit einer <errorname>'Zugriff verweigert'</errorname> Meldung fehl.</para>
+		mit einer Meldung <errorname>'Zugriff verweigert'</errorname> fehl.</para>
 
 		<para>Das erste, was anzumerken ist, dass der <guibutton>Hinzufügen</guibutton> Knopf
 		keine Samba-Benutzerliste zurückgeben wird (es wird eine Fehlermeldung ausgeben, die besagt
@@ -990,12 +990,12 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 		zu setzen, nachdem Sie diese von einem der Drillingskomponenten entfernt hatten.</para>
 
 		<para>Weil UNIX nur die <quote>r</quote>, <quote>w</quote> und <quote>x</quote> Bits eines
-		NT ACL unterstützt, falls andere NT Sicherheitsattribute wie <constant>Löschzugriff</constant> 
-		ausgewählt wurden, werden diese ignoriert, falls diese auf einem Samba Server angewandt werden.</para>
+		NT ACL unterstützt werden diese ignoriert, falls andere NT Sicherheitsattribute wie <constant>Löschzugriff</constant> 
+		ausgewählt wurden, falls diese auf einem Samba Server angewandt werden.</para>
 
 		<para>Wenn Berechtigungen auf ein Verzeichnis gesetzt werden, wird der zweite Satz an Berechtigungen
 		(im zweiten Satz der Parenthesen) standardmässig auf alle Dateien in diesem Verzeichnis angewandt.
-		Falls Sie dies nicht wünschen müssen Sie die <guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel> Auswahlbox
+		Falls Sie dies nicht wünschen müssen Sie die Auswahlbox <guilabel>Berechtigungen auf existierende Dateien zurücksetzen</guilabel> 
 		in dem NT Dialog vor einem Klicken auf <guibutton>OK</guibutton> abwählen.</para>
 
 		<para>Falls Sie es wünschen, alle Berechtigungen von einer Benutzer/Gruppe/Welt Komponente zu entfernen
@@ -1007,7 +1007,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen sehen Sie 
 	<sect2>
 		<title>Wechselwirkung mit den Standard Samba <quote>create mask</quote> Parametern</title>
 
-		<para>Es gibt vier Parameter die das Wechselspiel mit den Standard Samba <parameter>create mask</parameter> Parametern kontrollieren.
+		<para>Es gibt vier Parameter, die das Wechselspiel mit den Standard Samba <parameter>create mask</parameter> Parametern kontrollieren.
 		Diese sind:
 
 		<itemizedlist>
