@@ -13,83 +13,84 @@
 
 <refnamediv>
 	<refname>smbmnt</refname>
-	<refpurpose>helper utility for mounting SMB filesystems</refpurpose>
+	<refpurpose>Hilfswerkzeug zum Mounten von SMB-Dateisystemen</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbmnt</command>
-		<arg choice="req">mount-point</arg>
-		<arg choice="opt">-s &lt;share&gt;</arg>
+		<arg choice="req">Mount-Punkt</arg>
+		<arg choice="opt">-s &lt;Freigabe&gt;</arg>
 		<arg choice="opt">-r</arg>
 		<arg choice="opt">-u &lt;uid&gt;</arg>
 		<arg choice="opt">-g &lt;gid&gt;</arg>
-		<arg choice="opt">-f &lt;mask&gt;</arg>
-		<arg choice="opt">-d &lt;mask&gt;</arg>
-		<arg choice="opt">-o &lt;options&gt;</arg>
+		<arg choice="opt">-f &lt;Maske&gt;</arg>
+		<arg choice="opt">-d &lt;Maske&gt;</arg>
+		<arg choice="opt">-o &lt;Optionen&gt;</arg>
 		<arg choice="opt">-h</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para><command>smbmnt</command> is a helper application used 
-	by the smbmount program to do the actual mounting of SMB shares. 
-	<command>smbmnt</command> can be installed setuid root if you want
-	normal users to be able to mount their SMB shares.</para>
+	<para><command>smbmnt</command> ist eine Hilfsanwendung, die vom Programm
+	smbmount benutzt wird, um SMB-Freigaben tatsächlich mounten können. 
+	<command>smbmnt</command> kann man als setuid root installieren, wenn Sie
+	möchten, dass normale Benutzer ihre SMB-Freigaben mounten können sollen.</para>
 
-	<para>A setuid smbmnt will only allow mounts on directories owned
-	by the user, and that the user has write permission on.</para>
+	<para>Ein setuid-smbmnt erlaubt das Mounten nur in Verzeichnissen, die
+	dem Benutzer gehören, und in denen er Schreibrechte hat.</para>
 
-	<para>The <command>smbmnt</command> program is normally invoked 
-	by <citerefentry><refentrytitle>smbmount</refentrytitle>
-	<manvolnum>8</manvolnum></citerefentry>. It should not be invoked directly by users. </para>
+	<para>Das Programm <command>smbmnt</command> wird normalerweise von  
+	<citerefentry><refentrytitle>smbmount</refentrytitle>
+	<manvolnum>8</manvolnum></citerefentry> aufgerufen. Von Benutzern sollte
+	es nicht direkt aufgerufen werden.</para>
 
-	<para>smbmount searches the normal PATH for smbmnt. You must ensure
-	that the smbmnt version in your path matches the smbmount used.</para>
+	<para>smbmount sucht im normalen PATH nach smbmnt. Sie müssen sicherstellen,
+	dass die smbmnt-Version auf Ihrem Pfad zu dem verwendeten smbmount passt.</para>
 
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term>-r</term>
-		<listitem><para>mount the filesystem read-only 
+		<listitem><para>mountet das Dateisystem nur lesbar 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-u uid</term>
-		<listitem><para>specify the uid that the files will 
-		be owned by </para></listitem>
-		</varlistentry>
-
-		<varlistentry>
-		<term>-g gid</term>
-		<listitem><para>specify the gid that the files will be 
-		owned by </para></listitem>
-		</varlistentry>
-
-		<varlistentry>
-		<term>-f mask</term>
-		<listitem><para>specify the octal file mask applied
+		<listitem><para>gibt die uid an, der die Dateien gehören 
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-d mask</term>
-		<listitem><para>specify the octal directory mask 
-		applied  </para></listitem>
+		<term>-g gid</term>
+		<listitem><para>gibt die gid an, der die Dateien gehören 
+		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
-		<term>-o options</term>
+		<term>-f Maske</term>
+		<listitem><para>gibt die angewendete oktale Dateimaske an
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term>-d Maske</term>
+		<listitem><para>gibt die angewendete oktale Verzeichnismaske an 
+		</para></listitem>
+		</varlistentry>
+
+		<varlistentry>
+		<term>-o Optionen</term>
 		<listitem><para>
-		list of options that are passed as-is to smbfs, if this
-		command is run on a 2.4 or higher Linux kernel.
+		eine Liste von Optionen, die direkt so an smbfs übergeben werden, falls
+		dieser Befehl auf einem Linux-Kernel 2.4 oder höher ausgeführt wird.
 		</para></listitem>
 		</varlistentry>
 
