@@ -29,8 +29,8 @@ Das Diagramm in <link linkend="domain-example"/> zeigt eine klassische Umgebung 
 
 <figure id="domain-example"><title>Eine Beispiel-Domäne.</title>
 <mediaobject>
-<imageobject role="latex"><imagedata fileref="projdoc/imagefiles/domain" width="4in" height="3in" scalefit="1"/></imageobject>
-<imageobject><imagedata fileref="projdoc/imagefiles/domain.png" scale="50" scalefit="1"/></imageobject>
+<imageobject role="latex"><imagedata fileref="images/domain" width="4in" height="3in" scalefit="1"/></imageobject>
+<imageobject><imagedata fileref="images/domain.png" scale="50" scalefit="1"/></imageobject>
 </mediaobject>
 </figure>
 
