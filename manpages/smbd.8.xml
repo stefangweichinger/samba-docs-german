@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbd</refname>
-	<refpurpose>server to provide SMB/CIFS services to clients</refpurpose>
+	<refpurpose>Server, der SMB/CIFS-Dienste für Clients anbietet</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -26,103 +26,109 @@
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-V</arg>
 		<arg choice="opt">-b</arg>
-		<arg choice="opt">-d &lt;debug level&gt;</arg>
-		<arg choice="opt">-l &lt;log directory&gt;</arg>
-		<arg choice="opt">-p &lt;port number(s)&gt;</arg>
-		<arg choice="opt">-O &lt;socket option&gt;</arg>
-		<arg choice="opt">-s &lt;configuration file&gt;</arg>
+		<arg choice="opt">-d &lt;Debug-Ebene&gt;</arg>
+		<arg choice="opt">-l &lt;Log-Verzeichnis&gt;</arg>
+		<arg choice="opt">-p &lt;Port-Nummer(s)&gt;</arg>
+		<arg choice="opt">-O &lt;Socket-Option&gt;</arg>
+		<arg choice="opt">-s &lt;Konfig-Datei&gt;</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
-	<para>This program is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<title>BESCHREIBUNG</title>
 
-	<para><command>smbd</command> is the server daemon that 
-	provides filesharing and printing services to Windows clients. 
-	The server provides filespace and printer services to
-	clients using the SMB (or CIFS) protocol. This is compatible 
-	with the LanManager protocol, and can service LanManager 
-	clients.  These include MSCLIENT 3.0 for DOS, Windows for 
-	Workgroups, Windows 95/98/ME, Windows NT, Windows 2000, 
-	OS/2, DAVE for Macintosh, and smbfs for Linux.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>An extensive description of the services that the 
-	server can provide is given in the man page for the 
-	configuration file controlling the attributes of those 
-	services (see <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry>.  This man page will not describe the 
-	services, but will concentrate on the administrative aspects 
-	of running the server.</para>
+	<para><command>smbd</command> ist der Server-Daemon, der Dateifreigaben 
+	und Druckdienste für Windows-Clients bietet. Der Server bietet Raum für 
+	Dateien und Druckerdienste für Clients mit Hilfe des Protokolls SMB 
+	(oder CIFS). Dieses ist kompatibel mit dem LanManager-Protokoll und kann 
+	LanManager-Clients bedienen. Dazu gehören MSCLIENT 3.0 für DOS, Windows 
+	for Workgroups, Windows 95/98/ME, Windows NT, Windows 2000, OS/2, DAVE 
+	für den Macintosh und smbfs für Linux.</para>
 
-	<para>Please note that there are significant security 
-	implications to running this server, and the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> manual page should be regarded as mandatory reading before 
-	proceeding with installation.</para>
+	<para>Eine umfangreiche Beschreibung der Dienste, die der Server anbietet,
+	ist in der Manpage zur Konfigurationsdatei enthalten, in der die Attribute
+	jener Dienste eingestellt werden (siehe 
+	<citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry>. Diese Manpage beschreibt nicht
+	die Dienste, sondern konzentriert sich auf die administrativen Aspekte 
+	des Serverbetriebs.</para>
 
-	<para>A session is created whenever a client requests one. 
-	Each client gets a copy of the server for each session. This 
-	copy then services all connections made by the client during 
-	that session. When all connections from its client are closed, 
-	the copy of the server for that client terminates.</para>
+	<para>Beachten Sie bitte, dass es beim Betrieb dieses Servers
+	erhebliche Folgen für die Sicherheit gibt, und die Manpage zu
+	<citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry> sollte unbedingt gelesen 
+	werden, bevor mit der Installation begonnen wird.</para>
 
-	<para>The configuration file, and any files that it includes, 
-	are automatically reloaded every minute, if they change.  You 
-	can force a reload by sending a SIGHUP to the server.  Reloading 
-	the configuration file will not affect connections to any service 
-	that is already established.  Either the user will have to 
-	disconnect from the service, or <command>smbd</command> killed and restarted.</para>
+	<para>Eine Sitzung wird immer dann erzeugt, wenn ein Client eine
+	verlangt. Jeder Client erhält eine Kopie des Servers für jede 
+	Sitzung. Diese Kopie bedient dann während der Sitzung alle 
+	Verbindungen, die der Client herstellt. Wenn alle Verbindungen 
+	ihres Clients geschlossen sind, terminiert die Kopie des Servers 
+	für diesen Client.</para>
+
+	<para>Die Konfigurationsdatei sowie alle Dateien, die sie lädt, 
+	werden automatisch einmal pro Minute geladen, falls sie sich 
+	verändern. Sie können ein erneutes Laden erzwingen, indem Sie ein
+	SIGHUP an den Server senden. Das erneute Laden der Konfigurationsdatei 
+	hat keinen Einfluss auf Verbindungen zu Diensten, die bereits  
+	hergestellt sind. Der Benutzer muss sich entweder von dem Dienst 
+	trennen oder <command>smbd</command> muss terminiert und neu gestartet
+	werden.</para>
 </refsect1>
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term>-D</term>
-		<listitem><para>If specified, this parameter causes 
-		the server to operate as a daemon. That is, it detaches 
-		itself and runs in the background, fielding requests 
-		on the appropriate port. Operating the server as a
-		daemon is the recommended way of running <command>smbd</command> for 
-		servers that provide more than casual use file and 
-		print services.  This switch is assumed if <command>smbd
-		</command> is executed on the command line of a shell.
+		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass 
+		der Server als Daemon arbeitet, d.h. er koppelt sich selbst ab, 
+		und läuft im Hintergrund, wo er Anfragen an den entsprechenden 
+		Port weiterleitet. Der Betrieb als Daemon ist die empfohlene 
+		Art und Weise, <command>smbd</command> auf Servern zu betreiben,
+		die öfter als nur gelegentlich Datei- und Druckdienste
+		anbieten. Diese Option wird eingeschaltet, falls 
+		<command>smbd</command> von der Kommandozeile einer Shell
+		ausgeführt wird.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-F</term>
-		<listitem><para>If specified, this parameter causes
-		the main <command>smbd</command> process to not daemonize,
-		i.e. double-fork and disassociate with the terminal.
-		Child processes are still created as normal to service
-		each connection request, but the main process does not
-		exit. This operation mode is suitable for running
-		<command>smbd</command> under process supervisors such
-		as <command>supervise</command> and <command>svscan</command>
-		from Daniel J. Bernstein's <command>daemontools</command>
-		package, or the AIX process monitor.
+		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		der <command>smbd</command>-Hauptprozess nicht zum Daemon wird,
+		d.h. sich doppelt teilt und vom Terminal abkoppelt.
+		Kindprozesse werden weiterhin ganz normal erzeugt, um jede 
+		Verbindungsanfrage zu bedienen, aber der Hauptprozess existiert
+		nicht. Dieser Betriebsmodus eignet sich beim Einsatz von
+		<command>smbd</command> unter Prozessüberwachungswerkzeugen wie
+		<command>supervise</command> und <command>svscan</command>
+		aus dem Paket <command>daemontools</command> von Daniel J. Bernstein, 
+		oder dem AIX-Prozessmonitor.
 		</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-S</term>
-		<listitem><para>If specified, this parameter causes
-		<command>smbd</command> to log to standard output rather
-		than a file.</para></listitem>
+		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		<command>smbd</command> als Log-Datei die Standardausgabe statt 
+		einer anderen Datei verwendet.</para></listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>-i</term>
-		<listitem><para>If this parameter is specified it causes the
-		server to run "interactively", not as a daemon, even if the
-		server is executed on the command line of a shell. Setting this
-		parameter negates the implicit deamon mode when run from the
-		command line. <command>smbd</command> also logs to standard
-		output, as if the <command>-S</command> parameter had been
-		given.
+		<listitem><para>Falls angegeben bewirkt dieser Parameter, dass
+		der Server "interaktiv" läuft, also nicht als Daemon, selbst dann,
+		wenn der Server von der Kommandozeile einer Shell ausgeführt wird. 
+		Das Setzen dieses Parameters negiert den impliziten Deamon-Modus 
+		bei der Ausführung von der Kommandozeile. <command>smbd</command> 
+		schreibt seine Log-Daten ebenfalls auf die Standardausgabe, als ob
+		der Parameter <command>-S</command> angegeben wäre.
 		</para></listitem>
 		</varlistentry>
 		
@@ -131,18 +137,20 @@
 
 		<varlistentry>
 		<term>-b</term>
-		<listitem><para>Prints information about how 
-		Samba was built.</para></listitem>
+		<listitem><para>Gibt Informationen darüber aus, wie  
+		Samba kompiliert wurde.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
-		<term>-p &lt;port number(s)&gt;</term>
-		<listitem><para><replaceable>port number(s)</replaceable> is a 
-		space or comma-seperated list of TCP ports smbd should listen on.
-		The default value is taken from the <smbconfoption><name>ports</name></smbconfoption> parameter in &smb.conf;</para>
+		<term>-p &lt;Port-Nummer(n)&gt;</term>
+		<listitem><para><replaceable>Port-Nummer(n)</replaceable> ist eine 
+		mit Leerzeichen oder Kommata getrennte Liste von TCP-Ports, die 
+		smbd abhören soll. Der Vorgabewert dafür wird aus dem Parameter
+		<smbconfoption><name>ports</name></smbconfoption> in &smb.conf;
+		übernommen.</para>
 
-		<para>The default ports are 139 (used for SMB over NetBIOS over TCP)
-			and port 445 (used for plain SMB over TCP).
+		<para>Die Standard-Ports sind 139 (bei SMB über NetBIOS über TCP)
+		und Port 445 (bei einfachem SMB über TCP).
 	</para></listitem>
 		
 		</varlistentry>
@@ -150,100 +158,111 @@
 </refsect1>
 
 <refsect1>
-	<title>FILES</title>
+	<title>DATEIEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term><filename>/etc/inetd.conf</filename></term>
-		<listitem><para>If the server is to be run by the 
-		<command>inetd</command> meta-daemon, this file 
-		must contain suitable startup information for the 
-		meta-daemon. 
+		<listitem><para>Falls der Server vom Meta-Daemon 
+		<command>inetd</command> gestartet werden soll, muss diese 
+		Datei die passende Startup-Information für den Meta-Daemon 
+		enthalten. 
 		</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term><filename>/etc/rc</filename></term>
-		<listitem><para>or whatever initialization script your 
-		system uses).</para>
+		<listitem><para>(oder welches Initialisierungs-Skript Ihr 
+		System benutzt.)</para>
 
-		<para>If running the server as a daemon at startup, 
-		this file will need to contain an appropriate startup 
-		sequence for the server. </para></listitem>
+		<para>Wenn der Server beim Hochfahren als Daemon gestartet wird, 
+		muss diese Datei eine passende Startup-Sequenz für den Server
+		enthalten.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term><filename>/etc/services</filename></term>
-		<listitem><para>If running the server via the 
-		meta-daemon <command>inetd</command>, this file 
-		must contain a mapping of service name (e.g., netbios-ssn) 
-		to service port (e.g., 139) and protocol type (e.g., tcp). 
-		</para></listitem>
+		<listitem><para>Falls der Server vom Meta-Daemon 
+		<command>inetd</command> betrieben wird, muss diese Datei 
+		eine Abbildung von Dienstname (z.B. netbios-ssn) auf den 
+		Dienst-Port (z.B. 139) und den Protokolltyp (z.B. tcp)
+		enthalten.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term><filename>/usr/local/samba/lib/smb.conf</filename></term>
-		<listitem><para>This is the default location of the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> server configuration file. Other common places that systems 
-		install this file are <filename>/usr/samba/lib/smb.conf</filename> 
-		and <filename>/etc/samba/smb.conf</filename>.</para>
+		<listitem><para>Dies ist der vorgegebene Ort der Konfigurationsdatei
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> des Servers. 
+		Andere Orte, an denen verschiedene Systeme diese Datei 
+		häufig installieren, sind 
+		<filename>/usr/samba/lib/smb.conf</filename> 
+		und <filename>/etc/samba/smb.conf</filename>.</para>
 		
-		<para>This file describes all the services the server 
-		is to make available to clients. See <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> for more information.</para>
+		<para>Diese Datei beschreibt alle Dienste, die der Server 
+		den Clients zur Verfügung stellt. Siehe 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> für weitere 
+		Informationen.</para>
 		</listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
 
 <refsect1>
-	<title>LIMITATIONS</title>
-	<para>On some systems <command>smbd</command> cannot change uid back 
-	to root after a setuid() call.  Such systems are called 
-	trapdoor uid systems. If you have such a system, 
-	you will be unable to connect from a client (such as a PC) as 
-	two different users at once. Attempts to connect the
-	second user will result in access denied or 
-	similar.</para>
+	<title>BESCHRÄNKUNGEN</title>
+	<para>Auf manchen Systemen kann <command>smbd</command> die uid nach 
+	einem Aufruf von setuid() nicht wieder auf root zurücksetzen. Solche 
+	Systeme werden auch "trapdoor uid"-Systeme genannt???. Sollten Sie über
+	ein solches System verfügen, können Sie von einem Client (z.B. einem PC) 
+	nicht gleichzeitig Verbindungen unter zwei verschiedenen Benutzern
+	herstellen. Beim Versuch, einen zweiten Benutzer zu verbinden, erhalten
+	Sie Meldungen der Art Zugriff verweigert oder ähnlich.</para>
 </refsect1>
 
 <refsect1>
-	<title>ENVIRONMENT VARIABLES</title>
+	<title>UMGEBUNGSVARIABLEN</title>
 
 	<variablelist>
 		<varlistentry>
 		<term><envar>PRINTER</envar></term>
-		<listitem><para>If no printer name is specified to 
-		printable services, most systems will use the value of 
-		this variable (or <constant>lp</constant> if this variable is 
-		not defined) as the name of the printer to use. This 
-		is not specific to the server, however.</para></listitem>
+		<listitem><para>Wenn kein Druckername für irgendwelche Druckdienste 
+		angegeben ist, verwenden die meisten Systeme den Wert dieser 
+		Variablen (oder <constant>lp</constant>, falls diese Variable 
+		nicht definiert ist) als Namen des Druckers. Das hängt jedoch 
+		nicht vom Server ab???.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>
 
 
 <refsect1>
-        <title>PAM INTERACTION</title>
-	<para>Samba uses PAM for authentication (when presented with a plaintext 
-	password), for account checking (is this account disabled?) and for
-	session management.  The degree too which samba supports PAM is restricted
-	by the limitations of the SMB protocol and the <smbconfoption><name>obey pam restrictions</name></smbconfoption> <citerefentry><refentrytitle>smb.conf</refentrytitle>
-	<manvolnum>5</manvolnum></citerefentry> paramater.  When this is set, the following restrictions apply:
+        <title>PAM-INTERAKTION</title>
+	<para>Samba verwendet PAM bei der Authentifikation (wenn es ein Passwort 
+	in Klartext erhält), bei der Überprüfung von Konten (ist dieses Konto 
+	deaktiviert?) sowie bei der Verwaltung von Sitzungen.
+	Der Grad, bis zu dem PAM von Samba unterstützt wird, ist eingeschränkt 
+	durch die Beschränkungen des SMB-Protokolls und den Parameter
+	<smbconfoption><name>obey pam restrictions</name></smbconfoption>
+	in <citerefentry><refentrytitle>smb.conf</refentrytitle>
+	<manvolnum>5</manvolnum></citerefentry>. Wenn dieser gesetzt ist, gelten
+	folgende Einschränkungen:
 	</para>
 
 	<itemizedlist>
-	<listitem><para><emphasis>Account Validation</emphasis>:  All accesses to a 
-	samba server are checked 
-	against PAM to see if the account is vaild, not disabled and is permitted to 
-	login at this time.  This also applies to encrypted logins.
+	<listitem><para><emphasis>Konto-Validierung</emphasis>: Alle Zugriffe auf 
+	einen Samba-Server werden mit PAM daraufhin überprüft, ob das Konto gültig
+	ist, nicht deaktiviert ist und sich zu dem Zeitpunkt anmelden darf. 
+	Das gilt auch für verschlüsselte Anmeldungen.
 	</para></listitem>
 
-	<listitem><para><emphasis>Session Management</emphasis>:  When not using share 
-	level secuirty, users must pass PAM's session checks before access 
-	is granted.  Note however, that this is bypassed in share level secuirty.  
-	Note also that some older pam configuration files may need a line 
-	added for session support. 
+	<listitem><para><emphasis>Sitzungs-Verwaltung</emphasis>: Wenn keine 
+	Sicherheit auf der Ebene von Freigaben verwendet wird, müssen Benutzer 
+	die Sitzungsüberprüfung durch PAM passieren, bevor der Zugriff erlaubt
+	wird. Man beachte jedoch, dass dies bei der Sicherheit auf der Ebene 
+	von Freigaben umgangen wird. Man beachte auch, dass manche älteren 
+	PAM-Konfigurationsdateien eine zusätzliche Zeile für die Unterstützung 
+	von Sitzungen benötigen. 
 	</para></listitem>
 	</itemizedlist>
 </refsect1>
@@ -256,7 +275,7 @@
 </refsect1>
 
 <refsect1>
-	<title>DIAGNOSTICS</title>
+	<title>DIAGNOSEMELDUNGEN</title>
 
 	<para>Most diagnostics issued by the server are logged 
 	in a specified log file. The log file name is specified 
@@ -275,7 +294,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SIGNALS</title>
+	<title>SIGNALE</title>
 
 	<para>Sending the <command>smbd</command> a SIGHUP will cause it to 
 	reload its <filename>smb.conf</filename> configuration 
@@ -303,7 +322,7 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>hosts_access</refentrytitle>
 	<manvolnum>5</manvolnum></citerefentry>, <citerefentry><refentrytitle>inetd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>nmbd</refentrytitle>
