@@ -3190,8 +3190,8 @@ Druckaufträge werden prima ausgedruckt, einige werden aber gar nicht gedruckt.
 Manche Aufträge haben Probleme mit Fonts, die nicht gut aussehen. Manche Aufträge
 werden sehr schnell gedruckt, andere extrem langsam. Wir können es nicht gänzlich
 abhandeln, aber wir möchten Sie dazu ermuntern, den kurzen Absatz über 
-<quote>Avoiding the Wrong PostScript Driver Settings</quote> ??? in dem Teil
-dieses Dokuments über das Drucken mit CUPS zu lesen.
+<quote>Das Vermeiden von kritischen PostScript-Treiber-Einstellungen auf dem
+Client</quote> in dem Teil dieses Dokuments über das Drucken mit CUPS zu lesen.
 </para>
 </sect2>
 </sect1>
