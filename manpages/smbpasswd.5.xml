@@ -157,8 +157,8 @@
 			Konto ist ein "Workstation Trust"-Konto. Diese Art von
 			Konto wird im Samba-PDC-Code-Stream dazu bennutzt, um 
 			Windows NT-Workstations und Servern zu ermöglichen, einer
-			Domäne beizutreten, die von einem Samba-PDC gehostet 
-			wird.</para></listitem>
+			Domäne beizutreten, die in Samba von einem Primären 
+			Domänen-Controller (PDC) gehostet wird.</para></listitem>
 		</itemizedlist>
 		
 		<para>Weitere Flags können im Zuge der Erweiterung des Codes
