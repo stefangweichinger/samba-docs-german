@@ -1498,37 +1498,38 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		<title>Die Synchronisation von Passwörtern</title>
 
 		<para>
-		Samba-3 and later can update the non-samba (LDAP) password stored with an account. When
-		using pam_ldap, this allows changing both UNIX and Windows passwords at once.
+		Samba-3 und spätere Versionen können das nicht-Samba (LDAP) Passwort ändern, das für ein Konto
+		gespeichert wurde. Bei der Verwendung von pam_ldap erlaubt dies das gleichzeitige Ändern von
+		UNIX- und Windows-Passwörtern.
 		</para>
 
-		<para>The <smbconfoption><name>ldap passwd sync</name></smbconfoption> options can have the  values shown in
-		<link linkend="ldappwsync">the next table</link>.</para>
+		<para>Die <smbconfoption><name>ldap passwd sync</name></smbconfoption> Option kann die in
+		<link linkend="ldappwsync">der nächsten Tabelle</link> gezeigten Werte annehmen.</para>
 
 		<table iframe="all" id="ldappwsync">
-			<title>Possible <emphasis>ldap passwd sync</emphasis> values</title>
+			<title>Mögliche Werte für <emphasis>ldap passwd sync</emphasis></title>
 		<tgroup cols="2">
 			<colspec align="left" width="1*"/>
 			<colspec align="justify" width="4*"/>
 		<thead>
-			<row><entry align="left">Value</entry><entry align="center">Description</entry></row>
+			<row><entry align="left">Wert</entry><entry align="center">Beschreibung</entry></row>
 		</thead>
 		<tbody>
-		<row><entry>yes</entry><entry><para>When the user changes his password, update
+		<row><entry>yes</entry><entry><para>Wenn der Benutzer sein Passwort ändert, werden die Felder
 			       <constant>ntPassword</constant>, <constant>lmPassword</constant>
-			       and the <constant>password</constant> fields.</para></entry></row>
+			       und <constant>password</constant> aktualisiert.</para></entry></row>
 
-		<row><entry>no</entry><entry><para>Only update <constant>ntPassword</constant> and <constant>lmPassword</constant>.</para></entry></row>
+		<row><entry>no</entry><entry><para>Nur <constant>ntPassword</constant> und <constant>lmPassword</constant> werden aktualisiert.</para></entry></row>
 
-		<row><entry>only</entry><entry><para>Only update the LDAP password and let the LDAP server worry about the other fields.
-			This option is only available on some LDAP servers. Only when the LDAP server
-			supports LDAP_EXOP_X_MODIFY_PASSWD.</para></entry></row>
+		<row><entry>only</entry><entry><para>Aktualisiere nur das LDAP-Passwort und überlasse die 
+		anderen Felder dem LDAP-Server. Diese Option ist nur mit manchen LDAP-Servern verfügbar, und zwar
+		nur dann, wenn der LDAP-Server LDAP_EXOP_X_MODIFY_PASSWD unterstützt.</para></entry></row>
 		</tbody>
 		</tgroup>
 		</table>
 
 
-		<para>More information can be found in the &smb.conf; man page.</para>
+		<para>Mehr Informationen dazu in der manpage zu &smb.conf;.</para>
 
 		</sect3>
 
@@ -1803,17 +1804,18 @@ access to attrs=sambaLMPassword,sambaNTPassword
 	</sect2>
 
 	<sect2>
-	<title>Configuration of <parameter>auth methods</parameter></title>
+	<title>Konfiguration der <parameter>auth methods</parameter></title>
 
 	<para>
-	When explicitly setting an <smbconfoption><name>auth methods</name></smbconfoption> parameter,
-	<parameter>guest</parameter> must be specified as the first entry on the line,
-	for example, <smbconfoption><name>auth methods</name><value>guest sam</value></smbconfoption>.
+	Beim expliziten Setzen des Parameters <smbconfoption><name>auth methods</name></smbconfoption>,
+	muß <parameter>guest</parameter> als der erste Eintrag auf dieser Zeile angegeben werden, z.B.
+	<smbconfoption><name>auth methods</name><value>guest sam</value></smbconfoption>.
 	</para>
 
 	<para>
-	This is the exact opposite of the requirement for the <smbconfoption><name>passdb backend</name></smbconfoption>
-	option, where it must be the <emphasis>LAST</emphasis> parameter on the line.
+	Dies ist das exakte Gegenteil zum Erfordernis der Option 
+	<smbconfoption><name>passdb backend</name></smbconfoption>, wo <parameter>guest</parameter>
+	der <emphasis>LETZTE</emphasis> Parameter der Zeile sein muß.	
 	</para>
 
 	</sect2>
