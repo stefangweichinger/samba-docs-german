@@ -10,8 +10,8 @@
 
 <para>
 Dieser Abschnitt dokumentiert Randthemen, die sehr wichtig für Netzwerkadministratoren sind,
-die die Zugriffskontrolle auf Netzwerk-Ressourcen verbessern wollen, die Benutzerumgebung
-automatisieren, und ihr Leben ein wenig erleichtern möchten.
+die die Zugriffskontrolle auf Netzwerk-Ressourcen verbessern, die Benutzerumgebung
+automatisieren und ihr Leben ein wenig erleichtern möchten.
 </para>
 
 <sect1>
@@ -19,17 +19,17 @@ automatisieren, und ihr Leben ein wenig erleichtern möchten.
 
 <para>
 Oft kann der Unterschied zwischen einer funktionierenden Netzwerkumgebung und einer als
-gut wahr- und angenommenen am besten durch die <emphasis>Kleinigkeiten</emphasis>
-gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle jeder
-Netzwerklösung ist die Fähigkeit, per Fernzugriff MS Windows Workstations zu warten,
-über das Netz auf den Samba-Server zugreifen zu können, angepasste Anmelde-Skripts zur
-Verfügung zu stellen, genauso wie andere <quote>Hausarbeiten</quote>, die helfen, einen verlässlicheren
+gut wahr- und angenommenen Netzwerkumgebung am besten durch die <emphasis>Kleinigkeiten</emphasis>
+gemessen werden, die alles noch harmonischer arbeiten lassen. Eine Schlüsselrolle bei jeder
+Netzwerklösung ist die Fähigkeit, per Fernzugriff MS Windows-Workstations warten zu können,
+über das Netz auf den Samba-Server zugreifen zu können, angepasste Anmelde-Skripten zur
+Verfügung stellen zu können und andere <quote>Hausarbeiten</quote> erledigen zu können, die helfen, einen verlässlicheren
 Netzwerk-Betrieb zu erreichen.
 </para>
 
 <para>
-Dieses Kapitel präsentiert Informationen zu jedem dieser Bereiche. Sie wurden hier, und
-nicht in anderen Kapiteln, platziert, um das Nachschlagen zu erleichtern.
+Dieses Kapitel präsentiert Informationen zu jedem dieser Bereiche. Sie wurden hier und
+nicht in anderen Kapiteln platziert, um das Nachschlagen zu erleichtern.
 </para>
 
 </sect1>
@@ -50,7 +50,7 @@ Da ich ja keinen <application>NT4 Server</application> kaufen muss, wie bekomme 
 
 <para>
 <indexterm><primary>Nexus.exe</primary></indexterm>
-Microsoft vertreibt eine Version dieser Tools namens <filename>Nexus.exe</filename>, zur
+Microsoft vertreibt eine Version dieser Tools namens <filename>Nexus.exe</filename> zur
 Installation auf <application>Windows 9x/Me</application>-Systemen. Dieses Set enthält:
 </para>
 
@@ -61,13 +61,13 @@ Installation auf <application>Windows 9x/Me</application>-Systemen. Dieses Set e
 </itemizedlist>
 
 <para>
-Laden Sie die Archivdatei von <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE</ulink>runter.
+Laden Sie die Archivdatei von <ulink noescape="1" url="ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE">ftp://ftp.microsoft.com/Softlib/MSLFILES/NEXUS.EXE</ulink> herunter.
 </para>
 
 <para>
 <indexterm><primary>SRVTOOLS.EXE</primary></indexterm>
-Die <application>Windows NT 4.0</application> Version des `User Manager for 
-Domains' und `Server Manager' sind via ftp bei Microsoft erhältlich <ulink url="ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE"></ulink>.
+Die <application>Windows NT 4.0</application>-Version des `User Manager for 
+Domains' und `Server Manager' sind über ftp bei Microsoft erhältlich <ulink url="ftp://ftp.microsoft.com/Softlib/MSLFILES/SRVTOOLS.EXE"></ulink>.
 </para>
 
 </sect1>
@@ -76,7 +76,7 @@ Domains' und `Server Manager' sind via ftp bei Microsoft erhältlich <ulink url="
 <title>Desktop-Fernwartung</title>
 
 <para>
-Es gibt eine Reihe von verfügbaren Desktop-Fernwartungs-Lösungen, die von gratis bis
+Es gibt eine Reihe von verfügbaren Desktop-Fernwartungslösungen, die von gratis bis
 teuer reichen. Lassen Sie sich davon nicht abhalten. Manchmal ist die teuerste Lösung
 die kosten-effektivste. In jedem Fall müssen Sie Ihre eigenen Schlüsse ziehen, was die
 beste Lösung für Ihr Netzwerk ist.
@@ -87,33 +87,32 @@ beste Lösung für Ihr Netzwerk ist.
 
 	<para>
 	<indexterm><primary>NoMachine.Com</primary></indexterm>
-	Folgende Informationen wurden auf der Samba Mailing list am 3.4.2003, um 23:33:50 GMT
-	gepostet. Sie werden in abgewandelter Form präsentiert (mit fehlenden Autor-Details
-	wegen Datenschutz).
+	Folgende Informationen wurden auf der Samba-Mailingliste am 3.4.2003 um 23:33:50 GMT
+	gepostet. Sie werden in abgewandelter Form präsentiert (mit fehlenden Autorenangaben
+	wegen des Datenschutzes).
 	Die gesamte Antwort wird (bis auf ein paar Kommentare) gezeigt.
 	</para>
 
 		<para><quote>
 		Ich habe einen wunderbaren Linux/Samba-Server als PDC laufen. Jetzt würde ich gerne
-		Fernwartungs-Funktionen hinzufügen, sodass Benutzer sich am System anmelden, und ihren
-		Desktop von Zuhause aus, oder aus dem Ausland erreichen können.		
+		Fernwartungsfunktionen hinzufügen, so dass Benutzer sich am System anmelden und ihren
+		Desktop von Zuhause aus oder aus dem Ausland erreichen können.		
 		</quote></para>
 
 		<para><quote>
 		Gibt es eine Möglichkeit, dies zu erreichen? Brauche ich einen Windows Terminal Server?
-		Muss ich ihn so konfigurieren, dass er Domänen-Mitglied ist, oder ein BDC, PDC? Gibt es
+		Muss ich ihn so konfigurieren, dass er Domänen-Mitglied ist oder ein BDC, PDC? Gibt es
 		irgendwelche Hacks für Windows XP, um Fernzugriff zu aktivieren, auch wenn der Rechner
 		in einer Domäne ist?
 		</quote></para>
 
 		<para>
-		Gegebene Antwort: Prüfen Sie das neue Angebot von <quote>NX</quote>-Software von
+		Gegebene Antwort: Prüfen Sie das neue Angebot der <quote>NX</quote>-Software von
 		<ulink noescape="1" url="http://www.nomachine.com/">NoMachine</ulink>.
 		</para>
 
 	<para>
-	Es implementiert ein leicht zu verwendendes Interface zum Remote-X-Protokoll genauso
-	wie es VNC/RFB und rdesktop/RDP einschließt, dies jedoch mit einer Geschwindigkeit, wie
+	Es implementiert ein leicht zu verwendendes Interface zum Remote-X-Protokoll und schließt VNC/RFB und rdesktop/RDP ein, dies jedoch mit einer Geschwindigkeit, wie
 	Sie sie wahrscheinlich noch nicht gesehen haben.
 	</para>
 
@@ -124,10 +123,10 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 	<para>
-	Ich konnte ihre (öffentliche) RedHat-Maschine in Italien <quote>testfahren</quote>, über eine
-	belastete Internet-Verbindung, mit aktivierten Thumbnails im KDE Konqueror, welcher
-	unverzüglich auf <quote>mouse-over</quote> ansprang. Von innerhalb dieser (remote X)
-	Sitzung startete ich eine rdesktop-Sitzung auf eine weitere Windows XP Maschine.
+	Ich konnte die (öffentliche) RedHat-Maschine von NoMachine in Italien über eine
+	belastete Internet-Verbindung mit aktivierten Thumbnails im KDE Konqueror <quote>testfahren</quote>, der
+	unverzüglich auf <quote>mouse-over</quote> ansprang. Aus dieser (remote X)
+	Sitzung heraus startete ich eine rdesktop-Sitzung auf eine weitere Windows XP-Maschine.
 	Um die Performance zu testen, spielte ich Pinball. Ich bin stolz, sagen zu dürfen,
 	dass ich beim ersten Versuch 631750 Punkte erreichte.
 	</para>
@@ -135,14 +134,14 @@ beste Lösung für Ihr Netzwerk ist.
 	<para>
 	NX arbeitet in meinem LAN besser als die anderen <quote>reinen</quote> Verbindungsarten,
 	die ich von Zeit zu Zeit benutze: TightVNC, rdesktop oder Remote X.
-	Es ist sogar schneller als eine direkte Crosslink-Verbindung zwischen 2 Knoten.	
+	Es ist sogar schneller als eine direkte Crosslink-Verbindung zwischen zwei Knoten.	
 	</para>
 
 	<para>
-	Ich bekomme sogar Sound von der Remote-X-applikation auf meine lokalen Lautsprecher,
+	Ich bekomme sogar Sound von der Remote-X-Applikation auf meine lokalen Lautsprecher,
 	und ich hatte ein funktionierendes <quote>copy'n'paste</quote> von einem NX-Fenster
-	(in welchem eine KDE-Sitzung in Italien lief) in meinen Mozilla-Mail-Agenten. Diese
-	Kerle machen definitiv etwas richtig!	
+	(in dem eine KDE-Sitzung in Italien lief) in meinen Mozilla-Mail-Agenten.
+	Die Leute bei NoMachine machen definitiv etwas richtig!	
 	</para>
 
 	<para>
@@ -152,27 +151,27 @@ beste Lösung für Ihr Netzwerk ist.
 	</para>
 
 	<para>
-	Einfach den kostenlosen Client downloaden (verfügbar für Red Hat, SuSE, Debian
-	und Windows) und innerhalb 5 Minuten geht es los (es müssen allerdings erst
+	Laden Sie einfach den kostenlosen Client herunter (verfügbar für Red Hat, SuSE, Debian
+	und Windows), und innerhalb von fünf Minuten geht es los (es müssen allerdings erst
 	die Zugangsdaten gesendet werden, weil Sie einen vollen UNIX-Account auf deren
-	testdrive.nomachine.com-Box erhalten).
+	testdrive.nomachine.com-Maschine erhalten).
 	</para>
 
 	<para>
-	Nomachine plant die Ausbaustufe, wobei Sie einen NX-Applikations-Server als Cluster betreiben können.
+	NoMachine plant eine Ausbaustufe, auf der Sie einen NX-Applikationsserver als Cluster betreiben können.
 	Die Benutzer starten einfach eine lokale NX-Session und können Applikationen auswählen,
 	die transparent laufen (Anwendungen können sogar auf einem anderen NX-Knoten laufen, aber
 	vorgeben, auf demselben Knoten zu sein wie der, an dem sich der Benutzer angemeldet hat,
-	weil es im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
+	weil er im selben Fenster angezeigt wird. Sie können sie auch full-screen ausführen, und
 	nach kurzer Zeit vergessen Sie überhaupt, dass es eine Remote-Session ist).
 	</para>
 
 	<para>
 	Nun das Beste am Schluss: All die Kerntechnologien zur Kompression und zum Caching
-	werden unter der GPL veröffentlicht, und sind als Sourcecode für jeden verfügbar,
+	werden unter der GPL veröffentlicht und sind als Sourcecode für jeden verfügbar,
 	der darauf aufbauen will! Diese Technologien funktionieren, wenn auch nur von der
-	Befehlszeile aus (und sehr unpraktisch zu gebrauchen, um eine voll funktionsfähige
-	remote-X-session zum Laufen zu bringen.)
+	Befehlszeile aus (und sind sehr unpraktisch zu gebrauchen, um eine voll funktionsfähige
+	Remote-X-Session zum Laufen zu bringen.)
 	</para>
 
 	<para>
@@ -181,7 +180,7 @@ beste Lösung für Ihr Netzwerk ist.
 
 	<itemizedlist>
 		<listitem><para>
-		Sie müssen keinen Terminal-Server installieren; XP hat RDP-Unterstüzung integriert.	
+		Sie müssen keinen Terminal-Server installieren; in XP ist eine RDP-Unterstüzung integriert.	
 		</para></listitem>
 
 		<listitem><para>
@@ -190,7 +189,7 @@ beste Lösung für Ihr Netzwerk ist.
 		</para></listitem>
 
 		<listitem><para>
-		Sie müssen XP nicht hacken &smbmdash; es funktioniert einfach.
+		Sie müssen XP nicht hacken, es funktioniert einfach.
 		</para></listitem>
 
 		<listitem><para>
@@ -200,14 +199,13 @@ beste Lösung für Ihr Netzwerk ist.
 		</para></listitem>
 
 		<listitem><para>
-		Die NX-Kern-Technologien sind alle Open Source und unter der GPL &smbmdash;
-		veröffentlicht. Sie können jetzt eine (sehr unbequeme) Befehlszeile ohne
-		Kosten nutzen, oder Sie können ein komfortables (proprietäres) NX-GUI-Frontend
+		Die NX-Kern-Technologien sind alle OpenSource und unter der GPL &smbmdash;
+		veröffentlicht. Sie können jetzt eine (sehr unbequeme) Befehlszeile kostenlos nutzen, oder Sie können ein komfortables (proprietäres) NX-GUI-Frontend
 		kaufen.
 		</para></listitem>
 
 		<listitem><para>
-		NoMachine ermutigt und unterstützt OSS/Free Software-Implementierungen auch
+		NoMachine ermutigt und unterstützt OSS/Free-Software-Implementierungen auch
 		für ein solches Frontend, sogar wenn es für sie Konkurrenz bedeutet (sie haben
 		dies sogar in den Entwickler-Listen für LTSP, KDE und GNOME geschrieben).		
 		</para></listitem>
@@ -218,25 +216,24 @@ beste Lösung für Ihr Netzwerk ist.
 </sect1>
 
 <sect1>
-<title><quote>Magie</quote> von Netzwerk-Anmelde-Skripten</title>
+<title>Die <quote>Magie</quote> von Netzwerk-Anmeldeskripten</title>
 
 <para>
 Es gibt mehrere Möglichkeiten, um eine angepasste Konfiguration der Netzwerk-Start-Umgebung zu schaffen.
 </para>
 
 <itemizedlist>
-	<listitem>Kein Anmelde-Skript.</listitem>
-	<listitem>Simples und universelles Anmelde-Skript, das für alle Benutzer verwendet wird.</listitem>
-	<listitem>Verwendung eines von Bedingungen abhängigen Skripts, das anhängig von Benutzer- oder Gruppen-Attributen angewendet wird.</listitem>
-	<listitem>Anwendung von Samba's preexec- und postexec-Funktionen beim Zugriff auf die NETLOGON-Freigabe,
-	um ein angepasstes Anmelde-Skript zu generieren und auszuführen.</listitem>
-	<listitem>Verwendung eines Tools wie KixStart.</listitem>
+	<listitem>Kein Anmeldeskript</listitem>
+	<listitem>Ein simples und universelles Anmeldeskript, das für alle Benutzer verwendet wird</listitem>
+	<listitem>Verwendung eines von Bedingungen abhängigen Skripts, das je nach Benutzer- oder Gruppen-Attributen angewendet wird</listitem>
+	<listitem>Anwendung von Sambas preexec- und postexec-Funktionen beim Zugriff auf die NETLOGON-Freigabe,
+	um ein angepasstes Anmeldeskript zu generieren und auszuführen</listitem>
+	<listitem>Verwendung eines Tools wie KixStart</listitem>
 </itemizedlist>
 
 <para>
-Der Quelltext-Tree von Samba enthält zwei Werkzeuge zum Generieren und Ausführen von Anmelde-Skripts.
-Siehe im Verzeichnis <filename>examples</filename> die Sub-Verzeichnisse <filename>genlogon</filename>
-und <filename>ntlogon</filename>. 
+Der Quelltext-Tree von Samba enthält zwei Werkzeuge zum Generieren und Ausführen von Anmeldeskripten (siehe die Sub-Verzeichnisse <filename>genlogon</filename>
+und <filename>ntlogon</filename> im Verzeichnis <filename>examples</filename>). 
 </para>
 
 <para>
@@ -327,7 +324,7 @@ Dies ist die Datei <filename>genlogon.pl</filename>:
 </para>
 
 <para>
-Diejenigen, die sich ein weiter ausgeführtes oder mächtigeres Anmelde-System wünschen, mögen
+Diejenigen, die sich ein weiter ausgeführtes oder mächtigeres Anmeldesystem wünschen, mögen
 folgende Seiten aufsuchen:
 </para>
 
@@ -342,13 +339,13 @@ folgende Seiten aufsuchen:
 
 <para>
 <indexterm><primary>rundll32</primary></indexterm>
-Drucker können automatisch während des Anmeldevorgangs hinzugefügt werden, durch Benutzung von:
+Drucker können automatisch während des Anmeldevorgangs hinzugefügt werden, wenn Sie
 
 <screen>
 &dosprompt;<userinput>rundll32 printui.dll,PrintUIEntry /?</userinput>
 </screen>
 
-Siehe die Dokumentation in <ulink url="http://support.microsoft.com/default.asp?scid=kb;en-us;189105">Microsoft Knowledgebase Artikel 189105.</ulink>
+benutzen (siehe die Dokumentation in <ulink url="http://support.microsoft.com/default.asp?scid=kb;en-us;189105">Microsoft Knowledgebase Artikel 189105.</ulink>)
 </para>
 </sect2>
 
