@@ -13,14 +13,14 @@
 
 <refnamediv>
 	<refname>smbcacls</refname>
-	<refpurpose>Set or get ACLs on an NT file or directory names</refpurpose>
+	<refpurpose>Setzt oder holt ACLs einer NT-Datei oder eines Verzeichnisses</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
 	<cmdsynopsis>
 		<command>smbcacls</command>
 		<arg choice="req">//server/share</arg>
-		<arg choice="req">filename</arg>
+		<arg choice="req">Dateiname</arg>
 		<arg choice="opt">-D acls</arg>
 		<arg choice="opt">-M acls</arg>
 		<arg choice="opt">-a acls</arg>
@@ -29,119 +29,131 @@
 		<arg choice="opt">-G name</arg>
 		<arg choice="opt">-n</arg>
 		<arg choice="opt">-t</arg>
-		<arg choice="opt">-U username</arg>
+		<arg choice="opt">-U Benutzername</arg>
 		<arg choice="opt">-h</arg>
 		<arg choice="opt">-d</arg>
 	</cmdsynopsis>
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>Samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>The <command>smbcacls</command> program manipulates NT Access Control
-	Lists (ACLs) on SMB file shares. </para>
+	<para>Das Programm <command>smbcacls</command> manipuliert 
+	NT-Access Control Lists (ACLs) auf SMB-Dateifreigaben.</para>
 </refsect1>
 
 
 <refsect1>
-	<title>OPTIONS</title>
+	<title>OPTIONEN</title>
 
-	<para>The following options are available to the <command>smbcacls</command> program.  
-	The format of ACLs is described in the section ACL FORMAT </para>
+	<para>Folgende Optionen sind für das Programm 
+	<command>smbcacls</command> verfügbar. Das Format der ACLs  
+	wird im Abschnitt ACL-FORMAT beschrieben.</para>
 
 
 	<variablelist>
 		<varlistentry>
 		<term>-a acls</term>
-		<listitem><para>Add the ACLs specified to the ACL list.  Existing 
-		access control entries are unchanged. </para></listitem>
+		<listitem><para>Fügt angegebene ACLs zur ACL-Liste hinzu.  
+		Vorhandene ACL-Einträge bleiben unverändert.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-M acls</term>
-		<listitem><para>Modify the mask value (permissions) for the ACLs 
-		specified on the command line.  An error will be printed for each 
-		ACL specified that was not already present in the ACL list
-		</para></listitem>
+		<listitem><para>Verändert die Maske (die Rechte) für die auf der
+		Kommandozeile angegebenen ACLs. Bei jeder angegebenen ACL, die
+		nicht schon in der Liste vorhanden war, wird ein Fehler 
+		ausgegeben.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-D acls</term>
-		<listitem><para>Delete any ACLs specified on the command line.  
-		An error will be printed for each ACL specified that was not 
-		already present in the ACL list. </para></listitem>
+		<listitem><para>Löscht alle in der Kommandozeile angegebenen 
+		ACLs. Bei jeder angegebenen ACL, die nicht schon in der Liste
+		vorhanden war, wird ein Fehler ausgegeben.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-S acls</term>
-		<listitem><para>This command sets the ACLs on the file with 
-		only the ones specified on the command line.  All other ACLs are 
-		erased. Note that the ACL specified must contain at least a revision,
-		type, owner and group for the call to succeed. </para></listitem>
+		<listitem><para>Dieser Befehl setzt die ACLs auf der Datei auf
+		allein genau die, die in der Kommandozeile angegebenen werden. 
+		Alle andere ACLs werden gelöscht. Beachten Sie, dass die 
+		angegebene ACL mindestens die Felder Revision, Typ, Besitzer 
+		und Gruppe enthalten muss, damit dieser Aufruf erfolgreich
+		ist.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>-U username</term>
-		<listitem><para>Specifies a username used to connect to the 
-		specified service.  The username may be of the form "username" in 
-		which case the user is prompted to enter in a password and the 
-		workgroup specified in the <citerefentry><refentrytitle>smb.conf</refentrytitle>
-		<manvolnum>5</manvolnum></citerefentry> file is 
-		used, or "username%password"  or "DOMAIN\username%password" and the 
-		password and workgroup names are used as provided. </para></listitem>
+		<term>-U Benutzername</term>
+		<listitem><para>Gibt einen Benutzernamen an, mit dem eine 
+		Verbindung zum angegebenen Dienst hergestellt wird. 
+		Der Benutzername darf die Form "Benutzername" haben, wobei
+		der Benutzer dann nach einem Passwort gefragt wird und dann
+		die Arbeitsgruppe verwendet wird, die in 
+		<citerefentry><refentrytitle>smb.conf</refentrytitle>
+		<manvolnum>5</manvolnum></citerefentry> angegeben ist, 
+		oder "Benutzername%Passwort" oder "DOMAIN\Benutzername%Passwort",
+		wobei dann die angegebenen Daten für Passwort und 
+		Arbeitsgruppe verwendet werden.</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>-C name</term>
-		<listitem><para>The owner of a file or directory can be changed 
-		to the name given using the <parameter>-C</parameter> option.  
-		The name can be a sid in the form S-1-x-y-z or a name resolved 
-		against the server specified in the first argument. </para>
+		<term>-C Name</term>
+		<listitem><para>Mit dieser Option kann der Besitzer einer Datei 
+		oder eines Verzeichnisses auf den angegebenen Namen geändert 
+		werden. 
+		Der Name kann eine SID in der Form S-1-x-y-z sein, oder ein 
+		Name, der mit dem Server aufgelöst wird, der im ersten Argument
+		angegeben wird.</para>
 		
-		<para>This command is a shortcut for -M OWNER:name. 
+		<para>Dieser Befehl ist eine Abkürzung für -M OWNER:name. 
 		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
-		<term>-G name</term>
-		<listitem><para>The group owner of a file or directory can 
-		be changed to the name given using the <parameter>-G</parameter> 
-		option.  The name can be a sid in the form S-1-x-y-z or a name 
-		resolved against the server specified n the first argument.
-		</para>
-		
-		<para>This command is a shortcut for -M GROUP:name.</para></listitem>
+		<term>-G Name</term>
+		<listitem><para>Mit dieser Option kann der Gruppenbesitzer einer
+		Datei oder eines Verzeichnisses auf den angegebenen Namen geändert 
+		werden. 
+		Der Name kann eine SID in der Form S-1-x-y-z sein, oder ein 
+		Name, der mit dem Server aufgelöst wird, der im ersten Argument
+		angegeben wird.</para>
+
+		<para>Dieser Befehl ist eine Abkürzung für -M GROUP:name.
+		</para></listitem>
 		</varlistentry>
 		
 		
 		
 		<varlistentry>
 		<term>-n</term>
-		<listitem><para>This option displays all ACL information in numeric 
-		format.  The default is to convert SIDs to names and ACE types 
-		and masks to a readable string format.  </para></listitem>
+		<listitem><para>Diese Option zeigt alle ACL-Information in einem
+		numerischen Format an. Standardmäßig werden SIDs in Namen 
+		konvertiert und ACE-Typen und -Masken werden in ein lesbares
+		String-Format konvertiert.</para></listitem>
 		</varlistentry>
 		
 		<varlistentry>
 		<term>-t</term>
 		<listitem><para>
-		Don't actually do anything, only validate the correctness of 
-		the arguments.
+		Macht eigentlich nichts, ausser die Argumente auf deren 
+		Korrektheit zu prüfen.
 		</para></listitem>
 		</varlistentry>
 				
@@ -152,39 +164,42 @@
 
 
 <refsect1>
-	<title>ACL FORMAT</title>
+	<title>ACL-FORMAT</title>
 
-	<para>The format of an ACL is one or more ACL entries separated by 
-	either commas or newlines.  An ACL entry is one of the following: </para>
+	<para>Das Format einer ACL besteht aus einem oder mehreren 
+	ACL-Einträgen, getrennt durch Kommata oder Zeilenumbrüche. Ein 
+	ACL-Eintrag hat eine der folgenden Formen:</para>
 
 <para><programlisting> 
-REVISION:&lt;revision number&gt;
-OWNER:&lt;sid or name&gt;
-GROUP:&lt;sid or name&gt;
-ACL:&lt;sid or name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
+REVISION:&lt;revisionsnummer&gt;
+OWNER:&lt;sid oder name&gt;
+GROUP:&lt;sid oder name&gt;
+ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 </programlisting></para>
   
 
-	<para>The revision of the ACL specifies the internal Windows 
-	NT ACL revision for the security descriptor.  
-	If not specified it defaults to 1.  Using values other than 1 may 
-	cause strange behaviour. </para>
+	<para>Die Revision der ACL gibt die interne Windows NT-ACL-Revision
+	für den Security-Deskriptor an. Wenn nicht angegeben, wird der Vorgabewert
+	1 verwenden. Die Benutzung anderer Werte als 1 kann zu seltsamem
+	Verhalten führen.</para>
 
-	<para>The owner and group specify the owner and group sids for the 
-	object.  If a SID in the format CWS-1-x-y-z is specified this is used, 
-	otherwise the name specified is resolved using the server on which 
-	the file or directory resides. </para>
+	<para>Die Angaben zu Besitzer und Gruppe geben die Besitzer- und 
+	Gruppen-SIDs des Objekts an. Wenn eine SID im Format CWS-1-x-y-z 
+	angegeben wird, wird sie benutzt, sonst wird der angegebene Name
+	mit Hilfe des Servers aufgelöst, auf dem die Datei oder das 
+	Verzeichnis liegt.</para>
 
-	<para>ACLs specify permissions granted to the SID.  This SID again 
-	can be specified in CWS-1-x-y-z format or as a name in which case 
-	it is resolved against the server on which the file or directory 
-	resides.  The type, flags and mask values determine the type of 
-	access granted to the SID. </para>
+	<para>ACLs geben Rechte an der SID an. Diese SID kann ihrerseits
+	im Format CWS-1-x-y-z oder als Name angegeben werden. Im letzteren
+	Fall wird der angegebene Name mit Hilfe des Servers aufgelöst, auf 
+	dem die Datei oder das Verzeichnis liegt. Die Werte für Typ, Flags 
+	und Maske bestimmen die Art des auf die SID genehmigten Zugriffs. 
+	</para>
 
-	<para>The type can be either 0 or 1 corresponding to ALLOWED or 
-	DENIED access to the SID.  The flags values are generally
-	zero for file ACLs and either 9 or 2 for directory ACLs.  Some 
-	common flags are: </para>
+	<para>Der Typ kann entweder 0 oder 1 für ERLAUBTEN oder VERWEIGERTEN 
+	Zugriff auf die SID sein. Die Flags-Werte sind im Allgemeinen Null 
+	bei Datei-ACLs und entweder 9 oder 2 bei Verzeichnis-ACLs. Einige 
+	häufige Flags sind: </para>
 
 	<itemizedlist> 
 		<listitem><para><constant>#define SEC_ACE_FLAG_OBJECT_INHERIT     	0x1</constant></para></listitem>
@@ -193,49 +208,52 @@ ACL:&lt;sid or name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 		<listitem><para><constant>#define SEC_ACE_FLAG_INHERIT_ONLY       	0x8</constant></para></listitem>
  	</itemizedlist>
   
-	<para>At present flags can only be specified as decimal or 
-	hexadecimal values.</para>
+	<para>Momentan können Flags nur als Dezimal- oder Hexadezimalwerte 
+	angegeben werden.</para>
  
-	<para>The mask is a value which expresses the access right 
-	granted to the SID. It can be given as a decimal or hexadecimal value, 
-	or by using one of the following text strings which map to the NT 
-	file permissions of the same name. </para>
+	<para>Die Maske ist ein Wert, der das Zugriffsrecht an der SID
+	ausdrückt. Sie kann als Dezimal- oder Hexadezimalwert angegeben werden, 
+	oder unter Verwendung eines der folgenden Text-Strings, die auf die 
+	gleichnamigen NT-Dateirechte abgebildet werden.</para>
 
 	<itemizedlist>
-		<listitem><para><emphasis>R</emphasis> - Allow read access </para></listitem>
-		<listitem><para><emphasis>W</emphasis> - Allow write access</para></listitem>
-		<listitem><para><emphasis>X</emphasis> - Execute permission on the object</para></listitem>
-		<listitem><para><emphasis>D</emphasis> - Delete the object</para></listitem>
-		<listitem><para><emphasis>P</emphasis> - Change permissions</para></listitem>
-		<listitem><para><emphasis>O</emphasis> - Take ownership</para></listitem>
+		<listitem><para><emphasis>R</emphasis> - Erlaube Lesezugriff </para></listitem>
+		<listitem><para><emphasis>W</emphasis> - Erlaube Schreibzugriff</para></listitem>
+		<listitem><para><emphasis>X</emphasis> - Ausführungsrecht am Objekt</para></listitem>
+		<listitem><para><emphasis>D</emphasis> - Lösche das Objekt</para></listitem>
+		<listitem><para><emphasis>P</emphasis> - Änderungsrechte</para></listitem>
+		<listitem><para><emphasis>O</emphasis> - Übernehme Besitzerrechte</para></listitem>
 	</itemizedlist>
 
 
-	<para>The following combined permissions can be specified:</para>
+	<para>Folgende kombinierte Rechte können angegeben werden:</para>
 
 
 	<itemizedlist>
-		<listitem><para><emphasis>READ</emphasis> -  Equivalent to 'RX'
-		permissions</para></listitem>
-		<listitem><para><emphasis>CHANGE</emphasis> - Equivalent to 'RXWD' permissions
+		<listitem><para><emphasis>READ</emphasis> - äquivalent zu 
+		'RX'-Rechten</para></listitem>
+		<listitem><para><emphasis>CHANGE</emphasis> - äquivalent zu 
+		'RXWD'-Rechten
 		</para></listitem>
-		<listitem><para><emphasis>FULL</emphasis> - Equivalent to 'RWXDPO' 
-		permissions</para></listitem>
+		<listitem><para><emphasis>FULL</emphasis> - äquivalent zu 
+		'RWXDPO'-Rechten</para></listitem>
 	</itemizedlist>
 	</refsect1>
 
 <refsect1>
-	<title>EXIT STATUS</title>
+	<title>EXIT-STATUS</title>
 
-	<para>The <command>smbcacls</command> program sets the exit status 
-	depending on the success or otherwise of the operations performed.  
-	The exit status may be one of the following values. </para>
+	<para>Das Programm <command>smbcacls</command> setzt den Exit-Status 
+	in Abhängigkiet vom Erfolg oder anderen Ergebnis der ausgeführten
+	Operationen. Der Exit-Status kann einen der folgenden Werte 
+	annehmen.</para>
 
-	<para>If the operation succeeded, smbcacls returns and exit 
-	status of 0.  If <command>smbcacls</command> couldn't connect to the specified server, 
-	or there was an error getting or setting the ACLs, an exit status 
-	of 1 is returned.  If there was an error parsing any command line 
-	arguments, an exit status of 2 is returned. </para>
+	<para>Bei erfolgreicher Operation gibt smbcacls einen Exit-Status von 
+	0 zurück. Falls <command>smbcacls</command> keine Verbindung zum
+	angegebenen Server herstellen konnte, oder falls es beim Abfragen oder 
+	Setzen der ACLs einen Fehler gab, wird der Exit-Status 1 zurückgegeben.  
+	Falls beim Parsen irgendeines Kommandozeilenarguments ein Fehler 
+	auftrat, wird der Exit-Status 2 zurückgegeben.</para>
 </refsect1>
 
 <refsect1>
