@@ -2210,64 +2210,46 @@ Beide Betriebssysteme können jedoch die NT-Treiber verwenden, die im Kernel-Modu
 bestimmen, welcher Treiber zu welchem System gehört, da die Treiber im Unterverzeichnis <quote>2</quote> des
 Verzeichnisses <quote>W32X86</quote> die <quote>alten</quote> sind). Wie zuvor gesagt wurde, sind weder die
 Adobe-Treiber noch die von MS dafür bekannt, irgendwelche Stabilitätsprobleme zu verursachen. Der CUPS-Treiber
-wurde vom MS-Treiber abgeleitet. Es gibt einen einfachen Grund dafür: 
-
-
-More recent printer drivers on W200x and XP no longer run in kernel mode
-(unlike Windows NT). However, both operating systems can still
-use the NT drivers, running in kernel mode (you can roughly tell which
-is which as the drivers in subdirectory <quote>2</quote> of <quote>W32X86</quote> are <quote>old</quote>
-ones). As was said before, the Adobe as well as the Microsoft
-PostScript drivers are not known to cause any stability problems. The
-CUPS driver is derived from the Microsoft one. There is a simple
-reason for this: The MS DDK (Device Development Kit) for Windows NT (which
-used to be available at no cost to licensees of Visual Studio)
-includes the source code of the Microsoft driver, and licensees of
-Visual Studio are allowed to use and modify it for their own driver
-development efforts. This is what the CUPS people have done. The
-license does not allow them to publish the whole of the source code.
-However, they have released the <quote>diff</quote> under the GPL, and if you are
-the owner of an <quote>MS DDK for Windows NT,</quote> you can check the driver yourself.
+wurde vom MS-Treiber abgeleitet. Es gibt einen einfachen Grund dafür: Das MS DDK ((Device Development Kit) für
+Windows NT (welches für Lizenznehmer von Visual Studio ohne Kosten verfügbar war) beinhaltet den Quelltext
+des MS-Treibers, und die Lizenznehmer von Visual Studio dürfen diesen verwenden und ihn zu für eigene
+Treiber-Entwicklungen modifizieren. Das haben die CUPS-Entwickler getan. Die Lizenz erlaubt ihnen nicht, den
+gesamten Quelltext zu veröffentlichen, sie haben jedoch das <quote>diff</quote> unter der GPL veröffentlicht,
+und wenn Sie Besitzer eines <quote>MS DDK for Windows NT</quote> sind, können Sie den Treiber selbst prüfen.
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-<title>Configuring CUPS for Driver Download</title>
+<title>Das Konfigurieren von CUPS für den Download von Treibern</title>
 
 <para>
-As we have said before, all previously known methods to prepare client
-printer drivers on the Samba server for download and Point'n'Print
-convenience of Windows workstations are working with CUPS, too. These
-methods were described in the previous chapter. In reality, this is a
-pure Samba business and only relates to the Samba/Windows client
-relationship.
+Wie wir zuvor erwähnt haben, funktionieren alle bekannten Methoden, um Client-Drucker-Treiber auf dem 
+Samba-Server vorzubereiten (und damit die Vorzüge von Point'n'Print zu geniessen) auch mit CUPS. Diese
+Methoden wurden im vorigen Kapitel beschrieben. In Wirklichkeit ist dies eine reine Samba-Angelegenheit, und
+hängt nur mit dem Verhältnis Samba/Windows-Client zusammen.
 </para>
 
 <sect2>
-<title><emphasis>cupsaddsmb</emphasis>: The Unknown Utility</title>
+<title><emphasis>cupsaddsmb</emphasis>: Das unbekannte Hilfsmittel</title>
 
 
 <para>
 <indexterm><primary>cupsaddsmb</primary></indexterm>
-The <command>cupsaddsmb</command> utility (shipped with all current CUPS versions) is an
-alternate method to transfer printer drivers into the Samba
-<smbconfsection>[print$]</smbconfsection> share. Remember, this share is where
-clients expect drivers deposited and setup for download and
-installation. It makes the sharing of any (or all) installed CUPS
-printers quite easy. <command>cupsaddsmb</command> can use the Adobe PostScript driver as
-well as the newly developed CUPS PostScript Driver for
-Windows NT/200x/XP. <parameter>cupsaddsmb</parameter> does
-<emphasis>not</emphasis> work with arbitrary vendor printer drivers,
-but only with the <emphasis>exact</emphasis> driver files that are
-named in its man page.
+Das Werkzeug <command>cupsaddsmb</command> (mit allen aktuellen CUPS-Versionen ausgeliefert) ist eine
+alternative Methode, um Drucker-Treiber in die Samba-Freigabe <smbconfsection>[print$]</smbconfsection> zu
+transferieren. Zur Erinnerung, diese Freigabe ist der Ort, an dem Clients nach hinterlegten und konfigurierten
+Treibern suchen, um diese herunterzuladen und zu installieren. Dies macht das Verteilen von jeglichen 
+(oder allen) installierten CUPS-Druckern ziemlich einfach. <command>cupsaddsmb</command> kann den Adobe 
+PostScript-Treiber genauso verwenden wie den neu entwickelten CUPS PostScript-Treiber für Windows NT/200x/XP. 
+<parameter>cupsaddsmb</parameter> funktioniert <emphasis>NICHT</emphasis> mit beliebigen Drucker-Treibern, 
+sondern nur mit <emphasis>exakt</emphasis> den Treiber-Dateien, die in seiner man-page angegeben sind.
 </para>
 
 <para>
-The CUPS printer driver is available from the CUPS download site. Its
-package name is <filename>cups-samba-[version].tar.gz</filename> . It
-is preferred over the Adobe drivers since it has a number of
-advantages:
+Der CUPS Drucker-Treiber ist auf der CUPS-Download-Seite verfügbar. Sein Paketname ist 
+<filename>cups-samba-[version].tar.gz</filename>. Er wird den Adobe-Treibern vorgezogen, da er einige Vorteile
+hat:
 </para>
 
 <itemizedlist>
