@@ -223,26 +223,29 @@ ist.
 </para>
 
 <para>
-Opportunistic locking is by default set to <quote>on</quote> by Samba on all
-configured shares, so careful attention should be given to each case to
-determine if the potential benefit is worth the potential for delays.
-The following recommendations will help to characterize the environment
-where opportunistic locking may be effectively configured.
+Opportunistisches Sperren wird von Samba standardmässig für alle Freigaben auf <quote>on</quote> gesetzt,
+also sollte in jedem Fall vorsichtig vorgegangen werden, um zu bestimmen, ob der potentielle Nutzen die
+potentiellen Verzögerungen wert ist. Die folgenden Empfehlungen sollen dabei helfen, eine Umgebung zu
+charakterisieren, in der opportunistisches Sperren effektiv eingerichtet werden können.
 </para>
 
 <para>
-Windows opportunistic locking is a lightweight performance-enhancing
-feature. It is not a robust and reliable protocol. Every
-implementation of opportunistic locking should be evaluated as a
-tradeoff between perceived performance and reliability. Reliability
-decreases as each successive rule above is not enforced. Consider a
-share with oplocks enabled, over a wide area network, to a client on a
-South Pacific atoll, on a high-availability server, serving a
-mission-critical multi-user corporate database during a tropical
-storm. This configuration will likely encounter problems with oplocks.
+Die Windows-Oplocks sind ein leichtgewichtiges Performance-steigerndes Feature. Sie sind kein robustes
+und zuverlässiges Protokoll. Jede Implementierung von Oplocks sollte als Kompromiß zwischen Performance und
+Zuverlässigkeit geprüft werden. Die Zuverlässigkeit sinkt mit jeder oben genannten Regel, die nicht erzwungen
+wird. Stellen Sie sich eine Freigabe mit aktivierten Oplocks vor, über ein WAN, freigegeben an einen Client
+auf einem Atoll im Südpazifik, auf einem Hochverfügbarkeits-Server, der auf dieser Freigabe eine
+<quote>mission-critical</quote> Multi-User-Firmen-Datenbank bereitstellt, während eines tropischen Sturms.
+Diese Konfiguration wird sehr wahrscheinlich Probleme mit Oplocks erfahren.
 </para>
 
 <para>
+Oplocks können sehr wirksam die Client-Performance steigern, wenn sie als Konfigurations-Schalter
+für Client-seitiges Daten-Puffern behandelt werden. Wenn das Puffern der Daten wahrscheinlich unterbrochen 
+werden könnte, sollte der Einsatz von Oplocks nochmals überdacht werden. Samba aktiviert standardmässig die
+Verwendung von Oplocks auf allen Freigaben. 
+
+
 Oplocks can be beneficial to perceived client performance when treated
 as a configuration toggle for client-side data caching. If the data
 caching is likely to be interrupted, then oplock usage should be
