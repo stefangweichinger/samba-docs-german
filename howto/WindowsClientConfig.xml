@@ -88,7 +88,7 @@ aktuell verwendeten Plattformen. Diese sind:
 
 		<procedure>
 			<step><para>
-			Bei manchen Installation nennt sich das Interface <guimenu>Lokale Verbindungen</guimen> und bei anderen
+			Bei manchen Installationen nennt sich das Interface <guimenu>Lokale Verbindungen</guimen> und bei anderen
 			werden Sie <guimenu>Netzwerkverbindungen</guimenu> genannt.
 			Auf unserem System heissen Sie <guimenu>Netzwerkverbindungen</guimenu>.
 			Rechtsklicken Sie auf <guimenu>Netzwerkverbindungen -> Eigenschaften</guimenu>. 
@@ -107,12 +107,12 @@ aktuell verwendeten Plattformen. Diese sind:
 			<para>
 			Die Standardeinstellung ist DHCP aktivierte Vorgehensweise (z.B. <quote>IP-Adresse automatisch beziehen</quote>.
 			Siehe auch <link linkend="WXPP003"/>.
-			<image id="WXPP003"><imagefile>WXPP003</imagefile><imagedescription>Eigenschaften Internet Protokoll (TCP/IP).</imagedescription></image>
+			<image id="WXPP003"><imagefile>WXPP003</imagefile><imagedescription>Eigenschaften Internet Protokoll (TCP/IP)</imagedescription></image>
 			</para>
 
 			<para>
 			Viele Netzwerkadministratoren nutzen gerne DHCP um die Client-seitigen TCP/IP Protokoll-Einstellungen zu setzen.
-			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet sehen 
+			(Für Informationen, wie man einen ISC DHCP-Server mit Microsoft Windows Client-Unterstützung einrichtet, sehen 
 			Sie bitte <link linkend="DHCP"></link>.
 			</para>
 
@@ -127,7 +127,7 @@ aktuell verwendeten Plattformen. Diese sind:
 			Dies öffnet eine Box, in welcher Sie zusätzliche IP-Adressen eingeben können.
 			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet <emphasis>IP-Aliase</emphasis> und in dieser
 			Box kann man weitere Standard-Gateways (oder Router) eingeben. In den meisten Fällen, in denen DHCP genutzt wird,
-			ist es nicht erforderlich weitere Einstellungen vorzunehmen. 			
+			ist es nicht erforderlich, weitere Einstellungen vorzunehmen. 			
 			Siehe auch <link linkend="WXPP005"></link> um das Erscheinungsbild dieser Box zu sehen.
 			<image id="WXPP005"><imagefile>WXPP005</imagefile><imagedescription>Erweiterte TCP/IP Einstellungen</imagedescription></image>
 			</para>
@@ -139,15 +139,15 @@ aktuell verwendeten Plattformen. Diese sind:
 
 			<step><para>
 			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um zusätzliche DNS Server Einstellungen zu machen. 
-			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie fertig mit Ihren Änderungen sind, klicken 			Sie auf den <guibutton>OK</guibutton> Knopf um Ihre Einstellungen zu speichern.
+			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie fertig mit Ihren Änderungen sind, klicken 			Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="WXPP014"/>.
-			<image id="WXPP014"><imagefile>WXPP014</imagefile><imagedescription>DNS Konfiguration.</imagedescription></image>
+			<image id="WXPP014"><imagefile>WXPP014</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para></step>
 
 			<step><para>
 			Klicken Sie die <guibutton>WINS</guibutton> Registerkarte um zusätzliche menuelle WINS Server Einträge vorzunehmen. 
-			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte WINS Einstellungen nutz.
-			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf um Ihre Einstellungen zu speichern.
+			Dieser Schritt zeigt ein Beispielsystem, welches manuell gesetzte WINS Einstellungen nutzt.
+			Wenn Sie fertig mit Ihren Änderungen sind, klicken Sie auf den <guibutton>OK</guibutton> Knopf, um Ihre Einstellungen zu speichern.
 Siehe auch <link linkend="WXPP009"></link>.
 						<image id="WXPP009"><imagefile>WXPP009</imagefile><imagedescription>WINS Konfiguration</imagedescription></image>
 			</para></step>
@@ -208,7 +208,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 			</para></step>
 
 			<step><para>
-			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton> um mit der TCP/IP Konfiguration fort zu fahren.
+			Klicken Sie auf den Knopf <guibutton>Erweitert</guibutton>, um mit der TCP/IP Konfiguration fort zu fahren.
 			Dies öffnet eine Box, in welcher Sie zusätzliche IP-Adressen eingeben können.
 			Die technische Bezeichnung für die zusätzlichen IP-Adressen lautet <emphasis>IP-Aliase</emphasis> und in dieser
 			Box kann man weitere Standard-Gateways (oder Router) eingeben. In den meisten Fällen, in denen DHCP genutzt wird,
@@ -226,7 +226,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 			Klicken Sie auf die <guimenu>DNS</guimenu> Registerkarte um zusätzliche DNS Server Einstellungen zu machen. 
 			Dieses Beispielsystem nutzt manuell gesetzte DNS-Einstellungen. Wenn Sie fertig mit Ihren Änderungen sind, klicken 			Sie auf den <guibutton>OK</guibutton> Knopf um Ihre Einstellungen zu speichern.
 			Siehe auch <link linkend="w2kp004"/>.
-			<image id="w2kp004"><imagefile>w2kp004</imagefile><imagedescription>DNS Konfiguration.</imagedescription></image>
+			<image id="w2kp004"><imagefile>w2kp004</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para></step>
 
 			<step><para>
@@ -264,7 +264,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		
 		<procedure>
 			<step><para>
-			In der Box <guimenuitem>Die folgenden Netzwerkkomponenten sind installiert:</guimenuitem> klicken Sie auf den Konopf
+			In der Box <guimenuitem>Die folgenden Netzwerkkomponenten sind installiert:</guimenuitem> klicken Sie auf den Knopf
 			<guimenu>Internetprotokoll TCP/IP</guimenu>, dann auf <guibutton>Eigenschaften</guibutton>. Siehe auch <link linkend="WME001"></link>.
 			<image id="WME001"><imagefile>WME001</imagefile><imagedescription>Die Windows Me Netzwerkkonfigurations-Box</imagedescription></image>
 			</para></step>
@@ -302,7 +302,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 
 			<step><para>
 			Das folgende Beispiel zeigt manuell konfigurierte WINS Einstellungen. Siehe auch <link linkend="WME005"></link>.
-			Wenn die Änderungen fertig sind, klicken Sie <guibutton>OK</guibutton> um diese abzuspeichern.
+			Wenn die Änderungen fertig sind, klicken Sie <guibutton>OK</guibutton>, um diese abzuspeichern.
 			<image id="WME005"><imagefile>WME005</imagefile><imagedescription>DNS Konfiguration</imagedescription></image>
 			</para>
 
@@ -346,13 +346,13 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para></step>
 
 		<step><para>
-		Klicken Sie auf die Registerkarte <guimenu>Netzwerkidentifikation - Eigenschaften</guimenu>.
+		Klicken Sie auf die Registerkarte <guimenu>Computername</guimenu>.
 		Die Box zeigt Ihnen <guimenuitem>Computerbeschreibung</guimenuitem>, den <guimenuitem>Computernamen</guimenuitem>,
 		und die <guimenuitem>Arbeitsgruppe</guimenuitem> oder <guimenuitem>Domänenname</guimenuitem>.
 		</para>
 
 		<para>
-		Klicken Sie auf den Knopf <guimenu>Network ID</guimenu>, welcher den Konfigurationswizard startet.
+		Klicken Sie auf den Knopf <guimenu>Netzwerkkennung</guimenu>, welcher den Konfigurationswizard startet.
 		Benutzen Sie dies nicht mit Samba-3. Falls Sie die Änderung des Computernamens oder das Verlassen oder
 		Beitreten der Domäne wünschen, klicken Sie den <guimenu>Ändern</guimenu> Knopf.
 		Siehe auch <link linkend="wxpp004"></link>.
@@ -420,7 +420,7 @@ Siehe auch <link linkend="WXPP009"></link>.
 		</para></step>
 
 		<step><para>
-		Das Feld Netzwerk-Konfiguration erlaubt alle allgemeinen Netzwerk Einstellung zu ändern.
+		Das Feld Netzwerk-Konfiguration erlaubt alle allgemeinen Netzwerk Einstellungen zu ändern.
                 Siehe auch <link linkend="WME009"></link>.
 		<image id="WME009"><imagefile>WME009</imagefile><imagedescription>Das Feld Netzwerk</imagedescription></image>
                 </para>
@@ -438,21 +438,22 @@ Siehe auch <link linkend="WXPP009"></link>.
                 </para>
 
 		<para>
-		Enter the Windows NT domain name, check the <guimenu>Log on to Windows NT domain</guimenu> box,
-		click <guimenu>OK</guimenu>.
+		Geben Sie den Windows NT Domänennamen ein, überprüfen Sie die <guimenu>Anmelden an einer Windows NT Domäne</guimenu>
+		Box und klicken Sie dann <guimenu>OK</guimenu>.
 		</para></step>
 
 		<step><para>
-		Click on the <guimenu>Identification</guimenu> button. This is the location at which the workgroup
-		(domain) name and the machine name (computer name) need to be set. See <link linkend="WME013"></link>.
-		<image id="WME013"><imagefile>WME013</imagefile><imagedescription>Identification Panel.</imagedescription></image>
+		Klicken Sie den <guimenu>Erkennen</guimenu> Knopf. Dies ist die beste Stelle an welcher der Arbeitsgruppen (Domänen) Name
+		und der Maschinenname (Computername) gesetzt werden sollen. 
+		Siehe auch <link linkend="WME013"></link>.
+		<image id="WME013"><imagefile>WME013</imagefile><imagedescription>Erkennungsbox</imagedescription></image>
                 </para></step>
 
 		<step><para>
-		Now click the <guimenu>Access Control</guimenu> button. If you want to be able to assign share access
-		permissions using domain user and group accounts, it is necessary to enable
-		<guimenu>User-level access control</guimenu> as shown in this panel.  See <link linkend="WME014"></link>.
-		<image id="WME014"><imagefile>WME014</imagefile><imagedescription>Identification Panel.</imagedescription></image>
+		Jetzt klicken Sie auf den <guimenu>Zugriffskontrolle</guimenu> Knopf. Falls Sie in der Lage sein möchten, Freigabe-
+		Zugriffsrechte durch Domänenbenutzer und Gruppenzugriffe zuzuweisen, dann ist es notwendig, dass Sie wie in dieser Box
+		<guimenu>Benutzerbasierte Zugriffskontrolle</guimenu> auswählen. Siehe auch <link linkend="WME014"></link>.
+		<image id="WME014"><imagefile>WME014</imagefile><imagedescription>Erkennungsbox</imagedescription></image>
                 </para></step>
 
 	</procedure>
@@ -462,31 +463,31 @@ Siehe auch <link linkend="WXPP009"></link>.
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Allgemeine Fehler</title>
 
 <para>
-The most common errors that can afflict Windows networking systems include:
+Die häufigsten Fehler, die Windows Netzwerksysteme heimsuchen, beinhalten: 
 </para>
 
 <itemizedlist>
-	<listitem><para>Incorrect IP address.</para></listitem>
-	<listitem><para>Incorrect or inconsistent netmasks.</para></listitem>
-	<listitem><para>Incorrect router address.</para></listitem>
-	<listitem><para>Incorrect DNS server address.</para></listitem>
-	<listitem><para>Incorrect WINS server address.</para></listitem>
-	<listitem><para>Use of a Network Scope setting &smbmdash; watch out for this one!</para></listitem>
+	<listitem><para>Faslche IP-Adressen.</para></listitem>
+	<listitem><para>Falsche oder inkonsistente Netzmasken.</para></listitem>
+	<listitem><para>Faslche Routeradressen.</para></listitem>
+	<listitem><para>Falsche DNS Serveradressen.</para></listitem>
+	<listitem><para>Falsche WINS Serveradressen.</para></listitem>
+	<listitem><para>Nutzung von Netzwerk Scope Einstellungen &smbmdash; achten Sie auf diese!</para></listitem>
 </itemizedlist>
 
 <para>
-The most common reasons for which a Windows NT/200x/XP Professional client cannot join the Samba controlled domain are:
+Die häufigsten Gründe, warum ein Windows NT/200x/XP Professional Client eine Samba kontrollierte Domäne nicht erreichen kann, sind:
 </para>
 
 <itemizedlist>
-	<listitem><para>&smb.conf; does not have correct <smbconfoption><name>add machine script</name></smbconfoption> settings.</para></listitem>
-	<listitem><para><quote>root</quote> account is not in password backend database.</para></listitem>
-	<listitem><para>Attempt to use a user account instead of the <quote>root</quote> account to join a machine to the domain.</para></listitem>
-	<listitem><para>Open connections from the workstation to the server.</para></listitem>
-	<listitem><para>Firewall or filter configurations in place on either the client or on the Samba server.</para></listitem>
+	<listitem><para>&smb.conf; hat keine korrekten <smbconfoption><name>add machine script</name></smbconfoption> Einstellungen.</para></listitem>
+	<listitem><para><quote>root</quote> Account ist nicht in der Passwortdatenbank.</para></listitem>
+	<listitem><para>Der Versuch, einen Benutzeraccount für den Zutritt der Maschine zu einer Domäne zu verwenden, anstatt des <quote>root</quote> Accounts.</para></listitem>
+	<listitem><para>Offene Verbindungen der Arbeitsstation zum Server.</para></listitem>
+	<listitem><para>Firewall- oder Filtereinstellungen entweder auf dem Client oder dem Samba Server.</para></listitem>
 </itemizedlist>
 
 </sect1>
