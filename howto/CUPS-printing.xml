@@ -1818,74 +1818,62 @@ Die daraus resultierende Filterkette ist in <link linkend="pdftoepsonusb">diesem
 </sect2>
 
 <sect2>
-<title>Sources of CUPS Drivers/PPDs</title>
+<title>Quellen für CUPS Treiber/PPDs</title>
 
 <para>
-On the Internet you can now find many thousands of CUPS-PPD files
-(with their companion filters), in many national languages
-supporting more than thousand non-PostScript models.
+Im Internet finden Sie viele tausend CUPS-PPD-Dateien (mit ihren begleitenden Filtern), in vielen Landessprachen
+und mit Unterstützung für über tausend nicht-PostScript-Modelle.
 </para>
 
 <itemizedlist>
 <indexterm><primary>ESP</primary><secondary>Print Pro</secondary></indexterm>
 <indexterm><primary>PrintPro</primary><see>ESP Print Pro</see></indexterm>
 <listitem><para><ulink url="http://wwwl.easysw.com/printpro/">ESP
-PrintPro</ulink> (commercial,
-non-free) is packaged with more than three thousand PPDs, ready for
-successful use <quote>out of the box</quote> on Linux, Mac OS X, IBM-AIX,
-HP-UX, Sun-Solaris, SGI-IRIX, Compaq Tru64, Digital UNIX, and some
-more commercial Unices (it is written by the CUPS developers
-themselves and its sales help finance the further development of
-CUPS, as they feed their creators).</para></listitem>
+PrintPro</ulink> (kommerziell, nicht frei) wird mit mehr als 3000 PPDs gebündelt, fertig zur erfolgreichen
+Anwendung <quote>out of the box</quote> auf Linux, Mac OS X, IBM-AIX, HP-UX, Sun-Solaris, SGI-IRIX, 
+Compaq Tru64, Digital UNIX, und noch einigen kommerziellen Unices (es wurde von den CUPS-Entwicklern selbst
+geschrieben und sein Verkauf hilft dabei, die weitere Entwicklung von CUPS zu finanzieren, genauso, wie es
+dessen Schöpfer ernährt).</para></listitem>
 
-<listitem><para>The <ulink
+<listitem><para>Das <ulink
 url="http://gimp-print.sourceforge.net/">Gimp-Print-Project
-</ulink> (GPL, free software)
-provides around 140 PPDs (supporting nearly 400 printers, many driven
-to photo quality output), to be used alongside the Gimp-Print CUPS
-filters.</para></listitem>
+</ulink> (GPL, freie Software) bietet ungefähr 140 PPDs (mit Unterstützung von fast 400 Druckern, viele davon
+bis zu Foto-Qualität), zur Nutzung neben den Gimp-Print CUPS Filtern.</para></listitem>
 
 <listitem><para><ulink url="http://www.turboprint.com/">TurboPrint
-</ulink> (shareware, non-free) supports
-roughly the same amount of printers in excellent
-quality.</para></listitem>
+</ulink> (Shareware, nicht frei) unterstützt ungefähr die selbe Anzahl von Druckern in exzellenter Qualität.
+</para></listitem>
 
 <listitem><para><ulink
 url="http://www-124.ibm.com/developerworks/oss/linux/projects/omni/">OMNI
 </ulink>
-(LPGL, free) is a package made by IBM, now containing support for more
-than 400 printers, stemming from the inheritance of IBM OS/2 Know-How
-ported over to Linux (CUPS support is in a beta-stage at
-present).</para></listitem>
+(LPGL, frei) ist ein Package von IBM, das mittlerweile Unterstützung für mehr als 400 Drucker enthält,
+aus dem Erbe von IBM OS/2 Know-How, portiert auf Linux (CUPS Unterstützung ist derzeit im Beta-Stadium).
+</para></listitem>
 
 <listitem><para><ulink url="http://hpinkjet.sourceforge.net/">HPIJS
-</ulink> (BSD-style licenses, free)
-supports around 150 of HP's own printers and is also providing
-excellent print quality now (currently available only via the Foomatic
-path).</para></listitem>
+</ulink> (BSD-artige Lizenz, frei) unterstützt ungefähr 150 Drucker von HP und bietet nun auch exzellente 
+Druckqualität (derzeit nur über den Foomatic-Pfad verfügbar).</para></listitem>
 
 <listitem><para><ulink url="http://www.linuxprinting.org/">Foomatic/cupsomatic
-</ulink> (LPGL, free) from Linuxprinting.org are providing PPDs for practically every Ghostscript
-filter known to the world (including Omni, Gimp-Print and HPIJS).</para></listitem>
+</ulink> (LPGL, frei) von Linuxprinting.org bietet PPDs für praktisch jeden auf der Welt bekannten 
+Ghostscript-Filter (einschließlich Omni, Gimp-Print und HPIJS).</para></listitem>
 </itemizedlist>
 
 </sect2>
 
 <sect2>
-<title>Printing with Interface Scripts</title>
+<title>Das Drucken mit Interface Scripts</title>
 
 <para>
-CUPS also supports the usage of <quote>interface scripts</quote> as known from
-System V AT&amp;T printing systems. These are often used for PCL
-printers, from applications that generate PCL print jobs. Interface
-scripts are specific to printer models. They have a similar role as
-PPDs for PostScript printers. Interface scripts may inject the Escape
-sequences as required into the print data stream, if the user has
-chosen to select a certain paper tray, or print landscape, or use A3
-paper, etc. Interfaces scripts are practically unknown in the Linux
-realm. On HP-UX platforms they are more often used. You can use any
-working interface script on CUPS too. Just install the printer with
-the <command>-i</command> option:
+CUPS unterstützt auch die Verwendung von <quote>interface scripts</quote>, wie man sie von System V AT&amp;T 
+Druck-Systemen kennt. Diese werden oft für PCL-Drucker verwendet, von Anwendungen, die PCL-Druckaufträge
+erzeugen. Interface scripts sind spezifisch für einzelne Drucker-Modelle. Sie haben eine ähnliche Rolle wie
+PPDs für PostScript-Drucker. Interface scripts können die benötigten Escape-Sequenzen in den Druck-Datenstrom
+einfügen, wenn der Benutzer einen bestimmten Papierschacht gewählt hat, oder Landscape-Druck, oder A3-Papier,
+etc. Interface scripts sind praktisch unbekannt in der Linux-Welt. Auf HP-UX Plattformen werden sie öfter
+verwendet. Sie können jedes funktionierende interface script auch mit CUPS verwenden. Installieren Sie einfach
+den Drucker mit der Option <command>-i</command>:
 </para>
 
 <para><screen>
@@ -1894,77 +1882,71 @@ the <command>-i</command> option:
 </screen></para>
 
 <para>
-Interface scripts might be the <quote>unknown animal</quote> to many. However,
-with CUPS they provide the easiest way to plug in your own
-custom-written filtering script or program into one specific print
-queue (some information about the traditional usage of interface scripts is
-to be found at <ulink
-	noescape="1" url="http://playground.sun.com/printing/documentation/interface.html">http://playground.sun.com/printing/documentation/interface.html</ulink>).
+Interface scripts sind vielleicht das <quote>unbekannte Tier</quote> für viele. Nichtsdestotrotz bieten sie mit
+CUPS den einfachsten Weg, Ihr eigenes selbstgeschriebenes Filter-Skript oder -Programm in eine bestimmte
+Drucker-Queue einzufügen (einige Informationen über die herkömmliche Verwendung von Interface Scripts kann unter
+<ulink noescape="1" url="http://playground.sun.com/printing/documentation/interface.html">http://playground.sun.com/printing/documentation/interface.html</ulink> gefunden werden.
 </para>
 </sect2>
 </sect1>
 
 <sect1>
-	<title>Network Printing (Purely Windows)</title>
+	<title>Netzwerk-Druck (Ausschließlich Windows)</title>
 
 <para>
-Network printing covers a lot of ground. To understand what exactly
-goes on with Samba when it is printing on behalf of its Windows
-clients, let's first look at a <quote>purely Windows</quote> setup: Windows clients
-with a Windows NT print server.
+Netzwerk-Druck umfasst ein weites Feld. Um zu verstehen, was genau mit Samba passiert, wenn es im Auftrag seiner
+Windows-Clients druckt, lassen Sie uns zuerst einen Blick auf ein <quote>reines Windows</quote> Setup werfen:
+Windows clients mit einem Windows NT Druck-Server.
 </para>
 
 <sect2>
-<title>From Windows Clients to an NT Print Server</title>
+<title>Von Windows Clients auf einen NT Druck-Server</title>
 
 <para>
-Windows clients printing to an NT-based print server have two
-options. They may:
+Windows clients, die auf einen NT-basierenden Druck-Server drucken, haben zwei Möglichkeiten. Sie können:
 <indexterm><primary>GDI</primary></indexterm>
 <indexterm><primary>EMF</primary></indexterm>
 </para>
 
 
 <itemizedlist>
-	<listitem><para>Execute the driver locally and render the GDI output
-			(EMF) into the printer-specific format on their own.
+	<listitem><para>den Treiber lokal ausführen und die GDI-Ausgabe (EMF) selbst im Drucker-spezifischen
+			Format darstellen.
 	</para></listitem>
 
-	<listitem><para>Send the GDI output (EMF) to the server, where the
-driver is executed to render the printer specific
-output.</para></listitem>
+	<listitem><para>die GDI-Ausgabe (EMF) an den Server senden, wo der Treiber ausgeführt wird, um die
+			Drucker-spezifische Ausgabe darzustellen.
+	</para></listitem>
 </itemizedlist>
 
 <para>
-Both print paths are shown in the flowcharts <link linkend="small11">Print driver 
-execution on the client</link> and <link linkend="small12">Print driver execution on the server</link>.
+Die beiden Druck-Möglichkeiten werden in den Flußdiagrammen 
+<link linkend="small11">Treiberausführung auf dem Client</link>
+und <link linkend="small12">Treiberausführung auf dem Server</link> gezeigt.
 </para>
 </sect2>
 
 <sect2>
-<title>Driver Execution on the Client</title>
+<title>Treiberausführung auf dem Client</title>
 
 <para>
-In the first case the print server must spool the file as raw,
-meaning it shouldn't touch the jobfile and try to convert it in any
-way. This is what a traditional UNIX-based print server can do too, and
-at a better performance and more reliably than an NT print server. This
-is what most Samba administrators probably are familiar with. One
-advantage of this setup is that this <quote>spooling-only</quote> print server may
-be used even if no driver(s) for UNIX are available it is sufficient
-to have the Windows client drivers available; and installed on the
-clients.
+Im ersten Fall muß der Druck-Server die Datei als raw behandeln, das bedeutet, es sollte die Auftragsdatei nicht
+anrühren oder in irgendeiner Art zu konvertieren versuchen. Dies ist, was ein herkömmlicher UNIX-basierender
+Druck-Server auch tun kann, und das bei besserer Performance und stabiler als ein NT Druck-Server. Damit
+sind wohl die meisten Samba-Administratoren vertraut. Ein Vorteil dieses Setups ist, daß dieser
+<quote>spooling-only</quote> Druck-Server sogar verwendet werden kann, wenn kein(e) Treiber für UNIX
+verfügbar sind, es genügt, die Windows-Treiber zur Verfügung und auf den Clients installiert zu haben.
 </para>
 
 <para>
-	<image id="small11"><imagedescription>Print driver execution on the client.</imagedescription>
+	<image id="small11"><imagedescription>Treiberausführung auf dem Client.</imagedescription>
 		<imagefile>11small</imagefile>
 	</image>
 </para>
 </sect2>
 
 <sect2>
-<title>Driver Execution on the Server</title>
+<title>Treiberausführung auf dem Server</title>
 
 
 <para>
@@ -1973,23 +1955,21 @@ clients.
 <indexterm><primary>ESC/P</primary></indexterm>
 <indexterm><primary>EMF</primary></indexterm>
 <indexterm><primary>GDI</primary></indexterm>
-The other path executes the printer driver on the server. The client
-transfers print files in EMF format to the server. The server uses the
-PostScript, PCL, ESC/P or other driver to convert the EMF file into
-the printer-specific language. It is not possible for UNIX to do the
-same. Currently, there is no program or method to convert a Windows
-client's GDI output on a UNIX server into something a printer could
-understand.
+Der andere Pfad führt den Drucker-Treiber auf dem Server aus. Der Client übermittelt Druckdateien im EMF-Format
+an den Server. Der Server verwendet den PostScript, PCL, ESC/P oder einen anderen Treiber, um die EMF-Datei in
+die drucker-spezifische Sprache zu konvertieren. Es ist UNIX nicht möglich, dasselbe zu tun. Derzeit gibt es
+kein Programm und keine Methode, um die GDI-Ausgabe eines Windows-Clients auf einem UNIX-Server auf etwas zu
+wandeln, das ein Drucker verstehen könnte.
 </para>
 
 <para>
-	<image id="small12"><imagedescription>Print driver execution on the server.</imagedescription>
+	<image id="small12"><imagedescription>Treiberausführung auf dem Server.</imagedescription>
 		<imagefile>12small</imagefile>
 	</image>
 </para>
 
 <para>
-However, there is something similar possible with CUPS. Read on.
+Jedoch ist etwas Ähnliches mit CUPS möglich. Lesen Sie weiter.
 </para>
 </sect2>
 </sect1>
