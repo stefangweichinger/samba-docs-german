@@ -72,11 +72,6 @@ Die wichtigsten neuen Features sind:
 	</para></listitem>
 
 	<listitem><para>
-	Neues Dateinamen-mangling-System. Das Dateinamen-mangling-System wurde komplett neu
-	geschrieben. Eine interne Datenbank speichert nun die "mangling-maps".
-	</para></listitem>
-
-	<listitem><para>
 	Neuer Befehl <quote>net</quote>. Der neue Befehl <quote>net</quote> wurde hinzugefügt.
 	Er ist ähnlich dem Windows-Befehl <quote>net</quote>. Eventuell werden einige andere
 	Werkzeuge (wie smbpasswd) durch Sub-Befehle in <quote>net</quote> ersetzt.
