@@ -82,7 +82,7 @@
 		<term><citerefentry><refentrytitle>testprns</refentrytitle>
 		<manvolnum>1</manvolnum></citerefentry></term>
 		<listitem><para>Das Werkzeug <command>testprns</command>
-		unterstütz das Testen von Druckernamen, die in Ihrer 
+		unterstützt das Testen von Druckernamen, die in Ihrer 
 		<filename>printcap</filename>-Datei definiert sind und 
 		von Samba benutzt werden.</para>
 		</listitem>

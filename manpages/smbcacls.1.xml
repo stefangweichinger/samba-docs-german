@@ -25,8 +25,8 @@
 		<arg choice="opt">-M acls</arg>
 		<arg choice="opt">-a acls</arg>
 		<arg choice="opt">-S acls</arg>
-		<arg choice="opt">-C name</arg>
-		<arg choice="opt">-G name</arg>
+		<arg choice="opt">-C Name</arg>
+		<arg choice="opt">-G Name</arg>
 		<arg choice="opt">-n</arg>
 		<arg choice="opt">-t</arg>
 		<arg choice="opt">-U Benutzername</arg>
@@ -120,7 +120,7 @@
 		Name, der mit dem Server aufgelöst wird, der im ersten Argument
 		angegeben wird.</para>
 		
-		<para>Dieser Befehl ist eine Abkürzung für -M OWNER:name. 
+		<para>Dieser Befehl ist eine Abkürzung für -M OWNER:Name. 
 		</para></listitem>
 		</varlistentry>
 		
@@ -135,7 +135,7 @@
 		Name, der mit dem Server aufgelöst wird, der im ersten Argument
 		angegeben wird.</para>
 
-		<para>Dieser Befehl ist eine Abkürzung für -M GROUP:name.
+		<para>Dieser Befehl ist eine Abkürzung für -M GROUP:Name.
 		</para></listitem>
 		</varlistentry>
 		
@@ -143,7 +143,7 @@
 		
 		<varlistentry>
 		<term>-n</term>
-		<listitem><para>Diese Option zeigt alle ACL-Information in einem
+		<listitem><para>Diese Option zeigt alle ACL-Informationen in einem
 		numerischen Format an. Standardmäßig werden SIDs in Namen 
 		konvertiert und ACE-Typen und -Masken werden in ein lesbares
 		String-Format konvertiert.</para></listitem>
@@ -152,7 +152,7 @@
 		<varlistentry>
 		<term>-t</term>
 		<listitem><para>
-		Macht eigentlich nichts, ausser die Argumente auf deren 
+		Macht eigentlich nichts, ausser die Argumente auf ihre 
 		Korrektheit zu prüfen.
 		</para></listitem>
 		</varlistentry>
@@ -180,7 +180,7 @@ ACL:&lt;sid oder name&gt;:&lt;type&gt;/&lt;flags&gt;/&lt;mask&gt;
 
 	<para>Die Revision der ACL gibt die interne Windows NT-ACL-Revision
 	für den Security-Deskriptor an. Wenn nicht angegeben, wird der Vorgabewert
-	1 verwenden. Die Benutzung anderer Werte als 1 kann zu seltsamem
+	1 verwendet. Die Benutzung anderer Werte als 1 kann zu seltsamem
 	Verhalten führen.</para>
 
 	<para>Die Angaben zu Besitzer und Gruppe geben die Besitzer- und 

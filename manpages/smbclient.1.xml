@@ -50,7 +50,7 @@
 	<title>BESCHREIBUNG</title>
 
 	<para>Dieses Werkzeug ist Teil der 
-	<citerefentry><refentrytitle>samba</refentrytitle>
+	<citerefentry><refentrytitle>Samba</refentrytitle>
 	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
 	<para><command>smbclient</command> ist ein Client, der mit einem 
@@ -79,12 +79,12 @@
 		des angebotenen Dienstes ist. Um also eine Verbindung zu dem 
 		Dienst "printer" auf dem SMB/CIFS-Server "smbserver" herzustellen
 		würden Sie den Dienstnamen <filename>//smbserver/printer
-		</filename></para> verwenden.
+		</filename> verwenden.</para> 
 
 		<para>Beachten Sie, dass der benötigte Servername NICHT 
 		notwendigerweise der IP- (DNS-) Hostname des Servers ist! Benötigt 
-		wird ein NetBIOS-Servername, der identisch sein kann mit dem 
-		IP-Hostname des Rechners, auf dem der Server läuft, oder auch nicht.
+		wird ein NetBIOS-Servername, der mit dem IP-Hostname des Rechners, 
+		auf dem der Server läuft, identisch sein kann, aber nicht muss.
 		</para>
 
 		<para>Der Servername wird entweder gemäß dem Parameter 
@@ -107,8 +107,8 @@
 		auf der Kommandozeile angegeben wird (entweder durch die Verwendung 
 		dieses Parameters oder durch Hinzufügen eines Passworts zu der
 		Option <parameter>-U</parameter> (siehe unten) und die Option
-		<parameter>-N</parameter> wird nicht angegeben, dann wird der 
-		Client ein Passwort abfragen, selbst wenn der gewünschte Dienst
+		<parameter>-N</parameter> wird nicht angegeben, dann fragt der 
+		Client ein Passwort ab, selbst wenn der gewünschte Dienst
 		gar keines verlangt. (Wenn kein Passwort benötigt wird, drücken
 		Sie einfach die Eingabetaste, und geben ein leeres Passwort ein.)
 		</para>
@@ -300,7 +300,7 @@
 		<varlistentry>	
 		<term>-b Puffergröße</term>
 		<listitem><para>Diese Option ändert die transmit/send-Puffergröße,
-		beim Herunterladen oder Hochladen einer Datei vom/auf den Server. 
+		beim Herunterladen oder Hochladen einer Datei vom bzw. auf den Server. 
 		Der Vorgabewert dafür ist 65520 Bytes. Es wurde beobachtet, dass
 		ein Herabsetzen dieses Wertes (auf 1200 Bytes) den Dateitransfer 
 		von und zu einem Win9x-Server beschleunigen kann. 
@@ -414,33 +414,33 @@
 		<para><emphasis>Beispiele</emphasis></para>
 		
 		<para>Wiederherstellen aus der tar-Datei <filename>backup.tar</filename>
-		in myshare auf mypc (kein Passwort auf der Freigabe). </para>
+		in meinefreigabe auf meinpc (kein Passwort auf der Freigabe). </para>
 		
-		<para><command>smbclient //mypc/yshare "" -N -Tx backup.tar
+		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tx backup.tar
 		</command></para>
 		
 		<para>Wiederherstellen von allem außer <filename>users/docs</filename>
 		</para>
 		
-		<para><command>smbclient //mypc/myshare "" -N -TXx backup.tar 
+		<para><command>smbclient //meinpc/meinefreigabe "" -N -TXx backup.tar 
 		users/docs</command></para>
 		
 		<para>Erstellen einer tar-Datei von den Dateien unter <filename>
 		users/docs</filename>. </para>
 		
-		<para><command>smbclient //mypc/myshare "" -N -Tc
+		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tc
 		backup.tar users/docs </command></para>
 		
 		<para>Erstellen der gleichen tar-Datei wie oben, aber nun unter 
 		Verwendung eines DOS-Pfadnamens. </para>
 		
-		<para><command>smbclient //mypc/myshare "" -N -tc backup.tar 
+		<para><command>smbclient //meinpc/meinefreigabe "" -N -tc backup.tar 
 		users\edocs </command></para>
 		
 		<para>Erstellen einer tar-Datei aller Dateien und Verzeichnisse in 
 		der Freigabe. </para>
 		
-		<para><command>smbclient //mypc/myshare "" -N -Tc backup.tar *
+		<para><command>smbclient //meinpc/meinefreigabe "" -N -Tc backup.tar *
 		</command></para>
 		</listitem>
 		</varlistentry>
@@ -451,7 +451,6 @@
 		<listitem><para>Wechselt vorher ins Startverzeichnis. Vermutlich nur 
 		sinnvoll mit der tar-Option -T. </para></listitem>
 		</varlistentry>
-		
 		
 		
 		<varlistentry>
@@ -644,7 +643,7 @@
 		<listitem><para>Für diesen Befehl muss der Server die 
 		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
 		Der Client verlangt, dass der Server einen harten Link zwischen 
-		der Quell- und Zieldatei erstellt. Die Quelldatei muss nicht ???
+		der Quell- und Zieldatei erstellt. Die Quelldatei darf nicht 
 		existieren.</para></listitem>
 		</varlistentry>
 
@@ -764,7 +763,7 @@
 		Abarbeitung der Befehle mget und mput ein bzw. aus.</para>
 
 		<para>Wenn eingeschaltet wird der Benutzer bei jeder Datei gebeten, 
-		deren Übertragung zu bestätigen. Wenn ausgeschaltet werden alle 
+		ihre Übertragung zu bestätigen. Wenn ausgeschaltet werden alle 
 		angegebenen Dateien ohne weitere Abfrage übertragen. 
 		</para></listitem>
 		</varlistentry>
@@ -855,7 +854,7 @@
 		<listitem><para>Für diesen Befehl muss der Server die 
 		CIFS-UNIX-Erweiterungen unterstützen, sonst schlägt er fehl.
 		Der Client verlangt, dass der Server einen symbolischen Link zwischen 
-		der Quell- und Zieldatei erstellt. Die Quelldatei darf nicht ???
+		der Quell- und Zieldatei erstellt. Die Quelldatei darf nicht 
 		existieren. Man beachte, dass der Server keinen Link auf einen Pfad
 		erzeugt, der außerhalb der gerade verbundenen Freigabe liegt. 
 		Dies wird vom Samba-Server erzwungen.
@@ -889,7 +888,7 @@
 		<varlistentry>
 		<term>tarmode &lt;full|inc|reset|noreset&gt;</term>
 		<listitem><para>Ändert das Verhalten von tar bzgl. der Archiv-Bits. 
-		Im full-Modus macht tar ein Backup von allem, unabhängig von der 
+		Im fullinc-Modus macht tar ein Backup von allem, unabhängig von der 
 		Einstellung des Archiv-Bits (dies ist der Standardmodus). Im
 		inkrementellen Modus (inc), macht tar nur von den Dateien mit einem
 		gesetzten Archiv-Bit ein Backup. Im reset-Modus, setzt tar 
@@ -910,7 +909,7 @@
 	versuchen Sie, alle Parameter in Großbuchstaben anzugeben.</para>
 	
 	<para>Bei der Verbindung mit manchen Serverarten ist es oft notwendig,
-	die Option -n zu bennutzen. OS/2-LanManager z.B. beharrt auf der
+	die Option -n zu benutzen. OS/2-LanManager z.B. beharrt auf der
 	Verwendung eines gültigen NetBIOS-Namens, d.h. Sie müssen einen 
 	gültigen dem Server bekannten Namen angeben.</para>
 
