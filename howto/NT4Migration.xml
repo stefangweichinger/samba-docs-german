@@ -139,8 +139,8 @@ Segment, um als lokaler Authentifikations- und Zugriffs-Kontroll-Server zu arbei
 
 <para>
 Es gibt Kardinalregeln des effektiven Netzwerk-Designs, die nicht ungestraft verletzt werden können.
-Die wichtigste und erste Regel: Einfachheit ist König. Und das in jedem gut verwalteten Netzwerk.
-Jeder Teil der Infrastruktur muß verwaltet werden; je komplizierter sie ist, umso grösser ist die
+Die wichtigste und erste Regel: Einfachheit siegt. Und das in jedem gut verwalteten Netzwerk.
+Jeder Teil der Infrastruktur muß verwaltet werden; je komplizierter diese ist, umso grösser ist die
 Notwendigkeit, die Systeme sicher und funktional zu halten.
 </para>
 
@@ -185,7 +185,7 @@ Drucker-Verbindungen erreichen können, die sie brauchen.
 <para>
 Anmelde-Skripts können im Betrieb erzeugt werden, sodaß alle ausgeführten Befehle spezifisch für
 die Rechte und Privilegien sind, die dem Benutzer erteilt wurden. Die bevorzugten Kontrollen sollten
-von der Gruppen-Mitgliedschaft abhängig sein, sodaß die Gruppen-Information dazue benutzt werden kann,
+von der Gruppen-Mitgliedschaft abhängig sein, sodaß die Gruppen-Information dazu benutzt werden kann,
 ein maßgeschneidertes Anmelde-Skript anzulegen. Dies kann durch Anwendung des Parameters
 <smbconfoption><name>root preexec</name></smbconfoption> in der Freigabe
 <smbconfsection>NETLOGON</smbconfsection> geschehen.
@@ -264,7 +264,7 @@ Legen Sie ein BDC-Konto für den Samba-Server in der alten NT4-Domäne an, unter V
 <step><para><userinput>net rpc vampire -S <replaceable>NT4PDC</replaceable> -U administrator%<replaceable>passwd</replaceable></userinput></para></step>
 
 <step><para><userinput>pdbedit -L</userinput></para>
-<substeps><step><para>Beachten Sie &smbmdash; haben die Benutzer migriert?</para></step></substeps>
+<substeps><step><para>Beachten Sie &smbmdash;: Haben die Benutzer migriert?</para></step></substeps>
 	</step>
 
 
@@ -348,7 +348,7 @@ auf Samba-3 migrieren wollen.
 </itemizedlist>
 
 <para>
-Minimieren Sie nachfolgende Probleme durch:
+Minimieren Sie nachfolgende Probleme:
 </para>
 
 <itemizedlist>
@@ -365,7 +365,7 @@ Minimieren Sie nachfolgende Probleme durch:
 	</para></listitem>
 
 	<listitem><para>
-	Testen Sie das volle Einführungs-Programm, einschließlich Workstations.
+	Testen Sie das volle Einführungs-Programm, einschließlich der Workstations.
 	</para></listitem>
 </itemizedlist>
 
@@ -383,7 +383,7 @@ Minimieren Sie nachfolgende Probleme durch:
 	<tbody>
 	<row>
 	<entry><para>Anwendung der minimalen Features des OS.</para></entry>
-	<entry><para>Übersetzen der NT4-features auf die features des neuen OS.</para></entry>
+	<entry><para>Übersetzen der NT4-Features auf die Features des neuen OS.</para></entry>
 	<entry><para>Entscheide:</para></entry>
 	</row>
 	<row>
@@ -394,7 +394,7 @@ Minimieren Sie nachfolgende Probleme durch:
 	<row>
 	<entry><para>Nur die notwendigsten operationalen Änderungen</para></entry>
 	<entry><para>Progressive Verbesserungen</para></entry>
-	<entry><para>Desktop Management Methoden</para></entry>
+	<entry><para>Desktop-Management-Methoden</para></entry>
 	</row>
 	<row>
 	<entry><para>Kürzeste Migrations-Zeit</para></entry>
@@ -515,7 +515,7 @@ Minimieren Sie nachfolgende Probleme durch:
                         <listitem><para>Hinzufügen/Löschen von Maschinen: Betrifft nur Domänen-Mitglieder
 				(Bemerkung: Maschinen-Namen können auf 16 Zeichen beschränkt sein).</para></listitem>
                         <listitem><para>Verwendung von <command>net groupmap</command>, um NT4-Gruppen mit UNIX-Gruppen zu verbinden.</para></listitem>
-                        <listitem><para>Hinzufügen/Löschen von Gruppen: Beachten Sie OS-limits bei Länge und Format.
+                        <listitem><para>Hinzufügen/Löschen von Gruppen: Beachten Sie OS-Limits bei Länge und Format.
 Das Limit in Linux ist 16 Zeichen, ohne Leerzeichen und Grossbuchstaben (<command>groupadd</command>).</para></listitem>
 		</itemizedlist>
                 </listitem>
