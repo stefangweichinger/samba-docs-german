@@ -927,15 +927,13 @@ Domänen-Anmeldevorgängen teilnehmen können, dem Administrator, ein globales Stan
 und dessen Verwendung mittels Gruppenrichtlinien (GPOs) zu erzwingen.
 </para></note>
 
-<para>
-Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows 200x/XP Maschine anmeldet, wird das
+<para>Wenn sich ein neuer Benutzer zum ersten Mal an einer MS Windows 200x/XP Maschine anmeldet, wird das
 Standard-Profil aus <filename>C:\Dokumente und Einstellungen\Default User</filename> geladen. Der
 Administrator kann die dortigen Inhalte modifizieren und MS Windows 200x/XP wird diese verwenden. Dies
 ist nicht gerade optimal, da es bedeutet, daß man ein neues Standard-Profil auf jede
 MS Windows 200x/XP Client Workstation kopieren muß.</para>
 
-<para>
-Wenn MS Windows 200x/XP an einem Domänen-Kontext teilnimmt, und das Standard-Benutzer-Profil wird nicht
+<para>Wenn MS Windows 200x/XP an einem Domänen-Kontext teilnimmt, und das Standard-Benutzer-Profil wird nicht
 gefunden, sucht der Client nach einem Standard-Profil in der NETLOGON-Freigabe des authentifizierenden
 Servers. In MS Windows Begriffen,
 <?latex \linebreak ?><filename>%LOGONSERVER%\NETLOGON\Default User,</filename> und wenn ein solches
@@ -978,15 +976,13 @@ tut), dann wird das Benutzerprofil nur auf der lokalen Maschine abgelegt, unter
 	</para> </listitem>
 </itemizedlist>
 
-<para>
-Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Bestandteil des
+<para>Der Registrierungs-Schlüssel, der das Verhalten der Ordner beeinflußt, die Bestandteil des
 Standard-Benutzer-Profils sind, ist unter Windows 200x/XP: </para>
 
 <para> <filename>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell
 Folders\</filename> </para>
 
-<para>
-Der obige Schlüssel enthält eine Liste von automatisch verwalteten Ordnern. Die Standard-Einträge
+<para>Der obige Schlüssel enthält eine Liste von automatisch verwalteten Ordnern. Die Standard-Einträge
 werden in <link linkend="defregpthkeys"/>
 <indexterm><primary>windows registry settings</primary><secondary>default profile locations</secondary></indexterm>
 gezeigt.
@@ -994,62 +990,68 @@ gezeigt.
 
 
 <table frame="all" id="defregpthkeys">
-	<title>Defaults of Default User Profile Paths Registry Keys</title>
+	<title>Pfade des Standard-Profiles: Standard-Werte der Registrierungs-Schlüssel</title>
 	<tgroup cols="2">
 		<colspec align="left"/>
 		<colspec align="left"/>
 	<thead>
-		<row><entry>Name</entry><entry>Default Value</entry></row>
+		<row><entry>Name</entry><entry>Standard-Wert</entry></row>
 	</thead>
 	<tbody>
-		<row><entry>AppData</entry><entry>%USERPROFILE%\Application Data</entry></row>
-		<row><entry>Cache</entry><entry>%USERPROFILE%\Local Settings\Temporary Internet Files</entry></row>
+		<row><entry>AppData</entry><entry>%USERPROFILE%\Anwendungsdaten</entry></row>
+		<row><entry>Cache</entry><entry>%USERPROFILE%\Lokale Einstellungen\Temporary Internet Files</entry></row>
 		<row><entry>Cookies</entry><entry>%USERPROFILE%\Cookies</entry></row>
 		<row><entry>Desktop</entry><entry>%USERPROFILE%\Desktop</entry></row>
-		<row><entry>Favorites</entry><entry>%USERPROFILE%\Favorites</entry></row>
-		<row><entry>History</entry><entry>%USERPROFILE%\Local Settings\History</entry></row>
-		<row><entry>Local AppData</entry><entry>%USERPROFILE%\Local Settings\Application Data</entry></row>
-		<row><entry>Local Settings</entry><entry>%USERPROFILE%\Local Settings</entry></row>
-		<row><entry>My Pictures</entry><entry>%USERPROFILE%\My Documents\My Pictures</entry></row>
-		<row><entry>NetHood</entry><entry>%USERPROFILE%\NetHood</entry></row>
-		<row><entry>Personal</entry><entry>%USERPROFILE%\My Documents</entry></row>
-		<row><entry>PrintHood</entry><entry>%USERPROFILE%\PrintHood</entry></row>
-		<row><entry>Programs</entry><entry>%USERPROFILE%\Start Menu\Programs</entry></row>
-		<row><entry>Recent</entry><entry>%USERPROFILE%\Recent</entry></row>
+		<row><entry>Favorites</entry><entry>%USERPROFILE%\Favoriten</entry></row>
+		<row><entry>History</entry><entry>%USERPROFILE%\Lokale Einstellungen\Verlauf</entry></row>
+		<row><entry>Local AppData</entry><entry>%USERPROFILE%\Lokale Einstellungen\Anwendungsdaten</entry></row>
+		<row><entry>Local Settings</entry><entry>%USERPROFILE%\Lokale Einstellungen</entry></row>
+		<row><entry>My Pictures</entry><entry>%USERPROFILE%\Eigene Dokumente\Eigene Bilder</entry></row>
+		<row><entry>NetHood</entry><entry>%USERPROFILE%\Netzwerkumgebung</entry></row>
+		<row><entry>Personal</entry><entry>%USERPROFILE%\Eigene Dokumente</entry></row>
+		<row><entry>PrintHood</entry><entry>%USERPROFILE%\Druckumgebung</entry></row>
+		<row><entry>Programs</entry><entry>%USERPROFILE%\Startmenü\Programme</entry></row>
+		<row><entry>Recent</entry><entry>%USERPROFILE%\Verlauf</entry></row>
 		<row><entry>SendTo</entry><entry>%USERPROFILE%\SendTo</entry></row>
-		<row><entry>Start Menu</entry><entry>%USERPROFILE%\Start Menu</entry></row>
-		<row><entry>Startup</entry><entry>%USERPROFILE%\Start Menu\Programs\Startup</entry></row>
-		<row><entry>Templates</entry><entry>%USERPROFILE%\Templates</entry></row>
+		<row><entry>Start Menu</entry><entry>%USERPROFILE%\Startmeüu</entry></row>
+		<row><entry>Startup</entry><entry>%USERPROFILE%\Startmenü\Programme\Autostart</entry></row>
+		<row><entry>Templates</entry><entry>%USERPROFILE%\Vorlagen</entry></row>
 	</tbody>
 	</tgroup>
 </table>
 
-<para> There is also an entry called <quote>Default</quote> that has no value set. The default entry is
-of type <constant>REG_SZ</constant>, all the others are of type <constant>REG_EXPAND_SZ</constant>. </para>
+<para>Es gibt auch einen Eintrag namens <quote>Default</quote>, der keinen Wert gesetzt hat. Der 
+Standard-Eintrag ist vom Typ <constant>REG_SZ</constant>, alle anderen sind vom Typ
+<constant>REG_EXPAND_SZ</constant>.</para>
 
-<para> It makes a huge difference to the speed of handling roaming user profiles if all the folders are
-stored on a dedicated location on a network server. This means that it will not be necessary to write
-the Outlook PST file over the network for every login and logout. </para>
 
-<para> To set this to a network location, you could use the following examples: </para>
+<para>Es macht einen riesigen Unterschied in Bezug auf die Geschwindigkeit, mit der man 
+"Roaming Profiles" verwenden kann, wenn all die notwendigen Ordner an einem dafür bestimmten Ort auf
+einem Netzwerk-Server abgelegt werden. Das bedeutet, daß es nicht mehr notwendig ist, bei jedem
+An- und Abmelden die Outlook PST-Datei über das Netzwerk zu schreiben.</para>
 
-<para><filename>%LOGONSERVER%\%USERNAME%\Default Folders</filename></para>
+<para>Um dies auf einen Netzwerk-Pfad zu ändern, könnten Sie folgende Beispiele verwenden:</para>
 
-<para> This would store the folders in the user's home directory under a directory called <filename>Default
-Folders</filename>. You could also use: </para>
+<para><filename>%LOGONSERVER%\%USERNAME%\Standard Ordner</filename></para>
 
-<para><filename>\\<replaceable>SambaServer</replaceable>\<replaceable>FolderShare</replaceable>\%USERNAME%</filename></para>
+<para>Dies würde die Ordner im Home-Verzeichnis des Benutzers ablegen, in einem Ordner namens
+<filename>Standard Ordner</filename>. Sie könnten auch das verwenden:</para>
+
+<para><filename>\\<replaceable>SambaServer</replaceable>\<replaceable>OrdnerFreigabe</replaceable>\%USERNAME%</filename></para>
 
 <para>
-in which case the default folders will be stored in the server named <replaceable>SambaServer</replaceable>
-in the share called <replaceable>FolderShare</replaceable> under a directory that has the name of the
-MS Windows user as seen by the Linux/UNIX file system.	</para>
+In diesem Fall werden die Standard-Ordner auf dem Server namens <replaceable>SambaServer</replaceable>
+gespeichert, in der Freigabe <replaceable>OrdnerFreigabe</replaceable>, unter einem Verzeichnis, das
+den Namen des Windows-Benutzers hat, wie er vom Linux/UNIX-Dateisystem aus gesehen wird.</para>
 
-<para> Please note that once you have created a default profile share, you MUST migrate a user's profile
-(default or custom) to it. </para>
+<para>Bitte beachten Sie, daß Sie, sobald Sie eine Standard-Profil-Freigabe angelegt haben, das
+Benutzer-Profil darauf migrieren MÜSSEN (egal ob Standard- oder angepaßtes Profil).</para>
 
-<para> MS Windows 200x/XP profiles may be <emphasis>Local</emphasis> or <emphasis>Roaming</emphasis>.
-	A roaming profile will be cached locally unless the following registry key is created: 
+
+
+<para>MS Windows 200x/XP Profile können <emphasis>Local</emphasis> oder <emphasis>Roaming</emphasis>
+sein. Ein "Roaming Profile" wird lokal gepuffert (Cache), außer der folgende Registrierungsschlüssel
+wird angelegt:
 
 <indexterm><primary>delete roaming profiles</primary></indexterm>
 </para>
@@ -1059,12 +1061,12 @@ MS Windows user as seen by the Linux/UNIX file system.	</para>
 	winlogon\"DeleteRoamingCache"=dword:00000001</programlisting></para>
 
 <para>
-In this case, the local cache copy will be deleted on logout.
+In diesem Fall wird die lokale Cache-Kopie beim Abmelden gelöscht.
 </para> 
 </sect2> 
 </sect1>
 
-<sect1> <title>Common Errors</title>
+<sect1> <title>Gängige Fehler</title>
 
 <para>
 The following are some typical errors, problems and questions that have been asked on the Samba mailing lists.
