@@ -20,7 +20,7 @@ Ihre Daten mit Zugriffskontroll-Listen vor unerlaubten Zugriffen zu schützen.
 <para>
 Viele UNIX-Administratoren sind nicht mit der MS Windows Umgebung vertraut,
 besondere Probleme ergeben sich aus den
-Benutzerwünschen bezüglich der Kontrolle von Dateien und Verzeichnisse und deren Einrichtung.
+Benutzerwünschen bezüglich der Kontrolle von Dateien und Verzeichnissen und deren Einrichtung.
 </para>
 
 <para>
@@ -45,14 +45,14 @@ Zugriffsverwaltung zu ermöglichen, welche die Windows-Benutzer benötigen.
 
 <para>
 Samba ist nicht primär dafür gedacht, eine Unix-Plattform in eine Windows-Plattform zu verwandeln,
-sondern soll die best-mögliche Kompatibilität zwischen den beiden Systemen schaffen.
+sondern soll die bestmögliche Kompatibilität zwischen den beiden Systemen schaffen.
 </para>
 
 <sect1>
 <title>Möglichkeiten und Vorteile</title>
 
 	<para>
-	Samba ermöglicht hohe Flexibilität beim Systemzugriff. Hier sind die
+	Samba ermöglicht hohe Flexibilität beim Systemzugriff. Hier sind es die
 	Zugriffskontrollmöglichkeiten der aktuellen Version 3 von Samba.
 	</para>
 
@@ -92,7 +92,7 @@ sondern soll die best-mögliche Kompatibilität zwischen den beiden Systemen schaf
 			<para>
 			Wie in Windows NT ist es auch in Samba möglich, Netzlaufwerks-Kontroll-Listen
 			zu erstellen. Einige Anwender machen Gebrauch davon, es ist zur Zeit
-			eine der leichtesten Möglichkeiten, Zugriffskontrolle zu erreichen, im
+			eine der leichtesten Möglichkeiten Zugriffskontrolle zu erreichen, im
 			Gegensatz zu anderen komplexeren Methoden.
 			</para>
 		</listitem>
@@ -171,7 +171,7 @@ UNIX-Systeme. Wir werden erst die Unterschiede erklären und dann, wie Samba hilf
 		<indexterm><primary>Dateisystem</primary><secondary>Schreibweise sensitiv</secondary></indexterm>
 		Im Allgemeinen sind Dateinamen unter Windows 8+3 Zeichen lang und werden Groß erstellt.
 		Dateinamen, die länger sind, sind in ihrer Schreibweise insensitiv
-		(d. h. es spielt keine Rolle, ob groß oder klein geschrieben)
+		(d. h. es spielt keine Rolle, ob groß oder klein geschrieben).
 		</para>
 
 		<para>
@@ -342,7 +342,7 @@ drwsrwsrwx    2 maryo   gnomes       48 2003-05-12 22:29 muchado08
 scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription><imagefile>access1</imagefile></image>
 
 	<para>
-	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - )dargestellt.
+	Jedes Bit kann auch unbesetzt sein und wird durch ein Minus ( - ) dargestellt.
 
 	<example>
 		<title>Beispieldatei</title>
@@ -379,8 +379,8 @@ scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription
 	Wenn auf einem Verzeichnis das Gruppen- oder Nutzer-Identitätsbit gesetzt ist, dann
 	erhalten Nutzer und Gruppen Berechtigungen auf darin
 	enthaltene Dateien. Dies ermöglicht das Erstellen von Verzeichnissen, auf die alle
-	Nutzer einer Gruppe zugreifen sollen, auch wenn die primäre Gruppe der Nutzer nicht gleiche ist,
-	auch wenn die primäre Gruppe der Nutzer nicht gleiche ist und nicht gewünscht ist, dass nur
+	Nutzer einer Gruppe zugreifen sollen, auch wenn die primäre Gruppe der Nutzer nicht gleich
+	und nicht gewünscht ist, dass nur
 	ein Benutzer exklusiv auf eine Datei berechtigt ist.
 	</para>
 
@@ -404,7 +404,7 @@ scale="40"><imagedescription>Übersicht der UNIX-Berechtigungen</imagedescription
 <para>
 <indexterm><primary>Berechtigungen</primary><secondary>Freigabe</secondary></indexterm>
 Die folgenden Parameter in den Dateisektionen von &smb.conf; definieren eine Freigabekontrolle oder betreffen
-Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie bitte in den den manpages für &smb.conf; nach.
+Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie bitte in den manpages für &smb.conf; nach.
 </para>
 
 	<sect2>
@@ -418,8 +418,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	Die Benutzung von <smbconfoption><name>force user</name></smbconfoption> und
 	<smbconfoption><name>force group</name></smbconfoption>
 	wird dies erreichen. In anderen Situationen ist es vielleicht notwendig, ein
-	paranoides Level von Kontrollen einzusetzen,
-	umm sicherzustellen, dass es nur bestimmten ausgewählten und authorisierten Personen möglich ist,
+	paranoides Level von Kontrollen einzusetzen
+	um sicherzustellen, dass es nur bestimmten ausgewählten und authorisierten Personen möglich ist,
 	auf eine Freigabe oder dessen Inhalt zuzugreifen. Hier kann die Benutzung von <smbconfoption><name>valid users</name></smbconfoption> oder
 	<smbconfoption><name>invalid users</name></smbconfoption> am hilfreichsten sein.
 	</para>
@@ -428,8 +428,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 	Wie immer ist es höchst ratsam, die einfachste Methode für den Unterhalt und die
 	eindeutigste Methode für die Zugriffskontrolle zu verwenden. Denken Sie daran,
 	dass nach dem Verlassen Ihrer Arbeit jemand anderes Unterstützung
-	geben können muss und er eine grosse Baustelle vorfindet oder Ihre Vorgehensweise nicht
-	versteht, dass es durchaus möglich sein kann, dass Samba gelöscht wird oder eine
+	geben können muss und wenn er eine grosse Baustelle vorfindet oder Ihre Vorgehensweise nicht
+	versteht es durchaus möglich sein kann, dass Samba gelöscht wird oder eine
 	alternative Lösung eingesetzt wird.
 	</para>
 
@@ -913,7 +913,7 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		<note>
 		<para>
 		Alle Zugriffe auf UNIX/Linux-Systemdateien durch Samba werden durch die
-		Betriebssystem-Dateizugrifsskontrollen kontrolliert.
+		Betriebssystem-Dateizugriffskontrollen kontrolliert.
 		Bei der Fehlersuche nach Dateizugriffsproblemen ist es enorm wichtig, die
 		Identität des Windowsbenutzers herauszufinden,
 		wie sie von Samba an dieser Stelle des Dateizugriffs gesehen wird.
@@ -986,8 +986,8 @@ Zugriffskontrollen. Bevor Sie eine dieser folgenden Optionen benutzen, sehen Sie
 		privilegierte Operation in UNIX ist, die ausschliesslich dem Benutzer
 		<emphasis>root</emphasis> obliegt. Indem Sie auf diesen Knopf drücken,
 		wird NT dazu veranlasst, die Eigentumsrechte einer Datei auf den am NT Client
-		gegenwärtig angemeldeten Benutzer zu ändern, dies
-		jedoch funktioniert zu diesem Zeitpunkt mit Samba nicht.
+		gegenwärtig angemeldeten Benutzer zu ändern, dies funktioniert
+		jedoch zu diesem Zeitpunkt mit Samba nicht.
 		</para>
 
 		<para>
