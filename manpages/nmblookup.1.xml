@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>nmblookup</refname>
-	<refpurpose>NetBIOS über TCP/IP-Client für Abfragen von NetBIOS-Namen</refpurpose>
+	<refpurpose>NetBIOS-über-TCP/IP-Client für Abfragen von NetBIOS-Namen</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -44,9 +44,9 @@
 
 	<para><command>nmblookup</command> wird zur Abfrage von NetBIOS-Namen 
 	und ihrer Abbildung auf IP-Adressen in einem Netzwerk verwendet, das 
-	NetBIOS über TCP/IP-Abfragen benutzt. 
+	NetBIOS-über-TCP/IP-Abfragen benutzt. 
 	Mit den Optionen können Namensabfragen an einen bestimmten 
-	IP-Broadcast-Bereich oder an eine bestimmten Rechner gerichtet werden.
+	IP-Broadcast-Bereich oder an einen bestimmten Rechner gerichtet werden.
 	Alle Abfragen erfolgen über UDP.</para>
 </refsect1>
 
@@ -56,12 +56,12 @@
 	<variablelist>
 		<varlistentry>
 		<term>-M</term>
-		<listitem><para>Sucht einen Master Browser indem der NetBIOS-Name 
-		<replaceable>name</replaceable> mit dem Type 
+		<listitem><para>Sucht einen Master Browser, indem der NetBIOS-Name 
+		<replaceable>name</replaceable> mit dem Typ 
 		<constant>0x1d</constant> gesucht wird. Falls <replaceable>
 		name</replaceable> gleich "-" ist, führt es eine Suche nach dem
 		speziellen Namen <constant>__MSBROWSE__</constant> durch. Beachten
-		Sie bitte folgendes: wenn Sie den Namen "-" benutzen möchten müssen
+		Sie bitte folgendes: wenn Sie den Namen "-" benutzen möchten, müssen
 		Sie sicherstellen, dass "-" nicht als Argument geparst wird, d.h.
 		benutzen Sie z.B.: 
 		<userinput>nmblookup -M -- -</userinput>.</para></listitem> 
@@ -69,7 +69,7 @@
 		
 		<varlistentry>
 		<term>-R</term>
-		<listitem><para>Setze im Paket das Bit Rekursion erwünscht, um eine 
+		<listitem><para>Setze im Paket das Bit "Rekursion erwünscht", um ein 
 		rekursives Lookup durchzuführen. Das wird dann gemacht, wenn eine
 		Namensabfrage an einen Rechner geschickt wird, auf dem ein WINS-Server
 		läuft, und der Benutzer die Namen im WINS-Server abfragen möchte. 
@@ -168,7 +168,7 @@
 		vorherigen Optionen kann das ein NetBIOS-Name oder eine IP-Adresse sein. 
 		Bei einem NetBIOS-Namen können die verschiedenen Namenstypen durch  
 		Anhängen von '#&lt;type&gt;' an den Namen angegeben werden. Dieser Name
-		darf auch'*' sein, was dann alle registrierten Namen eines 
+		darf auch '*' sein, was dann alle registrierten Namen eines 
 		Broadcast-Bereichs zurückgibt.</para></listitem>
 		</varlistentry>
 	</variablelist>
@@ -180,7 +180,7 @@
 
 		<para>Mit <command>nmblookup</command> kann ein WINS-Server abgefragt
 		werden (genau so wie <command>nslookup</command> für die Abfrage von 
-		DNS-Servern benutzt wird). Um einen WINS-Server abzufragen muss
+		DNS-Servern benutzt wird). Um einen WINS-Server abzufragen, muss
 		<command>nmblookup</command> wie folgt aufgerufen werden:</para>
 
 		<para><command>nmblookup -U server -R 'name'</command></para>
