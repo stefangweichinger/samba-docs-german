@@ -2,12 +2,14 @@
 <chapterinfo>
 	&author.jht;
 	&author.jeremy;
+	<pubdate>April 3 2003</pubdate>
+        <author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
-<title>High Availability</title>
+<title>Hochverfügbarkeit</title>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
 Network administrators are often concerned about the availability of file and print
