@@ -610,7 +610,7 @@ jeder Freigabe dürfen Sie diese global gesetzten Freigabeeinstellungen allerding
 		<listitem><para>Setzt die obere Grenze der gleichzeitig auf dem
 		Samba-Server aktiven Druckaufträge auf 100. Sollte ein Client einen
 		Auftrag mit einer höheren Nummer absetzen, erhält er von Samba eine 
-		Fehlermeldung der Art ??? <quote>no more space available on server</quote>. 
+		Fehlermeldung der Art <quote>no more space available on server</quote>. 
 		Der Wert Null (die Voreinstellung) bedeutet, es gibt 
 		<emphasis>keine</emphasis> Beschränkung.
 	</para></listitem></varlistentry>
@@ -1556,7 +1556,7 @@ Das führt zu folgender Fehlermeldung:
 </para>
 
 	<para><errorname>
-	??? Device settings cannot be displayed. The driver for the specified
+	Device settings cannot be displayed. The driver for the specified
 	printer is not installed, only spooler properties will be displayed. 
 	Do you want to install the driver now?
 	</errorname></para>
@@ -2326,7 +2326,7 @@ Sehr wahrscheinlich möchten Sie nun versuchen, eine Testseite auszudrucken.
 Schließlich können Sie nun die Druckereigenschaften öffnen und unter dem 
 Reiter <guimenu>Allgemein</guimenu> gibt es einen Knopf genau dafür. Aber sehr 
 wahrscheinlich würden Sie eine Fehlermeldung namens 
-<errorname>Unable to print Test Page</errorname> ??? erhalten. 
+<errorname>Unable to print Test Page</errorname> erhalten. 
 Der Grund könnte sein, dass noch kein 
 gültiger Device-Modus für den Drucker gesetzt ist, oder dass der Satz an 
 <quote>Druckertreiberdaten</quote> noch immer unvollständig ist.
@@ -2933,7 +2933,7 @@ das mit dem Befehl <command>smbstatus</command> überprüfen.
 </sect2>
 
 <sect2>
-<title>Fehlermeldung: <quote><errorname>Cannot connect under a different Name</errorname></quote>???</title>
+<title>Fehlermeldung: <quote><errorname>Cannot connect under a different Name</errorname></quote></title>
 
 <para>
 Wenn Sie erst einmal mit den falschen Angaben verbunden sind gibt es keine 
@@ -2948,7 +2948,7 @@ schließen und vielleicht einen Neustart durchzuführen.
 	<quote>Multiple connections to a server or a shared resource by the 
 	same user utilizing the several user names are not allowed. Disconnect 
 	all previous connections to the server, esp. the shared resource, 
-	and try again.</quote> ???
+	and try again.</quote>
 	</para></listitem>
 
 	<listitem><para>
@@ -2958,7 +2958,7 @@ schließen und vielleicht einen Neustart durchzuführen.
 	folder is currently connected under different credentials (username 
 	and password). Disconnect first any existing connection to this network 
 	share in order to connect again under a different username and 
-	password</quote>. ???
+	password</quote>.
 	</para></listitem>
 </itemizedlist>
 
@@ -3012,7 +3012,8 @@ Buchstaben anzeigen würde. Daher ist es leicht, sie zu verwechseln. Wenn Sie sie
 manuell mit <command>rpcclient</command> und dessen Unterbefehlen installieren, 
 bekommen Sie vielleicht nicht einmal eine Fehlermeldung. Erst bei der späteren
 Installation auf einem Client werden Sie Fehlermeldungen finden wie
-<computeroutput>This server has no appropriate driver for the printer</computeroutput> ???.
+<computeroutput>This server has no appropriate driver for the 
+printer</computeroutput>.
 </para>
 
 <para>
@@ -3166,8 +3167,8 @@ fingiert Samba die Port-Informationen, damit Windows-Clients glücklich sind.
 </para>
 
 <para>
-Auch das Konzept des <constant>Printer Poolings</constant>??? wird intern von 
-Samba nicht unterstützt. Beim Printer Pooling??? wird ein logischer Drucker mit 
+Auch das Konzept des <constant>Printer Poolings</constant> wird intern von 
+Samba nicht unterstützt. Beim Printer Pooling wird ein logischer Drucker mit 
 mehreren Ports für eine Art Lastausgleich oder Überlauf verbunden.
 </para>
 
