@@ -4922,111 +4922,95 @@ ersten Dialog.</para></listitem>
 <listitem><para>Klick auf <guilabel>Erweitert</guilabel>. (Wenn alles <quote>grau ist</quote>, dann sind Sie 
 nicht als Benutzer mit ausreichenden Rechten angemeldet).</para></listitem>
 
-<listitem><para>Click on the <guibutton>Printing
-Defaults...</guibutton> button.</para></listitem>
+<listitem><para>Klicken Sie auf den Button <guibutton>Druckeinstellungen</guibutton>.</para></listitem>
 
-<listitem><para>On any of the two new tabs, click on the
-<guibutton>Advanced...</guibutton>
-button.</para></listitem>
+<listitem><para>Auf irgendeinem der beiden erscheinenden <quote>Karteikarten</quote> klicken Sie auf
+den Button <guibutton>Erweitert...</guibutton>.</para></listitem>
 
-<listitem><para>A new dialog opens. Compare this one to the other
-identical looking one from <quote>B.5</quote> or A.3".</para></listitem>
+<listitem><para>Ein neuer Dialog öffnet sich. Vergleichen Sie Ihn mit dem anderen, identisch aussehenden aus
+Variante <quote>A</quote> oder <quote>B</quote>.</para></listitem>
 </orderedlist>
 </para>
 </listitem>
 </orderedlist>
 
 <para>
-Do you see any difference? I don't either. However, only the last
-one, which you arrived at with steps <quote>C.1.-6.</quote>, will save any settings
-permanently and be the defaults for new users. If you want all clients
-to get the same defaults, you need to conduct these steps <emphasis>as
-Administrator</emphasis> (<smbconfoption><name>printer admin</name></smbconfoption> in
-&smb.conf;) <emphasis>before</emphasis> a client
-downloads the driver (the clients can later set their own
-<emphasis>per-user defaults</emphasis> by following the
-procedures <emphasis>A</emphasis> or <emphasis>B</emphasis>
-above).</para></sect2>
+Sehen Sie irgendeinen Unterschied? Ich auch nicht. Wie auch immer, nur der letzte, zu dem Sie nach Befolgung
+von Variante <quote>C</quote> gelangt sind, wird all die Einstellungen dauerhaft speichern und zu 
+Voreinstellungen für neue Benutzer machen. Wenn Sie wollen, daß alle Clients die selben Voreinstellungen 
+erhalten, müssen Sie diese Schritte <emphasis>als Administrator</emphasis> 
+(<smbconfoption><name>printer admin</name></smbconfoption> in &smb.conf;) durchführen, 
+<emphasis>bevor</emphasis> ein Client den Treiber herunterlädt (die Clients können später ihre
+<emphasis>per-user-Standards</emphasis> setzen, indem sie die obigen Prozeduren <emphasis>A</emphasis> oder
+<emphasis>B</emphasis> befolgen).</para></sect2>
 
-<sect2><title>Most Common Blunders in Driver Settings on Windows Clients</title>
-<para>Don't use <parameter>Optimize for
-Speed</parameter>, but use <parameter>Optimize for
-Portability</parameter> instead (Adobe PS Driver). Don't use
-<parameter>Page Independence: No</parameter>: always
-settle with  <parameter>Page Independence:
-Yes</parameter> (Microsoft PS Driver and CUPS PS Driver for
-Windows NT/200x/XP). If there are problems with fonts, use
-<parameter>Download as Softfont into
-printer</parameter> (Adobe PS Driver). For
-<guilabel>TrueType Download Options</guilabel>
-choose <constant>Outline</constant>. Use PostScript
-Level 2, if you are having trouble with a non-PS printer and if
-there is a choice.</para></sect2>
+<sect2><title>Die gängigsten Schnitzer in den Treiber-Einstellungen auf Windows-Clients</title>
+<para>Verwenden Sie nicht <parameter>Optimize for
+Speed</parameter>, sondern verwenden Sie stattdessen <parameter>Optimize for
+Portability</parameter> (Adobe-PS-Treiber). Verwenden Sie nicht
+<parameter>Page Independence: No</parameter>: sondern verwenden Sie immer
+<parameter>Page Independence: Yes</parameter> (Microsoft PS-Treiber und CUPS-PS-Treiber für Windows NT/200x/XP).
+Wenn es irgendwelche Probleme mit Schriften gibt, verwenden Sie <parameter>Download as Softfont into 
+printer</parameter> (Adobe-PS-Treiber). 
+Wählen Sie für <guilabel>TrueType Download Options</guilabel> <constant>Outline</constant>.
+Verwenden Sie PostScript Level 2, wenn Sie Probleme mit einem Nicht-PS-Drucker haben und Sie die Wahl haben.
+</para></sect2>
 
-<sect2><title><command>cupsaddsmb</command> Does Not Work with Newly Installed Printer</title>
-<para>Symptom: The last command of
-<command>cupsaddsmb</command> does not complete successfully:
-<command>cmd = setdriver printername printername</command> result was
-NT_STATUS_UNSUCCESSFUL then possibly the printer was not yet
-recognized by Samba. Did it show up in Network
-Neighborhood? Did it show up i n <command>rpcclient
-hostname -c `enumprinters'</command>? Restart smbd (or send a
-<command>kill -HUP</command> to all processes listed by
-<command>smbstatus</command> and try
-again.</para></sect2>
+<sect2><title><command>cupsaddsmb</command> funktioniert nicht mit einem neu installierten Drucker</title>
+<para>Symptom: Der letzte Befehl von <command>cupsaddsmb</command> schließt nicht erfolgreich ab:
+<command>cmd = setdriver printername printername</command> gibt zurück:
+NT_STATUS_UNSUCCESSFUL, dann wurde der Drucker eventuell noch nicht erfolgreich von Samba erkannt.
+Scheint er in der Netzwerkumgebung auf? In <command>rpcclient hostname -c `enumprinters'</command>? Starten Sie
+smbd neu (oder senden Sie ein <command>kill -HUP</command> an alle von <command>smbstatus</command> angezeigten
+Prozesse) und versuchen Sie es erneut.</para></sect2>
 
 <sect2>
-<title>Permissions on <filename>/var/spool/samba/</filename> Get Reset After Each Reboot</title>
-<para>Have you ever by accident set the CUPS spool directory to
-the same location? (<parameter>RequestRoot /var/spool/samba/</parameter> in <filename>cupsd.conf</filename> or
-the other way round: <filename>/var/spool/cups/</filename> is set as
-<smbconfoption><name>path</name></smbconfoption>> in the <smbconfsection>[printers]</smbconfsection>
-section). These <parameter>must</parameter> be different. Set
-<!--FIXME-->
-<parameter>RequestRoot /var/spool/cups/</parameter> in
-<filename>cupsd.conf</filename> and <smbconfoption><name>path</name><value>
-/var/spool/samba</value></smbconfoption> in the <smbconfsection>[printers]</smbconfsection>
-section of &smb.conf;. Otherwise cupsd will
-sanitize permissions to its spool directory with each restart and
-printing will not work reliably.</para></sect2>
+<title>Die Berechtigungen von <filename>/var/spool/samba/</filename> werden nach jedem Reboot 
+zurückgesetzt</title>
+<para>Haben Sie aus Versehen das CUPS-Spool-Verzeichnis auf dasselbe Verzeichnis gesetzt?
+(<parameter>RequestRoot /var/spool/samba/</parameter> in <filename>cupsd.conf</filename> oder
+<smbconfoption><name>path</name></smbconfoption> im Abschnitt <smbconfsection>[printers]</smbconfsection>
+in &smb.conf;). Diese Verzeichnisse <parameter>müssen</parameter> unterschiedlich sein.
+Setzen Sie <parameter>RequestRoot /var/spool/cups/</parameter> in
+<filename>cupsd.conf</filename> und <smbconfoption><name>path</name><value>
+/var/spool/samba</value></smbconfoption> im Abschnitt <smbconfsection>[printers]</smbconfsection> von &smb.conf;.
+Andernfalls wird cupsd die Berechtigungen seines Spool-Verzeichnisses bei jedem Neustart bereinigen, und das
+Drucken wird nicht verlässlich funktionieren.</para></sect2>
 
 <sect2>
-<title>Print Queue Called <quote>lp</quote> Mis-handles Print Jobs</title>
+<title>Eine Druck-Queue namens <quote>lp</quote> geht falsch mit Druckaufträgen um</title>
 
 <para>
-In this case a print queue called <quote>lp</quote> intermittently swallows jobs and
-spits out completely different ones from what was sent.
+In diesem Fall schluckt eine Druck-Queue namens <quote>lp</quote> periodisch Aufträge und spuckt komplett
+andere Dinge aus, als an sie gesendet wurden.
 </para>
 
-<para>It is a bad idea to name any printer <quote>lp</quote>. This
-is the traditional UNIX name for the default printer. CUPS may be set
-up to do an automatic creation of Implicit Classes. This means, to
-group all printers with the same name to a pool of devices, and
-load-balancing the jobs across them in a round-robin fashion. Chances
-are high that someone else has a printer named <quote>lp</quote> too. You may
-receive his jobs and send your own to his device unwittingly. To have
-tight control over the printer names, set <parameter>BrowseShortNames
-No</parameter>. It will present any printer as <replaceable>printername@cupshost</replaceable>
-and then gives you better control over what may happen in a large
-networked environment.</para></sect2>
+<para>
+Es ist eine schlechte Idee, irgendeinen Drucker <quote>lp</quote> zu nennen. Das ist der traditionelle
+UNIX-Namen für den Standard-Drucker. CUPS kann so eingerichtet werden, daß es automatisch
+<quote>Implicit Classes</quote> anlegt. Das bedeutet, alle Drucker mit demselben Namen zu einem Geräte-Pool
+zu gruppieren und eine Lastverteilung unter ihnen nach der Methode <quote>round-robin</quote> durchzuführen.
+Die Wahrscheinlichkeit, daß jemand anderes auch einen Drucker namens <quote>lp</quote> hat, ist hoch. Es kann
+sein, daß Sie seine Aufträge empfangen, und Ihre Aufträge an seinen Drucker senden. Um strenge Kontrolle
+über die Druckernamen zu haben, setzen Sie <parameter>BrowseShortNames No</parameter>. Das stellt jeden Drucker
+als <replaceable>druckername@cupshost</replaceable> dar und gibt Ihnen besseren Überblick darüber, was in einem
+grossen Netzwerk passieren kann.</para></sect2>
 
-<sect2><title>Location of Adobe PostScript Driver Files for <quote>cupsaddsmb</quote></title>
-<para>Use <command>smbclient</command> to connect to any
-Windows box with a shared PostScript printer: <command>smbclient
-//windowsbox/print\$ -U guest</command>. You can navigate to the
-<filename>W32X86/2</filename> subdir to <command>mget ADOBE*</command>
-and other files or to <filename>WIN40/0</filename> to do the same.
-Another option is to download the <filename>*.exe</filename> packaged
-files from the Adobe Web site.</para></sect2>
-
+<sect2><title>Standort der Adobe-PostScript-Treiber-Dateien für <quote>cupsaddsmb</quote></title>
+<para>Verwenden Sie <command>smbclient</command>, um sich mit irgendeiner Windows-Box mit einem freigegebenen
+PS-Drucker zu verbinden: <command>smbclient //windowsbox/print\$ -U guest</command>.
+Sie können ins Unterverzeichnis <filename>W32X86/2</filename> vordringen, um mittels 
+<command>mget ADOBE*</command> die Dateien (und andere) zu erhalten, oder ins Verzeichnis 
+<filename>WIN40/0</filename>. Eine andere Möglichkeit ist es, die Dateien als <filename>*.exe</filename>-Package
+von der Adobe-Website herunterzuladen.</para></sect2>
 </sect1>
 
 <sect1>
-<title>Overview of the CUPS Printing Processes</title>
+<title>Überblick über die CUPS-Druck-Prozesse</title>
 
-<para>A complete overview of the CUPS printing processes can be found in <link linkend="a_small">the next flowchart</link>.</para>
+<para>Ein vollständiger Überblick der CUPS-Druck-Prozesse kann im <link linkend="a_small">nächsten Flußdiagramm</link> gewonnen werden.</para>
 
-<image id="a_small"><imagedescription>CUPS printing overview.</imagedescription>
+<image id="a_small"><imagedescription>Übersicht über das Drucken mit CUPS.</imagedescription>
 	<imagefile>a_small</imagefile>
 </image>
 </sect1>
