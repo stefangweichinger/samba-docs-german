@@ -2723,7 +2723,7 @@ rundll32 printui.dll,PrintUIEntry /p /t3 /n\\<replaceable>SAMBA-SERVER</replacea
 </userinput></para>
 
 <para>
-Um den Reiter mit dem Knopf <guilabel>Standardwerter</guilabel> zu sehen 
+Um den Reiter mit dem Knopf <guilabel>Standardwerte</guilabel> zu sehen 
 (den Sie benötigen), führen Sie auch diesen Befehl aus:
 </para>
 
