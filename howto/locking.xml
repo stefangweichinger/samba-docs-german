@@ -4,8 +4,10 @@
 	&author.jelmer;
 	&author.jht;
 	&author.eroseme;
+	<pubdate>April 3 2003</pubdate>
+	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
-<title>File and Record Locking</title>
+<title>Datei- und Satzsperren</title>
 
 <para>
 One area that causes trouble for many network administrators is locking.
