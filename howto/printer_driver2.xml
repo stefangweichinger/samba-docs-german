@@ -45,7 +45,7 @@ die von Clients benutzt werden sollen, mit dem bekannten
 verwalten. Ein weiterer 
 Vorteil ist der, dass die Treiber- und Druckerverwaltung über die Kommandozeile 
 oder mit Hilfe von Skripten ausgeführt werden kann, was bei einer großen 
-Anzahl von Druckern effizienter ist. Falls eine zentrale Buchführung der
+Anzahl von Druckern effizienter ist. Falls eine zentrale Buchführung(((Verwaltung?))) der
 Druckaufträge benötigt wird (Beobachtung jeder einzelnen Seite und Weitergabe 
 der Rohdaten für alle möglichen statistischen Berichte), so wird diese Funktion 
 am besten durch das neue Common UNIX Printing System (CUPS), das Drucksubsystem 
@@ -554,7 +554,7 @@ jeder Freigabe dürfen Sie diese global gesetzten Freigabeeinstellungen allerding
 </para>
 
 <variablelist>
-	<varlistentry><term><smbconfoption><name>printing</name><value>bsd</value></smbconfoption></term>
+	<varlistentry><term><smbconfoption><name>printing</name><value>bsd </value></smbconfoption></term>
 		<listitem><para>Bewirkt, dass Samba die Standarddruckbefehle verwendet,
 		die im BSD-Drucksystem (auch als RFC 1179 oder LPR/LPD bekannt)
 		vorgesehen sind. Im Allgemeinen informiert der Parameter 
@@ -820,13 +820,13 @@ Drucker!
 
 	<varlistentry><term><smbconfoption><name>printable</name><value>yes </value></smbconfoption></term>
 		<listitem><para>
-		Siehe <link linkend="ptrsect">Den Abschnitt [printers]</link>.
+		Siehe <link linkend="ptrsect">Der(((den?))) Abschnitt [printers]</link>.
 		</para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><smbconfoption><name>writable</name><value>no </value></smbconfoption></term>
 		<listitem><para>
-		Siehe <link linkend="ptrsect">Den Abschnitt [printers]</link>.
+		Siehe <link linkend="ptrsect">Der(((den?))) Abschnitt [printers]</link>.
 		</para></listitem>
 	</varlistentry>
 
@@ -1602,7 +1602,7 @@ hergestellt haben (wie durch den Parameter
 <smbconfoption><name>printer admin</name></smbconfoption> angegeben wird), 
 dürfen Sie auch andere Druckereigenschaften wie ACLs und Vorgabewerte für
 Geräteeigenschaften in diesem Dialogfeld ändern. Was die Vorgabewerte von
-Geräteeigenschaften angeht, sollten Sie die Ratschläge befolgen, die im Abschnitt
+Geräteeigenschaften angeht, sollten Sie die Ratschläge befolgen, die im Abschnitt 
 <link linkend="inst-rpc">Druckertreiber installieren mit <command>rpcclient</command></link>
 gegebenen werden.
 </para>
@@ -2285,7 +2285,7 @@ Dateiexplorer- und Internet Explorer-Fenster unter Windows zu schließen. Als let
 Möglichkeit müssen Sie möglicherweise einen Neustart durchführen. Vergewissern Sie
 sich, dass nicht automatisch eine Verbindung neu hergestellt wird. Es ist eventuell
 leichter, zu einer anderen Workstation zu gehen und es von dort auszuprobieren.
-Wenn Sie sicher sind, dass Sie als <smbconfoption><name>printer admin</name></smbconfoption>-Benutzer verbunden sind (das
+Wenn Sie sicher sind, dass Sie als Benutzer <smbconfoption><name>printer admin</name></smbconfoption> verbunden sind (das
 können Sie in Samba mit dem Befehl <command>smbstatus</command> prüfen), führen
 Sie folgende Schritte auf der Windows-Workstation aus:
 </para>
@@ -2630,7 +2630,7 @@ sein. Auf folgende Weise kann ich es unter XP Professional reproduzieren:
 		<listitem><para>Öffnen Sie den Ordner <guiicon>Drucker</guiicon>.</para></listitem>
 
 		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>), und
+		aus (<emphasis>entfernterdrucker(((Schreibweise okay so?))) auf cupshost</emphasis>), und
 		wählen Sie im Kontextmenü <guimenu>Druckereinstellungen...</guimenu>
 		aus.</para></listitem>
 
@@ -2644,7 +2644,7 @@ sein. Auf folgende Weise kann ich es unter XP Professional reproduzieren:
 		<guimenu>Drucker</guimenu>.</para></listitem>
 
 		<listitem><para>Führen Sie einen Rechtsklick auf dem Drucker 
-		aus (<emphasis>entfernterdrucker auf cupshost</emphasis>), und
+		aus (<emphasis>entfernterdrucker(((s.o.))) auf cupshost</emphasis>), und
 		wählen Sie im Kontextmenü <guimenu>Einstellungen</guimenu>
 		aus.</para></listitem>.
 
@@ -3325,7 +3325,7 @@ dieses Treibers <quote>Apple LaserWriter II NTX</quote>.
 <para>
 Das Problem besteht darin zu wissen, welche Client-Treiber für einen Drucker
 hochgeladen wurden Aufmerksame Leser werden sich erinnern, dass das Dialogfeld 
-<guilabel>Druckereigenschaften</guilabel> in Windows NT nur Platz für den Namen eines
+<guilabel>Druckereingeschaften</guilabel> in Windows NT nur Platz für den Namen eines
 Druckertreibers enthält. Ein schneller Blick auf die System-Registry von 
 Windows NT 4.0
 </para>
@@ -3613,6 +3613,127 @@ führt aber nur zu Problemen. Die zwei Verzeichnisse müssen verschieden sein.
 </para>
 
 </sect2>
+</sect1>
+
+<sect1>
+<title>Aktualisierung</title>
+
+
+<para>Seit Erst-Veröffentlichung dieses Buches in Englisch haben die 
+Samba-Versionen 3.0.1 bis 3.0.7 wichtige Aktualisierungen und Änderungen 
+erfahren. Die Entwickler beseitigten verschiedene Fehler und schlossen 
+Sicherheitslücken. Viele Modifikationen betrafen auch die 
+Druckfunktionen. Hier eine kurze Übersicht:
+</para>
+
+<variablelist>
+<varlistentry><term><smbconfoption><name>'rpcclient adddriver'</name></smbconfoption></term>
+    <listitem>
+    <para>akzeptiert jetzt die Angabe der Treiber-Version. Dies ermöglicht die
+    kontrollierte Installation von 'Kernel Mode'- und 'User Mode'-Druckertreibern. 
+    (Änderung seit 3.0.1)</para>
+    <para>Beispiel: 
+    <screen>
+ &rootprompt;rpcclient localhost -N   \
+            -U'root%secret' \
+            -c 'adddriver "Windows NT x86"  \
+            "infotec_2105:cupsdrv5.dll:infotec_2105.ppd:\
+            cupsui5.dll:cups5.hlp:NULL:RAW:NULL" \
+            2'
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'printing = .....'</name></smbconfoption></term> 
+    <listitem>
+    <para>ist jetzt nicht mehr 'globaler', sondern 'service level'-Parameter. Dies
+    erlaubt mehr Flexibilität und eine bequemere Verwirklichung eigener
+    Druckbefehle ('print command' in smb.conf), unterschiedlich pro 
+    Druckerwarteschlange. 
+    (Änderung seit 3.0.3)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>printing = sysv</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'cups options = .....'</name></smbconfoption></term>
+    <listitem>
+    <para>erlaubt die Angabe von Druckuptionen wie z.B '-o raw' ohne in die Konfiguration
+    des CUPS-Servers eingreifen zu müssen.
+    (neuer Parameter seit 3.0.3)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>cups options = 'raw,media=a4,job-sheets=secret,secret'</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'printcap cache time = .....'</name></smbconfoption></term>
+    <listitem>
+    <para>legt das Zeitintervall in Sekunden fest, in dem Samba die 'printcap' nach
+    neu hinzugekommenen (oder gelöschten) Druckerwarteschlangen untersucht.
+    (neuer Parameter seit 3.0.6)</para>
+    <para>Beispiel: 
+    <screen>
+ <smbconfoption><name>printcap cache time = 60</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'rpcclient setprintername'</name></smbconfoption></term>
+    <listitem>
+    <para>ermöglicht die Zuordnung eines anderen Namens zu einer Druckerwarteschlange.
+    Dieser Name wird den Windows-Clients gezeigt (Unix-Benutzer sehen den 
+    ursprünglichen Namen).
+    (neuer Parameter seit 3.0.6)</para>
+    <para>Beispiel: 
+    <screen>
+&rootprompt;rpcclient localhost -N   \
+    -U'root%secret' \
+    -c 'setprintername cups_printer "Drucker für Gruppe Marketing"'
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'cups server = .....'</name></smbconfoption></term>
+    <listitem>
+    erlaubt die Verwendung eines von 'localhost' unterschiedlichen CUPS-Servers.
+    Unterschiedliche virtuellen smbds können sogar unterschiedliche cups server
+    verwenden.
+    (neuer Parameter seit 3.0.6)
+    <para>Beispiele: 
+    <screen>
+ <smbconfoption><name>cups server = 10.160.61.60</name></smbconfoption>
+ <smbconfoption><name>cups server = cups2.domain.com</name></smbconfoption>
+    </screen>
+    </para>
+    </listitem>
+    </varlistentry>
+
+<varlistentry><term><smbconfoption><name>'VampireDriverFunctions'</name></smbconfoption></term>
+    <listitem>
+    <para>ist ein neues Migrationstool seit 3.0.3 zum zeitsparenden Klonen und Transfer 
+    von Windows-Druckertreibern von einem (Windows- oder Samba-)Printserver zu
+    einem anderen.
+    (neu enthalten seit 3.0.3)</para>
+    <para>Nähere Erläuterungen siehe unten.
+    </para>
+    </listitem>
+    </varlistentry>
+
+</variablelist>
+
+<para>Eine ausführliche Beschreibung zu den einzelnen Punkten finden Sie am 
+Ende des nächsten Kapitels, 'Ünterstützung des CUPS-Drucksystems'.
+</para> 
+
 </sect1>
 
 </chapter>
