@@ -50,6 +50,7 @@ PSDIR = $(OUTPUTDIR)
 PDFDIR = $(OUTPUTDIR)
 DVIDIR = $(OUTPUTDIR)
 VALIDATEDIR = $(OUTPUTDIR)/validate
+PEARSONDIR = $(OUTPUTDIR)/pearson
 TXTDIR = $(OUTPUTDIR)/textdocs
 HTMLDIR=$(OUTPUTDIR)/htmldocs
 PLUCKERDIR=$(OUTPUTDIR)/plucker
@@ -267,6 +268,15 @@ $(MANDIR):
 
 $(MANDIR)/%: %.xml
 	$(XSLTPROC) --output $@ xslt/man.xsl $<
+
+$(PEARSONDIR):
+	mkdir $@
+
+$(PEARSONDIR)/%.xml: %.xml
+	$(XSLTPROC) --xinclude --output $@ xslt/pearson.xsl $<
+	$(XMLLINT) --noout --valid $@
+
+pearson: $(PEARSONDIR) $(PEARSONDIR)/Samba-HOWTO-Collection.xml
 
 $(VALIDATEDIR):
 	mkdir $@
