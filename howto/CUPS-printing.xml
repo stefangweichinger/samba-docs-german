@@ -4262,86 +4262,81 @@ Filterung) werden auch als einseitige Aufträge gezählt!
 </para>
 
 <para>
-You need to send PostScript from the clients (i.e., run a PostScript
-driver there) to have the chance to get accounting done. If the
-printer is a non-PostScript model, you need to let CUPS do the job to
-convert the file to a print-ready format for the target printer. This
-is currently working for about a thousand different printer models.
-Linuxprinting has a driver
-<ulink url="http://www.linuxprinting.org/printer_list.cgi">list.</ulink>
+Sie müssen PostScript von den Clients senden (d.h., dort einen PostScript-Treiber ausführen), um eine Chance
+auf korrekte Abrechnung zu bekommen. Wenn der Drucker ein Nicht-PS-Modell ist, müssen Sie CUPS die Wandlung der 
+Auftragsdatei ein ein druckfertiges Format für den Zieldrucker durchführen lassen. Dies funktioniert derzeit
+für ungefähr eintausend verschiedene Druckermodelle. Linuxprinting hat eine Treiber-
+<ulink url="http://www.linuxprinting.org/printer_list.cgi">Liste.</ulink>
 </para>
 </sect2>
 
 <sect2>
-<title>Adobe and CUPS PostScript Drivers for Windows Clients</title>
+<title>Adobe- und CUPS-PostScript-Treiber für Windows Clients</title>
 
 <para>
-Before CUPS 1.1.16, your only option was to use the Adobe PostScript
-Driver on the Windows clients. The output of this driver was not
-always passed through the <command>pstops</command> filter on the CUPS/Samba side, and
-therefore was not counted correctly (the reason is that it often,
-depending on the PPD being used, wrote a PJL-header in front of
-the real PostScript which caused CUPS to skip <command>pstops</command> and go directly
-to the <command>pstoraster</command> stage).
+Vor CUPS 1.1.16 war Ihre einzige Option, den Adobe-PostScript-Treiber auf den Windows Clients zu verwenden.
+Die Ausgabe dieses Treibers wurde auf der Seite von CUPS/Samba nicht immer durch den 
+<command>pstops</command>-Filter geschleust, und daher auch nicht korrekt gezählt (der Grund ist, daß oft,
+abhängig vom verwendeten PPD, ein PJL-Header vor das tatsächliche PostScript gesetzt wurde, was CUPS zum
+Überspringen von <command>pstops</command> veranlasste und es direkt zum <command>pstoraster</command>-Schritt
+brachte).
 </para>
 
 <para>
-From CUPS 1.1.16 onward, you can use the CUPS PostScript Driver for
-Windows <?latex \linebreak ?>NT/200x/XP clients (which is tagged in the download area of
-<filename>http://www.cups.org/</filename> as the <filename>cups-samba-1.1.16.tar.gz</filename>
-package). It does <emphasis>not</emphasis> work for Windows 9x/ME clients, but it guarantees:
+Seit CUPS 1.1.16 können Sie den CUPS-PostScript-Treiber für Windows <?latex \linebreak ?>NT/200x/XP Clients
+verwenden (welcher im Download-Bereich von <filename>http://www.cups.org/</filename> als
+<filename>cups-samba-1.1.16.tar.gz</filename> zu finden ist). Er funktioniert <emphasis>nicht</emphasis>
+für Windows 9x/ME Clients, garantiert jedoch:
 </para>
 
 <itemizedlist>
 
-<listitem><para> <indexterm><primary>PJL</primary></indexterm> To not write a PJL-header.</para></listitem>
+<listitem><para> <indexterm><primary>PJL</primary></indexterm>keinen PJL-Header zu schreiben.</para></listitem>
 
-<listitem><para>To still read and support all PJL-options named in the
-driver PPD with its own means.</para></listitem>
+<listitem><para>nach wie vor alle PJL-Optionen zu lesen und zu unterstützen, die im Treiber-PPD benannt sind.
+</para></listitem>
 
-<listitem><para>That the file will pass through the <command>pstops</command> filter
-on the CUPS/Samba server.</para></listitem>
+<listitem><para>daß die Datei durch den <command>pstops</command>-Filter auf dem CUPS/Samba-Server gefiltert wird.
+</para></listitem>
 
-<listitem><para>To page-count correctly the print file.</para></listitem>
+<listitem><para>korrekte Seitenzählung der Druckdatei.</para></listitem>
 </itemizedlist>
 
 <para>
-You can read more about the setup of this combination in the man page
-for <command>cupsaddsmb</command> (which is only present with CUPS installed, and only
-current from CUPS 1.1.16).
+Sie können mehr über das Setup dieser Kombination in der manpage für <command>cupsaddsmb</command> lesen (welche
+nur vorhanden ist, wenn CUPS installiert ist, und nur aktuell seit CUPS 1.1.16).
 </para>
 </sect2>
 
 <sect2>
-<title>The page_log File Syntax</title>
+<title>Die Syntax der Datei page_log</title>
 
 <para>
 <indexterm><primary>page_log</primary></indexterm>
-These are the items CUPS logs in the <filename>page_log</filename> for every
-page of a job:
+Dies sind die Punkte, die CUPS in <filename>page_log</filename> für jede Seite eines Auftrags protokolliert:
 </para>
 
 <itemizedlist>
-<listitem><para>Printer name</para></listitem>
+<listitem><para>Druckername</para></listitem>
 
-<listitem><para>User name</para></listitem>
+<listitem><para>Benutzername</para></listitem>
 
-<listitem><para>Job ID</para></listitem>
+<listitem><para>Auftrags-ID</para></listitem>
 
-<listitem><para>Time of printing</para></listitem>
+<listitem><para>Zeit des Drucks</para></listitem>
 
-<listitem><para>The page number</para></listitem>
+<listitem><para>Die Seitenzahl</para></listitem>
 
-<listitem><para>The number of copies</para></listitem>
+<listitem><para>Die Anzahl der Kopien</para></listitem>
 
-<listitem><para>A billing information string (optional)</para></listitem>
+<listitem><para>Ein Informations-String für die Verrechnung (optional)</para></listitem>
 
-<listitem><para>The host that sent the job (included since version 1.1.19)</para></listitem>
+<listitem><para>Der Host, der den Auftrag gesendet hat (seit Version 1.1.19)</para></listitem>
 </itemizedlist>
 
 <para>
-Here is an extract of my CUPS server's <filename>page_log</filename> file to illustrate the
-format and included items:
+Hier ein Auszug aus der Datei <filename>page_log</filename> meines CUPS-Servers, um das Format und die
+enthaltenen Begriffe zu illustrieren:
 </para>
 
 <para><screen>
@@ -4353,70 +4348,72 @@ Dig9110 boss 402 [22/Apr/2003:10:33:22 +0100] 1 440 finance-dep 10.160.51.33
 </screen></para>
 
 <para>
-This was job ID <parameter>401</parameter>, printed on <parameter>tec_IS2027</parameter>
-by user <parameter>kurt</parameter>, a 64-page job printed in three copies and billed to
-<parameter>#marketing</parameter>, sent from IP address <constant>10.160.50.13.</constant>
- The next job had ID <parameter>402</parameter>, was sent by user <parameter>boss</parameter>
-from IP address <constant>10.160.51.33</constant>, printed from one page 440 copies and
-is set to be billed to <parameter>finance-dep</parameter>.
+Dies war die Auftrags-ID <parameter>401</parameter>, gedruckt auf <parameter>tec_IS2027</parameter>
+vom Benutzer <parameter>kurt</parameter>, ein 64-Seiten-Auftrag, gedruckt in 3 Kopien und verrechnet an
+<parameter>#marketing</parameter>, gesendet von der IP-Adresse <constant>10.160.50.13.</constant>
+ Der nächste Auftrag hatte die ID <parameter>402</parameter>, wurde vom Benutzer <parameter>boss</parameter>
+von der IP-Adresse <constant>10.160.51.33</constant> gesendet, druckte von einer Seite 440 Kopien und
+soll an <parameter>finance-dep</parameter> verrechnet werden.
 </para>
 </sect2>
 
 <sect2>
-<title>Possible Shortcomings</title>
+<title>Mögliche Mängel</title>
 
 <para>
-What flaws or shortcomings are there with this quota system?
+Welche Mängel gibt es bei diesem Quota-System?
 </para>
 
 <itemizedlist>
-<listitem><para>The ones named above (wrongly logged job in case of
-printer hardware failure, and so on).</para></listitem>
+<listitem><para>Die oben genannten (falsch protokollierter Auftrag im Fall von Drucker-Hardware-Ausfall, usw.).
+</para></listitem>
 
-<listitem><para>In reality, CUPS counts the job pages that are being
-processed in <emphasis>software</emphasis> (that is, going through the
-RIP) rather than the physical sheets successfully leaving the
-printing device. Thus if there is a jam while printing the fifth sheet out
-of a thousand and the job is aborted by the printer, the page count will
-still show the figure of a thousand for that job.</para></listitem>
+<listitem><para>
+In Wirklichkeit zählt CUPS die Auftrags-Seiten, die in der <emphasis>Software</emphasis> verarbeitet werden (also
+durch den RIP gehen), und nicht die physischen Seiten, die den Drucker verlassen. Daher wird der Seitenzähler,
+wenn es bei der ersten von tausend Seiten einen Papierstau gibt, der den Drucker zum Abbruch des Auftrags zwingt,
+nach wie vor auf 1000 Seiten für diesen Auftrag stehen.</para></listitem>
 
-<listitem><para>All quotas are the same for all users (no flexibility
-to give the boss a higher quota than the clerk) and no support for
-groups.</para></listitem>
 
-<listitem><para>No means to read out the current balance or the
-<quote>used-up</quote> number of current quota.</para></listitem>
+<listitem><para>Alle Quotas sind dieselben für alle Benutzer (keine Flexibilität, um dem Boss ein höheres Quota
+als dem Angestellten zu geben) und es gibt keine Unterstützung für Gruppen.
+</para></listitem>
 
-<listitem><para>A user having used up 99 sheets of a 100 quota will
-still be able to send and print a thousand sheet job.</para></listitem>
+<listitem><para>Keine Möglichkeit, um die momentane Balance auszulesen, oder den 
+<quote>verbrauchten</quote> Anteil des aktuellen Quotas.</para></listitem>
 
-<listitem><para>A user being denied a job because of a filled-up quota
-does not get a meaningful error message from CUPS other than
+<listitem><para>Ein Benutzer, der 99 Seiten eines 100-Seiten-Quotas verbraucht hat, ist nach wie vor imstande,
+einen 1000-Seiten-Auftrag zu senden und zu drucken.
+</para></listitem>
+
+<listitem><para>Ein Benutzer, dem ein Auftrag abgelehnt wird, da er sein Quota erreicht hat, bekommt keine
+verständliche Fehlermeldung von CUPS außer
 <quote>client-error-not-possible</quote>.</para></listitem>
 </itemizedlist>
 </sect2>
 
 <sect2>
-<title>Future Developments</title>
+<title>Zukünftige Entwicklungen</title>
 
 <para>
-This is the best system currently available, and there are huge
-improvements under development for CUPS 1.2:
+Dies ist das beste derzeit verfügbare System, und es gibt bedeutende Verbesserungen, die in Entwicklung für
+CUPS 1.2 sind:
 </para>
 
 <itemizedlist>
-<listitem><para>Page counting will go into the backends (these talk
-directly to the printer and will increase the count in sync with the
-actual printing process; thus, a jam at the fifth sheet will lead to a
-stop in the counting).</para></listitem>
+<listitem><para>Die Seitenzählung wird in die Backends verlagert (diese reden direkt mit dem Drucker und erhöhen
+den Zähler synchron mit dem tatsächlichen Druckvorgang; daher wird ein Papierstau bei der fünften Seite auch den
+Zähler bei fünf stoppen).
+</para></listitem>
 
-<listitem><para>Quotas will be handled more flexibly.</para></listitem>
+<listitem><para>Quotas werden flexibler behandelt werden.</para></listitem>
 
-<listitem><para>Probably there will be support for users to inquire
-about their accounts in advance.</para></listitem>
+<listitem><para>Möglicherweise wird es Unterstützung dafür geben, daß sich Benutzer schon vorab über ihre Konten
+informieren können.
+</para></listitem>
 
-<listitem><para>Probably there will be support for some other tools
-around this topic.</para></listitem>
+<listitem><para>Vielleicht gibt es dann auch Unterstützung für andere Werkzeuge zu diesem Thema.
+</para></listitem>
 </itemizedlist>
 </sect2>
 
@@ -4432,84 +4429,76 @@ PrintAnalyzer, pyKota, printbill, LogReport.
 </sect1>
 
 <sect1>
-<title>Additional Material</title>
+<title>Zusätzliches Material</title>
 
 <para>
-A printer queue with <emphasis>no</emphasis> PPD associated to it is a
-<quote>raw</quote> printer and all files will go directly there as received by the
-spooler. The exceptions are file types <parameter>application/octet-stream</parameter>
-that need pass-through feature enabled. <quote>Raw</quote> queues do not do any
-filtering at all, they hand the file directly to the CUPS backend.
-This backend is responsible for sending the data to the device
-(as in the <quote>device URI</quote> notation: <filename>lpd://, socket://,
-smb://, ipp://, http://, parallel:/, serial:/, usb:/</filename>, and so on).
+Eine Druckerqueue mit <emphasis>keinem</emphasis> assoziierten PPD ist ein 
+<quote>raw</quote> Drucker und alle Dateien gehen direkt an den Drucker, sobald sie vom Spooler empfangen werden.
+Die Ausnahme sind die Dateien vom Typ <parameter>application/octet-stream</parameter>, die das Feature
+pass-through aktiviert haben müssen. <quote>Raw</quote> Queues führen überhaupt keine Filterung durch, sie geben
+die Datei direkt an das CUPS-Backend weiter. Dieses Backend ist verantwortlich für das Senden der Daten an das 
+Gerät (wie in der <quote>device URI</quote>-Notation: <filename>lpd://, socket://,
+smb://, ipp://, http://, parallel:/, serial:/, usb:/</filename>, und so weiter).
 </para>
 
 <para>
-cupsomatic/Foomatic are <emphasis>not</emphasis> native CUPS drivers
-and they do not ship with CUPS. They are a third party add-on
-developed at Linuxprinting.org. As such, they are a brilliant hack to
-make all models (driven by Ghostscript drivers/filters in traditional
-spoolers) also work via CUPS, with the same (good or bad!) quality as
-in these other spoolers. <parameter>cupsomatic</parameter> is only a vehicle to execute a
-Ghostscript command-line at that stage in the CUPS filtering chain,
-where normally the native CUPS <parameter>pstoraster</parameter> filter would kick
-in. cupsomatic bypasses pstoraster, kidnaps the printfile from CUPS
-away and redirects it to go through Ghostscript. CUPS accepts this,
-because the associated cupsomatic/foomatic-PPD specifies:
+cupsomatic/Foomatic sind <emphasis>keine</emphasis> nativen CUPS-Treiber, und sie werden nicht mit CUPS 
+geliefert. Sie sind ein Dritt-Hersteller-Zusatz, der auf Linuxprinting.org entwickelt wird. Als solches sind
+sie ein brillanter Hack, um alle Modelle (angetrieben von Ghostscript-Treibern/Filtern in traditionellen
+Spoolern) auch via CUPS zu betreiben, mit derselben Qualität (gut oder schlecht!) wie in diesen anderen
+Spoolern. <parameter>cupsomatic</parameter> ist nur ein Hilfsmittel, um an dieser Stelle in der CUPS-Filterkette
+eine Ghostscript-Befehlszeile auszuführen, wo normalerweise der native CUPS-Filter 
+<parameter>pstoraster</parameter> <quote>anspringen</quote> würde. cupsomatic übergeht pstoraster, nimmt die
+Druckdatei von CUPS in Beschlag und leitet Sie durch Ghostscript um. CUPS akzeptiert das, weil die zugeordnete
+cupsomatic/foomatic-PPD angibt:
 
 <filterline>
   *cupsFilter:  "application/vnd.cups-postscript 0 cupsomatic"
 </filterline>
 
-This line persuades CUPS to hand the file to cupsomatic, once it has
-successfully converted it to the MIME type
-<parameter>application/vnd.cups-postscript</parameter>. This conversion will not happen for
-Jobs arriving from Windows that are auto-typed
-<parameter>application/octet-stream</parameter>, with the according changes in
-<filename>/etc/cups/mime.types</filename> in place.
+Diese Zeile bewegt CUPS dazu, die Datei an cupsomatic zu übergeben, sobald es sie erfolgreich in den MIME-Typ
+<parameter>application/vnd.cups-postscript</parameter> gewandelt hat. Diese Umwandlung passiert nicht für
+Aufträge von Windows, die automatisch als
+<parameter>application/octet-stream</parameter> typisiert werden, mit den begleitenden Änderungen in
+<filename>/etc/cups/mime.types</filename>.
 </para>
 
 <para>
-CUPS is widely configurable and flexible, even regarding its filtering
-mechanism. Another workaround in some situations would be to have in
-<filename>/etc/cups/mime.types</filename> entries as follows:
+CUPS ist weitgehend konfigurierbar und flexibel, sogar was seinen Filtermechanismus betrifft. Ein weiterer
+<quote>Workaround</quote> in manchen Situationen wäre es, Einträge in <filename>/etc/cups/mime.types</filename>
+zu haben, wie folgend:
 
 <filterline>
  application/postscript           application/vnd.cups-raw  0  -
  application/vnd.cups-postscript  application/vnd.cups-raw  0  -
 </filterline>
 
-This would prevent all PostScript files from being filtered (rather,
-they will through the virtual <emphasis>nullfilter</emphasis>
-denoted with <quote>-</quote>). This could only be useful for PS printers. If you
-want to print PS code on non-PS printers (provided they support ASCII
-text printing), an entry as follows could be useful:
+Dies würde verhindern, daß jegliche PostScript-Dateien gefiltert werden (sie werden dann eigentlich durch den
+virtuellen Filter <emphasis>nullfilter</emphasis> gefiltert, bezeichnet mit <quote>-</quote>). Das könnte
+nur für PS-Drucker hilfreich sein. Wenn Sie PS-Code auf Nicht-PS-Druckern drucken wollen (sofern diese 
+ASCII-Textdruck beherrschen), könnte ein Eintrag wie dieser helfen:
 
 <filterline>
  */*           application/vnd.cups-raw  0  -
 </filterline>
 
-and would effectively send <emphasis>all</emphasis> files to the
-backend without further processing.
+der <emphasis>alle</emphasis> Dateien ohne weitere Bearbeitung an das Backend weiterschickt.
 </para>
 
 <para>
-You could have the following entry:
+Sie könnten den folgenden Eintrag haben:
 
 <filterline>
 application/vnd.cups-postscript application/vnd.cups-raw 0 \
 	my_PJL_stripping_filter
 </filterline>
 
-You will need to write a <parameter>my_PJL_stripping_filter</parameter>
-(which could be a shell script) that parses the PostScript and removes the
-unwanted PJL. This needs to conform to CUPS filter design
-(mainly, receive and pass the parameters printername, job-id,
-username, jobtitle, copies, print options and possibly the
-filename). It is installed as world executable into
-<filename>/usr/lib/cups/filters/</filename> and is called by CUPS
-if it encounters a MIME type <parameter>application/vnd.cups-postscript</parameter>.
+Sie werden einen <parameter>mein_PJL_entfernungs_filter</parameter> schreiben müssen (dies könnte ein 
+Shell-Skript sein), der die PS-Daten analysiert und das unerwünschte PJL entfernt. Dies muß konform zum 
+CUPS-Filter-Design passieren (hauptsächlich, empfangen und weitergeben der Parameter Druckername, Job-ID,
+Benutzername, Jobtitle, Kopien, Druckoptionen und eventuell der Dateiname). Es wird als für alle ausführbar
+in <filename>/usr/lib/cups/filters/</filename> installiert und wird von CUPS aufgerufen, wenn es einen
+MIME-Typen <parameter>application/vnd.cups-postscript</parameter> erkennt.
 </para>
 
 <para>
