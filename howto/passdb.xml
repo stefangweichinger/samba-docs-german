@@ -24,7 +24,7 @@ Samba-3 führt eine neue Fähigkeit ein, gleichzeitig mit mehreren Account-Backend
 Die möglichen neuen Kombinationen von Passwort-Backends ermöglicht Samba-3
 eine Flexibilität und Skalierbarkeit, wie sie zuvor nur mit MS Windows Active Directory
 erreicht werden konnte.
-Dieses Kapitel beschreibt die neue Funktionalitäten und wie man das Meiste herausholt.
+Dieses Kapitel beschreibt die neue Funktionalitäten und wie man das Beste herausholt.
 </para>
 
 <sect1>
@@ -51,8 +51,7 @@ Samba-3 bietet folgende Funktionen an, um zu Samba-2.2.x abwärtskompatibel zu se
 			Modell. Bei Betriebssystemen, die Pluggable Authentication Modules (PAM) bieten,
 			werden alle PAM-Module unterstützt. Das Verhalten ist unverändert wie in
 			Samba-2.2.x, und die Protokoll-Beschränkungen, die durch MS Windows Clients
-		 	bestehen,	
-			treffen gleichermassen zu. Für weitere Informationen zu den Beschränkungen bei Verwendung von
+		 	bestehen, treffen gleichermassen zu. Für weitere Informationen zu den Beschränkungen bei Verwendung von
 			Plain Text Passwörtern finden Sie in den <link linkend="passdbtech">Technischen Informationen</link>.
 			</para>
 		</listitem>
@@ -64,7 +63,7 @@ Samba-3 bietet folgende Funktionen an, um zu Samba-2.2.x abwärtskompatibel zu se
 			Auch diese Option bedeutet weiterhin die Nutzung der Datei
 			<filename>smbpasswd</filename>,
 			die im simplen ASCII (Text) Stil gehalten ist und die verschlüsselten MS Windows
-			LanMan und NT Passworte, sowie ein Feld für die Accountinformationen enthält.
+			LanMan und NT Passwörter, sowie ein Feld für die Accountinformationen enthält.
 			Diese Art der Passwort-Datenbank enthält keine
 			MS Windows NT/200x SAM (Security Account Manager) Informationen.
 			Diese wären notwendig,
@@ -157,7 +156,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 			Die neue LDAP-Implementation erweitert die Möglichkeiten zur Kontrolle
 			signifikant,
 			verglichen mit den Möglichkeiten vorheriger Samba-Versionen.
-			Man kann nun unter anderem Profil-Einstellungen, home-Verzeichnisse,
+			Man kann nun unter anderem Profil-Einstellungen, Home-Verzeichnisse,
 			Access Controls <quote>per user</quote> vornehmen.
 			Firmenkunden werden sehen, dass das Samba Team auf die Nachfragen nach besserer
 			Ressourcennutzung und mehr Skalierbarkeit gehört hat.
@@ -212,7 +211,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<para>
 <indexterm><primary>encrypted passwords</primary></indexterm>	
 	Neuere Windows-Clients senden verschlüsselte Passwörter (sogenannte LanMan und NT
-	Hashes), anstatt von Klartext. Die neuesten Clients senden nur verschlüsselte
+	Hashes), anstatt Klartext Passwörter. Die neuesten Clients senden nur verschlüsselte
 	Passwörter und verweigern, Klartext-Passwörter zu senden, außer ihre Registrierung
 	wurde modifiziert.
 	</para>
@@ -314,7 +313,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 		</itemizedlist>
 			
 		<para>
-		Alles aktuellen Microsoft SMB/CIFS Clients unterstützen die Authentifikation
+		Alle aktuellen Microsoft SMB/CIFS Clients unterstützen die Authentifikation
 		über den hier beschriebenen SMB Challenge/Response Mechanismus. Das Aktivieren
 		von Klartext-Authentifikation deaktiviert die Fähigkeit des Clients nicht, an
 		verschlüsselter Authentifikation teilzunehmen. Stattdessen erlaubt dies dem Client,
@@ -401,7 +400,7 @@ Samba-3 führt einige neue Passwortdatenbankformen ein.
 	<para>
 	Die zweite Möglichkeit, die Zuweisung von Windows SIDs auf UNIX UIDs zu erzielen, ist via
 	der Parameter <emphasis>idmap uid</emphasis> und <emphasis>idmap gid</emphasis> in &smb.conf;. 	
-	Bitte lesen Sie die manpage für Informationen zu diesen Parametern. Sie sind essentiell
+	Bitte lesen Sie die Manpage für Informationen zu diesen Parametern. Sie sind essentiell
 	wichtig für das Mappen von Benutzern von einem enfernten SAM-Server.
 	</para>
 
@@ -536,7 +535,7 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 		</itemizedlist>
 		
 		<para>
-		Um smbpasswd als normaler Benutzer auszuführen, tippen SIe einfach:
+		Um smbpasswd als normaler Benutzer auszuführen, tippen Sie einfach:
 		</para>
 		
 		<para>
@@ -578,7 +577,7 @@ aussieht. Hoffentlich wird dieses Werkzeug rechtzeitig zur Release von Samba-3.0
 		</para>
 
 		<para>
-		Sehen Sie die man page (die definitive Referenz) für mehr Details zur Verwendung von
+		Sehen Sie die Manpage (die definitive Referenz) für mehr Details zur Verwendung von
 		<command>smbpasswd</command>.
 		</para>
 	</sect2>
@@ -717,27 +716,27 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 		Traditionellerweise wurden Benutzer-Konten-Informationen wie Benutzername, LM/NT Passwort-Hashes,
 		Passwort-Änderungszeiten, und Konten-Flags in der Datei <filename>smbpasswd(5)</filename>
 		gespeichert. Es gibt einige Nachteile an diesem Ansatz, besonders für Installationen mit
-		einer grossen Anzahl von Benutzern (wir sprechen hier von Tausenden ...).
+		einer grossen Anzahl von Benutzern (wir sprechen hier von Tausenden...).
 		</para>
 
 		<itemizedlist>
 		<listitem><para>
-		Das erste Problem ist, daß alle Suchen ("lookups") sequentiell ausgeführt werden müssen.
-		Dadurch, daß durchschnittlich zwei lookups pro Domänen-Anmeldung ausgeführt werden
+		Das erste Problem ist, dass alle Suchen ("lookups") sequentiell ausgeführt werden müssen.
+		Dadurch, dass durchschnittlich zwei Lookups pro Domänen-Anmeldung ausgeführt werden
 		(einer für die normale Verbindung wie beim Verbinden eines Netzwerk-Laufwerks oder -Drucker)
 		ist dies performance-mässig ein Flaschenhals für grosse Installationen. Was hier gebraucht wird,
 		ist ein Ansatz mit Indizes, wie er in Datenbanken verwendet wird.
 		</para></listitem>
 
 		<listitem><para>
-		Das zweite Problem ist, daß Administratoren, die eine smbpasswd-Datei auf mehr als einen
+		Das zweite Problem ist, dass Administratoren, die eine smbpasswd-Datei auf mehr als einen
 		Samba-Server replizieren wollen, externe Werkzeuge wie <command>rsync(1)</command> und
 		<command>ssh(1)</command> verwenden mußten, und eigene, haus-interne Skripts geschrieben haben.	
 		</para></listitem>
 
 		<listitem><para>
 		Zuletzt läßt der Raum, den die Menge an Informationen, die in einem smbpasswd-Eintrag gespeichert
-		wird, keinen Platz für weitere Attribute, wie z.B. ein home-Verzeichnis, Ablaufdatum des 
+		wird, keinen Platz für weitere Attribute, wie z.B. ein Home-Verzeichnis, Ablaufdatum des 
 		Passworts oder auch nur für einen Relative Identifier (RID).
 		</para></listitem>
 		</itemizedlist>
@@ -811,7 +810,7 @@ desselben Typs. Zum Beispiel die Verwendung zwei verschiedener tdbsam-Datenbanke
 
 		<para>
 		Dieses Dokument beschreibt, wie man ein LDAP-Verzeichnis dazu verwendet, 
-		Samba-Benutzerkonten-Information abzuspeichern, die traditionell in der Datei smbpasswd(5)
+		Samba-Benutzerkonten-Informationen abzuspeichern, die traditionell in der Datei smbpasswd(5)
 		abgelegt wurde. Es wird angenommen, daß der Leser bereits ein grundlegendes Verständnis von
 		LDAP-Konzepten hat, und einen funktionierenden Verzeichnis-Server bereits installiert hat.
 		Für mehr Informationen zu LDAP-Architektur und -Verzeichnissen, 
@@ -889,7 +888,7 @@ objectclass (1.3.6.1.4.1.7165.2.2.6 NAME 'sambaSamAccount' SUP top AUXILIARY
 			die in der Datei <filename>/etc/passwd</filename> gespeicherten Information hinausgeht,
 			ist das Objekt sambaSamAccount zur Ergänzung der UNIX-Benutzerkonten-Information
 			gedacht. Ein sambaSamAccount ist eine <constant>AUXILIARY</constant> Objektklasse,
-			so daß sie zur Erweiterung existierender Benutzer-Konten-Information im LDAP-Verzeichnis
+			so dass sie zur Erweiterung existierender Benutzer-Konten-Information im LDAP-Verzeichnis
 			verwendet werden kann. Es gibt jedoch einige Felder (z.B., uid), die mit der
 			posixAccount-Objektklasse überlappen, die in RFC2307 beschrieben wird. Dies ist vom
 			Design her so vorgesehen.
@@ -903,7 +902,7 @@ objectclass (1.3.6.1.4.1.7165.2.2.6 NAME 'sambaSamAccount' SUP top AUXILIARY
 			zu können, ist es notwendig, die beiden Objektklassen sambaSamAccount und posixAccount
 			in Kombination zu verwenden. Jedoch wird smbd die Benutzer-Konten-Information nach wie 
 			vor über die Standard-C-Bibliotheksaufrufe beziehen (z.B., getpwnam(), und andere).
-			Das bedeutet, daß der Samba-Server auch die LDAP NSS Bibliothek installiert haben muss,
+			Das bedeutet, dass der Samba-Server auch die LDAP NSS Bibliothek installiert haben muss,
 			und diese korrekt funktionieren muss. Diese Trennung von Information macht es möglich,
 			alle Samba-Information in LDAP zu speichern, aber weiterhin die UNIX-Konten-Information
 			in NIS zu verwalten, während das Netzwerk in eine vollständige LDAP-Infrastruktur
@@ -1133,7 +1132,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 		</para>
 
 			<para>
-			Diese Parameter werden in der manpage zu &smb.conf; beschrieben, dies wird hier nicht 
+			Diese Parameter werden in der Manpage zu &smb.conf; beschrieben, dies wird hier nicht 
 			wiederholt. Hier jedoch eine
 			<link linkend="confldapex">Beispielsdatei &smb.conf;</link> für die Verwendung mit einem
 			LDAP-Verzeichnis.
@@ -1158,7 +1157,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 <smbconfoption><name>ldap admin dn</name><value>"cn=Manager,dc=quenya,dc=org"</value></smbconfoption>
 
 <smbconfcomment>Definieren der SSL-Option beim Verbinden zum Verzeichnis</smbconfcomment>
-<smbconfcomment>('off', 'start tls', or 'on' (default))</smbconfcomment>
+<smbconfcomment>('off', 'start tls', oder 'on' (default))</smbconfcomment>
 <smbconfoption><name>ldap ssl</name><value>start tls</value></smbconfoption>
 
 <smbconfcomment>syntax: passdb backend = ldapsam:ldap://server-name[:port]</smbconfcomment>
@@ -1173,8 +1172,8 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 <smbconfoption><name>ldap group suffix</name><value>ou=Groups</value></smbconfoption>
 <smbconfoption><name>ldap machine suffix</name><value>ou=Computers</value></smbconfoption>
 
-<smbconfcomment>Trust UNIX account information in LDAP</smbconfcomment>
-<smbconfcomment> (see the smb.conf man page for details)</smbconfcomment>
+<smbconfcomment>UNIX vertrauens Konten Informationen in LDAP</smbconfcomment>
+<smbconfcomment> (lesen Sie die smb.conf Manpage fuer mehr Details)</smbconfcomment>
 
 <smbconfcomment>Angabe der Base-DN, die beim Durchsuchen des Verzeichnisses verwendet wird</smbconfcomment>
 <smbconfoption><name>ldap suffix</name><value>dc=quenya,dc=org</value></smbconfoption>
@@ -1193,7 +1192,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 <indexterm><primary>Benutzerverwaltung</primary></indexterm>
 <indexterm><primary>Benutzerkonten</primary><secondary>Hinzufügen/Löschen</secondary></indexterm>
 			Da Benutzerkonten mittels der sambaSamAccount Objektklasse verwaltet werden, sollten
-			Sie Ihre bereits existierenden Administrationswerkzeuge so modifizieren, daß sie mit
+			Sie Ihre bereits existierenden Administrationswerkzeuge so modifizieren, dass sie mit
 			sambaSamAccount-Attributen umgehen können.
 			</para>
 
@@ -1208,7 +1207,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 			</para>
 
 			<para>
-			In Samba-3 basiert die Gruppenverwaltung auf den POSIX-Gruppen. Das bedeutet, daß
+			In Samba-3 basiert die Gruppenverwaltung auf den POSIX-Gruppen. Das bedeutet, dass
 			Samba Verwendung von der posixGroup Objektklasse macht. Derzeit gibt es keine
 			NT-artige Gruppenverwaltung (globale und lokale Gruppen). Samba-3 kennt nur
 			<constant>Domänen-Gruppen</constant>, und, im Unterschied zu MS Windows 2000 und
@@ -1245,7 +1244,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
 			<para>
 			Um die erste Angelegenheit zu bereinigen, ist der voreingestellte Wert für den
 			&smb.conf;-Parameter <smbconfoption><name>ldap ssl</name></smbconfoption>
-			so, daß eine verschlüsselte Sitzung erforderlich ist
+			so, dass eine verschlüsselte Sitzung erforderlich ist
 			(<smbconfoption><name>ldap ssl</name><value>on</value></smbconfoption>), unter
 			Verwendung des Standard-Ports <constant>636</constant>, wenn man den Verzeichnis-Server
 			kontaktiert. Bei Verwendung eines OpenLDAP-Servers ist es möglich, die erweiterte
@@ -1255,7 +1254,7 @@ userPassword: {SSHA}c3ZM9tBaBo9autm1dL3waDS21+JSfQVz
                         </para>
 
 			<para>
-			Beachten Sie, daß das LDAPS Protokoll veraltet ist, zugunsten der erweiterten
+			Beachten Sie, dass das LDAPS Protokoll veraltet ist, zugunsten der erweiterten
 			LDAPv3-Operation StartTLS. Die OpenLDAP-Bibliothek bietet jedoch nach wie vor
 			Unterstützung für die ältere Methode zur Absicherung der Client-Server-Kommunikation.
 			</para>
@@ -1327,7 +1326,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 				<row><entry><constant>sambaPwdCanChange</constant></entry>
 				<entry>Angabe der Zeit (UNIX Zeitformat), nach der dem Benutzer erlaubt wird,
 				sein Passwort zu ändern. Wenn dieses Attribut nicht angegeben wird, steht es dem
-				Benutzer frei, sein Passwort zu änder, wann immer er möchte.</entry></row>
+				Benutzer frei, sein Passwort zu ändern, wann immer er möchte.</entry></row>
 
 				<row><entry><constant>sambaPwdMustChange</constant></entry>
 				<entry>Angabe der Zeit (UNIX Zeitformat), ab der der Benutzer gezwungen wird, 
@@ -1341,14 +1340,14 @@ access to attrs=sambaLMPassword,sambaNTPassword
 				<quote>X:</quote> angegeben werde, wobei X der Buchstabe des zugewiesenen
 				Laufwerks ist. Sehen Sie den Abschnitt zum Parameter 
 				<smbconfoption><name>logon drive</name></smbconfoption>
-				in der manpage zu &smb.conf; man page für mehr Informationen dazu.</entry></row>
+				in der Manpage zu &smb.conf; für mehr Informationen dazu.</entry></row>
 
 				<row><entry><constant>sambaLogonScript</constant></entry>
 				<entry>Der Wert von sambaLogonScript gibt den Pfad des Anmeldeskripts des
 				Benutzers an, einer .CMD, .EXE, oder .BAT Datei. Dieser String kann auch null
 				sein. Der Pfad ist relativ zur netlogon-Freigabe. Sehen Sie den Abschnitt zum
 				Parameter <smbconfoption><name>logon script</name></smbconfoption> in der 
-				manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
+				Manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
 				</entry></row>
 
 				<row><entry><constant>sambaProfilePath</constant></entry>
@@ -1366,7 +1365,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 				angibt, sollte sambaHomePath ein UNC-Pfad sein. Der Pfad muß ein
 				Netzwerk-UNC-Pfad in der Form <filename>\\server\freigabe\verzeichnis</filename>
 				sein. Sehen Sie den Abschnitt zum Parameter <command>logon home</command>
-				in der manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
+				in der Manpage zu &smb.conf;, um mehr Details dazu zu erfahren.
                                 </entry></row>
 
 			</tbody>
@@ -1417,15 +1416,15 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			</itemizedlist>
 
 			<para>
-			Nehmen wir zum Beispiel an, daß MORIA als PDC konfiguriert wurde, und daß
+			Nehmen wir zum Beispiel an, daß MORIA als PDC konfiguriert wurde, und dass
 			<smbconfoption><name>logon home</name><value>\\%L\%u</value></smbconfoption>
 			in dessen Datei &smb.conf; definiert wurde. Wenn ein Benutzer namens <quote>becky</quote>
 			sich an der Domäne anmeldet, wird der String 
 			<smbconfoption><name>logon home</name></smbconfoption> auf \\MORIA\becky erweitert.
 			Wenn das Attribut smbHome im Eintrag 
 			<quote>uid=becky,ou=People,dc=samba,dc=org</quote> existiert, wird dessen Wert verwendet.
-			Existiert dieses Attribut nicht, wird der Wert des Parameters
-			<smbconfoption><name>logon home</name></smbconfoption> anstattdessen verwendet. Samba
+			Existiert dieses Attribut nicht, wird stattdessen der Wert des Parameters
+			<smbconfoption><name>logon home</name></smbconfoption> verwendet. Samba
 			schreibt den Attributswert nur dann in den Verzeichniseintrag, wenn der Wert vom
 			Standardwert abweicht (z.B. <filename>\\MOBY\becky</filename>).
 			</para>
@@ -1528,7 +1527,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 		</table>
 
 
-		<para>Mehr Informationen dazu in der manpage zu &smb.conf;.</para>
+		<para>Mehr Informationen dazu in der Manpage zu &smb.conf;.</para>
 
 		</sect3>
 
@@ -1589,7 +1588,7 @@ access to attrs=sambaLMPassword,sambaNTPassword
 			</para>
 
 			<table frame="all" id="mysqlpbe">
-				<title>Grundlegende smb.conf Optionen für das MySQL passdb backend</title>
+				<title>Grundlegende smb.conf Optionen für das MySQL passdb Backend</title>
 				<tgroup cols="2">
 					<colspec align="left"/>
 					<colspec align="justify" colwidth="1*"/>
