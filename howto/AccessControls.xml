@@ -4,30 +4,31 @@
 	&author.jht;
 	&author.jeremy;
 	<author>&person.jelmer;<contrib>drawing</contrib></author>
-	<author>&person.rruegner;<contrib>Deutsche Übersetzung</contrib></author>
-	<pubdate>May 10, 2003</pubdate>
+		&author.jht;
+    <pubdate>April 3 2003</pubdate>
+	<author>&author.luft;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 <title>Dateien, Verzeichnisse und Netzlaufwerkszugriffskontolle</title>
 
 <para>
 <indexterm><primary>ACLs</primary></indexterm>
-Fortgeschrittene Windows Benutzer sind häufig verwirrt, wenn eine Aenderung des Besitzes von Dateien oder Verzeichnissen
-auf dem Samba Server sich nicht so auswirken wie sie es erwarten. MS Administratoren verwirrt es oft wenn sie versuchen
+Fortgeschrittene Windows Benutzer sind häufig verwirrt, wenn eine Änderung des Besitzes von Dateien oder Verzeichnissen
+auf dem Samba Server sich nicht so auswirken, wie sie es erwarten. MS Administratoren verwirrt es oft, wenn sie versuchen
 Ihre Daten mit Zugriffskontrolllisten vor unerlaubten  Zugriffen zu schützen.
 </para>
 
 <para>
 Viele UNIX Administratoren sind nicht mit der MS Windows Umgebung vertraut, besondere Probleme ergeben sich aus den
-Benutzerwünschen über die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung
+Benutzerwünschen über die Kontrolle von Dateien und Verzeichnisse und deren Einrichtung.
 </para>
 
 <para>
-Das Problem begründet sich in den Unterschieden bei  Datei und Verzeichnis Benutzerrechten der beiden Systeme. Diesen
-Unterschied kann auch Samba nicht wirklich aus der Welt schaffen aber er schafft eine Brücke zwischen den Umgebungen.
+Das Problem begründet sich in den Unterschieden bei Datei- und Verzeichnis-Benutzerrechten der beiden Systeme. Diesen
+Unterschied kann auch Samba nicht wirklich aus der Welt schaffen, aber er schafft eine Brücke zwischen den Umgebungen.
 </para>
 
 <para>
-<indexterm><primary>Extended Attributes</primary></indexterm>
+<indexterm><primary>Erweiterte Attribute</primary></indexterm>
 <indexterm><primary>ACLs</primary><secondary>POSIX</secondary></indexterm>
 
 POSIX ( UNIX, LINUX ) Zugriffskontrolltechnologie gibt es schon seit Jahren, aber sie wurden nie sehr intensiv genutzt.
