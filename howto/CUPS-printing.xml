@@ -5026,7 +5026,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 
 <varlistentry><term><smbconfoption><name>'cups options = .....'</name></smbconfoption></term>
     <listitem>
-    <para>erlaubt die Angabe von Druckuptionen wie z.B '-o raw' ohne in die Konfiguration
+    <para>erlaubt die Angabe von Druckoptionen wie z.B '-o raw' ohne in die Konfiguration
     des CUPS-Servers eingreifen zu müssen.
     (neuer Parameter seit 3.0.3)</para>
     <para>Beispiel: 
@@ -5069,7 +5069,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <varlistentry><term><smbconfoption><name>'cups server = .....'</name></smbconfoption></term>
     <listitem>
     erlaubt die Verwendung eines von 'localhost' unterschiedlichen CUPS-Servers.
-    Unterschiedliche virtuellen smbds können sogar unterschiedliche cups server
+    Unterschiedliche virtuelle &smbd;-Prozesse können sogar unterschiedliche <smbconfoption><name>cups server</name></smbconfoption>
     verwenden.
     (neuer Parameter seit 3.0.6)
     <para>Beispiele: 
@@ -5121,7 +5121,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
         deshalb nicht mehr den kompletten Rechner zum Absturz. (Windows
         2000 und XP können allerdings die älteren 'Version 2'-Treiber
         in einem 'Kompatibiltätsmodus' ausführen. Dies ist allerdings
-        bedenkenlos nur für die Adobe- oder Microsoft-PS-Treiber zu
+        nur bedenkenlos für die Adobe- oder Microsoft-PS-Treiber zu
         empfehlen. Falls Sie die Wahl haben, wählen Sie immer die
         'Version 3'-Treiber. Diese laufen allerdings nicht auf Windows
         NT Workstations. Ein Samba-Printserver, der NT-Clients zu
@@ -5136,10 +5136,10 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 
 <important>
 <para>Gehen Sie bei der Verwendung des <smbconfoption><name>'rpcclient 
-        addddriver'</name></smbconfoption> sorgfältig vor.
+        adddriver'</name></smbconfoption> sorgfältig vor.
         Falls Sie die falsche Versionsnummer ('2' oder '3') angeben, ist der
         Treiber nicht installierbar. Im besten Falle erhalten Sie sofort eine
-        Fehlermeldung. Im weniger günstigen ernten Ihre Anwender die Meldung
+        Fehlermeldung. Im weniger günstigen Fall ernten Ihre Anwender die Meldung (((?)))
         und können den Treiber nicht per 'Point'n'Print' installieren. Und
         im schlimmsten Fall installiert sich der Treiber zwar auf die Clients,
         funktioniert jedoch nicht oder bringt diese zum Absturz.
@@ -5154,7 +5154,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <para>CUPS verschafft Ihnen einige Annehmlichkeiten, die andere Drucksysteme
         nicht bieten können. Innerhalb von Samba erspart es Ihnen sogar
         die Angabe eines <smbconfoption><name>'print 
-        command = ....'</name></smbconfoption>-Eintrags in der smb.conf.
+        command = ....'</name></smbconfoption>-Eintrags in der &smb.conf;.
         Denn CUPS macht das automatisch richtig...
 </para>
 
@@ -5173,18 +5173,18 @@ von der Adobe-Website herunterzuladen.</para></sect2>
         dadurch nicht ohne 'Klimmzüge' mit CUPS zu verwenden.
 </para>
 
-<para>Seit 3.0.3 können Sie jeder Druckerwarteschlange ihre eigene Eisntellung
+<para>Seit 3.0.3 können Sie jeder Druckerwarteschlange ihre eigene Einstellung
         zuordnen. Denn <smbconfoption><name>'printing = ....'</name></smbconfoption> 
         ist jetzt ein sogenannter <smbconfoption><name>'service 
-        level'</name></smbconfoption>-Paramter, und kein 'globalser' mehr.
+        level'</name></smbconfoption>-Paramter, und kein 'globaler' mehr.
 </para>
 
 <para>Sie können aber nach wie vor <smbconfoption><name>'printing = 
         cups'</name></smbconfoption> in die 
         <smbconfoption><name>[global]</name></smbconfoption>-Sektion
-        der smb.conf schreiben. (Sie dürfen alle 'service level' Paramter
-        in dne Rang eines globalen befördern -- Sie dürfen nur nicht
-        globale Parameter in den service leveln verwenden). Ein 
+        der &smb.conf; schreiben. (Sie dürfen alle 'service level' Paramter
+        in den Rang eines globalen befördern -- Sie dürfen nur nicht
+        globale Parameter in den service leveln ((()))? verwenden). Ein 
         <smbconfoption><name>'printing = cups'</name></smbconfoption> Eintrag in der 
         <smbconfoption><name>[global]</name></smbconfoption>-Sektion gilt automatisch
         für alle Drucker -- solange für den Drucker nicht ein anderes
@@ -5198,7 +5198,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
      printcap name = cups
      load printers = yes
  [printers]
-    comment = All Printers
+    comment = Alle Drucker
     path = /var/spool/samba
     public = yes
     guest ok = yes
@@ -5220,14 +5220,16 @@ von der Adobe-Website herunterzuladen.</para></sect2>
         <smbconfoption><name>[global]</name></smbconfoption>-Sektion mit 
         <smbconfoption><name>'printing = cups'</name></smbconfoption>
         und <smbconfoption><name>'load printers = yes'</name></smbconfoption> 
-        eine Einstellung definieren. Diees bewirkt, dass wie 
+        eine Einstellung definieren.
+	((( voriger Abschnitt unverständlich)))
+ 	Dies bewirkt, dass wie 
         bisher alle CUPS-Drucker von Samba automatisch gefunden und verwendet werden.
         Für diese Drucker braucht Samba kein <smbconfoption><name>'print 
         command'</name></smbconfoption>.
         Darüber hinaus definieren wir eine spezielle Druckerfreigabe namens
         'PDF-Printer'. Für diese verwenden wir einen selbst-gestrickten Druckbefehl,
         den wir Samba auch mitteilen. ('smbprngenpdf' ist ein Bash-Script, das 
-        in neueren SUSE-Versionen integriert ist. Es setzt das 'ps2pdf' Utility von
+        in neueren SuSE-Versionen integriert ist. Es setzt das Utility <command>ps2pdf</command> von
         Ghostscript ein, um PDFs aus PostScript zu generieren. Sie können mit demselben
         Mechanismus jederzeit ihre eigenen Skripte in das CUPS-/Samba-System einbinden).
 </para>
@@ -5241,15 +5243,15 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 
 <para>Dieser neue Paramter wird nur wirksam, wenn zugleich 
        <smbconfoption><name>'printing = cups'</name></smbconfoption> (für
-        dieselbe Druckfreigabe gesetzt ist. <smbconfoption><name>'cups 
+        dieselbe Druckfreigabe) gesetzt ist. <smbconfoption><name>'cups 
         options'</name></smbconfoption> ist ebenfalls ein service
-        level Parameter.
+        level Parameter. (((auszeichnen?)))
 </para>
 
 <para>Sein Wert kann einer beliebigen Kombination von Druckoptionen bestehen. Diese 
         Optionen übergibt Samba direkt an CUPS. Sie dürfen beliebige Optionen aus 
         dem CUPS-Anwenderhandbuch verwenden, oder druckerspezifische, die in der
-        Drucker-PPD definiert sind. Die druckerpezifischen Optionen verrät Ihnen
+        Drucker-PPD definiert sind. Die druckerspezifischen Optionen verrät Ihnen
         z.B. der Befehl 'lpoptins -p druckername -l' (gilt nicht für 'raw'-Drucker).
 </para>
 
@@ -5271,7 +5273,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
      printcap name = cups
      load printers = yes
  [printers]
-    comment = All Printers
+    comment = Alle Drucker
     path = /var/spool/samba
     public = yes
     guest ok = yes
@@ -5286,9 +5288,9 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     </para>
 
 <para>Wie Sie sehen, verwendet der 'Abteilungsdrucker_1' eine Kopfseite,
-        deren Name '%$USER' enthält. Das '%$' veranlasst Samba, anch
-        der Umbgebugnsvariable '$USER' zu suchen, diese zu espandieren
-        und zu ersetzen. Falls momentane Anwender 'kpfeifle' heisst, wird
+        deren Name '%$USER' enthält. Das '%$' veranlasst Samba, nach
+        der Umgebungsvariable '$USER' zu suchen, diese zu expandieren
+        und zu ersetzen. Falls der momentane Anwender 'kpfeifle' heisst, wird
         dem Job also der Befehl '-o job-sheets=none,kpfeifle-banner'
         mitgegeben. Sie müsen lediglich dafür sorgen, dass auf Seiten
         von CUPS nun auch tatsächlich eine Datei namens 'kpfeifle-banner'
@@ -5296,14 +5298,14 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 </para>
 
 <important>
-<para>Bei Verwendung bestimmter Windows-Treiber-Typen (v.a. bein 
+<para>Bei Verwendung bestimmter Windows-Treiber-Typen (v.a. bei
     nicht-PostScript-Treibern)
-    müssen weiterhin in der CUPS-Konfiguration das Drucken 'unbekannter
+    müssen (((wer erlaubt ?))) weiterhin in der CUPS-Konfiguration das Drucken 'unbekannter
     Dateiformate' (also was CUPS als 'application/octet-stream' bezeichnet)
     erlauben. Sehen Sie hierzu in '/etc/cups/mime.convs' 
     und '/etc/cups/mime.types' nach und entfernen Sie von den entsprechenden
     Zeilen am Dateiende die Kommentarzeichen. Eine Angabe von 
-    'cups options = raw' in der 'smb.conf' alleine reicht hierfür nicht aus!
+    'cups options = raw' in der &smb.conf; alleine reicht hierfür nicht aus!
 </para>
 </important>
 
@@ -5313,21 +5315,21 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <sect2>
 <title><smbconfoption><name>'printcap cache time = ...,'</name></smbconfoption></title>
 
-<para>Dieser Parameter steuert, wie häufig Samba die 'printcap'-Datei einliest,
+<para>Dieser Parameter steuert, wie häufig Samba die Datei <filename>printcap</filename> einliest,
         um nachzuschauen, ob sich in der Druckerliste Änderungen ergeben haben.
         Die Voreinstellung ist <smbconfoption><name>'printcap cache 
         time = 0'</name></smbconfoption>. Sie verhindert, dass
         Samba zur Laufzeit die printcap neu einliest. Ein CUPS neu hinzugefügter
         Drucker ist somit für Samba nicht sofort nutzbar. Wollen Sie diesen 
         trotzdem 'sehen'  und nutzen (ohne Samba komplett neu starten zu 
-        wollen), müssen Sie allen smbd-Prozessen ein 'HUP'-Signal schicken:
+        wollen), müssen Sie allen &smbd;-Prozessen ein 'HUP'-Signal schicken:
         'kill -HUP `pidof smbd`'.
 </para>
 
 <para>Um eine fortlaufende automatische Aktualisierung der Samba-Druckerliste zu
         erzwingen,sollten Sie einen Wert in Sekunden eintragen, etwa
         'printcap cache time = 60'. Damit stellen Sie sicher, dass alle
-        neuen CUPS-Drucker nach spätestens 1 Minute bei Samba ebenfalls 
+        neuen CUPS-Drucker nach spätestens 1 Minute in Samba ebenfalls 
         sichtbar sind.
 </para>
 
@@ -5342,7 +5344,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 </para>
 
 <para>Dies ist z.B. dann nützlich, wenn Sie Ihren Anwender künftig mit 
-        einem Samba-Printserver dienen wollen ohne sie von den gewohnten
+        einem Samba-Printserver dienen wollen, ohne sie von den gewohnten
         Windows-Namen für Drucker (die unter Umständen Leerzeichen enthalten 
         können) entwöhnen zu müssen.
 </para>
@@ -5366,9 +5368,9 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 </para>
 
 <para>Zum Einsatz mit verschiedenen CUPS-Servern für unterschiedliche
-        virtuelle smbds müssen Sie diesen Parameter daher per 'include'
-        in die jeweilige smb.conf einbinden. Näheres lesen Sie bitte in
-        den Manual-Seiten der smb.conf nach.
+        virtuelle &smbd;-Prozesse müssen Sie diesen Parameter daher per 'include'
+        in die jeweilige &smb.conf; einbinden. Näheres lesen Sie bitte in
+        den Manual-Seiten der &smb.conf; nach.
 </para>
 
 </sect2>
@@ -5391,19 +5393,18 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     <listitem>108 verschiedene Druckertreiber</listitem>
     <listitem>einige Druckermodelle z.T. mehr als 7 Jahre alt</listitem>
     <listitem>die Original-Datenträger mit den Treibern für viele Modelle nicht mehr auffindbar</listitem>
-    <listitem>langwierige Internet-Scuhe nach den Treibern</listitem>
+    <listitem>langwierige Internet-Suche nach den Treibern</listitem>
     <listitem>2 Tage Installationsorgie als Diskjockey mit Disketten und CDs</listitem>
     <listitem>am Ende (trotz Überstunden) nur ca. 70 Originaltreiber installiert, Rest nicht auffindbar.</listitem>
     </itemizedlist>
 </para>
 
-<para>Der Autor nahm sich vor, einer solche Aufgabe nie wieder unvorbereitet
-        gegenübertreten zu müssen. Er schrieb das 'VampireDriverFunctions'
-        Script. Dieses verwendet Samba's 
-        <smbconfoption><name>'rpcclient'</name></smbconfoption>- und 
-        <smbconfoption><name>'smbclient'</name></smbconfoption>-Befehle
+<para>Der Autor nahm sich vor, einer solchen Aufgabe nie wieder unvorbereitet
+        gegenübertreten zu müssen. Er schrieb das Script 'VampireDriverFunctions'.
+        Dieses verwendet Samba's Befehle
+        <command>rpcclient'</command>- und &smbclient;,
         nebst einigen Unix-Utilities wie 'sed', 'awk', 'sort' 'uniq' und einigen
-        anderen,  um von einem bestehenden (Samba- oder Windows-)Printserver
+        anderen, um von einem bestehenden (Samba- oder Windows-)Printserver
         die Treiberdateien abzusaugen und in einer Verzeichnisstruktur
         geordnet abzulegen.
 </para>
@@ -5411,7 +5412,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <para>Das Skript funktioniert so gut, dass (in einem anderen Fall) die ähnlich 
         grosse Aufgabe, 78 Druckertreiber von einem Server auf einen anderen zu 
         übertragen, bereits nach 23 Minuten erledigt war. (Dieses Mal ging die 
-        Migration allerdings nicht von WinNT nach WinXP, sondern Richtung Linux/Samba   ;-)
+        Migration allerdings nicht von WinNT nach WinXP, sondern Richtung Linux/Samba  ;-) )
 </para>
 
 <para>'VampireDriverFunctions' selbst ist modular aufgebaut und in
@@ -5486,7 +5487,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
     <para>Diese Funktion holt erstmal eine komplette Liste aller auf dem Quellserver
         vorrätigen Treiber samt der zugehörigen Treiberdateien. (Achtung, eventuell müssen
         Sie diese Funktion mehrmals ausführen, da des öfteren die erste Verbindungsaufnahme
-        zum Quellrechner nicht klappt). Diese Liste wird lokal als Datei '$nthost/enumdrivers3list'
+        zum Quellrechner nicht klappt). Diese Liste wird lokal als Datei <filename>$nthost/enumdrivers3list</filename>
         abgespeichert.</para>
     </listitem>
     </varlistentry>
@@ -5529,7 +5530,7 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <varlistentry><term><smbconfoption><name>'fetchallW32X86driverfiles'.</name></smbconfoption></term>
     <listitem>
     <para>Jetzt wird es wieder Ernst: anhand der zuvor geschaffenene Listen, holt dieses
-        Funktion jetzt mittles 'smbclient' die einzelnen Treiberdateien ab und speichert sie
+        Funktion jetzt mittels &smbclient; die einzelnen Treiberdateien ab und speichert sie
         erstmal in der lokalen Verzeichnisstruktur ab.</para>
     </listitem>
     </varlistentry>
@@ -5538,8 +5539,8 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 <varlistentry><term><smbconfoption><name>'uploadallW32X86drivers'.</name></smbconfoption></term>
     <listitem>
     <para>Zuletzt werden die zuvor gewonnenen Treiberdateien auf den Zielserver hochgeladen.
-        Für die Datenübertragung kommt wieder 'smbclient' zum Einsatz, die Ernennung zu 
-        richtigen Windowstreibern nimmt abschliessend 'rpcclient' vor.</para>
+        Für die Datenübertragung kommt wieder &smbclient; zum Einsatz, die Ernennung zu 
+        richtigen Windowstreibern nimmt abschliessend <command>rpcclient</command> vor.</para>
     </listitem>
     </varlistentry>
 
@@ -5586,10 +5587,10 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 
 </para>
 
-<para>Die Knoppix beinhaltet seit der 3.4-Release (CeBIT 2004) eine
+<para>Die Knoppix-CD beinhaltet seit der Release 3.4 (CeBIT 2004) eine
         funktionierende Vorläufer-Version dieses Scripts. Es trägt hier 
         allerdings den Namen 'print-utils-get-functions.sh'. Sie können 
-        dieses Tool auch von der laufenden Knoppix aus benutzen, sollten 
+        dieses Tool auch von der laufenden Knoppix-CD aus benutzen, sollten 
         dabei allerdings genügend Hauptspeider haben, um die Treiber zeitweilig 
         in der RAM-Disk speichern zu können (oder ein 'permanentes 
         Homeverzeichnis für den Benutzer Knoppix' auf der Festplatte einrichten).
@@ -5604,15 +5605,3 @@ von der Adobe-Website herunterzuladen.</para></sect2>
 </sect1>
 
 </chapter>
-
-
-
-
-
-
-
-
-
-
-
-

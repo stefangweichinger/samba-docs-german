@@ -3649,7 +3649,7 @@ Druckfunktionen. Hier eine kurze Übersicht:
     <listitem>
     <para>ist jetzt nicht mehr 'globaler', sondern 'service level'-Parameter. Dies
     erlaubt mehr Flexibilität und eine bequemere Verwirklichung eigener
-    Druckbefehle ('print command' in smb.conf), unterschiedlich pro 
+    Druckbefehle ('print command' in &smb.conf;), unterschiedlich pro 
     Druckerwarteschlange. 
     (Änderung seit 3.0.3)</para>
     <para>Beispiel: 
@@ -3705,7 +3705,7 @@ Druckfunktionen. Hier eine kurze Übersicht:
 <varlistentry><term><smbconfoption><name>'cups server = .....'</name></smbconfoption></term>
     <listitem>
     erlaubt die Verwendung eines von 'localhost' unterschiedlichen CUPS-Servers.
-    Unterschiedliche virtuellen smbds können sogar unterschiedliche cups server
+    Unterschiedliche virtuellen &smbd;-Prozessen können sogar unterschiedliche <smbconfoption><name>cups server</name></smbconfoption>
     verwenden.
     (neuer Parameter seit 3.0.6)
     <para>Beispiele: 
@@ -3731,7 +3731,7 @@ Druckfunktionen. Hier eine kurze Übersicht:
 </variablelist>
 
 <para>Eine ausführliche Beschreibung zu den einzelnen Punkten finden Sie am 
-Ende des nächsten Kapitels, 'Ünterstützung des CUPS-Drucksystems'.
+Ende des nächsten Kapitels, 'Unterstützung des CUPS-Drucksystems'.
 </para> 
 
 </sect1>
