@@ -128,8 +128,8 @@
 	<varlistentry>
 	<term>force-election</term>
 	<listitem><para>Diese Nachricht bewirkt, dass der 
-	<command>nmbd</command>-Daemon 
-	einen neuen Browse Master auswählt.???</para>
+	<command>nmbd</command>-Daemon einen neuen Browse Master auswählt.
+	</para>
 	</listitem></varlistentry>
 
 	<varlistentry>
@@ -235,8 +235,8 @@
 
 	<varlistentry>
 	<term>samrepl</term>
-	<listitem><para>Sendet SAM-Replikationsnachricht mit angegebener
-	Seriennummer???. Kann nur an <constant>smbd</constant> gesendet werden.
+	<listitem><para>Sendet eine SAM-Replikationsnachricht mit angegebener
+	Seriennummer. Kann nur an <constant>smbd</constant> gesendet werden.
 	Sollte nicht manuell benutzt werden.</para></listitem>
 	</varlistentry>
 

@@ -213,7 +213,7 @@
 	<title>BESCHRÄNKUNGEN</title>
 	<para>Auf manchen Systemen kann <command>smbd</command> die uid nach 
 	einem Aufruf von setuid() nicht wieder auf root zurücksetzen. Solche 
-	Systeme werden auch "trapdoor uid"-Systeme genannt???. Sollten Sie über
+	Systeme werden auch "Trapdoor-uid"-Systeme genannt. Sollten Sie über
 	ein solches System verfügen, können Sie von einem Client (z.B. einem PC) 
 	nicht gleichzeitig Verbindungen unter zwei verschiedenen Benutzern
 	herstellen. Beim Versuch, einen zweiten Benutzer zu verbinden, erhalten
@@ -230,7 +230,7 @@
 		angegeben ist, verwenden die meisten Systeme den Wert dieser 
 		Variablen (oder <constant>lp</constant>, falls diese Variable 
 		nicht definiert ist) als Namen des Druckers. Das hängt jedoch 
-		nicht vom Server ab???.</para></listitem>
+		nicht vom Server ab.</para></listitem>
 		</varlistentry>
 	</variablelist>
 </refsect1>

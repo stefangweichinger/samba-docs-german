@@ -351,9 +351,9 @@
 		<smbconfoption><name>ldap admin dn</name></smbconfoption> benutzt 
 		wird. Man beachte, dass das Passwort in der Datei
 		<filename>secrets.tdb</filename> gespeichert wird, 
-		and is keyed off of the admin's DN???.
-		Das bedeutet, dass falls sich der Wert von <parameter>ldap
-		admin dn</parameter> jemals ändert, das Passwort manuell ebenfalls
+		und vom Administrator-DN übernommen wird.
+		Das bedeutet, dass falls sich jemals der Wert von <parameter>ldap
+		admin dn</parameter> ändert, das Passwort manuell ebenfalls
 		aktualisiert werden muss.</para>
 		</listitem>
 		</varlistentry>
