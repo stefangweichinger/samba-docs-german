@@ -227,7 +227,10 @@ Samba-3 führt einige neue Passwortdatenbank-Formen ein.
 	zu &smb.conf; im Abschnitt zum Parameter
 	<smbconfoption><name>passdb backend</name></smbconfoption>.</para>
 
-	<image scale="50" id="idmap-sid2uid"><imagedescription>IDMAP: Auflösung von SIDs auf UIDs</imagedescription><imagefile>idmap-sid2uid</imagefile></image>
+	<image id="idmap-sid2uid">
+		<imagedescription>IDMAP: Auflösung von SIDs auf UIDs.</imagedescription>
+		<imagefile scale="50">idmap-sid2uid</imagefile>
+	</image>
 
 	<para>
 <indexterm><primary>SID</primary></indexterm>
@@ -238,7 +241,10 @@ Samba-3 führt einige neue Passwortdatenbank-Formen ein.
 	<link linkend="idmap-uid2sid">Auflösung von UIDs auf SIDs</link> an.
 	</para>
 
-	<image scale="50" id="idmap-uid2sid"><imagedescription>IDMAP: Auflösung von UIDs auf SIDs</imagedescription><imagefile>idmap-uid2sid</imagefile></image>
+	<image id="idmap-uid2sid">
+		<imagedescription>IDMAP: Auflösung von UIDs auf SIDs.</imagedescription>
+		<imagefile scale="50">idmap-uid2sid</imagefile>
+	</image>
 
 	<sect2>
 	<title>Wichtige Bemerkungen zur Sicherheit</title>
@@ -762,7 +768,7 @@ desselben Typs. Ein Beispiel für die Verwendung zwei verschiedener tdbsam-Datenb
 		</para>
 
 		<para>
-		Als generelle Richtlinie empfiehlt das Samba-Team, das tbd-Backend nicht in Installationen
+		Als generelle Richtlinie empfiehlt das Samba-Team, das tdb-Backend nicht in Installationen
 		einzusetzen, die 250 oder mehr Benutzer haben. Außerdem unterstützt tdbsam kein
 		Replikationsprotokoll für Samba-PDC- und -BDC-Installationen. In solchen Fällen ist
 		die Verwendung von ldapsam ratsam.		
