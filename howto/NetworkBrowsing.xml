@@ -3,7 +3,6 @@
 <chapterinfo>
 	&author.jht;
 	&author.jelmer;
-	<author>&person.klimklim;<contrib>Deutsche Übersetzung</contrib></author>
 	<author>&person.sgw;<contrib>Deutsche Übersetzung</contrib></author>
 </chapterinfo>
 
@@ -1382,165 +1381,151 @@ Freigaben haben, so daß alle Maschinen in der Browselist sind.
 
 <para>
 Für jedes Netzwerk wird der Lokale Master Browser als <quote>authoritativ</quote> für all die Namen betrachtet,
-die er via Broadcasts empfängt. 
-
-
-For each network, the Local Master Browser on that network is
-considered <quote>authoritative</quote> for all the names it receives via
-local broadcast. This is because a machine seen by the Local Master
-Browser via a local broadcast must be on the same network as the
-Local Master Browser and thus is a <quote>trusted</quote>
-and <quote>verifiable</quote> resource. Machines on other networks that
-the Local Master Browsers learn about when collating their
-browse lists have not been directly seen. These records are
-called <quote>non-authoritative.</quote>
+die er via lokaler Broadcasts empfängt. Das rührt daher, weil eine Maschine, die vom LMB via eines lokalen
+Broadcasts gesehen wird, im selben Netzwerk wie der LMB sein muß und daher eine <quote>vertrauenswürdige</quote>
+und <quote>überprüfbare</quote> Ressource ist. Maschinen in anderen Netzwerken, von denen die LMBs beim
+Sammeln der Browselists erfahren, wurden nicht direkt gesehen, diese Einträge werden als 
+<quote>nicht authoritativ</quote> bezeichnet.
 </para>
 
 <para>
-At this point the browse lists appear as shown in <link linkend="browsubnet">the next example</link> (these are 
-the machines you would see in your network neighborhood if you looked in it on a particular network right now).
+An diesem Punkt sehen Browselists aus wie im <link linkend="browsubnet">nächsten Beispiel</link> (dies sind die
+Maschinen, die Sie in Ihrer Netzwerkumgebung sehen würden, wenn Sie jetzt in einem einzelnen Netzwerk danach
+sehen würden).
 </para>
 
 <para>
 <table frame="all" id="browsubnet">
-	<title>Browse Subnet Example 1</title>		
+	<title>Subnetz Browsing Beispiel 1</title>		
 	<tgroup align="left" cols="3">
 	<thead>
-		<row><entry>Subnet</entry><entry>Browse Master</entry><entry>List</entry></row>
+		<row><entry>Subnetz</entry><entry>Browse Master</entry><entry>Liste</entry></row>
 	</thead>
 
 	<tbody>
-		<row><entry>Subnet1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E</entry></row>
-		<row><entry>Subnet2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D</entry></row>
-		<row><entry>Subnet3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D</entry></row>
+		<row><entry>Subnetz1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E</entry></row>
+		<row><entry>Subnetz2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D</entry></row>
+		<row><entry>Subnetz3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D</entry></row>
 	</tbody>
 	</tgroup>
 </table>
 </para>
 
 <para>
-At this point all the subnets are separate, and no machine is seen across any of the subnets.
+An diesem Punkt sind alle Subnetze separat, und keine Maschine wird über die Grenzen eines Subnetzes hinweg 
+gesehen.
 </para>
 
 <para>
-Now examine subnet 2. As soon as N2_B has become the Local
-Master Browser it looks for a Domain Master Browser with which to synchronize
-its browse list. It does this by querying the WINS server
-(N2_D) for the IP address associated with the NetBIOS name 
-WORKGROUP&lt;1B&gt;. This name was registered by the Domain Master
-Browser (N1_C) with the WINS server as soon as it was started.
+Sehen Sie nun Subnetz 2. Sobald N2_B zum Lokalen Master Browser geworden ist, sucht diese Maschine nach einem
+DMB, mit dem sie ihre Browselist synchronisieren kann. Das tut sie mittels einer Abfrage am WINS-Server (N2_D)
+nach der IP-Adresse, die mit dem NetBIOS-Namen ARBEITSGRUPPE&lt;1B&gt; assoziiert ist. Dieser Name wurde vom
+DMB (N1_C) am WINS-Server registriert, als der DMB gestartet wurde.
 </para>
 
 <para>
-Once N2_B knows the address of the Domain Master Browser, it
-tells it that is the Local Master Browser for subnet 2 by
-sending a <emphasis>MasterAnnouncement</emphasis> packet as a UDP port 138 packet.
-It then synchronizes with it by doing a <emphasis>NetServerEnum2</emphasis> call. This
-tells the Domain Master Browser to send it all the server
-names it knows about. Once the Domain Master Browser receives
-the <emphasis>MasterAnnouncement</emphasis> packet, it schedules a synchronization
-request to the sender of that packet. After both synchronizations
-are complete the browse lists look as shown in <link linkend="brsbex">following example</link>:
+Sobald N2_B die Adresse des DMB kennt, teilt diese Maschine dem DMB mit, daß sie der LMB für das Subnetz 2 ist,
+indem sie ein <emphasis>MasterAnnouncement</emphasis>-Paket als UDP-Paket an den Port 138 sendet. Dann
+synchronisiert sie sich mit dem DMB, indem sie einen Aufruf namens <emphasis>NetServerEnum2</emphasis>
+durchführt. Das teilt dem DMB mit, daß er all die Servernamen sendet, über die er Bescheid weiß. Bei Empfang
+des <emphasis>MasterAnnouncement</emphasis>-Pakets setzt der DMB eine Synchronisations-Abfrage an den Absender
+dieses Pakets ab. Nachdem beide Synchronisationen vollständig erfolgt sind, sehen die Browselists aus, wie in
+<link linkend="brsbex">folgendem Beispiel</link>:
 </para>
 
 <table frame="all" id="brsbex">
-	<title>Browse Subnet Example 2</title>		
+	<title>Subnetz Browsing Beispiel 2</title>		
 	<tgroup	cols="3">
 		<colspec align="left"/>
 		<colspec align="left"/>
 		<colspec align="justify" colwidth="1*"/>
 	<thead>
-		<row><entry>Subnet</entry><entry>Browse Master</entry><entry>List</entry></row>
+		<row><entry>Subnetz</entry><entry>Browse Master</entry><entry>Liste</entry></row>
 	</thead>
 
 	<tbody>
-		<row><entry>Subnet1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E,
+		<row><entry>Subnetz1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E,
 N2_A(*), N2_B(*), N2_C(*), N2_D(*)</entry></row>
-		<row><entry>Subnet2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
+		<row><entry>Subnetz2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
 N1_B(*), N1_C(*), N1_D(*), N1_E(*)</entry></row>
-		<row><entry>Subnet3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D</entry></row>
+		<row><entry>Subnetz3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D</entry></row>
 	</tbody>
 	</tgroup>
 </table>
 
 <para>
-Servers with an (*) after them are non-authoritative names.
+Server mit einem folgenden (*) sind nicht-authoritative Namen.
 </para>
 
 <para>
-At this point users looking in their network neighborhood on
-subnets 1 or 2 will see all the servers on both, users on
-subnet 3 will still only see the servers on their own subnet.
+An diesem Punkt sehen die Benutzer, die in ihre Netzwerkumgebungen sehen, im Subnetz 1 oder 2 alle Server auf 
+beiden Subnetzen, Benutzer im Subnetz 3 sehen nach wie vor nur die Server in ihrem eigenen Subnetz.
 </para>
 
 <para>
-The same sequence of events that occurred for N2_B now occurs
-for the Local Master Browser on subnet 3 (N3_D). When it
-synchronizes browse lists with the Domain Master Browser (N1_A)
-it gets both the server entries on subnet 1, and those on
-subnet 2. After N3_D has synchronized with N1_C and vica versa,
-the browse lists will appear as shown in <link linkend="brsex2">following example</link>.
+Die selbe Abfolge von Ereignissen, die für N2_B geschehen ist, läuft nun für den LMB im Subnetz 3 ab (N3_D).
+Wenn dieser seine Browselist mit dem DMB (N1_A) synchronisiert, erhält er sowohl die Server-Einträge im 
+Subnetz 1, wie auch die im Subnetz 2. Nachdem N3_D sich mit N1_C synchronisiert hat und vice versa, sehen
+die Browselists aus wie im <link linkend="brsex2">folgenden Beispiel</link>. 
 </para>
 
 <table frame="all" id="brsex2">
-	<title>Browse Subnet Example 3</title>		
+	<title>Subnetz Browsing Beispiel 3</title>		
 	<tgroup cols="3" align="left">
 		<colspec align="left"/>
 		<colspec align="left"/>
 		<colspec align="justify" colwidth="1*"/>
 
 	<thead>
-		<row><entry>Subnet</entry><entry>Browse Master</entry><entry>List</entry></row>
+		<row><entry>Subnetz</entry><entry>Browse Master</entry><entry>Liste</entry></row>
 	</thead>
 
 	<tbody>
-		<row><entry>Subnet1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E, 
+		<row><entry>Subnetz1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E, 
 N2_A(*), N2_B(*), N2_C(*), N2_D(*), N3_A(*), N3_B(*), N3_C(*), N3_D(*)</entry></row>
-		<row><entry>Subnet2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
+		<row><entry>Subnetz2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
 N1_B(*), N1_C(*), N1_D(*), N1_E(*)</entry></row>
-		<row><entry>Subnet3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D, N1_A(*), 
+		<row><entry>Subnetz3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D, N1_A(*), 
 N1_B(*), N1_C(*), N1_D(*), N1_E(*), N2_A(*), N2_B(*), N2_C(*), N2_D(*)</entry></row>
 	</tbody>
 	</tgroup>
 </table>
 
 <para>
-Servers with an (*) after them are non-authoritative names.
+Server mit einem folgenden (*) sind nicht-authoritative Namen.
 </para>
 
 <para>
-At this point, users looking in their network neighborhood on
-subnets 1 or 3 will see all the servers on all subnets, while users on
-subnet 2 will still only see the servers on subnets 1 and 2, but not 3.
+An diesem Punkt sehen die Benutzer, die in ihre Netzwerkumgebungen sehen, im Subnetz 1 oder 3 alle Server auf
+allen Subnetzen, Benutzer im Subnetz 2 sehen nur die Server in den Subnetzen 1 und 2, aber nicht die im 
+Subnetz 3. 
 </para>
 
 <para>
-Finally, the Local Master Browser for subnet 2 (N2_B) will sync again
-with the Domain Master Browser (N1_C) and will receive the missing
-server entries. Finally, as when a steady state (if no machines
-are removed or shut off) has been achieved, the browse lists will appear
-as shown in <link linkend="brsex3">example below</link>.
+Abschließend wird sich der LMB des Subnetzes 2 (N2_B) mit dem DMB (N1_C) synchronisieren, und die fehlenden
+Server-Einträge erhalten. Dann, wenn ein stabiler Zustand erreicht ist (sofern keine Maschinen entfernt oder
+abgeschaltet werden), sehen die Browselists so aus wie in <link linkend="brsex3">diesem Beispiel</link>.
 </para>
 
 <table frame="all" id="brsex3">
-	<title>Browse Subnet Example 4</title>		
+	<title>Subnetz Browsing Beispiel 4</title>		
 	<tgroup cols="3" align="left">
 		<colspec align="left"/>
 		<colspec align="left"/>
 		<colspec align="justify" width="1*"/>
 
 	<thead>
-		<row><entry>Subnet</entry><entry>Browse Master</entry><entry>List</entry></row>
+		<row><entry>Subnetz</entry><entry>Browse Master</entry><entry>List</entry></row>
 	</thead>
 
 	<tbody>
-		<row><entry>Subnet1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E,
+		<row><entry>Subnetz1</entry><entry>N1_C</entry><entry>N1_A, N1_B, N1_C, N1_D, N1_E,
 N2_A(*), N2_B(*), N2_C(*), N2_D(*), N3_A(*), N3_B(*), 
 N3_C(*), N3_D(*)</entry></row>
-		<row><entry>Subnet2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
+		<row><entry>Subnetzz2</entry><entry>N2_B</entry><entry>N2_A, N2_B, N2_C, N2_D, N1_A(*), 
 N1_B(*), N1_C(*), N1_D(*), N1_E(*), N3_A(*), N3_B(*), 
 N3_C(*), N3_D(*)</entry></row>
-		<row><entry>Subnet3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D, N1_A(*), 
+		<row><entry>Subnetz3</entry><entry>N3_D</entry><entry>N3_A, N3_B, N3_C, N3_D, N1_A(*), 
 N1_B(*), N1_C(*), N1_D(*), N1_E(*), N2_A(*), N2_B(*), 
 N2_C(*), N2_D(*)</entry></row>
 	</tbody>
@@ -1548,41 +1533,38 @@ N2_C(*), N2_D(*)</entry></row>
 </table>
 
 <para>
-Servers with an (*) after them are non-authoritative names.
+Server mit einem folgenden (*) sind nicht-authoritative Namen.
 </para>
 
 <para>
-Synchronizations between the Domain Master Browser and Local
-Master Browsers will continue to occur, but this should remain a
-steady state operation.
+Synchronisationen zwischen dem DMB und den LMBs werden weiter passieren, aber dies sollte ein Vorgang sein, der
+einen gleichbleibenden Status aufrechterhält und keine Veränderungen herbeiführt.
 </para>
 
 <para>
-If either router R1 or R2 fails, the following will occur:
+Wenn Router R1 oder R2 ausfällt, passiert folgendes:
 </para>
 
 <orderedlist>
 <listitem>
 	<para>
-	Names of computers on each side of the inaccessible network fragments
-	will be maintained for as long as 36 minutes in the network neighborhood
-	lists.
+	Die Namen von Rechnern auf beiden Seiten der unerreichbaren Netzwerk-Fragmente werden bis zu 36 Minuten
+	lang in den Netzwerkumgebungs-Listen weitergeführt.
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	Attempts to connect to these inaccessible computers will fail, but the
-	names will not be removed from the network neighborhood lists.
+	Versuche, sich mit diesen unerreichbaren Rechnern zu verbinden, werden scheitern, aber deren Namen werden
+	nicht aus den Netzwerkumgebungs-Listen entfernt.	
 	</para>
 </listitem>
 
 <listitem>
 	<para>
-	If one of the fragments is cut off from the WINS server, it will only
-	be able to access servers on its local subnet using subnet-isolated
-	broadcast NetBIOS name resolution. The effects are similar to that of
-	losing access to a DNS server.
+	Wenn eines der Fragmente vom WINS-Server abgeschnitten wird, ist es nur mehr fähig, auf Server 
+	seines eigenen lokalen Subnetzes zuzugreifen, mittels Subnetz-isolierter, auf Broadcast beruhender
+	Namensauflösung. Die Auswirkungen sind ähnlich denen beim Verlust der Verbindung zu einem DNS-Server.
 	</para>
 </listitem>
 </orderedlist>
@@ -1591,126 +1573,129 @@ If either router R1 or R2 fails, the following will occur:
 </sect1>
 
 <sect1>
-<title>Common Errors</title>
+<title>Gängige Fehler</title>
 
 <para>
-Many questions are asked on the mailing lists regarding browsing. The majority of browsing
-problems originate from incorrect configuration of NetBIOS name resolution. Some are of
-particular note.
+In den Mailing-Listen werden viele Fragen zum Browsing gestellt, Der Großteil der Browsing-Probleme rühren
+von fehlerhafter Konfiguration der NetBIOS-Namensauflösung her. Manche bedürfen besonderer Beachtung.
 </para>
 
 <sect2>
-<title>How Can One Flush the Samba NetBIOS Name Cache without Restarting Samba?</title>
+<title>Wie kann man den Samba NetBIOS Name Cache leeren, ohne Samba neu zu starten?</title>
 
 <para>
+<indexterm><primary>name cache leeren</primary></indexterm>
 <indexterm><primary>flush name cache</primary></indexterm>
-Samba's <command>nmbd</command> process controls all browse list handling. Under normal circumstances it is
-safe to restart <command>nmbd</command>. This will effectively flush the Samba NetBIOS name cache and cause it
-to be rebuilt. This does not make certain that a rogue machine name will not re-appear
-in the browse list. When <command>nmbd</command> is taken out of service, another machine on the network will
-become the Browse Master. This new list may still have the rogue entry in it. If you really
-want to clear a rogue machine from the list, every machine on the network will need to be
-shut down and restarted after all machines are down. Failing a complete restart, the only
-other thing you can do is wait until the entry times out and is then flushed from the list.
-This may take a long time on some networks (perhaps months).
+Samba's <command>nmbd</command> Prozess verwaltet den gesamten Umgang mit Browselists. Unter normalen Umständen
+ist es sicher, den Prozess <command>nmbd</command> neu zu starten. Dies wird den Samba NetBIOS Name Cache
+effektiv leeren, und dessen Neuaufbau initiieren. Wenn <command>nmbd</command> außer Betrieb genommen wird,
+wird eine andere Maschine im Netzwerk zum Browse Master. Diese neue Liste kann nach wie vor den fehlerhaften
+Eintrag beinhalten. Wenn Sie wirklich eine fehlerhafte Maschine aus der Liste entfernen wollen, muß jede
+Maschine im Netzwerk heruntergefahren und neu gestartet werden, nachdem alle Maschinen abgeschaltet sind.
+Wenn kein kompletter Neustart möglich ist, ist die einzige andere Möglichkeit, zu warten, bis der betreffende
+Eintrag seine Ablaufzeit erreicht hat und aus der Liste entfernt wird. Dies kann in manchen Netzwerken lange
+dauern (vielleicht Monate ...).
 </para>
 
 </sect2>
  
 <sect2>
-	<title>Server Resources Can Not Be Listed</title>
+<title>Server-Ressourcen können nicht aufgelistet werden</title>
 
-<para><quote>My Client Reports <quote>This server is not configured to list shared resources</quote></quote></para>
+<para><quote>Mein Client meldet <quote>This server is not configured to list shared resources</quote></quote></para>
 
 		
 <para>
-Your guest account is probably invalid for some reason. Samba uses the
-guest account for browsing in <command>smbd</command>. Check that your guest account is
-valid.
+Wahrscheinlich ist Ihr guest account aus irgendeinem Grund ungültig. Samba verwendet den guest account in
+<command>smbd</command> für das Browsing. Überprüfen Sie, daß Ihr guest account gültig ist.
 </para>
 
-<para>Also see <smbconfoption><name>guest account</name></smbconfoption> in the &smb.conf; man page.</para>
+<para>Sehen Sie auch den Abschnitt zu 
+<smbconfoption><name>guest account</name></smbconfoption> in der manpage zu &smb.conf;.</para>
 
 </sect2>
 
 <sect2>
-	<title>I get an <errorname>`Unable to browse the network'</errorname> error</title>
+	<title>Ich bekomme einen Fehler <errorname>`Unable to browse the network'</errorname></title>
 
-	<para>This error can have multiple causes:
+	<para>Dieser Fehler kann viele Gründe haben:
 <indexterm><primary>Browsing Probleme</primary></indexterm>
 	</para>
 	
 	<itemizedlist>
-		<listitem><para>There is no Local Master Browser. Configure &nmbd; 
-			or any other machine to serve as Local Master Browser.</para></listitem>
-		<listitem><para>You cannot log onto the machine that is the local master 
-			browser. Can you logon to it as a guest user? </para></listitem>
-		<listitem><para>There is no IP connectivity to the Local Master Browser. 
-			Can you reach it by broadcast?</para></listitem>
+		<listitem><para>Es gibt keinen Lokalen Master Browser. Konfigurieren Sie &nmbd; 
+			oder irgendeine andere Maschine als Lokalen Master Browser.</para></listitem>
+		<listitem><para>Sie können sich nicht am Lokalen Master Browser anmelden. Können Sie sich dort
+			als guest anmelden?</para></listitem>
+		<listitem><para>Es gibt keine IP-Verbindung zum Lokalen Master Browser. Können Sie ihn mittels
+			Broadcast erreichen?</para></listitem>
 </itemizedlist>
 </sect2>
 
 <sect2>
-<title>Browsing of Shares and Directories is Very Slow</title>
+<title>Das Browsing von Freigaben und Verzeichnissen ist sehr langsam</title>
 
 <para><quote>
 <indexterm><primary>langsames Browsing</primary></indexterm>
-There are only two machines on a test network. One a Samba server, the other a Windows XP machine.
-Authentication and logons work perfectly, but when I try to explore shares on the Samba server, the
-Windows XP client becomes unresponsive. Sometimes it does not respond for some minutes. Eventually,
-Windows Explorer will respond and displays files and directories without problem.
-display file and directory.</quote>
+Es gibt nur zwei Maschinen in einem Test-Netzwerk. Eine Maschine ist ein Samba-Server, die andere eine
+Windows-XP-Maschine. Authentifikation und Anmeldungen funktionieren perfekt, aber wenn ich versuche, die
+Freigaben am Samba-Server zu durchsuchen, wird der Windows XP Client unbrauchbar. Manchmal reagiert er
+für einige Minuten nicht. Manchmal antwortet der Windows Explorer und zeigt Dateien und Verzeichnisse ohne
+Probleme.</quote>
 </para>
 
 <para><quote>
-But, the share is immediately available from a command shell (<command>cmd</command>, followed by 
-exploration with dos command. Is this a Samba problem or is it a Windows problem? How can I solve this?
+Aber die Freigabe ist von der Befehlszeile (<command>cmd</command>) aus unverzüglich verfügbar. Ist das ein
+Samba-Problem oder ein Windows-Problem? Wie kann ich es lösen?
 </quote></para>
 
 <para>
-Here are a few possibilities:
+Hier sind ein paar Möglichkeiten:
 </para>
 
 <variablelist>
 	<varlistentry>
-		<term>Bad Networking Hardware</term>
+		<term>Schlechte Netzwerk-Hardware</term>
 		<listitem><para>
 <indexterm><primary>Schlechte Hardware</primary></indexterm>
 <indexterm><primary>WebClient</primary></indexterm>
-		Most common defective hardware problems center around low cost or defective HUBs, routers,
-		Network Interface Controllers (NICs) and bad wiring. If one piece of hardware is defective
-		the whole network may suffer. Bad networking hardware can cause data corruption. Most bad
-		networking hardware problems are accompanied by an increase in apparent network traffic,
-		but not all.
+		Die meisten Probleme mit defekter Hardware drehen sich um billige oder defekte Hubs, Router,
+		Netzwerkkarten (NICs) und schlechte oder fehlerhafte Verkabelung. Wenn ein Stück
+		Hardware defekt ist, kann das ganze Netzwerk darunter leiden. Schlechte Netzwerk-Hardware
+		kann Datenverlust verursachen. Die meisten Probleme mit Netzwerk-Hardware gehen mit
+		auffällig hohem Netzwerk-Verkehr einher, jedoch nicht alle.
 		</para></listitem>
 	</varlistentry>
 	
 	<varlistentry>
-		<term>The Windows XP WebClient</term>
+		<term>Der Windows XP WebClient</term>
 		<listitem><para>
-		A number of sites have reported similar slow network browsing problems and found that when
-		the WebClient service is turned off, the problem disappears. This is certainly something
-		that should be explored as it is a simple solution &smbmdash; if it works.
+		Eine Reihe von Installationen haben von ähnlichen Problemen mit langsamem Browsing berichtet,
+		und herausgefunden, daß das Problem verschwindet, wenn der Dienst WebClient abgeschaltet wird.
+		Dies sollte auf jeden Fall überprüft werden, weil es eine simple Lösung &smbmdash; ist, wenn 
+		es funktioniert.
 		</para></listitem>
 	</varlistentry>
 	
 	<varlistentry>
-		<term>Inconsistent WINS Configuration</term>
+		<term>Inkonsistente WINS-Konfiguration</term>
 		<listitem><para>
-		This type of problem is common when one client is configured to use a WINS server (that is
-		a TCP/IP configuration setting) and there is no WINS server on the network. Alternately,
-		this will happen is there is a WINS server and Samba is not configured to use it. The use of
-		WINS is highly recommended if the network is using NetBIOS over TCP/IP protocols. If use
-		of NetBIOS over TCP/IP is disabled on all clients, Samba should not be configured as a WINS
-		server neither should it be configured to use one.
+		Diese Art von Problem ist gängig, wenn ein Client zur Verwendung eines WINS-Servers konfiguriert
+		ist (dies ist eine Einstellung der TCP/IP-Konfiguration), und es gibt keinen WINS-Server im 
+		Netzwerk. Es kann auch passieren, wenn es einen WINS-Server gibt, und Samba ist nicht zu dessen
+		Verwendung konfiguriert. Die Verwendung von WINS ist wärmstens empfohlen, wenn das Netzwerk
+		das NetBIOS-über-TCP/IP-Protokoll verwendet. Wenn die Verwendung von NetBIOS-über-TCP/IP auf
+		allen Clients deaktiviert ist, sollte Samba weder als WINS-Server konfiguriert werden, noch zur
+		Verwendung eines solchen.
 		</para></listitem>
 	</varlistentry>
 	
 	<varlistentry>
-		<term>Incorrect DNS Configuration</term>
+		<term>Falsche DNS-Konfiguration</term>
 		<listitem><para>
-		If use of NetBIOS over TCP/IP is disabled, Active Directory is in use and the DNS server
-		has been incorrectly configured. Refer <link linkend="adsdnstech">DNS and Active Directory</link> for more information.
+		Wenn die Verwendung von NetBIOS-über-TCP/IP deaktiviert ist, Active Directory verwendet wird, und
+		der DNS-Server fehlerhaft konfiguriert ist. Sehen Sie dazu 
+		<link linkend="adsdnstech">DNS and Active Directory</link>.		
 		</para></listitem>
 	</varlistentry>
 </variablelist>
