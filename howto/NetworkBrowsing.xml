@@ -214,57 +214,57 @@ empfohlen, aber wird aus Gründen der Vollständigkeit, und aus praktischen Überle
 </para>
 
 <para>
-Lastly, take note that browse lists are a collection of unreliable broadcast
-messages that are repeated at intervals of not more than 15 minutes. This means
-that it will take time to establish a browse list and it can take up to 45
-minutes to stabilize, particularly across network segments.
+Zuletzt beachten Sie noch, daß Browselists eine Sammlung von unzuverlässigen Broadcast-Nachrichten sind, die in
+Intervallen von nicht mehr als 15 Minuten wiederholt werden. Das bedeutet, daß es Zeit braucht, eine Browselist
+zu bilden, und es bis zu 45 Minuten dauern kann, bis diese sich stabilisiert, speziell über verschiedene
+Netzwerk-Segmente hinweg.
 </para>
 
 </sect2>
 
 <sect2>
-<title>TCP/IP without NetBIOS</title>
+<title>TCP/IP ohne NetBIOS</title>
 
 <para>
 <indexterm><primary>NetBIOS</primary></indexterm>
-<indexterm><primary>NetBIOS-less</primary></indexterm>
+<indexterm><primary>NetBIOS-frei</primary></indexterm>
 <indexterm><primary>DNS</primary></indexterm>
-All TCP/IP-enabled systems use various forms of host name resolution. The primary
-methods for TCP/IP hostname resolution involve either a static file (<filename>/etc/hosts</filename>)
-or the Domain Name System (DNS). DNS is the technology that makes
-the Internet usable. DNS-based host name resolution is supported by nearly all
-TCP/IP-enabled systems. Only a few embedded TCP/IP systems do not support DNS.
+Alle TCP/IP-fähigen Systeme verwenden verschiedene Formen der Namensauflösung. Die primären Methoden für
+TCP/IP-Namensauflösung inkludieren entweder eine statische Datei (<filename>/etc/hosts</filename>) oder
+DNS (Domain Name System). DNS ist die Technologie, die das Internet benutzbar macht. DNS-basierende
+Namensauflösung wird von fast allen TCP/IP-fähigen Systemen unterstützt, nur ein paar wenige 
+<quote>embedded</quote> TCP/IP-Systeme unterstützen kein DNS.
 </para>
 
 <para>
-When an MS Windows 200x/XP system attempts to resolve a host name to an IP address
-it follows a defined path:
+Wenn ein MS Windows 200x/XP-System versucht, einen Hostnamen zu einer IP-Adresse aufzulösen, folgt es einem
+definierten Pfad:
 </para>
 
 <orderedlist>
 	<listitem><para>
-	Checks the <filename>hosts</filename> file. It is located in
+	Prüfung der Datei <filename>hosts</filename>. Diese befindet sich in
 	<filename>C:\Windows NT\System32\Drivers\etc</filename>.
 	</para></listitem>
 
 	<listitem><para>
-	Does a DNS lookup.
+	Ausführung einer DNS-Abfrage.
 	</para></listitem>
 
         <listitem><para>
-	Checks the NetBIOS name cache.
+	Prüfung des NetBIOS-Namens-Cache.
         </para></listitem>
 
         <listitem><para>
-	Queries the WINS server.
+	Abfrage des WINS-Server.
         </para></listitem>
 
         <listitem><para>
-	Does a broadcast name lookup over UDP.
+	Ausführung einer Broadcast-Abfrage über UDP.
         </para></listitem>
 
         <listitem><para>
-	Looks up entries in LMHOSTS, located in
+	Überprüfung der Datei LMHOSTS, in
         <filename>C:\Windows NT\System32\Drivers\etc</filename>.
         </para></listitem>
 </orderedlist>
@@ -272,38 +272,39 @@ it follows a defined path:
 
 <para>
 <indexterm><primary>DNS</primary></indexterm>
-Windows 200x/XP can register its host name with a Dynamic DNS server. You can
-force register with a Dynamic DNS server in Windows 200x/XP using:
+Windows 200x/XP kann seinen Hostnamen an einem <quote>Dynamic DNS Server</quote> registrieren. Sie können dies
+erzwingen:
 <command>ipconfig /registerdns</command>.
 </para>
 
 <para>
-With Active Directory (ADS), a correctly functioning DNS server is absolutely
-essential. In the absence of a working DNS server that has been correctly configured,
-MS Windows clients and servers will be unable to locate each other, so
-consequently network services will be severely impaired.
+Mit Active Directory (ADS) ist ein korrekt funktionierender DNS-Server essentiell notwendig.
+Beim Fehlen eines korrekt funktionierenden und arbeitenden DNS-Servers sind die MS Windows Clients und Server
+nicht mehr imstande, einander gegenseitig zu finden, daher werden in Folge auch die Netzwerkdienste ernsthaft
+geschädigt.
 </para>
 
 <para>
-The use of Dynamic DNS is highly recommended with Active Directory, in which case
-the use of BIND9 is preferred for its ability to adequately support the SRV (service)
-records that are needed for Active Directory.
+Die Verwendung von <quote>Dynamic DNS</quote> wird mit Active Directory wärmstens empfohlen,
+wo auch der Einsatz von BIND9 vorzuziehen ist (wegen seiner Fähigkeit zur adäquaten Unterstützung der 
+SRV-Einträge, die für Active Directory benötigt werden).
 </para>
 
 </sect2>
 
 <sect2 id="adsdnstech">
-<title>DNS and Active Directory</title>
+<title>DNS und Active Directory</title>
 
 
 <para>
 <indexterm><primary>DNS</primary><secondary>Active Directory</secondary></indexterm>
-Occasionally we hear from UNIX network administrators who want to use a UNIX-based Dynamic
-DNS server in place of the Microsoft DNS server. While this might be desirable to some, the
-MS Windows 200x DNS server is auto-configured to work with Active Directory. It is possible
-to use BIND version 8 or 9, but it will almost certainly be necessary to create service records
-(SRV records) so MS Active Directory clients can resolve host names to locate essential network services.
-The following are some of the default service records that Active Directory requires:
+Fallweise hören wir von UNIX-Netzwerk-Administratoren, die einen UNIX-basierenden Dynamic-DNS-Server
+anstatt des MS-DNS-Servers einsetzen wollen. Während dies für manche wünschenswert seín mag, der
+MS Windows 200x DNS Server ist für die Zusammenarbeit mit Active Directory automatisch vorkonfiguriert. Es
+ist möglich, BIND in der Version 8 oder 9 einzusetzen, aber es wird fast mit Sicherheit notwendig sein,
+SRV-Einträge anzulegen, damit MS Active Directory Clients Hostnamen auflösen können, um essentielle
+Netzwerkdienste lokalisieren können. Im Folgenden einige der Standard-SRV-Einträge, die Active Directory
+benötigt:
 </para>
 
 <variablelist>
@@ -311,7 +312,7 @@ The following are some of the default service records that Active Directory requ
 	<term>_ldap._tcp.pdc._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
 	<para>
-	This provides the address of the Windows NT PDC for the Domain.
+	Gibt die Adresse des Windows NT PDC für die Domäne an.
 	</para>
 	</listitem>
 </varlistentry>
@@ -319,7 +320,7 @@ The following are some of the default service records that Active Directory requ
 	<term>_ldap._tcp.pdc._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
         <para>
-	Resolves the addresses of Global Catalog servers in the domain.
+	Löst die Adressen der <quote>Global Catalog Server</quote> in der Domäne auf.
         </para>
 	</listitem>
 </varlistentry>
@@ -327,7 +328,7 @@ The following are some of the default service records that Active Directory requ
         <term>_ldap._tcp.<emphasis>site</emphasis>.sites.writable._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
         <para>
-	Provides list of Domain Controllers based on sites.
+	Gibt eine Liste der Domänen-Controller an, basierend auf den Sites.
         </para>
 	</listitem>
 </varlistentry>
@@ -335,7 +336,7 @@ The following are some of the default service records that Active Directory requ
         <term>_ldap._tcp.writable._msdcs.<emphasis>Domain</emphasis></term>
 	<listitem>
         <para>
-	Enumerates list of Domain Controllers that have the writable copies of the Active Directory data-store.
+	Listet Domänen-Controller auf, die eine schreibberechtigte Kopie des Active Directory führen.
         </para>
 	</listitem>
 </varlistentry>
@@ -343,7 +344,8 @@ The following are some of the default service records that Active Directory requ
 	<term>_ldap._tcp.<emphasis>GUID</emphasis>.domains._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
 	<para>
-	Entry used by MS Windows clients to locate machines using the Global Unique Identifier.
+	Eintrag, der von MS Windows Clients verwendet wird, um Maschinen mittels des 
+	<quote>Global Unique Identifier</quote> zu lokalisieren.
 	</para>
 	</listitem>
 </varlistentry>
@@ -351,53 +353,55 @@ The following are some of the default service records that Active Directory requ
 	<term>_ldap._tcp.<emphasis>Site</emphasis>.gc._msdcs.<emphasis>DomainTree</emphasis></term>
 	<listitem>
 	<para>
-	Used by MS Windows clients to locate site configuration dependent Global Catalog server.
+	Verwendet von MS Windows Clients, um den <quote>Global Catalog server</quote> zu lokalisieren,
+ 	der abhängig von der Site-Konfiguration ist.
 	</para>
 	</listitem>
 </varlistentry>
 </variablelist>
 
 	<para>
-	Specific entries used by Microsoft clients to locate essential services for an example domain
-	called <constant>quenya.org</constant> includes:
+	Spezifische Einträge, die von MS Windows Clients verwendet werden, um essentielle Dienste für eine
+	Beispiel-Domäne namens <constant>quenya.org</constant> zu lokalisieren, beinhalten:
 	</para>
 
 	<itemizedlist>
 		<listitem><para>
-		_kerberos._udp.quenya.org &smbmdash; Used to contact the KDC server via UDP.
-		This entry must list port 88 for each KDC.
+		_kerberos._udp.quenya.org &smbmdash; Verwendet, um den KDC-Server über UDP zu kontaktieren.
+		Dieser Eintrag muß für jeden KDC den Port 88 auflisten.
 		</para></listitem>
 
 		<listitem><para>
-		_kpasswd._udp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
-		when a user password change must be processed. This record must list port 464 on the
-		master KDC.
+		_kpasswd._udp.quenya.org &smbmdash; Verwendet, um den <constant>kpasswd</constant>-Server
+		zu lokalisieren, wenn die Änderung eines Benutzerpassworts bearbeitet werden soll. Dieser
+		Eintrag muß den Port 464 auf dem Master-KDC auflisten.
 		</para></listitem>
 
 		<listitem><para>
-		_kerberos._tcp.quenya.org &smbmdash; Used to locate the KDC server via TCP.
-		This entry must list port 88 for each KDC.
+		_kerberos._tcp.quenya.org &smbmdash; Verwendet, um den KDC-Server via TCP zu lokalisieren.
+		Dieser Eintrag muß für jeden KDC den Port 88 auflisten.
 		</para></listitem>
 
 		<listitem><para>
-		_ldap._tcp.quenya.org &smbmdash; Used to locate the LDAP service on the PDC.
-		This record must list port 389 for the PDC.
+		_ldap._tcp.quenya.org &smbmdash; Verwendet, um den LDAP-Dienst auf dem PDC zu lokalisieren.
+		Dieser Eintrag muß den Port 389 des PDCs enthalten.		
 		</para></listitem>
 
 		<listitem><para>
-		_kpasswd._tcp.quenya.org &smbmdash; Used to locate the <constant>kpasswd</constant> server
-		to permit user password changes to be processed. This must list port 464.
+		_kpasswd._tcp.quenya.org &smbmdash; Verwendet, um den <constant>kpasswd</constant>-Server
+                zu lokalisieren, um Änderungen von Benutzerpasswörtern zu erlauben. Dieser Eintrag muß den Port
+		464 enthalten.
 		</para></listitem>
 
 		<listitem><para>
-		_gc._tcp.quenya.org &smbmdash; Used to locate the Global Catalog server on the for the
-		top of the domain. This must list port 3268.
+		_gc._tcp.quenya.org &smbmdash; Verwendet, um den <quote>Global Catalog server</quote> für
+		die Domäne zu lokalisieren. Dieser Eintrag muß den Port 3268 auflisten.
 		</para></listitem>
 	</itemizedlist>
 	
 	<para>
-	The following records are also used by the Windows Domain Member client to locate vital
-	services on the Windows ADS domain controllers.
+	Die folgenden Einträge werden auch vom Windows Domain Member Client verwendet, um wichtige Dienste
+	auf den Windows ADS Domänen-Controllern zu finden.
 	</para>
 
 	<itemizedlist>
@@ -439,7 +443,7 @@ The following are some of the default service records that Active Directory requ
 	</itemizedlist>
 
 	<para>
-	Presence of the correct DNS entries can be validated by executing:
+	Das Vorhandensein der korrekten DNS-Einträge kann so validiert werden:
 <screen>
 &rootprompt; dig @frodo -t any _ldap._tcp.dc._msdcs.quenya.org
 
@@ -476,77 +480,66 @@ noldor.quenya.org. 1200  IN      A       10.1.1.17
 </sect1>
 
 <sect1>
-<title>How Browsing Functions</title>
+<title>Wie Browsing funktioniert</title>
 
 <para>
-MS Windows machines register their NetBIOS names 
-(i.e., the machine name for each service type in operation) on start-up.
-The exact method by which this name registration 
-takes place is determined by whether or not the MS Windows client/server 
-has been given a WINS server address, whether or not LMHOSTS lookup 
-is enabled, or if DNS for NetBIOS name resolution is enabled, etc.
+MS Windows Maschinen registrieren ihre NetBIOS-Namen (d.h. den Maschinen-Namen für jeden laufenden Dienst)
+beim Start. Die genaue Methode, in der diese Registrierung stattfindet, ist davon abhängig, ob der
+MS Windows Client/Server eine WINS-Server-Adresse erhalten hat oder nicht, ob die LMHOSTS-Abfrage aktiviert ist,
+ob DNS für die Auflösung von NetBIOS-Namen aktiviert ist, etc.
 </para>
 
 <para>
-In the case where there is no WINS server, all name registrations as 
-well as name lookups are done by UDP broadcast. This isolates name 
-resolution to the local subnet, unless LMHOSTS is used to list all 
-names and IP addresses. In such situations, Samba provides a means by 
-which the Samba server name may be forcibly injected into the browse 
-list of a remote MS Windows network (using the 
-<smbconfoption><name>remote announce</name></smbconfoption> parameter).
+In dem Fall, wo es keinen WINS-Server gibt, werden alle Namensregistrierungen wie auch Namensabfragen mittels
+UDP-Broadcasts durchgeführt. Dies beschränkt die Namensauflösung auf das lokale Subnetz, außer LMHOSTS wird
+zur Listung aller Namen und IP-Adressen verwendet. In solchen Situationen bietet Samba eine Möglichkeit, mit
+der der Samba-Server zwangsweise in die Browselist eines fernen MS Windows Netzwerks eingetragen werden kann
+(mittels des Parameters <smbconfoption><name>remote announce</name></smbconfoption>).
 </para>
 
 <para>
-Where a WINS server is used, the MS Windows client will use UDP 
-uni-cast to register with the WINS server. Such packets can be routed 
-and thus WINS allows name resolution to function across routed networks.
+Wo ein WINS-Server eingesetzt wird, wird der MS Windows Client UDP uni-cast verwenden, um sich am WINS-Server
+zu registrieren. Solche Pakete können geroutet werden und daher erlaubt WINS Namensauflösung über geroutete
+Netzwerke.
 </para>
 
 <para>
-During the startup process an election will take place to create a 
-Local Master Browser if one does not already exist. On each NetBIOS network 
-one machine will be elected to function as the Domain Master Browser. This 
-domain browsing has nothing to do with MS security Domain Control. 
-Instead, the Domain Master Browser serves the role of contacting each local 
-master browser (found by asking WINS or from LMHOSTS) and exchanging browse 
-list contents. This way every master browser will eventually obtain a complete 
-list of all machines that are on the network. Every 11 to 15 minutes an election 
-is held to determine which machine will be the master browser. By the nature of 
-the election criteria used, the machine with the highest uptime, or the 
-most senior protocol version or other criteria, will win the election 
-as Domain Master Browser.
+Während des Startvorgangs wird eine Wahl stattfinden, um einen <quote>Local Master Browser</quote> zu bestimmen,
+wenn nicht bereits ein solcher existiert. In jedem NetBIOS-Netzwerk wird eine Maschine erwählt, um als
+der <quote>Domain Master Browser</quote> zu fungieren. Dieses Domänen-Browsing hat nichts mit 
+MS Domänen-Controlling zu tun. Stattdessen übernimmt der Domain Master Browser die Rolle, jeden
+LMB (<quote>Local Master Browser</quote>) zu kontaktieren (entweder über WINS oder LMHOSTS ausfindig gemacht),
+und die Browselists auszutauschen. Auf diese Weise erhält jeder Master Browser eine komplette Liste aller
+Maschinen im Netzwerk. Alle 11 bis 15 Minuten wird eine Wahl abgehalten, um zu bestimmen, welche Maschine der
+Master Browser sein soll. Nach den Kriterien dieser Wahl wird die Maschine mit der größten Uptime, der
+höchsten Protokoll-Version oder anderen Kriterien die Wahl zum <quote>Domain Master Browser</quote> gewinnen.
 </para>
 
 <para>
-Clients wishing to browse the network make use of this list, but also depend 
-on the availability of correct name resolution to the respective IP 
-address/addresses. 
+Clients, die das Netzwerk durchsuchen wollen, verwenden diese Liste, aber sind auch abhängig von korrekter
+Namensauflösung auf die entsprechenden IP-Adresse(n).
 </para>
 
 <para>
-Any configuration that breaks name resolution and/or browsing intrinsics 
-will annoy users because they will have to put up with protracted 
-inability to use the network services.
+Jede Konfiguration, die die Namensauflösung und/oder die Browsing-Funktionalitäten verletzt, wird die Benutzer
+verärgern, da sie dann immer wieder damit konfrontiert sind, die Netzwerkdienste nicht verwenden zu können.
 </para>
 
 <para>
-Samba supports a feature that allows forced synchronization of browse lists across
-routed networks using the <smbconfoption><name>remote browse sync</name></smbconfoption>
-parameter in the &smb.conf; file. This causes Samba to contact the local master
-browser on a remote network and to request browse list synchronization. This
-effectively bridges two networks that are separated by routers. The two remote
-networks may use either broadcast-based name resolution or WINS-based name
-resolution, but it should be noted that the
-<smbconfoption><name>remote browse sync</name></smbconfoption> parameter provides
-browse list synchronization &smbmdash; and that is distinct from name to address
-resolution. In other words, for cross-subnet browsing to function correctly it is
-essential that a name-to-address resolution mechanism be provided. This mechanism
-could be via DNS, <filename>/etc/hosts</filename>, and so on.
+Samba unterstützt ein Feature, das die erzwungene Synchronisation von Browselists über geroutete Netzwerke
+mittels des Parameters <smbconfoption><name>remote browse sync</name></smbconfoption> in der Datei
+&smb.conf; erlaubt. Dies veranlasst Samba, den LMB in einem fernen Netzwerk zu kontaktieren, und dort die
+Synchronisation der Browselists zu erfragen. Dies überbrückt effektiv zwei durch Router getrennte Netzwerke.
+Die beiden entfernten Netzwerke können entweder Broadcast-basierende oder WINS-basierende Namensauflösung
+verwenden, aber es sollte beachtet werden, daß der Parameter 
+<smbconfoption><name>remote browse sync</name></smbconfoption> Browselist-Synchronisation anbietet, und diese
+ist etwas anderes als Namensauflösung. In anderen Worten, um <quote>Cross-Subnetz-Browsing</quote> korrekt
+arbeiten zu lassen, ist es essentiell, daß ein Mechanismus zur Auflösung von Namen auf Adressen vorhanden ist.
+Dieser Mechanismus kann via DNS, <filename>/etc/hosts</filename>, usw. funktionieren.
 </para>
 
 <sect2 id="DMB">
-<title>Configuring WORKGROUP Browsing</title>
+<title>Konfiguration von ARBEITSGRUPPEN-Browsing</title>
 
 <para>
 To configure cross-subnet browsing on a network containing machines
