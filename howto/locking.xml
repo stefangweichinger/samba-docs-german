@@ -11,81 +11,83 @@
 <title>Datei- und Satzsperren</title>
 
 <para>
-One area that causes trouble for many network administrators is locking.
-The extent of the problem is readily evident from searches over the Internet.
+Ein Bereich der vielen Netzwerkadministratoren Probleme verursacht sind Sperren.
+Das Ausmaß des Problems ist bereits durch Recherchen über das Internet bewiesen.
 </para>
 
 <sect1>
-<title>Features and Benefits</title>
+<title>Eigenschaften und Vorzüge</title>
 
 <para>
-Samba provides all the same locking semantics that MS Windows clients expect
-and that MS Windows NT4/200x servers also provide.
+Samba stellt alle Sperrsemantiken die MS Windows Clients erwarten zur Verfügung und
+die die MS Windows NT/200x Server ebenfalls zur Verfügung stellen.
 </para>
 
 <para>
-The term <emphasis>locking</emphasis> has exceptionally broad meaning and covers
-a range of functions that are all categorized under this one term.
+Der Ausdruck <emphasis>Sperren</emphasis> hat grunsätzlich weitläufige Bedeutung und
+deckt eine Vielzahl von Funktionen ab, die alle unter diesem einen Begriff zusammengefasst sind.
 </para>
 
 <para>
-Opportunistic locking is a desirable feature when it can enhance the
-perceived performance of applications on a networked client. However, the
-opportunistic locking protocol is not robust and, therefore, can
-encounter problems when invoked beyond a simplistic configuration or
-on extended slow or faulty networks. In these cases, operating
-system management of opportunistic locking and/or recovering from
-repetitive errors can offset the perceived performance advantage that
-it is intended to provide.
+Opportune Sperren sind eine gewünschte Eigenart weil sie die wahrnehmbare Geschwindigkeit von 
+Anwendungen auf einem Netzwerclient beschleunigen können. Jedoch ist das opportune Sperrprotokoll
+nicht robust und deshalb können Probleme entstehen, wenn es von einer einfachen Konfiguration
+oder auf einem sehr langsamen oder fehlerhaften Netzwerk aufgerufen wird. In diesen Fällen können
+die Massnahmen auf Betriebssystemseite zu Opportunen Sperren und/oder die Wiederherstellung von
+wiederholten Fehlern die wahrgenommenen Geschwindigkeitsvorteile übersteigen, die angenommen wurden.
 </para>
 
 <para>
-The MS Windows network administrator needs to be aware that file and record
-locking semantics (behavior) can be controlled either in Samba or by way of registry
-settings on the MS Windows client.
+Der MS Windows Netzwerkadministrator muss sich darüber im Klaren sein, dass Datei- und Satzsperren-
+Semantiken (Verhalten) entweder in Samba kontrolliert werden oder durch Wege von Registry-Einstellungen
+auf einem MS Windows Client.
 </para>
 
 <note>
 <para>
-Sometimes it is necessary to disable locking control settings on both the Samba
-server as well as on each MS Windows client!
+Manchmal ist es sogar notwendig, Einstellungen zu Sperrkontrollen sowohl auf dem Sambaserver
+wie auch auf dem MS Windows Client abzuschalten !
 </para>
 </note>
 
 </sect1>
 
 <sect1>
-<title>Discussion</title>
+<title>Erörterung</title>
 
 <para>
-There are two types of locking that need to be performed by an SMB server.
-The first is <emphasis>record locking</emphasis> that allows a client to lock
-a range of bytes in a open file. The second is the <emphasis>deny modes</emphasis>
-that are specified when a file is open.
+Es gibt 2 Arten von Sperren, die durch einen SMB Server durchgeführt werden müssen.
+Die erste ist die <emphasis>Satzsperre</emphasis> die einem Client das Sperren eines
+Bereiches von Bytes innerhalb einer geöffneten Datei erlaubt. Die zweite sind die 
+<emphasis>Verbotszustände (deny modes)</emphasis> die spezifiziert werden, wenn eine Datei
+geöffnet ist.
 </para>
 
 <para>
-Record locking semantics under UNIX are very different from record locking under
-Windows. Versions of Samba before 2.2 have tried to use the native fcntl() UNIX
-system call to implement proper record locking between different Samba clients.
-This cannot be fully correct for several reasons. The simplest is the fact
-that a Windows client is allowed to lock a byte range up to 2^32 or 2^64,
-depending on the client OS. The UNIX locking only supports byte ranges up to 2^31.
-So it is not possible to correctly satisfy a lock request above 2^31. There are
-many more differences, too many to be listed here.
+Satzsperren-Semantiken unter UNIX sind vollkommen verschieden zu Satzsperren unter
+Windows. Sambaversionen vor 2.2 hatten versucht, den nativen fcntl() UNIX Systemaufruf
+zu nutzen, um saubere Satzsperren zwischen den verschiedenen Samba-Clients zu implementieren.
+Dies kann allerdings aus mehreren Gründen nicht vollständig richtig sein. Der einfachste ist die 
+Tatsache, dass ein Windows-Client einen Bytebereich von bis zu 2^32 oder 2^64,
+abhängig vom Client-Betriebssystem, sperren darf. Die UNIX-Sperren unterstützen nur einen
+Bytebereich bis zu 2^31.
+So ist es nicht möglich, eine Sperranfrage überhalb 2^31 sauber zu ermöglichen. Es gibt noch
+wesentlich mehr Unterschiede, zu viele um hier alle aufgeführt zu werden.
 </para>
 
 <para>
-Samba 2.2 and above implements record locking completely independent of the
-underlying UNIX system. If a byte range lock that the client requests happens
-to fall into the range of 0-2^31, Samba hands this request down to the UNIX system.
-All other locks cannot be seen by UNIX, anyway.
+Samba 2.2 und darüber implementiert Satzsperren völlig unabhängig vom darunterliegenden
+UNIX System. Wenn eine Bytebereich-Sperre, die ein Client anfragt, in den Bereich von 0-2^31
+fällt gibt Samba diese Anfrage an das UNIX System weiter. Alle anderen Sperren können von UNIX
+jedoch nicht gesehen werden.
 </para>
 
 <para>
-Strictly speaking, an SMB server should check for locks before every read and write call on
-a file. Unfortunately with the way fcntl() works, this can be slow and may overstress
-the <command>rpc.lockd</command>. This is almost always unnecessary as clients are supposed to
+Vereinfacht ausgedrückt sollte ein SMB Server vor jedem Lese- und Schreibzugriff auf eine Datei
+auf Sperren prüfen. Unglücklicherweise kann die Art und Weise, wie fcntl() arbeitet, langsam sein 
+und den <command>rpc.lockd</command> überbeanspruchen.
+
+This is almost always unnecessary as clients are supposed to
 independently make locking calls before reads and writes if locking is
 important to them. By default, Samba only makes locking calls when explicitly asked
 to by a client, but if you set <smbconfoption><name>strict locking</name><value>yes</value></smbconfoption>, it
