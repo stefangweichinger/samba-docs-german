@@ -13,7 +13,7 @@
 
 <refnamediv>
 	<refname>smbpasswd</refname>
-	<refpurpose>The Samba encrypted password file</refpurpose>
+	<refpurpose>Die verschlüsselte Samba-Passwortdatei</refpurpose>
 </refnamediv>
 
 <refsynopsisdiv>
@@ -21,155 +21,166 @@
 </refsynopsisdiv>
 
 <refsect1>
-	<title>DESCRIPTION</title>
+	<title>BESCHREIBUNG</title>
 
-	<para>This tool is part of the <citerefentry><refentrytitle>samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry> suite.</para>
+	<para>Dieses Werkzeug ist Teil der 
+	<citerefentry><refentrytitle>samba</refentrytitle>
+	<manvolnum>7</manvolnum></citerefentry>-Suite.</para>
 
-	<para>smbpasswd is the Samba encrypted password file. It contains 
-	the username, Unix user id and the SMB hashed passwords of the 
-	user, as well as account flag information and the time the 
-	password was last changed. This file format has been evolving with 
-	Samba and has had several different formats in the past. </para>
+	<para>smbpasswd ist die verschlüsselte Samba-Passwortdatei. Sie enthält 
+	den Benutzernamen, die Unix-UID und die Hashes von SMB-Passworten des 
+	Benutzers, ebenso wie Informationen über die Flags des Kontos und den 
+	Zeitpunkt der letzten Passwortänderung. Dieses Dateiformat hat sich mit 
+	Samba selbst weiterentwickelt und hatte in der Vergangenheit mehrere
+	verschiedene Formate.</para>
 </refsect1>
 
 <refsect1>
-	<title>FILE FORMAT</title>
+	<title>DATEIFORMAT</title>
 
-	<para>The format of the smbpasswd file used by Samba 2.2 
-	is very similar to the familiar Unix <filename>passwd(5)</filename> 
-	file. It is an ASCII file containing one line for each user. Each field 
-	ithin each line is separated from the next by a colon. Any entry 
-	beginning with '#' is ignored. The smbpasswd file contains the 
-	following information for each user: </para>
+	<para>Das in Samba 2.2 verwendete Format der smbpasswd-Datei ist sehr
+	ähnlich zu der in Unix vertrauten Datei <filename>passwd(5)</filename>. 
+	es ist eine ASCII-Datei mit je einer Zeile für jeden Benutzer. Jedes
+	Feld auf einer Zeile wird vom nächsten Feld mit einem Doppelpunkt getrennt. 
+	Alle Einträge, die mit einem '#' beginnen, werden ignoriert. Die Datei
+	smbpasswd enthält für jeden Benutzer folgende Angaben:</para>
 
 	<variablelist>
 		<varlistentry>
 		<term>name</term>
-		<listitem><para> This is the user name. It must be a name that 
-		already exists in the standard UNIX passwd file. </para>
+		<listitem><para>Dies ist der Benutzername. Es muss ein Name sein,
+		der in der UNIX-Standarddatei passwd bereits existiert.</para>
 		</listitem>
 		</varlistentry>
 
 		<varlistentry>
 		<term>uid</term>
-		<listitem><para>This is the UNIX uid. It must match the uid
-		field for the same user entry in the standard UNIX passwd file. 
-		If this does not match then Samba will refuse to recognize 
-		this smbpasswd file entry as being valid for a user. 
+		<listitem><para>Dies ist die UNIX-uid. Sie muss identisch sein mit
+		dem uid-Feld des gleichen Benutzereintrags in der UNIX-Standarddatei
+		passwd. Falls nicht, weigert sich Samba, den Eintrag in der Datei 
+		smbpasswd als gültigen Eintrag für einen Benutzer anzuerkennen. 
 		</para></listitem>
 		</varlistentry>
 		 
 		 
 		<varlistentry>
 		<term>Lanman Password Hash</term>
-		<listitem><para>This is the LANMAN hash of the user's password, 
-		encoded as 32 hex digits.  The LANMAN hash is created by DES 
-		encrypting a well known string with the user's password as the 
-		DES key. This is the same password used by Windows 95/98 machines. 
-		Note that this password hash is regarded as weak as it is
-		vulnerable to dictionary attacks and if two users choose the 
-		same password this entry will be identical (i.e. the password 
-		is not "salted" as the UNIX password is). If the user has a 
-		null password this field will contain the characters "NO PASSWORD" 
-		as the start of the hex string. If the hex string is equal to 
-		32 'X' characters then the user's account is marked as 
-		<constant>disabled</constant> and the user will not be able to 
-		log onto the Samba server. </para>
+		<listitem><para>Dies ist der LANMAN-Hash des Benutzerpasswortes, 
+		codiert in 32 hexadezimalen Ziffern. Der LANMAN-Hash wird mit 
+		einer DES-Verschlüsselung erzeugt, ein bekannter String mit dem
+		Benutzerpasswort als DES-Schlüssel. Das ist identisch mit dem 
+		Passwort, das von Windows 95/98-Rechnern verwendet wird. 
+		Beachten Sie, dass dieser Passwort-Hash als schwach betrachtet
+		wird, da er anfällig ist für Wörterbuchattacken, und wenn zwei
+		Benutzer das gleiche Passwort wählen ist dieser Eintrag identisch
+		(d.h. das Passwort ist nicht "gesalzen" wie das UNIX-Passwort). 
+		Falls der Benutzer ein leeres Passwort hat, enthält dieses Feld
+		die Zeichen "NO PASSWORD" am Anfang des Hex-Strings. Falls der
+		Hex-String identisch mit 32 'X'-Zeichen ist, dann wird das Konto
+		des Benutzers als <constant>disabled</constant> gekennzeichnet
+		und der Benutzer kann sich nicht mehr auf dem Samba-Server
+		anmelden.</para>
 		
-		<para><emphasis>WARNING !!</emphasis> Note that, due to 
-		the challenge-response nature of the SMB/CIFS authentication
-		protocol, anyone with a knowledge of this password hash will 
-		be able to impersonate the user on the network. For this
-		reason these hashes are known as <emphasis>plain text 
-		equivalents</emphasis> and must <emphasis>NOT</emphasis> be made 
-		available to anyone but the root user. To protect these passwords 
-		the smbpasswd file is placed in a directory with read and 
-		traverse access only to the root user and the smbpasswd file 
-		itself must be set to be read/write only by root, with no
-		other access. </para></listitem>
+		<para><emphasis>WARNUNG!!</emphasis> Man beachte, dass auf Grund der
+		Aufgabe/Antwort-Natur des SMB/CIFS-Authentifikationsprotokolls, 
+		jeder, der diesen Passwort-Hash kennt, den Benutzer im Netzwerk 
+		nachahmen kann. Deswegen sind diese Hashes als 
+		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
+		für andere Benutzer als root <emphasis>NICHT</emphasis> 
+		zugänglich gemacht werden. Um diese Passworte zu schützen, wird
+		die Datei smbpasswd in ein Verzeichnis gelegt, an dem nur root
+		Lese- und Traversierungsrecht hat, und die Datei smbpasswd selbst 
+		darf nur für root les- und schreibbar sein, ohne jeden weiteren
+		Zugriff für andere.</para></listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>NT Password Hash</term>
-		<listitem><para>This is the Windows NT hash of the user's 
-		password, encoded as 32 hex digits.  The Windows NT hash is 
-		created by taking the user's password as represented in 
-		16-bit, little-endian UNICODE and then applying the MD4 
-		(internet rfc1321) hashing algorithm to it. </para>
+		<listitem><para>Dies ist der Windows NT-Hash des Benutzerpasswortes, 
+		codiert in 32 hexadezimalen Ziffern. Der Windows NT-Hash wird 
+		erzeugt aus dem Benutzerpasswort, dargestellt in UNICODE (16-Bit, 
+		little-endian), auf dem dann der Hash-Algorithmus MD4 
+		(Internet-RFC 1321) angewendet wird.</para>
 		
-		<para>This password hash is considered more secure than
-		the LANMAN Password Hash as it preserves the case of the 
-		password and uses a much higher quality hashing algorithm. 
-		However, it is still the case that if two users choose the same 
-		password this entry will be identical (i.e. the password is 
-		not "salted" as the UNIX password is). </para>
+		<para>Dieser Passwort-Hash wird als sicherer betrachtet als der
+		LANMAN-Passwort-Hash, da er die Schreibweise des Passwortes erhält
+		und einen qualitativ wesentlich besseren Hash-Algorithmus verwendet. 
+		Allerdings gilt auch hier, dass für zwei Benutzer mit identischem
+		Passwort dieser Eintrag auch identisch ist (d.h. das Passwort ist 
+		nicht "gesalzen" wie ein UNIX-Passwort).</para>
 
-		<para><emphasis>WARNING !!</emphasis>. Note that, due to 
-		the challenge-response nature of the SMB/CIFS authentication
-		protocol, anyone with a knowledge of this password hash will 
-		be able to impersonate the user on the network. For this
-		reason these hashes are known as <emphasis>plain text 
-		equivalents</emphasis> and must <emphasis>NOT</emphasis> be made 
-		available to anyone but the root user. To protect these passwords 
-		the smbpasswd file is placed in a directory with read and 
-		traverse access only to the root user and the smbpasswd file 
-		itself must be set to be read/write only by root, with no
-		other access. </para></listitem>
+		<para><emphasis>WARNUNG!!</emphasis> Man beachte, dass auf Grund der
+		Aufgabe/Antwort-Natur des SMB/CIFS-Authentifikationsprotokolls, 
+		jeder, der diesen Passwort-Hash kennt, den Benutzer im Netzwerk 
+		nachahmen kann. Deswegen sind diese Hashes als 
+		<emphasis>Klartext-Äquivalente</emphasis> bekannt und dürfen
+		für andere Benutzer als root <emphasis>NICHT</emphasis> 
+		zugänglich gemacht werden. Um diese Passworte zu schützen, wird
+		die Datei smbpasswd in ein Verzeichnis gelegt, an dem nur root
+		Lese- und Traversierungsrecht hat, und die Datei smbpasswd selbst 
+		darf nur für root les- und schreibbar sein, ohne jeden weiteren
+		Zugriff für andere.</para></listitem>
 		</varlistentry>
 		
 
 		<varlistentry>
-		<term>Account Flags</term>
-		<listitem><para>This section contains flags that describe 
-		the attributes of the users account. In the Samba 2.2 release 
-		this field is bracketed by '[' and ']' characters and is always 
-		13 characters in length (including the '[' and ']' characters).
-		The contents of this field may be any of the following characters:
+		<term>Konten-Flags</term>
+		<listitem><para>Dieser Abschnitt enthält Flags, die die Attribute
+		des Benutzerkontos beschreiben. In Samba 2.2 wird dieses Feld 
+		zwischen eckigen Klammern gesetzt, '[' und ']', und ist immer 
+		13 Zeichen lang (inklusive der Zeichen '[' und ']').
+		Der Inhalt dieses Feldes kann aus folgenden Zeichen bestehen:
 		</para>
 		
 		<itemizedlist>
-			<listitem><para><emphasis>U</emphasis> - This means 
-			this is a "User" account, i.e. an ordinary user. Only User 
-			and Workstation Trust accounts are currently supported 
-			in the smbpasswd file. </para></listitem>
+			<listitem><para><emphasis>U</emphasis> - Das bedeutet, dies 
+			ist ein "Benutzer"-Konto, d.h. ein gewöhnlicher Benutzer. 
+			Momentan werden in der Datei smbpasswd nur Benutzer- und
+			Workstation-Trust-Konten unterstützt.</para></listitem>
 			
-			<listitem><para><emphasis>N</emphasis> - This means the
-			account has no password (the passwords in the fields LANMAN 
-			Password Hash and NT Password Hash are ignored). Note that this 
-			will only allow users to log on with no password if the <parameter>
-			null passwords</parameter> parameter is set in the 
+			<listitem><para><emphasis>N</emphasis> - Das bedeutet, das
+			Konto hat kein Passwort (die Passworte in den Feldern LANMAN 
+			Password Hash und NT Password Hash werden ignoriert). Beachten
+			Sie, dass Benutzer sich nur dann ohne Passwort anmelden können,
+			wenn der Parameter <parameter>null passwords</parameter>
+			in der Konfigurationsdatei 
 			<citerefentry><refentrytitle>smb.conf</refentrytitle>
-			<manvolnum>5</manvolnum></citerefentry> config file. </para></listitem>
+			<manvolnum>5</manvolnum></citerefentry> gesetzt ist.
+			</para></listitem>
 				
-			<listitem><para><emphasis>D</emphasis> - This means the account 
-			is disabled and no SMB/CIFS logins  will be allowed for this user. </para></listitem>
+			<listitem><para><emphasis>D</emphasis> - Das bedeutet, das
+			Konto ist deaktiviert und für diesen Benutzer ist keine 
+			SMB/CIFS-Anmeldung möglich.</para></listitem>
 			
-			<listitem><para><emphasis>W</emphasis> - This means this account 
-			is a "Workstation Trust" account. This kind of account is used 
-			in the Samba PDC code stream to allow Windows NT Workstations 
-			and Servers to join a Domain hosted by a Samba PDC. </para>
-			</listitem>
+			<listitem><para><emphasis>W</emphasis> - Das bedeutet, dieses
+			Konto ist ein "Workstation Trust"-Konto. Diese Art von
+			Konto wird im Samba-PDC-Code-Stream dazu bennutzt, um 
+			Windows NT-Workstations und Servern zu ermöglichen, einer
+			Domäne beizutreten, die von einem Samba-PDC gehostet 
+			wird.</para></listitem>
 		</itemizedlist>
 		
-		<para>Other flags may be added as the code is extended in future.
-		The rest of this field space is filled in with spaces. </para>
+		<para>Weitere Flags können im Zuge der Erweiterung des Codes
+		in der Zukunft hinzukommen. Der Rest dieses Feldraums ist mit
+		Leerzeichen ausgefüllt.</para>
 		</listitem>
 		</varlistentry>
 		
 		
 		<varlistentry>
 		<term>Last Change Time</term>
-		<listitem><para>This field consists of the time the account was 
-		last modified. It consists of the characters 'LCT-' (standing for 
-		"Last Change Time") followed by a numeric encoding of the UNIX time 
-		in seconds since the epoch (1970) that the last change was made. 
+		<listitem><para>Dieses Feld enthält die Zeit, zu der das Konto 
+		zuletzt modifiziert wurde. Es besteht aus den Zeichen 'LCT-' 
+		(die für "Last Change Time" stehen), gefolgt von einer numerischen
+		Codierung der UNIX-Zeit in Sekunden seit der Epoche (1970), zu der
+		die letzte Änderung vorgenommen wurde. 
 		</para></listitem>
 		</varlistentry>
 	</variablelist>
 	
-	<para>All other colon separated fields are ignored at this time.</para> 
+	<para>Alle anderen mit Doppelpunkten getrennten Felder werden 
+	im Moment ignoriert.</para> 
 </refsect1>
 
 <refsect1>
@@ -180,11 +191,11 @@
 </refsect1>
 
 <refsect1>
-	<title>SEE ALSO</title>
+	<title>SIEHE AUCH</title>
 	<para><citerefentry><refentrytitle>smbpasswd</refentrytitle>
 	<manvolnum>8</manvolnum></citerefentry>, <citerefentry><refentrytitle>Samba</refentrytitle>
-	<manvolnum>7</manvolnum></citerefentry>, and
-	the Internet RFC1321 for details on the MD4 algorithm.
+	<manvolnum>7</manvolnum></citerefentry> und
+	das Internet-RFC 1321 für Details zum Algorithmus MD4.
 	</para>
 </refsect1>
 
