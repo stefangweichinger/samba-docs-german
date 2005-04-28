@@ -1,4 +1,3 @@
-# Generated automatically from Makefile.in by configure.
 #################################################################
 # Makefile.in for Samba Documentation
 # Authors:	
@@ -13,10 +12,10 @@ DVIPS = /usr/bin/dvips
 PNGTOPNM = /usr/bin/pngtopnm
 EPSTOPNM = @EPSTOPNM@
 PNMTOPNG = @PNMTOPNG@
-DIA = /usr/bin/dia
+DIA = /opt/gnome/bin/dia
 PNMTOPS = /usr/bin/pnmtops
 HTML2TEXT = /usr/bin/html2text
-PLUCKERBUILD = 
+PLUCKERBUILD = /usr/bin/plucker-build
 COPY_IMAGES = ./scripts/copy-images.sh
 THUMBPDF = /usr/bin/thumbpdf
 PDFLATEX = TEXINPUTS=xslt/latex:.: /usr/bin/pdflatex --file-line-error-style
@@ -75,7 +74,7 @@ howto/index.xml: $(subst howto/index.xml,,$(wildcard howto/*.xml)) howto-attribu
 Samba-Developers-Guide/index.xml: $(subst Samba-Developers-Guide/index.xml,,$(wildcard Samba-Developers-Guide/*.xml)) Samba-Developers-Guide-attributions.xml
 
 # Pseudo targets 
-all:   tex pdf ps html htmlhelp htmlman manpages pearson verify txt
+all:   tex pdf ps html htmlhelp htmlman manpages pearson plucker verify txt
 everything: manpages pdf html-single html htmlman txt ps fo htmlhelp pearson verify
 release: manpages htmlman html pdf 
 
@@ -214,7 +213,7 @@ $(PLUCKERDIR)/%.pdb: $(HTMLDIR)/%.html $(PLUCKERDIR)
 # Manpages
 $(MANPAGEDIR)/smb.conf.5.xml: $(SMBDOTCONFDOC)/parameters.all.xml $(SMBDOTCONFDOC)/parameters.service.xml $(SMBDOTCONFDOC)/parameters.global.xml
 
-$(SMBDOTCONFDOC)/parameters.all.xml: $(shell find $(SMBDOTCONFDOC) -type f -name '*.xml' -mindepth 2 | sort -t/ -k3 | xargs) $(SMBDOTCONFDOC)/generate-file-list.sh
+$(SMBDOTCONFDOC)/parameters.all.xml: $(shell find $(SMBDOTCONFDOC) -mindepth 2 -type f -name '*.xml'  | sort -t/ -k3 | xargs) $(SMBDOTCONFDOC)/generate-file-list.sh
 	$(SMBDOTCONFDOC)/generate-file-list.sh $(SMBDOTCONFDOC) > $@
 
 $(SMBDOTCONFDOC)/parameters.global.xml: $(SMBDOTCONFDOC)/parameters.all.xml $(SMBDOTCONFDOC)/generate-context.xsl
