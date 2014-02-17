@@ -1,0 +1,21 @@
+/blocksize.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/changenotifytimeout.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/deadtime.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/getwdcache.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/hostnamelookups.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/keepalive.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/maxconnections.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/maxdisksize.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/maxopenfiles.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/maxsmbdprocesses.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/minprintspace.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/namecachetimeout.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/paranoidserversecurity.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/socketoptions.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/strictallocate.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/strictsync.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/syncalways.xml/1.1.1.1/Sun May 23 16:17:20 2004//
+/usemmap.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/usesendfile.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+/writecachesize.xml/1.1.1.1/Sun May 23 16:17:21 2004//
+D
